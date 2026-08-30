@@ -1,0 +1,576 @@
+% 符号说明与前言
+% =============================================================================
+
+% -----------------------------------------------------------------------------
+\chapter*{符号说明}
+\addcontentsline{toc}{chapter}{符号说明}
+% -----------------------------------------------------------------------------
+
+本章统一列出本书所用的符号约定、物理常数、等离子体特征参数以及单位制对照，
+供读者查阅参考。数学符号如无特别说明，均采用国际物理学界通用约定。
+
+
+% =============================================================================
+\section*{基础电磁与物理常数}
+\addcontentsline{toc}{section}{基础电磁与物理常数}
+% =============================================================================
+
+本书使用国际单位制（SI）为主，仅在需要时标注高斯单位制形式。
+所有公式中的物理常数取值如下表所示，粗体表示三维矢量，
+带帽符号表示单位矢量。
+
+\begin{table}[htbp]
+\centering
+\caption{基础电磁与物理常数}
+\begin{tabular}{@{}llcl@{}}
+\toprule
+\textbf{符号} & \textbf{名称} & \textbf{数值/约定} & \textbf{说明} \\
+\midrule
+$\ee$ & 元电荷 & $1.602\,176\,634\times 10^{-19}\,\mathrm{C}$ & 基本正电荷 \\
+$m_\ee$ & 电子静质量 & $9.109\,383\,56\times 10^{-31}\,\mathrm{kg}$ & \\
+$m_\ii$ & 质子（离子）静质量 & $1.672\,621\,923\,69\times 10^{-27}\,\mathrm{kg}$ & \\
+$k_\mathrm{B}$ & 玻尔兹曼常数 & $1.380\,649\times 10^{-23}\,\mathrm{J/K}$ & \\
+$\eps_0$ & 真空介电常数 & $8.854\,187\,817\times 10^{-12}\,\mathrm{F/m}$ & \\
+$\mu_0$ & 真空磁导率 & $4\pi\times 10^{-7}\,\mathrm{H/m}$ & \\
+$c$ & 真空中光速 & $2.997\,924\,58\times 10^{8}\,\mathrm{m/s}$ & $c=1/\sqrt{\eps_0\mu_0}$ \\
+$\hbar$ & 约化普朗克常数 & $1.054\,571\,817\times 10^{-34}\,\mathrm{J\cdot s}$ & 仅量子修正处出现 \\
+\midrule
+$\vect{A}$ & 矢量 & 粗体正体 & 三维欧氏空间 \\
+$\unitvec{e}$ & 单位矢量 & 带帽符号 & 模长为 1 \\
+$\vect{A}\cdot\vect{B}$ & 点积（标积） & $\sum_i A_i B_i$ & \\
+$\vect{A}\times\vect{B}$ & 叉积（矢积） & 行列式形式 & 右手定则 \\
+$\nabla$ & 矢量微分算符 & 见下表 & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+% =============================================================================
+\section*{微分算符约定}
+\addcontentsline{toc}{section}{微分算符约定}
+% =============================================================================
+
+本书采用以下算符命令，与电动力学教材一致：
+\begin{table}[htbp]
+\centering
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{算符} & \textbf{符号} & \textbf{名称} & \textbf{直角坐标展开} \\
+\midrule
+$\grad f$ & $\nabla f$ & 梯度 & $\displaystyle\frac{\partial f}{\partial x}\unitvec{x}+\frac{\partial f}{\partial y}\unitvec{y}+\frac{\partial f}{\partial z}\unitvec{z}$ \\
+$\divg\vect{A}$ & $\nabla\cdot\vect{A}$ & 散度 & $\displaystyle\frac{\partial A_x}{\partial x}+\frac{\partial A_y}{\partial y}+\frac{\partial A_z}{\partial z}$ \\
+$\curl\vect{A}$ & $\nabla\times\vect{A}$ & 旋度 & 行列式形式 \\
+$\lap f$ & $\nabla^2 f$ & 拉普拉斯 & $\displaystyle\frac{\partial^2 f}{\partial x^2}+\frac{\partial^2 f}{\partial y^2}+\frac{\partial^2 f}{\partial z^2}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+% =============================================================================
+\section*{等离子体特征参数}
+\addcontentsline{toc}{section}{等离子体特征参数}
+% =============================================================================
+
+以下参数在等离子体物理中反复出现，本书各章统一采用以下定义与符号。
+
+\begin{table}[htbp]
+\centering
+\caption{等离子体特征参数一览}
+\begin{tabular}{@{}llp{6.5cm}@{}}
+\toprule
+\textbf{符号} & \textbf{定义/表达式} & \textbf{物理意义} \\
+\midrule
+$\lambda_\mathrm{D}$ & $\displaystyle\sqrt{\frac{\eps_0 k_\mathrm{B} T_\ee}{n_\ee e^2}}$ & 德拜长度，静电屏蔽特征尺度 \\
+$\omega_{\mathrm{p}\ee}$ & $\displaystyle\sqrt{\frac{n_\ee e^2}{\eps_0 m_\ee}}$ & 电子等离子体频率 \\
+$\omega_{\mathrm{p}\ii}$ & $\displaystyle\sqrt{\frac{n_\ii Z^2 e^2}{\eps_0 m_\ii}}$ & 离子等离子体频率 \\
+$\omega_{\mathrm{c}\ee}$ & $\displaystyle\frac{e B}{m_\ee}$ & 电子回旋（拉莫尔）频率 \\
+$\omega_{\mathrm{c}\ii}$ & $\displaystyle\frac{Z e B}{m_\ii}$ & 离子回旋频率 \\
+$\rho_\ee$ & $\displaystyle\frac{v_{\mathrm{t}\ee}}{\omega_{\mathrm{c}\ee}}$ & 电子回旋（拉莫尔）半径 \\
+$\rho_\ii$ & $\displaystyle\frac{v_{\mathrm{t}\ii}}{\omega_{\mathrm{c}\ii}}$ & 离子回旋半径 \\
+$T_\ee$ & — & 电子温度（能量单位，常取 eV） \\
+$T_\ii$ & — & 离子温度（能量单位，常取 eV） \\
+$v_{\mathrm{t}\ee}$ & $\displaystyle\sqrt{\frac{k_\mathrm{B} T_\ee}{m_\ee}}$ & 电子热速度 \\
+$v_{\mathrm{t}\ii}$ & $\displaystyle\sqrt{\frac{k_\mathrm{B} T_\ii}{m_\ii}}$ & 离子热速度 \\
+$\beta$ & $\displaystyle\frac{2\mu_0 n k_\mathrm{B} T}{B^2}$ & 等离子体比压（热压/磁压） \\
+$\eta$ & — & 电阻率（$\vect{E}=\eta\vect{j}$） \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{insight}{关于温度与能量单位}{}
+在等离子体物理中，温度常以能量单位 eV 给出。严格来说，
+$k_\mathrm{B} T$ 才是能量，但为简洁起见，本书常写“$T_\ee=10\,\mathrm{eV}$”，
+其含义等价于 $k_\mathrm{B} T_\ee=10\,\mathrm{eV}$。换算关系见下文\S 单位换算速查表。
+\end{insight}
+
+
+% =============================================================================
+\section*{等离子体无量纲参数}
+\addcontentsline{toc}{section}{等离子体无量纲参数}
+% =============================================================================
+
+无量纲参数是判断等离子体物理状态、选择近似方法的关键判据。
+
+\begin{table}[htbp]
+\centering
+\caption{等离子体无量纲参数}
+\begin{tabular}{@{}llp{6.5cm}@{}}
+\toprule
+\textbf{符号} & \textbf{定义/表达式} & \textbf{物理意义与判据} \\
+\midrule
+$N_\mathrm{D}$ & $n\lambda_\mathrm{D}^3$ & 德拜球内粒子数；$N_\mathrm{D}\gg 1$ 为理想等离子体判据 \\
+$\Gamma$ & $\displaystyle\frac{e^2}{4\pi\eps_0 a k_\mathrm{B} T}$ & 耦合参数；$a=(3/4\pi n)^{1/3}$ 为 Wigner--Seitz 半径。\\ & & $\Gamma\ll 1$ 弱耦合，$\Gamma\gg 1$ 强耦合 \\
+$\ln\Lambda$ & $\ln\left(\dfrac{\lambda_\mathrm{D}}{b_{\min}}\right)$ & 库仑对数；$b_{\min}$ 为最近接近距离 \\
+$\beta$ & $\displaystyle\frac{2\mu_0 n k_\mathrm{B} T}{B^2}$ & 比压；$\beta\ll 1$ 磁约束，$\beta\sim 1$ 磁压与热压相当 \\
+$q$ & $\displaystyle\frac{r B_\varphi}{R B_\theta}$ & 安全因子（tokamak 几何）；$q>1$ 保证稳定性 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{warning}{不要混淆两个 $\beta$}{}
+本书中 $\beta$ 统一表示等离子体比压（thermal beta），
+定义为热压与磁压之比。某些文献中可能出现动理学 $\beta$（$\beta_{\mathrm{kin}}$）
+或粒子 $\beta$ 的写法，含义不同，请注意上下文。
+\end{warning}
+
+
+% =============================================================================
+\section*{单位换算速查表}
+\addcontentsline{toc}{section}{单位换算速查表}
+% =============================================================================
+
+等离子体物理跨越多个数量级，以下换算在数值估算中最为常用。
+
+\begin{table}[htbp]
+\centering
+\caption{常用单位换算}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{换算关系} & \textbf{数值} & \textbf{备注} \\
+\midrule
+$1\,\mathrm{eV}$ & $= 11\,604\,\mathrm{K}$ & 温度与能量换算（$k_\mathrm{B} T$） \\
+$1\,\mathrm{K}$ & $= 8.617\times 10^{-5}\,\mathrm{eV}$ & 反向换算 \\
+\midrule
+$1\,\mathrm{cm}^{-3}$ & $= 10^{6}\,\mathrm{m}^{-3}$ & 密度单位互换 \\
+$1\,\mathrm{T}$ (特斯拉) & $= 10^{4}\,\mathrm{G}$ (高斯) & 磁场强度单位 \\
+\midrule
+$1\,\mathrm{Pa}$ & $= 10\,\mathrm{dyn/cm}^2$ & 压强单位（SI $\to$ CGS） \\
+$1\,\mathrm{bar}$ & $= 10^{5}\,\mathrm{Pa}$ & 工程常用 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{常用数量级记忆}
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{物理量} & \textbf{典型数量级} \\
+\midrule
+聚变核心温度 & $T\sim 10^8\,\mathrm{K}\sim 10\,\mathrm{keV}$ \\
+太阳日冕温度 & $T\sim 10^6\,\mathrm{K}\sim 100\,\mathrm{eV}$ \\
+低温工业等离子体 & $T_\ee\sim 1\text{--}10\,\mathrm{eV},\; T_\ii\sim 0.1\text{--}1\,\mathrm{eV}$ \\
+聚变等离子体密度 & $n\sim 10^{19}\text{--}10^{20}\,\mathrm{m}^{-3}$ \\
+电离层密度 & $n\sim 10^{10}\text{--}10^{12}\,\mathrm{m}^{-3}$ \\
+实验室磁场 & $B\sim 1\text{--}10\,\mathrm{T}$ (tokamak, 仿星器) \\
+地磁场 & $B\sim 0.3\text{--}0.6\,\mathrm{G}$ (地表) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+% =============================================================================
+\section*{高斯单位制与 SI 单位制对照}
+\addcontentsline{toc}{section}{高斯单位制与 SI 单位制对照}
+% =============================================================================
+
+等离子体物理文献中，特别是早期论文和聚变理论文献，常使用高斯（CGS）单位制。
+本书正文以 SI 为主，但为便于阅读经典文献，以下列出最常用公式的对照形式。
+
+\begin{table}[htbp]
+\centering
+\caption{高斯单位制与 SI 单位制公式对照}
+\begin{tabular}{@{}lp{5.5cm}p{5.5cm}@{}}
+\toprule
+\textbf{公式} & \textbf{SI 形式} & \textbf{高斯 (CGS) 形式} \\
+\midrule
+库仑力 & $\displaystyle F=\frac{1}{4\pi\eps_0}\frac{q_1 q_2}{r^2}$ & $\displaystyle F=\frac{q_1 q_2}{r^2}$ \\
+\midrule
+德拜长度 & $\displaystyle \lambda_\mathrm{D}=\sqrt{\frac{\eps_0 k_\mathrm{B} T}{n e^2}}$ & $\displaystyle \lambda_\mathrm{D}=\sqrt{\frac{k_\mathrm{B} T}{4\pi n e^2}}$ \\
+\midrule
+电子等离子体频率 & $\displaystyle \omega_{\mathrm{p}\ee}=\sqrt{\frac{n e^2}{\eps_0 m_\ee}}$ & $\displaystyle \omega_{\mathrm{p}\ee}=\sqrt{\frac{4\pi n e^2}{m_\ee}}$ \\
+\midrule
+电子回旋频率 & $\displaystyle \omega_{\mathrm{c}\ee}=\frac{e B}{m_\ee}$ & $\displaystyle \omega_{\mathrm{c}\ee}=\frac{e B}{m_\ee c}$ \\
+\midrule
+电子回旋半径 & $\displaystyle \rho_\ee=\frac{v_{\mathrm{t}\ee}}{\omega_{\mathrm{c}\ee}}$ & $\displaystyle \rho_\ee=\frac{m_\ee c v_{\mathrm{t}\ee}}{e B}$ \\
+\midrule
+阿尔芬速度 & $\displaystyle v_\mathrm{A}=\frac{B}{\sqrt{\mu_0 n m_\ii}}$ & $\displaystyle v_\mathrm{A}=\frac{B}{\sqrt{4\pi n m_\ii}}$ \\
+\midrule
+麦克斯韦方程组（两个） & $\displaystyle \nabla\times\vect{B}=\mu_0\vect{j}+\mu_0\eps_0\frac{\partial\vect{E}}{\partial t}$ & $\displaystyle \nabla\times\vect{B}=\frac{4\pi}{c}\vect{j}+\frac{1}{c}\frac{\partial\vect{E}}{\partial t}$ \\
+ & $\displaystyle \nabla\cdot\vect{E}=\frac{\rho}{\eps_0}$ & $\displaystyle \nabla\cdot\vect{E}=4\pi\rho$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{tip}
+\textbf{单位制快速切换技巧：}
+从高斯制到 SI 制的记忆口诀：\\
+1. 凡出现 $e^2$ 的公式，高斯制中通常写 $4\pi e^2$（对应 SI 的 $e^2/\eps_0$）；\\
+2. 磁场 $B$ 在高斯制中单位为 G（高斯），SI 中为 T（特斯拉），$1\,\mathrm{T}=10^4\,\mathrm{G}$；\\
+3. 含光速 $c$ 的公式（如回旋频率、阿尔芬速度）需要额外注意 $c$ 是否显式出现。
+\end{tip}
+
+
+% =============================================================================
+\section*{傅里叶变换约定}
+\addcontentsline{toc}{section}{傅里叶变换约定}
+% =============================================================================
+
+本书在波动与动理学章节中大量使用傅里叶变换，采用以下
+\textbf{物理学标准约定}（$\ee^{-\ii(k\cdot r-\omega t)}$ 相位因子）：
+\begin{align}
+f(\vect{r},t) &= \int \frac{\diff^3 k\,\diff\omega}{(2\pi)^4}\;
+\tilde{f}(\vect{k},\omega)\,\ee^{+\ii(\vect{k}\cdot\vect{r}-\omega t)}, \\
+\tilde{f}(\vect{k},\omega) &= \int \diff^3 r\,\diff t\;
+f(\vect{r},t)\,\ee^{-\ii(\vect{k}\cdot\vect{r}-\omega t)}.
+\end{align}
+
+在该约定下，线性波动方程的时间导数对应 $-\ii\omega$，空间导数对应 $+\ii\vect{k}$：
+\[
+\frac{\partial}{\partial t} \to -\ii\omega, \qquad \nabla \to +\ii\vect{k}.
+\]
+
+\begin{warning}{约定一致性检查}{}
+某些教材（尤其是数学物理和工程电磁学教材）使用相反的约定：
+$\ee^{+\ii(k\cdot r-\omega t)}$ 为物理相位。若从其他文献引用色散关系或介电张量，
+请务必确认其傅里叶约定是否一致，否则会出现符号混乱。
+\end{warning}
+
+
+% =============================================================================
+\section*{阅读难度标识图例}
+\addcontentsline{toc}{section}{阅读难度标识图例}
+% =============================================================================
+
+为帮助读者根据自身背景选择阅读深度，本书在每小节标题前使用
+边注难度标识（命令 \texttt{\textbackslash difficulty}），分为三个等级：
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{@{}llp{8cm}@{}}
+\toprule
+\textbf{标识} & \textbf{名称} & \textbf{含义} \\
+\midrule
+$\star$\,[\,基础\,] & 基础 & 核心概念，所有读者必须掌握。跳过将直接影响后续章节理解。 \\
+$\star\star$\,[\,提高\,] & 提高 & 进阶推导或拓展应用。理工科研究生或希望深入理解的读者应阅读。 \\
+$\star\star\star$\,[\,挑战\,] & 挑战 & 涉及较深的数学技巧或前沿问题。供科研方向读者或有志于理论工作的读者选读。 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{miniquiz}
+在本书中，你会看到边注如\,\difficulty{基础}\,或\,\difficulty{挑战}。
+请根据你的学习目标，合理选择阅读深度。基础内容优先保证，
+挑战内容可以第一轮自学时跳过标记，第二轮再补。
+\end{miniquiz}
+
+
+
+% =============================================================================
+\newpage
+\chapter*{前言}
+\addcontentsline{toc}{chapter}{前言}
+% =============================================================================
+
+等离子体是物质的第四态——一种由自由电子和离子组成、具有集体行为
+的准中性导电流体。从极光到太阳风，从霓虹灯到受控核聚变，
+等离子体物理连接着实验室工程与宇宙尺度的自然现象。
+
+本书旨在为自学者提供一条系统而高效的入门路径，兼顾物理图像的直观理解
+与必要数学推导的严谨性。无论你是准备进入聚变研究的研究生，
+还是想要了解半导体工艺中低温放电的工程师，都可以在此找到适合的起点。
+
+
+% =============================================================================
+\section*{本书取舍说明}
+\addcontentsline{toc}{section}{本书取舍说明}
+% =============================================================================
+
+\begin{table}[htbp]
+\centering
+\caption{本书覆盖范围与边界}
+\begin{tabular}{@{}lp{10cm}@{}}
+\toprule
+\textbf{涵盖内容} & \textbf{说明} \\
+\midrule
+经典弱耦合等离子体 & 本书主体。温度足够高、密度足够低，使得粒子间以库仑相互作用为主，
+满足 $\Gamma\ll 1$、$N_\mathrm{D}\gg 1$。涵盖单粒子运动、流体描述、
+动理学理论、等离子体波与稳定性。 \\
+磁约束与惯性约束聚变 & 第 9--10 章重点介绍 tokamak、仿星器、激光惯性约束的核心物理。 \\
+空间与天体等离子体 & 第 6 章波动、第 9 章不稳定性中涉及太阳风、磁层物理的应用。 \\
+低温工业等离子体 & 第 11 章专门讨论半导体刻蚀、镀膜、放电光源中的等离子体化学。 \\
+\midrule
+\textbf{弱化或省略} & \textbf{说明} \\
+\midrule
+相对论等离子体 & 仅在高能粒子束、同步辐射等小节中提及，不作系统展开。 \\
+强耦合/量子等离子体 & 简并等离子体、费米气体等仅在附录中给出简要说明。 \\
+尘埃等离子体 & 涉及固体颗粒荷电的复杂等离子体，本书不单独成章。 \\
+数值模拟方法 & 第 12 章仅作诊断与实验方法介绍，PIC/MHD 代码实现移至附录。 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{tip}
+\textbf{拓展阅读建议：}
+若需深入了解相对论等离子体，推荐阅读 \textit{Plasma Physics for Astrophysics}
+(Princeton, 2004)；强耦合等离子体参考 \textit{Strongly Coupled Plasma Physics}
+(1990, Springer)；尘埃等离子体见 \textit{Introduction to Dusty Plasma Physics}
+(Shukla \& Mamun, 2002)。
+\end{tip}
+
+
+% =============================================================================
+\section*{前置知识自查清单}
+\addcontentsline{toc}{section}{前置知识自查清单}
+% =============================================================================
+
+以下清单帮助你判断是否需要先复习某些基础内容。如果你在某一项上感到生疏，
+建议优先阅读本书对应的回顾章节，否则后续学习将事倍功半。
+
+\begin{table}[htbp]
+\centering
+\caption{前置知识自查清单}
+\begin{tabular}{@{}llp{5.5cm}@{}}
+\toprule
+\textbf{前置知识} & \textbf{本书对应回顾位置} & \textbf{若看不懂的影响} \\
+\midrule
+矢量分析（梯度、散度、旋度） & 第 1 章 \S 1.1 & 看不懂后续所有推导 \\
+常微分方程（可分离变量、线性ODE） & 第 1 章 \S 1.1 & 单粒子轨道、波动方程无法求解 \\
+统计力学与分布函数 & 第 1 章 \S 1.2 & 看不懂第 4 章流体方程、第 7 章动理学 \\
+麦克斯韦方程组 & 第 1 章复习 & 看不懂第 2 章德拜屏蔽、第 6 章波 \\
+复变函数基础（留数、围道积分） & 第 7 章附录 & 动理学 Landau 阻尼推导受阻 \\
+张量运算与指标求和约定 & 第 4 章 \S 4.1 附录 & 双流体方程、压强张量理解困难 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{review}{本节要点}{}
+\begin{itemize}
+\item 矢量分析与微分方程是\textbf{最低门槛}；
+\item 统计力学与分布函数是\textbf{核心桥梁}；
+\item 复变函数与留数定理可\textbf{第一轮跳过}，第二轮补充。
+\end{itemize}
+\end{review}
+
+
+% =============================================================================
+\section*{三类自学人群专属学习路线图}
+\addcontentsline{toc}{section}{三类自学人群专属学习路线图}
+% =============================================================================
+
+并非所有读者都需要读完每一章。根据你的背景和目标，选择以下三条路线之一。
+
+
+\subsection*{路线 A：零基础工科/微电子方向}
+
+\textbf{目标：}理解半导体刻蚀、镀膜、低温放电中的等离子体物理，
+为工艺优化和放电诊断提供理论基础。
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{@{}clp{6cm}@{}}
+\toprule
+\textbf{阶段} & \textbf{章节} & \textbf{说明} \\
+\midrule
+必读 & 第 1 章 & 基础复习与等离子体概念建立 \\
+必读 & 第 2 章 & 德拜屏蔽、准中性、鞘层（等离子体边界核心） \\
+必读 & 第 3 章 & 单粒子运动（重点：$\vect{E}\times\vect{B}$ 漂移、磁镜），
+\textbf{跳过}高阶漂移（曲率漂移、极化漂移） \\
+必读 & 第 4 章 & 只读双流体方程（\S 4.1--\S 4.3），
+跳过 MHD 近似与磁流体力学 \\
+必读 & 第 8 章 & 碰撞与输运（重点：双极扩散） \\
+必读 & 第 11 章 & 低温工业等离子体（化学、放电模式） \\
+必读 & 第 12 章 & 诊断方法（朗缪尔探针、光谱、质谱） \\
+\midrule
+\textbf{跳过} & 第 5 章 & 理想 MHD（与工艺等离子体关系不大） \\
+\textbf{跳过} & 第 7 章 & 动理学理论（Vlasov 方程、Landau 阻尼） \\
+\textbf{跳过} & 第 9 章 & 宏观不稳定性（tokamak 极限） \\
+\textbf{跳过} & 第 10 章 & 聚变约束（磁约束与惯性约束） \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection*{路线 B：聚变/空间物理方向}
+
+\textbf{目标：}系统掌握等离子体物理，为研究生课程或科研打下完整基础。
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{@{}clp{6cm}@{}}
+\toprule
+\textbf{阶段} & \textbf{章节} & \textbf{说明} \\
+\midrule
+核心基础 & 第 1--4 章 & 全读，不留死角（单粒子、流体、双流体、MHD） \\
+核心进阶 & 第 5--7 章 & 碰撞输运、波动、动理学（重点：Landau 阻尼、色散关系） \\
+核心应用 & 第 8--10 章 & 不稳定性、约束与聚变、空间等离子体应用 \\
+选修拓展 & 第 11 章 & 低温等离子体（若涉及偏滤器、壁处理则必读） \\
+实验诊断 & 第 12 章 & 全读（诊断是聚变实验的核心） \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection*{路线 C：理论/仿真科研向}
+
+\textbf{目标：}不仅掌握物理图像，更要熟悉推导技巧和数值工具，
+为进入理论或计算等离子体物理研究做准备。
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{@{}clp{6cm}@{}}
+\toprule
+\textbf{阶段} & \textbf{章节/资源} & \textbf{说明} \\
+\midrule
+全书精读 & 第 1--10 章 & 全读，包括所有\,\difficulty{挑战}\,内容 \\
+数学补充 & 附录 A & 复变函数与围道积分（Landau 阻尼必备） \\
+数学补充 & 附录 B & 变分法与能量原理（MHD 稳定性证明） \\
+仿真拓展 & 附录 C & Python 仿真：单粒子轨道、PIC 一维静电、双流体模拟 \\
+前沿文献 & 配套资源 & 经典论文导读（Rosenbluth, Taylor, Kadomtsev 等） \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{insight}{路线选择不是终身的}{}
+很多科研工作者会在不同阶段切换路线。例如，从微电子工艺转向聚变研究时，
+可以先从路线 A 起步，再用路线 B 补全第 5、7、9 章。本书的章节依赖关系
+清晰，支持模块化、非线性的学习路径。
+\end{insight}
+
+
+% =============================================================================
+\section*{每章前置依赖提示}
+\addcontentsline{toc}{section}{每章前置依赖提示}
+% =============================================================================
+
+严格遵循线性顺序并非最佳策略，但以下依赖关系表可以帮助你判断
+是否可以提前或延后阅读某一章。
+
+\begin{table}[htbp]
+\centering
+\caption{各章前置依赖关系}
+\begin{tabular}{@{}cll@{}}
+\toprule
+\textbf{章节} & \textbf{直接依赖} & \textbf{间接依赖} \\
+\midrule
+第 1 章 & 无（基础复习） & 无 \\
+第 2 章 & 第 1 章 \S 1.1（矢量分析） & 无 \\
+第 3 章 & 第 1 章 \S 1.1（微分方程） & 第 2 章（准中性概念） \\
+第 4 章 & 第 1 章 \S 1.2（分布函数）、\S 1.4（傅里叶） & 第 2、3 章（电磁环境） \\
+第 5 章 & 第 4 章（MHD 方程） & 第 1--3 章 \\
+第 6 章 & 第 1 章 \S 1.4（傅里叶）、第 4 章 \S 4.1（线性化） & 第 2--5 章 \\
+第 7 章 & 第 1 章 \S 1.2（分布函数）、\S 1.4（傅里叶） & 第 4 章 \S 4.1（玻尔兹曼方程） \\
+第 8 章 & 第 4 章（流体/动理学框架） & 第 1--3 章 \\
+第 9 章 & 第 5 章（MHD）、第 6 章（波） & 第 1--4 章 \\
+第 10 章 & 第 5 章（MHD）、第 9 章（稳定性） & 第 1--8 章 \\
+第 11 章 & 第 2 章（鞘层）、第 4 章（流体） & 第 1、3 章 \\
+第 12 章 & 第 2 章（德拜长度）、第 6 章（波） & 第 1--5 章 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{tip}
+\textbf{非线性阅读策略：}
+若你的目标是第 11 章（工业等离子体），而时间有限，可以按以下顺序：
+第 1 章 $\to$ 第 2 章 $\to$ 第 4 章（仅 \S 4.1--\S 4.3）$\to$ 第 11 章。
+遇到第 11 章引用第 3 章漂移时，再回头补相关小节即可。
+\end{tip}
+
+
+% =============================================================================
+\section*{阅读建议与难度标识}
+\addcontentsline{toc}{section}{阅读建议与难度标识}
+% =============================================================================
+
+本书每小节标题前使用边注难度标识（\texttt{\textbackslash difficulty}），
+分为三个等级：
+
+\begin{itemize}
+\item \textbf{\difficulty{基础}}：核心概念，必须掌握。通常只涉及初等微积分和矢量代数，
+推导步骤不超过 5 行。跳过将直接影响后续章节。
+
+\item \textbf{\difficulty{提高}}：进阶内容，涉及更复杂的数学技巧或更深入的物理图像。
+理工科研究生和有志于科研的本科生应争取理解。第一轮可粗读，
+第二轮精推。
+
+\item \textbf{\difficulty{挑战}}：前沿问题或高度技巧化的推导，供科研方向读者选读。
+包含本书最困难的内容，如动理学色散关系的完整解析延拓、
+气球模稳定性判据等。跳过不影响主线理解。
+\end{itemize}
+
+\begin{history}[关于 ``先图像后公式'' 的传统]
+等离子体物理的大师们——Rosenbluth、Taylor、Kadomtsev——
+在讲解时总是先从物理图像出发，再补充数学细节。
+本书继承了这一传统：每个新概念的引入，先给出定性图像和数量级估算，
+再给出严格推导。建议读者在阅读时也遵循 ``先图像、后公式、再验证'' 的顺序。
+\end{history}
+
+\textbf{动手建议：}
+\begin{enumerate}
+\item \textbf{公式推导：}不要只读，要在草稿纸上重新推导。特别是第 3 章漂移、
+第 4 章双流体方程、第 6 章冷等离子体色散关系。
+\item \textbf{数量级估算：}每学一个特征参数（$\lambda_\mathrm{D}$、$\omega_{\mathrm{p}\ee}$、$\rho_\ee$），
+立刻估算一个实际值（如太阳风、tokamak、霓虹灯），建立直觉。
+\item \textbf{边注与盒子：}本书设计了 \texttt{insight}（物理洞见）、\texttt{warning}（常见误区）、
+\texttt{history}（物理史话）、\texttt{tip}（学习提示）、\texttt{miniquiz}（随堂自测）
+五种盒子，它们是对正文的补充和提醒，建议不要跳过。
+\end{enumerate}
+
+
+% =============================================================================
+\section*{电子配套资源说明}
+\addcontentsline{toc}{section}{电子配套资源说明}
+% =============================================================================
+
+本书配有完整的线上资源，通过随书二维码或指定网址访问：
+
+\begin{table}[htbp]
+\centering
+\caption{配套电子资源}
+\begin{tabular}{@{}lp{9cm}@{}}
+\toprule
+\textbf{资源类型} & \textbf{内容说明} \\
+\midrule
+动态演示动图 & 单粒子在电磁场中的漂移轨迹、等离子体振荡、
+Landau 阻尼相空间混叠、瑞利--泰勒不稳定性演化等。 \\
+Python 代码仓库 & 包含：单粒子轨道积分器、一维静电 PIC 模拟、
+双流体线性色散求解器、MHD 平衡构型计算、朗缪尔探针 $I$--$V$ 曲线拟合。 \\
+拓展习题 & 每章配套 15--20 道习题，含完整数值答案和提示。 \\
+经典论文导读 & 精选 20 篇等离子体物理里程碑论文（如 Langmuir 1928、
+Alfv\'{e}n 1942、Rosenbluth--Rostoker 1962），提供背景、
+要点摘要和习题。 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{miniquiz}
+在进入第 1 章之前，建议你先完成以下准备：\\
+1. 打开 Python 代码仓库，运行 \texttt{single\_particle\_orbit.py}，
+观察 $\vect{E}\times\vect{B}$ 漂移；\\
+2. 浏览动态演示动图，建立对 ``等离子体振荡'' 的直观印象；\\
+3. 用 10 分钟复习矢量分析的梯度、散度、旋度定义。
+\end{miniquiz}
+
+\begin{chapterreview}
+\begin{itemize}
+\item 本书覆盖经典弱耦合等离子体，弱化相对论、强耦合与尘埃等离子体；
+\item 根据目标选择路线 A（工科/微电子）、B（聚变/空间）或 C（理论/仿真）；
+\item 前置知识以矢量分析、统计力学、麦克斯韦方程为核心；
+\item 阅读时遵循 ``图像优先、公式跟上、动手验证'' 的三步法；
+\item 善用边注难度标识，第一轮保证基础，第二轮攻克提高与挑战。
+\end{itemize}
+\end{chapterreview}
+
+
+\newpage
+
