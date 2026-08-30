@@ -1,0 +1,296 @@
+% ============================================================
+% 第5章补充：经典例题与自学元素
+% 插入位置：第5章现有miniquiz之后（\end{miniquiz} 之后）
+% ============================================================
+
+\section*{习题精选与详解}
+\addcontentsline{toc}{section}{习题精选}
+
+\begin{example}{托卡马克与实验室等离子体的比压计算}{beta-calc}
+比压 $\beta = 2\mu_0 p / B^2$ 是衡量热压与磁压相对重要性的无量纲参数。请分别计算：
+\begin{enumerate}[label=(\arabic*)]
+\item 托卡马克装置：$B=5\,\mathrm{T}$，$n=10^{20}\,\mathrm{m}^{-3}$，$T_e=T_i=10\,\mathrm{keV}$；
+\item 实验室低温等离子体：$B=0.1\,\mathrm{T}$，$n=10^{18}\,\mathrm{m}^{-3}$，$T_e=T_i=4\,\mathrm{eV}$。
+\end{enumerate}
+并解释 $\beta\ll 1$ 和 $\beta\sim 1$ 的物理意义。
+\tcblower
+\textbf{解答：}
+
+\textbf{(1) 托卡马克：}
+等离子体总压强 $p = p_e + p_i = 2nk_{\!B}T$（电子与离子各贡献一份）：
+\[
+p = 2\times 10^{20}\times 1.602\times 10^{-15} = 3.204\times 10^5\,\mathrm{Pa}
+\]
+磁压 $B^2/2\mu_0$：
+\[
+\frac{B^2}{2\mu_0} = \frac{25}{2\times 4\pi\times 10^{-7}} = \frac{25}{2.513\times 10^{-6}} \approx 9.95\times 10^6\,\mathrm{Pa}
+\]
+比压：
+\[
+\beta = \frac{2\mu_0 p}{B^2} = \frac{2\times 4\pi\times 10^{-7}\times 3.204\times 10^5}{25} = \frac{8.05\times 10^{-1}}{25} \approx 3.2\times 10^{-2}
+\]
+即 $\beta \approx 3.2\%$。
+
+\textbf{(2) 实验室低温等离子体：}
+\[
+p = 2\times 10^{18}\times 1.602\times 10^{-19}\times 4 = 1.28\,\mathrm{Pa}
+\]
+\[
+\beta = \frac{2\times 4\pi\times 10^{-7}\times 1.28}{0.01} = \frac{3.22\times 10^{-6}}{0.01} = 3.2\times 10^{-4}
+\]
+
+\textbf{物理意义：}
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item $\beta\ll 1$：磁压远大于热压，磁场主导等离子体动力学。托卡马克中 $\beta\sim 3\%$ 已属较高，磁约束装置的工程极限通常在 $\beta<10\%$。
+\item $\beta\sim 1$：热压与磁压相当，等离子体对磁场有显著的"反作用"，磁场被等离子体逆磁电流排挤出中心区域。
+\item $\beta\gg 1$：热压主导，磁场几乎不影响等离子体行为（如某些天体等离子体喷流）。
+\end{itemize}
+\end{example}
+
+\begin{example}{阿尔芬速度计算与对比}{alfven-speed-calc}
+阿尔芬速度 $v_A = B/\sqrt{\mu_0\rho_m}$ 是磁化等离子体中信息传播的特征速度。分别计算：
+\begin{enumerate}[label=(\arabic*)]
+\item 托卡马克等离子体：$B=5\,\mathrm{T}$，$n=10^{20}\,\mathrm{m}^{-3}$，氘离子 $m_i=2m_p$；
+\item 实验室低温氢等离子体：$B=0.1\,\mathrm{T}$，$n=10^{18}\,\mathrm{m}^{-3}$；
+\item 太阳日冕：$B=10^{-3}\,\mathrm{T}$，$n=10^{14}\,\mathrm{m}^{-3}$（质子）。
+\end{enumerate}
+对比 $v_A$ 与等离子体中的声速 $c_s$，并说明为何阿尔芬波成为太阳日冕加热的重要候选机制。
+\tcblower
+\textbf{解答：}
+
+质量密度 $\rho_m = n_i m_i$。
+
+\textbf{(1) 托卡马克：}
+\[
+\rho_m = 10^{20}\times 3.344\times 10^{-27} = 3.344\times 10^{-7}\,\mathrm{kg/m^3}
+\]
+\[
+v_A = \frac{5}{\sqrt{4\pi\times 10^{-7}\times 3.344\times 10^{-7}}} = \frac{5}{\sqrt{4.198\times 10^{-13}}} = \frac{5}{6.48\times 10^{-7}} \approx 7.7\times 10^6\,\mathrm{m/s}
+\]
+声速（$T=10\,\mathrm{keV}$，氘）：$c_s = \sqrt{2k_{\!B}T/m_i} = \sqrt{2\times 1.602\times 10^{-15}/3.344\times 10^{-27}} \approx 3.1\times 10^5\,\mathrm{m/s}$。
+$v_A / c_s \approx 25$，阿尔芬速度远大于声速，磁场主导。
+
+\textbf{(2) 实验室等离子体：}
+\[
+\rho_m = 10^{18}\times 1.673\times 10^{-27} = 1.673\times 10^{-9}\,\mathrm{kg/m^3}
+\]
+\[
+v_A = \frac{0.1}{\sqrt{4\pi\times 10^{-7}\times 1.673\times 10^{-9}}} = \frac{0.1}{4.58\times 10^{-8}} \approx 2.2\times 10^6\,\mathrm{m/s}
+\]
+声速（$T_e=4\,\mathrm{eV}$，$T_i\approx 0.1\,\mathrm{eV}$）：$c_s = \sqrt{k_{\!B}T_e/m_i} \approx 2.0\times 10^4\,\mathrm{m/s}$。
+$v_A / c_s \approx 110$，磁场仍主导。
+
+\textbf{(3) 太阳日冕：}
+\[
+\rho_m = 10^{14}\times 1.673\times 10^{-27} = 1.673\times 10^{-13}\,\mathrm{kg/m^3}
+\]
+\[
+v_A = \frac{10^{-3}}{\sqrt{4\pi\times 10^{-7}\times 1.673\times 10^{-13}}} = \frac{10^{-3}}{4.58\times 10^{-10}} \approx 2.2\times 10^6\,\mathrm{m/s}
+\]
+声速（$T\sim 10^6\,\mathrm{K}\sim 86\,\mathrm{eV}$）：$c_s = \sqrt{\gamma k_{\!B}T/m_i} \approx 1.5\times 10^5\,\mathrm{m/s}$。
+
+\textbf{结论：} 在三种环境中均有 $v_A \gg c_s$，说明磁场在等离子体动力学中占绝对主导地位。太阳日冕中阿尔芬波速度高达 $2200\,\mathrm{km/s}$，且阿尔芬波可携带大量能量从光球层向上输运，是日冕加热（百万度高温）最有希望的能量来源之一。
+\end{example}
+
+\begin{example}{磁雷诺数与磁力线冻结的数值判断}{magnetic-reynolds}
+磁雷诺数 $R_m = \mu_0 L v / \eta$ 衡量磁扩散与磁对流输运的相对重要性。计算以下两种情形的 $R_m$，并判断磁力线冻结是否成立：
+\begin{enumerate}[label=(\arabic*)]
+\item 托卡马克：$L=1\,\mathrm{m}$，$v=10^4\,\mathrm{m/s}$，$T_e=10\,\mathrm{keV}$；
+\item 实验室氩气放电：$L=0.1\,\mathrm{m}$，$v=10^3\,\mathrm{m/s}$，$T_e=4\,\mathrm{eV}$。
+\end{enumerate}
+Spitzer电阻率近似公式：$\eta \approx 5\times 10^{-5} Z\ln\Lambda / T_e^{3/2}\,[\Omega\mathrm{m}]$，$T_e$ 单位为 $\mathrm{eV}$，取 $\ln\Lambda=10$。
+\tcblower
+\textbf{解答：}
+
+\textbf{(1) 托卡马克：}
+\[
+\eta \approx \frac{5\times 10^{-5}\times 10}{10^6} = 5\times 10^{-10}\,\Omega\mathrm{m}
+\]
+\[
+R_m = \frac{\mu_0 v L}{\eta} = \frac{4\pi\times 10^{-7}\times 10^4\times 1}{5\times 10^{-10}} = \frac{1.257\times 10^{-2}}{5\times 10^{-10}} \approx 2.5\times 10^7
+\]
+$R_m \gg 1$，磁扩散时间 $\tau_\eta = \mu_0 L^2/\eta = R_m L/v \approx 2500\,\mathrm{s}$，远大于对流时间 $\tau_{\text{流}} = L/v = 10^{-4}\,\mathrm{s}$。磁力线冻结完全成立。
+
+\textbf{(2) 实验室放电：}
+\[
+\eta \approx \frac{5\times 10^{-5}\times 10}{8} = 6.25\times 10^{-5}\,\Omega\mathrm{m}
+\]
+\[
+R_m = \frac{4\pi\times 10^{-7}\times 10^3\times 0.1}{6.25\times 10^{-5}} = \frac{1.257\times 10^{-5}}{6.25\times 10^{-5}} \approx 0.20
+\]
+$R_m < 1$，磁扩散时间 $\tau_\eta = \mu_0 L^2/\eta \approx 0.2\,\mathrm{ms}$，对流时间 $\tau_{\text{流}} = L/v = 0.1\,\mathrm{ms}$。两者相当，磁力线冻结被破坏，磁场与流体的运动相对独立。
+
+\textbf{判据总结：}
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item $R_m \gg 1$：磁对流主导，磁通冻结（理想MHD，如天体等离子体、托卡马克）
+\item $R_m \ll 1$：磁扩散主导，磁力线可滑过流体（如实验室低参数等离子体、固态导体）
+\item $R_m \sim 1$：两者竞争，出现磁重联等有趣现象（如太阳耀斑电流片）
+\end{itemize}
+\end{example}
+
+\begin{example}{理想MHD中的磁能与动能转换}{mhd-energy-conversion}
+从理想MHD方程组出发，证明：
+\begin{enumerate}[label=(\arabic*)]
+\item 磁能演化满足 $\displaystyle\frac{\partial}{\partial t}\left(\frac{B^2}{2\mu_0}\right) = -\divg\vect{S} - \vect{u}\cdot(\vect{j}\times\vect{B})$，其中 $\vect{S} = \vect{E}\times\vect{B}/\mu_0$ 为坡印廷矢量；
+\item 动能演化满足 $\displaystyle\frac{\partial}{\partial t}\left(\frac{1}{2}\rho_m u^2\right) + \divg\left(\frac{1}{2}\rho_m u^2\vect{u}\right) = -\vect{u}\cdot\grad p + \vect{u}\cdot(\vect{j}\times\vect{B})$；
+\item 解释 $\vect{u}\cdot(\vect{j}\times\vect{B})$ 的符号的物理意义。
+\end{enumerate}
+\tcblower
+\textbf{解答：}
+
+\textbf{(1) 磁能方程：}
+从理想MHD磁场演化方程 $\partial\vect{B}/\partial t = \curl(\vect{u}\times\vect{B})$ 出发：
+\[
+\frac{\partial}{\partial t}\left(\frac{B^2}{2\mu_0}\right) = \frac{1}{\mu_0}\vect{B}\cdot\frac{\partial\vect{B}}{\partial t} = \frac{1}{\mu_0}\vect{B}\cdot\curl(\vect{u}\times\vect{B})
+\]
+利用矢量恒等式 $\vect{B}\cdot\curl\vect{A} = \divg(\vect{A}\times\vect{B}) + \vect{A}\cdot\curl\vect{B}$，令 $\vect{A} = \vect{u}\times\vect{B}$：
+\[
+\vect{B}\cdot\curl(\vect{u}\times\vect{B}) = \divg\bigl((\vect{u}\times\vect{B})\times\vect{B}\bigr) + (\vect{u}\times\vect{B})\cdot\curl\vect{B}
+\]
+
+第一项：$(\vect{u}\times\vect{B})\times\vect{B} = -\vect{B}\times(\vect{u}\times\vect{B}) = -(\vect{B}\cdot\vect{B})\vect{u} + (\vect{B}\cdot\vect{u})\vect{B}$。在理想MHD中 $\vect{E} = -\vect{u}\times\vect{B}$，故 $\vect{E}\times\vect{B} = (\vect{u}\times\vect{B})\times\vect{B}$。因此：
+\[
+\divg\bigl((\vect{u}\times\vect{B})\times\vect{B}\bigr) = -\mu_0\divg\vect{S}
+\]
+
+第二项：$\curl\vect{B} = \mu_0\vect{j}$，且 $(\vect{u}\times\vect{B})\cdot\vect{j} = \vect{u}\cdot(\vect{B}\times\vect{j}) = -\vect{u}\cdot(\vect{j}\times\vect{B})$，故：
+\[
+(\vect{u}\times\vect{B})\cdot\curl\vect{B} = -\mu_0\,\vect{u}\cdot(\vect{j}\times\vect{B})
+\]
+
+综合得：
+\[
+\frac{\partial}{\partial t}\left(\frac{B^2}{2\mu_0}\right) = -\divg\vect{S} - \vect{u}\cdot(\vect{j}\times\vect{B})
+\]
+
+\textbf{(2) 动能方程：}
+从理想MHD动量方程 $\rho_m\left(\partial\vect{u}/\partial t + \vect{u}\cdot\grad\vect{u}\right) = -\grad p + \vect{j}\times\vect{B}$，点乘 $\vect{u}$：
+\[
+\vect{u}\cdot\left(\rho_m\frac{\partial\vect{u}}{\partial t}\right) + \rho_m\vect{u}\cdot(\vect{u}\cdot\grad\vect{u}) = -\vect{u}\cdot\grad p + \vect{u}\cdot(\vect{j}\times\vect{B})
+\]
+利用 $\vect{u}\cdot\partial\vect{u}/\partial t = \frac{1}{2}\partial u^2/\partial t$ 和连续性方程，左端可化为：
+\[
+\frac{\partial}{\partial t}\left(\frac{1}{2}\rho_m u^2\right) + \divg\left(\frac{1}{2}\rho_m u^2\vect{u}\right)
+\]
+故：
+\[
+\frac{\partial}{\partial t}\left(\frac{1}{2}\rho_m u^2\right) + \divg\left(\frac{1}{2}\rho_m u^2\vect{u}\right) = -\vect{u}\cdot\grad p + \vect{u}\cdot(\vect{j}\times\vect{B})
+\]
+
+\textbf{(3) 物理意义：}
+将两式相加，$\vect{u}\cdot(\vect{j}\times\vect{B})$ 项相互抵消，总能量守恒：
+\[
+\frac{\partial}{\partial t}\left(\frac{1}{2}\rho_m u^2 + \frac{B^2}{2\mu_0}\right) = -\divg\left(\frac{1}{2}\rho_m u^2\vect{u} + \vect{S}\right) - \vect{u}\cdot\grad p
+\]
+
+$\vect{u}\cdot(\vect{j}\times\vect{B})$ 是磁能与动能之间的\textbf{转换项}：
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item 当 $\vect{u}\cdot(\vect{j}\times\vect{B}) > 0$：洛伦兹力对等离子体做正功，\textbf{磁能转化为动能}（如磁驱动喷流、等离子体加速）
+\item 当 $\vect{u}\cdot(\vect{j}\times\vect{B}) < 0$：等离子体做功抵抗磁场，\textbf{动能转化为磁能}（如发电机效应、磁场放大）
+\end{itemize}
+这正是太阳发电机、吸积盘磁场放大和实验室磁化靶聚变中能量转换的核心机制。
+\end{example}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.0]
+% 左侧：流体元和磁力线
+\draw[thick,fill=orange!10] (-2,0) rectangle (0,1.5);
+\node at (-1,0.75) {\small 流体元};
+
+% 磁力线穿过流体元
+\foreach \y in {0.3,0.75,1.2} {
+  \draw[->,blue,thick] (-3,\y) -- (-2,\y);
+  \draw[blue,thick] (-2,\y) -- (0,\y);
+  \draw[->,blue,thick] (0,\y) -- (1,\y);
+}
+\node[blue] at (1.4,0.75) {$\vect{B}$};
+
+% 速度箭头
+\draw[->,red,very thick] (-1,1.8) -- (1,1.8);
+\node[red,above] at (0,1.9) {$\vect{u}$};
+
+% 右侧：移动后的流体元（虚线）
+\draw[thick,fill=orange!10,dashed] (0.5,0.3) rectangle (2.5,1.8);
+\node[orange!80!black] at (1.5,1.05) {\small 流体元};
+
+% 移动后的磁力线（虚线）
+\foreach \y in {0.6,1.05,1.5} {
+  \draw[->,blue,thick,dashed] (0.5,\y) -- (2.5,\y);
+  \draw[->,blue,thick] (2.5,\y) -- (3.5,\y);
+}
+\node[blue,dashed] at (3.9,1.05) {$\vect{B}$};
+
+% 标注
+\draw[<->,gray] (-2,-0.3) -- (0.5,-0.3);
+\node[gray] at (-0.75,-0.6) {$\vect{u}\,\diff t$};
+
+\node at (0,-1.2) {\small 理想MHD：流体元带着磁力线一起运动，穿过任意回路的磁通量不变};
+\end{tikzpicture}
+\caption{磁力线冻结示意图。在理想导电流体（$R_m\gg 1$）中，磁通量随流体元守恒，磁力线仿佛被"冻结"在流体中。}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.0]
+% 弯曲磁力线（向上凸起）
+\draw[blue,very thick,domain=-3:3,samples=100] plot(\x,{0.5*cos(30*\x)});
+\draw[blue,->,very thick] (-2,0.43) -- (-1.9,0.42);
+\draw[blue,->,very thick] (0,0.5) -- (0.1,0.49);
+\draw[blue,->,very thick] (2,0.43) -- (2.1,0.42);
+\node[blue] at (3.2,0.5) {$\vect{B}$};
+
+% 曲率中心
+\fill[black] (0,6) circle (2pt);
+\node at (0,6.5) {曲率中心};
+\draw[dashed] (0,6) -- (-1,0.43);
+\draw[dashed] (0,6) -- (1,0.43);
+
+% 张力恢复力（指向曲率中心）
+\draw[->,red,very thick] (-1,0.43) -- (-0.8,1.5);
+\node[red] at (-0.5,1.8) {$\vect{F}_\text{张力}$};
+\draw[->,red,very thick] (1,0.43) -- (0.8,1.5);
+\node[red] at (0.5,1.8) {$\vect{F}_\text{张力}$};
+
+% 磁压方向（向下，推向B弱区）
+\draw[->,green!60!black,very thick] (-1.5,2.5) -- (-1.5,1.5);
+\draw[->,green!60!black,very thick] (1.5,2.5) -- (1.5,1.5);
+\node[green!60!black] at (2.2,2) {$\grad(B^2/2\mu_0)$};
+
+% 等离子体区域
+\fill[orange!10] (-3,-1) rectangle (3,-0.2);
+\node at (0,-0.6) {等离子体};
+
+\node at (0,-1.8) {\small 磁张力像拉紧的橡皮筋，将弯曲磁力线拉直；磁压将等离子体推离高场区};
+\end{tikzpicture}
+\caption{磁压与磁张力示意图。弯曲磁力线产生指向曲率中心的张力恢复力，磁压梯度将等离子体推向磁场较弱的区域。}
+\end{figure}
+
+\begin{formula}{第5章核心公式速查}{ch5-formulas}
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item 理想MHD质量守恒：$\displaystyle\frac{\partial\rho_m}{\partial t} + \divg(\rho_m\vect{u}) = 0$
+\item 理想MHD动量方程：$\displaystyle\rho_m\left(\frac{\partial\vect{u}}{\partial t} + \vect{u}\cdot\grad\vect{u}\right) = -\grad p + \vect{j}\times\vect{B}$
+\item 理想欧姆定律：$\displaystyle\vect{E} + \vect{u}\times\vect{B} = 0$
+\item 磁场演化：$\displaystyle\frac{\partial\vect{B}}{\partial t} = \curl(\vect{u}\times\vect{B})$
+\item 磁压：$\displaystyle p_B = \frac{B^2}{2\mu_0}$，磁张力：$\displaystyle\frac{1}{\mu_0}(\vect{B}\cdot\grad)\vect{B}$
+\item 比压：$\displaystyle\beta = \frac{2\mu_0 p}{B^2}$
+\item 阿尔芬速度：$\displaystyle v_A = \frac{B}{\sqrt{\mu_0\rho_m}}$
+\item 阿尔芬波色散关系：$\displaystyle\omega = k_\parallel v_A$（无色散，$v_p = v_g = v_A$）
+\item 磁雷诺数：$\displaystyle R_m = \frac{\mu_0 v L}{\eta} = \frac{\tau_\eta}{\tau_{\text{流}}}$
+\item 静态平衡：$\displaystyle\grad p = \vect{j}\times\vect{B}$（Grad-Shafranov方程的基础）
+\end{itemize}
+\end{formula}
+
+\begin{checklist}{第5章自学检查清单}{ch5-checklist}
+\begin{itemize}[leftmargin=*,label=$\square$]
+\item 我能从双流体方程出发，说明MHD近似的适用条件（$\tau\gg 1/\omega_{ci}$，$L\gg\rho_{Li}$）
+\item 我能计算比压 $\beta$、阿尔芬速度 $v_A$ 和磁雷诺数 $R_m$，并判断其物理意义
+\item 我理解了磁压与磁张力的分解：洛伦兹力 = 磁压梯度 + 磁张力
+\item 我能从$R_m$的大小判断磁力线冻结是否成立，并知道电阻会破坏冻结
+\item 我掌握了阿尔芬波的物理图像：磁张力作为恢复力的横波
+\item 我能推导理想MHD中磁能与动能转换的方程，并解释$\vect{u}\cdot(\vect{j}\times\vect{B})$的符号含义
+\item 我知道静态平衡$\grad p = \vect{j}\times\vect{B}$是托卡马克和仿星器设计的出发点
+\end{itemize}
+\end{checklist}
+
+\endinput
