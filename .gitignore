@@ -1,0 +1,29 @@
+# LaTeX 编译产物
+*.aux
+*.log
+*.out
+*.toc
+*.idx
+*.ind
+*.ilg
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.xdv
+
+# PDF 备份（旧版本）
+plasma_physics_textbook.pdf
+
+# 临时文件
+*.tmp
+*.bak
+*~
+
+# Python 缓存
+__pycache__/
+*.pyc
+*.pyo
+
+# OS 文件
+.DS_Store
+Thumbs.db
