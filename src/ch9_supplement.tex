@@ -1,0 +1,368 @@
+% ============================================================
+% 第9章补充：经典例题与自学元素
+% 插入位置：第9章现有miniquiz之后（\end{miniquiz} 之后）
+% ============================================================
+
+\section*{习题精选与详解}
+\addcontentsline{toc}{section}{习题精选}
+
+\begin{example}{瑞利--泰勒不稳定性的增长率估算}{rayleigh-taylor-calc}
+在磁约束聚变装置的"坏曲率"区域，等效重力加速度约为 $g \approx 10^{5}\,\mathrm{m/s^2}$（由曲率漂移产生），密度梯度对应的Atwood数 $A = 0.3$。界面处波长为 $\lambda = 2\,\mathrm{cm}$ 的扰动被激发。求：
+\begin{enumerate}[label=(\arabic*)]
+\item 该扰动的增长率 $\gamma$；
+\item 扰动振幅增长 $10$ 倍（$\ee$  foldings）所需的时间；
+\item 若波长缩短为 $\lambda = 0.5\,\mathrm{cm}$，增长率如何变化？
+\end{enumerate}
+\tcblower
+\textbf{解答：}
+
+瑞利--泰勒不稳定性增长率公式为：
+\[
+\gamma = \sqrt{A k g}
+\]
+其中 $k = 2\pi/\lambda$ 为波数，$A = (\rho_2 - \rho_1)/(\rho_2 + \rho_1)$ 为Atwood数。
+
+\textbf{(1) 计算增长率：}
+
+波数：
+\[
+k = \frac{2\pi}{\lambda} = \frac{2\pi}{0.02} = 314\,\mathrm{m}^{-1}
+\]
+
+代入公式：
+\[
+\gamma = \sqrt{0.3\times 314\times 10^{5}} = \sqrt{9.42\times 10^{6}}
+\approx 3.07\times 10^{3}\,\mathrm{s}^{-1}
+\]
+
+\textbf{(2) 增长 $10$ 倍的时间：}
+
+振幅增长满足 $A(t) = A_0\ee^{\gamma t}$。增长 $10$ 倍需要：
+\[
+\ee^{\gamma t} = 10 \quad\Rightarrow\quad t = \frac{\ln 10}{\gamma} = \frac{2.30}{3.07\times 10^{3}} \approx 7.5\times 10^{-4}\,\mathrm{s} = 0.75\,\mathrm{ms}
+\]
+
+增长 $\ee$ 倍（一个 $e$-folding）的时间：
+\[
+\tau = \frac{1}{\gamma} \approx 0.33\,\mathrm{ms}
+\]
+
+\textbf{(3) 波长缩短为 $\lambda = 0.5\,\mathrm{cm}$：}
+
+波数变为：
+\[
+k' = \frac{2\pi}{0.005} = 1257\,\mathrm{m}^{-1}
+\]
+
+新的增长率：
+\[
+\gamma' = \sqrt{0.3\times 1257\times 10^{5}} = \sqrt{3.77\times 10^{7}}
+\approx 6.14\times 10^{3}\,\mathrm{s}^{-1}
+\]
+
+增长率变为原来的 $2$ 倍（$\gamma' = \sqrt{4}\,\gamma = 2\gamma$）。
+
+\textbf{物理分析：}
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item 瑞利--泰勒增长率与 $\sqrt{k}$ 成正比，短波扰动增长更快。
+\item 但极短波扰动（$k$ 很大）可能受到其他效应稳定（如表面张力、粘性、或磁场沿界面的张力）。在理想MHD中，没有这些截断机制，短波会无限增长。
+\item 在托卡马克中，气球模（瑞利--泰勒型）在"坏曲率"区（外中平面）发展最快，是限制压强比 $\beta$ 的主要因素之一。
+\item $0.75\,\mathrm{ms}$ 内增长 $10$ 倍，说明该不稳定性非常剧烈，若不加以控制（如通过理想导体壁或优化位形），等离子体会迅速损失。
+\end{itemize}
+\end{example}
+
+\begin{example}{双流不稳定性的色散关系与不稳定性条件}{two-stream-calc}
+考虑冷电子以漂移速度 $u = 2\times 10^{7}\,\mathrm{m/s}$ 穿过静止离子背景（$u_i = 0$）。等离子体频率 $\omega_{pe} = 5\times 10^{10}\,\mathrm{rad/s}$。求：
+\begin{enumerate}[label=(\arabic*)]
+\item 双流不稳定性的色散关系；
+\item 不稳定性的波数范围；
+\item 最大增长率及对应的波数。
+\end{enumerate}
+\tcblower
+\textbf{解答：}
+
+\textbf{(1) 色散关系：}
+
+对冷等离子体（$T_e = T_i = 0$），双流色散关系为：
+\[
+1 = \frac{\omega_{pe}^2}{\omega^2} + \frac{\omega_{pi}^2}{(\omega - k u_i)^2}
+\]
+
+由于离子静止 $u_i = 0$，且 $m_i \gg m_e$（$\omega_{pi} \ll \omega_{pe}$），在电子时间尺度上离子近似为固定背景。电子双流色散关系简化为：
+\[
+1 = \frac{\omega_{pe}^2}{\omega^2} + \frac{\omega_{pe}^2}{(\omega - k u)^2}
+\]
+
+（这里假设束流密度等于背景密度，或等价地，将静止离子视为另一束流。）
+
+\textbf{(2) 不稳定性条件：}
+
+对冷电子束流，不稳定性发生的条件是 $k u < \omega_{pe}$。即：
+\[
+k < \frac{\omega_{pe}}{u}
+\]
+
+代入数值：
+\[
+k_{\text{max}} = \frac{5\times 10^{10}}{2\times 10^{7}} = 2.5\times 10^{3}\,\mathrm{m}^{-1}
+\]
+
+对应的最小波长：
+\[
+\lambda_{\text{min}} = \frac{2\pi}{k_{\text{max}}} = \frac{2\pi}{2.5\times 10^{3}} \approx 2.51\times 10^{-3}\,\mathrm{m} \approx 2.5\,\mathrm{mm}
+\]
+
+因此，波长大于约 $2.5\,\mathrm{mm}$ 的模式不稳定；更短波长的模式稳定（被等离子体频率"阻止"）。
+
+\textbf{(3) 最大增长率：}
+
+对对称双流（两束等密度冷电子相向运动），最大增长率约为：
+\[
+\gamma_{\max} \approx \frac{\omega_{pe}}{2}
+\]
+
+此处 $u$ 较大而离子静止，近似为单束流不稳定性，最大增长率约为：
+\[
+\gamma_{\max} \approx \frac{\omega_{pe}}{2} = 2.5\times 10^{10}\,\mathrm{rad/s}
+\]
+
+对应增长时间：
+\[
+\tau = \frac{1}{\gamma_{\max}} = 4\times 10^{-11}\,\mathrm{s} = 40\,\mathrm{ps}
+\]
+
+最大增长率发生在：
+\[
+k \approx \frac{\omega_{pe}}{u} = 2.5\times 10^{3}\,\mathrm{m}^{-1}
+\]
+
+\textbf{物理分析：}
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item 双流不稳定性将电子的定向漂移动能转化为等离子体振荡能（Langmuir波）。
+\item 增长时间仅约 $40\,\mathrm{ps}$，说明在强电流等离子体中，这种不稳定性几乎是瞬发的。
+\item 实际等离子体有温度（热速度），这会使不稳定性饱和，或改变增长条件。当 $u \lesssim v_{te}$ 时，热展宽会稳定束流。
+\item 双流不稳定性是等离子体中反常电阻的重要来源：束流能量转化为波，波再通过Landau阻尼加热电子，等效于电阻耗散。
+\end{itemize}
+\end{example}
+
+\begin{example}{sausage模与扭曲模的定性分析}{mhd-modes}
+在柱形等离子体（如Z箍缩或直圆柱 tokamak 简化模型）中，轴向电流 $I$ 产生环向磁场 $B_\theta(r)$。请分别描述 sausage模 和 扭曲模（kink模）的物理图像，并分析：
+\begin{enumerate}[label=(\arabic*)]
+\item 哪种模在 $m=0$ 时出现？
+\item 哪种模在 $m=1$ 时出现？
+\item 为什么扭曲模需要导体壁来稳定？
+\end{enumerate}
+\tcblower
+\textbf{解答：}
+
+\textbf{sausage模（香肠模）——$m=0$：}
+
+ sausage模是轴对称的径向扰动（$m=0$，无角向变化），其物理图像如下：
+
+想象一根载流等离子体柱，在某一位置受到径向压缩，柱半径略微减小。根据电流连续性 $I = \int j_z \diff S$，如果压缩是均匀的，电流密度 $j_z$ 在该处增加，环向磁场 $B_\theta = \mu_0 I(r)/(2\pi r)$ 的梯度增大。
+
+磁压 $p_B = B_\theta^2/(2\mu_0)$ 在柱表面处增大，产生额外的向内磁压。如果等离子体压强不足以抵抗，该处会被进一步压缩——像香肠被绳子勒紧一样，形成周期性的"细腰"和"鼓胀"。
+
+\textbf{ sausage模不稳定的条件：}
+\[
+\gamma^2 = \frac{B_\theta^2}{\mu_0\rho R^2}\left(2\pi\frac{R}{L}\right)^2 - \frac{2p}{\rho R^2}
+\]
+当磁压梯度超过压强恢复力时，不稳定性发展。 sausage模在Z箍缩中尤为危险，因为纯 $Z$ 箍缩没有纵向磁场 $B_z$ 来提供径向恢复力。
+
+\textbf{扭曲模（kink模）——$m=1$：}
+
+扭曲模是非轴对称的角向扰动（$m \geq 1$），其物理图像如下：
+
+想象等离子体柱像一根柔软的绳子，被轴向电流产生的环向磁场包围。如果柱轴发生微小弯曲（$m=1$ 的螺旋形扰动），弯曲凹处的磁场线被压缩，磁压增强；凸处的磁场线被拉伸，磁压减弱。磁压差进一步将等离子体推向凹处，使弯曲加剧——正反馈！
+
+\textbf{扭曲模的不稳定机制：}
+电流产生的环向磁场在柱外随 $1/r$ 衰减。当柱弯曲时，凹侧（靠近轴）磁场更强，凸侧（远离轴）磁场更弱。磁场对等离子体柱的作用力（磁张力）在凹侧更大，将柱进一步推向凹侧，形成螺旋形扭曲。
+
+\textbf{回答题目：}
+\begin{enumerate}[label=(\arabic*)]
+\item sausage模在 $m=0$ 时出现。它是轴对称的径向收缩/膨胀，无角向扭曲。
+\item 扭曲模在 $m=1$ 时出现。它表现为等离子体柱轴的整体弯曲和螺旋形扭曲。
+\item 导体壁稳定扭曲模的原理：理想导体壁不允许垂直于壁的磁场变化，在等离子体与壁之间的间隙中感应出镜像电流。镜像电流产生的磁场对等离子体柱施加一个恢复力，抵抗弯曲。当壁距离足够近时，这个恢复力可以超过驱动扭曲模的力，使系统稳定。这就是为什么 tokamak 中需要导体壁（或被动/主动稳定板）来抑制 $m=1$ 扭曲模。
+\end{enumerate}
+
+\textbf{对比总结：}
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+\textbf{特性} & \textbf{sausage模} ($m=0$) & \textbf{扭曲模} ($m=1$) \\
+\midrule
+对称性 & 轴对称 & 螺旋非对称 \\
+扰动形式 & 半径周期性收缩/膨胀 & 柱轴整体弯曲 \\
+稳定方法 & 纵向磁场 $B_z$（提供磁张力） & 导体壁、理想导体壳 \\
+典型装置 & Z箍缩（无$B_z$时最危险） & Tokamak、RFP \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{example}
+
+\begin{example}{漂移波不稳定性的简单估算}{drift-wave-estimate}
+在密度不均匀等离子体中，密度梯度尺度长度为 $L_n = |n/(\diff n/\diff x)| = 0.1\,\mathrm{m}$，磁场 $B = 2\,\mathrm{T}$，电子温度 $T_e = 100\,\mathrm{eV}$。估算漂移波的频率和增长率。
+\tcblower
+\textbf{解答：}
+
+\textbf{步骤1：计算电子热速度和漂移速度。}
+
+电子热速度：
+\[
+v_{te} = \sqrt{\frac{k_{\!B}T_e}{m_e}} = \sqrt{\frac{100\times 1.602\times 10^{-19}}{9.109\times 10^{-31}}}
+= \sqrt{1.76\times 10^{13}} \approx 4.19\times 10^{6}\,\mathrm{m/s}
+\]
+
+（注：这里用 $v_{te} = \sqrt{k_{\!B}T_e/m_e}$，而非 $\sqrt{2k_{\!B}T_e/m_e}$。）
+
+电子逆磁漂移速度（$\vect{E}\times\vect{B}$ 漂移的类比，由密度梯度驱动）：
+\[
+v_{de} = \frac{k_{\!B}T_e}{eBL_n}
+\]
+
+将 $T_e = 100\,\mathrm{eV}$ 转换为焦耳：$k_{\!B}T_e = 1.602\times 10^{-17}\,\mathrm{J}$。
+\[
+v_{de} = \frac{1.602\times 10^{-17}}{1.602\times 10^{-19}\times 2\times 0.1}
+= \frac{1.602\times 10^{-17}}{3.204\times 10^{-20}}
+\approx 5.0\times 10^{2}\,\mathrm{m/s} = 500\,\mathrm{m/s}
+\]
+
+\textbf{步骤2：估算漂移波频率。}
+
+漂移波频率的典型量级为：
+\[
+\omega_* \sim k_y v_{de}
+\]
+
+取垂直于磁场和梯度方向的波数 $k_y \sim 1/L_n = 10\,\mathrm{m}^{-1}$：
+\[
+\omega_* \sim 10\times 500 = 5\times 10^{3}\,\mathrm{rad/s}
+\]
+
+对应频率：
+\[
+f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
+\]
+
+\textbf{步骤3：估算增长率。}
+
+在存在电子--离子碰撞或磁场不均匀性时，漂移波可能变得不稳定。典型的增长率量级与频率相当：
+\[
+\gamma \sim \omega_* \sim 5\times 10^{3}\,\mathrm{s}^{-1}
+\]
+
+\textbf{物理分析：}
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item 漂移波的频率远小于离子回旋频率（$\omega_{ci} = eB/m_i \approx 9.6\times 10^{7}\,\mathrm{rad/s}$ for protons），满足低频近似。
+\item 漂移波不稳定性的核心机制：密度涨落引起电势涨落，电势涨落驱动 $\vect{E}\times\vect{B}$ 漂移，进一步放大密度涨落——正反馈回路。
+\item 在托卡马克中，漂移波及其非线性发展（漂移波湍流）是粒子反常输运的主要来源之一。
+\item 虽然上述估算非常粗糙（真实色散关系涉及 $k_{\parallel}$、碰撞率、磁剪切等），但它给出了正确的量级：漂移波频率在千赫兹到兆赫兹范围，与装置尺度相当。
+\end{itemize}
+\end{example}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+  scale=0.95, font=\small,
+  level 1/.style={sibling distance=6cm, level distance=2cm},
+  level 2/.style={sibling distance=3cm, level distance=2cm},
+  level 3/.style={sibling distance=2.5cm, level distance=1.8cm},
+  every node/.style={align=center, draw, rounded corners, fill=blue!10, minimum width=2cm, minimum height=0.8cm}
+]
+\node[fill=blue!20, minimum width=3cm] {等离子体不稳定性}
+  child { node[fill=red!15] {宏观\\MHD不稳定性}
+    child { node[fill=red!10] {理想MHD}
+      child { node[fill=red!5] {sausage模} }
+      child { node[fill=red!5] {kink\\扭曲模} }
+      child { node[fill=red!5] {气球模} }
+    }
+    child { node[fill=orange!10] {电阻\\不稳定性}
+      child { node[fill=orange!5] {撕裂模} }
+      child { node[fill=orange!5] {磁重联} }
+    }
+  }
+  child { node[fill=green!15] {微观\\动理学不稳定性}
+    child { node[fill=green!10] {速度空间}
+      child { node[fill=green!5] {bump-on-tail} }
+      child { node[fill=green!5] {loss-cone} }
+    }
+    child { node[fill=teal!10] {漂移波}
+      child { node[fill=teal!5] {ITG} }
+      child { node[fill=teal!5] {ETG} }
+      child { node[fill=teal!5] {TEM} }
+    }
+  };
+\end{tikzpicture}
+\caption{等离子体不稳定性分类树状图。宏观MHD不稳定性由压强和磁场的整体配置驱动；微观动理学不稳定性由速度空间或位形空间分布的非热力学平衡驱动。ITG = 离子温度梯度模，ETG = 电子温度梯度模，TEM = 捕获电子模。}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.1,font=\small]
+% 背景盒子：重流体在上
+\fill[blue!30] (-4,2) rectangle (4,4);
+\node[blue!50!black] at (0,3) {\large 重流体 ($\rho_2$)};
+
+% 背景盒子：轻流体在下
+\fill[orange!30] (-4,-2) rectangle (4,2);
+\node[orange!50!black] at (0,0) {\large 轻流体 ($\rho_1$)};
+
+% 界面
+\draw[thick] (-4,2) -- (-2.5,2);
+\draw[thick,domain=-2.5:2.5,samples=50] plot({\x},{2+0.5*sin(2*\x r)});
+\draw[thick] (2.5,2) -- (4,2);
+
+% 重力
+\draw[->,very thick,red] (0,3.5) -- (0,2.5);
+\node[red,right] at (0.1,3) {$\vect{g}$};
+
+% 扰动增长箭头
+\draw[->,thick,green!50!black] (-1.5,2.5) -- (-1.5,3.2);
+\draw[->,thick,green!50!black] (1.5,1.5) -- (1.5,0.8);
+\node[green!50!black,right] at (1.7,1.2) {\footnotesize 扰动增长};
+
+% 尖峰处标注
+\node[align=center] at (-1.5,1.5) {\footnotesize 尖峰处重流体\\\footnotesize 下沉};
+\node[align=center] at (1.5,2.5) {\footnotesize 谷处轻流体\\\footnotesize 上升};
+
+% 波数标注
+\draw[<->,thick] (-1.57,4.3) -- (1.57,4.3);
+\node[above] at (0,4.3) {$\lambda = 2\pi/k$};
+
+% 说明框
+\node[draw,fill=white,align=left,rounded corners] at (0,-1.2) {
+\footnotesize 瑞利--泰勒判据：$\gamma = \sqrt{A k g}$\\
+\footnotesize Atwood数：$A = (\rho_2 - \rho_1)/(\rho_2 + \rho_1)$
+};
+\end{tikzpicture}
+\caption{瑞利--泰勒不稳定性物理图像。重流体在轻流体上方，在有效重力 $g$ 作用下，界面扰动（尖峰和谷）被放大。尖峰处重流体下沉，谷处轻流体上升，形成反馈循环，扰动指数增长。}
+\end{figure}
+
+\begin{formula}{第9章核心公式速查}{ch9-formulas}
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item 不稳定性判据：$\text{Im}(\omega) > 0$，增长率 $\gamma = \text{Im}(\omega)$
+\item 瑞利--泰勒增长率：$\displaystyle\gamma = \sqrt{A k g}$，$A = \frac{\rho_2 - \rho_1}{\rho_2 + \rho_1}$
+\item 双流不稳定性（冷电子束）：$\displaystyle 1 = \frac{\omega_{pe}^2}{\omega^2} + \frac{\omega_{pe}^2}{(\omega - k u)^2}$
+\item 双流不稳定性条件：$\displaystyle k u < \omega_{pe}$
+\item 双流最大增长率：$\displaystyle\gamma_{\max} \approx \frac{\omega_{pe}}{2}$（发生在 $k \approx \omega_{pe}/u$）
+\item  sausage模（$m=0$）：轴对称径向收缩，纵向磁场 $B_z$ 提供稳定
+\item 扭曲模（$m=1$）：柱轴螺旋弯曲，导体壁镜像电流提供稳定
+\item 漂移波频率（估算）：$\displaystyle\omega_* \sim k_y v_{de} = k_y \frac{k_{\!B}T_e}{eBL_n}$
+\item 有效重力（曲率漂移）：$\displaystyle g \sim \frac{v_{th}^2}{R_c}$
+\item 反常输运：湍流电场导致随机散射，输运系数远大于经典值
+\end{itemize}
+\end{formula}
+
+\begin{checklist}{第9章自学检查清单}{ch9-checklist}
+\begin{itemize}[leftmargin=*,label=$\square$]
+\item 我能区分宏观MHD不稳定性（压强/磁场配置驱动）和微观动理学不稳定性（速度/位形空间驱动）
+\item 我能从瑞利--泰勒公式估算增长率，并解释为什么短波增长更快
+\item 我能写出双流不稳定性的色散关系，并判断不稳定波数范围
+\item 我能在物理图像上区分 sausage模（$m=0$）和扭曲模（$m=1$），并知道各自的稳定方法
+\item 我理解漂移波不稳定性的物理机制：密度涨落 $\to$ 电势涨落 $\to$ $\vect{E}\times\vect{B}$ 漂移 $\to$ 正反馈
+\item 我能解释为什么反常输运远大于经典输运，以及它与不稳定性的关系
+\item 我知道抑制不稳定性是磁约束聚变的核心挑战（如气球模限制 $\beta$、扭曲模需要壁稳定）
+\end{itemize}
+\end{checklist}
+
+\endinput
