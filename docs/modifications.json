@@ -1,0 +1,182 @@
+[
+  {
+    "file": "plasma_physics_textbook_v2.tex",
+    "modifications": [
+      {
+        "type": "replace",
+        "old": "\\[\n\\frac{\\partial}{\\partial t} \\to -\\ii\\omega, \\qquad \\nabla \\to +\\ii\\vect{k}.\n\\]",
+        "new": "\\begin{equation}\n\\frac{\\partial}{\\partial t} \\to -\\ii\\omega, \\qquad \\nabla \\to +\\ii\\vect{k}.\n\\label{eq:ch1-fourier-operator}\n\\end{equation}"
+      }
+    ]
+  },
+  {
+    "file": "ch10_supplement.tex",
+    "modifications": [
+      {
+        "type": "replace",
+        "old": "\\[\n    n\\tau \\geq \\frac{3k_B T}{\\frac{E_{\\alpha}}{4}\\langle\\sigma v\\rangle - \\frac{P_{rad}}{n^2} \\cdot n}\n\\]",
+        "new": "\\begin{equation}\n    n\\tau \\geq \\frac{3k_B T}{\\frac{E_{\\alpha}}{4}\\langle\\sigma v\\rangle - \\frac{P_{rad}}{n^2} \\cdot n}\n\\label{eq:ch10-lawson-full}\n\\end{equation}"
+      },
+      {
+        "type": "replace",
+        "old": "\\[\n    n\\tau \\geq \\frac{12k_B T}{E_{\\alpha}\\langle\\sigma v\\rangle}\n\\]",
+        "new": "\\begin{equation}\n    n\\tau \\geq \\frac{12k_B T}{E_{\\alpha}\\langle\\sigma v\\rangle}\n\\label{eq:ch10-lawson-simplified}\n\\end{equation}"
+      },
+      {
+        "type": "replace",
+        "old": "\\[\n    nT\\tau_E = n_e \\times T_e \\times \\tau_E\n\\]",
+        "new": "\\begin{equation}\n    nT\\tau_E = n_e \\times T_e \\times \\tau_E\n\\label{eq:ch10-triple-product}\n\\end{equation}"
+      },
+      {
+        "type": "replace",
+        "old": "\\[\n    \\tau_E^{Goldston} = 0.04 \\cdot H \\cdot I_p^{1.25} \\cdot B^{0.5} \\cdot n^{0.25} \\cdot a^{1.5} \\cdot R^{1.75}\n\\]",
+        "new": "\\begin{equation}\n    \\tau_E^{Goldston} = 0.04 \\cdot H \\cdot I_p^{1.25} \\cdot B^{0.5} \\cdot n^{0.25} \\cdot a^{1.5} \\cdot R^{1.75}\n\\label{eq:ch10-tokamak-scaling}\n\\end{equation}"
+      },
+      {
+        "type": "replace",
+        "old": "\\[\n    \\tau_E^{Stellarator} \\approx 0.17 \\cdot a^2 \\cdot R^{0.5} \\cdot n^{0.5} \\cdot B^2\n\\]",
+        "new": "\\begin{equation}\n    \\tau_E^{Stellarator} \\approx 0.17 \\cdot a^2 \\cdot R^{0.5} \\cdot n^{0.5} \\cdot B^2\n\\label{eq:ch10-stellarator-scaling}\n\\end{equation}"
+      },
+      {
+        "type": "replace",
+        "old": "\\[\n    \\tau_E \\approx 0.1 \\cdot a^2 \\cdot R^{0.5} \\cdot B^{0.5} \\cdot n^{0.3}\n\\]",
+        "new": "\\begin{equation}\n    \\tau_E \\approx 0.1 \\cdot a^2 \\cdot R^{0.5} \\cdot B^{0.5} \\cdot n^{0.3}\n\\label{eq:ch10-stellarator-scaling2}\n\\end{equation}"
+      },
+      {
+        "type": "replace",
+        "old": "\\[\n    V_p \\approx 2\\pi R \\times \\pi a^2 \\times \\kappa\n\\]",
+        "new": "\\begin{equation}\n    V_p \\approx 2\\pi R \\times \\pi a^2 \\times \\kappa\n\\label{eq:ch10-tokamak-volume}\n\\end{equation}"
+      },
+      {
+        "type": "replace",
+        "old": "\\[\n    q = \\frac{r B_{\\phi}}{R B_{\\theta}}\n\\]",
+        "new": "\\begin{equation}\n    q = \\frac{r B_{\\phi}}{R B_{\\theta}}\n\\label{eq:ch10-safety-factor}\n\\end{equation}"
+      },
+      {
+        "type": "replace",
+        "old": "\\[\n    \\oint \\vect{B}_{\\theta}\\cdot\\diff\\vect{l} = \\mu_0 I_{enc} \\quad\\Rightarrow\\quad 2\\pi a B_{\\theta} = \\mu_0 I_p\n\\]",
+        "new": "\\begin{equation}\n    \\oint \\vect{B}_{\\theta}\\cdot\\diff\\vect{l} = \\mu_0 I_{enc} \\quad\\Rightarrow\\quad 2\\pi a B_{\\theta} = \\mu_0 I_p\n\\label{eq:ch10-ampere-law}\n\\end{equation}"
+      },
+      {
+        "type": "replace",
+        "old": "\\[\n    B_{\\theta}(a) = \\frac{\\mu_0 I_p}{2\\pi a}\n\\]",
+        "new": "\\begin{equation}\n    B_{\\theta}(a) = \\frac{\\mu_0 I_p}{2\\pi a}\n\\label{eq:ch10-poloidal-field}\n\\end{equation}"
+      },
+      {
+        "type": "replace",
+        "old": "\\[\n    q_{95} \\approx q_a \\times \\frac{(1+\\kappa^2)}{2} \\times \\text{三角修正}\n\\]",
+        "new": "\\begin{equation}\n    q_{95} \\approx q_a \\times \\frac{(1+\\kappa^2)}{2} \\times \\text{三角修正}\n\\label{eq:ch10-q95-approx}\n\\end{equation}"
+      },
+      {
+        "type": "replace",
+        "old": "\\[\n    q_{95} \\approx \\frac{5 a^2 B_0}{R I_p} \\cdot \\frac{(1+\\kappa^2)}{2}\n\\]",
+        "new": "\\begin{equation}\n    q_{95} \\approx \\frac{5 a^2 B_0}{R I_p} \\cdot \\frac{(1+\\kappa^2)}{2}\n\\label{eq:ch10-q95-empirical}\n\\end{equation}"
+      }
+    ]
+  },
+  {
+    "file": "ch11_supplement.tex",
+    "modifications": [
+      {
+        "type": "replace",
+        "old": "\\[\n    V_B = \\frac{B \\cdot p d}{\\ln(A p d) - \\ln\\left(\\ln\\left(1+\\frac{1}{\\gamma}\\right)\\right)}\n\\]",
+        "new": "\\begin{equation}\n    V_B = \\frac{B \\cdot p d}{\\ln(A p d) - \\ln\\left(\\ln\\left(1+\\frac{1}{\\gamma}\\right)\\right)}\n\\label{eq:ch11-paschen-law}\n\\end{equation}"
+      },
+      {
+        "type": "replace",
+        "old": "\\[\n    v_B = \\sqrt{\\frac{k_B T_e}{m_i}}\n\\]",
+        "new": "\\begin{equation}\n    v_B = \\sqrt{\\frac{k_B T_e}{m_i}}\n\\label{eq:ch11-bohm-criterion}\n\\end{equation}"
+      },
+      {
+        "type": "replace",
+        "old": "\\[\n    J_i = \\frac{4}{9}\\eps_0 \\sqrt{\\frac{2e}{m_i}} \\frac{V_s^{3/2}}{s^2}\n\\]",
+        "new": "\\begin{equation}\n    J_i = \\frac{4}{9}\\eps_0 \\sqrt{\\frac{2e}{m_i}} \\frac{V_s^{3/2}}{s^2}\n\\label{eq:ch11-child-langmuir}\n\\end{equation}"
+      },
+      {
+        "type": "replace",
+        "old": "\\[\n    \\lambda_D = \\sqrt{\\frac{\\eps_0 k_B T_e}{n_e e^2}} = 743\\sqrt{\\frac{T_e\\,[\\mathrm{eV}]}{n_e\\,[\\mathrm{cm^{-3}}]}}\\,\\mathrm{cm}\n\\]",
+        "new": "\\begin{equation}\n    \\lambda_D = \\sqrt{\\frac{\\eps_0 k_B T_e}{n_e e^2}} = 743\\sqrt{\\frac{T_e\\,[\\mathrm{eV}]}{n_e\\,[\\mathrm{cm^{-3}}]}}\\,\\mathrm{cm}\n\\label{eq:ch11-debye-length}\n\\end{equation}"
+      },
+      {
+        "type": "replace",
+        "old": "\\[\n    v_{E\\times B} = \\frac{E}{B}\n\\]",
+        "new": "\\begin{equation}\n    v_{E\\times B} = \\frac{E}{B}\n\\label{eq:ch11-exb-drift}\n\\end{equation}"
+      },
+      {
+        "type": "replace",
+        "old": "\\[\n    v_{th,e} = \\sqrt{\\frac{2 k_B T_e}{m_e}} = 5.93\\times10^5 \\sqrt{T_e\\,[\\mathrm{eV}]}\n\\]",
+        "new": "\\begin{equation}\n    v_{th,e} = \\sqrt{\\frac{2 k_B T_e}{m_e}} = 5.93\\times10^5 \\sqrt{T_e\\,[\\mathrm{eV}]}\n\\label{eq:ch11-thermal-velocity}\n\\end{equation}"
+      }
+    ]
+  },
+  {
+    "file": "ch12_supplement.tex",
+    "modifications": [
+      {
+        "type": "replace",
+        "old": "\\[\n    I = I_{esat} \\exp\\left(\\frac{e(V_p - V_{pl})}{k_B T_e}\\right) - |I_{isat}|\n\\]",
+        "new": "\\begin{equation}\n    I = I_{esat} \\exp\\left(\\frac{e(V_p - V_{pl})}{k_B T_e}\\right) - |I_{isat}|\n\\label{eq:ch12-probe-current}\n\\end{equation}"
+      },
+      {
+        "type": "replace",
+        "old": "\\[\n    \\ln I = \\ln I_{esat} + \\frac{e(V_p - V_{pl})}{k_B T_e}\n\\]",
+        "new": "\\begin{equation}\n    \\ln I = \\ln I_{esat} + \\frac{e(V_p - V_{pl})}{k_B T_e}\n\\label{eq:ch12-probe-lnI}\n\\end{equation}"
+      },
+      {
+        "type": "replace",
+        "old": "\\[\n    \\frac{d(\\ln I)}{dV_p} = \\frac{e}{k_B T_e} = \\frac{1}{T_e\\,[\\mathrm{eV}]}\n\\]",
+        "new": "\\begin{equation}\n    \\frac{d(\\ln I)}{dV_p} = \\frac{e}{k_B T_e} = \\frac{1}{T_e\\,[\\mathrm{eV}]}\n\\label{eq:ch12-probe-temperature}\n\\end{equation}"
+      },
+      {
+        "type": "replace",
+        "old": "\\[\n    I_{esat} = A_p n_e e \\sqrt{\\frac{k_B T_e}{2\\pi m_e}}\n\\]",
+        "new": "\\begin{equation}\n    I_{esat} = A_p n_e e \\sqrt{\\frac{k_B T_e}{2\\pi m_e}}\n\\label{eq:ch12-oml-current}\n\\end{equation}"
+      },
+      {
+        "type": "replace",
+        "old": "\\[\n    \\omega_p = \\sqrt{\\frac{n_e e^2}{\\eps_0 m_e}}\n\\]",
+        "new": "\\begin{equation}\n    \\omega_p = \\sqrt{\\frac{n_e e^2}{\\eps_0 m_e}}\n\\label{eq:ch12-plasma-frequency}\n\\end{equation}"
+      },
+      {
+        "type": "replace",
+        "old": "\\[\n    N = \\sqrt{1 - \\frac{\\omega_p^2}{\\omega^2}} \\approx 1 - \\frac{\\omega_p^2}{2\\omega^2}\n\\]",
+        "new": "\\begin{equation}\n    N = \\sqrt{1 - \\frac{\\omega_p^2}{\\omega^2}} \\approx 1 - \\frac{\\omega_p^2}{2\\omega^2}\n\\label{eq:ch12-refractive-index}\n\\end{equation}"
+      },
+      {
+        "type": "replace",
+        "old": "\\[\n    |\\Delta\\phi| = \\frac{\\omega_p^2 L}{2\\omega c}\n\\]",
+        "new": "\\begin{equation}\n    |\\Delta\\phi| = \\frac{\\omega_p^2 L}{2\\omega c}\n\\label{eq:ch12-phase-shift}\n\\end{equation}"
+      },
+      {
+        "type": "replace",
+        "old": "\\[\n    n_e = \\frac{4\\pi\\eps_0 m_e f c \\cdot |\\Delta\\phi|}{e^2 L}\n\\]",
+        "new": "\\begin{equation}\n    n_e = \\frac{4\\pi\\eps_0 m_e f c \\cdot |\\Delta\\phi|}{e^2 L}\n\\label{eq:ch12-density-phase}\n\\end{equation}"
+      },
+      {
+        "type": "replace",
+        "old": "\\[\n    \\Delta\\lambda_{1/2} = 2\\lambda_0 \\sqrt{\\frac{8k_B T_e \\ln 2}{m_e c^2}} \\sin\\frac{\\theta}{2}\n\\]",
+        "new": "\\begin{equation}\n    \\Delta\\lambda_{1/2} = 2\\lambda_0 \\sqrt{\\frac{8k_B T_e \\ln 2}{m_e c^2}} \\sin\\frac{\\theta}{2}\n\\label{eq:ch12-thomson-fwhm}\n\\end{equation}"
+      },
+      {
+        "type": "replace",
+        "old": "\\[\n    T_e = \\frac{m_e c^2}{8k_B \\ln 2} \\left(\\frac{\\Delta\\lambda_{1/2}}{2\\lambda_0 \\sin(\\theta/2)}\\right)^2\n\\]",
+        "new": "\\begin{equation}\n    T_e = \\frac{m_e c^2}{8k_B \\ln 2} \\left(\\frac{\\Delta\\lambda_{1/2}}{2\\lambda_0 \\sin(\\theta/2)}\\right)^2\n\\label{eq:ch12-thomson-temperature}\n\\end{equation}"
+      },
+      {
+        "type": "replace",
+        "old": "\\[\n    \\mathcal{E} = -N \\frac{d\\Phi}{dt} = -N A \\frac{dB_{\\theta}}{dt}\n\\]",
+        "new": "\\begin{equation}\n    \\mathcal{E} = -N \\frac{d\\Phi}{dt} = -N A \\frac{dB_{\\theta}}{dt}\n\\label{eq:ch12-faraday-law}\n\\end{equation}"
+      },
+      {
+        "type": "replace",
+        "old": "\\[\n    \\oint B_{\\theta} dl = \\mu_0 I_p \\quad\\Rightarrow\\quad B_{\\theta} = \\frac{\\mu_0 I_p}{2\\pi R}\n\\]",
+        "new": "\\begin{equation}\n    \\oint B_{\\theta} dl = \\mu_0 I_p \\quad\\Rightarrow\\quad B_{\\theta} = \\frac{\\mu_0 I_p}{2\\pi R}\n\\label{eq:ch12-ampere-law}\n\\end{equation}"
+      },
+      {
+        "type": "replace",
+        "old": "\\[\n    \\mathcal{E} = -N A \\frac{d}{dt}\\left(\\frac{\\mu_0 I_p}{2\\pi R}\\right) = -\\frac{N A \\mu_0}{2\\pi R} \\frac{dI_p}{dt}\n\\]",
+        "new": "\\begin{equation}\n    \\mathcal{E} = -N A \\frac{d}{dt}\\left(\\frac{\\mu_0 I_p}{2\\pi R}\\right) = -\\frac{N A \\mu_0}{2\\pi R} \\frac{dI_p}{dt}\n\\label{eq:ch12-rogowski-emf}\n\\end{equation}"
+      }
+    ]
+  }
+]
