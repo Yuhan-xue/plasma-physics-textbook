@@ -34,8 +34,8 @@
 \usepackage{epigraph}
 \usepackage{makeidx}
 \makeindex
-\setlength{\marginparwidth}{1.2cm}
-\setlength{\marginparsep}{0.4cm}
+\setlength{\marginparwidth}{1.6cm}
+\setlength{\marginparsep}{0.2cm}
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\nouppercase{\leftmark}}
@@ -174,6 +174,7 @@
 \begin{table}[htbp]
 \centering
 \caption{基础电磁与物理常数}
+\small
 \begin{tabular}{@{}llcl@{}}
 \toprule
 \textbf{符号} & \textbf{名称} & \textbf{数值/约定} & \textbf{说明} \\
@@ -205,7 +206,8 @@ $\nabla$ & 矢量微分算符 & 见下表 & \\
 本书采用以下算符命令，与电动力学教材一致：
 \begin{table}[htbp]
 \centering
-\begin{tabular}{@{}llll@{}}
+\small
+\begin{tabular}{@{}lllp{5.8cm}@{}}
 \toprule
 \textbf{算符} & \textbf{符号} & \textbf{名称} & \textbf{直角坐标展开} \\
 \midrule
@@ -342,7 +344,8 @@ $1\,\mathrm{bar}$ & $= 10^{5}\,\mathrm{Pa}$ & 工程常用 \\
 \begin{table}[htbp]
 \centering
 \caption{高斯单位制与 SI 单位制公式对照}
-\begin{tabular}{@{}lp{5.5cm}p{5.5cm}@{}}
+\small
+\begin{tabular}{@{}lp{5.2cm}p{5.2cm}@{}}
 \toprule
 \textbf{公式} & \textbf{SI 形式} & \textbf{高斯 (CGS) 形式} \\
 \midrule
@@ -440,7 +443,7 @@ $\star\star\star$\,[\,挑战\,] & 挑战 & 涉及较深的数学技巧或前沿�
 等离子体物理连接着实验室工程与宇宙尺度的自然现象。
 
 本书旨在为自学者提供一条系统而高效的入门路径，兼顾物理图像的直观理解
-与必要数学推导的严谨性。无论你是准备进入聚变研究的研究生，
+与必要数学推导的严谨性。无论你是准备进入聚变领域的研究生，
 还是想要了解半导体工艺中低温放电的工程师，都可以在此找到适合的起点。
 
 
@@ -493,7 +496,8 @@ $\star\star\star$\,[\,挑战\,] & 挑战 & 涉及较深的数学技巧或前沿�
 \begin{table}[htbp]
 \centering
 \caption{前置知识自查清单}
-\begin{tabular}{@{}llp{5.5cm}@{}}
+\small
+\begin{tabular}{@{}p{4.2cm}p{3cm}p{5.2cm}@{}}
 \toprule
 \textbf{前置知识} & \textbf{本书对应回顾位置} & \textbf{若看不懂的影响} \\
 \midrule
@@ -612,7 +616,8 @@ $\star\star\star$\,[\,挑战\,] & 挑战 & 涉及较深的数学技巧或前沿�
 \begin{table}[htbp]
 \centering
 \caption{各章前置依赖关系}
-\begin{tabular}{@{}cll@{}}
+\small
+\begin{tabular}{@{}cp{6.4cm}p{4.6cm}@{}}
 \toprule
 \textbf{章节} & \textbf{直接依赖} & \textbf{间接依赖} \\
 \midrule
@@ -2682,7 +2687,7 @@ DC辉光放电的物理图像可作如下理解：阴极暗区对应强电场中
 \end{insight}
 
 \begin{warning}{}{}
-常见误区：认为负辉光最亮所以电场最强。实际上，负辉光区电场已经较弱，亮度来源于大量电子能量恰好落在激发函数峰值附近；而阴极暗区电场最强，反而不发光，因为电子能量还未达到激发阈值。亮度和电场强度没有直接对应关系！
+认为负辉光最亮所以电场最强。实际上，负辉光区电场已经较弱，亮度来源于大量电子能量恰好落在激发函数峰值附近；而阴极暗区电场最强，反而不发光，因为电子能量还未达到激发阈值。亮度和电场强度没有直接对应关系！
 \end{warning}
 
 \subsection{射频放电：工业应用的主力军}
@@ -2774,7 +2779,7 @@ V_f = -\frac{k_B T_e}{2e} \ln\!\left(\frac{m_i}{2\pi m_e}\right)
 \end{theorem}
 
 \begin{warning}{}{}
-高频误区：认为壁面电位就是等离子体电位。实际上，由于电子热速度远大于离子声速，壁面必须足够负才能排斥过剩的电子，否则电子流会远大于离子流。任何没有外部电流的绝缘表面都会自动"负漂移"到浮置电位！
+认为壁面电位就是等离子体电位。实际上，由于电子热速度远大于离子声速，壁面必须足够负才能排斥过剩的电子，否则电子流会远大于离子流。任何没有外部电流的绝缘表面都会自动"负漂移"到浮置电位！
 \end{warning}
 
 \subsection{玻姆判据：离子进入鞘层的最低速度}
@@ -2887,7 +2892,7 @@ Child-Langmuir定律的 $V_s^{3/4}$ 依赖关系非常有趣：鞘层厚度不�
 \end{insight}
 
 \begin{warning}{}{}
-常见误区：认为鞘层厚度可以任意大。实际上，由于离子进入鞘层的速度被玻姆判据固定，且密度随电压升高而下降，鞘层厚度被锁定在德拜长度量级的 $3\sim 5$ 倍。即使功率增加10倍，鞘层厚度可能仅增加不到1倍。这也是射频鞘层可以维持高度各向异性刻蚀的原因——鞘层很薄，离子几乎垂直入射。
+认为鞘层厚度可以任意大。实际上，由于离子进入鞘层的速度被玻姆判据固定，且密度随电压升高而下降，鞘层厚度被锁定在德拜长度量级的 $3\sim 5$ 倍。即使功率增加10倍，鞘层厚度可能仅增加不到1倍。这也是射频鞘层可以维持高度各向异性刻蚀的原因——鞘层很薄，离子几乎垂直入射。
 \end{warning}
 
 对于高气压（有碰撞）鞘层，离子在鞘层内经历电荷交换碰撞，有效离子质量增加，鞘层变厚。这种情况下需使用修正的 Child-Langmuir 定律或流体模拟，此处从略 [挑战]。
@@ -2958,7 +2963,7 @@ RIE的协同效应是等离子体工艺中典型的离子增强化学反应：�
 \end{example}
 
 \begin{warning}{}{}
-常见误区：认为高深宽比刻蚀只要离子能量足够高就行。实际上，侧壁保护和钝化层管理才是关键。纯物理溅射在深孔底部会产生"微沟槽效应"（micro-trenching），因为离子在侧壁反射后汇聚到底部角落；纯化学刻蚀则完全各向同性。Bosch工艺的成功在于精确平衡了刻蚀与钝化的循环，而非简单提高功率。
+认为高深宽比刻蚀只要离子能量足够高就行。实际上，侧壁保护和钝化层管理才是关键。纯物理溅射在深孔底部会产生"微沟槽效应"（micro-trenching），因为离子在侧壁反射后汇聚到底部角落；纯化学刻蚀则完全各向同性。Bosch工艺的成功在于精确平衡了刻蚀与钝化的循环，而非简单提高功率。
 \end{warning}
 
 \subsection{薄膜沉积：PECVD与溅射沉积}
@@ -3018,7 +3023,7 @@ PECVD与溅射沉积的物理机制完全不同：PECVD是"化学反应在表面
 \end{definition}
 
 \begin{warning}{}{}
-常见误区：认为磁控溅射中磁场是用来加速离子轰击靶材的。实际上磁场主要约束电子，离子因质量大几乎不受磁场影响（回旋半径 $\rho_i \gg$ 装置尺寸）。离子是被鞘层电场加速的！磁场通过约束电子来提高等离子体密度，间接增加离子密度，从而增加溅射速率。混淆磁场对电子和离子的作用是初学者常见错误。
+认为磁控溅射中磁场是用来加速离子轰击靶材的。实际上磁场主要约束电子，离子因质量大几乎不受磁场影响（回旋半径 $\rho_i \gg$ 装置尺寸）。离子是被鞘层电场加速的！磁场通过约束电子来提高等离子体密度，间接增加离子密度，从而增加溅射速率。混淆磁场对电子和离子的作用是初学者常见错误。
 \end{warning}
 
 \subsection{刻蚀腔体中的粒子输运：双极扩散到边界损失}
@@ -3125,7 +3130,7 @@ R_{\text{iz}} = \frac{P_{\text{iz}}}{e E_{\text{iz}}} = \frac{75}{1.6\times 10^{
 \end{insight}
 
 \begin{warning}{}{}
-常见误区：在密度估算中忘记预鞘密度降。玻姆判据要求鞘层边界密度 $n_s$ 约为体密度 $n_0$ 的一半（预鞘中电位降 $\sim k_B T_e/2e$ 使离子加速、密度下降）。若直接用体密度计算玻姆流，会高估密度约2倍。记住：玻姆流公式中的 $n$ 是鞘层边界密度，不是体密度！
+在密度估算中忘记预鞘密度降。玻姆判据要求鞘层边界密度 $n_s$ 约为体密度 $n_0$ 的一半（预鞘中电位降 $\sim k_B T_e/2e$ 使离子加速、密度下降）。若直接用体密度计算玻姆流，会高估密度约2倍。记住：玻姆流公式中的 $n$ 是鞘层边界密度，不是体密度！
 \end{warning}
 
 \begin{miniquiz}
@@ -3310,7 +3315,9 @@ P_{\text{abs}} \propto n_e \cdot E_{\text{loss}} \propto \frac{1}{3.75} \times \
 
 \begin{center}
 \captionof{table}{常见工艺故障与等离子体物理参数关联表}
-\begin{tabular}{@{}llp{3.5cm}p{4.5cm}@{}}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}p{3.2cm}p{3.5cm}p{3.5cm}p{3.5cm}@{}}
 \toprule
 \textbf{故障现象} & \textbf{可能根因} & \textbf{诊断参数} & \textbf{调节方向} \\
 \midrule
@@ -3377,7 +3384,7 @@ P_{\text{abs}} \propto n_e \cdot E_{\text{loss}} \propto \frac{1}{3.75} \times \
 等离子体诊断（Plasma Diagnostics）是指利用电、磁、电磁波、粒子或光学手段，对等离子体的密度、温度、电位、成分、电场、磁场等宏观与微观参数进行\emph{非破坏性或可控扰动性}测量的实验技术体系。
 \end{definition}
 
-\begin{insight}{物理洞见：间接测量的本质}{}
+\begin{insight}{间接测量的本质}{}
 诊断的核心逻辑可以概括为：\textbf{理论预言} $\rightarrow$ \textbf{物理效应} $\rightarrow$ \textbf{可测量信号} $\rightarrow$ \textbf{反演参数}。
 
 例如，理论告诉我们电子存在特征振荡频率 $\omega_{pe}$（见第6章式\eqref{eq:plasma-frequency}）。当一束微波穿过等离子体时，如果微波频率 $\omega$ 接近 $\omega_{pe}$，传播特性就会发生剧烈变化——这个\emph{可测量}的相位移动或幅度衰减，就让我们得以反演出等离子体密度。诊断物理学家从不"直接看到"电子，而是通过理解电子的\emph{集体响应}来推断其存在和状态。
@@ -3466,7 +3473,7 @@ I_{\mathrm{e,sat}} &\approx \frac{1}{4} e n_e A \bar{v}_e \quad \text{（电子�
 $A$ 为探针收集面积，$\bar{v}_\alpha = \sqrt{8 T_\alpha / (\pi m_\alpha)}$ 为平均热速度。
 \end{theorem}
 
-\begin{insight}{物理洞见：为什么I-V曲线呈"S"形？}{}
+\begin{insight}{为什么I-V曲线呈"S"形？}{}
 探针本质上是一个可调控电位的\emph{带电粒子收集器}。理解曲线的关键是：电子和离子带相反电荷，但电子质量远小于离子，因此电子热速度 $\bar{v}_e$ 远大于离子热速度 $\bar{v}_i$。
 
 \begin{itemize}
@@ -3503,7 +3510,7 @@ T_e = \left[\frac{\diff (\ln I)}{\diff V}\right]^{-1}.
 因此，$\ln I$-$V$ 曲线的斜率倒数即给出电子温度 $T_e$（单位为 $\mathrm{eV}$）。
 \end{corollary}
 
-\begin{insight}{物理洞见：斜率为何反比于温度？}{}
+\begin{insight}{斜率为何反比于温度？}{}
 式\eqref{eq:te-slope}的物理图像清晰。电子温度越高，热运动越剧烈，能够克服探针负电位"势垒"到达探针的电子就越多。这意味着温度越高，收集电流对电位变化越不敏感——需要改变更大的电位才能显著改变到达探针的电子数。因此，$T_e$ 越大，$\ln I$-$V$ 曲线越平缓，斜率越小，其倒数（温度）就越大。反之，低温等离子体中曲线非常陡峭。
 \end{insight}
 
@@ -3546,7 +3553,7 @@ n_e \approx n_i \approx \frac{2 I_{\mathrm{i,sat}}}{e A \bar{v}_i}
 其中 $\eps = -e(V - V_p)$ 为电子相对于等离子体电位的能量，$f(\eps)$ 为按能量归一化的分布函数。
 \end{theorem}
 
-\begin{insight}{物理洞见：为什么二阶导数给出分布函数？}{}
+\begin{insight}{为什么二阶导数给出分布函数？}{}
 探针收集电流是\emph{所有能量高于势垒}的电子的通量积分：$I \propto \int_{-eV}^\infty f(\eps) v(\eps) \,\diff\eps$。对 $V$ 求一阶导数消去了积分下限的被积函数（莱布尼茨法则），再求二阶导数就提取出了分布函数本身。这相当于在说：\emph{电流曲线在某处的"弯曲程度"，正比于具有该能量的电子数量}。这一结果最早由Druyvesteyn在1930年严格导出，是探针诊断从"测温度"到"测分布"的理论飞跃。
 \end{insight}
 
@@ -3578,7 +3585,7 @@ V_f - V_p = T_e \ln\!\left(\frac{I_{\mathrm{i,sat}}}{I_{\mathrm{e,sat}}}\right)
 \end{equation}
 \end{definition}
 
-\begin{insight}{物理洞见：为什么悬浮电位是负的？}{}
+\begin{insight}{为什么悬浮电位是负的？}{}
 式\eqref{eq:floating-potential-2}中，$V_f < V_p$ 的根本原因在于\textbf{电子的流动性远高于离子}。电子质量小，热速度大，"冲向"探针的通量天然就比离子大几个数量级。如果探针保持中性电位，它会被\emph{过度充电}为负电位。只有探针自身积累足够负的电荷，形成排斥电子的势垒，才能使电子通量降低到与离子通量相等，达到动态平衡。对于氢等离子体，$V_f - V_p \approx -3.0\,T_e$；对于氩等离子体，这一偏差可达 $-4.7\,T_e$。因此，悬浮电位\emph{不是}等离子体电位，这是初学者最容易混淆的概念。
 \end{insight}
 
@@ -3613,7 +3620,7 @@ n_{\mathrm{cut}} = \frac{\eps_0 m_e \omega^2}{e^2}
 当 $n_e > n_{\mathrm{cut}}$ 时，微波将被反射而无法穿透等离子体。
 \end{definition}
 
-\begin{insight}{物理洞见：折射率为什么小于1？}{}
+\begin{insight}{折射率为什么小于1？}{}
 等离子体中，自由电子在外加电场作用下做受迫振荡，其振荡相位与驱动电场相差 $\pi$（电子带负电，加速度与电场反向）。电子振荡产生的感应电场与外加电场相消，导致有效介电常数 $\eps_{\mathrm{eff}} = \eps_0(1 - \omega_{pe}^2/\omega^2)$ 小于真空介电常数 $\eps_0$。因此等离子体的折射率 $n_r = \sqrt{\eps_{\mathrm{eff}}/\eps_0} < 1$。波在等离子体中的相速度 $v_p = c/n_r > c$，但群速度 $v_g = c n_r < c$，能量传播变慢。这正是波穿过等离子体后产生相位延迟的物理根源。
 \end{insight}
 
@@ -3643,7 +3650,7 @@ n_r \approx 1 - \frac{1}{2}\frac{\omega_{pe}^2}{\omega^2}
 其中 $\lambda_0 = 2\pi c/\omega$ 为真空波长。
 \end{theorem}
 
-\begin{insight}{物理洞见：为什么相位移动正比于密度和长度？}{}
+\begin{insight}{为什么相位移动正比于密度和长度？}{}
 式\eqref{eq:phase-shift}具有极其简洁的物理意义：每一个电子对电磁波相位延迟的"贡献"是独立的，且贡献量与电子密度成正比。等离子体柱越长，参与相互作用的电子越多，累积相位移动越大。值得注意的是，\textbf{离子基本不参与}，因为离子质量大，在微波频率下几乎不动，对介电常数的修正被 $(m_e/m_i)$ 因子抑制。微波干涉诊断本质上是一种\textbf{纯电子密度测量}。
 \end{insight}
 
@@ -3712,7 +3719,7 @@ S(\omega_s) \propto \exp\!\left[-\frac{(\omega_s - \omega_i)^2}{2\Delta\omega^2}
 \end{equation}
 \end{theorem}
 
-\begin{insight}{物理洞见：为什么散射光谱的宽度就是温度？}{}
+\begin{insight}{为什么散射光谱的宽度就是温度？}{}
 这是汤姆逊散射最优美的物理图像。电子以热速度 $v$ 随机运动，对入射激光产生多普勒频移：频率偏移 $\Delta\omega = \vect{k}_s\cdot\vect{v} - \vect{k}_i\cdot\vect{v} = \vect{q}\cdot\vect{v}$，其中 $\vect{q} = \vect{k}_s - \vect{k}_i$ 为散射波矢。由于 $|\vect{q}| = 2k_i\sin(\theta/2)$，而电子速度服从麦克斯韦分布（见第7章），速度投影 $q\cdot v$ 的分布也是高斯型，其宽度正比于热速度 $v_{th} = \sqrt{2T_e/m_e}$。因此，\textbf{测量散射光谱就是测量电子速度分布}，光谱宽度就是温度，光谱形状偏离高斯就是分布偏离麦克斯韦。这直接将动理学理论（第7章）的抽象分布函数 $f(\vect{v})$，转化为光谱仪上一条可测量的谱线。
 \end{insight}
 
@@ -3729,7 +3736,7 @@ S(\omega_s) \propto \exp\!\left[-\frac{(\omega_s - \omega_i)^2}{2\Delta\omega^2}
 对于氢等离子体，$m_i/m_e \approx 1836$，因此离子散射截面仅为电子的 $3\times 10^{-7}$。对于氘等离子体，这一比例更小。此外，离子热速度低，多普勒展宽极小，其散射信号在光谱上浓缩为极窄的"离子成分峰"（通常位于中心频率附近），极易与电子宽光谱成分区分。
 \end{corollary}
 
-\begin{insight}{物理洞见：质量优势的极端性}{}
+\begin{insight}{质量优势的极端性}{}
 式\eqref{eq:ion-electron-ratio}揭示了自然界中一个深刻的数量级规律：由于电子质量远小于离子，电子在相同电场下的加速度大 $(m_i/m_e)$ 倍，辐射振幅大 $(m_i/m_e)$ 倍，辐射功率（正比于振幅平方）大 $(m_i/m_e)^2$ 倍。这导致汤姆逊散射几乎完全是电子的"独角戏"，离子只是背景噪音。这也是为什么汤姆逊散射是\emph{最纯净的电子温度诊断}——它几乎不受离子成分、杂质或电荷态的影响。
 \end{insight}
 
@@ -3761,7 +3768,7 @@ S(\omega_s) \propto \exp\!\left[-\frac{(\omega_s - \omega_i)^2}{2\Delta\omega^2}
 $A_{ji}$、$A_{lk}$ 为爱因斯坦自发辐射系数。
 \end{definition}
 
-\begin{insight}{物理洞见：谱线强度比为什么是"温度计"？}{}
+\begin{insight}{谱线强度比为什么是"温度计"？}{}
 式\eqref{eq:line-ratio}的本质是\textbf{能量杠杆}。两条谱线来自不同的激发能级，能级差 $\Delta E$ 就是这把"尺子"。温度低时，粒子大多集中在基态和低激发态，高能级谱线很弱；温度升高时，高能级被更多布居，高能谱线相对于低能谱线增强。通过测量强度比，我们实际上是在问："等离子体中的热涨落，有没有足够能量把粒子抬升到那个高度？" 如果 $T_{\mathrm{exc}} \ll \Delta E$，那条谱线几乎熄灭；如果 $T_{\mathrm{exc}} \sim \Delta E$，两条谱线势均力敌。玻尔兹曼因子 $\exp(-\Delta E/T)$ 将温度信息编码在光强中。
 \end{insight}
 
@@ -3780,7 +3787,7 @@ $A_{ji}$、$A_{lk}$ 为爱因斯坦自发辐射系数。
 其中 $Z$ 为离子电荷数，$\bar{g}$ 为冈特因子（Gaunt factor，量级为1的修正因子）。在光学薄等离子体中，连续谱强度的指数衰减特征 $\propto \exp(-\hbar\omega/T_e)$ 直接给出电子温度。
 \end{theorem}
 
-\begin{insight}{物理洞见：韧致辐射是"温度计"还是"密度计"？}{}
+\begin{insight}{韧致辐射是"温度计"还是"密度计"？}{}
 式\eqref{eq:bremsstrahlung}表明，韧致辐射功率同时正比于 $n_e n_i$（密度信息）和 $T_e^{-1/2}\exp(-\hbar\omega/T_e)$（温度信息）。但在不同频率区间，诊断侧重不同：在低频区（$\hbar\omega \ll T_e$），指数因子接近1，辐射强度主要取决于密度；在高频区（$\hbar\omega \sim T_e$），指数衰减敏感地依赖于温度。因此，通过测量连续谱的"斜率"（对数强度对频率的导数），可以提取 $T_e$，而绝对强度则与密度有关。这再次体现了诊断的多参数耦合特性——单一的测量通常无法同时确定所有参数，需要结合多个诊断手段。
 \end{insight}
 
@@ -3800,7 +3807,7 @@ $A_{ji}$、$A_{lk}$ 为爱因斯坦自发辐射系数。
 \end{equation}
 \end{definition}
 
-\begin{insight}{物理洞见：为什么展宽正比于 $n_e^{2/3}$？}{}
+\begin{insight}{为什么展宽正比于 $n_e^{2/3}$？}{}
 线性斯塔克效应中，能级位移 $\Delta E$ 正比于外加电场 $\mathcal{E}$。等离子体中，带电粒子产生的电场在距离 $r$ 处为 $\mathcal{E} \sim e/(4\pi\eps_0 r^2)$。而最近的带电粒子典型距离由密度决定：$r \sim n_e^{-1/3}$（平均间距）。因此典型电场 $\mathcal{E}_{\mathrm{typ}} \sim e n_e^{2/3}/(4\pi\eps_0)$，能级位移和由此导致的谱线展宽也就正比于 $n_e^{2/3}$。这个简单的标度关系是光谱法测量密度的理论基础。需要注意的是，斯塔克展宽对温度也有弱依赖，因为离子热运动产生的微场统计分布随温度变化。精确的密度反演通常需要查阅专业数据库（如STARK-B）。
 \end{insight}
 
@@ -3848,7 +3855,7 @@ $A$ 为单匝面积，假设磁场垂直穿过线圈平面。对电压进行时�
 \label{eq:b-integration}
 \end{equation}
 
-\begin{insight}{物理洞见：为什么是电压的积分给出磁场？}{}
+\begin{insight}{为什么是电压的积分给出磁场？}{}
 式\eqref{eq:magnetic-probe}告诉我们，磁探针的\emph{直接输出}是电压，而电压正比于磁场的\emph{变化率}，不是磁场本身。这源于电磁感应的物理本质：变化的磁场产生涡旋电场，驱动线圈中的电荷运动。对于稳恒磁场（$\diff B/\diff t = 0$），理想线圈不产生任何信号。因此，磁探针本质上是一个\textbf{磁场变化率探测器}。要获得静态磁场，需要主动积分（模拟RC积分电路或数字积分）。在实际托卡马克实验中，放电过程中磁场持续变化，探针可以直接测量 $\dot{B}$，再结合MHD平衡方程（第5章 Grad-Shafranov 方程）反推等离子体电流分布和压强分布。
 \end{insight}
 
@@ -3863,7 +3870,7 @@ $A$ 为单匝面积，假设磁场垂直穿过线圈平面。对电压进行时�
 $R$ 为环的平均半径，$N$ 为总匝数，$A$ 为单匝截面积。对电压积分即可得到总电流 $I(t)$。
 \end{definition}
 
-\begin{insight}{物理洞见：Rogowski线圈的"自屏蔽"特性}{}
+\begin{insight}{Rogowski线圈的"自屏蔽"特性}{}
 Rogowski线圈的一个重要优点是：它只测量\emph{穿过环中心的净电流}，对环外部电流不敏感。这是因为外部电流产生的磁场在环内部绕行一周时，从不同方向穿过绕组，贡献相互抵消。这一特性使得Rogowski线圈可以方便地套在真空室或导体棒外部，测量其中的等离子体电流，而不受外部杂散磁场的显著干扰。在托卡马克中，环向等离子体电流 $I_p$ 通常达到 $10^6\,\mathrm{A}$ 量级，Rogowski线圈缠绕在真空室外围，是监测这一核心MHD参数的标准手段。通过与极向磁探针阵列结合，还可以重构等离子体边界和内部的磁通面结构（安全因子 $q$ 分布），为等离子体平衡和稳定性分析提供输入。
 \end{insight}
 
@@ -3908,7 +3915,10 @@ Rogowski线圈的一个重要优点是：它只测量\emph{穿过环中心的净
 
 \textbf{分析：}上述波动并非随机噪声，而是射频功率调节的直接反映。其物理因果链为：
 \[
-\text{射频功率波动} \longrightarrow T_\ee\text{变化} \longrightarrow \text{鞘层电位变化} \longrightarrow \text{离子轰击能量变化} \longrightarrow \text{刻蚀速率变化}
+\begin{aligned}
+&\text{射频功率波动} \longrightarrow T_\ee\text{变化} \longrightarrow \text{鞘层电位变化} \\
+&\qquad \longrightarrow \text{离子轰击能量变化} \longrightarrow \text{刻蚀速率变化}
+\end{aligned}
 \]
 具体而言，ICP 功率升高使电子加热增强，$T_\ee$ 上升；根据玻姆鞘层判据，鞘层电位降 $V_\mathrm{sh} \sim T_\ee/2$（以 $\mathrm{eV}$ 为单位），离子到达基底的能量随之增加。在铝刻蚀中，离子轰击能量每增加 $1\,\mathrm{eV}$，刻蚀速率约变化 $2\%\text{--}3\%$，因此 $T_\ee$ 从 $4.5\,\mathrm{eV}$ 升至 $5.2\,\mathrm{eV}$ 可导致刻蚀速率变化约 $5\%$，足以影响工艺窗口。
 
@@ -3987,7 +3997,8 @@ Rogowski线圈的一个重要优点是：它只测量\emph{穿过环中心的净
 \begin{table}[htbp]
 \centering
 \caption{主要诊断方法适用参数范围}
-\begin{tabular}{@{}llllll@{}}
+\small
+\begin{tabular}{@{}lp{2.6cm}p{2.4cm}lll@{}}
 \toprule
 \textbf{诊断方法} & \textbf{适用密度范围 (m$^{-3}$)} & \textbf{适用温度范围 (eV)} & \textbf{空间分辨率} & \textbf{时间分辨率} & \textbf{适用场景} \\
 \midrule
@@ -4059,7 +4070,6 @@ OES发射光谱 & $10^{12}$--$10^{19}$ & $0.1$--$10$ & cm & ms & 工业/空间 \
 \end{flushright}
 
 
-\appendix
 \appendix
 
 %======================================================================
@@ -4271,7 +4281,7 @@ A_zB_x & A_zB_y & A_zB_z
 \scriptsize
 \setlength{\tabcolsep}{2pt}
 \renewcommand{\arraystretch}{0.78}
-\begin{tabular}{@{}p{2.6cm}p{1.4cm}p{6.2cm}p{3.2cm}p{1.6cm}@{}}
+\begin{tabular}{@{}p{2.6cm}p{1.4cm}p{6.0cm}p{3.2cm}p{1.6cm}@{}}
 \toprule
 \textbf{参数名} & \textbf{符号} & \textbf{公式} & \textbf{典型数值} & \textbf{章节} \\
 \midrule

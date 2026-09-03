@@ -27,3 +27,4 @@ __pycache__/
 # OS 文件
 .DS_Store
 Thumbs.db
+src/plasma_physics_textbook_v2.pdf
