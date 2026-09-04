@@ -125,7 +125,7 @@ Child-Langmuir定律给出了平面鞘层中电流与鞘层电压的关系。对
     J_i = e n_s v_B = 0.6 e n_e v_B
 \]
 
-（$n_s \approx 0.6 n_e$ 为鞘层边缘预鞘区密度，通常取此值。）
+（$n_s \approx 0.6 n_e$ 为鞘层边缘密度：预鞘电位降约 $T_e/2e$，由玻尔兹曼关系 $n_s = n_0\exp(-1/2) \approx 0.607\,n_0$。）
 
 因此：
 \[
@@ -380,7 +380,7 @@ $\vect{E}\times\vect{B}$ 漂移速度与电子热速度量级相近。在磁控�
 
 \textbf{(1) 自偏压的形成：} 电子质量小、响应快，能跟随 $13.56\,\mathrm{MHz}$ 的射频场振荡；离子质量大，只响应时间平均场。电极在射频正半周吸收大量电子（电子通量远大于离子通量），充电为负；负半周电子被排斥，离子缓慢中和。稳态下电极自动积累负电荷，直到\textbf{时间平均电子通量等于离子通量}——这就是\textbf{自偏压}（self-bias）。对两极板面积不等的非对称 CCP，自偏压可达数百伏，方向使小电极（放电功率电极）更负，离子在该电极上获得更高的轰击能量。
 
-\textbf{(2) 射频鞘层厚度：} 用 Child-Langmuir 简化式（$n_s\approx n_e$，$V_0 = 200\,\mathrm{V}$，$T_e = 3\,\mathrm{eV}$，氩 $m_i = 40\,\mathrm{amu}$）：
+\textbf{(2) 射频鞘层厚度：} 用 Child-Langmuir 简化式（$n_s\approx n_e$，$V_0 = 200\,\mathrm{V}$，$T_e = 3\,\mathrm{eV}$，氩 $m_i = 40\,\mathrm{amu}$）。注意：下式为\textbf{经验估算式}（由 Child-Langmuir 定律代入玻姆流与射频振荡近似组合而来，量级正确，非严格推导结果）：
 \[
 s \approx \frac{\sqrt{2}}{3}\,\lambda_D\left(\frac{2V_0}{T_e}\right)^{3/4}
 \]
@@ -420,32 +420,29 @@ s \approx 0.47\times0.41\,\mathrm{mm}\times39 \approx 7.5\,\mathrm{mm}
         % 各区域（从左到右）
         % 阴极暗区（Aston暗区，非常薄）
         \fill[blue!20] (0,2) rectangle (0.3,4);
-        \node[blue] at (0.15,1.5) {\tiny 阴极};
-        \node[blue] at (0.15,1.2) {\tiny 暗区};
-        
+        \node[blue, rotate=90, anchor=center] at (0.15,1.35) {\tiny 阴极暗区};
+
         % 负辉光（最亮）
         \fill[yellow!50] (0.3,2) rectangle (1.5,4);
-        \node[orange] at (0.9,1.5) {负辉光区};
-        \node[orange] at (0.9,1.1) {\small （最亮）};
-        
+        \node[orange] at (0.9,1.5) {\small 负辉光区};
+        \node[orange] at (0.9,1.05) {\tiny （最亮）};
+
         % 法拉第暗区
         \fill[gray!15] (1.5,2) rectangle (2.5,4);
-        \node[gray] at (2.0,1.5) {\small 法拉第};
-        \node[gray] at (2.0,1.2) {\small 暗区};
-        
+        \node[gray, rotate=90, anchor=center] at (2.0,1.35) {\small 法拉第暗区};
+
         % 正柱区（均匀发光）
         \fill[green!20] (2.5,2) rectangle (8.5,4);
         \node[green!50!black] at (5.5,3) {\large 正柱区};
         \node[green!50!black] at (5.5,2.5) {\small （均匀等离子体）};
-        
+
         % 阳极暗区（很薄）
         \fill[blue!10] (8.5,2) rectangle (9.2,4);
-        \node[blue] at (8.85,1.5) {\small 阳极};
-        \node[blue] at (8.85,1.2) {\small 暗区};
-        
+        \node[blue, rotate=90, anchor=center] at (8.85,1.35) {\small 阳极暗区};
+
         % 阳极辉光
         \fill[yellow!30] (9.2,2) rectangle (10,4);
-        \node[orange] at (9.6,1.5) {\small 阳极辉光};
+        \node[orange, align=center] at (9.6,1.3) {\tiny 阳极\\ \tiny 辉光};
         
         % 电位分布示意（上方）
         \draw[thick, red] (0,5.5) -- (0.3,5.3) -- (1.5,4.0) -- (2.5,3.8) -- (8.5,3.2) -- (9.2,3.1) -- (10,3.0);
@@ -453,12 +450,16 @@ s \approx 0.47\times0.41\,\mathrm{mm}\times39 \approx 7.5\,\mathrm{mm}
         
         % 电位标注
         \draw[<->, red] (-1,5.5) -- (-1,3.0);
-        \node[red, left] at (-1,4.25) {$V_{cathode}$};
-        \node[red, below] at (-1,3.0) {$V_{anode}$};
-        
+        \node[red, left] at (-1,4.25) {$V_{\mathrm{cathode}}$};
+        \node[red, below] at (-1,3.0) {$V_{\mathrm{anode}}$};
+
+        % 阴极位降标注
+        \draw[<->, violet, dashed] (0.15,5.0) -- (1.5,5.0);
+        \node[violet, above] at (0.8,5.0) {\small 阴极位降};
+
         % 各区域发光强度示意（下方柱状图）
         \draw[->] (-0.5,0) -- (10.5,0) node[right] {$x$};
-        \draw[->] (-0.5,0) -- (-0.5,1.5) node[above] {\small 发光强度};
+        \draw[->] (-0.5,0) -- (-0.5,1.5) node[above left] {\small 发光强度};
         
         % 负辉光峰值
         \fill[orange!50] (0.3,0) rectangle (1.5,1.2);
@@ -561,7 +562,7 @@ ambipolar扩散系数：
 \[
     E \approx \frac{E_{ion}}{\lambda_i \eta_{ion}}
 \]
-（$\lambda_i$ 为电离平均自由程，$\eta_{ion}$ 为每次电离产生的新电子数）
+（$\lambda_i$ 为电子的电离平均自由程，$\eta_{ion}$ 为每次电离平均产生的新电子-离子对数，$\sigma_{ion}$ 为电离碰撞截面，$n_g$ 为中性气体密度）
 
 电子温度与气压关系（经验）：
 \[

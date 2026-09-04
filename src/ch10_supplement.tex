@@ -376,28 +376,28 @@ E_{\text{laser}} \approx \frac{3.5\,\mathrm{MJ}}{0.1} \approx 35\,\mathrm{MJ}
         
         % 等离子体截面（拉长椭圆）
         \draw[thick, blue, fill=blue!10] (4.5,0) ellipse (1.5 and 2.5);
-        \node[blue] at (4.5,0) {\small 等离子体};
-        
+        \node[blue] at (4.2,-1.6) {\small 等离子体};
+
         % 大半径 R
         \draw[<->, thick, red] (2,2.8) -- (4.5,2.8);
         \node[red, above] at (3.25,2.9) {$R$};
-        
+
         % 小半径 a
         \draw[<->, thick, red] (5.2,-2.5) -- (5.2,2.5);
         \node[red, right] at (5.3,0) {$a$};
-        
+
         % 环向磁场 B_phi（虚线大圆，俯视图示意）
         \draw[dashed, gray] (2,0) circle (2.5);
         \draw[->, thick, green!60!black] (4.5,0) arc (0:30:2.5);
-        \node[green!60!black] at (5.3,1.2) {$B_{\phi}$};
-        
+        \node[green!60!black] at (5.6,1.3) {$B_{\phi}$};
+
         % 极向磁场 B_theta（截面内圆圈箭头）
         \draw[->, thick, orange] (3.8,0) arc (180:90:0.7);
         \node[orange] at (3.0,0.8) {$B_{\theta}$};
-        
+
         % 等离子体电流 I_p
-        \draw[->, ultra thick, purple] (4.5,-0.3) -- (4.5,0.3);
-        \node[purple, right] at (4.5,0.6) {$I_p$};
+        \draw[->, ultra thick, purple] (4.9,-0.5) -- (4.9,0.1);
+        \node[purple, right] at (4.95,0.35) {$I_p$};
         
         % 图例说明
         \node[anchor=west] at (6.5,2) {\color{green!60!black}\small 环向磁场：};
@@ -433,42 +433,42 @@ E_{\text{laser}} \approx \frac{3.5\,\mathrm{MJ}}{0.1} \approx 35\,\mathrm{MJ}
         
         % D-T 点火线（示意曲线）
         \draw[thick, red, domain=1.5:9, samples=50] plot (\x, {1+4/(\x^0.5)});
-        \node[red] at (7,4.5) {D-T 点火线};
-        \node[red] at (7,4.1) {\small $n\tau \sim T^{1/2}$};
-        
+        \node[red] at (7.5,2.6) {D-T 点火线};
+        \node[red] at (7.5,2.2) {\small $n\tau \sim T^{1/2}$};
+
         % D-D 点火线（更高要求）
         \draw[thick, blue, dashed, domain=2:9, samples=50] plot (\x, {2+4/(\x^0.5)});
-        \node[blue] at (8,3.8) {D-D 点火线};
-        
+        \node[blue] at (8.4,3.3) {D-D 点火线};
+
         % 装置标注
         % TFTR
         \filldraw[black] (3.5,2.5) circle (3pt);
-        \node[above right] at (3.5,2.5) {TFTR};
-        
+        \node[below] at (3.5,2.35) {TFTR};
+
         % JET
         \filldraw[black] (5,3.2) circle (3pt);
         \node[above right] at (5,3.2) {JET};
-        
+
         % DIII-D
         \filldraw[black] (4,2.8) circle (3pt);
         \node[below right] at (4,2.8) {DIII-D};
-        
+
         % ITER（设计目标）
-        \filldraw[red] (8,4) circle (4pt);
-        \node[above right, red] at (8,4) {ITER（设计目标）};
-        
+        \filldraw[red] (8,4.35) circle (4pt);
+        \node[above right, red] at (8,4.35) {ITER（设计目标）};
+
         % NIF（惯性约束，不同的n-tau区域，这里大致标出）
         \filldraw[blue] (2.5,3.8) circle (3pt);
-        \node[above right, blue] at (2.5,3.8) {NIF};
-        
+        \node[above left, blue] at (2.5,3.8) {NIF};
+
         % 现有装置区域
         \draw[dotted, gray, thick] (2,2) -- (6,2.5) -- (6.5,3.5) -- (2,3) -- cycle;
-        \node[gray] at (4,2.5) {\small 现有磁约束};
-        \node[gray] at (4,2.2) {\small 装置区域};
-        
+        \node[gray] at (2.9,2.6) {\small 现有磁约束};
+        \node[gray] at (2.9,2.3) {\small 装置区域};
+
         % 点火区域标注
         \draw[red, fill=red!10, opacity=0.3] (5,3.5) -- (9,3.5) -- (9,4.5) -- (5,4.5) -- cycle;
-        \node[red, opacity=0.7] at (7,4.0) {点火区};
+        \node[red, opacity=0.7] at (6.3,4.0) {点火区};
     \end{tikzpicture}
     \caption{Lawson参数空间图：$n\tau$ 对温度 $T$ 的依赖关系。图中标注了若干代表性装置（TFTR、JET、DIII-D、NIF）以及ITER的设计目标。D-T点火线下方区域为能量自持点火区。}
     \label{fig:lawson}

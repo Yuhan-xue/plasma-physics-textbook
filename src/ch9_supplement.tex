@@ -83,17 +83,18 @@ k' = \frac{2\pi}{0.005} = 1257\,\mathrm{m}^{-1}
 
 \textbf{(1) 色散关系：}
 
-对冷等离子体（$T_e = T_i = 0$），双流色散关系为：
-\[
-1 = \frac{\omega_{pe}^2}{\omega^2} + \frac{\omega_{pi}^2}{(\omega - k u_i)^2}
-\]
-
-由于离子静止 $u_i = 0$，且 $m_i \gg m_e$（$\omega_{pi} \ll \omega_{pe}$），在电子时间尺度上离子近似为固定背景。电子双流色散关系简化为：
+对冷等离子体（$T_e = T_i = 0$），双流色散关系为（第二项为束电子的贡献）：
 \[
 1 = \frac{\omega_{pe}^2}{\omega^2} + \frac{\omega_{pe}^2}{(\omega - k u)^2}
 \]
 
-（这里假设束流密度等于背景密度，或等价地，将静止离子视为另一束流。）
+由于离子静止 $u_i = 0$，且 $m_i \gg m_e$（$\omega_{pi} \ll \omega_{pe}$），在电子时间尺度上离子近似为固定背景——这是\textbf{Buneman 近似}：离子仅提供中性背景，不参与振荡，从色散关系中消失。
+
+若不取 Buneman 近似而保留完整的电子--离子双流形式，则为
+\[
+1 = \frac{\omega_{pe}^2}{\omega^2} + \frac{\omega_{pi}^2}{(\omega - k u_i)^2}
+\]
+（对应两束各自漂移的完整双流模型；本题中 $u_i = 0$ 且 $\omega_{pi} \ll \omega_{pe}$，离子项可忽略。）
 
 \textbf{(2) 不稳定性条件：}
 

@@ -1013,6 +1013,7 @@ v_p = \frac{\omega}{k} = \frac{\sqrt{\omega_p^2 + c^2k^2}}{k} = c\sqrt{1 + \frac
 \item 等离子体物理大量使用\textbf{柱坐标}，务必熟记柱坐标下的 $\grad$、$\divg$、$\curl$、$\lap$ 表达式。
 \item \textbf{分布函数} $f(\vect{r},\vect{v},t)$ 是相空间中的粒子数密度，其矩给出宏观量：$n$（密度）、$\vect{u}$（流速）、$P_{ij}$（压强张量）。
 \item \textbf{麦克斯韦分布}是热平衡等离子体的速度分布，$p=nk_BT$。
+\item \textbf{热速度约定}：本书统一 $v_{t\alpha}=\sqrt{k_BT_\alpha/m_\alpha}$（最概然速率量级）；$\bar{v}_\alpha=\sqrt{8k_BT_\alpha/(\pi m_\alpha)}$ 为平均热速度；$v_{\mathrm{rms},\alpha}=\sqrt{3k_BT_\alpha/m_\alpha}$ 为三维方均根速率。三者只差数值系数，遇到带系数的形式（如 $\sqrt{2k_BT/m}$）注意核对当章定义。
 \item \textbf{傅里叶变换}将线性微分方程变为代数方程，是研究波的利器。色散关系 $D(\omega,k)=0$ 决定波的传播特性。
 \item $\delta$函数是描述点粒子和微观分布的数学工具。
 \end{itemize}
@@ -1609,9 +1610,9 @@ nm\left(\frac{\partial\vect{u}}{\partial t} + \vect{u}\cdot\grad\vect{u}\right) 
 
 在磁化等离子体中，由于磁场使粒子运动各向异性（平行和垂直磁场方向的行为不同），压强张量通常具有双绝热形式：
 \[
-\bm{P} = p_\perp\bm{I} + (p_\parallel - p_\perp)\frac{\vect{B}\vect{B}}{B^2}
+\bm{P} = p_\perp\bm{I} + (p_\parallel - p_\perp)\frac{\vect{B}\,\vect{B}}{B^2}
 \]
-其中 $\vect{B}\vect{B}$ 是并矢。$p_\parallel$ 和 $p_\perp$ 分别对应平行和垂直于磁场的压强分量。
+其中 $\vect{B}\,\vect{B}$ 是\textbf{并矢}（二阶张量，$\left(\vect{B}\vect{B}\right)_{ij}=B_iB_j$，不是标量点积 $\vect{B}\cdot\vect{B}=B^2$）。$p_\parallel$ 和 $p_\perp$ 分别对应平行和垂直于磁场的压强分量。
 \end{insight}
 
 \section{双流体方程组}\difficulty{提高}
@@ -2092,7 +2093,7 @@ f = f_0(v) + f_1(x,v,t), \qquad E = E_1(x,t)
 \frac{\partial E_1}{\partial x} = \frac{q}{\eps_0}\int f_1\,\diff v
 \]
 
-对两者做傅里叶--拉普拉斯变换，消去 $f_1$，得到色散关系：
+对两者做傅里叶--拉普拉斯变换，消去 $f_1$，得到色散关系（积分在 $v=\omega/k$ 处有极点，必须按\textbf{Landau 围道}从极点下方绕过——见下文与附录 C.2，不能直接取主值代数积分）：
 \[
 1 = \frac{\omega_{pe}^2}{k^2}\int_{-\infty}^{\infty} \frac{\partial f_0/\partial v}{v - \omega/k}\,\diff v
 \]
@@ -2107,7 +2108,7 @@ f = f_0(v) + f_1(x,v,t), \qquad E = E_1(x,t)
 \section{Landau阻尼的物理图像}\difficulty{基础}
 
 \begin{theorem}{Landau阻尼}{landau-damping}
-对麦克斯韦分布 $f_0(v) \propto \ee^{-v^2/2v_t^2}$，电子Langmuir波的复频率为：
+对麦克斯韦分布 $f_0(v) \propto \ee^{-v^2/2v_t^2}$（$v_t=\sqrt{k_BT_e/m_e}$ 为热速度），电子Langmuir波的复频率为：
 \[
 \omega = \omega_{pe}\left(1 + \frac{3}{2}k^2\lambda_D^2\right) + \ii\omega_i
 \]
@@ -2790,6 +2791,7 @@ V_f = -\frac{k_B T_e}{2e} \ln\!\left(\frac{m_i}{2\pi m_e}\right)
 \label{eq:bohm-criterion}
 u_s \ge u_B = \sqrt{\frac{k_B T_e}{m_i}}
 \end{equation}
+注意：$u_B$ 由\textbf{电子温度} $T_e$ 决定（提供鞘层中离子加速所需的静电势能），与离子温度 $T_i$ 无关——这是初学者最易混淆之处。
 \end{theorem}
 
 \begin{proof}[推导概要（挑战）]
@@ -3437,37 +3439,39 @@ P_{\text{abs}} \propto n_e \cdot E_{\text{loss}} \propto \frac{1}{3.75} \times \
     % Axes
     \draw[->, thick] (-3,0) -- (3,0) node[right] {$V$};
     \draw[->, thick] (0,-2) -- (0,2.5) node[above] {$I$};
-    
+
     % Plasma potential line
     \draw[dashed, gray] (1,-2) -- (1,2.5) node[above right, font=\small] {$V_p$};
-    
-    % I-V curve (safe domain to avoid exp overflow in PGF)
+    % Floating potential line (curve crosses I=0 here)
+    \draw[dashed, purple!70!black] (-0.5,-2) -- (-0.5,0) node[below, font=\small, purple!70!black] {$V_f$};
+
+    % I-V curve (safe domain to avoid exp overflow in PGF; zero crossing at V_f = -0.5 < V_p)
     \draw[blue, very thick, domain=-2:2.5, samples=100, variable=\x]
-      plot({\x}, {-1.5 + 2.5/(1 + exp(-2*(\x-1)))});
-    
+      plot({\x}, {2.0/(1 + exp(-2*(\x-0.118))) - 0.45});
+
     % Region labels
-    \node[font=\small, red] at (-2, -1.8) {离子饱和区};
-    \node[font=\small, orange] at (-0.5, 0.3) {过渡区};
-    \node[font=\small, green!50!black] at (2.2, 1.8) {电子饱和区};
-    
+    \node[font=\small, red] at (-2.1, -0.85) {离子饱和区};
+    \node[font=\small, orange] at (0.35, 1.0) {过渡区};
+    \node[font=\small, green!50!black] at (2.05, 1.9) {电子饱和区};
+
     % Annotations
-    \draw[->, thick, red] (-2,-1.5) -- (-2,-1.2);
-    \draw[->, thick, orange] (-0.5,0.5) -- (-0.5,0.8);
-    \draw[->, thick, green!50!black] (2.2,1.5) -- (2.2,1.2);
+    \draw[->, thick, red] (-2.0,-0.65) -- (-2.0,-0.48);
+    \draw[->, thick, orange] (0.35,0.8) -- (0.3,0.55);
+    \draw[->, thick, green!50!black] (2.2,1.75) -- (2.25,1.58);
 \end{tikzpicture}
-\caption{朗缪尔探针典型 $I$-$V$ 特性曲线。横轴为探针电压 $V$，纵轴为收集电流 $I$。$V_p$ 为等离子体电位。曲线分为三个主要区域：离子饱和区（$V \ll V_p$）、过渡区（$V \approx V_p$）和电子饱和区（$V \gg V_p$）。}
+\caption{朗缪尔探针典型 $I$-$V$ 特性曲线。横轴为探针电压 $V$，纵轴为收集电流 $I$。$V_p$ 为等离子体电位，$V_f$ 为悬浮电位（净电流 $I=0$ 处）。曲线分为三个主要区域：离子饱和区（$V \ll V_p$）、过渡区（$V_f \lesssim V \lesssim V_p$）和电子饱和区（$V \gg V_p$）。}
 \label{fig:langmuir-iv}
 \end{figure}
 
 \begin{theorem}{朗缪尔探针收集电流}{}{}
-对于无磁化的、麦克斯韦分布的等离子体，单探针的收集电流满足
+对于无磁化的、麦克斯韦分布的等离子体，单探针的收集电流满足（符号约定：电子流入探针为正，离子流入为负，与图\ref{fig:langmuir-iv}一致）
 \begin{equation}
-I(V) = I_{\mathrm{i,sat}} - I_{\mathrm{e,sat}}\exp\!\left(\frac{V - V_p}{T_e}\right),
+I(V) = -I_{\mathrm{i,sat}} + I_{\mathrm{e,sat}}\exp\!\left(\frac{V - V_p}{T_e}\right),
 \label{eq:langmuir-iv}
 \end{equation}
 其中 $V_p$ 为等离子体电位，$T_e$ 以能量单位（$\mathrm{eV}$）表示，
 \begin{align}
-I_{\mathrm{i,sat}} &\approx \frac{1}{2} e n_i A \bar{v}_i \quad \text{（离子饱和电流）},
+I_{\mathrm{i,sat}} &\approx \frac{1}{2} e n_i A \bar{v}_i \quad \text{（离子饱和电流，取正值）},
 \label{eq:ion-sat}\\
 I_{\mathrm{e,sat}} &\approx \frac{1}{4} e n_e A \bar{v}_e \quad \text{（电子饱和电流）},
 \label{eq:elec-sat}
@@ -3479,7 +3483,7 @@ $A$ 为探针收集面积，$\bar{v}_\alpha = \sqrt{8 T_\alpha / (\pi m_\alpha)}
 探针本质上是一个可调控电位的\emph{带电粒子收集器}。理解曲线的关键是：电子和离子带相反电荷，但电子质量远小于离子，因此电子热速度 $\bar{v}_e$ 远大于离子热速度 $\bar{v}_i$。
 
 \begin{itemize}
-    \item \textbf{远负电位区}：探针电位远低于等离子体电位，电子被排斥，只有离子被收集。此时电流饱和为离子饱和电流 $I_{\mathrm{i,sat}}$（小负值）。
+    \item \textbf{远负电位区}：探针电位远低于等离子体电位，电子被排斥，只有离子被收集。此时电流饱和为 $-I_{\mathrm{i,sat}}$（小负值）。
     \item \textbf{过渡区}：电位逐渐升高，越来越多的电子克服势垒到达探针。由于电子速度服从玻尔兹曼分布，电流随电压呈指数增长。
     \item \textbf{远正电位区}：探针电位高于等离子体电位，离子被排斥，电子被大量收集。但由于探针周围形成电子耗尽鞘层，电流不会无限增长，而是趋于电子饱和电流 $I_{\mathrm{e,sat}}$（大正值）。
 \end{itemize}
@@ -3495,7 +3499,7 @@ $A$ 为探针收集面积，$\bar{v}_\alpha = \sqrt{8 T_\alpha / (\pi m_\alpha)}
 
 \subsection{电子温度 $T_e$ 的求法：过渡区斜率法}
 
-在过渡区，离子电流可忽略，$I \approx I_{\mathrm{e,sat}}\exp[(V - V_p)/T_e]$。取对数后：
+在过渡区，离子电流可忽略（$|I_{\mathrm{i,sat}}| \ll I$），$I \approx I_{\mathrm{e,sat}}\exp[(V - V_p)/T_e]$。取对数后：
 \begin{equation}
 \ln I = \ln I_{\mathrm{e,sat}} + \frac{V - V_p}{T_e}.
 \label{eq:ch12-probe-current}
@@ -3548,15 +3552,15 @@ n_e \approx n_i \approx \frac{2 I_{\mathrm{i,sat}}}{e A \bar{v}_i}
 \begin{theorem}{Druyvesteyn公式}{}{}
 对于各向同性的电子速度分布，探针收集电流的二阶导数与EEDF $f(\eps)$ 的关系为
 \begin{equation}
-\frac{\diff^2 I}{\diff V^2} = \frac{e^3 A}{2 m_e} f(-eV)
+\frac{\diff^2 I}{\diff V^2} = \frac{e^3 A}{2 m_e}\, f_\eps\!\bigl(\eps = -e(V - V_p)\bigr)
 \quad \text{（当 } V < V_p \text{ 时）}.
 \label{eq:druyvesteyn}
 \end{equation}
-其中 $\eps = -e(V - V_p)$ 为电子相对于等离子体电位的能量，$f(\eps)$ 为按能量归一化的分布函数。
+其中 $\eps = -e(V - V_p)$ 为电子\textbf{相对于等离子体电位} $V_p$ 的动能（不是相对于探针电位 $V$），$f_\eps(\eps)$ 为按能量归一化的分布函数。
 \end{theorem}
 
 \begin{insight}{为什么二阶导数给出分布函数？}{}
-探针收集电流是\emph{所有能量高于势垒}的电子的通量积分：$I \propto \int_{-eV}^\infty f(\eps) v(\eps) \,\diff\eps$。对 $V$ 求一阶导数消去了积分下限的被积函数（莱布尼茨法则），再求二阶导数就提取出了分布函数本身。这相当于在说：\emph{电流曲线在某处的"弯曲程度"，正比于具有该能量的电子数量}。这一结果最早由Druyvesteyn在1930年严格导出，是探针诊断从"测温度"到"测分布"的理论飞跃。
+探针收集电流是\emph{所有能量高于势垒}的电子的通量积分：$I \propto \int_{\eps > e(V_p - V)} f_\eps(\eps)\, v(\eps) \,\diff\eps$（势垒高度为 $e(V_p - V)$）。对 $V$ 求一阶导数消去了积分下限的被积函数（莱布尼茨法则），再求二阶导数就提取出了分布函数本身。这相当于在说：\emph{电流曲线在某处的"弯曲程度"，正比于具有该能量的电子数量}。这一结果最早由Druyvesteyn在1930年严格导出，是探针诊断从"测温度"到"测分布"的理论飞跃。
 \end{insight}
 
 \begin{example}{数值估算：实验室氩等离子体参数}{ch12-argon-est}
@@ -3578,17 +3582,16 @@ n_e \approx n_i \approx \frac{2 I_{\mathrm{i,sat}}}{e A \bar{v}_i}
 \subsection{悬浮电位与历史回顾}
 
 \begin{definition}{悬浮电位}{}{}
-当探针与外部电路断开（净电流 $I = 0$）时，探针自发达到的电位称为\textbf{悬浮电位}（Floating Potential），记作 $V_f$。由 $I_{\mathrm{i,sat}} = I_{\mathrm{e,sat}}\exp[(V_f - V_p)/T_e]$，可得
+当探针与外部电路断开（净电流 $I = 0$）时，探针自发达到的电位称为\textbf{悬浮电位}（Floating Potential），记作 $V_f$。由 $-I_{\mathrm{i,sat}} + I_{\mathrm{e,sat}}\exp[(V_f - V_p)/T_e] = 0$（式\eqref{eq:langmuir-iv}），可得
 \begin{equation}
 V_f - V_p = T_e \ln\!\left(\frac{I_{\mathrm{i,sat}}}{I_{\mathrm{e,sat}}}\right)
-= T_e \ln\!\left(\sqrt{\frac{m_e}{m_i}}\right)
-\approx -T_e \ln\!\left(\sqrt{\frac{m_i}{2.3\,\mathrm{MeV}/c^2}}\right).
+= T_e \ln\!\left(\frac{2}{\sqrt{\pi}}\sqrt{\frac{m_e T_i}{m_i T_e}}\right).
 \label{eq:floating-potential-2}
 \end{equation}
 \end{definition}
 
 \begin{insight}{为什么悬浮电位是负的？}{}
-式\eqref{eq:floating-potential-2}中，$V_f < V_p$ 的根本原因在于\textbf{电子的流动性远高于离子}。电子质量小，热速度大，"冲向"探针的通量天然就比离子大几个数量级。如果探针保持中性电位，它会被\emph{过度充电}为负电位。只有探针自身积累足够负的电荷，形成排斥电子的势垒，才能使电子通量降低到与离子通量相等，达到动态平衡。对于氢等离子体，$V_f - V_p \approx -3.0\,T_e$；对于氩等离子体，这一偏差可达 $-4.7\,T_e$。因此，悬浮电位\emph{不是}等离子体电位，这是初学者最容易混淆的概念。
+式\eqref{eq:floating-potential-2}中，$V_f < V_p$ 的根本原因在于\textbf{电子的流动性远高于离子}。电子质量小，热速度大，"冲向"探针的通量天然就比离子大几个数量级。如果探针保持中性电位，它会被\emph{过度充电}为负电位。只有探针自身积累足够负的电荷，形成排斥电子的势垒，才能使电子通量降低到与离子通量相等，达到动态平衡。取 $T_i \approx T_e$ 时，$V_f - V_p \approx T_e \ln\!\left(2\sqrt{m_e/m_i}\right)$：对于氢等离子体约为 $-3.1\,T_e$；对于氩等离子体约为 $-4.9\,T_e$。因此，悬浮电位\emph{不是}等离子体电位，这是初学者最容易混淆的概念。
 \end{insight}
 
 \begin{history}{物理史话：朗缪尔与探针诊断的诞生}{}{}
@@ -3695,12 +3698,12 @@ n_e \approx \frac{2\times 8.85\times 10^{-12}\times 9.11\times 10^{-31}\times (3
 \frac{\diff\sigma}{\diff\Omega} = r_e^2 \sin^2\theta_p,
 \label{eq:thomson-cross-section}
 \end{equation}
-其中 $r_e = e^2/(4\pi\eps_0 m_e c^2) \approx 2.82\times 10^{-15}\,\mathrm{m}$ 为经典电子半径，$\theta_p$ 为散射角（散射光与入射光电场方向的夹角）。对非偏振光在所有偏振方向平均后，得到常用的
+其中 $r_e = e^2/(4\pi\eps_0 m_e c^2) \approx 2.82\times 10^{-15}\,\mathrm{m}$ 为经典电子半径，$\theta_p$ 为偏振角（散射光电场与入射光电场方向的夹角）。对非偏振光在所有偏振方向平均后，得到常用的
 \begin{equation}
 \frac{\diff\sigma}{\diff\Omega} = \frac{r_e^2}{2}(1 + \cos^2\theta),
 \label{eq:thomson-unpolarized}
 \end{equation}
-$\theta$ 为入射方向与散射方向的夹角。总截面为 $\sigma_T = 8\pi r_e^2/3 \approx 6.65\times 10^{-29}\,\mathrm{m}^2$。
+其中 $\theta$ 为\textbf{散射角}（入射光方向与散射光方向的夹角），注意与式\eqref{eq:thomson-cross-section}中的偏振角 $\theta_p$ 区分。总截面为 $\sigma_T = 8\pi r_e^2/3 \approx 6.65\times 10^{-29}\,\mathrm{m}^2$。
 \end{definition}
 
 \subsection{非相干散射与电子温度测量}
@@ -3803,11 +3806,15 @@ $A_{ji}$、$A_{lk}$ 为爱因斯坦自发辐射系数。
 \Delta\lambda_{1/2} \approx C\,n_e^{2/3},
 \label{eq:stark-broadening}
 \end{equation}
-其中 $C$ 为与谱线种类和等离子体温度有关的系数。对于氢的 $H_\alpha$ 线（$656.3\,\mathrm{nm}$），在 $n_e \sim 10^{20}\sim 10^{24}\,\mathrm{m}^{-3}$、$T_e \sim 1\sim 10\,\mathrm{eV}$ 范围内，典型的经验公式为
+其中 $C$ 为与谱线种类和等离子体温度有关的\textbf{经验系数}。对于氢的 $H_\alpha$ 线（$656.3\,\mathrm{nm}$），在 $n_e \sim 10^{20}\sim 10^{24}\,\mathrm{m}^{-3}$、$T_e \sim 1\sim 10\,\mathrm{eV}$ 范围内，典型的经验公式为
 \begin{equation}
 \Delta\lambda_{1/2}\,\big[\mathrm{nm}\big] \approx 2.5\times 10^{-17}\left(\frac{n_e}{\mathrm{m}^{-3}}\right)^{2/3}.
 \end{equation}
 \end{definition}
+
+\begin{warning}{斯塔克展宽经验系数不能通用}{}
+上式的系数 $2.5\times10^{-17}$ 只对 $H_\alpha$ 线在上述温度与密度范围内有效，\textbf{不能推广到其它谱线或参数区间}。实际工程与科研中，精确的谱线展宽计算需要查阅 STARK-B 等专业数据库按元素、能级与温度查表，任意套用该系数可能导致数倍误差。
+\end{warning}
 
 \begin{insight}{为什么展宽正比于 $n_e^{2/3}$？}{}
 线性斯塔克效应中，能级位移 $\Delta E$ 正比于外加电场 $\mathcal{E}$。等离子体中，带电粒子产生的电场在距离 $r$ 处为 $\mathcal{E} \sim e/(4\pi\eps_0 r^2)$。而最近的带电粒子典型距离由密度决定：$r \sim n_e^{-1/3}$（平均间距）。因此典型电场 $\mathcal{E}_{\mathrm{typ}} \sim e n_e^{2/3}/(4\pi\eps_0)$，能级位移和由此导致的谱线展宽也就正比于 $n_e^{2/3}$。这个简单的标度关系是光谱法测量密度的理论基础。需要注意的是，斯塔克展宽对温度也有弱依赖，因为离子热运动产生的微场统计分布随温度变化。精确的密度反演通常需要查阅专业数据库（如STARK-B）。
