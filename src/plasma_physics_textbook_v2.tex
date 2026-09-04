@@ -1035,7 +1035,7 @@ v_p = \frac{\omega}{k} = \frac{\sqrt{\omega_p^2 + c^2k^2}}{k} = c\sqrt{1 + \frac
 % 第2章：什么是等离子体？
 % ============================================================
 \chapter{什么是等离子体？}\label{ch:2}
-\epigraph{等离子体是自然界最普遍的物质状态，也是最不为人所知的。}{--- 卢茨·赫维兹（Llewellyn H. Thomas）}
+\epigraph{等离子体是自然界最普遍的物质状态，也是最不为人所知的。}{--- 卢埃林·托马斯（Llewellyn H. Thomas）}
 
 \begin{insight}{本章核心目标}{ch2-goal}
 理解等离子体的严格定义：它不是"带电的气体"这么简单。掌握德拜屏蔽、等离子体频率和耦合参数这三个核心概念，建立判断一种电离气体是否"够等离子体"的定量判据。
@@ -1281,7 +1281,7 @@ N_D = n\lambda_D^3 \gg 1
 % 第3章：单粒子运动
 % ============================================================
 \chapter{单粒子运动}\label{ch:3}
-\epigraph{在理解集体行为之前，先理解单个粒子的舞蹈。}{--- 弗兰西斯·切恩（Francis F. Chen）}
+\epigraph{在理解集体行为之前，先理解单个粒子的舞蹈。}{--- 弗朗西斯·陈（Francis F. Chen）}
 
 \begin{insight}{本章核心目标}{ch3-goal}
 掌握带电粒子在均匀及非均匀电磁场中的运动规律——回旋运动、$\vect{E}\times\vect{B}$ 漂移、梯度漂移、曲率漂移、磁镜效应。理解"导向中心近似"的思想，这是连接单粒子图像与流体图像的桥梁。
@@ -2252,7 +2252,7 @@ D_a = \frac{\mu_i D_e + \mu_e D_i}{\mu_i + \mu_e} \approx D_i\left(1 + \frac{T_e
 \section{Spitzer电阻率}\difficulty{提高}
 
 \begin{theorem}{Spitzer电阻率}{spitzer-resistivity}
-完全电离等离子体的电阻率（Spitzer, 1952）为：
+完全电离等离子体的电阻率（Spitzer-H\"arm, 1953）为：
 \[
 \eta_{\parallel} = \frac{Ze^2 m_e^{1/2} \ln\Lambda}{12\pi^{3/2}\eps_0^2 (k_B T_e)^{3/2}}
 \]
@@ -2309,7 +2309,7 @@ D_a = \frac{\mu_i D_e + \mu_e D_i}{\mu_i + \mu_e} \approx D_i\left(1 + \frac{T_e
 % 第9章：等离子体不稳定性
 % ============================================================
 \chapter{等离子体不稳定性}\label{ch:9}
-\epigraph{等离子体天性不安分——任何小的扰动都可能被放大，直到某种非线性机制将其饱和。}{--- 伊拉·伯恩斯坦（Ira B. Bernstein）}
+\epigraph{等离子体天性不安分——任何小的扰动都可能被放大，直到某种非线性机制将其饱和。}{--- 艾拉·伯恩斯坦（Ira B. Bernstein）}
 
 \begin{insight}{本章核心目标}{ch9-goal}
 理解等离子体不稳定性的基本分类和物理机制。掌握瑞利--泰勒、开尔文--亥姆霍兹和双流不稳定性的推导和图像。
@@ -2789,7 +2789,7 @@ V_f = -\frac{k_B T_e}{2e} \ln\!\left(\frac{m_i}{2\pi m_e}\right)
 离子要进入鞘层区域，其在鞘层边界的速度必须至少等于离子声速（Bohm速度）：
 \begin{equation}
 \label{eq:bohm-criterion}
-u_B \ge u_B = \sqrt{\frac{k_B T_e}{m_i}}
+u_s \ge u_B = \sqrt{\frac{k_B T_e}{m_i}}
 \end{equation}
 \end{theorem}
 
@@ -2807,7 +2807,7 @@ n_e(x) &= n_0 \exp\!\left(\frac{e\phi(x)}{k_B T_e}\right)
 \end{equation}
 在鞘层边界展开，要求右边对 $\phi$ 的导数 $\ge 0$（否则鞘层无法稳定存在），得到
 \begin{equation}
-\frac{1}{k_B T_e} \ge \frac{m_i u_0^2}{k_B T_e} \quad\Rightarrow\quad u_0 \ge \sqrt{\frac{k_B T_e}{m_i}} = u_B
+\frac{1}{k_B T_e} \ge \frac{1}{m_i u_0^2} \quad\Rightarrow\quad u_0 \ge \sqrt{\frac{k_B T_e}{m_i}} = u_B
 \label{eq:ch11-bohm-criterion}
 \end{equation}
 \end{proof}
@@ -2863,11 +2863,11 @@ E_i \approx e\bar{V} + \frac{1}{2}k_B T_i \approx e\bar{V}
 对于无碰撞鞘层，假设离子以玻姆速度进入鞘层，电子被完全排斥，则鞘层厚度 $s$ 与鞘层压降 $V_s$ 的关系为
 \begin{equation}
 \label{eq:child-langmuir}
-s = \frac{2}{3}\sqrt{\frac{4\eps_0}{9}} \left(\frac{2e}{m_i}\right)^{1/4} \frac{V_s^{3/4}}{(n_s u_B)^{1/2}}
+s = \frac{2}{3}\sqrt{\eps_0} \left(\frac{2e}{m_i}\right)^{1/4} \frac{V_s^{3/4}}{(e\, n_s u_B)^{1/2}}
 \end{equation}
 化简后
 \begin{equation}
-s \approx \lambda_D \left(\frac{2V_s}{T_e}\right)^{3/4}
+s \approx \frac{2}{3}\,\lambda_D \left(\frac{2V_s}{T_e}\right)^{3/4}
 \end{equation}
 其中 $V_s$ 以伏特为单位，$T_e$ 以eV为单位。典型地，$V_s \sim 5\,T_e$，则 $s \sim 3\sim 5\,\lambda_D$。
 \end{theorem}

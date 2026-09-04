@@ -67,8 +67,8 @@ p = 2\times 10^{18}\times 1.602\times 10^{-19}\times 4 = 1.28\,\mathrm{Pa}
 \[
 v_A = \frac{5}{\sqrt{4\pi\times 10^{-7}\times 3.344\times 10^{-7}}} = \frac{5}{\sqrt{4.198\times 10^{-13}}} = \frac{5}{6.48\times 10^{-7}} \approx 7.7\times 10^6\,\mathrm{m/s}
 \]
-声速（$T=10\,\mathrm{keV}$，氘）：$c_s = \sqrt{2k_{\!B}T/m_i} = \sqrt{2\times 1.602\times 10^{-15}/3.344\times 10^{-27}} \approx 3.1\times 10^5\,\mathrm{m/s}$。
-$v_A / c_s \approx 25$，阿尔芬速度远大于声速，磁场主导。
+声速（$T=10\,\mathrm{keV}$，氘）：$c_s = \sqrt{2k_{\!B}T/m_i} = \sqrt{2\times 1.602\times 10^{-15}/3.344\times 10^{-27}} \approx 9.8\times 10^5\,\mathrm{m/s}$。
+$v_A / c_s \approx 7.9$，阿尔芬速度远大于声速，磁场主导。
 
 \textbf{(2) 实验室等离子体：}
 \[
@@ -116,9 +116,9 @@ $R_m \gg 1$，磁扩散时间 $\tau_\eta = \mu_0 L^2/\eta = R_m L/v \approx 2500
 \eta \approx \frac{5\times 10^{-5}\times 10}{8} = 6.25\times 10^{-5}\,\Omega\mathrm{m}
 \]
 \[
-R_m = \frac{4\pi\times 10^{-7}\times 10^3\times 0.1}{6.25\times 10^{-5}} = \frac{1.257\times 10^{-5}}{6.25\times 10^{-5}} \approx 0.20
+R_m = \frac{4\pi\times 10^{-7}\times 10^3\times 0.1}{6.25\times 10^{-5}} = \frac{1.257\times 10^{-4}}{6.25\times 10^{-5}} \approx 2.0
 \]
-$R_m < 1$，磁扩散时间 $\tau_\eta = \mu_0 L^2/\eta \approx 0.2\,\mathrm{ms}$，对流时间 $\tau_{\text{流}} = L/v = 0.1\,\mathrm{ms}$。两者相当，磁力线冻结被破坏，磁场与流体的运动相对独立。
+$R_m \sim 1$（略大于 1），磁扩散时间 $\tau_\eta = \mu_0 L^2/\eta \approx 0.2\,\mathrm{ms}$，对流时间 $\tau_{\text{流}} = L/v = 0.1\,\mathrm{ms}$。两者相当，磁力线冻结不再严格成立，磁场与流体的运动仅部分耦合——这正是实验室放电中容易观察到磁重联与磁扩散效应的原因。
 
 \textbf{判据总结：}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
@@ -265,6 +265,34 @@ $\vect{u}\cdot(\vect{j}\times\vect{B})$ 是磁能与动能之间的\textbf{转�
 \end{tikzpicture}
 \caption{磁压与磁张力示意图。弯曲磁力线产生指向曲率中心的张力恢复力，磁压梯度将等离子体推向磁场较弱的区域。}
 \end{figure}
+
+% ch5 新例题：Z-pinch 平衡（Bennett 压缩）
+\begin{example}{Z-pinch 的 Bennett 关系与平衡温度}{bennett-pinch}
+一直圆柱等离子体（Z-pinch）流过轴向电流 $I = 100\,\mathrm{kA}$，线密度（每单位长度粒子数）为 $N = 10^{19}\,\mathrm{m^{-1}}$，离子为氘（$m_i = 2m_p$）。用 Bennett 关系估算维持平衡所需的温度 $T_e + T_i$，并讨论该平衡为何不稳定。
+\tcblower
+\textbf{解答：}
+
+\textbf{Bennett 关系：} Z-pinch 中轴向电流产生角向磁场 $B_\theta(r) = \mu_0 I(r)/(2\pi r)$，磁压 $B_\theta^2/(2\mu_0)$ 向内压缩等离子体（pinch 效应），等离子体热压必须与之平衡。对半径积分后，平衡条件为 \textbf{Bennett 关系}：
+\[
+\mu_0 I^2 = 8\pi N k_{\!B}(T_e + T_i)
+\]
+（$N = \int n\,2\pi r\,\diff r$ 为线密度。）
+
+代入数值（$I = 10^5\,\mathrm{A}$，$N = 10^{19}\,\mathrm{m^{-1}}$）：
+\[
+k_{\!B}(T_e+T_i) = \frac{\mu_0 I^2}{8\pi N} = \frac{4\pi\times10^{-7}\times10^{10}}{8\pi\times10^{19}} = \frac{4\times10^{3}\times10^{-7}}{8\times10^{19}} = \frac{4\times10^{-4}}{8\times10^{19}}
+\]
+\[
+= 5.0\times10^{-24}\,\mathrm{J}
+\]
+\[
+T_e + T_i = \frac{5.0\times10^{-24}}{1.381\times10^{-23}}\,\mathrm{K} = 3.6\times10^{6}\,\mathrm{K} \approx 310\,\mathrm{eV}
+\]
+
+即平衡要求 $T_e + T_i \approx 310\,\mathrm{eV}$（电子与离子各约 $155\,\mathrm{eV}$）。这与实际 Z-pinch 实验的温度量级（$100\sim1000\,\mathrm{eV}$）一致，说明 Bennett 关系对 Z-pinch 参数的估计是合理的。反过来，若给定温度 $T\sim100\,\mathrm{eV}$，维持平衡所需的最小电流为 $I \approx 57\,\mathrm{kA}$。
+
+\textbf{不稳定性：} Z-pinch 平衡对 $m=0$（sausage，腊肠模）和 $m=1$（kink，扭曲模）扰动都不稳定（见第9章）：电流产生的角向磁场在截面收窄处增强（磁压更大），进一步压缩——正反馈。稳定 Z-pinch 需要纵向磁场（shear 场）、导电壁或快速等离子体加热。这也是 Z-pinch 至今未成为主流聚变约束方案的核心原因。
+\end{example}
 
 \begin{formula}{第5章核心公式速查}{ch5-formulas}
 \begin{itemize}[leftmargin=*,itemsep=0pt]

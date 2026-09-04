@@ -369,6 +369,39 @@ $\vect{E}\times\vect{B}$ 漂移速度与电子热速度量级相近。在磁控�
 % 2. TikZ图像
 % ============================================================
 
+% ch11 新例题：射频鞘层厚度与自偏压
+\begin{example}{射频鞘层与自偏压估算}{rf-sheath-bias}
+电容耦合射频放电（CCP）中，极板间距 $d = 3\,\mathrm{cm}$，射频频率 $f = 13.56\,\mathrm{MHz}$，等离子体密度 $n_e = 10^{16}\,\mathrm{m^{-3}}$，电子温度 $T_e = 3\,\mathrm{eV}$。
+（1）解释为什么电极会自动形成负自偏压 $V_{dc}$；
+（2）估算射频鞘层厚度 $s_m$（设鞘层压降 $V_{rf}\approx 200\,\mathrm{V}$）；
+（3）计算鞘层厚度与极板间距之比，说明 CCP 中体等离子区的厚度。
+\tcblower
+\textbf{解答：}
+
+\textbf{(1) 自偏压的形成：} 电子质量小、响应快，能跟随 $13.56\,\mathrm{MHz}$ 的射频场振荡；离子质量大，只响应时间平均场。电极在射频正半周吸收大量电子（电子通量远大于离子通量），充电为负；负半周电子被排斥，离子缓慢中和。稳态下电极自动积累负电荷，直到\textbf{时间平均电子通量等于离子通量}——这就是\textbf{自偏压}（self-bias）。对两极板面积不等的非对称 CCP，自偏压可达数百伏，方向使小电极（放电功率电极）更负，离子在该电极上获得更高的轰击能量。
+
+\textbf{(2) 射频鞘层厚度：} 用 Child-Langmuir 简化式（$n_s\approx n_e$，$V_0 = 200\,\mathrm{V}$，$T_e = 3\,\mathrm{eV}$，氩 $m_i = 40\,\mathrm{amu}$）：
+\[
+s \approx \frac{\sqrt{2}}{3}\,\lambda_D\left(\frac{2V_0}{T_e}\right)^{3/4}
+\]
+德拜长度（$\lambda_D[\mathrm{m}]\approx7430\sqrt{T[\mathrm{eV}]/n[\mathrm{m^{-3}}]}$）：
+\[
+\lambda_D = 7430\sqrt{\frac{3}{10^{16}}}\,\mathrm{m} = 7430\times5.48\times10^{-8}\,\mathrm{m} \approx 0.41\,\mathrm{mm}
+\]
+\[
+\left(\frac{400}{3}\right)^{3/4} = 133^{0.75} \approx 39
+\]
+\[
+s \approx 0.47\times0.41\,\mathrm{mm}\times39 \approx 7.5\,\mathrm{mm}
+\]
+
+\textbf{(3) 鞘层与间距之比：}
+\[
+\frac{s_m}{d} \approx \frac{7.5\,\mathrm{mm}}{30\,\mathrm{mm}} \approx 0.25 < 1
+\]
+鞘层明显薄于极板间距（但不完全是"薄鞘"极限），体等离子区仍有约 $15\,\mathrm{mm}$ 的准中性区。若提高密度到 $10^{17}\,\mathrm{m^{-3}}$，$\lambda_D$ 缩小 $\sqrt{10}$ 倍，$s\sim2.4\,\mathrm{mm}$，$s/d\approx0.08$，薄鞘近似良好。这就是工业 CCP 在高密度下加工更均匀的原因：鞘层薄，离子加速区窄，入射能量分散小，各向异性刻蚀更好。
+\end{example}
+
 \section{DC辉光放电空间结构图}
 
 \begin{figure}[htbp]

@@ -329,6 +329,41 @@ $f = 20\,\mathrm{MHz} \ll f_{pe}$，远低于截止频率，\textbf{不能传播
 \caption{哨声波传播路径示意图。闪电激发的电磁脉冲沿地球磁力线传播，在电离层D/E/F层中穿过，到达另一半球的地面站。}
 \end{figure}
 
+% ch6 新例题：电磁波在等离子体中的群速度与波包
+\begin{example}{电磁波在等离子体中的群速度与波包传播}{group-velocity-wavepacket}
+一均匀等离子体（$n_e = 10^{17}\,\mathrm{m^{-3}}$）中入射一列频率 $f = 9\,\mathrm{GHz}$ 的电磁波脉冲。
+（1）求等离子体频率并判断波能否传播；
+（2）若能传播，求相速度 $v_p$ 和群速度 $v_g$；
+（3）一个脉冲在等离子体中传播 $10\,\mathrm{m}$ 需要多长时间？比真空中慢多少？
+\tcblower
+\textbf{解答：}
+
+\textbf{(1) 等离子体频率：} 由 $f_{pe}\,[\mathrm{Hz}] \approx 8.98\sqrt{n[\mathrm{m^{-3}}]}$：
+\[
+f_{pe} = 8.98\sqrt{10^{17}} \approx 8.98\times3.16\times10^8 \approx 2.8\times10^9\,\mathrm{Hz} = 2.8\,\mathrm{GHz}
+\]
+$f = 9\,\mathrm{GHz} > f_{pe} = 2.8\,\mathrm{GHz}$，\textbf{波可以传播}。
+
+\textbf{(2) 相速度与群速度：} 冷等离子体色散关系 $\omega^2 = \omega_{pe}^2 + c^2k^2$ 给出
+\[
+v_p = \frac{\omega}{k} = \frac{c}{\sqrt{1-\omega_{pe}^2/\omega^2}}, \qquad v_g = \frac{\diff\omega}{\diff k} = c\sqrt{1-\frac{\omega_{pe}^2}{\omega^2}}
+\]
+代入 $\omega_{pe}/\omega = f_{pe}/f = 2.8/9 = 0.311$（保留三位：$2.84/9 = 0.315$）：
+\[
+v_p = \frac{3\times10^8}{\sqrt{1-0.0968}} \approx \frac{3\times10^8}{0.950} \approx 3.16\times10^8\,\mathrm{m/s} > c
+\]
+\[
+v_g = 3\times10^8\times0.950 \approx 2.85\times10^8\,\mathrm{m/s} < c
+\]
+相速度超光速（不携带信息和能量，无因果矛盾），群速度亚光速（能量与信号传播速度）。
+
+\textbf{(3) 脉冲传播时间：}
+\[
+t = \frac{10}{v_g} = \frac{10}{2.85\times10^8} \approx 3.5\times10^{-8}\,\mathrm{s} = 35\,\mathrm{ns}
+\]
+真空中 $t_0 = 10/c \approx 33.3\,\mathrm{ns}$，比真空慢约 $1.8\,\mathrm{ns}$（$5\%$）。密度越高、频率越接近截止，群速度越小，延迟越大——这正是用微波群延迟反演等离子体密度的原理（对脉冲雷达诊断尤为重要）。
+\end{example}
+
 \begin{formula}{第6章核心公式速查}{ch6-formulas}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
 \item Langmuir波（冷）：$\displaystyle\omega^2 = \omega_{pe}^2$

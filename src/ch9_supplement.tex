@@ -121,14 +121,16 @@ k_{\text{max}} = \frac{5\times 10^{10}}{2\times 10^{7}} = 2.5\times 10^{3}\,\mat
 \gamma_{\max} \approx \frac{\omega_{pe}}{2}
 \]
 
-此处 $u$ 较大而离子静止，近似为单束流不稳定性，最大增长率约为：
+此处 $u$ 较大而离子静止，属于电子--离子双流不稳定性（Buneman不稳定性），最大增长率约为：
 \[
-\gamma_{\max} \approx \frac{\omega_{pe}}{2} = 2.5\times 10^{10}\,\mathrm{rad/s}
+\gamma_{\max} \approx \left(\frac{m_\ee}{2m_\ii}\right)^{1/3}\omega_{pe}
+= \left(\frac{9.11\times 10^{-31}}{2\times 1.67\times 10^{-27}}\right)^{1/3}\times 5\times 10^{10}
+\approx 3.2\times 10^{9}\,\mathrm{rad/s}
 \]
 
 对应增长时间：
 \[
-\tau = \frac{1}{\gamma_{\max}} = 4\times 10^{-11}\,\mathrm{s} = 40\,\mathrm{ps}
+\tau = \frac{1}{\gamma_{\max}} \approx 3.1\times 10^{-10}\,\mathrm{s} \approx 0.3\,\mathrm{ns} = 300\,\mathrm{ps}
 \]
 
 最大增长率发生在：
@@ -139,7 +141,7 @@ k \approx \frac{\omega_{pe}}{u} = 2.5\times 10^{3}\,\mathrm{m}^{-1}
 \textbf{物理分析：}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
 \item 双流不稳定性将电子的定向漂移动能转化为等离子体振荡能（Langmuir波）。
-\item 增长时间仅约 $40\,\mathrm{ps}$，说明在强电流等离子体中，这种不稳定性几乎是瞬发的。
+\item 增长时间仅约 $300\,\mathrm{ps}$，说明在强电流等离子体中，这种不稳定性几乎是瞬发的。
 \item 实际等离子体有温度（热速度），这会使不稳定性饱和，或改变增长条件。当 $u \lesssim v_{te}$ 时，热展宽会稳定束流。
 \item 双流不稳定性是等离子体中反常电阻的重要来源：束流能量转化为波，波再通过Landau阻尼加热电子，等效于电阻耗散。
 \end{itemize}
@@ -337,6 +339,26 @@ f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
 \end{tikzpicture}
 \caption{瑞利--泰勒不稳定性物理图像。重流体在轻流体上方，在有效重力 $g$ 作用下，界面扰动（尖峰和谷）被放大。尖峰处重流体下沉，谷处轻流体上升，形成反馈循环，扰动指数增长。}
 \end{figure}
+
+% ch9 新例题：交换不稳定性的物理判断
+\begin{example}{磁流体气球模的物理图像}{ballooning-concept}
+托卡马克中压强梯度驱动的气球模（ballooning mode）为什么在外中平面（坏曲率区）发展最快？用磁流体能量原理定性说明，并解释为什么提高比压 $\beta$ 会触发气球模。
+\tcblower
+\textbf{解答：}
+
+\textbf{坏曲率与好曲率：} 托卡马克磁场由环向场 $B_\varphi$ 与极向场 $B_\theta$ 合成，磁力线绕环螺旋前进。环内侧（内中平面）磁场强、磁力线曲率指向等离子体内部（\textbf{好曲率}）——磁张力对扰动起稳定作用。环外侧（外中平面）磁场弱、曲率离心向外（\textbf{坏曲率}）——扰动"鼓包"向外鼓时，磁张力反而做正功。
+
+\textbf{能量原理定性分析：} 理想 MHD 能量原理把扰动能量写成 $\delta W = \delta W_{\text{磁张力}} + \delta W_{\text{压强}}$。在坏曲率区：
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item 磁张力项：扰动沿磁力线拉伸磁场，消耗能量（稳定贡献），但在坏曲率区被离心效应部分抵消；
+\item 压强项：扰动把高压等离子体推到低磁压区（外中平面），释放膨胀能（不稳定贡献 $\propto \nabla p\cdot\xi$）。
+\end{itemize}
+当压强梯度足够大时，坏曲率区压强项的不稳定贡献超过磁张力项的稳定贡献，$\delta W<0$，气球模增长——扰动像"气球"一样从外中平面鼓出，故得此名。
+
+\textbf{与比压 $\beta$ 的关系：} 压强项正比于 $\beta = 2\mu_0 p/B^2$（热压与磁压之比）。$\beta$ 升高意味着热压相对磁压增大，压强驱动增强而磁场稳定能力相对减弱。当 $\beta$ 超过临界值 $\beta_c$（工程上通常 $\beta_c\sim3\%$ 量级，取决于位形与剪切断面）时，气球模被触发——这正是托卡马克比压极限（Troyon 极限）的物理根源：$\beta$ 不能无限提高，否则压强梯度驱动的气球模立即破坏约束。
+
+\textbf{工程对策：} 提高磁场剪切断面（优化极向场位形）、降低边缘压强梯度（H模台地）、或使用导体壁靠近等离子体（ resistive wall 稳定低频模）。现代托卡马克通过这些手段把 $\beta$ 推到 $\sim3\%--5\%$，接近磁约束聚变堆的经济运行区间。
+\end{example}
 
 \begin{formula}{第9章核心公式速查}{ch9-formulas}
 \begin{itemize}[leftmargin=*,itemsep=0pt]

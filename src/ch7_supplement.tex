@@ -163,8 +163,8 @@ N_{<} - N_{>} = -f'(v_\phi)\Delta v^2
 
 \textbf{物理解释：}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
-\item 慢粒子（$v < v_\phi$）在波参考系中向右运动，进入波的减速区，被电场减速，损失动能，将能量交给波。但由于 $\partial f_0/\partial v < 0$，慢粒子比快粒子多。
-\item 快粒子（$v > v_\phi$）在波参考系中向左运动，进入波的加速区，从波获得能量。
+\item 慢粒子（$v < v_\phi$）在波参考系中向左运动（速度 $v - v_\phi < 0$），被波的电场加速，从波获得动能。但由于 $\partial f_0/\partial v < 0$，慢粒子比快粒子多。
+\item 快粒子（$v > v_\phi$）在波参考系中向右运动，被波的电场减速，将动能交给波。
 \item 因为慢粒子更多，净效应是粒子从波获得能量——波被阻尼。这就是Landau阻尼的微观图像：不是碰撞，而是速度空间分布的斜率决定了能量流向。
 \end{itemize}
 
@@ -292,6 +292,31 @@ bump-on-tail不稳定性的核心是：在相速度 $v_\phi = \omega/k$ 处，�
 \end{tikzpicture}
 \caption{bump-on-tail速度分布函数示意图。蓝色宽峰为背景热电子，红色窄峰为漂移电子束流。在两峰之间的"尾部"区域形成凸起（bump），对应 $\partial f/\partial v > 0$，驱动Langmuir波不稳定性增长。}
 \end{figure}
+
+% ch7 新例题：电子等离子体波的朗道阻尼数值练习
+\begin{example}{朗道阻尼随波长的变化}{landau-wavelength-dependence}
+氩等离子体（$n_e=10^{18}\,\mathrm{m^{-3}}$，$T_e=4\,\mathrm{eV}$）中，比较波数 $k = 10^4\,\mathrm{m^{-1}}$ 和 $k = 10^5\,\mathrm{m^{-1}}$ 的两列朗缪尔波的朗道阻尼率，并讨论波长变短时阻尼如何变化。
+\tcblower
+\textbf{解答：}
+
+由例题 7.2 的方法：$\lambda_D = 1.49\times10^{-5}\,\mathrm{m}$（$14.9\,\mu\mathrm{m}$），$\omega_{pe} = 5.64\times10^{10}\,\mathrm{rad/s}$，朗道阻尼率公式
+\[
+\omega_i = -\sqrt{\frac{\pi}{8}}\,\frac{\omega_{pe}}{(k\lambda_D)^3}\exp\!\left(-\frac{1}{2k^2\lambda_D^2}-\frac{3}{2}\right)
+\]
+
+\textbf{情形 1：$k = 10^4\,\mathrm{m^{-1}}$。} $k\lambda_D = 0.149$：
+\[
+\frac{1}{2(k\lambda_D)^2} = \frac{1}{2\times0.0222} = 22.5,\qquad \text{指数} = -22.5-1.5 = -24
+\]
+\[
+|\omega_i| = 0.627\times\frac{5.64\times10^{10}}{(0.149)^3}\times\ee^{-24} \approx 3.9\times10^{2}\,\mathrm{rad/s}
+\]
+衰减时间 $\tau = 1/|\omega_i| \approx 2.5\,\mathrm{ms}$——\textbf{极弱阻尼}，波可以传播很远。
+
+\textbf{情形 2：$k = 10^5\,\mathrm{m^{-1}}$。} $k\lambda_D = 1.49$（由例题7.2，$|\omega_i|\approx7.8\times10^9\,\mathrm{rad/s}$，$\tau\approx0.13\,\mathrm{ns}$）——\textbf{极强阻尼}。
+
+\textbf{规律：} $k\lambda_D$ 从 $0.15$ 增到 $0.74$ 再到 $1.5$，指数因子从 $\ee^{-24}$ 增到 $\ee^{-2.4}$，阻尼率上升了 8 个数量级。朗道阻尼对波长极为敏感：长波（$k\lambda_D\ll1$）几乎没有阻尼，相速度远大于电子热速度，共振粒子太少；波长接近德拜长度时，相速度落入电子热分布的主体，共振粒子大量存在，阻尼剧烈。这就是朗缪尔探针测量电子分布函数（Druyvesteyn法，第12章）与波诊断选波长时必须考虑的基本限制。
+\end{example}
 
 \begin{formula}{第7章核心公式速查}{ch7-formulas}
 \begin{itemize}[leftmargin=*,itemsep=0pt]

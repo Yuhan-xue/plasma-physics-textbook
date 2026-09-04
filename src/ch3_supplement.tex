@@ -239,6 +239,29 @@ v_{\text{drift},D} = \frac{4\times 1.602\times 10^{-15}}{3\times (1.602\times 10
 \caption{磁镜损失锥示意图。在磁镜喉部 $B_{\max}$ 处，若粒子投掷角 $\theta<\theta_m$，则 $v_{\perp}^2$ 不足以将平行动能完全转化为垂直动能，粒子将穿过磁镜逃逸。}
 \end{figure}
 
+% ch3 新例题：磁镜与损失锥
+\begin{example}{磁镜约束与损失锥角估算}{ch3-mirror-est}
+一磁镜装置中，中心磁场 $B_0 = 0.2\,\mathrm{T}$，镜点磁场 $B_m = 1.0\,\mathrm{T}$（磁镜比 $R_m = B_m/B_0 = 5$）。
+（1）推导损失锥角 $\theta_{lc}$（以 $B_0$ 处计）的表达式并求其数值；
+（2）若粒子在中心处垂直速度分量占总动能的 $90\%$（即 $\sin^2\theta = 0.9$），判断它是否被约束；
+（3）说明磁镜约束为何无法完全约束各向同性等离子体。
+\tcblower
+\textbf{解答：}
+
+\textbf{(1) 损失锥角：} 磁矩不变量 $\mu = m v_\perp^2/(2B)$ 要求 $v_\perp^2/B = \text{const}$，粒子向强场区运动时 $v_\perp$ 增大、$v_\parallel$ 减小。粒子被反射的条件是平行速度在到达镜点前降为零。结合能量守恒，粒子能到达镜点的条件为
+\[
+\frac{v_\perp^2}{v^2}\bigg|_{B_0} \le \frac{B_0}{B_m} = \frac{1}{R_m}
+\]
+不满足上式的粒子构成\textbf{损失锥}，锥角满足
+\[
+\sin^2\theta_{lc} = \frac{1}{R_m} \quad\Rightarrow\quad \theta_{lc} = \arcsin\!\left(\frac{1}{\sqrt{R_m}}\right) = \arcsin\!\left(\frac{1}{\sqrt{5}}\right) \approx 26.6^\circ
+\]
+
+\textbf{(2) 判断约束：} 该粒子 $\sin^2\theta = 0.9 > 1/R_m = 0.2$，$\theta > \theta_{lc}$，\textbf{在损失锥之外，被磁镜约束}。它在中心处 $v_\parallel^2/v^2 = 0.1$，到达镜点前平行速度降为零并反射。
+
+\textbf{(3) 无法完全约束的原因：} 对各向同性分布（$\theta$ 均匀分布在立体角内），落入损失锥（$0\le\theta\le\theta_{lc}$）的粒子比例约为 $\sin^2\theta_{lc}/2 = 1/(2R_m) = 10\%$。每一轮反射都会损失锥内粒子，若无其他机制填充损失锥，等离子体将快速损失。磁镜对静电与湍流散射（使粒子扩散进损失锥）也很敏感。因此单纯磁镜无法稳定约束热等离子体，现代磁镜实验需辅以中性束注入、偶极场或 ECRH 填充等手段。
+\end{example}
+
 \begin{formula}{第3章核心公式速查}{ch3-formulas}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
 \item 回旋频率：$\displaystyle\omega_c = \frac{|q|B}{m}$，$\displaystyle r_c = \frac{v_{\perp}}{\omega_c}$

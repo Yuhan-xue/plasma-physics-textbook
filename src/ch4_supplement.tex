@@ -227,6 +227,51 @@ v_{ti} = \sqrt{\frac{2\times 0.1\times 1.602\times 10^{-19}}{1.673\times 10^{-27
 \caption{双流体模型示意图。电子和离子作为两种独立的流体，可以具有不同的宏观流速 $\vect{u}_e$ 和 $\vect{u}_i$。由于 $m_e\ll m_i$，电子的响应远快于离子。}
 \end{figure}
 
+% ch4 新例题：离子声波的流体色散推导
+\begin{example}{离子声波的流体色散关系推导}{ion-acoustic-derivation}
+用双流体方程组推导离子声波的色散关系（允许有限离子温度 $T_i$），并说明在什么极限下退化为 $c_s = \sqrt{k_{\!B}T_e/m_i}$。
+\tcblower
+\textbf{解答：}
+
+\textbf{步骤1：线性化流体方程组。} 对离子（绝热指数 $\gamma_i = 3$ 一维）和电子（Boltzmann 响应）：
+
+离子连续性与动量方程线性化（平衡态静止、均匀）：
+\[
+\frac{\partial n_{i1}}{\partial t} + n_0\frac{\partial u_{i1}}{\partial x} = 0, \qquad
+m_i\frac{\partial u_{i1}}{\partial t} = -\ee\frac{\partial\phi_1}{\partial x} - \frac{1}{n_0}\frac{\partial p_{i1}}{\partial x}
+\]
+电子为 Boltzmann 分布：$n_{e1} = n_0\ee\phi_1/(k_{\!B}T_e)$。
+
+\textbf{步骤2：用平面波 $\propto\ee^{\ii(kx-\omega t)}$ 化简。}
+\[
+-\ii\omega n_{i1} + \ii k n_0 u_{i1} = 0 \;\Rightarrow\; n_{i1} = \frac{k n_0}{\omega}u_{i1}
+\]
+\[
+-\ii\omega m_i u_{i1} = -\ii k \ee\phi_1 - \frac{\ii k}{n_0}\gamma_i k_{\!B}T_i\, n_{i1}
+\;\Rightarrow\; m_i\omega u_{i1} = k\ee\phi_1 + \gamma_i k_{\!B}T_i\frac{k}{\omega}u_{i1}
+\]
+
+\textbf{步骤3：消去 $u_{i1}$、$n_{i1}$。} 由 $n_{i1} = \ee n_0\phi_1\omega^2/[m_i(\omega^2-\gamma_i k^2 v_{ti}^2)]\cdot(k^2/\omega^2)$，代入准中性 $n_{e1}=n_{i1}$：
+\[
+\frac{\ee\phi_1}{k_{\!B}T_e} = \frac{\ee\phi_1 k^2}{m_i(\omega^2 - \gamma_i k^2 v_{ti}^2)}
+\]
+
+\textbf{步骤4：得到色散关系。}
+\[
+\boxed{\;\omega^2 = k^2\left(\frac{\gamma_i k_{\!B}T_i}{m_i} + \frac{k_{\!B}T_e}{m_i}\cdot\frac{1}{1+k^2\lambda_{De}^2}\right)\;}
+\]
+\[
+\omega^2 = \frac{k^2 c_s^2}{1 + k^2\lambda_{De}^2} + 3k^2 v_{ti}^2, \qquad c_s = \sqrt{\frac{k_{\!B}T_e}{m_i}}
+\]
+
+\textbf{极限讨论：}
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item \textbf{长波极限}（$k\lambda_{De}\ll1$，$T_e\gg T_i$）：$1+k^2\lambda_{De}^2\approx1$，离子热项可忽略，$\omega \approx kc_s = k\sqrt{k_{\!B}T_e/m_i}$，即声波。
+\item \textbf{短波修正}：$k\lambda_{De}$ 不再可忽略时，电子不再是纯 Boltzmann 响应，色散关系弯曲，相速度增大。
+\item \textbf{离子热贡献}：$T_i$ 不可忽略时恢复力增加，离子声速变为 $c_s=\sqrt{(T_e+3T_i)/m_i}$（一维 $\gamma_i=3$）。若 $T_i\sim T_e$，离子热运动导致强 Landau 阻尼（第7章），波难以传播。
+\end{itemize}
+\end{example}
+
 \begin{formula}{第4章核心公式速查}{ch4-formulas}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
 \item 玻尔兹曼方程：$\displaystyle\frac{\partial f}{\partial t} + \vect{v}\cdot\grad f + \frac{\vect{F}}{m}\cdot\grad_v f = \left(\frac{\partial f}{\partial t}\right)_c$

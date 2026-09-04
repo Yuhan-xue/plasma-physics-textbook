@@ -123,6 +123,37 @@ f(v_x) = n\sqrt{\frac{m}{2\pi k_{\!B}T}}\,\exp\!\left(-\frac{mv_x^2}{2k_{\!B}T}\
 \textbf{说明：} $f=1/r$ 是三维拉普拉斯方程的基本解（除原点外），在静电学中对应点电荷的势。原点处的奇异性由 $\delta$ 函数描述：$\lap(1/r)=-4\pi\delta(\vect{r})$。
 \end{example}
 
+% ch1 新例题：分布函数矩的计算
+\begin{example}{麦克斯韦分布的矩与最概然速率}{ch1-maxwell-dist}
+一维麦克斯韦分布 $f(v) = \dfrac{n}{\sqrt{\pi}\,v_t}\exp(-v^2/v_t^2)$，其中 $v_t = \sqrt{2k_{\!B}T/m}$。计算：
+（1）平均速率 $\langle v\rangle$；（2）方均根速率 $v_{\mathrm{rms}}=\sqrt{\langle v^2\rangle}$；（3）最概然速率 $v_p$，并比较三者的相对大小。
+\tcblower
+\textbf{解答：}
+
+\textbf{(1) 平均速率：}
+\[
+\langle v\rangle = \int_{-\infty}^{+\infty} v\,f(v)\,\diff v = 0
+\]
+被积函数 $v\,f(v)$ 是奇函数，对称区间积分为零——一维速度的平均值为零（无净流动）。
+
+\textbf{(2) 方均根速率：}
+\[
+\langle v^2\rangle = \int_{-\infty}^{+\infty} v^2\,f(v)\,\diff v = \frac{n}{\sqrt{\pi}v_t}\cdot v_t^3\int_{-\infty}^{+\infty} x^2\ee^{-x^2}\,\diff x = \frac{n v_t^2}{\sqrt{\pi}}\cdot\frac{\sqrt{\pi}}{2} = \frac{n v_t^2}{2}
+\]
+按密度归一化后 $\langle v^2\rangle = v_t^2/2 = k_{\!B}T/m$（一维能量均分定理，每自由度 $k_{\!B}T/2$）：
+\[
+v_{\mathrm{rms}} = \sqrt{\frac{k_{\!B}T}{m}} = \frac{v_t}{\sqrt{2}}
+\]
+
+\textbf{(3) 最概然速率：} 令 $f'(v)=0$：
+\[
+\frac{\mathrm{d}f}{\mathrm{d}v} = -\frac{2v}{v_t^2}f(v) = 0 \quad\Rightarrow\quad v_p = 0
+\]
+一维情形最概然速率为零（分布峰值在 $v=0$）。
+
+\textbf{对比与讨论：} 三维情形下三者不相等：$v_p : \bar{v} : v_{\mathrm{rms}} = 1 : 1.128 : 1.225$。分布不对称（右偏），故 $\langle v\rangle > v_p$；均方速率对高速尾部敏感，故 $v_{\mathrm{rms}} > \langle v\rangle$。在等离子体物理中 $v_{\mathrm{rms}}$（即本书的热速度定义之一）最常用，因为它直接与温度通过能量均分定理联系。
+\end{example}
+
 \begin{formula}{第1章核心公式速查}{ch1-formulas}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
 \item 柱坐标散度：$\displaystyle\divg\vect{A} = \frac{1}{r}\frac{\partial(rA_r)}{\partial r} + \frac{1}{r}\frac{\partial A_\theta}{\partial\theta} + \frac{\partial A_z}{\partial z}$

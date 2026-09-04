@@ -184,6 +184,38 @@ $1\,\mathrm{mm}$ & $1.44\times 10^{-6}\,\mathrm{V}$ & $67.1$ & $1.3\times 10^{-2
 \caption{四种典型等离子体在 $n$--$T$ 参数空间中的分布。图中位置仅为示意，纵轴与横轴均为对数尺度。}
 \end{figure}
 
+% ch2 新例题：德拜屏蔽的数值计算与判据
+\begin{example}{德拜屏蔽的数值计算与等离子体判据}{debye-calculation}
+两个典型的氢等离子体：
+（A）辉光放电：$n=10^{16}\,\mathrm{m^{-3}}$，$T=2\,\mathrm{eV}$；
+（B）托卡马克：$n=10^{20}\,\mathrm{m^{-3}}$，$T=10\,\mathrm{keV}$。
+分别计算德拜长度 $\lambda_D$、德拜球内粒子数 $N_D$，判断它们是否满足理想等离子体判据，并解释为什么（B）中一个放入的测试电荷在距离 $1\,\mathrm{cm}$ 处几乎探测不到。
+\tcblower
+\textbf{解答：}
+
+德拜长度公式（$T$ 以 $\mathrm{eV}$ 计）：$\lambda_D = \sqrt{\eps_0 T\ee/(n\ee^2)} \approx 7430\sqrt{T[\mathrm{eV}]/n[\mathrm{m^{-3}}]}\,\mathrm{m}$。
+
+\textbf{(A) 辉光放电：}
+\[
+\lambda_D = 7430\sqrt{\frac{2}{10^{16}}} = 7430\times1.41\times10^{-8} \approx 1.05\times10^{-4}\,\mathrm{m} \approx 0.1\,\mathrm{mm}
+\]
+\[
+N_D = \frac{4\pi}{3}n\lambda_D^3 = 4.19\times10^{16}\times(1.05\times10^{-4})^3 \approx 4.9\times10^4 \gg 1 \quad\checkmark
+\]
+
+\textbf{(B) 托卡马克：}
+\[
+\lambda_D = 7430\sqrt{\frac{10^4}{10^{20}}} = 7430\times10^{-8} \approx 7.4\times10^{-5}\,\mathrm{m} \approx 74\,\mu\mathrm{m}
+\]
+\[
+N_D = 4.19\times10^{20}\times(7.4\times10^{-5})^3 \approx 1.7\times10^8 \gg 1 \quad\checkmark
+\]
+
+两种等离子体都满足 $N_D\gg1$（理想等离子体判据），集体行为良好。
+
+\textbf{(B) 中的屏蔽效应：} 放入测试电荷后，其电场在 $\lambda_D\approx74\,\mu\mathrm{m}$ 之外被指数压制：$\phi(r)\sim (Q/4\pi\eps_0 r)\ee^{-r/\lambda_D}$。在 $r=1\,\mathrm{cm}$ 处，$r/\lambda_D \approx 135$，屏蔽因子 $\ee^{-135}\sim10^{-59}$——电场被德拜屏蔽完全抹平，任何探针在 $1\,\mathrm{cm}$ 外都只能感受到准中性的集体响应，而非该电荷的裸电场。这正是德拜屏蔽"等离子体名片"的含义：等离子体内部的长程库仑力被集体响应改造为短程屏蔽相互作用。
+\end{example}
+
 \begin{formula}{第2章核心公式速查}{ch2-formulas}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
 \item 德拜长度：$\displaystyle\lambda_D = \sqrt{\frac{\eps_0 k_{\!B}T_e}{n_e e^2}}$

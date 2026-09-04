@@ -288,6 +288,32 @@ T_e & \nu_{ei} & \tau_{ei} \\ \hline
 \caption{库仑碰撞小角度散射示意图。带电粒子 $q_1$ 以速度 $v$ 经过靶粒子 $q_2$ 附近，由于长程库仑力，轨迹发生轻微偏折。偏转角 $\theta$ 很小，但远距离碰撞频繁发生，累积效应主导了动量输运。}
 \end{figure}
 
+% ch8 新例题：Spitzer 电阻率随温度的标度与等离子体加热
+\begin{example}{欧姆加热与温度的稳态}{ohmic-heating}
+实验室氩等离子体由欧姆加热维持：电流密度 $j = 10^4\,\mathrm{A/m^2}$，密度 $n_e = 10^{19}\,\mathrm{m^{-3}}$，库仑对数 $\ln\Lambda = 10$。
+（1）写出欧姆加热功率密度 $P = \eta j^2$ 关于 $T_e$ 的表达式，说明其温度标度；
+（2）计算 $T_e = 5\,\mathrm{eV}$ 时的欧姆加热功率密度；
+（3）解释为什么纯欧姆加热难以把等离子体加热到高温（远高于 $\sim100\,\mathrm{eV}$）。
+\tcblower
+\textbf{解答：}
+
+\textbf{(1) 温度标度：} Spitzer 电阻率 $\eta \approx 5\times10^{-5}\,Z\ln\Lambda/T_e^{3/2}\,\Omega\mathrm{m}$（$T_e$ 以 eV 计），故
+\[
+P = \eta j^2 \approx \frac{5\times10^{-5}\,Z\ln\Lambda\,j^2}{T_e^{3/2}} \propto T_e^{-3/2}
+\]
+欧姆加热功率随温度升高而\textbf{下降}（电阻率随温度下降）。
+
+\textbf{(2) $T_e = 5\,\mathrm{eV}$ 时：}
+\[
+\eta \approx \frac{5\times10^{-5}\times1\times10}{5^{3/2}} = \frac{5\times10^{-4}}{11.2} \approx 4.5\times10^{-5}\,\Omega\mathrm{m}
+\]
+\[
+P = \eta j^2 = 4.5\times10^{-5}\times(10^4)^2 = 4.5\times10^3\,\mathrm{W/m^3}
+\]
+
+\textbf{(3) 高温极限：} 欧姆加热 $\propto T_e^{-3/2}$ 越来越弱，而辐射损失（韧致辐射 $\propto T_e^{1/2}n^2$）和输运损失随温度上升。两者在 $T_e\sim100\,\mathrm{eV}$ 量级达到平衡后，欧姆加热无法进一步提高温度——这就是托卡马克必须采用中性束注入、ICRF/ECD 射频加热等辅助加热手段的根本原因（欧姆加热只能把等离子体带入"温区"，点火必须靠辅助加热）。
+\end{example}
+
 \begin{formula}{第8章核心公式速查}{ch8-formulas}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
 \item Rutherford散射角：$\displaystyle\tan\frac{\theta}{2} = \frac{b_0}{2b}$，其中 $b_0 = \frac{|q_1 q_2|}{4\pi\eps_0 m_r v^2}$

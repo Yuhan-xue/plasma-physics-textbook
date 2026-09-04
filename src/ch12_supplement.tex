@@ -395,25 +395,22 @@ $f_p = 12\,\mathrm{MHz} \ll f = 60\,\mathrm{GHz}$，满足 $N\approx 1 - \omega_
     = -\frac{50 \times 2\times10^{-4} \times 2\times10^{-7}}{1.0} \times 5\times10^6
 \]
 \[
-    = -50 \times 2\times10^{-4} \times 10^{-6} \times 5\times10^6
+    = -50 \times 2\times10^{-4} \times 2\times10^{-7} \times 5\times10^6
 \]
 \[
-    = -50 \times 2\times10^{-4} \times 5
+    = -50 \times 2\times10^{-4} \times 1.0
 \]
 \[
-    = -50 \times 10^{-3}
-\]
-\[
-    = -0.05\,\mathrm{V}
+    = -1.0\times10^{-2}\,\mathrm{V}
 \]
 
 \[
-    \boxed{|\mathcal{E}| = 0.05\,\mathrm{V} = 50\,\mathrm{mV}}
+    \boxed{|\mathcal{E}| = 0.01\,\mathrm{V} = 10\,\mathrm{mV}}
 \]
 
 （注意：题设给定的 $\mathcal{E}=2.5\,\mathrm{V}$ 与 $dI_p/dt=5\times10^6\,\mathrm{A/s}$ 不匹配。若 $\mathcal{E}=2.5\,\mathrm{V}$，则实际电流变化率应为：
 \[
-    \frac{dI_p}{dt} = \frac{2\pi R \mathcal{E}}{N A \mu_0} = \frac{2\pi \times 1.0 \times 2.5}{50 \times 2\times10^{-4} \times 4\pi\times10^{-7}} = \frac{5\pi}{2\times10^{-8}} = 2.5\times10^8\,\mathrm{A\cdot s^{-1}}
+    \frac{dI_p}{dt} = \frac{2\pi R \mathcal{E}}{N A \mu_0} = \frac{2\pi \times 1.0 \times 2.5}{50 \times 2\times10^{-4} \times 4\pi\times10^{-7}} = \frac{5\pi}{1.257\times10^{-8}} \approx 1.25\times10^9\,\mathrm{A\cdot s^{-1}}
 \]
 
 或题设可能指使用了积分器，输出为电流本身而非感应电压。）
@@ -454,6 +451,35 @@ $f_p = 12\,\mathrm{MHz} \ll f = 60\,\mathrm{GHz}$，满足 $N\approx 1 - \omega_
 % ============================================================
 % 2. TikZ图像
 % ============================================================
+
+% ch12 新例题：H-alpha 谱线的 Stark 展宽与密度诊断
+\begin{example}{Stark 展宽与电子密度的诊断}{stark-density}
+某氢等离子体中测得 $\mathrm{H}_\alpha$ 谱线（$656.3\,\mathrm{nm}$）的 Stark 展宽 FWHM 为 $\Delta\lambda_S = 0.8\,\mathrm{nm}$。
+（1）用线性 Stark 展宽的标度关系 $\Delta\lambda_S = C\,n_e^{2/3}$（对 $\mathrm{H}_\alpha$，$C \approx 0.05\,\mathrm{nm\cdot m^{9/5}}$）估算电子密度 $n_e$；
+（2）说明为什么 Stark 展宽在高密度等离子体中是密度诊断的首选，而在低密度等离子体中失效；
+（3）讨论为什么该诊断需要扣除 Doppler 展宽和仪器展宽的贡献。
+\tcblower
+\textbf{解答：}
+
+\textbf{(1) 密度反演：} 由标度关系
+\[
+n_e = \left(\frac{\Delta\lambda_S}{C}\right)^{3/2} = \left(\frac{0.8}{0.05}\right)^{3/2}\,\mathrm{m^{-3}} = 16^{1.5}\,\mathrm{m^{-3}}
+\]
+\[
+16^{1.5} = 64,\qquad n_e \approx 6.4\times10^{20}\,\mathrm{m^{-3}}
+\]
+这一密度对应聚变等离子体或高气压电弧的范围——量级合理。
+
+\textbf{(2) 为什么高密度下首选：} Stark 展宽 $\propto n_e^{2/3}$，由\textbf{带电粒子微场}直接决定，不依赖温度与速度分布（与 Doppler 展宽不同），且对密度敏感。在 $n_e\gtrsim10^{20}\,\mathrm{m^{-3}}$ 时 Stark 展宽（$\sim0.1$--$1\,\mathrm{nm}$）远大于 Doppler 展宽（$\mathrm{H}_\alpha$ 在 $T\sim10\,\mathrm{eV}$ 时仅 $\sim0.05\,\mathrm{nm}$），主导谱线形状——测形状即可反演密度。在低密度（$n_e\lesssim10^{17}\,\mathrm{m^{-3}}$）时 Stark 展宽缩小到 $10^{-3}\,\mathrm{nm}$ 量级，被 Doppler 展宽与仪器展宽完全淹没，无法使用——此时应改用微波干涉或汤姆逊散射。
+
+\textbf{(3) 展宽成分的扣除：} 实测谱线宽度是三种机制的卷积：
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item \textbf{Doppler 展宽}：$\Delta\lambda_D \propto \sqrt{T_i}$（离子热运动），需由独立测得的离子温度扣除；
+\item \textbf{仪器展宽}：光谱仪狭缝与光栅决定，用标准灯标定后扣除；
+\item \textbf{Stark 展宽}：待测量。
+\end{itemize}
+通常用 Voigt 线型拟合（Gauss 的 Doppler 与 Lorentz 的 Stark 卷积），或在高密度下 Stark 占优时直接用 FWHM 近似。若不扣除，密度反演会偏高——这是光谱密度诊断的主要系统误差来源。
+\end{example}
 
 \section{微波干涉仪光路示意图}
 
