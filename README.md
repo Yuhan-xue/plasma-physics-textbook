@@ -7,7 +7,7 @@
 
 ## 项目简介
 
-本项目是《等离子体物理自学教材》的完整 LaTeX 源码仓库。教材共 **221 页**，涵盖 12 章正文 + 7 附录，系统介绍从单粒子运动到聚变约束、从低温工业等离子体到实验诊断的核心内容。
+本项目是《等离子体物理自学教材》的完整 LaTeX 源码仓库。教材共 **233 页**，涵盖 12 章正文 + 7 附录，系统介绍从单粒子运动到聚变约束、从低温工业等离子体到实验诊断的核心内容。
 
 教材定位：**让有微积分和电磁学基础的读者，无需导师即可系统入门等离子体物理。**
 
@@ -17,7 +17,7 @@
 
 | 格式 | 文件 | 说明 |
 |------|------|------|
-| PDF（最终版） | [`pdf/plasma_physics_textbook_v2.pdf`](pdf/plasma_physics_textbook_v2.pdf) | 221 页完整教材，可直接阅读 |
+| PDF（最终版） | [`pdf/plasma_physics_textbook_v2.pdf`](pdf/plasma_physics_textbook_v2.pdf) | 233 页完整教材，可直接阅读 |
 | 源代码 | [`src/`](src/) 目录 | 全部 LaTeX 源文件，可编译修改 |
 
 > 如需在线阅读，请访问 [Release 页面](http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases) 下载 PDF。
@@ -55,10 +55,10 @@
 
 ### 配套资源
 
-- **48 道经典例题**：每章 4 道，带完整分步解答（`ch1_supplement.tex` ~ `ch12_supplement.tex`）
+- **78 道经典例题**：主文件 18 道 + 每章补充 5 道，带完整分步解答（`ch1_supplement.tex` ~ `ch12_supplement.tex`）
 - **12 张核心公式速查卡**：`formula` 环境（蓝色框）
 - **12 张自学检查清单**：`checklist` 环境（绿色框）
-- **12 个 TikZ 物理示意图**：摆线轨迹、损失锥、磁力线冻结、波分类树等
+- **21 个 TikZ 物理示意图**：摆线轨迹、损失锥、磁力线冻结、波分类树、辉光放电空间结构等
 
 ---
 
@@ -96,7 +96,7 @@ plasma-physics-textbook/
 ├── LICENSE                            # CC BY-NC-SA 4.0 协议
 ├── .gitignore                         # 忽略编译产物
 ├── pdf/
-│   └── plasma_physics_textbook_v2.pdf # 最终 PDF（221 页）
+│   └── plasma_physics_textbook_v2.pdf # 最终 PDF（233 页）
 ├── src/                               # LaTeX 源码
 │   ├── plasma_physics_textbook_v2.tex # 主文件（~5000 行，含导言区、封面、前言）
 │   ├── appendices.tex                 # 附录 A-G（预留，通过 \input 引入）
@@ -166,6 +166,8 @@ plasma-physics-textbook/
 | 版本 | 日期 | 说明 |
 |------|------|------|
 | v1.0.0 | 2025-07-06 | 初始发布：12 章 + 7 附录，221 页，48 道例题，12 个 TikZ 图 |
+| v1.1.0 | 2026-09-04 | 质量优化：修复排版与物理数值错误，扩充至 78 道例题 |
+| v1.1.1 | 2026-09-05 | 深度审校：删除旧版拆本死文件，统一 label 体系，README 数字对齐实际编译产物（233 页 / 78 例题 / 21 TikZ 图） |
 
 ---
 
