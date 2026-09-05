@@ -564,7 +564,7 @@ n_e = \left(\frac{\Delta\lambda_S}{C}\right)^{3/2} = \left(\frac{0.8}{0.05}\righ
 
 \section{核心公式速查卡}
 
-\begin{formula}{朗缪尔探针诊断}{f:langmuir}
+\begin{formulabox}{朗缪尔探针诊断}{f:langmuir}
 电子阻滞区（过渡区）电流：
 \[
     I_e = I_{esat} \exp\left(\frac{e(V_p - V_{pl})}{k_B T_e}\right)
@@ -584,9 +584,9 @@ n_e = \left(\frac{\Delta\lambda_S}{C}\right)^{3/2} = \left(\frac{0.8}{0.05}\righ
 \[
     n_i \approx \frac{|I_{isat}|}{0.6 A_p e v_B}, \quad v_B = \sqrt{\frac{k_B T_e}{m_i}}
 \]
-\end{formula}
+\end{formulabox}
 
-\begin{formula}{微波干涉仪}{f:interferometer}
+\begin{formulabox}{微波干涉仪}{f:interferometer}
 等离子体折射率（$\omega \gg \omega_p$）：
 \begin{equation}
     N = \sqrt{1 - \frac{\omega_p^2}{\omega^2}} \approx 1 - \frac{\omega_p^2}{2\omega^2}
@@ -608,9 +608,9 @@ n_e = \left(\frac{\Delta\lambda_S}{C}\right)^{3/2} = \left(\frac{0.8}{0.05}\righ
     n_{cut} = \frac{\eps_0 m_e \omega^2}{e^2} \approx 1.24\times10^{14} f^2\,[\mathrm{GHz}]
 \,\mathrm{cm^{-3}}
 \]
-\end{formula}
+\end{formulabox}
 
-\begin{formula}{汤姆逊散射}{f:thomson}
+\begin{formulabox}{汤姆逊散射}{f:thomson}
 汤姆逊散射截面：
 \[
     \sigma_T = \frac{8\pi}{3} r_e^2 = 6.65\times10^{-29}\,\mathrm{m^2}
@@ -630,9 +630,9 @@ n_e = \left(\frac{\Delta\lambda_S}{C}\right)^{3/2} = \left(\frac{0.8}{0.05}\righ
 \[
     T_e\,[\mathrm{eV}] = \frac{m_e c^2}{8k_B \ln 2} \left(\frac{\Delta\lambda_{1/2}}{2\lambda_0 \sin(\theta/2)}\right)^2
 \]
-\end{formula}
+\end{formulabox}
 
-\begin{formula}{磁探针与罗戈夫斯基线圈}{f:magnetic}
+\begin{formulabox}{磁探针与罗戈夫斯基线圈}{f:magnetic}
 磁探针感应电压（法拉第定律）：
 \[
     \mathcal{E} = -N A \frac{dB}{dt}
@@ -647,9 +647,9 @@ n_e = \left(\frac{\Delta\lambda_S}{C}\right)^{3/2} = \left(\frac{0.8}{0.05}\righ
 \[
     V_{out} = \frac{1}{RC} \int \mathcal{E}\,dt \propto I_p
 \]
-\end{formula}
+\end{formulabox}
 
-\begin{formula}{光谱诊断}{f:spectroscopy}
+\begin{formulabox}{光谱诊断}{f:spectroscopy}
 谱线展宽机制：
 \begin{itemize}
     \item 自然展宽：$\Delta\lambda_N \sim 10^{-5}\,\mathrm{nm}$（可忽略）
@@ -662,7 +662,7 @@ n_e = \left(\frac{\Delta\lambda_S}{C}\right)^{3/2} = \left(\frac{0.8}{0.05}\righ
 \[
     T_i = \frac{m_i c^2}{8k_B \ln 2} \left(\frac{\Delta\lambda_D}{\lambda_0}\right)^2
 \]
-\end{formula}
+\end{formulabox}
 
 % ============================================================
 % 4. 自学检查清单
@@ -670,7 +670,7 @@ n_e = \left(\frac{\Delta\lambda_S}{C}\right)^{3/2} = \left(\frac{0.8}{0.05}\righ
 
 \section{自学检查清单}
 
-\begin{checklist}{第12章自学检查清单}{ch12-checklist}
+\begin{checklistbox}{第12章自学检查清单}{ch12-checklist}
 \begin{itemize}[leftmargin=*,label=$\square$]
 \item[$\square$] 我能画出朗缪尔探针的I-V曲线，并标出离子饱和区、过渡区、电子饱和区
 \item[$\square$] 我能从过渡区斜率计算电子温度 $T_e$，并理解为什么取 $\ln I$ 对 $V$ 的导数
@@ -685,6 +685,6 @@ n_e = \left(\frac{\Delta\lambda_S}{C}\right)^{3/2} = \left(\frac{0.8}{0.05}\righ
 \item[$\square$] 我能区分有源诊断（如探针、微波）与无源诊断（如光谱）的优缺点
 \item[$\square$] 我知道为什么朗缪尔探针在强磁场或RF等离子体中需要特殊设计（如补偿、RF扼流）
 \end{itemize}
-\end{checklist}
+\end{checklistbox}
 
 \endinput

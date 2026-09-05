@@ -77,7 +77,7 @@
     \boxed{V_{min} \approx 98\,\mathrm{V}}
 \]
 
-\textbf{验证：} 氩气在 $d=2\,\mathrm{cm}$ 时的典型帕邢最小值确实在 $V_{min}\approx 150\sim200\,\mathrm{V}$（不同数据来源有差异）。对于氖气和氮气，帕邢最小值约 $200\sim300\,\mathrm{V}$。此处结果量级合理，说明在给定参数下，最小击穿电压低于 $200\,\mathrm{V}$。
+\textbf{验证：} 本题采用了一组特定的 $A$、$B$ 经验常数，得到的 $V_{min}\approx 98\,\mathrm{V}$。文献中氩气帕邢最小值随采用的 $A$、$B$ 数据来源不同而差异较大（约 $100\sim200\,\mathrm{V}$），本结果处于该范围下限，量级合理。对于氖气和氮气，帕邢最小值约 $200\sim300\,\mathrm{V}$。
 
 % ------------------------------------------------------------------------
 
@@ -489,7 +489,7 @@ s \approx 0.47\times0.41\,\mathrm{mm}\times39 \approx 7.5\,\mathrm{mm}
 
 \section{核心公式速查卡}
 
-\begin{formula}{Townsend放电与帕邢定律}{f:townsend}
+\begin{formulabox}{Townsend放电与帕邢定律}{f:townsend}
 Townsend第一电离系数：
 \[
     \alpha = A p \exp\left(-\frac{B p}{E}\right)
@@ -509,9 +509,9 @@ Townsend第一电离系数：
 \[
     (pd)_{min} = \frac{e}{A}\ln\left(1+\frac{1}{\gamma}\right), \quad V_{min} = \frac{e B}{A}\ln\left(1+\frac{1}{\gamma}\right)
 \]
-\end{formula}
+\end{formulabox}
 
-\begin{formula}{鞘层理论}{f:sheath}
+\begin{formulabox}{鞘层理论}{f:sheath}
 Bohm判据（鞘层边缘离子速度）：
 \[
     v_s \geq v_B = \sqrt{\frac{k_B T_e}{m_i}}
@@ -533,9 +533,9 @@ Child-Langmuir定律（平面鞘层）：
 \[
     s \approx \lambda_D \left(\frac{2V_s}{T_e}\right)^{3/4} \quad\text{(高电压鞘层)}
 \]
-\end{formula}
+\end{formulabox}
 
-\begin{formula}{工业等离子体中的漂移与扩散}{f:industrial}
+\begin{formulabox}{工业等离子体中的漂移与扩散}{f:industrial}
 $\vect{E}\times\vect{B}$ 漂移速度：
 \[
     \vect{v}_{E\times B} = \frac{\vect{E}\times\vect{B}}{B^2}
@@ -550,9 +550,9 @@ ambipolar扩散系数：
 \[
     D_a = \frac{\mu_i D_e + \mu_e D_i}{\mu_i + \mu_e} \approx D_i\left(1+\frac{T_e}{T_i}\right)
 \]
-\end{formula}
+\end{formulabox}
 
-\begin{formula}{辉光放电正柱区}{f:positive}
+\begin{formulabox}{辉光放电正柱区}{f:positive}
 电子密度与电流关系：
 \[
     J = e n_e v_{dr,e} = e n_e \mu_e E
@@ -568,7 +568,7 @@ ambipolar扩散系数：
 \[
     k_B T_e \approx \frac{e E_{ion}}{\ln(n_g \sigma_{ion} L)}
 \]
-\end{formula}
+\end{formulabox}
 
 % ============================================================
 % 4. 自学检查清单
@@ -576,7 +576,7 @@ ambipolar扩散系数：
 
 \section{自学检查清单}
 
-\begin{checklist}{第11章自学检查清单}{ch11-checklist}
+\begin{checklistbox}{第11章自学检查清单}{ch11-checklist}
 \begin{itemize}[leftmargin=*,label=$\square$]
 \item[$\square$] 我能解释Townsend放电的两种电离机制：$\alpha$ 过程和 $\gamma$ 过程
 \item[$\square$] 我能画出帕邢曲线，解释为什么存在最小击穿电压
@@ -591,6 +591,6 @@ ambipolar扩散系数：
 \item[$\square$] 我了解ambipolar扩散的物理意义，以及为什么 $D_a \approx D_i(T_e/T_i)$
 \item[$\square$] 我能区分电容耦合（CCP）与电感耦合（ICP）等离子体源的基本原理
 \end{itemize}
-\end{checklist}
+\end{checklistbox}
 
 \endinput

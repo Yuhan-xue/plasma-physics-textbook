@@ -318,7 +318,7 @@ bump-on-tail不稳定性的核心是：在相速度 $v_\phi = \omega/k$ 处，�
 \textbf{规律：} $k\lambda_D$ 从 $0.15$ 增到 $0.74$ 再到 $1.5$，指数因子从 $\ee^{-24}$ 增到 $\ee^{-2.4}$，阻尼率上升了 8 个数量级。朗道阻尼对波长极为敏感：长波（$k\lambda_D\ll1$）几乎没有阻尼，相速度远大于电子热速度，共振粒子太少；波长接近德拜长度时，相速度落入电子热分布的主体，共振粒子大量存在，阻尼剧烈。这就是朗缪尔探针测量电子分布函数（Druyvesteyn法，第12章）与波诊断选波长时必须考虑的基本限制。
 \end{example}
 
-\begin{formula}{第7章核心公式速查}{ch7-formulas}
+\begin{formulabox}{第7章核心公式速查}{ch7-formulas}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
 \item Vlasov方程：$\displaystyle\frac{\partial f}{\partial t} + \vect{v}\cdot\grad f + \frac{q}{m}(\vect{E} + \vect{v}\times\vect{B})\cdot\grad_v f = 0$
 \item 线性化色散关系（静电波）：$\displaystyle 1 = \frac{\omega_{pe}^2}{k^2}\int_{-\infty}^{\infty} \frac{\partial f_0/\partial v}{v - \omega/k}\,\diff v$
@@ -329,9 +329,9 @@ bump-on-tail不稳定性的核心是：在相速度 $v_\phi = \omega/k$ 处，�
 \item 德拜长度：$\displaystyle\lambda_D = \sqrt{\frac{\eps_0 k_{\!B}T_e}{n_e e^2}}$
 \item 电子等离子体频率：$\displaystyle\omega_{pe} = \sqrt{\frac{n_e e^2}{\eps_0 m_e}}$
 \end{itemize}
-\end{formula}
+\end{formulabox}
 
-\begin{checklist}{第7章自学检查清单}{ch7-checklist}
+\begin{checklistbox}{第7章自学检查清单}{ch7-checklist}
 \begin{itemize}[leftmargin=*,label=$\square$]
 \item 我能写出Vlasov方程，并解释其物理意义（相空间不可压缩流、刘维尔定理）
 \item 我能对Vlasov方程进行线性化，得到色散关系中的极点项
@@ -341,6 +341,6 @@ bump-on-tail不稳定性的核心是：在相速度 $v_\phi = \omega/k$ 处，�
 \item 我理解bump-on-tail不稳定性的物理机制：束流在速度空间形成凸起，共振粒子向波传递能量
 \item 我知道Landau阻尼是线性效应，而粒子 trapping 是非线性效应
 \end{itemize}
-\end{checklist}
+\end{checklistbox}
 
 \endinput

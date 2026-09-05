@@ -91,10 +91,22 @@
   colback=blue!5,colframe=blue!60,fonttitle=\bfseries,
   title={核心公式速查},breakable,
   left=4pt,right=4pt,top=4pt,bottom=4pt,#1}
+% 兼容两参数签名的速查卡（{标题}{key}）：key 不再掉入正文
+\NewTColorBox{formulabox}{m m}{%
+  colback=blue!5,colframe=blue!60,fonttitle=\bfseries,breakable,
+  title={核心公式速查：#1},
+  phantomlabel={frml:#2},
+  left=4pt,right=4pt,top=4pt,bottom=4pt}
 \newtcolorbox{checklist}[1][]{
   colback=green!5,colframe=green!60,fonttitle=\bfseries,
   title={自学检查清单},breakable,
   left=4pt,right=4pt,top=4pt,bottom=4pt,#1}
+% 兼容两参数签名的检查清单（{标题}{key}）：key 不再掉入正文
+\NewTColorBox{checklistbox}{m m}{%
+  colback=green!5,colframe=green!60,fonttitle=\bfseries,breakable,
+  title={自学检查清单：#1},
+  phantomlabel={ckl:#2},
+  left=4pt,right=4pt,top=4pt,bottom=4pt}
 \newcommand{\diff}{\mathrm{d}}
 \newcommand{\ii}{\mathrm{i}}
 \newcommand{\ee}{\mathrm{e}}
@@ -1371,11 +1383,11 @@ v_y &= -\frac{q}{|q|} v_\perp \sin(\omega_c t + \phi_0)
 
 电子热速度：
 \[
-v_{te} = \sqrt{\frac{k_B T_e}{m_e}} = \sqrt{\frac{(10^4)(1.602\times 10^{-19})}{9.109\times 10^{-31}}} \approx 1.33\times 10^{8}\,\mathrm{m/s}
+v_{te} = \sqrt{\frac{k_B T_e}{m_e}} = \sqrt{\frac{(10^4)(1.602\times 10^{-19})}{9.109\times 10^{-31}}} \approx 4.2\times 10^{7}\,\mathrm{m/s}
 \]
 电子回旋半径：
 \[
-\rho_{Le} = \frac{v_{te}}{\omega_{ce}} \approx \frac{1.33\times 10^8}{8.8\times 10^{11}} \approx 1.5\times 10^{-4}\,\mathrm{m} = 0.15\,\mathrm{mm}
+\rho_{Le} = \frac{v_{te}}{\omega_{ce}} \approx \frac{4.2\times 10^7}{8.8\times 10^{11}} \approx 4.8\times 10^{-5}\,\mathrm{m} \approx 0.05\,\mathrm{mm}
 \]
 
 对于氘离子（$m_i \approx 2\times 1.673\times 10^{-27}\,\mathrm{kg} = 3.346\times 10^{-27}\,\mathrm{kg}$）：
@@ -1383,7 +1395,7 @@ v_{te} = \sqrt{\frac{k_B T_e}{m_e}} = \sqrt{\frac{(10^4)(1.602\times 10^{-19})}{
 \omega_{ci} = \frac{eB}{m_i} \approx 2.4\times 10^{8}\,\mathrm{rad/s}, \qquad f_{ci} \approx 38\,\mathrm{MHz}
 \]
 \[
-v_{ti} = \sqrt{\frac{k_B T_i}{m_i}} \approx 2.2\times 10^{6}\,\mathrm{m/s}, \qquad \rho_{Li} = \frac{v_{ti}}{\omega_{ci}} \approx 9\,\mathrm{mm}
+v_{ti} = \sqrt{\frac{k_B T_i}{m_i}} \approx 6.9\times 10^{5}\,\mathrm{m/s}, \qquad \rho_{Li} = \frac{v_{ti}}{\omega_{ci}} \approx 2.9\,\mathrm{mm}
 \]
 可见离子回旋半径约为电子的60倍，但仍远小于装置尺度（托卡马克大半径约 $1$--$2\,\mathrm{m}$）。
 \end{example}
