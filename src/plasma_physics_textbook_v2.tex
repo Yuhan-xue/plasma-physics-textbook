@@ -755,8 +755,8 @@ Alfv\'{e}n 1942、Rosenbluth--Rostoker 1962），提供背景、
 
 \begin{itemize}[leftmargin=*]
 \item[\textcolor{red}{$\blacksquare$}] \textbf{必学（必须掌握）}：\S1.1 矢量分析复习；\S1.2 分布函数与统计平均；\S1.4 傅里叶变换与色散关系基础
-\item[\textcolor{orange}{$\blacksquare$}] \textbf{重要（建议掌握）}：\S1.3 曲线坐标系；\S1.5 $\delta$函数与点粒子描述
-\item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：\S1.6 张量运算进阶（第5章 MHD 应力张量才需要）
+\item[\textcolor{orange}{$\blacksquare$}] \textbf{重要（建议掌握）}：\S1.3 曲线坐标系（柱坐标全书高频）
+\item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：\S1.5 $\delta$函数与点粒子描述（第2章德拜屏蔽用到）；\S1.6 张量运算进阶（第5章 MHD 应力张量才需要）
 \end{itemize}
 
 \textbf{本章学完你应该能够：}
@@ -1060,6 +1060,8 @@ v_p = \frac{\omega}{k} = \frac{\sqrt{\omega_p^2 + c^2k^2}}{k} = c\sqrt{1 + \frac
 \item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：\S2.4 耦合参数与等离子体分类（强/弱耦合）
 \item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：\S2.5 等离子体参数的数值估算（用到时回看）
 \end{itemize}
+
+\textbf{本章新符号：}$\lambda_D$（德拜长度，屏蔽特征尺度）；$\omega_p$（等离子体频率，集体振荡特征频率）；$N_D$（德拜球内粒子数，集体性判据）；$\Gamma$（耦合参数，势能/动能之比）。全书通用符号见前言速查表。
 \end{insight}
 
 很多人初次接触等离子体时会想："这不就是电离的气体吗？"这个说法在直觉上没错，但\textbf{并非所有电离气体都是等离子体}。关键在于：等离子体中的粒子必须表现出\textbf{集体行为}——大量粒子通过长程电磁力耦合在一起，形成具有自身特征尺度和特征频率的自治系统。
@@ -1229,19 +1231,19 @@ m_e \ddot{\Delta x} = -\frac{n_e e^2}{\eps_0}\Delta x
 \[
 L \gg \lambda_D
 \]
-系统尺度远大于德拜长度，才能保证大尺度准中性。
+一句话：系统要足够大——比屏蔽云大得多，内部才能"忘记"边界，维持大尺度准中性。
 
 \textbf{判据二}（集体行为）：
 \[
 N_D = n\lambda_D^3 \gg 1
 \]
-德拜球内包含大量粒子，屏蔽是集体效应而非少数粒子的行为。
+一句话：屏蔽必须是"人多势众"的集体效应——德拜球内粒子太少，屏蔽就只是个别粒子的偶然行为。
 
 \textbf{判据三}（弱耦合）：
 \[
 \Gamma = \frac{e^2}{4\pi\eps_0 a k_B T} \ll 1
 \]
-其中 $a \sim n^{-1/3}$ 是粒子平均间距。粒子热动能远大于库仑相互作用能，系统处于弱耦合状态。
+其中 $a \sim n^{-1/3}$ 是粒子平均间距。一句话：粒子热运动太剧烈，来不及被邻近电荷"排挤"或"俘获"，每个粒子同时与许多伙伴弱相互作用——这是平均场近似成立的前提。
 \end{theorem}
 
 \begin{insight}{耦合参数的直观含义}{gamma-insight}
@@ -1914,6 +1916,8 @@ v_A = \frac{B}{\sqrt{\mu_0\rho_m}} = \frac{10^{-3}}{\sqrt{(4\pi\times 10^{-7})(1
 \item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：\S6.4 磁化等离子体中的波（哨声波、低混杂波）
 \item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：\S6.5 波--粒子相互作用简介
 \end{itemize}
+
+\textbf{本章新符号：}$v_{te}$（电子热速度）；$c_s$（离子声速，由 $T_e$ 决定）；$\omega_{ce}$（电子回旋频率，第3章）；$\omega_{pe}$（朗缪尔频率）；下标 $\parallel,\perp$（平行/垂直磁场分量）。全书通用符号见前言速查表。
 \end{insight}
 
 波是等离子体中信息、能量和动量传递的主要载体。与普通介质中的声波或光波不同，等离子体支持极其丰富的波模式，其根本原因在于等离子体中存在多种恢复力：热压、静电恢复力（通过泊松方程）、磁压和磁张力。
@@ -2132,16 +2136,15 @@ f = f_0(v) + f_1(x,v,t), \qquad E = E_1(x,t)
 \end{theorem}
 
 \begin{insight}{Landau阻尼的物理图像}{landau-intuition}
-考虑速度略低于相速度 $v_\phi$ 的粒子：
+在波参考系中，共振粒子的速度为 $v' = v - v_\phi$：
 \begin{itemize}
-\item 这些粒子在波的电场中被"捕获"，相对于波做周期性加速和减速
-\item 当粒子从后方追上波的波峰时（$v < v_\phi$，粒子在波参考系中向右运动），被波的减速场作用，损失能量给波
-\item 当粒子速度略大于 $v_\phi$ 时，粒子在波参考系中向左运动，被波的加速场作用，从波获得能量
+\item 慢粒子（$v < v_\phi$，$v' < 0$）：在波参考系中\textbf{向左}运动，被波的电场\textbf{加速}，\textbf{从波获得能量}
+\item 快粒子（$v > v_\phi$，$v' > 0$）：在波参考系中\textbf{向右}运动，推着波峰前进，被波\textbf{减速}，\textbf{把能量交给波}
 \end{itemize}
 
-由于麦克斯韦分布中慢粒子 ($v < v_\phi$) 比快粒子 ($v > v_\phi$) 多（$\partial f_0/\partial v < 0$），净效应是粒子从波中吸收能量，波因此被阻尼。
+由于麦克斯韦分布中慢粒子 ($v < v_\phi$) 比快粒子 ($v > v_\phi$) 多（$\partial f_0/\partial v < 0$），获得能量的粒子占多数，净效应是粒子从波中吸收能量，波因此被阻尼。
 
-注意：\textbf{没有任何碰撞发生}。能量传递是通过波与共振粒子之间的相干相互作用完成的。这是纯粹的集体效应。
+注意：\textbf{没有任何碰撞发生}，也\textbf{没有捕获}（trapping 是非线性效应，见下文）。能量传递是通过波与共振粒子之间的相干相互作用完成的。这是纯粹的集体效应。
 \end{insight}
 
 \begin{history}{Landau阻尼的发现与实验验证}{landau-history}
@@ -2593,8 +2596,7 @@ $n\tau$ & $\sim 10^{20}\,\mathrm{m}^{-3}\cdot\mathrm{s}$ & $\sim 10^{21}\,\mathr
 % ============================================================
 % 第11章：低温工业等离子体物理
 % ============================================================
-\chapter{低温工业等离子体物理}
-\label{ch:11}
+\chapter{低温工业等离子体物理}\label{ch:11}
 
 \begin{chapterintro}
 低温等离子体（$T_e \sim 1\sim 10\,\mathrm{eV}$，$T_i \sim$ 室温）虽然温度远低于核聚变等离子体，却是现代半导体工业、材料加工、表面处理的核心工具。本章面向自学者，从气体放电的物理基础出发，深入讲解鞘层这一被全书此前章节忽略的关键结构，再延伸到化学反应、磁控溅射与工艺参数估算。我们的目标是：不仅知道公式，更能在脑中"看到"等离子体在反应腔中的运动图像。
@@ -3377,8 +3379,7 @@ P_{\text{abs}} \propto n_e \cdot E_{\text{loss}} \propto \frac{1}{3.75} \times \
 
 \newpage
 
-\chapter{等离子体基础诊断}
-\label{ch:12}
+\chapter{等离子体基础诊断}\label{ch:12}
 
 \begin{quotation}
 \itshape\small
