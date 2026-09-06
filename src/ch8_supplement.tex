@@ -288,6 +288,41 @@ T_e & \nu_{ei} & \tau_{ei} \\ \hline
 \caption{库仑碰撞小角度散射示意图。带电粒子 $q_1$ 以速度 $v$ 经过靶粒子 $q_2$ 附近，由于长程库仑力，轨迹发生轻微偏折。偏转角 $\theta$ 很小，但远距离碰撞频繁发生，累积效应主导了动量输运。}
 \end{figure}
 
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.0, >=Stealth, font=\small]
+    % 角扩散随机游走：入射束经多次小角散射逐渐展宽
+    % 初始准直束
+    \draw[->, very thick, blue] (-4.5,0) -- (-2.5,0);
+    \node[blue, above] at (-3.5,0.15) {入射束 $\theta=0$};
+
+    % 多次小角偏折的轨迹（随机游走）
+    \draw[->, thick, red] (-2.5,0) -- (-1.2,0.3) -- (0.1,0.15) -- (1.4,0.75) -- (2.7,0.5) -- (4.2,1.2);
+    % 展宽包络
+    \draw[dashed, gray] (-2.5,0) -- (4.2,1.55);
+    \draw[dashed, gray] (-2.5,0) -- (4.2,-1.55);
+    \node[gray, right] at (4.2,1.55) {展宽包络};
+
+    % 每段小偏折标注
+    \draw[->, thick, orange] (-1.2,0.3) arc (0:25:0.9);
+    \node[orange, font=\footnotesize] at (-0.55,0.62) {$\delta\theta$};
+    \draw[->, thick, orange] (0.1,0.15) arc (0:28:0.9);
+    \node[orange, font=\footnotesize] at (0.75,0.5) {$\delta\theta$};
+    \draw[->, thick, orange] (1.4,0.75) arc (0:22:0.9);
+    \node[orange, font=\footnotesize] at (2.05,1.05) {$\delta\theta$};
+
+    % 方均根角扩散标注
+    \draw[<->, thick, purple!80!black] (4.7,0) -- (4.7,1.2);
+    \node[purple!80!black, right, font=\footnotesize, align=left] at (4.75,0.6) {方均根偏转角\\ $\theta_{\mathrm{rms}}\approx\sqrt{N}\,\delta\theta$};
+
+    % 说明
+    \node[align=center, font=\footnotesize] at (0,-2.3) {单次偏折 $\delta\theta\ll1$（随机方向），$N$ 次累积后方均根偏转角 $\theta_{\mathrm{rms}}=\sqrt{N}\,\delta\theta$\\
+    偏转角达到 $90°$（速度"记忆"完全丢失）所需碰撞数 $N_{90}\sim1/\delta\theta^2$，即动量弛豫时间 $\tau\sim N_{90}/\nu$};
+\end{tikzpicture}
+\caption{库仑碰撞的角扩散（速度空间随机游走）。带电粒子经历大量小角偏折，每次偏折 $\delta\theta\ll1$ 且方向随机；累积 $N$ 次后方均根偏转角按 $\sqrt{N}$ 增长。这正是库仑碰撞"小角散射累积主导动量输运"的定量含义，也是库仑对数 $\ln\Lambda$ 的物理来源。}
+\label{fig:coulomb-angle-diffusion}
+\end{figure}
+
 % ch8 新例题：Spitzer 电阻率随温度的标度与等离子体加热
 \begin{example}{欧姆加热与温度的稳态}{ohmic-heating}
 实验室氩等离子体由欧姆加热维持：电流密度 $j = 10^4\,\mathrm{A/m^2}$，密度 $n_e = 10^{19}\,\mathrm{m^{-3}}$，库仑对数 $\ln\Lambda = 10$。

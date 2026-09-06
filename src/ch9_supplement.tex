@@ -256,12 +256,35 @@ f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
 
 \textbf{物理分析：}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
-\item 漂移波的频率远小于离子回旋频率（$\omega_{ci} = eB/m_i \approx 9.6\times 10^{7}\,\mathrm{rad/s}$ for protons），满足低频近似。
+\item 漂移波的频率远小于离子回旋频率（$\omega_{ci} = eB/m_i \approx 1.9\times 10^{8}\,\mathrm{rad/s}$ for protons），满足低频近似。
 \item 漂移波不稳定性的核心机制：密度涨落引起电势涨落，电势涨落驱动 $\vect{E}\times\vect{B}$ 漂移，进一步放大密度涨落——正反馈回路。
 \item 在托卡马克中，漂移波及其非线性发展（漂移波湍流）是粒子反常输运的主要来源之一。
 \item 虽然上述估算非常粗糙（真实色散关系涉及 $k_{\parallel}$、碰撞率、磁剪切等），但它给出了正确的量级：漂移波频率在千赫兹到兆赫兹范围，与装置尺度相当。
 \end{itemize}
 \end{example}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.0, >=Stealth, font=\small,
+  box/.style={draw, rounded corners, fill=blue!10, minimum width=3.2cm, minimum height=0.9cm, align=center}]
+    % 四个环节的正反馈回路
+    \node[box, fill=orange!15] (dn) at (0,2.2) {密度涨落 $\delta n$};
+    \node[box, fill=blue!15] (dp) at (5.6,2.2) {电势涨落 $\delta\phi$};
+    \node[box, fill=green!15] (exb) at (5.6,-0.6) {$\vect{E}\times\vect{B}$ 漂移\\（扰动对流）};
+    \node[box, fill=red!15] (amp) at (0,-0.6) {密度涨落被放大};
+
+    \draw[->, very thick] (dn) -- node[above] {沿 $y$ 方向} (dp);
+    \draw[->, very thick] (dp) -- node[right] {$\delta\vect{E}\perp\vect{B}$} (exb);
+    \draw[->, very thick] (exb) -- node[below left=0.1cm and -0.5cm, align=center, font=\footnotesize] {把高密度区\\输运到低密度区} (amp);
+    \draw[->, very thick, dashed] (amp) -- node[left] {正反馈} (dn);
+
+    % 梯度与磁场示意（放在回路外侧，不与连线重叠）
+    \node[font=\small, align=left] at (0,0.85) {};
+    \node[font=\small, align=center] at (2.8,3.3) {背景：$\nabla n$ 沿 $-x$ 方向，$\vect{B}$ 垂直纸面向外};
+\end{tikzpicture}
+\caption{漂移波不稳定性的正反馈回路。密度梯度（沿 $-x$ 方向）中的密度涨落产生电势涨落，电势涨落的 $\vect{E}\times\vect{B}$ 漂移把高密度等离子体输运到低密度区，进一步放大密度涨落——扰动指数增长。磁场 $\vect{B}$ 垂直纸面向外。}
+\label{fig:drift-wave-feedback}
+\end{figure}
 
 \begin{figure}[htbp]
 \centering
