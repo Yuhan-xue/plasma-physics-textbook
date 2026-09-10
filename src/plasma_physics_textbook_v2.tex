@@ -25,7 +25,12 @@
 \usepackage{array}
 \usepackage{caption}
 \usepackage{subcaption}
-\usepackage{hyperref}
+\usepackage[pdfusetitle,
+  pdftitle={等离子体物理自学教材 v1.2.2},
+  pdfauthor={Han \& Kimi},
+  pdfsubject={经典弱耦合等离子体物理入门},
+  pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
+  pdfcreationdate={D:20260906000000Z}]{hyperref}
 \usepackage{cleveref}
 \usepackage{braket}
 \usepackage{float}
@@ -152,10 +157,12 @@
 \node[anchor=north, align=center] at ([yshift=-4.5cm]current page.north) {
   {\fontsize{44}{52}\selectfont\bfseries\textcolor{white}{等离子体物理}}\\[0.3cm]
   {\fontsize{22}{28}\selectfont\textcolor{white!80}{Plasma Physics}}\\[0.3cm]
-  {\Large\textcolor{white!70}{自学教材}}
+  {\Large\textcolor{white!70}{自学教材}}\\[0.8cm]
+  {\large\textcolor{white!70}{v1.2.2}}
 };
 \node[anchor=south, align=center] at ([yshift=3cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.5cm]
+  {\small\textcolor{white!50}{2026 年 9 月}}
 };
 \end{tikzpicture}
 \clearpage

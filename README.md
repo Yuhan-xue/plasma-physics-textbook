@@ -96,23 +96,11 @@ plasma-physics-textbook/
 ├── LICENSE                            # CC BY-NC-SA 4.0 协议
 ├── .gitignore                         # 忽略编译产物
 ├── pdf/
-│   └── plasma_physics_textbook_v2.pdf # 最终 PDF（233 页）
-├── src/                               # LaTeX 源码
-│   ├── plasma_physics_textbook_v2.tex # 主文件（~5000 行，含导言区、封面、前言）
-│   ├── appendices.tex                 # 附录 A-G（预留，通过 \input 引入）
-│   ├── part_preface_symbols.tex       # 符号说明与前言
-│   ├── part_chapters_1_10.tex         # 第 1-10 章正文
-│   ├── chapter11.tex                  # 第 11 章（低温工业等离子体）
-│   ├── chapter12.tex                  # 第 12 章（等离子体基础诊断）
-│   ├── ch1_supplement.tex ~ ch12_supplement.tex  # 每章补充（例题+TikZ+速查+清单）
-│   └── ...                            # 其他子文件
-├── scripts/                           # 辅助脚本（公式编号、修改记录等）
-│   ├── analyze_formulas.py
-│   ├── modify_formulas.py
-│   └── apply_mods.py
-└── docs/                              # 文档与报告
-    ├── formula_numbering_report.md    # 公式编号修改记录
-    └── modifications.json             # 结构化修改记录
+│   └── plasma_physics_textbook_v2.pdf # 最终 PDF（235 页，元数据含版本号）
+├── src/                               # LaTeX 源码（唯一入口）
+│   ├── plasma_physics_textbook_v2.tex # 主文件（~5050 行，正文全内联，含封面/前言/附录）
+│   └── ch1_supplement.tex ~ ch12_supplement.tex  # 每章补充（例题+TikZ+速查+清单）
+└── LICENSE
 ```
 
 ---
@@ -170,6 +158,7 @@ plasma-physics-textbook/
 | v1.1.1 | 2026-09-05 | 深度审校：删除旧版拆本死文件，统一 label 体系，README 数字对齐实际编译产物 |
 | v1.2.0 | 2026-09-05 | 全面修订：重画 4 个配图（I-V 图标注 $V_f$）、修正 Landau 阻尼物理图像方向、统一探针 I-V 符号约定、修复速查卡 key 泄漏与例题 3.1 热速度数值、补三判据直观对照与章首符号表（235 页 / 78 例题） |
 | v1.2.1 | 2026-09-06 | 配图补充：新增漂移波不稳定性正反馈回路示意图与库仑碰撞角扩散随机游走示意图；修正漂移波例题 $\omega_{ci}$ 数值（235 页 / 78 例题 / 23 TikZ 图） |
+| v1.2.2 | 2026-09-06 | 仓库整理：删除旧版根目录 PDF、历史修改脚本与过程报告；封面加版本号，PDF 元数据加版本与生成日期（235 页 / 78 例题 / 23 TikZ 图） |
 
 ---
 

@@ -11,8 +11,9 @@
 *.fls
 *.xdv
 
-# PDF 备份（旧版本）
+# PDF 备份与根目录散落产物（正式发布 PDF 在 pdf/ 目录）
 plasma_physics_textbook.pdf
+/plasma_physics_textbook_v2.pdf
 
 # 临时文件
 *.tmp
