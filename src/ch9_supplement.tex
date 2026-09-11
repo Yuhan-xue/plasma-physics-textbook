@@ -119,19 +119,19 @@ k_{\text{max}} = \frac{5\times 10^{10}}{2\times 10^{7}} = 2.5\times 10^{3}\,\mat
 
 对对称双流（两束等密度冷电子相向运动），最大增长率约为：
 \[
-\gamma_{\max} \approx \frac{\omega_{pe}}{2}
+\gamma_{\max} \approx \frac{\omega_{pe}}{2\sqrt[3]{2}} \approx 0.4\,\omega_{pe}
 \]
 
 此处 $u$ 较大而离子静止，属于电子--离子双流不稳定性（Buneman不稳定性），最大增长率约为：
 \[
-\gamma_{\max} \approx \left(\frac{m_\ee}{2m_\ii}\right)^{1/3}\omega_{pe}
-= \left(\frac{9.11\times 10^{-31}}{2\times 1.67\times 10^{-27}}\right)^{1/3}\times 5\times 10^{10}
-\approx 3.2\times 10^{9}\,\mathrm{rad/s}
+\gamma_{\max} \approx \frac{\sqrt{3}}{2}\left(\frac{m_\ee}{2m_\ii}\right)^{1/3}\omega_{pe}
+= \frac{\sqrt{3}}{2}\left(\frac{9.11\times 10^{-31}}{2\times 1.67\times 10^{-27}}\right)^{1/3}\times 5\times 10^{10}
+\approx 2.8\times 10^{9}\,\mathrm{rad/s}
 \]
 
 对应增长时间：
 \[
-\tau = \frac{1}{\gamma_{\max}} \approx 3.1\times 10^{-10}\,\mathrm{s} \approx 0.3\,\mathrm{ns} = 300\,\mathrm{ps}
+\tau = \frac{1}{\gamma_{\max}} \approx 3.6\times 10^{-10}\,\mathrm{s} \approx 0.36\,\mathrm{ns} = 360\,\mathrm{ps}
 \]
 
 最大增长率发生在：
@@ -142,7 +142,7 @@ k \approx \frac{\omega_{pe}}{u} = 2.5\times 10^{3}\,\mathrm{m}^{-1}
 \textbf{物理分析：}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
 \item 双流不稳定性将电子的定向漂移动能转化为等离子体振荡能（Langmuir波）。
-\item 增长时间仅约 $300\,\mathrm{ps}$，说明在强电流等离子体中，这种不稳定性几乎是瞬发的。
+\item 增长时间仅约 $360\,\mathrm{ps}$，说明在强电流等离子体中，这种不稳定性几乎是瞬发的。
 \item 实际等离子体有温度（热速度），这会使不稳定性饱和，或改变增长条件。当 $u \lesssim v_{te}$ 时，热展宽会稳定束流。
 \item 双流不稳定性是等离子体中反常电阻的重要来源：束流能量转化为波，波再通过Landau阻尼加热电子，等效于电阻耗散。
 \end{itemize}

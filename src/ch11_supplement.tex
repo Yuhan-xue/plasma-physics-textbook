@@ -125,7 +125,8 @@ Child-Langmuir定律给出了平面鞘层中电流与鞘层电压的关系。对
     J_i = e n_s v_B = 0.6 e n_e v_B
 \]
 
-（$n_s \approx 0.6 n_e$ 为鞘层边缘密度：预鞘电位降约 $T_e/2e$，由玻尔兹曼关系 $n_s = n_0\exp(-1/2) \approx 0.607\,n_0$。）
+其中 $n_s \approx 0.6 n_e$ 为鞘层边缘密度：预鞘电位降约为 $T_e/2e$，
+由玻尔兹曼关系可得 $n_s = n_0 e^{-1/2} \approx 0.607\,n_0$。
 
 因此：
 \[
@@ -406,7 +407,7 @@ s \approx 0.47\times0.41\,\mathrm{mm}\times39 \approx 7.5\,\mathrm{mm}
 
 \begin{figure}[htbp]
     \centering
-    \begin{tikzpicture}[scale=1.0, >=Stealth]
+    \begin{tikzpicture}[scale=0.92, >=Stealth]
         % 电极
         \draw[thick, fill=gray!30] (-0.5,2) rectangle (0,4);
         \node[rotate=90] at (-0.25,3) {\small 阴极};
@@ -479,7 +480,9 @@ s \approx 0.47\times0.41\,\mathrm{mm}\times39 \approx 7.5\,\mathrm{mm}
         \node[anchor=west] at (11,2.1) {\color{green!50!black}\small 正柱：等离子体};
         \node[anchor=west] at (11,1.4) {\color{red}\small 曲线：电位分布};
     \end{tikzpicture}
-    \caption{DC辉光放电空间结构示意图。从阴极到阳极依次可见：阴极暗区、负辉光区（最亮）、法拉第暗区、正柱区（均匀等离子体）、阳极暗区、阳极辉光。上图红线为空间电位分布，下方柱状图示意发光强度。}
+    \caption{DC辉光放电空间结构示意图。从阴极到阳极依次可见：阴极暗区、
+负辉光区（最亮）、法拉第暗区、正柱区（均匀等离子体）、阳极暗区、阳极辉光。
+上图红线为空间电位分布，下方柱状图示意发光强度。}
     \label{fig:glow}
 \end{figure}
 

@@ -4,7 +4,8 @@
 \documentclass[12pt,a4paper,openany,oneside]{book}
 \usepackage[UTF8]{ctex}
 \usepackage{geometry}
-\geometry{left=2.5cm,right=3.5cm,top=2.5cm,bottom=2.5cm}
+\geometry{left=2.1cm,right=2.3cm,top=2.1cm,bottom=2.1cm,
+          footskip=1.0cm,headsep=0.5cm}
 \setlength{\headheight}{15pt}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{mathtools}
@@ -13,17 +14,69 @@
 \usepackage{siunitx}
 \usepackage{tikz,pgfplots}
 \pgfplotsset{compat=1.18}
-\usetikzlibrary{arrows.meta,decorations.pathmorphing,patterns,calc,positioning,shapes}
+\usetikzlibrary{arrows.meta,decorations.pathmorphing,decorations.markings,
+  patterns,calc,positioning,shapes,shadings,fadings,through}
+\pgfdeclarelayer{bg}
+\pgfdeclarelayer{fg}
+\pgfsetlayers{bg,main,fg}
 \usepackage{xcolor}
 \usepackage{graphicx}
 \usepackage{enumitem}
+% ---- 列表全局规范：替代全书零散的逐实例配置 ----
+\setlist{nosep,leftmargin=1.4em,topsep=3pt plus 1pt minus 1pt,
+         itemsep=1.2pt plus 0.6pt,parsep=0pt,partopsep=0pt}
+\setlist[itemize,1]{label=\textbullet}
+\setlist[itemize,2]{label=$\circ$}
+\setlist[enumerate,1]{label=\arabic*.}
+\setlist[enumerate,2]{label=(\alph*)}
+\usepackage{etoolbox}
+\usepackage{microtype}
 \usepackage{fancyhdr}
 \usepackage{titlesec}
 \usepackage{tcolorbox}
 \tcbuselibrary{theorems,skins,breakable}
 \usepackage{booktabs}
 \usepackage{array}
+\usepackage{longtable}
 \usepackage{caption}
+% ---- 封面与全书主题色 ----
+\definecolor{coverDeep}{RGB}{6, 10, 32}        % 深空藏青（渐变锚点）
+\definecolor{coverMid}{RGB}{28, 42, 96}        % 中段藏青蓝（全文标题主色）
+\definecolor{coverGlow}{RGB}{196, 92, 42}      % 太阳风暖辉
+\definecolor{imfLine}{RGB}{120, 190, 235}      % IMF 磁力线青
+\definecolor{swFlow}{RGB}{255, 186, 96}        % 太阳风流线琥珀
+\definecolor{magnetopause}{RGB}{120, 232, 190} % 磁层顶青绿
+\definecolor{reconX}{RGB}{255, 238, 140}       % X 点高亮
+\definecolor{earthBlue}{RGB}{42, 104, 176}     % 地球盘面
+% ---- 封面示意图配色（语义化命名，便于逐元素调整）----
+\colorlet{shockC}{magnetopause}                % 弓形激波（虚线）
+\colorlet{mpC}{magnetopause}                   % 磁层顶
+\colorlet{tailC}{imfLine}                      % 磁尾尾瓣磁场
+\colorlet{lineC}{imfLine}                      % 磁力线（同 IMF 青）
+\colorlet{cuspC}{swFlow}                       % 极尖区标记
+\definecolor{plasmaC}{RGB}{46, 40, 96}         % 等离子体片（深紫）
+\definecolor{neutralC}{RGB}{10, 10, 20}        % 中性片（近黑）
+\definecolor{bLineC}{RGB}{120, 190, 235}       % 封面磁力线
+\definecolor{orbC}{RGB}{255, 186, 96}         % 封面回旋轨迹
+\definecolor{torusC}{RGB}{96, 168, 224}       % 封面环向磁场
+\definecolor{glowC}{RGB}{86, 196, 236}        % 封面电离辉光
+\definecolor{filC}{RGB}{150, 226, 255}        % 封面放电丝
+\colorlet{sheetC}{swFlow}                      % 等离子体片 / 电流片
+\colorlet{earthC}{earthBlue}                   % 地球盘面
+% ---- 封面柔光淡出（必须声明在导言区，放进 picture 会扰乱 overlay 定位）----
+\tikzfading[name=glowFade, inner color=transparent!85, outer color=transparent!0,
+            middle color=transparent!35]
+\tikzfading[name=warmFade, inner color=transparent!55, outer color=transparent!0,
+            middle color=transparent!18]
+\tikzfading[name=xFade, inner color=transparent!75, outer color=transparent!0,
+            middle color=transparent!25]
+% ---- 图表标题：表格与图注分区处理 ----
+\captionsetup{font=small,labelfont={bf,color=coverMid},labelsep=quad,
+              justification=centering,skip=4pt,belowskip=2pt}
+\captionsetup[table]{position=top,skip=3pt}
+\captionsetup[figure]{position=bottom}
+% ---- 表格字号与列距统一（不改 arraystretch，避免覆盖 4312 行的显式设置）----
+\AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{5pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
   pdftitle={等离子体物理自学教材 v1.2.2},
@@ -31,6 +84,7 @@
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
   pdfcreationdate={D:20260906000000Z}]{hyperref}
+\hypersetup{colorlinks=true,linkcolor=coverMid,citecolor=coverMid,urlcolor=coverMid}
 \usepackage{cleveref}
 \usepackage{braket}
 \usepackage{float}
@@ -39,15 +93,37 @@
 \usepackage{epigraph}
 \setlength{\marginparwidth}{1.6cm}
 \setlength{\marginparsep}{0.2cm}
+% ---- 段落与公式间距：回收造成大片留白的垂直空间 ----
+\setlength{\parskip}{2.6pt plus 1.2pt minus 0.6pt}
+\setlength{\jot}{2pt}
+\AtBeginDocument{%
+  \setlength{\abovedisplayskip}{5pt plus 2pt minus 2pt}%
+  \setlength{\belowdisplayskip}{5pt plus 2pt minus 2pt}%
+  \setlength{\abovedisplayshortskip}{3pt plus 1pt}%
+  \setlength{\belowdisplayshortskip}{3pt plus 1pt}%
+}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\nouppercase{\leftmark}}
-\fancyhead[R]{\thepage}
-\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\nouppercase{\small\itshape\leftmark}}
+\fancyhead[R]{\small\bfseries\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
 \titleformat{\chapter}[display]
-  {\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
-\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
-\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+  {\normalfont\huge\heiti\color{coverMid}}
+  {\filleft\fontsize{64}{64}\selectfont\color{coverMid!30}\thechapter}
+  {-2.4ex}
+  {\Huge\heiti\filright}
+  [\vspace{0.6ex}{\color{coverMid!45}\titlerule[1.2pt]}]
+\titlespacing*{\chapter}{0pt}{-24pt}{26pt}
+\titleformat{\section}
+  {\normalfont\Large\heiti\color{coverMid}}{\thesection}{0.9em}{}
+\titlespacing*{\section}{0pt}{12pt plus 3pt minus 2pt}{6pt plus 2pt minus 1pt}
+\titleformat{\subsection}
+  {\normalfont\large\heiti\color{coverMid!85}}{\thesubsection}{0.8em}{}
+\titlespacing*{\subsection}{0pt}{9pt plus 2pt minus 1pt}{4pt}
+% ---- 章前引语：楷体，与标题黑体形成字型区分（KaiTi 无斜体，不设 itshape）----
+\setlength{\epigraphwidth}{0.62\textwidth}
+\renewcommand{\epigraphsize}{\small\kaishu}
+\setlength{\epigraphrule}{0pt}
 \definecolor{thmblue}{RGB}{41, 98, 255}
 \definecolor{defgreen}{RGB}{46, 125, 50}
 \definecolor{cororange}{RGB}{230, 81, 0}
@@ -112,6 +188,18 @@
   title={自学检查清单：#1},
   phantomlabel={ckl:#2},
   left=4pt,right=4pt,top=4pt,bottom=4pt}
+% ---- 统一色块样式：必须在上面 15 个定义之后，否则被各自的 left=4pt 反压 ----
+\tcbset{
+  boxsep=0pt,
+  left=5pt,right=5pt,top=3pt,bottom=3pt,
+  before skip=5pt plus 2pt minus 1pt,
+  after skip=5pt plus 2pt minus 1pt,
+  fonttitle=\heiti\small,
+  toptitle=2pt,bottomtitle=2pt,
+  titlerule=0.4pt,
+  sharp corners=southwest,
+  enhanced
+}
 \newcommand{\diff}{\mathrm{d}}
 \newcommand{\ii}{\mathrm{i}}
 \newcommand{\ee}{\mathrm{e}}
@@ -122,7 +210,7 @@
 \newcommand{\curl}{\nabla\times}
 \newcommand{\divg}{\nabla\cdot}
 \newcommand{\lap}{\nabla^2}
-\newcommand{\difficulty}[1]{\marginnote{\textcolor{red}{\textbf{[#1]}}}}
+\newcommand{\difficulty}[1]{\marginnote{\hfill\textcolor{coverMid!80}{\rule[-0.1em]{2pt}{0.9em}}\,\textcolor{coverMid}{\footnotesize\textbf{[#1]}}}}
 \newcommand{\tens}[1]{\bm{#1}}
 \newenvironment{chapterintro}{%
   \begin{quotation}\itshape\small%
@@ -132,37 +220,112 @@
 \begin{document}
 \thispagestyle{empty}
 \begin{tikzpicture}[remember picture, overlay]
-\shade[top color=violet!10!black, bottom color=black!80!blue] 
-  (current page.north west) rectangle (current page.south east);
-\foreach \a in {0,30,60,90,120,150,180,210,240,270,300,330} {
-  \draw[white!15, line width=0.3pt, decorate, decoration={coil, amplitude=2pt, segment length=8pt}]
-    ($(current page.north)+(\a:2cm)$) .. controls ++(\a-30:4cm) and ++(\a+30:4cm) .. ($(current page.north)+(\a+15:6cm)$);
-}
-\begin{scope}[shift={($(current page.center)+(0,1cm)$)}]
-\shade[inner color=white!10, outer color=transparent] (0,0) ellipse (5 and 2);
-\foreach \x in {-3,-1.5,0,1.5,3} {
-  \foreach \y in {-1.5,0,1.5} {
-    \draw[->, line width=0.8pt, green!50!white] (\x,\y-1.5) -- (\x,\y+1.5);
+% ============ 0. 背景：多段渐变 + 柔化辉光 ============
+\begin{pgfonlayer}{bg}
+  % (a) 主渐变：三段色标 + 斜向角度，形成方向感
+  \shade[left color=coverDeep, right color=coverDeep, middle color=coverMid,
+         shading angle=115]
+    (current page.north west) rectangle (current page.south east);
+  % (b) 左上暖辉：太阳风来向（多层同心淡出，消除硬边）
+  \fill[path fading=warmFade, color=coverGlow!65!white]
+    ([xshift=-6.5cm,yshift=3.0cm]current page.north west) circle (15cm);
+  \fill[path fading=warmFade, color=coverGlow!45!white]
+    ([xshift=-7.5cm,yshift=4.0cm]current page.north west) circle (10cm);
+  \fill[path fading=warmFade, color=coverGlow!30!white]
+    ([xshift=-8.2cm,yshift=4.8cm]current page.north west) circle (6cm);
+  % (c) 右下压暗：多层径向淡出，消除硬圆边
+  \fill[path fading=glowFade, color=black]
+    ([xshift=1.5cm,yshift=-1.5cm]current page.south east) circle (15cm);
+  \fill[path fading=glowFade, color=black]
+    ([xshift=0.5cm,yshift=-0.5cm]current page.south east) circle (8cm);
+\end{pgfonlayer}
+
+% ============ 封面主图：等离子体放电（纯视觉，无文字标注）============
+% 视觉语汇（让完全不懂物理的人也能一眼认出"这是等离子体"）：
+%   · 环形约束磁场（托卡马克形状）——高温等离子体的标志性几何
+%   · 沿环缠绕的发光丝状放电——等离子体球/闪电的视觉原型
+%   · 中心辉光——电离气体的自发光
+%   · 少量弥散电荷点——"正负电荷共存"即等离子体的定义
+% 唯一文字是公式（可选）。
+\coordinate (O) at ([yshift=-0.15cm]current page.center);
+\begin{scope}[shift={(O)}]
+
+  % ---- (1) 环形约束场：多个椭圆同心，构成环面的透视 ----
+  \foreach \w/\h/\op in {5.30/2.55/0.20, 4.70/2.20/0.26, 4.10/1.85/0.32,
+                         3.50/1.50/0.38} {
+    \draw[torusC, line width=1.5pt, opacity=\op]
+      (0,0) ellipse ({\w} and {\h});
   }
-}
-\node[green!60!white, font=\large] at (4.2,0) {$\vect{B}$};
-\draw[line width=1.8pt, red!70!white, domain=-3:3, samples=200] 
-  plot({1.5*cos(3*\x r)}, {1.5*sin(3*\x r)}, {\x});
-\node[red!70!white, font=\footnotesize] at (2.2,1.2) {粒子轨道};
-\draw[dashed, line width=1pt, blue!50!white] (0,0) circle (2.2);
-\node[blue!50!white, font=\footnotesize] at (0,-2.6) {德拜球};
-\draw[white!20, line width=0.5pt] (0,0) circle (3.2);
-\draw[white!15, line width=0.5pt] (0,0) circle (3.6);
+
+  % ---- (2) 环面中心辉光：单一径向渐变，无分块 ----
+  % 用 \shade 的 inner/outer 双端色，一次成形；不再叠加多层椭圆（会留下色带）
+  \begin{pgfonlayer}{bg}
+  % 大光晕：先铺，半径大于圆盘，边缘 alpha 归零
+  \fill[path fading=glowFade, color=glowC!45!white, opacity=0.42]
+    (0,0) ellipse (6.40 and 2.85);
+  % 主体渐变圆盘：白热核心 → 青 → 淡青（外缘比光晕更亮，避免出现暗环）
+  \shade[inner color=white!92!glowC, middle color=glowC!65!white,
+         outer color=glowC!38!white, opacity=0.95]
+    (0,0) ellipse (3.55 and 1.50);
+  \end{pgfonlayer}
+
+  % ---- (2b) 辉光特效：核心的加性亮斑，增强自发光感 ----
+  \begin{pgfonlayer}{bg}
+  \shade[inner color=white, outer color=white!0!glowC, opacity=0.75]
+    (0,0) ellipse (1.30 and 0.50);
+  \shade[inner color=white!92!glowC, outer color=white!0!glowC, opacity=0.5]
+    (0,0) ellipse (2.30 and 0.92);
+  \end{pgfonlayer}
+
+  % ---- (3) 丝状放电：沿环面缠绕的发光等离子体丝 ----
+  % 先铺一层宽而淡的同轨迹描边作为 bloom（辉光外溢）
+  \foreach \ph in {0, 120, 240} {
+    \draw[filC!40!white, line width=5.0pt, opacity=0.16, smooth, samples=200]
+      plot[domain=0:360, variable=\a]
+        ({3.55*cos(\a)}, {1.50*sin(\a) + 0.53*sin(6*\a+\ph)});
+  }
+  % 三条相位错开的缠绕线，模拟放电丝沿环面的螺旋
+  \foreach \ph/\amp/\op/\lw in {0/0.50/0.9/1.7, 120/0.56/0.75/1.4, 240/0.52/0.6/1.2} {
+    \draw[filC, line width=\lw pt, opacity=\op, smooth, samples=240]
+      plot[domain=0:360, variable=\a]
+        ({3.55*cos(\a)},
+         {1.50*sin(\a) + \amp*sin(6*\a+\ph)});
+  }
+  % 最亮的放电主通道（近白 + 外层柔光）
+  \draw[white!70!filC, line width=3.2pt, opacity=0.22, smooth, samples=260]
+    plot[domain=0:360, variable=\a]
+      ({3.55*cos(\a)}, {1.50*sin(\a) + 0.22*sin(6*\a)});
+  \draw[filC!55!white, line width=1.2pt, opacity=0.98, smooth, samples=260]
+    plot[domain=0:360, variable=\a]
+      ({3.55*cos(\a)}, {1.50*sin(\a) + 0.22*sin(6*\a)});
+
+  % ---- (4) 弥散电荷点：正负电荷共存的视觉暗示（带光晕）----
+  \foreach \px/\py/\rr/\op in {%
+      2.95/0.95/1.6/0.85, -3.15/0.55/1.5/0.80,  1.85/-1.30/1.4/0.75,
+     -2.05/-1.15/1.6/0.80,  4.35/0.20/1.3/0.55, -4.55/-0.35/1.3/0.55,
+      0.65/1.65/1.4/0.70, -0.85/-1.75/1.4/0.70,  3.60/-0.95/1.2/0.50,
+     -3.80/1.35/1.2/0.50} {
+    \fill[filC!60!white, opacity={0.14*\op}] (\px,\py) circle (3.2*\rr pt);
+    \fill[filC!70!white, opacity=\op] (\px,\py) circle (\rr pt);
+  }
 \end{scope}
-\node[anchor=north, align=center] at ([yshift=-4.5cm]current page.north) {
-  {\fontsize{44}{52}\selectfont\bfseries\textcolor{white}{等离子体物理}}\\[0.3cm]
-  {\fontsize{22}{28}\selectfont\textcolor{white!80}{Plasma Physics}}\\[0.3cm]
-  {\Large\textcolor{white!70}{自学教材}}\\[0.8cm]
-  {\large\textcolor{white!70}{v1.2.2}}
+
+% ---- 无文字标注：封面主图保持纯视觉 ----
+
+% ============ 5. 标题块 ============
+\draw[white!35, line width=0.8pt]
+  ([xshift=-4.2cm,yshift=-4.1cm]current page.north)
+  -- ([xshift=4.2cm,yshift=-4.1cm]current page.north);
+\node[anchor=north, align=center] at ([yshift=-5.1cm]current page.north) {
+  {\fontsize{46}{54}\selectfont\heiti\textcolor{white}{等离子体物理}}\\[0.35cm]
+  {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
+  {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
+  {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
+  {\small\textcolor{white!45}{v1.2.2}}
 };
-\node[anchor=south, align=center] at ([yshift=3cm]current page.south) {
-  {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.5cm]
-  {\small\textcolor{white!50}{2026 年 9 月}}
+\node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
+  {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
+  {\small\textcolor{white!45}{2026 年 9 月}}
 };
 \end{tikzpicture}
 \clearpage
@@ -399,7 +562,7 @@ $1\,\mathrm{bar}$ & $= 10^{5}\,\mathrm{Pa}$ & 工程常用 \\
 % =============================================================================
 
 本书在波动与动理学章节中大量使用傅里叶变换，采用以下
-\textbf{物理学标准约定}（$\ee^{-\ii(k\cdot r-\omega t)}$ 相位因子）：
+\textbf{物理学标准约定}（相位因子取 $\ee^{-\ii(k\cdot r-\omega t)}$）：
 \begin{align}
 f(\vect{r},t) &= \int \frac{\diff^3 k\,\diff\omega}{(2\pi)^4}\;
 \tilde{f}(\vect{k},\omega)\,\ee^{+\ii(\vect{k}\cdot\vect{r}-\omega t)}, \\
@@ -3801,7 +3964,10 @@ $A_{ji}$、$A_{lk}$ 为爱因斯坦自发辐射系数。
 
 \subsection{连续光谱：韧致辐射与电子温度}
 
-除了线光谱，等离子体还产生连续光谱（Continuum），主要来源是\textbf{韧致辐射}（Bremsstrahlung，德文"制动辐射"）：自由电子经过离子附近时被库仑场偏转，产生加速辐射。
+{\emergencystretch=3em
+除了线光谱，等离子体还产生连续光谱（Continuum），
+其主要来源是\textbf{韧致辐射}（Bremsstrahlung，德文 ``制动辐射''）：
+即自由电子经过离子附近时被库仑场偏转，从而产生加速辐射。\par}
 
 \begin{theorem}{韧致辐射功率谱}{}{}
 对于非相对论性麦克斯韦电子分布，单位体积、单位频率、单位立体角的韧致辐射功率谱为
@@ -4303,17 +4469,25 @@ A_zB_x & A_zB_y & A_zB_z
 
 \section{参数总表}
 
-\begin{table}[htbp]
-\centering
-\caption{等离子体特征参数速查表（SI 单位制，$T$ 以 eV 为单位时，$k_\mathrm{B}T\to T$）}
-\label{tab:plasma-parameters}
-\scriptsize
+{\scriptsize
 \setlength{\tabcolsep}{2pt}
 \renewcommand{\arraystretch}{0.78}
-\begin{tabular}{@{}p{2.6cm}p{1.4cm}p{6.0cm}p{3.2cm}p{1.6cm}@{}}
+\begin{longtable}{@{}p{2.2cm}p{1.2cm}p{7.1cm}p{2.9cm}p{1.4cm}@{}}
+\caption{等离子体特征参数速查表（SI 单位制，$T$ 以 eV 为单位时，$k_\mathrm{B}T\to T$）}
+\label{tab:plasma-parameters}\\
 \toprule
 \textbf{参数名} & \textbf{符号} & \textbf{公式} & \textbf{典型数值} & \textbf{章节} \\
 \midrule
+\endfirsthead
+\toprule
+\textbf{参数名} & \textbf{符号} & \textbf{公式} & \textbf{典型数值} & \textbf{章节} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{5}{r}{\small（续下页）} \\
+\endfoot
+\bottomrule
+\endlastfoot
 \multicolumn{5}{l}{\textit{一、基本定义}} \\
 \midrule
 德拜长度 & $\lambda_D$ & $\displaystyle\lambda_D = \sqrt{\frac{\eps_0 k_\mathrm{B} T_e}{n_e e^2}}$ & $10^{-4}\sim10^{-3}$ m (聚变) & \S 2.2 \\
@@ -4342,7 +4516,7 @@ A_zB_x & A_zB_y & A_zB_z
 \midrule
 朗道长度 & $b_\pi$ & $\displaystyle b_\pi = \frac{e^2}{4\pi\eps_0 k_\mathrm{B}T}$ & $\sim 10^{-14}$ m & \S 4.1 \\
 库仑对数 & $\ln\Lambda$ & $\displaystyle\ln\Lambda = \ln\!\left(\frac{\lambda_D}{b_\pi}\right)$ & $10\sim 25$ & \S 4.1 \\
-电子--离子碰撞频率 & $\nu_{ei}$ & $\displaystyle\nu_{ei} = \frac{n_i Z^2 e^4}{3(2\pi)^{3/2}\eps_0^2 m_e^{1/2}(k_\mathrm{B}T_e)^{3/2}}\ln\Lambda$ & $\sim 10^{5}$ s$^{-1}$ & \S 4.2 \\
+电子--离子碰撞频率 & $\nu_{ei}$ & $\displaystyle\nu_{ei} = \frac{n_i Z^2 e^4\ln\Lambda}{3(2\pi)^{3/2}\eps_0^2 m_e^{1/2}(k_\mathrm{B}T_e)^{3/2}}$ & $\sim 10^{5}$ s$^{-1}$ & \S 4.2 \\
 Spitzer 电阻率 & $\eta_\parallel$ & $\displaystyle\eta_\parallel = \frac{Z e^2 m_e^{1/2}}{3(2\pi)^{3/2}\eps_0^2(k_\mathrm{B}T_e)^{3/2}}\ln\Lambda$ & $\sim 10^{-8}$ $\Omega\cdot$m & \S 4.3 \\
 双极扩散系数 & $D_a$ & $\displaystyle D_a \approx \frac{\mu_e D_i + \mu_i D_e}{\mu_e + \mu_i}\approx D_i\left(1+\frac{T_e}{T_i}\right)$ & $\sim D_i$（被 $T_e/T_i$ 放大）& \S 6.4 \\
 \midrule
@@ -4350,9 +4524,8 @@ Spitzer 电阻率 & $\eta_\parallel$ & $\displaystyle\eta_\parallel = \frac{Z e^
 \midrule
 磁雷诺数 & $R_m$ & $\displaystyle R_m = \frac{\mu_0 v L}{\eta}$ & $\gg 1$（理想 MHD）& \S 9.1 \\
 等离子体 beta & $\beta$ & 同上文定义 & 见上文 & \S 11.3 \\
-\bottomrule
-\end{tabular}
-\end{table}
+\end{longtable}
+}
 
 \begin{insight}{}{}
 表 \ref{tab:plasma-parameters} 中的公式均使用 SI 单位。若采用高斯单位，需将 $1/(4\pi\eps_0)\to 1$，$\mu_0\to 4\pi/c^2$，并注意 $B$（高斯）$=10^4 B$（特斯拉）。

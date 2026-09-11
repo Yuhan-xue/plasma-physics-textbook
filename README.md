@@ -7,7 +7,7 @@
 
 ## 项目简介
 
-本项目是《等离子体物理自学教材》的完整 LaTeX 源码仓库。教材共 **233 页**，涵盖 12 章正文 + 7 附录，系统介绍从单粒子运动到聚变约束、从低温工业等离子体到实验诊断的核心内容。
+本项目是《等离子体物理自学教材》的完整 LaTeX 源码仓库。教材共 **194 页**，涵盖 12 章正文 + 7 附录，系统介绍从单粒子运动到聚变约束、从低温工业等离子体到实验诊断的核心内容。
 
 教材定位：**让有微积分和电磁学基础的读者，无需导师即可系统入门等离子体物理。**
 
@@ -17,7 +17,7 @@
 
 | 格式 | 文件 | 说明 |
 |------|------|------|
-| PDF（最终版） | [`pdf/plasma_physics_textbook_v2.pdf`](pdf/plasma_physics_textbook_v2.pdf) | 233 页完整教材，可直接阅读 |
+| PDF（最终版） | [`pdf/plasma_physics_textbook_v2.pdf`](pdf/plasma_physics_textbook_v2.pdf) | 194 页完整教材，可直接阅读 |
 | 源代码 | [`src/`](src/) 目录 | 全部 LaTeX 源文件，可编译修改 |
 
 > 如需在线阅读，请访问 [Release 页面](http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases) 下载 PDF。
@@ -96,7 +96,7 @@ plasma-physics-textbook/
 ├── LICENSE                            # CC BY-NC-SA 4.0 协议
 ├── .gitignore                         # 忽略编译产物
 ├── pdf/
-│   └── plasma_physics_textbook_v2.pdf # 最终 PDF（235 页，元数据含版本号）
+│   └── plasma_physics_textbook_v2.pdf # 最终 PDF（194 页，元数据含版本号）
 ├── src/                               # LaTeX 源码（唯一入口）
 │   ├── plasma_physics_textbook_v2.tex # 主文件（~5050 行，正文全内联，含封面/前言/附录）
 │   └── ch1_supplement.tex ~ ch12_supplement.tex  # 每章补充（例题+TikZ+速查+清单）
@@ -137,7 +137,7 @@ plasma-physics-textbook/
 - **12pt book 类**：单面排版（`oneside`），A4 纸张，适合屏幕阅读
 - **彩色定理环境**：`tcolorbox` 实现的定理/定义/例题/物理洞见/常见误区/历史盒子
 - **难度边注**：`	extbackslash difficulty{基础/提高/挑战}` 红色边注标识
-- **跨章节串联**：21 处“参见第 X 章”提示，帮助建立知识网络
+- **跨章节串联**：15 处“参见第 X 章”提示，帮助建立知识网络
 - **核心公式编号**：关键定义和定理公式统一编号，方便引用
 
 ### 内容组织
