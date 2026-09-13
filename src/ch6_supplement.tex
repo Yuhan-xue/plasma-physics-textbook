@@ -52,14 +52,24 @@ v_{te} = \sqrt{\frac{k_{\!B}T_e}{m_e}} = \sqrt{\frac{6.408\times 10^{-19}}{9.109
 \omega^2 = 3.182\times 10^{21} + 8.32\times 10^{17} = 3.182\times 10^{21}\left(1 + 2.62\times 10^{-4}\right)
 \]
 
+\textbf{注意有效数字：} 修正项只有 $\omega_{pe}^2$ 的万分之几，若先各自取三位有效数字再相减，会\emph{完全}丢掉这一修正。正确做法是\emph{只用无量纲比值}表达结果，而不是拿两个已取整的大数去相减。令
 \[
-\omega \approx \omega_{pe}\left(1 + \frac{1}{2}\times 2.62\times 10^{-4}\right) = 5.64\times 10^{10}\times 1.00013 \approx 5.65\times 10^{10}\,\mathrm{rad/s}
+\frac{\omega^2}{\omega_{pe}^2} = 1 + \varepsilon, \qquad \varepsilon = \frac{3k^2v_{te}^2}{\omega_{pe}^2} = 2.62\times 10^{-4}
+\]
+\[
+\frac{\omega}{\omega_{pe}} = \sqrt{1+\varepsilon} \approx 1 + \frac{\varepsilon}{2} = 1 + 1.31\times 10^{-4} = 1.000131
 \]
 
 \textbf{热修正相对大小：}
 \[
-\frac{\omega - \omega_{pe}}{\omega_{pe}} \approx 1.3\times 10^{-4} \approx 0.013\%
+\frac{\omega - \omega_{pe}}{\omega_{pe}} \approx \frac{\varepsilon}{2} \approx 1.3\times 10^{-4} \approx 0.013\%
 \]
+
+\textbf{绝对频率：} 把 $\omega_{pe}=5.640\times 10^{10}\,\mathrm{rad/s}$ 与上面\emph{独立}得到的无量纲比值相乘：
+\[
+\omega = 5.640\times 10^{10}\times 1.000131 = 5.6407\times 10^{10}\,\mathrm{rad/s}
+\]
+按三位有效数字仍记作 $\boxed{5.64\times 10^{10}\,\mathrm{rad/s}}$——\textbf{不是 $5.65\times 10^{10}$}。修正量 $7.4\times10^6\,\mathrm{rad/s}$ 落在第四位有效数字上，所以"$\omega$ 与 $\omega_{pe}$ 在三位有效数字下相等"正是热修正很小的正确表述；千万不要写成 $\omega$ 变了、更不要靠相减去"发现"它。这也正是本题要教的点：\textbf{小量修正必须用相对量报告，不能靠大数相减}。
 
 \textbf{(3) 德拜长度验证：}
 \[
@@ -73,13 +83,9 @@ k\lambda_{De} = 628.3\times 1.49\times 10^{-5} \approx 9.35\times 10^{-3} \ll 1
 \end{example}
 
 \begin{example}{截止频率与电磁波传播判断}{cutoff-calculation}
-电离层典型电子密度为 $n_e=10^{12}\,\mathrm{m}^{-3}$。判断以下频率的电磁波能否在电离层中传播，若能传播则计算波数和波长：
-\begin{enumerate}[label=(\arabic*)]
-\item AM广播频率 $f=5\,\mathrm{MHz}$；
-\item FM广播频率 $f=20\,\mathrm{MHz}$；
-\item 短波通信频率 $f=30\,\mathrm{MHz}$。
-\end{enumerate}
-并解释为什么短波可以实现跨半球通信，而FM广播不行。
+\textbf{模型说明（先读）：} 本题使用\emph{均匀、无磁场}的冷等离子体模型，只考虑垂直入射。判据只有一条：\textbf{载频 $f$ 与当地电子等离子体频率 $f_{pe}$ 的大小关系}——与信号用幅度调制（AM）还是频率调制（FM）\emph{毫无关系}。AM/FM 只是三个频率恰好对应的常见业务名称，不是物理分类。
+
+给定电离层典型电子密度 $n_e=10^{12}\,\mathrm{m}^{-3}$，有三个不同载频的信号：$f=5,\,20,\,30\,\mathrm{MHz}$。判断各能否在该均匀层中传播，若能传播则计算波数和波长。
 \tcblower
 \textbf{解答：}
 
@@ -123,7 +129,16 @@ k = \frac{2\pi\sqrt{(30)^2 - (8.97)^2}\times 10^6}{3\times 10^8} = \frac{2\pi\ti
 \lambda = \frac{2\pi}{k} \approx 10.5\,\mathrm{m}
 \]
 
-\textbf{物理解释：} 电离层像一面频率选择镜：低频（AM广播，$<f_{pe}$）被反射，可在地面与电离层之间多次反射，实现数千公里的远距离通信。高频（FM广播，$>f_{pe}$）穿透电离层进入太空，因此只能依靠直线传播或中继站，无法靠电离层反射实现远距离传播。
+\textbf{物理解释（局限在本模型内）：} 在这个均匀层里，只有一条规则——\textbf{载频低于 $f_{pe}$ 的被反射，高于 $f_{pe}$ 的穿透}。所以 $5\,\mathrm{MHz}$ 被反射，$20$ 和 $30\,\mathrm{MHz}$ 穿透。请注意这是一个\emph{均匀、垂直入射}模型，它能回答的只有"该频率在该密度处能否传播"。
+
+\begin{warning}{不要把本模型直接推广成真实电离层的通信结论}{cutoff-ionosphere-caveat}
+例题里 $30\,\mathrm{MHz}$ 在本模型中判为"可传播"，但这\textbf{不能}推出"$30\,\mathrm{MHz}$ 不能跨半球通信"。真实电离层是\emph{有厚度、密度随高度变化、分层}的介质，还必须考虑\emph{斜入射}。实际短波通信依赖两个本模型没有包含的机制：
+\begin{itemize}
+\item \textbf{密度剖面}：反射发生在此波频率等于\emph{局部}等离子体频率的高度，而 $f_{pe}$ 随高度先增后减（F 层峰值可达 $\sim10^{12}\,\mathrm{m^{-3}}$ 甚至更高）。同一频率在低处可能穿透、在高处被反射；
+\item \textbf{斜入射}：斜入射时有效判据是 $\omega=\omega_{pe}\cos\theta$ 的折射条件（Snell 定律 + 分层介质），斜射波可以在\emph{高于垂直截止频率}的频率下被反射回来——这正是短波能靠电离层"跳"到数千公里外、甚至跨半球的原因。
+\end{itemize}
+所以本题的"反射/穿透"只对应\emph{垂直入射+单一密度}的理想情形。真实的电离层传播需要另设模型（分层 + 斜入射），不能把截止频率与一个频段的全部通信行为画等号。
+\end{warning}
 \end{example}
 
 \begin{example}{哨声波在电离层中的传播参数}{whistler-ionosphere}
@@ -371,10 +386,11 @@ t = \frac{10}{v_g} = \frac{10}{2.85\times10^8} \approx 3.5\times10^{-8}\,\mathrm
 \item 离子声波：$\displaystyle\omega^2 = \frac{k^2c_s^2}{1+k^2\lambda_{De}^2}$，$\displaystyle c_s = \sqrt{\frac{k_{\!B}T_e}{m_i}}$（$T_e\gg T_i$）
 \item 电磁波（无磁场）：$\displaystyle\omega^2 = \omega_{pe}^2 + c^2k^2$
 \item 截止频率：$\displaystyle\omega_{pe} = \sqrt{\frac{n_e e^2}{\eps_0 m_e}}$
-\item R波（沿磁场）：$\displaystyle n_R^2 = 1 - \frac{\omega_{pe}^2}{\omega(\omega-\omega_{ce})}$
-\item L波（沿磁场）：$\displaystyle n_L^2 = 1 - \frac{\omega_{pe}^2}{\omega(\omega+\omega_{ce})}$
-\item 哨声波（低频R波）：$\displaystyle\omega \approx \frac{c^2k^2\omega_{ce}}{\omega_{pe}^2}$，$v_g = 2v_p$
-\item 相速度：$\displaystyle v_p = \frac{\omega}{k}$，群速度：$\displaystyle v_g = \frac{\partial\omega}{\partial k}$
+\item R波（沿磁场，仅电子、$\omega\gg\omega_{ci}$）：$\displaystyle n_R^2 = 1 - \frac{\omega_{pe}^2}{\omega(\omega-\omega_{ce})}$
+\item L波（沿磁场，仅电子、$\omega\gg\omega_{ci}$）：$\displaystyle n_L^2 = 1 - \frac{\omega_{pe}^2}{\omega(\omega+\omega_{ce})}$
+\item 传播判据：\textbf{逐点算 $n^2>0$}。$n_L^2>0\iff\omega(\omega+\omega_{ce})>\omega_{pe}^2$，与 $\omega$ 是否小于 $\omega_{ce}$ 无关
+\item 哨声波（$\omega\ll\omega_{ce}$ \emph{且} $n^2\gg1$）：$\displaystyle\omega \approx \frac{c^2k^2\omega_{ce}}{\omega_{pe}^2}$，$v_g = 2v_p$
+\item 相速度：$\displaystyle v_p = \frac{\omega}{k}$，群速度：$\displaystyle v_g = \frac{\partial\omega}{\partial k}$（冷Langmuir波 $v_g=0$ 但 $v_p=\omega_{pe}/k\neq0$）
 \item 等离子体中EM波：$\displaystyle v_p v_g = c^2$
 \end{itemize}
 \end{formulabox}
@@ -387,7 +403,8 @@ t = \frac{10}{v_g} = \frac{10}{2.85\times10^8} \approx 3.5\times10^{-8}\,\mathrm
 \item 我掌握了哨声波的色散关系 $v_g = 2v_p$，并理解其"滑落"音调的成因
 \item 我能计算等离子体中电磁波的相速度和群速度，并知道 $v_p v_g = c^2$
 \item 我理解了等离子体波分类的物理依据：静电/电磁、纵向/横向、有无磁场
-\item 我知道为什么电离层能反射短波无线电（AM）但不能反射FM和电视信号
+\item 我知道为什么电离层能反射低频无线电：\textbf{判据是载频与当地 $f_{pe}$ 的关系，与调制方式（AM/FM）无关}；真实传播还需密度剖面与斜入射
+\item 我能区分相速度与群速度：冷Langmuir波 $v_g=0$ 但 $v_p=\omega_{pe}/k\neq0$，能量不传播不等于相位不移动
 \end{itemize}
 \end{checklistbox}
 

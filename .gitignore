@@ -10,10 +10,27 @@
 *.fdb_latexmk
 *.fls
 *.xdv
+*.bbl
+*.blg
+*.run.xml
+*.pdfsync
 
-# PDF 备份与根目录散落产物（正式发布 PDF 在 pdf/ 目录）
-plasma_physics_textbook.pdf
+# 正式发布 PDF 在 pdf/ 目录；src/ 与根目录下的编译/临时 PDF 不入库
 /plasma_physics_textbook_v2.pdf
+src/plasma_physics_textbook_v2.pdf
+src/chk.pdf
+src/chk*.aux
+src/chk*.log
+src/chk*.out
+src/chk*.toc
+
+# 附录 G 脚本运行生成的图片（可直接由脚本重跑，不纳入版本管理）
+/debye_shielding.png
+/langmuir_dispersion.png
+/single_particle_orbit.png
+
+# 临时工作目录与脚本（含临时校验脚本）
+tmp/
 
 # 临时文件
 *.tmp
@@ -28,4 +45,3 @@ __pycache__/
 # OS 文件
 .DS_Store
 Thumbs.db
-src/plasma_physics_textbook_v2.pdf

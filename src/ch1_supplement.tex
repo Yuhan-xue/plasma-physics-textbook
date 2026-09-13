@@ -25,15 +25,19 @@
 \]
 逐项计算：
 \begin{itemize}[leftmargin=*,itemsep=0pt]
-\item $r$ 分量：$\frac{1}{r}\frac{\partial z}{\partial\theta} - \frac{\partial 0}{\partial z} = 0 - 0 = 0$
-\item $\theta$ 分量：$\frac{\partial r}{\partial z} - \frac{\partial z}{\partial r} = 0 - 1 = -1$
-\item $z$ 分量：$\frac{1}{r}\left[\frac{\partial(0)}{\partial r} - \frac{\partial r}{\partial\theta}\right] = 0 - 0 = 0$
+\item $r$ 分量：$\frac{1}{r}\frac{\partial A_z}{\partial\theta} - \frac{\partial A_\theta}{\partial z} = \frac{1}{r}\frac{\partial z}{\partial\theta} - \frac{\partial 0}{\partial z} = 0 - 0 = 0$
+\item $\theta$ 分量：$\frac{\partial A_r}{\partial z} - \frac{\partial A_z}{\partial r} = \frac{\partial r}{\partial z} - \frac{\partial z}{\partial r} = 0 - 0 = 0$
+\item $z$ 分量：$\frac{1}{r}\left[\frac{\partial(rA_\theta)}{\partial r} - \frac{\partial A_r}{\partial\theta}\right] = \frac{1}{r}\left[\frac{\partial(0)}{\partial r} - \frac{\partial r}{\partial\theta}\right] = 0 - 0 = 0$
 \end{itemize}
 故
 \[
-\curl\vect{A} = -\unitvec{\theta}
+\curl\vect{A} = \vect{0}
 \]
-\textbf{要点：} 虽然 $A_r$ 和 $A_z$ 均不显含 $\theta$，但 $A_r=r$ 导致 $\theta$ 分量非零。柱坐标下旋度的 $r$、$\theta$ 项容易遗漏 $1/r$ 因子，需特别留意。
+\textbf{要点：} $r,\theta,z$ 是三个\textbf{相互独立}的坐标，因此 $\partial r/\partial z = 0$、$\partial z/\partial r = 0$——不要把 $\partial z/\partial r$ 误当作 1。此处 $\vect{A}=r\unitvec{r}+z\unitvec{z}=\nabla\!\left[\frac{1}{2}(r^2+z^2)\right]$ 恰是一个梯度场，而梯度场的旋度必为零，可用来交叉检验结果：
+\[
+\nabla\times\nabla\psi = \vect{0}
+\]
+在直角坐标下直接验证同一结论：取 $x=r\cos\theta,\;z=z$，则 $\vect{A}=x\unitvec{x}+z\unitvec{z}$，显然 $\partial_x A_z-\partial_z A_x=0$，三个分量全为零。
 \end{example}
 
 \begin{example}{麦克斯韦分布的矩与平均动能}{ch1-maxwell-moments}
@@ -126,17 +130,27 @@ f(v_x) = n\sqrt{\frac{m}{2\pi k_{\!B}T}}\,\exp\!\left(-\frac{mv_x^2}{2k_{\!B}T}\
 % ch1 新例题：分布函数矩的计算
 \begin{example}{麦克斯韦分布的矩与最概然速率}{ch1-maxwell-dist}
 一维麦克斯韦分布 $f(v) = \dfrac{n}{\sqrt{\pi}\,v_t}\exp(-v^2/v_t^2)$，其中 $v_t = \sqrt{2k_{\!B}T/m}$（\textbf{注意}：此处 $v_t$ 为一维分布的尺度参数，满足 $v_t = \sqrt{2}\,v_{\mathrm{rms}}$，其中 $v_{\mathrm{rms}}=\sqrt{k_{\!B}T/m}$ 为一维方均根速率；不要与三维最概然速率 $v_p=\sqrt{2k_{\!B}T/m}$ 的数值巧合混淆——两者表达式相同但含义不同）。计算：
-（1）平均速率 $\langle v\rangle$；（2）方均根速率 $v_{\mathrm{rms}}=\sqrt{\langle v^2\rangle}$；（3）最概然速率 $v_p$，并比较三者的相对大小。
+（1）平均速度 $\langle v\rangle$；（2）平均速率 $\langle|v|\rangle$；（3）方均根速率 $v_{\mathrm{rms}}=\sqrt{\langle v^2\rangle}$；（4）最概然速率 $v_p$。
 \tcblower
 \textbf{解答：}
+以下积分统一按 $n^{-1}\!\int g(v)f(v)\diff v$ 归一化，因为 $\int_{-\infty}^{+\infty} f(v)\diff v = n$。
 
-\textbf{(1) 平均速率：}
+\textbf{(1) 平均速度：}
 \[
-\langle v\rangle = \int_{-\infty}^{+\infty} v\,f(v)\,\diff v = 0
+\langle v\rangle = \frac{1}{n}\int_{-\infty}^{+\infty} v\,f(v)\,\diff v = 0
 \]
 被积函数 $v\,f(v)$ 是奇函数，对称区间积分为零——一维速度的平均值为零（无净流动）。
 
-\textbf{(2) 方均根速率：}
+\textbf{(2) 平均速率：}速率取绝对值，被积函数变为偶函数：
+\[
+\langle|v|\rangle = \frac{1}{n}\int_{-\infty}^{+\infty} |v|\,f(v)\,\diff v
+= \frac{2}{\sqrt{\pi}v_t}\int_{0}^{+\infty} v\,\ee^{-v^2/v_t^2}\,\diff v
+= \frac{2}{\sqrt{\pi}v_t}\cdot\frac{v_t^2}{2}
+= \frac{v_t}{\sqrt{\pi}} \approx 0.564\,v_t
+\]
+注意 $\langle v\rangle \ne \langle|v|\rangle$：前者是矢量平均（可正可负、此处为零），后者是速率平均（非负）。
+
+\textbf{(3) 方均根速率：}
 \[
 \langle v^2\rangle = \int_{-\infty}^{+\infty} v^2\,f(v)\,\diff v = \frac{n}{\sqrt{\pi}v_t}\cdot v_t^3\int_{-\infty}^{+\infty} x^2\ee^{-x^2}\,\diff x = \frac{n v_t^2}{\sqrt{\pi}}\cdot\frac{\sqrt{\pi}}{2} = \frac{n v_t^2}{2}
 \]
@@ -145,13 +159,17 @@ f(v_x) = n\sqrt{\frac{m}{2\pi k_{\!B}T}}\,\exp\!\left(-\frac{mv_x^2}{2k_{\!B}T}\
 v_{\mathrm{rms}} = \sqrt{\frac{k_{\!B}T}{m}} = \frac{v_t}{\sqrt{2}}
 \]
 
-\textbf{(3) 最概然速率：} 令 $f'(v)=0$：
+\textbf{(4) 最概然速率：} 令 $f'(v)=0$：
 \[
 \frac{\mathrm{d}f}{\mathrm{d}v} = -\frac{2v}{v_t^2}f(v) = 0 \quad\Rightarrow\quad v_p = 0
 \]
 一维情形最概然速率为零（分布峰值在 $v=0$）。
 
-\textbf{对比与讨论：} 三维情形下三者不相等：$v_p : \bar{v} : v_{\mathrm{rms}} = 1 : 1.128 : 1.225$。分布不对称（右偏），故 $\langle v\rangle > v_p$；均方速率对高速尾部敏感，故 $v_{\mathrm{rms}} > \langle v\rangle$。在等离子体物理中 $v_{\mathrm{rms}}$（即本书的热速度定义之一）最常用，因为它直接与温度通过能量均分定理联系。
+\textbf{对比与讨论：} 一维分布下三个速率量纲的量满足
+\[
+v_p = 0 \;<\; \langle|v|\rangle = \frac{v_t}{\sqrt{\pi}} \;\approx\; 0.564\,v_t \;<\; v_{\mathrm{rms}} = \frac{v_t}{\sqrt{2}} \;\approx\; 0.707\,v_t .
+\]
+注意\textbf{不要}把上式与三维结果混为一谈。三维速率分布（$f\propto v^2\ee^{-mv^2/2k_BT}$）才给出 $v_p : \bar v : v_{\mathrm{rms}} = 1 : 1.128 : 1.225$，其中 $v_p=\sqrt{2k_BT/m}$。分布右偏故 $\bar v > v_p$；均方速率对高速尾部敏感故 $v_{\mathrm{rms}} > \bar v$。在等离子体物理中 $v_{\mathrm{rms}}$（本书热速度定义之一）最常用，因为它直接通过能量均分定理与温度联系。
 \end{example}
 
 \begin{formulabox}{第1章核心公式速查}{ch1-formulas}

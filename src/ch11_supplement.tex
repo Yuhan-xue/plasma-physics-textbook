@@ -386,21 +386,28 @@ $\vect{E}\times\vect{B}$ 漂移速度与电子热速度量级相近。在磁控�
 s \approx \frac{\sqrt{2}}{3}\,\lambda_D\left(\frac{2V_0}{T_e}\right)^{3/4}
 \]
 德拜长度（$\lambda_D[\mathrm{m}]\approx7430\sqrt{T[\mathrm{eV}]/n[\mathrm{m^{-3}}]}$）：
+\begin{align*}
+\lambda_D &= 7430\sqrt{\frac{3}{10^{16}}}\,\mathrm{m}
+= 7430\times\sqrt{3}\times10^{-8}\,\mathrm{m} \\
+&= 7430\times1.732\times10^{-8}\,\mathrm{m}
+\approx 1.29\times10^{-4}\,\mathrm{m} \approx 0.13\,\mathrm{mm}
+\end{align*}
+\textbf{开方的正确做法：} $\sqrt{3/10^{16}}=\sqrt3\times10^{-8}=1.732\times10^{-8}$，\textbf{不是} $5.48\times10^{-8}$（那相当于把 $\sqrt3$ 当成了 $\sqrt{30}$）。这一步写错会让 $\lambda_D$ 大出 $3.2$ 倍，进而把鞘层厚度算成 $7.5\,\mathrm{mm}$。正确值是 $\lambda_D\approx0.13\,\mathrm{mm}$。
 \[
-\lambda_D = 7430\sqrt{\frac{3}{10^{16}}}\,\mathrm{m} = 7430\times5.48\times10^{-8}\,\mathrm{m} \approx 0.41\,\mathrm{mm}
+\left(\frac{2V_0}{T_e}\right)^{3/4} = \left(\frac{400}{3}\right)^{3/4} = 133^{0.75} \approx 39
 \]
 \[
-\left(\frac{400}{3}\right)^{3/4} = 133^{0.75} \approx 39
-\]
-\[
-s \approx 0.47\times0.41\,\mathrm{mm}\times39 \approx 7.5\,\mathrm{mm}
+s \approx \frac{\sqrt2}{3}\times0.13\,\mathrm{mm}\times39
+\approx 0.471\times0.13\,\mathrm{mm}\times39 \approx 2.4\,\mathrm{mm}
 \]
 
 \textbf{(3) 鞘层与间距之比：}
 \[
-\frac{s_m}{d} \approx \frac{7.5\,\mathrm{mm}}{30\,\mathrm{mm}} \approx 0.25 < 1
+\frac{s_m}{d} \approx \frac{2.4\,\mathrm{mm}}{30\,\mathrm{mm}} \approx 0.08 < 1
 \]
-鞘层明显薄于极板间距（但不完全是"薄鞘"极限），体等离子区仍有约 $15\,\mathrm{mm}$ 的准中性区。若提高密度到 $10^{17}\,\mathrm{m^{-3}}$，$\lambda_D$ 缩小 $\sqrt{10}$ 倍，$s\sim2.4\,\mathrm{mm}$，$s/d\approx0.08$，薄鞘近似良好。这就是工业 CCP 在高密度下加工更均匀的原因：鞘层薄，离子加速区窄，入射能量分散小，各向异性刻蚀更好。
+鞘层明显薄于极板间距，体等离子区仍有约 $25\,\mathrm{mm}$ 的准中性区，薄鞘近似成立。若提高密度到 $10^{17}\,\mathrm{m^{-3}}$，$\lambda_D$ 缩小 $\sqrt{10}$ 倍，$s$ 也相应缩小到约 $0.75\,\mathrm{mm}$，$s/d\approx0.025$。这就是工业 CCP 在高密度下加工更均匀的原因：鞘层薄，离子加速区窄，入射能量分散小，各向异性刻蚀更好。
+
+\textbf{适用性检查（必须做）：} 上面用的是\emph{平面、无碰撞、高鞘压}的 Child-Langmuir 近似。请核对三点：(i) $s/r_p$——鞘层厚度远小于电极曲率半径时才可当平面；(ii) $s\ll\lambda_{i}$（离子-中性碰撞平均自由程）——否则鞘层内有电荷交换碰撞，须用碰撞鞘层模型；(iii) 离子过鞘时间 $\tau_i\sim s/u_B$ 远大于射频周期——本题 $\tau_i\sim2.4\,\mathrm{mm}/(2\times10^5\,\mathrm{m/s})\sim10^{-8}\,\mathrm{s}$，与 $74\,\mathrm{ns}$ 的射频周期同量级，故严格说要考虑鞘层的时变，此处只用时间平均近似。低气压 CCP 通常满足，工业高气压刻蚀机则需修正。
 \end{example}
 
 \section{DC辉光放电空间结构图}

@@ -99,6 +99,8 @@ v_A = \frac{10^{-3}}{\sqrt{4\pi\times 10^{-7}\times 1.673\times 10^{-13}}} = \fr
 \item 实验室氩气放电：$L=0.1\,\mathrm{m}$，$v=10^3\,\mathrm{m/s}$，$T_e=4\,\mathrm{eV}$。
 \end{enumerate}
 Spitzer电阻率近似公式：$\eta \approx 5\times 10^{-5} Z\ln\Lambda / T_e^{3/2}\,[\Omega\mathrm{m}]$，$T_e$ 单位为 $\mathrm{eV}$，取 $\ln\Lambda=10$。
+
+\textbf{模型的适用性提示：} Spitzer 公式\emph{只计入电子--离子库仑碰撞}。下面第 (2) 问的"氩气放电"题面没有给电离度与中性气体密度，因此\textbf{这里只研究一个假设库仑碰撞主导的假想氩等离子体}；真实低温放电中电子--中性碰撞常使 $\eta$ 高出若干个数量级，绝不能把下面的 $R_m$ 直接当成实际装置的数值。这是"选模型"这一步的意义所在，请对照正文\S5.1 的"MHD 适用条件：三道独立的门槛"。
 \tcblower
 \textbf{解答：}
 
@@ -148,9 +150,24 @@ $R_m \sim 1$（略大于 1），磁扩散时间 $\tau_\eta = \mu_0 L^2/\eta \app
 \vect{B}\cdot\curl(\vect{u}\times\vect{B}) = \divg\bigl((\vect{u}\times\vect{B})\times\vect{B}\bigr) + (\vect{u}\times\vect{B})\cdot\curl\vect{B}
 \]
 
-第一项：$(\vect{u}\times\vect{B})\times\vect{B} = -\vect{B}\times(\vect{u}\times\vect{B}) = -(\vect{B}\cdot\vect{B})\vect{u} + (\vect{B}\cdot\vect{u})\vect{B}$。在理想MHD中 $\vect{E} = -\vect{u}\times\vect{B}$，故 $\vect{E}\times\vect{B} = (\vect{u}\times\vect{B})\times\vect{B}$。因此：
+第一项：用 BAC--CAB 公式 $\vect{a}\times(\vect{b}\times\vect{c})=\vect{b}(\vect{a}\cdot\vect{c})-\vect{c}(\vect{a}\cdot\vect{b})$，先把 $\vect{B}\times(\vect{u}\times\vect{B})$ 展开：
 \[
-\divg\bigl((\vect{u}\times\vect{B})\times\vect{B}\bigr) = -\mu_0\divg\vect{S}
+\vect{B}\times(\vect{u}\times\vect{B}) = \vect{u}(\vect{B}\cdot\vect{B}) - \vect{B}(\vect{B}\cdot\vect{u}) = B^2\vect{u} - (\vect{u}\cdot\vect{B})\vect{B}
+\]
+再由反交换律 $\vect{a}\times\vect{b}=-\vect{b}\times\vect{a}$：
+\[
+(\vect{u}\times\vect{B})\times\vect{B} = -\vect{B}\times(\vect{u}\times\vect{B})
+= -B^2\vect{u} + (\vect{u}\cdot\vect{B})\vect{B}
+\]
+
+\textbf{关键：} 理想MHD中 $\vect{E} = -\vect{u}\times\vect{B}$，取与 $\vect{B}$ 的叉乘：
+\[
+\vect{E}\times\vect{B} = -(\vect{u}\times\vect{B})\times\vect{B}
+= B^2\vect{u} - (\vect{u}\cdot\vect{B})\vect{B}
+\]
+即 $\vect{E}\times\vect{B} = \mathbf{-}(\vect{u}\times\vect{B})\times\vect{B}$——\textbf{两者相差一个负号}，这正是本步最容易写错的地方。验证方式：取 $\vect{u}\perp\vect{B}$，则 $\vect{u}\times\vect{B}$ 垂直于两者，再叉乘 $\vect{B}$ 后方向回到 $\vect{u}$ 的\emph{反}方向，与 $\vect{E}\times\vect{B}$ 同向，大小 $B^2u$，即 $\vect{S}=\vect{E}\times\vect{B}/\mu_0 = B^2\vect{u}/\mu_0$。因此：
+\[
+\divg\bigl((\vect{u}\times\vect{B})\times\vect{B}\bigr) = -\divg(\vect{E}\times\vect{B}) = -\mu_0\divg\vect{S}
 \]
 
 第二项：$\curl\vect{B} = \mu_0\vect{j}$，且 $(\vect{u}\times\vect{B})\cdot\vect{j} = \vect{u}\cdot(\vect{B}\times\vect{j}) = -\vect{u}\cdot(\vect{j}\times\vect{B})$，故：
@@ -178,17 +195,36 @@ $R_m \sim 1$（略大于 1），磁扩散时间 $\tau_\eta = \mu_0 L^2/\eta \app
 \]
 
 \textbf{(3) 物理意义：}
-将两式相加，$\vect{u}\cdot(\vect{j}\times\vect{B})$ 项相互抵消，总能量守恒：
+将 (1) 与 (2) 相加，$\vect{u}\cdot(\vect{j}\times\vect{B})$ 项相互抵消：
 \[
 \frac{\partial}{\partial t}\left(\frac{1}{2}\rho_m u^2 + \frac{B^2}{2\mu_0}\right) = -\divg\left(\frac{1}{2}\rho_m u^2\vect{u} + \vect{S}\right) - \vect{u}\cdot\grad p
 \]
 
-$\vect{u}\cdot(\vect{j}\times\vect{B})$ 是磁能与动能之间的\textbf{转换项}：
+$\vect{u}\cdot(\vect{j}\times\vect{B})$ 是磁能与动能之间的\textbf{转换项}（内部交换，不改变两者之和）：
 \begin{itemize}[leftmargin=*,itemsep=0pt]
 \item 当 $\vect{u}\cdot(\vect{j}\times\vect{B}) > 0$：洛伦兹力对等离子体做正功，\textbf{磁能转化为动能}（如磁驱动喷流、等离子体加速）
 \item 当 $\vect{u}\cdot(\vect{j}\times\vect{B}) < 0$：等离子体做功抵抗磁场，\textbf{动能转化为磁能}（如发电机效应、磁场放大）
 \end{itemize}
-这正是太阳发电机、吸积盘磁场放大和实验室磁化靶聚变中能量转换的核心机制。
+
+\textbf{但这还不是完整的能量守恒}——上式右端仍留着 $-\vect{u}\cdot\grad p$，它把能量交给了\textbf{内能}，而内能没有出现在守恒式里。磁能与动能之和并不单独守恒：压强功会把能量泵入内能，或反过来。\textbf{加上内能才闭合}。
+
+\textbf{提高题（完整能量守恒）：} 对绝热理想MHD，内能密度为 $U = p/(\gamma-1)$，其演化方程为
+\[
+\frac{\partial U}{\partial t} + \divg(U\vect{u}) = -p\divg\vect{u}
+\]
+把三项相加，$-\vect{u}\cdot\grad p$ 与 $-p\divg\vect{u}$ 正好组合成 $-\divg(p\vect{u})$，于是得到\textbf{封闭形式}：
+\[
+\boxed{\;\frac{\partial}{\partial t}\left(K + U + U_B\right) + \divg\Bigl\{\vect{u}\left(K + U + p\right) + \vect{S}\Bigr\} = 0\;}
+\]
+其中 $K=\tfrac12\rho_mu^2$、$U=p/(\gamma-1)$、$U_B=B^2/(2\mu_0)$。请自行验证：$\vect{u}(K+U+p)$ 是随流体带走的对流焓流，$\vect{S}$ 是坡印廷能流。
+
+\textbf{三层含义要分清：}
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item \textbf{局域交换}：$\vect{u}\cdot(\vect{j}\times\vect{B})$ 与 $-\vect{u}\cdot\grad p$ 是同一空间点上不同能量库之间的转移，不进出系统；
+\item \textbf{边界能流}：散度项 $\divg\{\cdots\}$ 描述能量跨越控制面的输运；
+\item \textbf{封闭系统总量}：对全空间积分，散度项化为边界通量。取边界上无能量流出，则 $\frac{\diff}{\diff t}\int(K+U+U_B)\diff V=0$——\textbf{这才是"能量守恒"四个字所指的结论}。
+\end{itemize}
+只把 $K$ 与 $U_B$ 相加就宣称"总能量守恒"，遗漏了内能与之相伴的压强功，是初学者最常见的误读。这一条也直接连到第10章的加热与第11章的输运损失：能量进了内能，究竟是被带走还是被辐射掉，正是那里要回答的问题。
 \end{example}
 
 \begin{figure}[htbp]
@@ -304,7 +340,7 @@ T_e + T_i = \frac{5.0\times10^{-17}}{1.381\times10^{-23}}\,\mathrm{K} = 3.6\time
 \item 磁压：$\displaystyle p_B = \frac{B^2}{2\mu_0}$，磁张力：$\displaystyle\frac{1}{\mu_0}(\vect{B}\cdot\grad)\vect{B}$
 \item 比压：$\displaystyle\beta = \frac{2\mu_0 p}{B^2}$
 \item 阿尔芬速度：$\displaystyle v_A = \frac{B}{\sqrt{\mu_0\rho_m}}$
-\item 阿尔芬波色散关系：$\displaystyle\omega = k_\parallel v_A$（无色散，$v_p = v_g = v_A$）
+\item 阿尔芬波色散关系：$\displaystyle\omega = k_\parallel v_A$（无色散；群速度 $\vect{v}_g=\pm v_A\unitvec{B}$ 恒沿磁场，相速度 $v_p=v_A\cos\theta$ 仅在 $\vect{k}\parallel\vect{B}$ 时等于 $v_A$）
 \item 磁雷诺数：$\displaystyle R_m = \frac{\mu_0 v L}{\eta} = \frac{\tau_\eta}{\tau_{\text{流}}}$
 \item 静态平衡：$\displaystyle\grad p = \vect{j}\times\vect{B}$（Grad-Shafranov方程的基础）
 \end{itemize}
@@ -316,7 +352,7 @@ T_e + T_i = \frac{5.0\times10^{-17}}{1.381\times10^{-23}}\,\mathrm{K} = 3.6\time
 \item 我能计算比压 $\beta$、阿尔芬速度 $v_A$ 和磁雷诺数 $R_m$，并判断其物理意义
 \item 我理解了磁压与磁张力的分解：洛伦兹力 = 磁压梯度 + 磁张力
 \item 我能从$R_m$的大小判断磁力线冻结是否成立，并知道电阻会破坏冻结
-\item 我掌握了阿尔芬波的物理图像：磁张力作为恢复力的横波
+\item 我掌握了阿尔芬波的物理图像：磁张力作为恢复力的横波，能量沿磁力线以 $v_A$ 输运（而非沿波矢）
 \item 我能推导理想MHD中磁能与动能转换的方程，并解释$\vect{u}\cdot(\vect{j}\times\vect{B})$的符号含义
 \item 我知道静态平衡$\grad p = \vect{j}\times\vect{B}$是托卡马克和仿星器设计的出发点
 \end{itemize}

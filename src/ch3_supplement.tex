@@ -105,38 +105,42 @@ v_{\perp} = \sqrt{v^2 - v_{\parallel}^2} = \sqrt{(2\times 10^6)^2 - (1.8\times 1
 \end{example}
 
 \begin{example}{托卡马克中的梯度漂移与曲率漂移}{tokamak-drifts}
-在一大环半径 $R=2\,\mathrm{m}$ 的托卡马克中，磁场 $B=5\,\mathrm{T}$。取电子温度与离子温度均为 $T=10\,\mathrm{keV}$，且速度分布各向同性。分别估算电子和氘核的 $E\times B$ 漂移、梯度漂移与曲率漂移的合速度大小与方向。
+在一大环半径 $R=2\,\mathrm{m}$ 的托卡马克中，磁场 $B=5\,\mathrm{T}$。取电子温度与离子温度均为 $T=10\,\mathrm{keV}$，且速度分布各向同性。分别估算电子和氘核的\textbf{梯度漂移与曲率漂移的合速度}大小与方向。（本题未给定电场，故不要求 $E\times B$ 漂移；若需计入，可另设 $E$ 并按 $v_E=E/B$ 叠加。）
 \tcblower
 \textbf{解答：}
 在圆环磁场中，$|\nabla B|\approx B/R$，且梯度漂移与曲率漂移方向相同（垂直环面）。两者可合并为
 \[
-\vect{v}_{\nabla B+R} = \frac{m}{qB^2R}\left(v_{\parallel}^2 + \frac{v_{\perp}^2}{2}\right)\hat{\vect{R}}\times\vect{B}
+\vect{v}_{\nabla B+R} = \frac{m}{qB^{2}R}\left(v_{\parallel}^2 + \frac{v_{\perp}^2}{2}\right)\hat{\vect{R}}\times\vect{B}
+\]
+注意 $\hat{\vect{R}}\times\vect{B}$ 本身带一个 $B$ 的因子（$|\hat{\vect{R}}\times\vect{B}|=B$），因此\textbf{速度大小的分母只有一个 $B$}：
+\[
+v_{\text{drift}} = \frac{m}{|q|BR}\left(v_{\parallel}^2 + \frac{v_{\perp}^2}{2}\right)
 \]
 
 对各向同性分布，$\langle v_{\parallel}^2\rangle = v^2/3$，$\langle v_{\perp}^2\rangle = 2v^2/3$，于是
 \[
-\langle v_{\parallel}^2 + v_{\perp}^2/2\rangle = v^2/3 + v^2/3 = \frac{2v^2}{3}
+\left\langle v_{\parallel}^2 + \frac{v_{\perp}^2}{2}\right\rangle = \frac{v^2}{3} + \frac{v^2}{3} = \frac{2v^2}{3}
 \]
 
 故漂移速度大小为
 \[
-v_{\text{drift}} = \frac{2mv^2}{3qB^2R} = \frac{4k_{\!B}T}{3qB^2R}
+v_{\text{drift}} = \frac{2mv^2}{3|q|BR} = \frac{2k_{\!B}T}{|q|BR}
 \]
 最后一步利用了 $mv^2 = 3k_{\!B}T$（三维各向同性）。
 
 \textbf{电子漂移：}
 \[
-v_{\text{drift},e} = \frac{4\times 1.602\times 10^{-15}}{3\times (-1.602\times 10^{-19})\times 25\times 2} = \frac{6.408\times 10^{-15}}{-2.403\times 10^{-17}} \approx -267\,\mathrm{m/s}
+v_{\text{drift},e} = \frac{2\times 1.602\times 10^{-15}}{(1.602\times 10^{-19})\times 5\times 2} = \frac{3.204\times 10^{-15}}{1.602\times 10^{-18}} \approx 2.0\times 10^{3}\,\mathrm{m/s}
 \]
-方向垂直环面向\textbf{下}（负号表示与离子反向）。
+方向垂直环面向\textbf{下}（与离子反向）。
 
 \textbf{氘核漂移：}
 \[
-v_{\text{drift},D} = \frac{4\times 1.602\times 10^{-15}}{3\times (1.602\times 10^{-19})\times 25\times 2} \approx +267\,\mathrm{m/s}
+v_{\text{drift},D} = \frac{2\times 1.602\times 10^{-15}}{(1.602\times 10^{-19})\times 5\times 2} \approx 2.0\times 10^{3}\,\mathrm{m/s}
 \]
 方向垂直环面向\textbf{上}。
 
-\textbf{物理后果：} 电子与离子漂移方向相反，在托卡马克中形成垂直环面的电荷分离，产生电场。该电场又驱动 $E\times B$ 漂移，形成环向输运（即经典扩散与新经典输运的根源之一）。漂移大小仅约 $270\,\mathrm{m/s}$，远低于热速度，但长期累积造成显著的粒子与能量损失。
+\textbf{物理后果：} 电子与离子漂移方向相反，在托卡马克中形成垂直环面的电荷分离，产生电场。该电场又驱动 $E\times B$ 漂移，形成环向输运（即经典扩散与新经典输运的根源之一）。漂移大小约 $2\,\mathrm{km/s}$，虽仍远低于热速度（氘核在 $10\,\mathrm{keV}$ 下 $v_{th}\approx 10^{6}\,\mathrm{m/s}$），但长期累积造成显著的粒子与能量损失。
 \end{example}
 
 \begin{figure}[htbp]
@@ -158,11 +162,12 @@ v_{\text{drift},D} = \frac{4\times 1.602\times 10^{-15}}{3\times (1.602\times 10
 % 电场向上
 \draw[->,red,thick] (0,1.5) -- (0,2.3) node[right] {$\vect{E}$};
 
-% 正离子轨迹：逆时针回旋 + 向右漂移
-\draw[blue,thick,domain=0:720,samples=200,smooth] plot({0.7*cos(\x)+0.08*\x/180},{0.7*sin(\x)});
+% 正离子轨迹：顺时针回旋 + 向右漂移
+% （B 出纸面、初速向右时，F=qv×B 指向下方，故正离子顺时针）
+\draw[blue,thick,domain=0:720,samples=200,smooth] plot({0.7*cos(-\x)+0.08*\x/180},{0.7*sin(-\x)});
 \fill[blue] (0.7,0) circle (2pt);
 \node[blue,align=center] at (0.8,-1.2) {正离子\\$r_{ci}\sim 1\,\mathrm{mm}$};
-\draw[->,blue,thick] (0.7,0) -- (0.75,0.2);
+\draw[->,blue,thick] (0.7,0) -- (0.72,-0.22);
 
 % 漂移方向
 \draw[->,blue!60!black,very thick] (1.5,-1.5) -- (2.3,-1.5) node[right] {$\vect{v}_E$};
@@ -184,17 +189,18 @@ v_{\text{drift},D} = \frac{4\times 1.602\times 10^{-15}}{3\times (1.602\times 10
 % 电场向上
 \draw[->,red,thick] (0,1.5) -- (0,2.3) node[right] {$\vect{E}$};
 
-% 电子轨迹：顺时针回旋 + 向右漂移
-\draw[orange,thick,domain=0:720,samples=200,smooth] plot({0.2*cos(-\x)+0.08*\x/180},{0.2*sin(-\x)});
+% 电子轨迹：逆时针回旋 + 向右漂移
+% （负电荷受力方向与正离子相反，故逆时针）
+\draw[orange,thick,domain=0:720,samples=200,smooth] plot({0.2*cos(\x)+0.08*\x/180},{0.2*sin(\x)});
 \fill[orange] (0.2,0) circle (1.5pt);
 \node[orange,align=center] at (0.3,-0.6) {电子\\$r_{ce}\sim 70\,\mu\mathrm{m}$};
-\draw[->,orange,thick] (0.2,0) -- (0.22,-0.08);
+\draw[->,orange,thick] (0.2,0) -- (0.22,0.08);
 
 % 漂移方向
 \draw[->,orange!60!black,very thick] (1.5,-1.5) -- (2.3,-1.5) node[right] {$\vect{v}_E$};
 \end{scope}
 \end{tikzpicture}
-\caption{$E\times B$ 漂移的摆线轨迹。磁场垂直纸面向外，电场沿 $+y$ 方向。正离子逆时针回旋，电子顺时针回旋，但两者漂移方向相同（均沿 $+x$）。}
+\caption{$E\times B$ 漂移的摆线轨迹。磁场垂直纸面向外（$+\unitvec{z}$），电场沿 $+y$ 方向。取初速度方向向右：正电荷受力 $q\vect{v}\times\vect{B}$ 指向下方，故\textbf{正离子顺时针回旋}；电子受力反向，故\textbf{电子逆时针回旋}。两者回旋方向相反，但漂移方向相同（均沿 $+\unitvec{x}$，因 $\vect{v}_E=\vect{E}\times\vect{B}/B^2$ 与电荷符号无关）。}
 \end{figure}
 
 \begin{figure}[htbp]
@@ -259,7 +265,21 @@ v_{\text{drift},D} = \frac{4\times 1.602\times 10^{-15}}{3\times (1.602\times 10
 
 \textbf{(2) 判断约束：} 该粒子 $\sin^2\theta = 0.9 > 1/R_m = 0.2$，$\theta > \theta_{lc}$，\textbf{在损失锥之外，被磁镜约束}。它在中心处 $v_\parallel^2/v^2 = 0.1$，到达镜点前平行速度降为零并反射。
 
-\textbf{(3) 无法完全约束的原因：} 对各向同性分布（$\theta$ 均匀分布在立体角内），落入损失锥（$0\le\theta\le\theta_{lc}$）的粒子比例约为 $\sin^2\theta_{lc}/2 = 1/(2R_m) = 10\%$。每一轮反射都会损失锥内粒子，若无其他机制填充损失锥，等离子体将快速损失。磁镜对静电与湍流散射（使粒子扩散进损失锥）也很敏感。因此单纯磁镜无法稳定约束热等离子体，现代磁镜实验需辅以中性束注入、偶极场或 ECRH 填充等手段。
+\textbf{(3) 无法完全约束的原因：} 对各向同性分布，投掷角在立体角内均匀，落在\textbf{单端}损失锥（$0\le\theta\le\theta_{lc}$）内的比例为
+\[
+f_{\text{一端}}=\frac{1}{2}\int_{0}^{\theta_{lc}}\sin\theta\,\diff\theta
+=\frac{1-\cos\theta_{lc}}{2}
+=\frac{1-\sqrt{1-1/R_m}}{2}.
+\]
+$R_m=5$ 时 $\cos\theta_{lc}=\sqrt{4/5}=0.8944$，故
+\[
+f_{\text{一端}}=\frac{1-0.8944}{2}\approx 5.3\%,
+\qquad
+f_{\text{两端}}=1-\cos\theta_{lc}\approx 10.6\% .
+\]
+\textbf{注意：} 常见简写 $1/(2R_m)$（$-10\%$）是 $R_m\gg1$ 时对两端总数的近似，\textbf{不能}用于单端计数；精确值须用 $1-\cos\theta_{lc}$ 计算。
+
+以上是\textbf{初始}角分布中落在锥内的比例，并不自动等于每个反弹周期的持续损失率：理想无碰撞磁镜中，锥内粒子一旦耗空便不再补充，只有靠碰撞或其他散射机制重新填充损失锥，才会继续按此通量损失。这正是磁镜约束时间受限于碰撞填充率的原因。此外磁镜对静电与湍流散射（使粒子扩散进损失锥）也很敏感。因此单纯磁镜难以稳定约束热等离子体，现代磁镜实验需辅以中性束注入、偶极场或 ECRH 填充等手段。
 \end{example}
 
 \begin{formulabox}{第3章核心公式速查}{ch3-formulas}
@@ -267,7 +287,7 @@ v_{\text{drift},D} = \frac{4\times 1.602\times 10^{-15}}{3\times (1.602\times 10
 \item 回旋频率：$\displaystyle\omega_c = \frac{|q|B}{m}$，$\displaystyle r_c = \frac{v_{\perp}}{\omega_c}$
 \item $E\times B$ 漂移：$\displaystyle\vect{v}_E = \frac{\vect{E}\times\vect{B}}{B^2}$（与 $q,m$ 无关）
 \item 梯度漂移：$\displaystyle\vect{v}_{\nabla B} = \frac{m v_{\perp}^2}{2qB^3}\,(\vect{B}\times\nabla B)$
-\item 曲率漂移：$\displaystyle\vect{v}_R = \frac{m v_{\parallel}^2}{qB^2R^2}\,(\vect{R}\times\vect{B})$
+\item 曲率漂移：$\displaystyle\vect{v}_R = \frac{m v_{\parallel}^2}{qB^2R_c^2}\,(\vect{B}\times\vect{R}_c)$，$\vect{R}_c$ 指向曲率中心
 \item 磁镜反射条件：$\displaystyle\sin^2\theta_{\min} > \frac{B_{\min}}{B_{\max}} = \frac{1}{R_m}$
 \item 损失锥半角：$\displaystyle\theta_m = \arcsin\!\left(\frac{1}{\sqrt{R_m}}\right)$
 \item 磁矩绝热不变量：$\displaystyle\mu = \frac{m v_{\perp}^2}{2B}$

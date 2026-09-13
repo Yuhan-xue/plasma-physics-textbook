@@ -17,12 +17,30 @@
 \tcblower
 \textbf{解答：}
 
-库仑对数定义为 $\ln\Lambda = \ln(12\pi N_D)$，其中德拜球内粒子数 $N_D = \frac{4\pi}{3} n_e \lambda_D^3$。另一种常用形式是
+\textbf{先统一约定，再谈"等价"。} 库仑对数的不同写法\emph{不}都相等，必须明确所用约定。本书采用：
 \[
-\Lambda = \frac{\lambda_D}{b_0} = \frac{12\pi\eps_0 k_{\!B}T_e}{e^2 n_e^{1/3}}
+\boxed{\;\ln\Lambda = \ln\!\left(\frac{\lambda_D}{b_0}\right),\qquad b_0 = \frac{e^2}{4\pi\eps_0 k_{\!B}T_e}\;}
 \]
+这是"最大碰撞参数取德拜长度、最小取 $90^\circ$ 碰撞参数"这一约定的结果。它和德拜球内粒子数 $N_D=\frac{4\pi}{3}n_e\lambda_D^3$ 的关系可以精确算出来：
+\[
+\frac{\lambda_D}{b_0} = \lambda_D\cdot\frac{4\pi\eps_0 k_{\!B}T_e}{e^2} = 3\cdot\frac{4\pi}{3}n_e\lambda_D^3 = 3N_D
+\]
+（用了 $\lambda_D^2=\eps_0k_{\!B}T_e/(n_ee^2)$。）所以\textbf{在本约定下 $\ln\Lambda=\ln(3N_D)$}。
 
-对典型等离子体，$\ln\Lambda$ 在 $10$--$30$ 之间。下面用 $N_D = \frac{4\pi}{3} n_e \lambda_D^3$ 计算。
+\textbf{三个容易混淆的"等价式"，只有前两个是同一个东西：}
+\begin{itemize}
+\item $\lambda_D/b_0 = 3N_D$ \quad$\checkmark$（本书约定）
+\item $12\pi n_e\lambda_D^3 = 9N_D$ \quad（注意是 $9N_D$，\textbf{不是} $12\pi N_D$）
+\item $\dfrac{12\pi\eps_0k_{\!B}T_e}{e^2n_e^{1/3}}$ \quad$\times$ \textbf{与前两者都不等}：把它展开为
+\[
+n_e\lambda_D^3 = n_e\left(\frac{\eps0 k_{\!B}T_e}{n_ee^2}\right)^{3/2} = \frac{(\eps0k_{\!B}T_e)^{3/2}}{e^3n_e^{1/2}}
+\propto T_e^{3/2}n_e^{-1/2}
+\]
+而第三式的标度是 $T_en_e^{-1/3}$——\textbf{对 $T_e,n_e$ 的幂次不同，属于改变了物理标度}，不能画等号。（它对应"最小碰撞参数取平均粒子间距 $n^{-1/3}$、而不是 $90^\circ$ 参数"的另一种约定。）
+\end{itemize}
+\textbf{结论：} 遇到库仑对数的任何写法，先问两个问题——(i) 最大碰撞参数取什么？(ii) 最小碰撞参数取经典最近距离、90° 参数还是量子截断 $\hbar/(m_ev)$？\textbf{不能靠"对数变化慢"跳过这一步}：常数因子只改变 $\ln\Lambda$ 的相加项，但幂次不同会改变 $\ln\Lambda$ 随 $T,n$ 的变化趋势，那是有物理后果的。
+
+对典型等离子体，$\ln\Lambda$ 在 $10$--$30$ 之间。下面用 $N_D = \frac{4\pi}{3} n_e \lambda_D^3$ 与 $\ln\Lambda=\ln(3N_D)$ 计算。
 
 已知 $\lambda_D = \sqrt{\frac{\eps_0 k_{\!B}T_e}{n_e e^2}}$，故
 \[
@@ -37,7 +55,7 @@ N_D = \frac{4\pi}{3}\times10^{18}\times (1.49\times 10^{-5})^3
 \approx 1.39\times 10^4
 \]
 \[
-\ln\Lambda = \ln(12\pi\times 1.39\times 10^4) = \ln(5.24\times 10^5) \approx 13.2
+\ln\Lambda = \ln(3N_D) = \ln(3\times 1.39\times 10^4) = \ln(4.17\times 10^4) \approx 10.6
 \]
 
 \textbf{（2）太阳日冕：}
@@ -50,7 +68,7 @@ $k_{\!B}T_e = 100\,\mathrm{eV} = 1.602\times 10^{-17}\,\mathrm{J}$
 N_D = \frac{4\pi}{3}\times10^{12}\times (7.43\times 10^{-2})^3 \approx 4.19\times10^{12}\times 4.1\times 10^{-4} \approx 1.72\times 10^9
 \]
 \[
-\ln\Lambda = \ln(12\pi\times 1.72\times 10^9) = \ln(6.48\times 10^{10}) \approx 24.9
+\ln\Lambda = \ln(3N_D) = \ln(3\times 1.72\times 10^9) = \ln(5.16\times 10^9) \approx 22.4
 \]
 
 \textbf{（3）托卡马克聚变等离子体：}
@@ -63,12 +81,12 @@ $k_{\!B}T_e = 10^4\,\mathrm{eV} = 1.602\times 10^{-15}\,\mathrm{J}$
 N_D = \frac{4\pi}{3}\times10^{20}\times (7.43\times 10^{-5})^3 \approx 4.19\times10^{20}\times 4.1\times 10^{-13} \approx 1.72\times 10^8
 \]
 \[
-\ln\Lambda = \ln(12\pi\times 1.72\times 10^8) = \ln(6.48\times 10^9) \approx 22.6
+\ln\Lambda = \ln(3N_D) = \ln(3\times 1.72\times 10^8) = \ln(5.16\times 10^8) \approx 20.1
 \]
 
 \textbf{规律总结：}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
-\item $\ln\Lambda$ 对等离子体参数的变化极为缓慢：跨越十几个数量级的密度和温度，$\ln\Lambda$ 仅从约 $13$ 变到约 $25$。
+\item $\ln\Lambda$ 对等离子体参数的变化极为缓慢：跨越十几个数量级的密度和温度，$\ln\Lambda$ 仅从约 $11$ 变到约 $22$。
 \item 高温低密度等离子体（日冕）$\ln\Lambda$ 较大，因为德拜球内粒子数更多。
 \item 实验室等离子体 $\ln\Lambda$ 较小，但仍 $\gg 1$，保证小角度散射主导、两体碰撞近似有效。
 \item 在大多数计算中，$\ln\Lambda$ 可以取为 $15$--$20$ 的常数，误差不大。
@@ -151,6 +169,8 @@ Spitzer电阻率的数值公式（平行方向）为：
 D_a = \frac{\mu_i D_e + \mu_e D_i}{\mu_i + \mu_e}
 \]
 
+\textbf{符号约定（务必先统一）：} 本题中 $\mu_\alpha\equiv e|Z_\alpha|/(m_\alpha\nu_\alpha)$ 取\textbf{正}值（迁移率\emph{大小}），电荷符号单独放在通量表达式里——电子漂移与电场反向、离子漂移与电场同向。若改用带符号的迁移率 $\mu_e=-e/(m_e\nu_e)<0$，则通量应写成 $\Gamma_e=-D_e\partial_xn+\mu_enE$ 且 $\mu_e$ 为负，$D_a$ 的表达式中一个减号随之翻正。\textbf{两种约定给出同一个 $D_a$}，但不能混用——混用会让电子项符号出错。本书采用"$\mu$ 取正、符号写在通量里"的约定。
+
 在 $T_e \gg T_i$ 时，可近似为：
 \[
 D_a \approx D_i\left(1 + \frac{T_e}{T_i}\right)
@@ -200,52 +220,54 @@ D_a = 2.5\times 10^{-3}\times (1 + 10) = 2.5\times 10^{-3}\times 11 = 2.75\times
 \nu_{ei} = \frac{n_i Z^2 e^4 \ln\Lambda}{12\pi^{3/2}\eps_0^2 m_e^{1/2}(k_{\!B}T_e)^{3/2}}
 \]
 
-对氢等离子体 $Z=1$，$n_i = n_e = 10^{20}\,\mathrm{m}^{-3}$。整理为数值形式：
+对氢等离子体 $Z=1$，$n_i = n_e = 10^{20}\,\mathrm{m}^{-3}$。代入 SI 常数，整理为数值形式：
 \[
-\nu_{ei} \approx 2.9\times 10^{-12}\,\frac{n_e\ln\Lambda}{T_e^{3/2}\,\mathrm{(eV)}}\,\mathrm{s}^{-1}
+\nu_{ei} \approx 2.06\times 10^{-12}\,\frac{n_e\ln\Lambda}{T_e^{3/2}\,\mathrm{(eV)}}\,\mathrm{s}^{-1}
 \]
+
+\textbf{关于系数 $2.06$ 与 $2.9$：} 分母 $12\pi^{3/2}$ 给出系数 $2.06\times10^{-12}$（与正文 \S8.2 一致）。文献中另有一支把分母写成 $3(2\pi)^{3/2}$，对应系数 $2.91\times10^{-12}$，两者\textbf{相差 $\sqrt2$}——这是碰撞频率\emph{定义}（90° 偏转率 vs 动量输运率，以及所平均的分布）不同所致，不是有效数字误差。\textbf{本书全篇统一用 $2.06\times10^{-12}$ 这一种}。
 
 \textbf{(1) $T_e = 100\,\mathrm{eV}$：}
 \[
 \begin{aligned}
-\nu_{ei} &= 2.9\times 10^{-12}\times\frac{10^{20}\times 17}{(100)^{3/2}}
-= 2.9\times 10^{-12}\times\frac{1.7\times 10^{21}}{10^3}\\
-&= 2.9\times 10^{-12}\times 1.7\times 10^{18}
-\approx 4.9\times 10^{6}\,\mathrm{s}^{-1}
+\nu_{ei} &= 2.06\times 10^{-12}\times\frac{10^{20}\times 17}{(100)^{3/2}}
+= 2.06\times 10^{-12}\times\frac{1.7\times 10^{21}}{10^3}\\
+&= 2.06\times 10^{-12}\times 1.7\times 10^{18}
+\approx 3.5\times 10^{6}\,\mathrm{s}^{-1}
 \end{aligned}
 \]
 
-对应碰撞时间：$\tau_{ei} = 1/\nu_{ei} \approx 2.0\times 10^{-7}\,\mathrm{s} = 0.2\,\mu\mathrm{s}$。
+对应碰撞时间：$\tau_{ei} = 1/\nu_{ei} \approx 2.9\times 10^{-7}\,\mathrm{s} = 0.29\,\mu\mathrm{s}$。
 
 \textbf{(2) $T_e = 1\,\mathrm{keV} = 1000\,\mathrm{eV}$：}
 \[
-\nu_{ei} = 2.9\times 10^{-12}\times\frac{1.7\times 10^{21}}{(1000)^{3/2}}
-= 2.9\times 10^{-12}\times\frac{1.7\times 10^{21}}{3.16\times 10^4}
-\approx 1.56\times 10^{5}\,\mathrm{s}^{-1}
+\nu_{ei} = 2.06\times 10^{-12}\times\frac{1.7\times 10^{21}}{(1000)^{3/2}}
+= 2.06\times 10^{-12}\times\frac{1.7\times 10^{21}}{3.16\times 10^4}
+\approx 1.1\times 10^{5}\,\mathrm{s}^{-1}
 \]
 
-对应 $\tau_{ei} \approx 6.4\,\mu\mathrm{s}$。
+对应 $\tau_{ei} \approx 9.0\,\mu\mathrm{s}$。
 
 \textbf{(3) $T_e = 10\,\mathrm{keV} = 10^4\,\mathrm{eV}$：}
 \[
-\nu_{ei} = 2.9\times 10^{-12}\times\frac{1.7\times 10^{21}}{(10^4)^{3/2}}
-= 2.9\times 10^{-12}\times\frac{1.7\times 10^{21}}{10^6}
-\approx 4.9\times 10^{3}\,\mathrm{s}^{-1}
+\nu_{ei} = 2.06\times 10^{-12}\times\frac{1.7\times 10^{21}}{(10^4)^{3/2}}
+= 2.06\times 10^{-12}\times\frac{1.7\times 10^{21}}{10^6}
+\approx 3.5\times 10^{3}\,\mathrm{s}^{-1}
 \]
 
-对应 $\tau_{ei} \approx 2.0\times 10^{-4}\,\mathrm{s} = 0.2\,\mathrm{ms}$。
+对应 $\tau_{ei} \approx 2.9\times 10^{-4}\,\mathrm{s} = 0.29\,\mathrm{ms}$。
 
 \textbf{总结：}
 \[
 \begin{array}{c|c|c}
 T_e & \nu_{ei} & \tau_{ei} \\ \hline
-100\,\mathrm{eV} & 4.9\times 10^{6}\,\mathrm{s}^{-1} & 0.2\,\mu\mathrm{s} \\
-1\,\mathrm{keV} & 1.6\times 10^{5}\,\mathrm{s}^{-1} & 6.4\,\mu\mathrm{s} \\
-10\,\mathrm{keV} & 4.9\times 10^{3}\,\mathrm{s}^{-1} & 0.2\,\mathrm{ms}
+100\,\mathrm{eV} & 3.5\times 10^{6}\,\mathrm{s}^{-1} & 0.29\,\mu\mathrm{s} \\
+1\,\mathrm{keV} & 1.1\times 10^{5}\,\mathrm{s}^{-1} & 9.0\,\mu\mathrm{s} \\
+10\,\mathrm{keV} & 3.5\times 10^{3}\,\mathrm{s}^{-1} & 0.29\,\mathrm{ms}
 \end{array}
 \]
 
-\textbf{物理分析：} $\nu_{ei} \propto T_e^{-3/2}$，温度升高一个数量级，碰撞频率下降约 $30$ 倍。这是因为高温电子速度更快，在靶离子附近停留时间更短，偏转更小。在聚变等离子体（$T_e\sim 10\,\mathrm{keV}$）中，经典碰撞极为稀少，碰撞输运很弱——这解释了为什么等离子体是近乎理想的导体，也说明了为什么反常输运（由不稳定性导致）成为主要损失机制。
+\textbf{物理分析：} $\nu_{ei} \propto T_e^{-3/2}$，温度升高一个数量级，碰撞频率下降 $10^{3/2}\approx32$ 倍。这是因为高温电子速度更快，在靶离子附近停留时间更短，偏转更小。在聚变等离子体（$T_e\sim 10\,\mathrm{keV}$）中，经典碰撞极为稀少，碰撞输运很弱——这解释了为什么等离子体是近乎理想的导体，也说明了为什么反常输运（由不稳定性导致）成为主要损失机制。
 \end{example}
 
 \begin{figure}[htbp]
@@ -346,14 +368,25 @@ P = \eta j^2 \approx \frac{5\times10^{-5}\,Z\ln\Lambda\,j^2}{T_e^{3/2}} \propto 
 P = \eta j^2 = 4.5\times10^{-5}\times(10^4)^2 = 4.5\times10^3\,\mathrm{W/m^3}
 \]
 
-\textbf{(3) 高温极限：} 欧姆加热 $\propto T_e^{-3/2}$ 越来越弱，而辐射损失（韧致辐射 $\propto T_e^{1/2}n^2$）和输运损失随温度上升。两者在 $T_e\sim100\,\mathrm{eV}$ 量级达到平衡后，欧姆加热无法进一步提高温度——这就是托卡马克必须采用中性束注入、ICRF/ECD 射频加热等辅助加热手段的根本原因（欧姆加热只能把等离子体带入"温区"，点火必须靠辅助加热）。
+\textbf{(3) 欧姆加热为什么"上不去"——必须引入损失模型才能谈上限：}
+仅由 (1) 只能得出一个偏导数的符号：固定 $j$ 时 $P_\Omega\propto T_e^{-3/2}$ 单调下降。这\emph{不}足以给出任何温度上限——单看这条曲线，会以为温度越高加热越弱、最终趋于零，却永远说不出"停在多少 eV"。\textbf{温度上限是加热与损失两条曲线的交点，缺了损失模型就没有交点可求。}
+
+\textbf{要把上限算出来，必须先写出损失项。} 例如只考虑碰撞输运损失（能量约束时间 $\tau_E$）时，单位体积损失率为 $P_{\text{loss}} = \dfrac{3nk_{\!B}T_e}{\tau_E}$，令 $P_\Omega=P_{\text{loss}}$ 才得到平衡温度：
+\[
+\frac{5\times10^{-5}Z\ln\Lambda\,j^2}{T_e^{3/2}} = \frac{3nk_{\!B}T_e}{\tau_E}
+\quad\Longrightarrow\quad
+T_e^{5/2} = \frac{5\times10^{-5}Z\ln\Lambda\,j^2\,\tau_E}{3nk_{\!B}}
+\]
+\textbf{上限完全由 $j$、$n$、$\tau_E$ 决定，不是一个普适的数。} 若把 $\tau_E$ 换成韧致辐射损失（$\propto n^2T_e^{1/2}$），平衡点又会移动。这正是本题不给 $\tau_E$、不给 $n$ 之外信息时\textbf{不能断言"约 100 eV 达到平衡"}的原因。
+
+\textbf{正确的结论表述：} 欧姆加热在高温下被 $T_e^{-3/2}$ 强烈抑制，所以在给定电流下它能达到的温区\emph{量级上}偏低；要把它推到聚变温度（keV 量级），要么大幅提高 $j$（工程上受不稳定性限制），要么换用中性束注入、ICRF/ECRH 等辅助加热。\textbf{这不等于"欧姆加热一定停在 100 eV"}——那需要针对具体装置的 $j,n,\tau_E$ 逐个计算。请把这一条读成"标度分析 + 需要闭合"的例子，而不是一个普适常数。
 \end{example}
 
 \begin{formulabox}{第8章核心公式速查}{ch8-formulas}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
-\item Rutherford散射角：$\displaystyle\tan\frac{\theta}{2} = \frac{b_0}{2b}$，其中 $b_0 = \frac{|q_1 q_2|}{4\pi\eps_0 m_r v^2}$
-\item 电子--离子碰撞频率：$\displaystyle\nu_{ei} = \frac{n_i Z^2 e^4 \ln\Lambda}{12\pi^{3/2}\eps_0^2 m_e^{1/2}(k_{\!B}T_e)^{3/2}}$
-\item 库仑对数：$\displaystyle\Lambda = 12\pi n_e\lambda_D^3 = \frac{12\pi\eps_0 k_{\!B}T_e}{e^2 n_e^{1/3}}$
+\item Rutherford散射角：$\displaystyle\tan\frac{\theta}{2} = \frac{b_0}{b}$，其中 $b_0 = \frac{|q_1 q_2|}{4\pi\eps_0 m_r v^2}$ 是 $90^\circ$ 散射的碰撞参数（头碰最近距离 $=2b_0$）
+\item 电子--离子碰撞频率：$\displaystyle\nu_{ei} = \frac{n_i Z^2 e^4 \ln\Lambda}{12\pi^{3/2}\eps_0^2 m_e^{1/2}(k_{\!B}T_e)^{3/2}} \approx \frac{2.06\times10^{-12}\,n_iZ^2\ln\Lambda}{T_{e,\mathrm{eV}}^{3/2}}\,\mathrm{s^{-1}}$
+\item 库仑对数（本书约定：$\Lambda=\lambda_D/b_0=3N_D$）：$\displaystyle\ln\Lambda = \ln(3N_D)$，$N_D = \tfrac{4\pi}{3}n_e\lambda_D^3$（注意 $12\pi n_e\lambda_D^3=9N_D$，且 $12\pi\eps_0 k_BT_e/(e^2n_e^{1/3})$ 的 $T,n$ 幂次不同，是另一种约定）
 \item Spitzer电阻率：$\displaystyle\eta_{\parallel} \approx 5.2\times 10^{-5}\frac{Z\ln\Lambda}{T_e^{3/2}\,\mathrm{(eV)}}\,\Omega\cdot\mathrm{m}$
 \item 双极扩散系数：$\displaystyle D_a = \frac{\mu_i D_e + \mu_e D_i}{\mu_i + \mu_e} \approx D_i\left(1 + \frac{T_e}{T_i}\right)$
 \item 扩散系数（Fick定律）：$\displaystyle\Gamma = -D\grad n$

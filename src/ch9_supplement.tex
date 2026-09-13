@@ -10,7 +10,7 @@
 在磁约束聚变装置的"坏曲率"区域，等效重力加速度约为 $g \approx 10^{5}\,\mathrm{m/s^2}$（由曲率漂移产生），密度梯度对应的Atwood数 $A = 0.3$。界面处波长为 $\lambda = 2\,\mathrm{cm}$ 的扰动被激发。求：
 \begin{enumerate}[label=(\arabic*)]
 \item 该扰动的增长率 $\gamma$；
-\item 扰动振幅增长 $10$ 倍（即 $\ee^{10}$ 倍）所需的时间；
+\item 振幅\textbf{增长 10 倍}所需的时间，以及振幅增长 $\ee^{10}$ 倍（即 $10$ 个 e-folding）所需的时间；
 \item 若波长缩短为 $\lambda = 0.5\,\mathrm{cm}$，增长率如何变化？
 \end{enumerate}
 \tcblower
@@ -35,17 +35,23 @@ k = \frac{2\pi}{\lambda} = \frac{2\pi}{0.02} = 314\,\mathrm{m}^{-1}
 \approx 3.07\times 10^{3}\,\mathrm{s}^{-1}
 \]
 
-\textbf{(2) 增长 $10$ 倍的时间：}
+\textbf{(2) 增长 10 倍 vs 10 个 e-folding——两个不同的目标：}
 
-振幅增长满足 $A(t) = A_0\ee^{\gamma t}$。增长 $10$ 倍需要：
+振幅增长满足 $A(t) = A_0\ee^{\gamma t}$。
+
+\textbf{目标一：振幅增长 10 倍}（即 $\ee^{\gamma t}=10$）：
 \[
-\ee^{\gamma t} = 10 \quad\Rightarrow\quad t = \frac{\ln 10}{\gamma} = \frac{2.30}{3.07\times 10^{3}} \approx 7.5\times 10^{-4}\,\mathrm{s} = 0.75\,\mathrm{ms}
+t_{10\times} = \frac{\ln 10}{\gamma} = \frac{2.303}{3.07\times 10^{3}} \approx 7.5\times 10^{-4}\,\mathrm{s} = 0.75\,\mathrm{ms}
 \]
 
-增长 $\ee$ 倍（一个 $e$-folding）的时间：
+\textbf{目标二：增长 $\ee^{10}$ 倍}（即 $10$ 个 e-folding，$\gamma t=10$）：
 \[
-\tau = \frac{1}{\gamma} \approx 0.33\,\mathrm{ms}
+t_{10e} = \frac{10}{\gamma} = \frac{10}{3.07\times 10^{3}} \approx 3.3\times 10^{-3}\,\mathrm{s} = 3.3\,\mathrm{ms}
 \]
+
+两者相差 $\ln10\approx2.3$ 倍，\textbf{不能互换}。一个 e-folding 的时间为 $\tau=1/\gamma\approx0.33\,\mathrm{ms}$。
+
+\textbf{约定提醒：} 本书全程用 $\exp[\ii(\vect{k}\cdot\vect{r}-\omega t)]$，因此 $\gamma=\Im\omega>0$ 对应振幅 $\propto\ee^{\gamma t}$\emph{增长}。凡涉及"增长多少倍""多少个 e-folding"，含义必须写明，因为十倍与十个 e-folding 是不同的事。
 
 \textbf{(3) 波长缩短为 $\lambda = 0.5\,\mathrm{cm}$：}
 
@@ -67,84 +73,62 @@ k' = \frac{2\pi}{0.005} = 1257\,\mathrm{m}^{-1}
 \item 瑞利--泰勒增长率与 $\sqrt{k}$ 成正比，短波扰动增长更快。
 \item 但极短波扰动（$k$ 很大）可能受到其他效应稳定（如表面张力、粘性、或磁场沿界面的张力）。在理想MHD中，没有这些截断机制，短波会无限增长。
 \item 在托卡马克中，气球模（瑞利--泰勒型）在"坏曲率"区（外中平面）发展最快，是限制压强比 $\beta$ 的主要因素之一。
-\item $0.75\,\mathrm{ms}$ 内增长 $10$ 倍，说明该不稳定性非常剧烈，若不加以控制（如通过理想导体壁或优化位形），等离子体会迅速损失。
+\item 约 $0.75\,\mathrm{ms}$ 内振幅增长 $10$ 倍（$3.3\,\mathrm{ms}$ 内增长 $\ee^{10}$ 倍），说明该不稳定性非常剧烈，若不加以控制（如通过理想导体壁或优化位形），等离子体会迅速损失。
 \end{itemize}
 \end{example}
 
 \begin{example}{双流不稳定性的色散关系与不稳定性条件}{two-stream-calc}
-考虑冷电子以漂移速度 $u = 2\times 10^{7}\,\mathrm{m/s}$ 穿过静止离子背景（$u_i = 0$）。等离子体频率 $\omega_{pe} = 5\times 10^{10}\,\mathrm{rad/s}$。求：
-\begin{enumerate}[label=(\arabic*)]
-\item 双流不稳定性的色散关系；
-\item 不稳定性的波数范围；
-\item 最大增长率及对应的波数。
-\end{enumerate}
+\textbf{模型声明（先读）：} 本题研究\textbf{对称双流模型}——两束等密度的冷电子以 $\pm u/2$ 相向运动，净电荷中和由静止离子背景提供（离子只作电中性背景，不参与振荡）。相对漂移速度为 $u = 2\times 10^{7}\,\mathrm{m/s}$。设\textbf{总}电子密度对应的等离子体频率为 $\omega_{pe} = 5\times 10^{10}\,\mathrm{rad/s}$（每束为 $\omega_{pe}^2/2$）。求：(1) 色散关系；(2) 不稳定波数范围；(3) 最大增长率及对应波数。
+
+\textbf{注意：} 这与"电子束穿过可动离子"（Buneman 模型，见正文 \S9.3 模型 B）是\textbf{两个不同的模型}，不可混用；本题只用对称双流模型 A。离子平衡速度为零\emph{不等于}离子扰动响应为零，但本模型里确实令离子只作背景——这个假设必须写明，不能悄悄换。
 \tcblower
 \textbf{解答：}
 
-\textbf{(1) 色散关系：}
-
-对冷等离子体（$T_e = T_i = 0$），双流色散关系为（第二项为束电子的贡献）：
+\textbf{(1) 色散关系：} 冷等离子体（$T_e=T_i=0$），每束贡献 $\omega_{pe}^2/2$：
 \[
-1 = \frac{\omega_{pe}^2}{\omega^2} + \frac{\omega_{pe}^2}{(\omega - k u)^2}
+1=\frac{\omega_{pe}^2/2}{(\omega-ku/2)^2}+\frac{\omega_{pe}^2/2}{(\omega+ku/2)^2}
 \]
 
-由于离子静止 $u_i = 0$，且 $m_i \gg m_e$（$\omega_{pi} \ll \omega_{pe}$），在电子时间尺度上离子近似为固定背景——这是\textbf{Buneman 近似}：离子仅提供中性背景，不参与振荡，从色散关系中消失。
-
-若不取 Buneman 近似而保留完整的电子--离子双流形式，则为
+\textbf{化为标准形式。} 令 $\Omega=\omega-ku/2$，$a=\dfrac{ku}{2\omega_{pe}}$。代入并整理可得
 \[
-1 = \frac{\omega_{pe}^2}{\omega^2} + \frac{\omega_{pi}^2}{(\omega - k u_i)^2}
+\frac{\Omega^2}{\omega_{pe}^2}=a^2+1\pm\sqrt{1+4a^2}
 \]
-（对应两束各自漂移的完整双流模型；本题中 $u_i = 0$ 且 $\omega_{pi} \ll \omega_{pe}$，离子项可忽略。）
-
-\textbf{(2) 不稳定性条件：}
-
-对冷电子束流，不稳定性发生的条件是 $k u < \omega_{pe}$。即：
+只有一个根给出 $\Omega^2<0$，即复频率。\textbf{不稳定要求 $\Omega^2<0$}，它发生在
 \[
-k < \frac{\omega_{pe}}{u}
+0<|ku|<2\sqrt2\,\omega_{pe}
 \]
 
-代入数值：
+\textbf{(2) 不稳定波数范围：} 由 $|ku|<2\sqrt2\,\omega_{pe}$，
 \[
-k_{\text{max}} = \frac{5\times 10^{10}}{2\times 10^{7}} = 2.5\times 10^{3}\,\mathrm{m}^{-1}
+k_{\max}=\frac{2\sqrt2\,\omega_{pe}}{u}=\frac{2\sqrt2\times 5\times10^{10}}{2\times10^{7}}
+\approx 7.07\times 10^{3}\,\mathrm{m}^{-1}
 \]
-
-对应的最小波长：
+对应最小不稳定波长
 \[
-\lambda_{\text{min}} = \frac{2\pi}{k_{\text{max}}} = \frac{2\pi}{2.5\times 10^{3}} \approx 2.51\times 10^{-3}\,\mathrm{m} \approx 2.5\,\mathrm{mm}
+\lambda_{\min}=\frac{2\pi}{k_{\max}}=\frac{2\pi}{7.07\times10^{3}}\approx 8.9\times 10^{-4}\,\mathrm{m}\approx 0.89\,\mathrm{mm}
 \]
-
-因此，波长大于约 $2.5\,\mathrm{mm}$ 的模式不稳定；更短波长的模式稳定（被等离子体频率"阻止"）。
+\textbf{波长大于约 $0.89\,\mathrm{mm}$ 的模式不稳定}；更短的稳定。（常见错误是把阈值记成 $|ku|<\omega_{pe}$，对应 $k<2.5\times10^3\,\mathrm{m^{-1}}$，那是错的——复核例：取 $ku=2\omega_{pe}$ 仍有实的正增长率。）
 
 \textbf{(3) 最大增长率：}
-
-对对称双流（两束等密度冷电子相向运动），最大增长率约为：
 \[
-\gamma_{\max} \approx \frac{\omega_{pe}}{2\sqrt[3]{2}} \approx 0.4\,\omega_{pe}
+\gamma_{\max}=\frac{\omega_{pe}}{2}=2.5\times 10^{10}\,\mathrm{rad/s}
 \]
-
-此处 $u$ 较大而离子静止，属于电子--离子双流不稳定性（Buneman不稳定性），最大增长率约为：
+\textbf{发生在 $|ku|=\sqrt3\,\omega_{pe}$}，即
 \[
-\gamma_{\max} \approx \frac{\sqrt{3}}{2}\left(\frac{m_\ee}{2m_\ii}\right)^{1/3}\omega_{pe}
-= \frac{\sqrt{3}}{2}\left(\frac{9.11\times 10^{-31}}{2\times 1.67\times 10^{-27}}\right)^{1/3}\times 5\times 10^{10}
-\approx 2.8\times 10^{9}\,\mathrm{rad/s}
+k_{\text{opt}}=\frac{\sqrt3\,\omega_{pe}}{u}=\frac{1.732\times5\times10^{10}}{2\times10^{7}}\approx 4.33\times10^{3}\,\mathrm{m}^{-1}
 \]
-
-对应增长时间：
+对应增长时间
 \[
-\tau = \frac{1}{\gamma_{\max}} \approx 3.6\times 10^{-10}\,\mathrm{s} \approx 0.36\,\mathrm{ns} = 360\,\mathrm{ps}
+\tau=\frac{1}{\gamma_{\max}}\approx 4.0\times 10^{-11}\,\mathrm{s}\approx 0.040\,\mathrm{ns}=40\,\mathrm{ps}
 \]
-
-最大增长率发生在：
-\[
-k \approx \frac{\omega_{pe}}{u} = 2.5\times 10^{3}\,\mathrm{m}^{-1}
-\]
+\textbf{注意 $\gamma_{\max}$ 的位置不是阈值：}阈值在 $2\sqrt2\,\omega_{pe}$，最大增长在 $\sqrt3\,\omega_{pe}$，二者不是同一个 $k$。
 
 \textbf{物理分析：}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
 \item 双流不稳定性将电子的定向漂移动能转化为等离子体振荡能（Langmuir波）。
-\item 增长时间仅约 $360\,\mathrm{ps}$，说明在强电流等离子体中，这种不稳定性几乎是瞬发的。
-\item 实际等离子体有温度（热速度），这会使不稳定性饱和，或改变增长条件。当 $u \lesssim v_{te}$ 时，热展宽会稳定束流。
-\item 双流不稳定性是等离子体中反常电阻的重要来源：束流能量转化为波，波再通过Landau阻尼加热电子，等效于电阻耗散。
+\item 增长时间仅约 $40\,\mathrm{ps}$，说明在强电流等离子体中，这种不稳定性几乎是瞬发的。
+\item 实际等离子体有温度：当相对漂移 $u\lesssim v_{te}$ 时，热展宽会稳定束流。
+\item 束流能量转化为波，波再通过 Landau 阻尼加热电子，等效于电阻耗散——这是反常电阻的来源之一（对应冷束穿过可动离子的 Buneman 模型给出的电流驱动版本）。
 \end{itemize}
 \end{example}
 
@@ -247,19 +231,25 @@ v_{de} = \frac{1.602\times 10^{-17}}{1.602\times 10^{-19}\times 2\times 0.1}
 f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
 \]
 
-\textbf{步骤3：估算增长率。}
+\textbf{步骤3：这一步\emph{到此为止}——不能由 $\omega_*$ 推出增长率。}
 
-在存在电子--离子碰撞或磁场不均匀性时，漂移波可能变得不稳定。典型的增长率量级与频率相当：
-\[
-\gamma \sim \omega_* \sim 5\times 10^{3}\,\mathrm{s}^{-1}
-\]
+上面的 $\omega_*\sim5\times10^{3}\,\mathrm{rad/s}$ 是\textbf{实频率}（波的振荡快慢），\textbf{不}是增长率。$\omega_*=k_yv_{de}$ 只告诉你有梯度时存在一个以逆磁速度传播的模，\textbf{它本身不含任何关于稳定性的信息}。"有梯度"与"该模一定增长"之间还差一整套机制。
+
+\textbf{要判断是否增长，必须给出非绝热的电子响应。} 漂移波不稳定的标准图景是：电子沿磁力线的响应若\emph{恰好}是绝热的（$n_{e1}/n_0=e\phi_1/k_BT_e$，即响应瞬时、无相位延迟），则密度涨落与电势涨落\emph{同相}，$\vect{E}\times\vect{B}$ 漂移只把等离子体来回搬运，净输运为零——\textbf{不增长}。只有当电子响应\emph{非绝热}、产生一个相位差 $\delta$ 时，输运才与密度涨落同相，才能把能量喂给波。产生相位差的机制包括：
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item \textbf{碰撞}（耗散型漂移波）：$\delta\sim\nu_{ei}/\omega_*$，增长率 $\gamma\propto\nu_{ei}$；
+\item \textbf{有限 $k_\parallel$}（朗道型/平板漂移波）：沿磁力线的波数使电子不能瞬时平衡，$\gamma\sim k_\parallel v_{te}\sqrt{\pi/2}$；
+\item \textbf{曲率/坏曲率与 $\nabla T$}（ITG/TEM 等）：需要这些额外自由能源才能致不稳定。
+\end{itemize}
+
+\textbf{结论：} 本题应读作"\textbf{实频率尺度的估算}"，到此为止。$\gamma$ 必须来自具体的非绝热模型，\textbf{不能写成 $\gamma\sim\omega_*$}。请把 \S9.5 的模型假设写清楚（哪个非绝热机制？$k_\parallel$ 多大？有无碰撞？）之后再求虚部。
 
 \textbf{物理分析：}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
 \item 漂移波的频率远小于离子回旋频率（$\omega_{ci} = eB/m_i \approx 1.9\times 10^{8}\,\mathrm{rad/s}$ for protons），满足低频近似。
-\item 漂移波不稳定性的核心机制：密度涨落引起电势涨落，电势涨落驱动 $\vect{E}\times\vect{B}$ 漂移，进一步放大密度涨落——正反馈回路。
+\item 漂移波\emph{可能}不稳定的核心机制：密度涨落引起电势涨落，电势涨落的 $\vect{E}\times\vect{B}$ 漂移进一步放大密度涨落——但这需要上面列出的相位差机制才能真正闭合成正反馈；无相位差时是中性振荡。
 \item 在托卡马克中，漂移波及其非线性发展（漂移波湍流）是粒子反常输运的主要来源之一。
-\item 虽然上述估算非常粗糙（真实色散关系涉及 $k_{\parallel}$、碰撞率、磁剪切等），但它给出了正确的量级：漂移波频率在千赫兹到兆赫兹范围，与装置尺度相当。
+\item 虽然上述估算非常粗糙（真实色散关系涉及 $k_{\parallel}$、碰撞率、磁剪切等），但它给出了实频率的正确量级：千赫兹到兆赫兹。
 \end{itemize}
 \end{example}
 
@@ -278,11 +268,16 @@ f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
     \draw[->, very thick] (exb) -- node[below left=0.1cm and -0.5cm, align=center, font=\footnotesize] {把高密度区\\输运到低密度区} (amp);
     \draw[->, very thick, dashed] (amp) -- node[left] {正反馈} (dn);
 
+    % 相位差（驱动增长的必需条件）
+    \node[box, fill=yellow!25, minimum width=4.6cm] (ph) at (2.8,0.9) {\footnotesize 驱动增长必需：\\ $\delta n$ 与 $\delta\phi$ 之间的\textbf{相位差} $\delta\neq0$\\（非绝热电子响应：碰撞 / 有限 $k_\parallel$）};
+    \draw[->, dashed, thick, orange!80!black] (ph.west) -- (amp.east);
+    \draw[->, dashed, thick, orange!80!black] (ph.east) -- (exb.west);
+
     % 梯度与磁场示意（放在回路外侧，不与连线重叠）
     \node[font=\small, align=left] at (0,0.85) {};
     \node[font=\small, align=center] at (2.8,3.3) {背景：$\nabla n$ 沿 $-x$ 方向，$\vect{B}$ 垂直纸面向外};
 \end{tikzpicture}
-\caption{漂移波不稳定性的正反馈回路。密度梯度（沿 $-x$ 方向）中的密度涨落产生电势涨落，电势涨落的 $\vect{E}\times\vect{B}$ 漂移把高密度等离子体输运到低密度区，进一步放大密度涨落——扰动指数增长。磁场 $\vect{B}$ 垂直纸面向外。}
+\caption{漂移波（可能）不稳定性的正反馈回路。密度梯度（沿 $-x$ 方向）中的密度涨落产生电势涨落，电势涨落的 $\vect{E}\times\vect{B}$ 漂移把高密度等离子体输运到低密度区，进一步放大密度涨落。\textbf{但回路闭合还差一环}：只有 $\delta n$ 与 $\delta\phi$ 之间存在相位差 $\delta\neq0$（即电子响应非绝热，由碰撞或有限 $k_\parallel$ 提供）时，输运才与密度涨落同相、才能把能量喂给波；若相位差为零，$\vect{E}\times\vect{B}$ 漂移只来回搬运、净输运为零，是中性振荡而非增长。磁场 $\vect{B}$ 垂直纸面向外。}
 \label{fig:drift-wave-feedback}
 \end{figure}
 
@@ -388,9 +383,10 @@ f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
 \item 不稳定性判据：$\text{Im}(\omega) > 0$，增长率 $\gamma = \text{Im}(\omega)$
 \item 瑞利--泰勒增长率：$\displaystyle\gamma = \sqrt{A k g}$，$A = \frac{\rho_2 - \rho_1}{\rho_2 + \rho_1}$
-\item 双流不稳定性（冷电子束）：$\displaystyle 1 = \frac{\omega_{pe}^2}{\omega^2} + \frac{\omega_{pe}^2}{(\omega - k u)^2}$
-\item 双流不稳定性条件：$\displaystyle k u < \omega_{pe}$
-\item 双流最大增长率：$\displaystyle\gamma_{\max} \approx \frac{\omega_{pe}}{2}$（发生在 $k \approx \omega_{pe}/u$）
+\item 对称双流（两束等密度冷电子，相对漂移 $u$）：$\displaystyle 1=\frac{\omega_{pe}^2/2}{(\omega-ku/2)^2}+\frac{\omega_{pe}^2/2}{(\omega+ku/2)^2}$，即 $\dfrac{\Omega^2}{\omega_{pe}^2}=a^2+1\pm\sqrt{1+4a^2}$（$\Omega=\omega-ku/2$，$a=ku/2\omega_{pe}$）
+\item 对称双流不稳定条件：$\displaystyle 0<|ku|<2\sqrt2\,\omega_{pe}$（\textbf{不是} $ku<\omega_{pe}$）
+\item 对称双流最大增长率：$\displaystyle\gamma_{\max}=\frac{\omega_{pe}}{2}$，发生在 $\displaystyle|ku|=\sqrt3\,\omega_{pe}$（\textbf{不是阈值处}）
+\item Buneman（电子束穿过可动离子）：$\displaystyle 1=\frac{\omega_{pe}^2}{(\omega-ku_e)^2}+\frac{\omega_{pi}^2}{(\omega-ku_i)^2}$，与对称双流是两个模型，不可混用
 \item  sausage模（$m=0$）：轴对称径向收缩，纵向磁场 $B_z$ 提供稳定
 \item 扭曲模（$m=1$）：柱轴螺旋弯曲，导体壁镜像电流提供稳定
 \item 漂移波频率（估算）：$\displaystyle\omega_* \sim k_y v_{de} = k_y \frac{k_{\!B}T_e}{eBL_n}$
@@ -405,7 +401,7 @@ f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
 \item 我能从瑞利--泰勒公式估算增长率，并解释为什么短波增长更快
 \item 我能写出双流不稳定性的色散关系，并判断不稳定波数范围
 \item 我能在物理图像上区分 sausage模（$m=0$）和扭曲模（$m=1$），并知道各自的稳定方法
-\item 我理解漂移波不稳定性的物理机制：密度涨落 $\to$ 电势涨落 $\to$ $\vect{E}\times\vect{B}$ 漂移 $\to$ 正反馈
+\item 我理解漂移波的回路：密度涨落 $\to$ 电势涨落 $\to$ $\vect{E}\times\vect{B}$ 漂移 $\to$ 输运，\textbf{并且知道回路闭合还差一环}——必须有相位差 $\delta\neq0$（非绝热电子响应）才能增长；$\omega_*=k_yv_{de}$ 只是实频率，不等于增长率
 \item 我能解释为什么反常输运远大于经典输运，以及它与不稳定性的关系
 \item 我知道抑制不稳定性是磁约束聚变的核心挑战（如气球模限制 $\beta$、扭曲模需要壁稳定）
 \end{itemize}

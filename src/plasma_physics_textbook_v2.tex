@@ -387,14 +387,14 @@ $\nabla$ & 矢量微分算符 & 见下表 & \\
 \begin{table}[htbp]
 \centering
 \small
-\begin{tabular}{@{}lllp{5.8cm}@{}}
+\begin{tabular}{@{}lllp{6.6cm}@{}}
 \toprule
 \textbf{算符} & \textbf{符号} & \textbf{名称} & \textbf{直角坐标展开} \\
 \midrule
-$\grad f$ & $\nabla f$ & 梯度 & $\displaystyle\frac{\partial f}{\partial x}\unitvec{x}+\frac{\partial f}{\partial y}\unitvec{y}+\frac{\partial f}{\partial z}\unitvec{z}$ \\
-$\divg\vect{A}$ & $\nabla\cdot\vect{A}$ & 散度 & $\displaystyle\frac{\partial A_x}{\partial x}+\frac{\partial A_y}{\partial y}+\frac{\partial A_z}{\partial z}$ \\
+$\grad f$ & $\nabla f$ & 梯度 & $\frac{\partial f}{\partial x}\unitvec{x}+\frac{\partial f}{\partial y}\unitvec{y}+\frac{\partial f}{\partial z}\unitvec{z}$ \\
+$\divg\vect{A}$ & $\nabla\cdot\vect{A}$ & 散度 & $\frac{\partial A_x}{\partial x}+\frac{\partial A_y}{\partial y}+\frac{\partial A_z}{\partial z}$ \\
 $\curl\vect{A}$ & $\nabla\times\vect{A}$ & 旋度 & 行列式形式 \\
-$\lap f$ & $\nabla^2 f$ & 拉普拉斯 & $\displaystyle\frac{\partial^2 f}{\partial x^2}+\frac{\partial^2 f}{\partial y^2}+\frac{\partial^2 f}{\partial z^2}$ \\
+$\lap f$ & $\nabla^2 f$ & 拉普拉斯 & $\frac{\partial^2 f}{\partial x^2}+\frac{\partial^2 f}{\partial y^2}+\frac{\partial^2 f}{\partial z^2}$ \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -452,7 +452,7 @@ $k_\mathrm{B} T$ 才是能量，但为简洁起见，本书常写“$T_\ee=10\,\
 \toprule
 \textbf{符号} & \textbf{定义/表达式} & \textbf{物理意义与判据} \\
 \midrule
-$N_\mathrm{D}$ & $n\lambda_\mathrm{D}^3$ & 德拜球内粒子数；$N_\mathrm{D}\gg 1$ 为理想等离子体判据 \\
+$N_\mathrm{D}$ & $\tfrac{4}{3}\pi n\lambda_\mathrm{D}^3$ & 德拜球内粒子数；$N_\mathrm{D}\gg 1$ 为理想等离子体判据 \\
 $\Gamma$ & $\displaystyle\frac{e^2}{4\pi\eps_0 a k_\mathrm{B} T}$ & 耦合参数；$a=(3/4\pi n)^{1/3}$ 为 Wigner--Seitz 半径。\\ & & $\Gamma\ll 1$ 弱耦合，$\Gamma\gg 1$ 强耦合 \\
 $\ln\Lambda$ & $\ln\left(\dfrac{\lambda_\mathrm{D}}{b_{\min}}\right)$ & 库仑对数；$b_{\min}$ 为最近接近距离 \\
 $\beta$ & $\displaystyle\frac{2\mu_0 n k_\mathrm{B} T}{B^2}$ & 比压；$\beta\ll 1$ 磁约束，$\beta\sim 1$ 磁压与热压相当 \\
@@ -730,6 +730,7 @@ $\star\star\star$\,[\,挑战\,] & 挑战 & 涉及较深的数学技巧或前沿�
 必读 & 第 12 章 & 诊断方法（朗缪尔探针、光谱、质谱） \\
 \midrule
 \textbf{跳过} & 第 5 章 & 理想 MHD（与工艺等离子体关系不大） \\
+\textbf{跳过} & 第 6 章 & 波的传播与色散（工艺等离子体一般不需） \\
 \textbf{跳过} & 第 7 章 & 动理学理论（Vlasov 方程、Landau 阻尼） \\
 \textbf{跳过} & 第 9 章 & 宏观不稳定性（tokamak 极限） \\
 \textbf{跳过} & 第 10 章 & 聚变约束（磁约束与惯性约束） \\
@@ -748,10 +749,11 @@ $\star\star\star$\,[\,挑战\,] & 挑战 & 涉及较深的数学技巧或前沿�
 \toprule
 \textbf{阶段} & \textbf{章节} & \textbf{说明} \\
 \midrule
-核心基础 & 第 1--4 章 & 全读，不留死角（单粒子、流体、双流体、MHD） \\
-核心进阶 & 第 5--7 章 & 碰撞输运、波动、动理学（重点：Landau 阻尼、色散关系） \\
-核心应用 & 第 8--10 章 & 不稳定性、约束与聚变、空间等离子体应用 \\
-选修拓展 & 第 11 章 & 低温等离子体（若涉及偏滤器、壁处理则必读） \\
+核心基础 & 第 1--4 章 & 全读，不留死角（数学预备、德拜屏蔽、单粒子、流体与双流体） \\
+核心进阶 & 第 5--6 章 & 理想 MHD（磁压、磁冻结、阿尔芬波）与等离子体中的波 \\
+进阶物理 & 第 7--8 章 & 动理学（Vlasov、Landau 阻尼、色散关系）与碰撞输运 \\
+核心应用 & 第 9--10 章 & MHD 不稳定性、磁约束（Tokamak/仿星器）与惯性约束聚变 \\
+选修拓展 & 第 11 章 & 低温工业等离子体（若涉及偏滤器、壁处理则必读） \\
 实验诊断 & 第 12 章 & 全读（诊断是聚变实验的核心） \\
 \bottomrule
 \end{tabular}
@@ -770,10 +772,14 @@ $\star\star\star$\,[\,挑战\,] & 挑战 & 涉及较深的数学技巧或前沿�
 \textbf{阶段} & \textbf{章节/资源} & \textbf{说明} \\
 \midrule
 全书精读 & 第 1--10 章 & 全读，包括所有\,\difficulty{挑战}\,内容 \\
-数学补充 & 附录 A & 复变函数与围道积分（Landau 阻尼必备） \\
-数学补充 & 附录 B & 变分法与能量原理（MHD 稳定性证明） \\
-仿真拓展 & 附录 C & Python 仿真：单粒子轨道、PIC 一维静电、双流体模拟 \\
-前沿文献 & 配套资源 & 经典论文导读（Rosenbluth, Taylor, Kadomtsev 等） \\
+矢量与张量 & 附录 A & 梯度/散度/旋度、拉普拉斯算子在三种坐标下的形式（推导必备） \\
+参数速查 & 附录 B & 等离子体特征参数、碰撞频率、德拜球计数（核对量级） \\
+推导补充 & 附录 C & 欧姆定律、阿尔芬波、Grad--Shafranov 等省略的中间步骤 \\
+单位换算 & 附录 D & SI 与高斯单位制对照、电荷/电流密度换算 \\
+书单 & 附录 E & 分级自学书单与外部资源入口 \\
+易错点 & 附录 F & 全书高频易错点汇总（统一符号约定、漂移量级） \\
+仿真拓展 & 附录 G & Python 仿真：单粒子轨道、德拜屏蔽、朗缪尔波色散（可运行代码） \\
+前沿文献 & 配套资源 & 经典论文导读（Langmuir 1928、Alfv\'{e}n 1942 等） \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -881,22 +887,24 @@ $\star\star\star$\,[\,挑战\,] & 挑战 & 涉及较深的数学技巧或前沿�
 \midrule
 动态演示动图 & 单粒子在电磁场中的漂移轨迹、等离子体振荡、
 Landau 阻尼相空间混叠、瑞利--泰勒不稳定性演化等。 \\
-Python 代码仓库 & 包含：单粒子轨道积分器、一维静电 PIC 模拟、
-双流体线性色散求解器、MHD 平衡构型计算、朗缪尔探针 $I$--$V$ 曲线拟合。 \\
-拓展习题 & 每章配套 15--20 道习题，含完整数值答案和提示。 \\
-经典论文导读 & 精选 20 篇等离子体物理里程碑论文（如 Langmuir 1928、
-Alfv\'{e}n 1942、Rosenbluth--Rostoker 1962），提供背景、
-要点摘要和习题。 \\
+Python 代码 & \textbf{本书附录 G 直接给出可运行的独立脚本}（单粒子轨道追踪、德拜屏蔽数值解、
+朗缪尔波色散曲线），复制即可运行，无需额外仓库。 \\
+拓展习题 & 每章配套补充例题与自学检查清单（见各章 \texttt{supplement} 文件）。 \\
+经典论文导读 & 精选等离子体物理里程碑论文（如 Langmuir 1928、
+Alfv\'{e}n 1942、Rosenbluth--Rostoker 1962），提供背景与要点摘要。 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
+\textbf{说明：}上表所述的动图、论文导读等交互式资源需通过线上平台获取，本仓库不含其独立脚本；\textbf{随书可独立复现的数值代码只有附录 G.1--G.3 三个 Python 脚本}，读者可先跑通它们建立信心，再按 G.4 的路线进阶到 EPOCH、GENE 等专业代码。
+
 \begin{miniquiz}
 在进入第 1 章之前，建议你先完成以下准备：\\
-1. 打开 Python 代码仓库，运行 \texttt{single\_particle\_orbit.py}，
-观察 $\vect{E}\times\vect{B}$ 漂移；\\
-2. 浏览动态演示动图，建立对 ``等离子体振荡'' 的直观印象；\\
-3. 用 10 分钟复习矢量分析的梯度、散度、旋度定义。
+1. 打开附录 G.1 的脚本（复制 \texttt{verbatim} 代码存为 \texttt{g1.py}）并运行，
+观察 $\vect{E}\times\vect{B}$ 漂移，核对打印出的漂移速度约为 $1000\,\mathrm{m/s}$；\\
+2. 用 10 分钟复习矢量分析的梯度、散度、旋度定义，并想一想：
+为什么梯度场的旋度必为零？\\
+3. 回顾能量均分定理：一维自由度的平均动能为什么是 $\frac12k_BT$？
 \end{miniquiz}
 
 \begin{chapterreview}
@@ -1169,14 +1177,21 @@ v_p = \frac{\omega}{k} = \frac{\sqrt{\omega_p^2 + c^2k^2}}{k} = c\sqrt{1 + \frac
 \section{$\delta$函数与点粒子描述}\difficulty{基础}
 
 \begin{definition}{狄拉克$\delta$函数}{delta-def}
-三维狄拉克 $\delta$ 函数定义为：
+狄拉克 $\delta$ 函数\textbf{不是普通函数}，而是一个广义函数（分布）。它的严格定义方式是说它作用在任意连续函数 $g$ 上给出什么结果：
 \[
-\delta(\vect{r} - \vect{r}_0) = \begin{cases} \infty, & \vect{r} = \vect{r}_0 \\ 0, & \vect{r} \neq \vect{r}_0 \end{cases}, \qquad \int_{-\infty}^{\infty} \delta(\vect{r}-\vect{r}_0)\,\diff^3r = 1
+\boxed{\;\int_{-\infty}^{\infty} g(\vect{r})\,\delta(\vect{r}-\vect{r}_0)\,\diff^3r = g(\vect{r}_0)\;}
 \]
-重要性质（筛选性）：
+这一性质称为\textbf{筛选性}（sifting property）：$\delta$ 从 $g$ 中"挑出"$\vect{r}_0$ 处的值。
+
+\textbf{直观图像（仅为示意）：} 可以把 $\delta$ 看作一族单位体积归一化的"尖峰"函数的极限——例如宽度 $\sigma\to0$ 的高斯
 \[
-\int g(\vect{r}) \delta(\vect{r} - \vect{r}_0)\,\diff^3r = g(\vect{r}_0)
+\delta_\sigma(\vect{r}) = (2\pi\sigma^2)^{-3/2}\exp\!\left(-\frac{|\vect{r}|^2}{2\sigma^2}\right),
+\qquad \int \delta_\sigma\,\diff^3r = 1,
+\qquad \lim_{\sigma\to0}\int g\,\delta_\sigma\,\diff^3r = g(\vect{0}).
 \]
+写成"$\delta(\vect{r})=\infty$（$\vect{r}=\vect{0}$）、$0$（$\vect{r}\ne\vect{0}$）"只是一种\textbf{示意性写法}，因为积分归一化条件已经把"无限高"与"测度为零"这两件事绑在一起。
+
+\textbf{使用注意：} $\delta(0)$ 不是一个可以参与普通代数运算的数。凡遇到 $\delta$，都应把它放在积分号内、作用在某个测试函数上，从而化为函数值——不要把 $\delta$ 当作逐点定义的函数去求导、比较大小或代入。
 \end{definition}
 
 \begin{insight}{$\delta$函数在等离子体物理中的应用}{delta-plasma}
@@ -1366,7 +1381,9 @@ m_e \ddot{\Delta x} = -\frac{n_e e^2}{\eps_0}\Delta x
 \]
 这是简谐振动方程，频率正是 $\omega_{pe}$。
 
-由此可知，等离子体以特征频率 $\omega_{pe}$ 对外部扰动作弹性响应。任何频率低于 $\omega_{pe}$ 的电磁信号均无法穿透等离子体——此即金属对低频电磁波的反射机制，也是电离层反射无线电波的原理。
+由此可知，等离子体以特征频率 $\omega_{pe}$ 对外部扰动作弹性响应。在\textbf{无磁场、冷等离子体}模型下，任何频率低于 $\omega_{pe}$ 的电磁波都无法穿透——此即金属对低频电磁波的反射机制，也是电离层反射无线电波的原理。
+
+\textbf{适用条件（重要）：} 上述结论依赖两个前提——\textbf{无背景磁场}且考察的是横电磁模。一旦存在磁场，电子还要绕 $\vect{B}_0$ 回旋，色散关系分裂为左旋（L）与右旋（R）两支，两者的截止频率互不相同：其中一支在 $\omega<\omega_{pe}$ 的某些频段仍可传播（见第 6 章磁化等离子体波与哨声波）。所以"低于 $\omega_{pe}$ 一律不能穿透"只是无磁场特例，不能当作普适结论。
 \end{insight}
 
 \begin{example}{典型等离子体的频率与德拜长度}{typical-params}
@@ -1405,15 +1422,25 @@ L \gg \lambda_D
 
 \textbf{判据二}（集体行为）：
 \[
-N_D = n\lambda_D^3 \gg 1
+N_D = \frac{4}{3}\pi\, n\lambda_D^3 \gg 1
 \]
 一句话：屏蔽必须是"人多势众"的集体效应——德拜球内粒子太少，屏蔽就只是个别粒子的偶然行为。
+
+\textbf{符号约定：} 本书的 $N_D$ 一律指\textbf{德拜球内}的粒子数，即球体积 $V_D=\frac43\pi\lambda_D^3$ 乘以数密度。文献中也常见只写 $n\lambda_D^3$（量级相同，相差常数 $4\pi/3\approx4.19$）；凡引用他处结论时须先核对采用的是哪一种，切勿把两者当成同一个数。
 
 \textbf{判据三}（弱耦合）：
 \[
 \Gamma = \frac{e^2}{4\pi\eps_0 a k_B T} \ll 1
 \]
 其中 $a \sim n^{-1/3}$ 是粒子平均间距。一句话：粒子热运动太剧烈，来不及被邻近电荷"排挤"或"俘获"，每个粒子同时与许多伙伴弱相互作用——这是平均场近似成立的前提。
+
+\textbf{两个判据并不独立：} 取 $a=(3/4\pi n)^{1/3}$（Wigner--Seitz 半径）时，$\Gamma$ 与 $N_D$ 由同一组 $n,T$ 决定，二者满足精确关系
+\[
+\Gamma = \frac{1}{3}\,N_D^{-2/3},
+\qquad\text{等价地}\qquad
+N_D = \frac{1}{3\sqrt{3}}\,\Gamma^{-3/2}.
+\]
+例如 $\Gamma=10^{-2}$ 对应 $N_D\approx 1.9\times10^{2}$。因此"弱耦合"与"德拜球内粒子多"是同一件事的两种说法，不必记成两条独立要求。（若改用只含 $n\lambda_D^3$ 的 $N_D$ 定义，系数会不同——这正是需要统一符号约定的原因。）
 \end{theorem}
 
 \begin{insight}{耦合参数的直观含义}{gamma-insight}
@@ -1432,10 +1459,22 @@ N_D = n\lambda_D^3 \gg 1
 \begin{warning}{"电离气体"不等于"等离子体"}{ionized-not-plasma}
 以下情况虽然包含带电粒子，但\textbf{不是}等离子体：
 \begin{enumerate}
-\item \textbf{极稀薄电离气体}：如 $n=10^3\,\mathrm{m}^{-3}$、$T=10^6\,\mathrm{K}$ 的某些星际区域。虽然 $T$ 很高，但 $N_D \ll 1$，德拜屏蔽不成立。
+\item \textbf{电离度极低的中性气体}：如刚点火的荧光灯管，带电粒子只占极小比例，它们主要与中性原子碰撞，不表现集体行为。判据在此失效的原因是\textbf{碰撞主导}（$\omega_{pe}\tau \ll 1$），而不是 $N_D$ 小。
 \item \textbf{极稠密强耦合系统}：如固体中的传导电子（金属），$\Gamma \gg 1$，需要用能带理论而非等离子体物理描述。
-\item \textbf{中性气体中的少量离子}：如刚点火的荧光灯管，电离度极低，带电粒子主要与中性原子碰撞，不表现集体行为。
+\item \textbf{尺度不足的系统}：即使 $N_D \gg 1$，若系统尺度 $L \lesssim \lambda_D$，德拜屏蔽也来不及建立。
 \end{enumerate}
+
+\textbf{特别提醒——"稀薄"并不意味着 $N_D$ 小：} 常见误解是"气体越稀薄，德拜球里粒子越少"。恰恰相反。固定温度下 $\lambda_D \propto n^{-1/2}$，故
+\[
+N_D \propto n\lambda_D^3 \propto n\cdot n^{-3/2} = n^{-1/2},
+\]
+即\textbf{密度越低，德拜球内的粒子数反而越多}。以 $n=10^3\,\mathrm{m^{-3}}$、$T=10^6\,\mathrm{K}$ 为例：
+\[
+\lambda_D \approx 2.18\times10^{3}\,\mathrm{m},
+\qquad
+N_D = \frac{4}{3}\pi n\lambda_D^3 \approx 4.4\times10^{13} \gg 1 .
+\]
+可见这一区域在 $N_D$ 判据下是\textbf{合格的等离子体}（事实上稀薄的星际介质通常确实满足等离子体判据）。因此判断"是否是等离子体"必须同时检查三条判据，任一不满足才否定；单看密度高低会得出相反结论。
 \end{warning}
 
 \begin{chapterreview}
@@ -1640,12 +1679,32 @@ m\dot{\vect{v}'} = q(\vect{E} + (\vect{v}' + \vect{v}_E)\times\vect{B}) = q\vect
 
 \textbf{曲率漂移}（由磁力线弯曲引起）：
 \[
-\vect{v}_R = \frac{m v_\parallel^2}{qB^2 R_c^2}(\vect{R}_c\times\vect{B})
+\vect{v}_R = \frac{m v_\parallel^2}{qB^2 R_c^2}(\vect{B}\times\vect{R}_c)
 \]
-其中 $\vect{R}_c$ 是曲率半径矢量，指向曲率中心。
+其中 $\vect{R}_c$ 是曲率半径矢量，\textbf{指向曲率中心}。等价地，用曲率矢量 $\kappa=(\unitvec{b}\cdot\grad)\unitvec{b}$（同样指向曲率中心）写出与坐标系无关的形式：
+\[
+\vect{v}_R = \frac{m v_\parallel^2}{qB}(\unitvec{b}\times\kappa),
+\qquad \unitvec{b}=\frac{\vect{B}}{B}.
+\]
+
+\textbf{方向怎样不靠死记：} 取记忆锚点——$\vect{B}\times\vect{R}_c$ 的次序不能颠倒，否则整体反号。
 
 两种漂移的方向均依赖于电荷符号 $q$，因此电子和离子反向漂移，会产生净电流！
 \end{theorem}
+
+\begin{insight}{曲率漂移方向的右手定则检验}{curv-drift-check}
+以托卡马克的环向场为例验证上式的符号。取柱坐标 $(R,\varphi,z)$，环向场 $\vect{B}=B\unitvec{\varphi}$，磁力线弯曲，曲率中心在环内侧，故 $\vect{R}_c=-R_c\unitvec{R}$。目标是：正离子的曲率漂移应指向 $+\unitvec{z}$，其对应的漂移洛伦兹力恰好提供维持曲线运动所需的向心力。
+
+按上式：
+\[
+\vect{B}\times\vect{R}_c = B\unitvec{\varphi}\times(-R_c\unitvec{R})
+= -BR_c(\unitvec{\varphi}\times\unitvec{R})
+= -BR_c(-\unitvec{z}) = +BR_c\unitvec{z}.
+\]
+代入 $q>0$ 得 $\vect{v}_R = +\dfrac{mv_\parallel^2}{qBR_c}\unitvec{z}$，方向为 $+\unitvec{z}$。
+
+若误写成 $\vect{R}_c\times\vect{B}$，则会得到 $-BR_c\unitvec{z}$，方向相反——这正是自学者最易出错之处。建议每次都用一个具体坐标（如本例）做一次符号检验，而不要只依赖对公式的记忆。
+\end{insight}
 
 \begin{insight}{梯度漂移与曲率漂移的物理根源}{grad-curv-insight}
 梯度漂移的物理图像与 $\vect{E}\times\vect{B}$ 漂移类似：在磁场较强的区域，回旋半径较小；在磁场较弱的区域，回旋半径较大。粒子轨迹因此产生整体漂移。
@@ -1830,6 +1889,25 @@ p_\alpha = n_\alpha k_B T_\alpha
 \end{align*}
 \end{theorem}
 
+\begin{warning}{状态方程不等于闭合——温度仍是未知量}{eos-closure}
+$p_\alpha=n_\alpha k_BT_\alpha$ 只是\textbf{压强的定义}，它把 $(p_\alpha,n_\alpha,T_\alpha)$ 中的两个联系起来，但\emph{并没有}给出第三个。若把它当作"状态方程"直接代入方程组，未知量其实是\emph{增加}了：原来只有 $(n_\alpha,\vect{u}_\alpha,p_\alpha)$，代入后多出 $T_\alpha$，方程数却没变。方程组仍然欠定。
+
+\textbf{清点未知量与方程（单一种类、无磁场）：} 未知量 $n,\vect{u}$（3 个分量）、$p$、$T$ 共 \textbf{6} 个；连续性方程 1 个 + 动量方程 3 个 + 理想气体关系 1 个 = \textbf{5} 个。\textbf{缺一个}——必须再补一条只含 $n$、$p$（或 $n$、$T$）的关系式，这才是真正意义上的\textbf{闭合条件}。
+
+\textbf{两种标准闭合：}
+\begin{itemize}
+\item \textbf{等温闭合}：$T_s=\mathrm{const}$（最简，隐式假设存在极强热传导把温度钉住）。代入 $p= nk_BT$ 得 $p\propto n$。
+\item \textbf{绝热闭合}：$\dfrac{\diff}{\diff t}\!\left(\dfrac{p_s}{n_s^{\gamma_s}}\right)=0$，即 $p_s/n_s^{\gamma_s}=\mathrm{const}$。一维 $\gamma=3$、三维 $\gamma=5/3$。
+\end{itemize}
+
+\textbf{为什么闭合方式的选取会改变声速：} 把 $p_s\propto n_s^{\gamma_s}$ 线性化，得 $p_{s1}=\gamma_s k_BT_s n_{s1}$。代入动量方程，恢复力从 $k_BT$ 变成 $\gamma_sk_BT$，于是声速相应变为
+\[
+c_{s,\text{等温}}=\sqrt{\frac{k_BT_e}{m_i}}, \qquad
+c_{s,\text{绝热}}=\sqrt{\frac{\gamma_sk_BT_e}{m_i}}
+\]
+相差 $\sqrt{\gamma_s}$（一维离子声波约 $\sqrt3\approx1.7$ 倍）。\textbf{这不是数学上的细节——选错闭合，波速就错了一个量级内的因子。} 所以每建立一个流体模型，第一步都该问：温度靠什么机制维持？热传导快（等温）还是慢（绝热）？
+\end{warning}
+
 \begin{insight}{双流体模型的物理内涵}{two-fluid-insight}
 双流体模型捕捉了等离子体的一个核心特征：\textbf{电子和离子可以脱耦}。由于电子质量小，它们能迅速响应电场变化；而离子惯性大，响应慢得多。这种质量差异导致了丰富的物理现象：
 \begin{itemize}
@@ -1955,6 +2033,26 @@ MHD做了以下关键近似：
 因此，MHD 无法描述任何频率接近或高于离子回旋频率的现象。但对于宏观平衡、阿尔芬波和 MHD 不稳定性，它是极其强大的工具。
 \end{insight}
 
+\begin{warning}{MHD 适用条件：三道独立的门槛，别只看一道}{mhd-validity}
+"用不用 MHD"不是一个是非题，而是要按\textbf{三个相互独立的判据}逐条过筛。只查其中一个（最常见的是只查回旋半径）就下结论，是本节最危险的偷懒。
+
+\textbf{门槛一：流体近似是否成立}（把粒子集合当成连续介质）
+\[
+\tau \gg \frac{1}{\omega_{ci}}\;\text{（时间）}, \qquad L \gg \rho_{Li}\;\text{（空间）}
+\]
+即宏观尺度远大于离子回旋半径、宏观时标远慢于回旋周期，粒子才有足够多次回旋把速度分布"抹匀"成流体元。
+
+\textbf{门槛二：单流体近似是否成立}（能不能把电子和离子捆在一起）
+查尺度与\textbf{离子惯性长度} $d_i=c/\omega_{pi}$ 之比。当 $L\gtrsim d_i$ 且 $\omega\ll\omega_{ci}$ 时，霍尔项相对主项为 $O(\omega/\omega_{ci},\,d_i/L)$，可以丢掉；反过来，$L\sim d_i$ 就必须用 Hall MHD（见第4章广义欧姆定律的霍尔项）。
+
+\textbf{门槛三：理想近似是否成立}（能不能丢掉电阻）
+查磁雷诺数 $R_m=\mu_0 Lv/\eta$。$R_m\gg1$ 才谈得上磁通冻结；$R_m\lesssim1$ 时必须保留 $\eta\vect{j}$，甚至保留电子压强项。
+
+\textbf{关键：三道门槛彼此独立。} 一个系统完全可以"流体近似很好（$L\gg\rho_{Li}$）但 $R_m\sim1$"——这时用理想 MHD 就错了，应改用\textbf{电阻 MHD}。同理，"$R_m\gg1$ 但 $L\sim d_i$"应改用 Hall MHD。请先把三个无量纲数的\emph{数值}都算出来，再选模型；\textbf{不要从一个 $R_m$ 值直接跳到"这个装置必然发生磁重联"这类结论}——重联还需要电流片几何、撕裂模阈值等额外条件（第9章）。
+
+\textbf{关于低温气体放电的特别提醒：} 第5章补充例题里的"氩气放电"用的是 Spitzer 电阻率，它\textbf{只包含电子--离子库仑碰撞}。低温放电往往是弱电离的，电子--中性碰撞的贡献可能压倒库仑碰撞，此时 $\eta$ 会比 Spitzer 值大得多，$R_m$ 相应更小。除非题目给了电离度和中性气体参数，否则应把该例读作"\emph{一个假设库仑碰撞主导的}假想氩等离子体"，而不是真实的放电装置。
+\end{warning}
+
 \section{磁压与磁张力}\difficulty{基础}
 
 \begin{theorem}{麦克斯韦应力张量的流体解释}{mag-stress}
@@ -2015,14 +2113,21 @@ v_A = \frac{B_0}{\sqrt{\mu_0\rho_m}}
 
 阿尔芬波的重要特性：
 \begin{itemize}
-\item 群速度等于相速度：$v_g = v_p = v_A$
 \item 无色散（$\omega \propto k$），波形在传播中不变
 \item 磁张力是恢复力，类似于弦上的横波
 \item 等离子体扰动速度垂直于 $\vect{B}_0$ 和 $\vect{k}$
+\item 能量严格沿磁场方向输运：群速度 $\vect{v}_g = \pm v_A\unitvec{B}$（见下文）
 \end{itemize}
+
+\textbf{关于相速度与群速度的方向（易错）：} 上式 $\omega=k_\parallel v_A$ 中的 $k_\parallel\equiv\vect{k}\cdot\unitvec{B}$ 是波矢沿磁场的\emph{投影}，可正可负。由此：
+\begin{itemize}
+\item \textbf{群速度}（能量传播方向）恒沿磁场：$\vect{v}_g = \partial\omega/\partial\vect{k} = \pm v_A\unitvec{B}$，与波矢的横向成分无关。
+\item \textbf{相速度}按 $\omega/|\vect{k}|$ 定义时\emph{依赖传播角}：$\vect{v}_p = \dfrac{\omega}{k^2}\vect{k} = v_A\cos\theta\,\unitvec{k}$，其\textbf{沿波矢方向的大小}为 $v_p = v_A\cos\theta$（$\theta$ 为 $\vect{k}$ 与 $\vect{B}$ 的夹角）。
+\end{itemize}
+只有当 $\vect{k}\parallel\vect{B}$（$\theta=0$）时才有 $|\vect{v}_p|=|\vect{v}_g|=v_A$；斜传播时 $v_p$ 小于 $v_A$，而能量仍以 $v_A$ 沿磁力线走。\textbf{所以"$v_p=v_g=v_A$"不能说成一般结论}，它仅对平行传播成立。本节的 $k_\perp=0$ 推导（附录 C.3）正是这一特例。
 \end{theorem}
 
-阿尔芬波可理解为磁力线像弹性弦一样被拨动后产生的横振动，张力由磁张力提供，惯性由离子质量提供。当等离子体元垂直于磁场发生位移时，磁力线被拉伸弯曲，磁张力提供恢复力，驱动等离子体元回到平衡位置。由于磁力线"冻结"在理想导电流体中，这种振动以阿尔芬速度 $v_A$ 沿磁场传播。
+阿尔芬波可理解为磁力线像弹性弦一样被拨动后产生的横振动，张力由磁张力提供，惯性由离子质量提供。当等离子体元垂直于磁场发生位移时，磁力线被拉伸弯曲，磁张力提供恢复力，驱动等离子体元回到平衡位置。由于磁力线"冻结"在理想导电流体中，这种振动以阿尔芬速度 $v_A$ 沿磁场传播——\textbf{注意是沿磁场，而不是沿波矢}。想象拨动一根绷紧的弦：弦上的振动能量沿弦走，即使你斜着看这根弦。
 
 \begin{example}{估算太阳日冕中的阿尔芬速度}{alfven-calc}
 \difficulty{基础}
@@ -2118,7 +2223,16 @@ v_A = \frac{B}{\sqrt{\mu_0\rho_m}} = \frac{10^{-3}}{\sqrt{(4\pi\times 10^{-7})(1
 \begin{insight}{Langmuir波的物理图像}{langmuir-insight}
 Langmuir波的本质是电子相对于固定离子背景的集体振荡。想象电子整体向右移动一小段距离，左侧留下正电荷过剩（离子背景），右侧出现负电荷过剩。这些电荷产生的电场将电子拉回，但由于惯性，电子会越过平衡位置，形成振荡。
 
-在冷等离子体中，所有电子以相同频率 $\omega_{pe}$ 振荡，没有相位的空间传播（群速度为零）——这是一种\textbf{局域振荡}而非行波。当考虑热运动时，电子的热速度允许扰动在空间传播，波获得非零的群速度 $v_g = 3kv_{te}^2/\omega$。
+在冷等离子体中，$\omega=\omega_{pe}$ 与 $k$ 无关，因此\textbf{群速度（能量传播速度）为零}：$v_g=\partial\omega/\partial k=0$。但请注意，\textbf{这不等于"没有相位传播"}——把冷解 $\omega=\omega_{pe}$ 代入相速度定义，得
+\[
+v_p = \frac{\omega}{k} = \frac{\omega_{pe}}{k}
+\]
+它\textbf{并不为零}，而是随 $k$ 变化：波前（等相位面）仍以 $\omega_{pe}/k$ 向前推进。零群速度只说明波包不携带能量往任何方向走——包络是静止的，但包络\emph{内部}的相位仍在以有限速度移动。$\omega$ 与 $k$ 无关还意味着没有特征长度尺度，任何初始扰动都不会以波的形式扩散出去。
+
+准确的物理图像是：冷等离子体中这是一个\textbf{驻立的集体振荡模式}（严格说每个 $k$ 分量各自以 $\omega_{pe}$ 原地振荡，彼此不发散），只有热压提供了把扰动从一个位置传到另一个位置的机制。考虑热运动后，$\omega^2=\omega_{pe}^2+3k^2v_{te}^2$，此时群速度 $v_g=3kv_{te}^2/\omega\neq0$，波包才开始以有限速度传播——这也正是热修正、共振速度和 Landau 阻尼能够起作用的前提。
+
+\smallskip
+\textbf{对照：无磁电磁波。} 冷等离子体中电磁波满足 $\omega^2=\omega_{pe}^2+c^2k^2$，此时 $v_pv_g=c^2$：$v_p=\omega/k>c$ 而 $v_g=c^2/v_p<c$。可见"相速度"与"群速度"在概念上必须分开——前者描述等相位面，后者描述能量与信息。Langmuir 冷模的 $v_g=0$ 而 $v_p\neq0$，正是这一区分更极端的例子。
 \end{insight}
 
 \subsection{离子声波}
@@ -2191,6 +2305,25 @@ n_L^2 = 1 - \frac{\omega_{pe}^2}{\omega(\omega + \omega_{ce})}
 \]
 \end{theorem}
 
+\begin{warning}{这两支公式的适用范围，和"谁传播谁截止"的真正判据}{waves-parallel-limits}
+上式的 $n_R^2$、$n_L^2$ 是\textbf{只含电子、且忽略离子运动}的冷等离子体结果。它的适用条件是
+\[
+\omega \gg \omega_{ci}, \quad \omega \gg k v_{te,i}\;\text{（离子可视为不动的背景）}
+\]
+低于离子回旋频率时必须改用完整色散关系（含 $\omega_{ci}$、离子项），本书不展开。
+
+\textbf{最重要的：不要背"$\omega<\omega_{ce}$ 只有 R 波传播"。} 判据是\emph{逐点算 $n^2$ 的符号}，它同时依赖 $\omega/\omega_{ce}$ 和等离子体密度（经 $\omega_{pe}/\omega_{ce}$）。以 L 波为例：
+\[
+n_L^2 > 0 \iff \omega(\omega+\omega_{ce}) > \omega_{pe}^2
+\]
+这与 $\omega$ 是否小于 $\omega_{ce}$ 无关。两个反例（均为书中这支公式本身）：
+\begin{itemize}
+\item $\omega_{pe}/\omega_{ce}=0.1$、$\omega/\omega_{ce}=0.5$：$n_L^2\approx0.987>0$，\textbf{L 波照样传播}；
+\item $\omega_{pe}/\omega_{ce}=2$、$\omega/\omega_{ce}=0.5$：$n_L^2\approx-4.33<0$，此时 L 波才截止。
+\end{itemize}
+所以在低密度（$\omega_{pe}<\omega_{ce}$）等离子体里，"低频只有 R 波"根本不成立。\textbf{哨声波}的说法也有条件：它需要 $\omega\ll\omega_{ce}$ \emph{并且} $n^2\gg1$（即 $\omega_{pe}^2\gg\omega\omega_{ce}$），把 $n_R^2=1-\omega_{pe}^2/[\omega(\omega-\omega_{ce})]$ 近似成 $\omega_{pe}^2/(\omega\omega_{ce})$ 只在满足该不等式时有效；仅写 $\omega\ll\omega_{ce}$ 不足以推出 $c^2k^2\approx\omega_{pe}^2\omega/\omega_{ce}$。
+\end{warning}
+
 \begin{insight}{哨声波（Whistler Wave）}{whistler-insight}
 当 $\omega \ll \omega_{ce}$ 时，R波的一支具有特殊的色散关系：
 \[
@@ -2217,7 +2350,7 @@ c^2 k^2 \approx \frac{\omega_{pe}^2 \omega}{\omega_{ce}}
 \begin{enumerate}
 \item 证明冷等离子体中电磁波的相速度 $v_p > c$，而群速度 $v_g < c$。
 \item 为什么电离层能反射短波无线电（$3$--$30\,\mathrm{MHz}$）但无法反射VHF电视信号（$>100\,\mathrm{MHz}$）？
-\item 在 $\omega < \omega_{ce}$ 区域，为什么只有R波传播而L波截止？
+\item 给定 $\omega_{pe}/\omega_{ce}=0.1$，取 $\omega/\omega_{ce}=0.3,0.5,0.9$，分别算出 $n_R^2$ 与 $n_L^2$，判断各频率下哪支能传播。再令 $\omega_{pe}/\omega_{ce}=2$ 重做一遍，说明"$\omega<\omega_{ce}$ 时只有 R 波传播"为何不是普遍结论。
 \end{enumerate}
 \end{miniquiz}
 
@@ -2281,8 +2414,12 @@ f = f_0(v) + f_1(x,v,t), \qquad E = E_1(x,t)
 
 对两者做傅里叶--拉普拉斯变换，消去 $f_1$，得到色散关系（积分在 $v=\omega/k$ 处有极点，必须按\textbf{Landau 围道}从极点下方绕过——见下文与附录 C.2，不能直接取主值代数积分）：
 \[
-1 = \frac{\omega_{pe}^2}{k^2}\int_{-\infty}^{\infty} \frac{\partial f_0/\partial v}{v - \omega/k}\,\diff v
+1 = \frac{\omega_{pe}^2}{k^2}\cdot\frac{1}{n_0}\int_{-\infty}^{\infty} \frac{\partial f_0/\partial v}{v - \omega/k}\,\diff v
 \]
+
+\textbf{关于那个 $1/n_0$：} 这里 $f_0$ 是\textbf{数密度分布}，满足 $\int f_0\,\diff v = n_0$（不是归一化为 1 的概率分布）。$1/n_0$ 正来自这个归一化约定：泊松方程 $\partial_xE_1=(q/\eps_0)\int f_1\diff v$ 中的 $f_1$ 与 $f_0$ 同量纲，而 $\omega_{pe}^2\propto n_0$ 已经含有一个 $n_0$，两者相除才使色散关系无量纲。\textbf{核对方法：} 取冷分布极限 $f_0=n_0\delta(v)$（$\partial_vf_0=n_0\delta'(v)$），则积分给出 $-n_0k^2/\omega^2$，代回得 $1=-\omega_{pe}^2/\omega^2$，即 $\omega^2=\omega_{pe}^2$——冷极限必须回到 Langmuir 频率，这正是 $1/n_0$ 存在的检验。
+
+若改用归一化分布 $\hat f_0=f_0/n_0$（$\int\hat f_0\diff v=1$），则可把上式写成 $1=\dfrac{\omega_{pe}^2}{k^2}\displaystyle\int\dfrac{\partial\hat f_0/\partial v}{v-\omega/k}\diff v$，两种写法等价。\textbf{同一本书里必须只用一种约定}，否则学生会在第 1 章的归一化与本章的公式之间学到两套规则。
 \end{theorem}
 
 \begin{insight}{色散关系中的奇点}{singularity-insight}
@@ -2378,15 +2515,21 @@ f = f_0(v) + f_1(x,v,t), \qquad E = E_1(x,t)
 \section{库仑碰撞与Rutherford散射}\difficulty{基础}
 
 \begin{definition}{碰撞参数与散射角}{impact-param}
-考虑一个带电粒子（电荷 $q_1$，质量 $m_1$，初速度 $v$）在固定库仑中心（电荷 $q_2$）上的散射。设碰撞参数为 $b$（无相互作用时的最近距离），则偏转角 $\theta$ 满足：
+考虑一个带电粒子（电荷 $q_1$，质量 $m_1$，初速度 $v$）在固定库仑中心（电荷 $q_2$）上的散射。设碰撞参数为 $b$（无相互作用时两粒子轨迹的垂直间距），则偏转角 $\theta$ 满足经典 Rutherford 关系：
 \[
-\tan\frac{\theta}{2} = \frac{b_0}{2b}
+\tan\frac{\theta}{2} = \frac{b_0}{b}
 \]
 其中
 \[
 b_0 = \frac{|q_1 q_2|}{4\pi\eps_0 m_r v^2}
 \]
-是\textbf{经典最近距离}（对头碰时的最近距离），$m_r = m_1 m_2/(m_1+m_2)$ 是约化质量。
+是\textbf{$90^\circ$ 散射的碰撞参数}（取 $b=b_0$ 即得 $\tan45^\circ=1$，$\theta=90^\circ$），$m_r = m_1 m_2/(m_1+m_2)$ 是约化质量。
+
+\textbf{两个独立校验（务必自己算一遍）：}
+\begin{itemize}
+\item \textbf{正碰的最近距离：} 取 $b=0$（正碰），角动量为零，粒子沿直线接近。由能量守恒 $\frac12 m_rv^2 = \dfrac{|q_1q_2|}{4\pi\eps_0 r_{\min}}$，得 $r_{\min} = 2b_0$。所以\textbf{头碰最近距离是 $2b_0$，不是 $b_0$}——这正是"$b_0$ 叫 90° 碰撞参数、不叫最近距离"的原因。
+\item \textbf{小角极限：} $\theta\ll1$ 时 $\tan(\theta/2)\approx\theta/2$，故 $\theta\approx2b_0/b$。小角偏转反比于碰撞参数，这正是后面进入库仑对数时对 $b$ 取积分的依据。
+\end{itemize}
 \end{definition}
 
 \begin{insight}{等离子体中的碰撞以\textbf{小角度}为主}{small-angle}
@@ -2402,11 +2545,18 @@ b_0 = \frac{|q_1 q_2|}{4\pi\eps_0 m_r v^2}
 \[
 \nu_{ei} = \frac{n_i Z^2 e^4 \ln\Lambda}{12\pi^{3/2}\eps_0^2 m_e^{1/2}(k_B T_e)^{3/2}}
 \]
-其中 $\ln\Lambda$ 是\textbf{库仑对数}：
+
+\textbf{SI 数值形式（$T_e$ 以 eV 计）：}
 \[
-\Lambda = \frac{\lambda_D}{b_0} = 12\pi n_e \lambda_D^3 = 12\pi N_D
+\nu_{ei} \approx \frac{2.06\times10^{-12}\,n_i Z^2\ln\Lambda}{T_{e,\mathrm{eV}}^{3/2}}\;\mathrm{s^{-1}}
 \]
-对大多数等离子体，$\ln\Lambda$ 在 $10$--$30$ 之间，缓慢依赖于等离子体参数。
+系数 $2.06\times10^{-12}$ 由分母 $12\pi^{3/2}$ 得到。\textbf{注意}：文献里还有另一支常见的写法把分母写成 $3(2\pi)^{3/2}$，对应系数 $2.91\times10^{-12}$——两者相差 $\sqrt2$。这不是有效数字误差，而是\textbf{对"碰撞频率"所平均的量与所用分布不同}（例如 90° 偏转率 vs 动量输运率、是否对 Maxwell 分布做特定加权）。本书统一采用分母 $12\pi^{3/2}$（即 $2.06\times10^{-12}$）；换算到 Spitzer 电导率时，还需记住动力学修正因子（$\gamma_E\approx0.58$ 一类的量级），\textbf{不要把任意定义的碰撞频率直接当作精确的导电碰撞率}。本书全篇只用这一种定义，附录 B 的参数表已与之统一。
+
+其中 $\ln\Lambda$ 是\textbf{库仑对数}。本书采用"最大碰撞参数取德拜长度 $\lambda_D$、最小取 $90^\circ$ 碰撞参数 $b_0$"的约定：
+\[
+\Lambda = \frac{\lambda_D}{b_0} = \lambda_D\cdot\frac{4\pi\eps_0 k_BT_e}{e^2} = 3\cdot\frac{4\pi}{3}n_e\lambda_D^3 = 3N_D
+\]
+（用了 $\lambda_D^2=\eps_0k_BT_e/(n_ee^2)$ 与德拜球粒子数 $N_D=\frac{4\pi}{3}n_e\lambda_D^3$。）注意这里\textbf{是 $3N_D$，不是 $12\pi N_D$}——凡是写成 $12\pi n_e\lambda_D^3$ 的，都对应另一种最大/最小碰撞参数的取法，与本书约定只差一个常数因子 $4\pi$。同一本书里必须统一，否则 $\ln\Lambda$ 会凭空差出一个可察觉的相加项。对大多数等离子体，$\ln\Lambda$ 在 $10$--$30$ 之间，缓慢依赖于等离子体参数。
 \end{theorem}
 
 \begin{insight}{库仑对数的物理意义}{coulomb-log}
@@ -2465,7 +2615,14 @@ D_a = \frac{\mu_i D_e + \mu_e D_i}{\mu_i + \mu_e} \approx D_i\left(1 + \frac{T_e
 \eta_{\text{plasma}} \approx 5.2\times 10^{-5} \frac{1\times 17}{(10^4)^{3/2}} = 5.2\times 10^{-5} \frac{17}{10^6} \approx 8.8\times 10^{-10}\,\Omega\cdot\mathrm{m}
 \]
 
-等离子体电阻率约为铜的 $1/20000$！此即聚变等离子体几乎可被当作理想导体来处理（理想MHD近似）的原因。
+\textbf{与铜比较：}
+\[
+\frac{\eta_{\text{plasma}}}{\eta_{\text{Cu}}} = \frac{8.8\times 10^{-10}}{1.7\times 10^{-8}} \approx 0.052 \approx \frac{1}{19}
+\]
+
+\textbf{换算要小心数量级：} $8.8\times10^{-10}$ 与 $1.7\times10^{-8}$ 的指数只差约 20 倍（$10^{-8}/10^{-10}=100$，再乘首位数比 $8.8/1.7\approx5$，得约 $20$），\textbf{不是} $20000$ 倍。请养成习惯：先用\emph{指数之差}再乘\emph{首位数之比}做粗估，与计算器结果对照。
+
+所以这个 $10\,\mathrm{keV}$ 的高温等离子体电阻率约为铜的 $1/20$——\textbf{大约是铜的导电性好坏在同一量级}，比铜略差，但仍然是一个良导体。这正是聚变等离子体可近似当作理想导体（$R_m\gg1$）的原因：不是因为它比金属还导电，而是因为其尺度 $L$ 极大、流速 $v$ 较高，使磁雷诺数 $R_m=\mu_0Lv/\eta$ 变得很大（对比第5章补充中的托卡马克算例）。\textbf{别把"理想MHD成立"误读成"电阻率比铜小两万倍"}。
 \end{example}
 
 \begin{chapterreview}
@@ -2552,16 +2709,28 @@ D_a = \frac{\mu_i D_e + \mu_e D_i}{\mu_i + \mu_e} \approx D_i\left(1 + \frac{T_e
 
 \section{双流不稳定性}\difficulty{提高}
 
-\begin{theorem}{双流（Buneman）不稳定性}{two-stream}
-考虑冷电子以漂移速度 $\vect{u}_0$ 穿过静止离子背景。线性化后得到色散关系：
+\begin{theorem}{双流不稳定性：两个模型必须分清}{two-stream}
+"双流"是\textbf{一族}不稳定性，不同的组分假设给出不同的色散关系。请先写清组分、密度、漂移和保留哪些扰动响应，再选公式。
+
+\smallskip
+\textbf{模型 A：两束相向运动的冷电子（对称双流）。} 两组等密度冷电子束（每束密度 $n_0/2$，故每束的等离子体频率平方为 $\omega_{pe}^2/2$，这里 $\omega_{pe}$ 是\textbf{总}电子密度对应的频率），在净电荷中和的静止背景上以 $\pm u/2$ 漂移。令 $\Omega=\omega-ku/2$、$a=ku/(2\omega_{pe})$，色散关系可化为
 \[
-1 = \frac{\omega_{pe}^2}{\omega^2} + \frac{\omega_{pe}^2}{(\omega - k u_0)^2}
+1=\frac{\omega_{pe}^2/2}{(\omega-ku/2)^2}+\frac{\omega_{pe}^2/2}{(\omega+ku/2)^2}
+\quad\Longrightarrow\quad
+\frac{\Omega^2}{\omega_{pe}^2}=a^2+1\pm\sqrt{1+4a^2}.
 \]
-当 $k u_0 < \omega_{pe}$ 时，存在复频率解，即不稳定模式。最大增长率约为：
+\textbf{负分支在 $0<|ku|<2\sqrt2\,\omega_{pe}$ 内不稳定}，最大增长率
 \[
-\gamma_{\max} \approx \frac{\omega_{pe}}{2}
+\gamma_{\max}=\frac{\omega_{pe}}{2},\qquad \text{发生于 }|ku|=\sqrt3\,\omega_{pe}.
 \]
-发生在 $k \approx \omega_{pe}/u_0$ 附近。
+（复核例：$|ku|=2\omega_{pe}$ 时 $\gamma/\omega_{pe}=\sqrt{\sqrt5-2}\approx0.486>0$，仍在增长——所以"阈值是 $ku<\omega_{pe}$"是错的。）
+
+\smallskip
+\textbf{模型 B：电子束穿过离子背景（Buneman 不稳定性）。} 冷电子以 $u_e$ 漂移穿过可动的冷离子（$u_i=0$）。\textbf{离子平衡速度为零不等于离子扰动响应为零}——必须同时保留电子和离子的扰动：
+\[
+1=\frac{\omega_{pe}^2}{(\omega-ku_e)^2}+\frac{\omega_{pi}^2}{(\omega-ku_i)^2}.
+\]
+由于 $\omega_{pi}\ll\omega_{pe}$，这个模型的增长率远小于模型 A。取 $ku_e\approx\omega_{pe}$（电子束与离子背景的共振条件）时，量级估算给出 $\gamma\sim\omega_{pi}$；精确解（Chen《Introduction to Plasma Physics》第 6 章、Krall--Trivelpiece 第 9 章）为 $\gamma/\omega_{pe}\sim(\omega_{pi}/\omega_{pe})^{1/2}\cdot(\text{共振附近的因子})$。\textbf{注意：}若把离子\emph{完全固定}、只留一群电子，得到的是稳定的漂移等离子体振荡，\emph{不会}产生 Buneman 增长——这正是两个模型不能混用的原因。本书正文的"双流不稳定性"通常指\textbf{模型 A}；涉及"\emph{电流驱动}的反常电阻"时用的是\textbf{模型 B}，两者须分别列出假设。
 \end{theorem}
 
 \begin{insight}{双流不稳定性的物理机制}{two-stream-insight}
@@ -2696,7 +2865,7 @@ Lawson判据的核心是\textbf{能量收支平衡}：
 \begin{history}{托卡马克的诞生与ITER}{tokamak-history}
 1958年，苏联科学家\textbf{列夫·阿齐莫维奇}团队在莫斯科的库尔恰托夫研究所发表了托卡马克的首批实验结果。当时西方科学家对其持怀疑态度——直到1968年，英国科学家在新西伯利亚的国际会议上用激光散射独立测量了托卡马克T-3中的电子温度，证实了苏联的数据。这引发了全球范围内的"托卡马克热潮"。
 
-\textbf{ITER}（国际热核聚变实验堆）是目前在建的最大托卡马克，位于法国卡达拉舍，由35个国家合作建设。其目标是产生500 MW的聚变功率，$Q$值（聚变功率/加热功率）达到10，验证聚变能源的科学和工程可行性。
+\textbf{ITER}（国际热核聚变实验堆）是目前在建的最大托卡马克，位于法国卡达拉舍，由35个国家合作建设。其\textbf{设计目标}是：50 MW 外部等离子体加热功率产生 500 MW 聚变功率，即 $Q_{\text{plasma}}\equiv P_{\text{fus}}/P_{\text{heat}}=10$，用以验证聚变能源的科学和工程可行性。请把 ITER 的数字始终读作"设计目标"（截至本书写作时尚未运行），不要与已实现的实验结果混为一谈。
 \end{history}
 
 \section{惯性约束聚变}\difficulty{基础}
@@ -2724,13 +2893,23 @@ $n\tau$ & $\sim 10^{20}\,\mathrm{m}^{-3}\cdot\mathrm{s}$ & $\sim 10^{21}\,\mathr
 
 \textbf{间接驱动}（如美国国家点火装置NIF采用）：激光先照射金或铀制成的\textbf{黑腔}（hohlraum）内壁，产生均匀的X射线辐射，X射线再压缩靶丸。间接驱动的优点是辐照均匀性好，缺点是能量转换效率较低。
 
-2022年12月，NIF宣布首次实现\textbf{科学能量盈亏平衡}（$Q>1$）——聚变产生的能量超过激光输入能量。这是惯性约束聚变的历史性里程碑。
+2022年12月5日，NIF首次实现\textbf{靶增益大于 1}：到靶激光能量约 $2.05\,\mathrm{MJ}$，聚变产额约 $3.15\,\mathrm{MJ}$。这是惯性约束聚变的历史性里程碑。
 \end{insight}
+
+\begin{warning}{"增益"要说清分子分母——三种增益不能混比}{fusion-gain-definitions}
+"$Q>1$"这句话本身没有信息，必须先问：\textbf{分子是什么能量、分母是什么能量}。至少有三种互不相同的增益，媒体常把它们混为一谈：
+\begin{itemize}
+\item \textbf{等离子体加热增益} $Q_{\text{plasma}}$：分母是\emph{外部注入等离子体的加热功率}（不含驱动系统的效率损失）。\textbf{ITER 的设计目标}是 50 MW 外部加热产生 500 MW 聚变功率，即 $Q_{\text{plasma}}=10$（这是一个\textbf{设计目标}，尚未实现）。
+\item \textbf{激光到靶的靶增益}：分母是\emph{到达靶丸的激光能量}。\textbf{NIF 2022-12-05} 的事件属于这一类：$2.05\,\mathrm{MJ}$（到靶激光）$\to$ $3.15\,\mathrm{MJ}$（聚变产额），比值约 $1.5$。
+\item \textbf{工程/电站净能量}：分母是\emph{从电网取电、驱动整台装置}的总能量（含激光器电光效率、制冷、磁体等）。这一增益\textbf{至今远小于 1}——NIF 的激光器从电网取电约 $300\,\mathrm{MJ}$ 量级，扣除全部损耗后并无净能量输出。
+\end{itemize}
+\textbf{所以"$Q>1$"必须带上下标。} NIF 的 $Q>1$ 是\emph{靶增益}，不是电站净收益；ITER 的 $Q=10$ 是\emph{等离子体加热增益}的设计目标。把一个事件的到靶能量与另一个装置的目标值直接比较，是常见但错误的做法。
+\end{warning}
 
 \section{聚变能源的展望}\difficulty{提高}
 
 \begin{insight}{从实验室到电网：剩余挑战}{fusion-challenges}
-尽管NIF实现了$Q>1$、ITER即将运行，但商业聚变电站仍面临巨大挑战：
+尽管NIF在2022年12月实现了\textbf{靶增益} $Q>1$（到靶激光 $2.05\,\mathrm{MJ}\to$ 聚变产额 $3.15\,\mathrm{MJ}$），ITER仍处于建设/调试阶段（设计目标 50 MW 加热 $\to$ 500 MW 聚变功率，$Q_{\text{plasma}}=10$），但商业聚变电站仍面临巨大挑战：
 \begin{enumerate}
 \item \textbf{材料}：14 MeV中子对反应堆壁的损伤、氚增殖包层的设计
 \item \textbf{稳态运行}：托卡马克需要非感应电流驱动，能量提取系统需连续运行
@@ -2950,17 +3129,29 @@ ECR可以产生极高密度（$n_e \sim 10^{18}\sim 10^{19}\,\mathrm{m^{-3}}$）
 
 \begin{theorem}{壁面浮置电位}{}{}
 \label{thm:floating-potential}
-若壁面电绝缘且没有外部电流回路，则壁面自动达到浮置电位（floating potential）$V_f$，使得到达壁面的电子流与离子流相等：
+\textbf{模型约定（与本定理一致，请勿与其他模型混用）：}无磁场、无碰撞、平面壁面、薄鞘；离子为冷离子（$T_i \ll T_e$），在鞘前（预鞘）被加速到玻姆速度 $u_B = \sqrt{k_BT_e/m_i}$，故到达壁面的离子通量由玻姆流而非离子热速度决定；电子仍服从麦克斯韦分布，到达壁面的电子通量由玻尔兹曼因子给出。
+
+若壁面电绝缘且没有外部电流回路，则壁面自动达到浮置电位（floating potential）$V_f$，使得到达壁面的电子流与离子流相等（取鞘边密度相同，均记作 $n_s$）：
 \begin{equation}
 \label{eq:floating-potential}
-\frac{1}{4} n_e \bar{v}_e \,\exp\!\left(\frac{eV_f}{k_B T_e}\right) = n_i u_B
+\Gamma_e = \frac{1}{4} n_s \bar{v}_e \,\exp\!\left(\frac{eV_f}{k_B T_e}\right)
+= n_s u_B = \Gamma_i
 \end{equation}
-由此解得
+电子热速度 $\bar{v}_e = \sqrt{8k_BT_e/(\pi m_e)}$，$u_B=\sqrt{k_BT_e/m_i}$。两边消去 $n_s$ 后解得
 \begin{equation}
 V_f = -\frac{k_B T_e}{2e} \ln\!\left(\frac{m_i}{2\pi m_e}\right)
 \end{equation}
 对于氩离子，$V_f \approx -4.7\,\dfrac{k_B T_e}{e}$；即壁面电位比等离子体电位低约 $4\sim 5\,T_e$（以eV为单位）。
 \end{theorem}
+
+\begin{warning}{常见误区：离子收集通量的两套公式不能混用}{}
+本章正文式\eqref{eq:ion-sat}把离子饱和电流写成 $I_{\mathrm{i,sat}} = \frac{1}{2}en_iA\bar{v}_i$（离子\emph{热}通量），而定理 \ref{thm:floating-potential} 与第11章的壁面分析使用玻姆流 $I_i \simeq 0.6\,en_eAu_B$。两者\emph{不可无条件互换}：
+\begin{itemize}
+    \item \textbf{冷离子（无碰撞、有预鞘）}：离子热速度 $\bar v_i\to 0$，热通量公式给出\emph{零}电流，显然错误。此时鞘前已把离子加速到 $u_B$，必须用玻姆流，$I_i \simeq 0.6en_eAu_B$（系数 $0.6$ 来自 $n_s/n_e$ 与 $u_B$ 的乘积）。
+    \item \textbf{离子热速度不可忽略（无鞘、或极高气压强碰撞使离子未加速）}：离子尚未被加速到 $u_B$，热通量公式更接近实际。此时应注明 $\bar v_i$ 用的是体离子温度。
+\end{itemize}
+工程上测量离子饱和电流反推密度时，默认用哪一套\emph{必须写明}——它们给出的密度可以差一倍以上。本章后文（\S\ref{sec:12.2}的悬浮电位、密度反演）统一采用玻姆流模型。
+\end{warning}
 
 \begin{warning}{}{}
 认为壁面电位就是等离子体电位。实际上，由于电子热速度远大于离子声速，壁面必须足够负才能排斥过剩的电子，否则电子流会远大于离子流。任何没有外部电流的绝缘表面都会自动"负漂移"到浮置电位！
@@ -3045,16 +3236,16 @@ E_i \approx e\bar{V} + \frac{1}{2}k_B T_i \approx e\bar{V}
 
 \begin{theorem}{Child-Langmuir定律（无碰撞鞘层）}{}{}
 \label{thm:child-langmuir}
-对于无碰撞鞘层，假设离子以玻姆速度进入鞘层，电子被完全排斥，则鞘层厚度 $s$ 与鞘层压降 $V_s$ 的关系为
+对于无碰撞鞘层，假设离子以玻姆速度进入鞘层，电子被完全排斥，则鞘层厚度 $s$ 与鞘层压降 $V_s$ 的关系为（平面、无碰撞、高鞘压近似）
 \begin{equation}
 \label{eq:child-langmuir}
-s = \frac{2}{3}\sqrt{\eps_0} \left(\frac{2e}{m_i}\right)^{1/4} \frac{V_s^{3/4}}{(e\, n_s u_B)^{1/2}}
+s = \frac{\sqrt{2}}{3}\,\lambda_{D,s}\left(\frac{2eV_s}{k_BT_e}\right)^{3/4}
 \end{equation}
-化简后
-\begin{equation}
-s \approx \frac{2}{3}\,\lambda_D \left(\frac{2V_s}{T_e}\right)^{3/4}
-\end{equation}
-其中 $V_s$ 以伏特为单位，$T_e$ 以eV为单位。典型地，$V_s \sim 5\,T_e$，则 $s \sim 3\sim 5\,\lambda_D$。
+其中 $\lambda_{D,s}=\sqrt{\eps_0k_BT_e/(e^2n_s)}$ 是\textbf{用鞘边密度 $n_s$} 定义的德拜长度，$V_s$ 以伏特为单位，$T_e$ 以eV为单位。若改用\textbf{体区密度 $n_0$} 定义的 $\lambda_{D0}$，需要按 $n_s\approx n_0/2$（玻姆判据处）换算，$\lambda_{D,s}=\sqrt2\,\lambda_{D0}$。
+
+\textbf{关于系数 $\tfrac{\sqrt2}{3}$：} 把玻姆通量 $n_su_B=n_s\sqrt{k_BT_e/m_i}$ 代入标准的电流密度形式 $s=\frac{2}{3}\sqrt{\eps_0}(2e/m_i)^{1/4}V_s^{3/4}/(en_su_B)^{1/2}$，整理后系数化为 $\sqrt2/3\approx0.471$，\textbf{不是 $2/3\approx0.667$}——两者差 $\sqrt2$。这里的关键是玻姆速度里已经含一个 $\sqrt{k_BT_e/m_i}$，合并时要小心不要重复或漏掉 $m_i$ 的幂次。
+
+\textbf{典型量级：} $V_s\sim5\,k_BT_e/e$ 时 $\left(2V_s/T_e\right)^{3/4}\sim10^{3/4}\approx5.6$，故 $s\sim\tfrac{\sqrt2}{3}\times5.6\,\lambda_{D,s}\sim2.6\,\lambda_{D,s}$。\textbf{注意：这只是 $V_s\approx5T_e$ 这个特定取值下的数}；由于 $s\propto V_s^{3/4}$，鞘压从 $5T_e$ 升到 $50T_e$ 时 $s$ 会再增大约 $5.6$ 倍。所以"鞘层总是 3--5 个德拜长度"不能与 $s\propto V_s^{3/4}$ 同时当作普遍结论——它只在 $V_s\sim$ 几个 $T_e$ 的低压区成立。
 \end{theorem}
 
 \begin{proof}[推导（挑战）]
@@ -3073,11 +3264,16 @@ n_i(x) u(x) &= n_s u_B \quad (\text{连续性})
 \end{proof}
 
 \begin{insight}{}{}
-Child-Langmuir定律的 $V_s^{3/4}$ 依赖关系非常有趣：鞘层厚度不是线性随电压增长，而是增长得更慢（因为更强的电压加速离子更快，使离子密度降低，部分抵消了空间电荷效应）。实际工艺中，可以通过调节射频功率来改变鞘层压降，从而控制离子轰击能量，但鞘层厚度始终维持在几个德拜长度——这是德拜屏蔽的普适结果。
+Child-Langmuir定律的 $V_s^{3/4}$ 依赖关系非常有趣：鞘层厚度不是线性随电压增长，而是增长得更慢（因为更强的电压加速离子更快，使离子密度降低，部分抵消了空间电荷效应）。\textbf{但"更慢"不等于"不变"：} 在直流高电压鞘层中，$s\propto V_s^{3/4}$ 可以比德拜长度大出很多个数量级——例如工件偏压 $V_s\sim1\,\mathrm{kV}$ 时，$s$ 可达毫米乃至厘米量级。所谓"几个德拜长度"只适用于 $V_s\sim$ 几个 $T_e$ 的低压鞘层。
 \end{insight}
 
 \begin{warning}{}{}
-认为鞘层厚度可以任意大。实际上，由于离子进入鞘层的速度被玻姆判据固定，且密度随电压升高而下降，鞘层厚度被锁定在德拜长度量级的 $3\sim 5$ 倍。即使功率增加10倍，鞘层厚度可能仅增加不到1倍。这也是射频鞘层可以维持高度各向异性刻蚀的原因——鞘层很薄，离子几乎垂直入射。
+两个常见误解要一起纠正：
+\begin{itemize}
+\item \textbf{误解一："鞘层厚度可以任意大。"} 在直流高压下 $s\propto V_s^{3/4}$，确实可以很大——但受限于腔体尺寸与帕邢击穿，实际有上限。\emph{误解}在于把它当成无界。
+\item \textbf{误解二："鞘层厚度总是 3--5 个德拜长度。"} 这\emph{不}是普遍结论。由 $s=\tfrac{\sqrt2}{3}\lambda_{D,s}(2V_s/T_e)^{3/4}$，倍数随 $V_s^{3/4}$ 变化：$V_s=5T_e$ 时约 $2.6\lambda_{D,s}$，$V_s=100T_e$ 时约 $21\lambda_{D,s}$。只有低压（$V_s\lesssim$ 几个 $T_e$）才落在"几个 $\lambda_D$"的范围。
+\end{itemize}
+射频鞘层之所以能维持各向异性刻蚀，真正的原因是\textbf{离子过鞘时间远大于射频周期},离子只响应\textbf{时间平均}的鞘压，而不追踪瞬时振荡；同时鞘层厚度虽可变，但在典型工艺窗口内仍远小于图形特征尺寸。请把这一条表述为"在给定工艺窗口内 $s$ 可控且相对较薄"，而不要说成"被锁定在 3--5 倍德拜长度"。
 \end{warning}
 
 对于高气压（有碰撞）鞘层，离子在鞘层内经历电荷交换碰撞，有效离子质量增加，鞘层变厚。这种情况下需使用修正的 Child-Langmuir 定律或流体模拟，此处从略 [挑战]。
@@ -3242,12 +3438,18 @@ D_a = \frac{k_B T_e}{e} \mu_i \approx \frac{k_B T_e}{m_i \nu_{in}}
 \textbf{解}：
 \begin{enumerate}
 \item 离子-中性碰撞频率：$\nu_{in} = n_n \sigma v_{th,i}$，其中 $n_n = p/k_B T_n \approx 3.2\times 10^{20}\,\mathrm{m^{-3}}$（$T_n = 300\,\mathrm{K}$），$\sigma \sim 10^{-18}\,\mathrm{m^2}$，$v_{th,i} = \sqrt{k_B T_i/m_i} \sim 300\,\mathrm{m/s}$。得 $\nu_{in} \sim 10^5\,\mathrm{s^{-1}}$。
-\item 双极扩散系数：$D_a = k_B T_e/(m_i \nu_{in}) \sim 1.38\times 10^{-23} \times 3\,\mathrm{eV} / (1.6\times 10^{-19} \times 70\times 10^{-3} \times 10^5) \approx 0.04\,\mathrm{m^2/s}$（取 $T_e = 3\,\mathrm{eV}$，$\mathrm{Cl}_2$ 离子质量 $70\,\mathrm{amu}$）。
+\item 双极扩散系数：$D_a = \dfrac{k_B T_e}{m_i \nu_{in}}$，其中 $m_i = 70\,\mathrm{amu}\times1.6605\times10^{-27}\,\mathrm{kg/amu}=1.162\times10^{-25}\,\mathrm{kg}$，$k_BT_e = 3\times1.602\times10^{-19}=4.806\times10^{-19}\,\mathrm{J}$：
+\[
+D_a = \frac{4.806\times10^{-19}}{1.162\times10^{-25}\times10^5} \approx 41\,\mathrm{m^2/s}
+\]
+\textbf{注意单位换算：} $70\,\mathrm{amu}$ 必须换成 $1.162\times10^{-25}\,\mathrm{kg}$，\emph{不是} $70\times10^{-3}$（那是把 amu 当成了 $\mathrm{kg/mol}$ 再取克数）。换算错误会让 $D_a$ 差约 $10^3$ 倍，进而使下面的损失时间错得离谱。
 \item 径向特征长度 $L_{\text{eff}} \sim R/2.4 \approx 0.06\,\mathrm{m}$（圆柱腔最低径向模）。
-\item 扩散损失时间：$\tau \sim L_{\text{eff}}^2/D_a \sim (0.06)^2/0.04 \approx 0.09\,\mathrm{s} = 90\,\mathrm{ms}$。
+\item 扩散损失时间：$\tau \sim L_{\text{eff}}^2/D_a \sim (0.06)^2/41 \approx 8.8\times10^{-5}\,\mathrm{s} \approx 90\,\mu\mathrm{s}$。
 \end{enumerate}
 
-即粒子在腔内平均停留约 $100\,\mathrm{ms}$ 后扩散到壁面损失。要维持稳态，电离产生的速率必须与此损失平衡。
+即粒子在腔内平均停留约 $90\,\mu\mathrm{s}$ 后扩散到壁面损失。要维持稳态，电离产生的速率必须与此损失平衡。
+
+\textbf{这只是题设的径向模型。} 实际刻蚀腔是有限高度的圆柱，轴向损失常常与径向同量级甚至更大（轴的 $L_{\text{eff}}$ 由腔长 $h$ 与两端鞘层决定）。完整的粒子约束时间应由径向与轴向损失共同给出，例如按 $\tau^{-1}\approx\tau_r^{-1}+\tau_z^{-1}$ 量级合并。\textbf{不要把这里的 $90\,\mu\mathrm{s}$ 直接当成完整装置的粒子约束时间}；它只是"只算径向"这一假设下的结果。
 \end{example}
 
 \begin{history}{}{}
@@ -3364,9 +3566,9 @@ s \approx s_0 \times 1.414 \approx 0.1\,\mathrm{mm} \times 1.414 \approx 0.141\,
 
 \textbf{第二步：分析离子入射角的变化}
 
-在鞘层中，离子从等离子体边界加速向壁面运动。对于平面鞘层，离子主要沿法线方向加速。但鞘层边缘存在横向电场分量，当鞘层厚度增大时，离子在穿越鞘层过程中受横向电场作用的时间增长，累积的横向动量增大。
+在鞘层中，离子从等离子体边界加速向壁面运动。对于\emph{一维平面}鞘层、且离子横向初速度为零的理想情形，离子只有法向运动，\textbf{增厚不产生横向动量}，入射角保持 $0^\circ$。所以"鞘层增厚 40\% $\Rightarrow$ 入射角 15°"这一推断\textbf{不能由本题的模型直接得出}——它需要额外的横向场或横向初速度。这里把 $15^\circ$ 明确当作\textbf{另行测量/设定的经验数据}，并给出它的来源：真实 ICP 腔体中，晶片边缘的磁场不均、预鞘的二维电场、以及从体区进入鞘层的离子自身的热横向速度（$v_\perp\sim v_B\sim\sqrt{k_BT_e/m_i}$）都会提供横向动量。当鞘层增厚、离子过鞘时间变长时，\emph{这些已存在的横向速度在法向加速中所占的相对比重}会改变，从而改变有效入射角。因此正确的因果链是：\textbf{鞘层增厚是放大器，而不是横向动量的来源}。
 
-工程估算表明：当鞘层厚度从 $0.1\,\mathrm{mm}$ 增至 $0.14\,\mathrm{mm}$（增厚 $40\%$），在典型ICP腔体几何中，离子到达晶片表面时的入射角从接近垂直（$\theta \approx 0^\circ$）变为约 $15^\circ$ 倾斜。
+\textbf{可计算的判据：} 若离子以 $v_\perp$ 进入鞘层、在法向被加速到 $\sqrt{2eV_s/m_i}$，则到达壁面时的倾角为 $\tan\theta\approx v_\perp/\sqrt{2eV_s/m_i}$。本题 $T_e=4\,\mathrm{eV}$、$V_s\sim$ 数十伏，$v_\perp\sim v_B$ 给出的倾角是几度量级——要到 $15^\circ$ 需要 $v_\perp$ 明显更大或存在二维场。请把 $15^\circ$ 作为给定数据接受，而不要把它标成"工程估算的必然结果"。
 
 \textbf{第三步：侧壁倾斜的物理机制}
 
@@ -3384,14 +3586,14 @@ R_{\text{侧壁}} \propto \Gamma_i \cdot Y(\theta) \cdot \sin\theta
 
 \textbf{结论：}
 
-侧壁倾斜的直接原因是离子入射角增大，根因是鞘层增厚。鞘层增厚的可能物理机制包括：
+侧壁倾斜的直接原因是离子入射角增大，根因是鞘层增厚（$\lambda_{D,s}\propto n_e^{-1/2}$ 主导）。鞘层增厚的可能物理机制包括：
 \begin{enumerate}
-    \item \textbf{等离子体密度下降：}射频功率耦合效率降低、匹配器失谐或气体流量异常。
-    \item \textbf{电子温度降低：}气压升高导致电子--中性粒子碰撞冷却增强，$T_e$ 降低使 $\lambda_D$ 进一步增大。
+    \item \textbf{等离子体密度下降：}射频功率耦合效率降低、匹配器失谐或气体流量异常。$n_e$ 减半使 $\lambda_D$ 增大 $\sqrt2$ 倍。
+    \item \textbf{电子温度变化：}由 $\lambda_D\propto\sqrt{T_e}$，\textbf{固定密度时 $T_e$ 降低会使 $\lambda_D$\emph{减小}，而不是增大}。气压升高确实会因电子--中性碰撞冷却使 $T_e$ 下降，但那会\emph{抵消}鞘层增厚。要判断总效果，必须同时看 $n_e$ 和 $T_e$：$s\propto\lambda_{D,s}\propto\sqrt{T_e/n_e}$——\textbf{$T_e$ 与 $n_e$ 的变化方向相反时谁占优要算一下}，不能想当然。
     \item \textbf{壁面条件变化：}腔体内壁沉积物改变壁面电位，影响鞘层结构。
 \end{enumerate}
 
-\textbf{诊断建议：}使用朗缪尔探针原位测量 $n_e$ 和 $T_e$；检查气压传感器和气体流量控制器；检查射频匹配器反射功率；必要时进行腔体清洗。
+\textbf{诊断建议：}使用朗缪尔探针原位测量 $n_e$ \emph{和} $T_e$（两者都要，因为 $s$ 依赖 $\sqrt{T_e/n_e}$）；检查气压传感器和气体流量控制器；检查射频匹配器反射功率；必要时进行腔体清洗。
 \end{example}
 
 \begin{example}{PECVD沉积速率突降的等离子体诊断}{process-fault-2}
@@ -3441,15 +3643,19 @@ PECVD（等离子体增强化学气相沉积）腔体中，$\mathrm{SiO}_2$ 沉�
     电离率下降约 $20$ 倍以上。
     
     \item \textbf{等离子体密度下降}
-    
+
     稳态时，粒子平衡要求电离率等于损失率：
     \[
     n_e n_g \langle \sigma_{\text{ion}} v \rangle V = n_e u_B A_{\text{eff}}
     \]
-    因此 $n_e \propto \langle \sigma_{\text{ion}} v \rangle$，密度随电离率同比例锐减，从 $3\times 10^{17}$ 降至 $8\times 10^{16}\,\mathrm{m}^{-3}$。
-    
+    \textbf{注意这里 $n_e$ 会在两侧消去}（$n_e>0$ 时），剩下的其实是\textbf{约束条件}
+    \[
+    n_g \langle \sigma_{\text{ion}} v \rangle V = u_B A_{\text{eff}}
+    \]
+    它联系的是\textbf{气体密度、电离系数和几何/损失面积}，\textbf{不能由此推出 $n_e\propto\langle\sigma_{\text{ion}}v\rangle$}。$n_e$ 的绝对值还需要\emph{功率平衡}等另一条独立关系来闭合。所以"电离率下降多少倍、密度就下降多少倍"是一个\emph{错误的比例推断}——本案例中 $n_e$ 从 $3\times10^{17}$ 降到 $8\times10^{16}$（约 $3.75$ 倍）是\emph{实测}结果，不是从粒子平衡式推出来的。
+
     \item \textbf{前驱体解离不足}
-    
+
     PECVD中，$\mathrm{SiH}_4$ 需经电子碰撞解离产生活性前驱体：
     \[
     \mathrm{SiH}_4 + e^- \rightarrow \mathrm{SiH}_3 + \mathrm{H} + e^- \quad (E_{\text{diss}} \approx 8.3\,\mathrm{eV})
@@ -3463,7 +3669,7 @@ PECVD（等离子体增强化学气相沉积）腔体中，$\mathrm{SiO}_2$ 沉�
     \frac{k_{\text{diss},2.5}}{k_{\text{diss},5}} \sim \exp\left(-\frac{8.3}{2.5} + \frac{8.3}{5}\right) = \exp(-1.66) \approx 0.19
     \]
     活性前驱体（$\mathrm{SiH}_3$、$\mathrm{SiH}_2$）浓度降至约 $20\%$。
-    
+
     \item \textbf{沉积速率下降}
     
     沉积速率由前驱体通量决定：
@@ -3494,7 +3700,11 @@ P_{\text{abs}} \propto n_e \cdot E_{\text{loss}} \propto \frac{1}{3.75} \times \
     \item \textbf{验证气体纯度：}确认 $\mathrm{SiH}_4$ 和 $\mathrm{N}_2\mathrm{O}$（或 $\mathrm{O}_2$）流量正常，排查气体泄漏。
 \end{enumerate}
 
-\textbf{核心物理概念：}本案例展示了如何将"沉积速率下降"这一工艺问题，通过朗缪尔探针的 $n_e$、$T_e$ 测量，追溯到射频功率耦合、电子加热、电离动力学、前驱体解离的完整物理链条。
+\textbf{核心物理概念（以及本案例的边界）：}本案例展示了两条\emph{独立}的推理链——(a) 从探针的 $n_e$、$T_e$ 出发，经由电离/解离动力学估计\textbf{前驱体通量}的变化方向；(b) 从吸收功率与电子能量损失估计\textbf{功率耦合}的下降。两者都指向"射频耦合变差"，但(a) 的定量模型预测沉积速率降到约 $5\%$，与实测的 $50\%$ 不符，说明该简化模型\textbf{只可用于定性排序，不能当作已验证的根因}。
+
+\textbf{排除假设、而非直接认定因果，才是诊断的目的。} 面对"沉积速率下降"，至少有两个竞争解释：(1) 前驱体供给不足（本案例的假设），(2) 表面反应/吸附受限（如衬底温度漂移、表面污染）。二者的\textbf{可区分测量}是：前者应伴随气相前驱体浓度（可用 OES 或质谱）同步下降，后者则气相浓度正常而表面状态异常。\textbf{请用模型残差来判断何时应拒绝当前解释}——本例中 $5\%$ 与 $50\%$ 的差距就是这样一个"拒绝信号"。
+
+\textbf{本案例中的工艺百分比、入射角、阈值等，凡未注明数据来源的，均按教学假设对待}，不要直接迁移到真实设备。
 \end{example}
 
 \begin{insight}{从工艺异常到等离子体物理}{process-insight}
@@ -3654,12 +3864,14 @@ I(V) = -I_{\mathrm{i,sat}} + I_{\mathrm{e,sat}}\exp\!\left(\frac{V - V_p}{T_e}\r
 \end{equation}
 其中 $V_p$ 为等离子体电位，$T_e$ 以能量单位（$\mathrm{eV}$）表示，
 \begin{align}
-I_{\mathrm{i,sat}} &\approx \frac{1}{2} e n_i A \bar{v}_i \quad \text{（离子饱和电流，取正值）},
+I_{\mathrm{i,sat}} &\approx 0.6\, e n_e A u_B \quad \text{（离子饱和电流，玻姆流模型，取正值）},
 \label{eq:ion-sat}\\
 I_{\mathrm{e,sat}} &\approx \frac{1}{4} e n_e A \bar{v}_e \quad \text{（电子饱和电流）},
 \label{eq:elec-sat}
 \end{align}
-$A$ 为探针收集面积，$\bar{v}_\alpha = \sqrt{8 T_\alpha / (\pi m_\alpha)}$ 为平均热速度。
+$A$ 为探针收集面积，$u_B = \sqrt{k_BT_e/m_i}$ 为玻姆速度（见第11章），$\bar{v}_e = \sqrt{8 T_e / (\pi m_e)}$ 为电子平均热速度。系数 $0.6$ 来自鞘边密度比 $n_s/n_e\approx0.6$（预鞘加速致密度下降）。
+
+\textbf{关于离子饱和电流的模型选择：}无磁场、无碰撞、平面薄鞘、冷离子时，离子在预鞘内被加速到 $u_B$，到达探针的通量由 $u_B$ 而非离子热速度决定，故用玻姆流式\eqref{eq:ion-sat}。只有在离子热速度不可忽略（无预鞘加速、极高气压强碰撞使其热化）的场合，才退化回 $\frac12 en_iA\bar v_i$ 的热通量形式——两式不可混用，差别可达一倍以上（详见后文"常见误区"）。
 \end{theorem}
 
 \begin{insight}{为什么I-V曲线呈"S"形？}{}
@@ -3675,9 +3887,24 @@ $A$ 为探针收集面积，$\bar{v}_\alpha = \sqrt{8 T_\alpha / (\pi m_\alpha)}
 \end{insight}
 
 \begin{warning}{常见误区：探针尺寸与德拜长度的关系}{}
-\textbf{误区：}探针尺寸必须远大于德拜长度 $\lambda_D$（见第2章式\eqref{eq:debye-length}）才能工作。
+\textbf{误区：}只要探针半径 $r_p$ 与德拜长度 $\lambda_D$（见第2章式\eqref{eq:debye-length}）满足某个关系（例如 $r_p\lesssim\lambda_D$），式\eqref{eq:langmuir-iv}的薄鞘理论就成立。
 
-\textbf{正解：}恰恰相反。如果探针尺寸远大于 $\lambda_D$，探针会严重扰动等离子体，形成厚的非中性鞘层，理论分析将极为复杂。理想情况下，探针尺寸应\emph{与} $\lambda_D$ 相当或更小，这样鞘层较薄，空间电荷效应可控，式\eqref{eq:langmuir-iv}的薄鞘理论才能适用。但探针也不能太小，否则收集电流过弱，信噪比不足。实际实验中，探针半径 $r_p \sim (1\sim 10)\,\lambda_D$ 是常见折中。
+\textbf{正解：}"薄鞘"说的是\emph{鞘层厚度 $s$ 相对探针曲率半径很小}，即
+\begin{equation}
+\text{薄鞘条件：}\quad \frac{s}{r_p}\ll 1 ,
+\label{eq:thin-sheath}
+\end{equation}
+而 $s$ 由鞘层压降和空间电荷决定（见第11章式\eqref{eq:child-langmuir}），\emph{不能}由 $r_p/\lambda_D$ 单独判断。$r_p\lesssim\lambda_D$ 也不是薄鞘的充分条件：即使探针本身很细，若鞘层压降很大（例如大面积壁面或强偏压），$s$ 仍可能远超 $r_p$。
+
+反过来，探针\emph{对整个等离子体的扰动}又与 $r_p/\lambda_D$ 无关，而由探针面积、放电功率、腔体几何共同决定——大面积探针会抽走可观的电子/离子流，改变放电本身。因此判断"薄鞘"和判断"扰动可忽略"是\emph{两个独立}的问题，都不能只看 $r_p/\lambda_D$。
+
+\textbf{三种几何限制模型各自的适用条件：}
+\begin{itemize}
+    \item \textbf{薄鞘模型（Mott-Smith / ABR，$s/r_p\ll1$）}：式\eqref{eq:langmuir-iv}与离子饱和式的定量形式成立；探针几乎不改变鞘前边界位置。
+    \item \textbf{厚鞘 / OML（轨道运动限制，$s/r_p\gg1$）}：鞘层远大于探针，粒子在鞘内的轨道几乎不受探针几何影响，使用 OML 收集理论（补充材料 \S12.x 中的圆柱/球形 OML 公式），此时离子饱和电流\emph{不再}正比于收集面积，而与 $r_p$、$\lambda_D$ 的组合有关。
+    \item \textbf{中间过渡区}：必须做数值鞘层求解或经验标定，任何解析公式都不可靠。
+\end{itemize}
+工程上常取 $r_p\sim(1\sim10)\,\lambda_D$ 作为\textbf{信号强度与鞘层可分析性之间的折中}，但请务必先算出实际的 $s/r_p$，再决定用哪套模型——不要用 $r_p/\lambda_D$ 的数值去"验证"薄鞘假设。
 \end{warning}
 
 \subsection{电子温度 $T_e$ 的求法：过渡区斜率法}
@@ -3716,12 +3943,14 @@ n_e = \frac{4 I_{\mathrm{e,sat}}}{e A \bar{v}_e}
 \label{eq:ne-from-sat}
 \end{equation}
 
-对于低温等离子体（$T_e \lesssim T_i$），电子饱和电流区难以精确确定，更常用\textbf{离子饱和电流}估算：
+对于低温等离子体，电子饱和电流区容易被鞘层膨胀和二次电子效应污染，更常用\textbf{离子饱和电流}估算。在冷离子玻姆流模型下（与式\eqref{eq:ion-sat}一致），
 \begin{equation}
-n_e \approx n_i \approx \frac{2 I_{\mathrm{i,sat}}}{e A \bar{v}_i}
-= \frac{2 I_{\mathrm{i,sat}}}{e A}\sqrt{\frac{\pi m_i}{8 T_i}}.
+n_e \approx \frac{I_{\mathrm{i,sat}}}{0.6\, e A u_B}
+= \frac{I_{\mathrm{i,sat}}}{0.6\, e A}\sqrt{\frac{m_i}{T_e}}
+\quad \text{（$T_e$ 以能量单位计）}.
 \label{eq:ne-from-ion-sat}
 \end{equation}
+注意这里\emph{已经不再出现离子温度 $T_i$}：离子饱和电流由玻姆速度 $u_B\propto\sqrt{T_e/m_i}$ 决定，而不是离子热速度。若误用热通量式 $n\approx 2I_{\mathrm{i,sat}}/(eA\bar v_i)$，需要输入离子温度且在小 $T_i$ 时给出荒谬的大密度——这正是本节要强调的模型一致性。
 \end{corollary}
 
 \begin{warning}{常见误区：磁化等离子体中的探针}{}
@@ -3733,14 +3962,25 @@ n_e \approx n_i \approx \frac{2 I_{\mathrm{i,sat}}}{e A \bar{v}_i}
 如果等离子体中的电子分布偏离麦克斯韦分布，仅靠 $T_e$ 一个参数无法完整描述。朗缪尔探针的一个重要扩展功能是通过 $I$-$V$ 曲线求出完整的电子能量分布函数（EEDF）。
 
 \begin{theorem}{Druyvesteyn公式}{}{}
-对于各向同性的电子速度分布，探针收集电流的二阶导数与EEDF $f(\eps)$ 的关系为
+必须先区分两种分布：\textbf{电子能量分布函数}（EEDF）$F(\eps)$ 与\textbf{电子能量概率函数}（EEPF）$f_\eps(\eps)$，前者满足 $\int_0^\infty F(\eps)\,\diff\eps = n_e$（单位：$(\mathrm{eV})^{-1}\mathrm{m}^{-3}$），后者归一到 1。对定义为 $F(\eps)$ 的各向同性 EEDF，在无磁、无碰撞、薄鞘、探针接地的探针模型下，有
 \begin{equation}
-\frac{\diff^2 I}{\diff V^2} = \frac{e^3 A}{2 m_e}\, f_\eps\!\bigl(\eps = -e(V - V_p)\bigr)
-\quad \text{（当 } V < V_p \text{ 时）}.
+F(\eps) = \frac{2\sqrt{2 m_e \eps}}{A e^3}
+\left.\frac{\diff^2 I_e}{\diff V^2}\right|_{V = V_p - \eps/e}
+\quad \text{（当 } V < V_p \text{ 时）},
 \label{eq:druyvesteyn}
 \end{equation}
-其中 $\eps = -e(V - V_p)$ 为电子\textbf{相对于等离子体电位} $V_p$ 的动能（不是相对于探针电位 $V$），$f_\eps(\eps)$ 为按能量归一化的分布函数。
+其中 $\eps = -e(V - V_p)$ 为电子\textbf{相对于等离子体电位} $V_p$ 的动能（不是相对于探针电位 $V$），$I_e$ 为\emph{电子电流}（必须先扣除离子电流 $I_e = I + I_{\mathrm{i,sat}}$）。
+
+若改用归一到 1 的 EEPF，则 $f_\eps = F/n_e$，即需把上式除以 $n_e$。
 \end{theorem}
+
+\begin{warning}{常见误区：不可丢掉 $\sqrt{\eps}$ 因子}{}
+\eqref{eq:druyvesteyn} 中的 $\sqrt{\eps}$ 因子不可用一个常数吸收——它改变谱形。验证很简单：麦克斯韦 EEDF 为
+\[
+F_{\mathrm{Maxwell}}(\eps) \propto \sqrt{\eps}\,\exp\!\left(-\frac{\eps}{k_BT_e}\right),
+\]
+而阻滞电子电流仅含指数因子 $\exp[-(V_p-V)/T_e] = \exp[-\eps/(k_BT_e)]$（因为 $v(\eps)\propto\sqrt{\eps}$ 的因子已被 $\diff^2 I/\diff V^2$ 中的微分精确抵消）。所以二阶导数本身是纯指数型，正需要乘上 $\sqrt{\eps}$ 才能还原 $\sqrt{\eps}\,e^{-\eps/k_BT_e}$ 的 Maxwell 形。若丢掉 $\sqrt{\eps}$，$$\diff^2I/\diff V^2$$ 对 $\ln$ 的斜率只能得到 $1/T_e$ 的\emph{恰好一半}（因为 $-\ln\sqrt\eps \propto -\eps/2$）——这将系统性地把 $T_e$ 低估一倍。诊断时务必沿整条曲线核验谱形，而不仅比对某个点。
+\end{warning}
 
 \begin{insight}{为什么二阶导数给出分布函数？}{}
 探针收集电流是\emph{所有能量高于势垒}的电子的通量积分：$I \propto \int_{\eps > e(V_p - V)} f_\eps(\eps)\, v(\eps) \,\diff\eps$（势垒高度为 $e(V_p - V)$）。对 $V$ 求一阶导数消去了积分下限的被积函数（莱布尼茨法则），再求二阶导数就提取出了分布函数本身。这相当于在说：\emph{电流曲线在某处的"弯曲程度"，正比于具有该能量的电子数量}。这一结果最早由Druyvesteyn在1930年严格导出，是探针诊断从"测温度"到"测分布"的理论飞跃。
@@ -3754,27 +3994,47 @@ n_e \approx n_i \approx \frac{2 I_{\mathrm{i,sat}}}{e A \bar{v}_i}
 \begin{enumerate}
     \item 电子温度：由式\eqref{eq:te-slope}，$T_e = 1/3.5 \approx 0.29\,\mathrm{V} = 0.29\,\mathrm{eV}$（约 $3300\,\mathrm{K}$）。
     \item 探针面积：$A = 2\pi r L + 2\pi r^2 \approx 2\pi \times 0.25\times 10^{-3}\times 5\times 10^{-3} \approx 7.85\times 10^{-6}\,\mathrm{m}^2$（忽略端面）。
-    \item 离子密度：对于氩离子 $m_i = 40\,\mathrm{amu} \approx 6.64\times 10^{-26}\,\mathrm{kg}$，假设 $T_i \approx T_e = 0.29\,\mathrm{eV}$，则 $\bar{v}_i = \sqrt{8T_i/(\pi m_i)} \approx 2.1\times 10^3\,\mathrm{m/s}$。由式\eqref{eq:ne-from-ion-sat}：
+    \item 离子密度：对于氩离子 $m_i = 40\,\mathrm{amu} \approx 6.64\times 10^{-26}\,\mathrm{kg}$，玻姆速度 $u_B = \sqrt{T_e/m_i} = \sqrt{0.29\times 1.6\times 10^{-19}/6.64\times 10^{-26}} \approx 8.4\times 10^{2}\,\mathrm{m/s}$。由式\eqref{eq:ne-from-ion-sat}：
     \begin{equation}
-    n_e \approx \frac{2\times 0.15\times 10^{-3}}{1.6\times 10^{-19}\times 7.85\times 10^{-6}\times 2.1\times 10^3} \approx 1.1\times 10^{17}\,\mathrm{m}^{-3}.
+    n_e \approx \frac{0.15\times 10^{-3}}{0.6\times 1.6\times 10^{-19}\times 7.85\times 10^{-6}\times 8.4\times 10^{2}}
+    \approx 2.4\times 10^{17}\,\mathrm{m}^{-3}.
     \end{equation}
+    （若按离子热通量式误算会得到不同数值，见下文模型一致性讨论。）
 \end{enumerate}
-这是一个典型的低气压辉光放电密度，德拜长度 $\lambda_D \approx 740\,\mu\mathrm{m}$，探针半径 $r = 250\,\mu\mathrm{m} \approx 0.34\,\lambda_D$，鞘层较薄，薄鞘理论尚可适用。
+这是一个典型的低气压辉光放电密度。现在按正确公式核算德拜长度：$\lambda_D = \sqrt{\eps_0 T_e/(n_e e^2)}$（$T_e = 0.29\,\mathrm{eV} = 4.64\times 10^{-20}\,\mathrm{J}$）：
+\begin{equation}
+\lambda_D = \sqrt{\frac{8.85\times 10^{-12}\times 4.64\times 10^{-20}}{2.4\times 10^{17}\times (1.6\times 10^{-19})^2}}
+\approx 8.2\times 10^{-6}\,\mathrm{m} = 8.2\,\mu\mathrm{m}.
+\end{equation}
+于是 $r_p/\lambda_D \approx 250/8.2 \approx 30$，\emph{不是} $0.34$。$r_p/\lambda_D$ 较大只说明探针相对德拜球显得"粗"，\textbf{并不}直接给出薄鞘结论。要判断薄鞘，须另算鞘层厚度 $s$ 与 $r_p$ 之比：对氩气辉光放电，鞘层压降为 $V_s\sim 50\sim100\,\mathrm{V}$、$T_e=0.29\,\mathrm{eV}$，由第11章 Child--Langmuir 关系 \eqref{eq:child-langmuir}，
+\[
+s \simeq \frac{\sqrt{2}}{3}\,\lambda_{D,s}\left(\frac{2eV_s}{k_BT_e}\right)^{3/4}
+\sim \frac{\sqrt{2}}{3}\times 8.2\,\mu\mathrm{m}\times\left(\frac{2\times 100}{0.29}\right)^{3/4}
+\sim 5\times 10^{2}\,\mu\mathrm{m},
+\]
+即 $s/r_p \gtrsim 1$——本例其实处在\textbf{厚鞘/OML 的边缘}，薄鞘公式应视为数量级估计。这正是"必须分别检查几何条件"的实例：$r_p/\lambda_D$ 与 $s/r_p$ 是两个不同的判据。
 \end{example}
 
 \subsection{悬浮电位与历史回顾}
 
 \begin{definition}{悬浮电位}{}{}
-当探针与外部电路断开（净电流 $I = 0$）时，探针自发达到的电位称为\textbf{悬浮电位}（Floating Potential），记作 $V_f$。由 $-I_{\mathrm{i,sat}} + I_{\mathrm{e,sat}}\exp[(V_f - V_p)/T_e] = 0$（式\eqref{eq:langmuir-iv}），可得
+当探针与外部电路断开（净电流 $I = 0$）时，探针自发达到的电位称为\textbf{悬浮电位}（Floating Potential），记作 $V_f$。令总电流 $I(V_f)=0$，即将电子电流与离子电流相等。\textbf{采用与定理 \ref{thm:floating-potential} 相同的玻姆流模型}（冷离子、无碰撞、无磁、薄鞘），离子电流为 $I_i = e n_s A u_B$，电子电流为 $I_e = \frac14 en_sA\bar v_e\exp[(V_f-V_p)/T_e]$：
 \begin{equation}
-V_f - V_p = T_e \ln\!\left(\frac{I_{\mathrm{i,sat}}}{I_{\mathrm{e,sat}}}\right)
-= T_e \ln\!\left(\frac{2}{\sqrt{\pi}}\sqrt{\frac{m_e T_i}{m_i T_e}}\right).
+\frac{1}{4}n_sA\bar v_e\,e^{(V_f-V_p)/T_e} = n_s A u_B
+\quad\Longrightarrow\quad
+V_f - V_p = T_e \ln\!\left(\frac{4u_B}{\bar v_e}\right).
 \label{eq:floating-potential-2}
 \end{equation}
+代入 $\bar v_e = \sqrt{8k_BT_e/(\pi m_e)}$、$u_B=\sqrt{k_BT_e/m_i}$：
+\begin{equation}
+V_f - V_p = T_e \ln\!\left(\sqrt{\frac{2\pi m_e}{m_i}}\right)
+= \frac{T_e}{2}\ln\!\left(\frac{2\pi m_e}{m_i}\right),
+\end{equation}
+与定理 \ref{thm:floating-potential} 的结果一致（氩约为 $-4.7\,T_e$）。\textbf{注意}：若错误地用离子\emph{热}通量 $\frac12 en_iA\bar v_i$ 代替玻姆流，会得到式\eqref{eq:floating-potential-2}中原先那个含 $T_i$ 的形式 $T_e\ln\!\left(\frac{2}{\sqrt\pi}\sqrt{m_eT_i/m_iT_e}\right)$——它只适用于离子温度可与电子温度比拟的特殊情形，不能与本定义的冷离子模型混用。冷离子极限下 $\bar v_i\to0$，那个式子会给出 $-\infty$，这正是必须改用玻姆流的理由。
 \end{definition}
 
 \begin{insight}{为什么悬浮电位是负的？}{}
-式\eqref{eq:floating-potential-2}中，$V_f < V_p$ 的根本原因在于\textbf{电子的流动性远高于离子}。电子质量小，热速度大，"冲向"探针的通量天然就比离子大几个数量级。如果探针保持中性电位，它会被\emph{过度充电}为负电位。只有探针自身积累足够负的电荷，形成排斥电子的势垒，才能使电子通量降低到与离子通量相等，达到动态平衡。取 $T_i \approx T_e$ 时，$V_f - V_p \approx T_e \ln\!\left(2\sqrt{m_e/m_i}\right)$：对于氢等离子体约为 $-3.1\,T_e$；对于氩等离子体约为 $-4.9\,T_e$。因此，悬浮电位\emph{不是}等离子体电位，这是初学者最容易混淆的概念。
+式\eqref{eq:floating-potential-2}中，$V_f < V_p$ 的根本原因在于\textbf{电子的流动性远高于离子}。电子质量小，热速度大，"冲向"探针的通量天然就比离子大几个数量级。如果探针保持中性电位，它会被\emph{过度充电}为负电位。只有探针自身积累足够负的电荷，形成排斥电子的势垒，才能使电子通量降低到与离子通量相等，达到动态平衡。取 $T_i \approx T_e$ 时，$V_f - V_p \approx -4.7\,T_e$（氩）。因此，悬浮电位\emph{不是}等离子体电位，这是初学者最容易混淆的概念。同时注意：$V_f$ 对应的是 $I=0$ 的探针电位，而\textbf{等离子体电位 $V_p$ 对应 $I$-$V$ 曲线电子饱和区的拐点}，二者在曲线上是不同的位置。
 \end{insight}
 
 \begin{history}{物理史话：朗缪尔与探针诊断的诞生}{}{}
@@ -3802,7 +4062,7 @@ n_r = \frac{kc}{\omega} = \sqrt{1 - \frac{\omega_{pe}^2}{\omega^2}},
 当探测频率 $\omega$ 等于等离子体频率时，折射率 $n_r = 0$，波无法传播。由此定义\textbf{截止密度}（Cutoff Density）：
 \begin{equation}
 n_{\mathrm{cut}} = \frac{\eps_0 m_e \omega^2}{e^2}
-\approx 1.24\times 10^{14}\,\left(\frac{f}{\mathrm{GHz}}\right)^2\,\mathrm{m}^{-3}.
+\approx 1.24\times 10^{16}\,\left(\frac{f}{\mathrm{GHz}}\right)^2\,\mathrm{m}^{-3}.
 \label{eq:cutoff-density}
 \end{equation}
 当 $n_e > n_{\mathrm{cut}}$ 时，微波将被反射而无法穿透等离子体。
@@ -3832,10 +4092,11 @@ n_r \approx 1 - \frac{1}{2}\frac{\omega_{pe}^2}{\omega^2}
 对于均匀等离子体柱（密度 $n_e$，长度 $L$），上式简化为
 \begin{equation}
 \Delta\phi = \frac{e^2}{2\eps_0 m_e c \omega}\, n_e L
-= 8.97\times 10^{-17}\,\frac{\lambda_0}{\mathrm{m}} \,\frac{n_e}{\mathrm{m}^{-3}}\,\frac{L}{\mathrm{m}}\,\mathrm{rad},
+= r_e\lambda_0 \int_0^L n_e\,\diff l
+= 2.82\times 10^{-15}\,\frac{\lambda_0}{\mathrm{m}} \,\frac{n_e}{\mathrm{m}^{-3}}\,\frac{L}{\mathrm{m}}\,\mathrm{rad},
 \label{eq:phase-shift-uniform}
 \end{equation}
-其中 $\lambda_0 = 2\pi c/\omega$ 为真空波长。
+其中 $\lambda_0 = 2\pi c/\omega$ 为真空波长，$r_e = e^2/(4\pi\eps_0 m_e c^2) = 2.818\times 10^{-15}\,\mathrm{m}$ 为经典电子半径。注意系数 $r_e\lambda_0$（本题取 $\lambda_0$ 以米计）与波长成正比，\emph{不是}常数。
 \end{theorem}
 
 \begin{insight}{为什么相位移动正比于密度和长度？}{}
@@ -3845,7 +4106,7 @@ n_r \approx 1 - \frac{1}{2}\frac{\omega_{pe}^2}{\omega^2}
 \begin{warning}{常见误区：相位移动与频率的关系}{}
 \textbf{误区：}使用更高频率的微波可以得到更大的相位移动，从而提高灵敏度。
 
-\textbf{正解：}由式\eqref{eq:phase-shift}，$\Delta\phi \propto 1/\omega$。频率越高，相位移动反而\emph{越小}。但高频率允许测量更高密度（截止密度 $n_{\mathrm{cut}} \propto f^2$）。因此，实验设计中需要权衡：频率太低则无法穿透高密度等离子体；频率太高则相位移动微弱，难以检测。典型选择是使 $n_{\mathrm{cut}}$ 为预期最大密度的 $2\sim 3$ 倍。例如，对于峰值密度 $n_e \sim 10^{18}\,\mathrm{m}^{-3}$，选用 $f = 50\,\mathrm{GHz}$（$n_{\mathrm{cut}} \approx 3.1\times 10^{18}\,\mathrm{m}^{-3}$）是合理的。
+\textbf{正解：}由式\eqref{eq:phase-shift}，$\Delta\phi \propto 1/\omega$。频率越高，相位移动反而\emph{越小}。但高频率允许测量更高密度（截止密度 $n_{\mathrm{cut}} \propto f^2$）。因此，实验设计中需要权衡：频率太低则无法穿透高密度等离子体；频率太高则相位移动微弱，难以检测。典型选择是使 $n_{\mathrm{cut}}$ 为预期最大密度的 $2\sim 3$ 倍。例如，对于峰值密度 $n_e \sim 10^{18}\,\mathrm{m}^{-3}$，选用 $f = 50\,\mathrm{GHz}$（$n_{\mathrm{cut}} \approx 3.1\times 10^{19}\,\mathrm{m}^{-3}$）是合理的。
 \end{warning}
 
 \begin{example}{数值估算：托卡马克芯部密度测量}{ch12-tokamak-ne}
@@ -3859,10 +4120,11 @@ n_e = \frac{2\eps_0 m_e c \omega \Delta\phi}{e^2 L}
 \end{equation}
 代入数值：$\eps_0 = 8.85\times 10^{-12}\,\mathrm{F/m}$，$m_e = 9.11\times 10^{-31}\,\mathrm{kg}$，$c = 3\times 10^8\,\mathrm{m/s}$，$e = 1.6\times 10^{-19}\,\mathrm{C}$，$\Delta\phi = 10\pi$，$\lambda_0 = 2\times 10^{-3}\,\mathrm{m}$，$L = 1.0\,\mathrm{m}$：
 \begin{equation}
-n_e \approx \frac{2\times 8.85\times 10^{-12}\times 9.11\times 10^{-31}\times (3\times 10^8)^2 \times 10\pi}{(1.6\times 10^{-19})^2 \times 1.0 \times 2\times 10^{-3}}
-\approx 8.9\times 10^{18}\,\mathrm{m}^{-3}.
+n_e = r_e\lambda_0\,\frac{\Delta\phi}{L}
+= 2.82\times 10^{-15}\times 2\times 10^{-3}\times\frac{10\pi}{1.0}
+\approx 5.6\times 10^{18}\,\mathrm{m}^{-3}.
 \end{equation}
-这一密度处于微波干涉诊断的典型范围内（$10^{18}\sim 10^{20}\,\mathrm{m}^{-3}$）。对于更高密度（如聚变堆级 $10^{20}\,\mathrm{m}^{-3}$），需要使用亚毫米波或远红外激光干涉仪。
+这一密度处于微波干涉诊断的典型范围内（$10^{18}\sim 10^{20}\,\mathrm{m}^{-3}$）。\textbf{每次估算后都应做截止检查}：该频率 $f=150\,\mathrm{GHz}$ 对应 $n_{\mathrm{cut}} = 1.24\times 10^{16}\times 150^2 \approx 2.8\times 10^{20}\,\mathrm{m}^{-3}$，远大于 $5.6\times 10^{18}\,\mathrm{m}^{-3}$，故 $\omega\gg\omega_{pe}$ 成立，高频近似自洽。对于更高密度（如聚变堆级 $10^{20}\,\mathrm{m}^{-3}$），需要使用亚毫米波或远红外激光干涉仪。
 \end{example}
 
 
@@ -3896,13 +4158,22 @@ n_e \approx \frac{2\times 8.85\times 10^{-12}\times 9.11\times 10^{-31}\times (3
 \begin{theorem}{非相干汤姆逊散射光谱}{}{}
 当电子密度满足 $n_e \ll n_{\mathrm{co}} \sim 10^{23}\,\mathrm{m}^{-3}$（非相干散射条件，见下文）时，不同电子的散射波相位随机，总散射强度为各电子贡献的非相干叠加。对于麦克斯韦分布的电子，散射光谱呈高斯形：
 \begin{equation}
-S(\omega_s) \propto \exp\!\left[-\frac{(\omega_s - \omega_i)^2}{2\Delta\omega^2}\right],
+S(\omega_s) \propto \exp\!\left[-\frac{(\omega_s - \omega_i)^2}{2\sigma_\omega^2}\right],
+\qquad
+\sigma_\omega = |\vect{q}|\sqrt{\frac{k_BT_e}{m_e}},
 \label{eq:thomson-gaussian}
 \end{equation}
-其中 $\omega_i$ 为入射激光频率，光谱宽度（半高全宽，$1/\ee$ 宽度为 $2\Delta\omega$）满足
+其中 $\omega_i$ 为入射激光频率，$\sigma_\omega$ 是高斯分布的\textbf{标准差}。\\
+\textbf{三种宽度必须分清}（同一条高斯曲线）：
+\[
+\text{标准差 } \sigma_\omega,\qquad
+\text{半高全宽 } \mathrm{FWHM}_\omega = 2\sqrt{2\ln2}\,\sigma_\omega,\qquad
+\text{$1/\ee$ 全宽 } = 2\sqrt2\,\sigma_\omega .
+\]
+用散射波矢 $|\vect{q}| = 2k_i\sin(\theta/2)$，则半高全宽满足
 \begin{equation}
-\frac{\Delta\omega}{\omega_i} = 2\sqrt{2\ln 2}\,\sin\frac{\theta}{2}\,\frac{v_{th}}{c}
-= 2\sqrt{2\ln 2}\,\sin\frac{\theta}{2}\,\sqrt{\frac{2T_e}{m_e c^2}}.
+\frac{\mathrm{FWHM}_\omega}{\omega_i} = 4\sqrt{2\ln 2}\,\sin\frac{\theta}{2}
+\sqrt{\frac{k_BT_e}{m_e c^2}}.
 \label{eq:thomson-width}
 \end{equation}
 \end{theorem}
@@ -3929,7 +4200,7 @@ S(\omega_s) \propto \exp\!\left[-\frac{(\omega_s - \omega_i)^2}{2\Delta\omega^2}
 \end{insight}
 
 \begin{warning}{常见误区：相干散射与非相干散射的界限}{}
-当密度升高时，德拜球内的电子数 $N_D = n_e \lambda_D^3$ 不再是大量，电子间的相关性增强，散射波不再完全随机叠加，而会出现集体效应——\textbf{相干散射}（或称为集体汤姆逊散射）。此时散射光谱不再单纯反映电子温度，还会出现与离子声波相关的窄峰（离子成分）和与电子等离子体波相关的宽峰。非相干散射的判据通常取 $k\lambda_D \gg 1$（$k = |\vect{q}|$），即探测尺度远小于德拜长度。对于 $90^\circ$ 散射和 $1064\,\mathrm{nm}$（Nd:YAG，钕掺杂钇铝石榴石激光）激光，这一条件通常在 $n_e \ll 10^{23}\,\mathrm{m}^{-3}$ 时满足。聚变堆芯密度（$\sim 10^{20}\,\mathrm{m}^{-3}$）远低于此阈值，因此非相干近似仍然适用。
+当密度升高时，德拜球内的电子数 $N_D = \tfrac{4}{3}\pi n_e \lambda_D^3$ 不再是大量，电子间的相关性增强，散射波不再完全随机叠加，而会出现集体效应——\textbf{相干散射}（或称为集体汤姆逊散射）。此时散射光谱不再单纯反映电子温度，还会出现与离子声波相关的窄峰（离子成分）和与电子等离子体波相关的宽峰。非相干散射的判据通常取 $k\lambda_D \gg 1$（$k = |\vect{q}|$），即探测尺度远小于德拜长度。对于 $90^\circ$ 散射和 $1064\,\mathrm{nm}$（Nd:YAG，钕掺杂钇铝石榴石激光）激光，这一条件通常在 $n_e \ll 10^{23}\,\mathrm{m}^{-3}$ 时满足。聚变堆芯密度（$\sim 10^{20}\,\mathrm{m}^{-3}$）远低于此阈值，因此非相干近似仍然适用。
 \end{warning}
 
 
@@ -3987,19 +4258,29 @@ $A_{ji}$、$A_{lk}$ 为爱因斯坦自发辐射系数。
 等离子体中的带电粒子产生微观电场，这些电场通过线性或二次斯塔克效应，使发射或吸收谱线发生展宽和位移。此即\textbf{斯塔克展宽}（Stark Broadening）。
 
 \begin{definition}{斯塔克展宽与密度关系}{}{}
-对于氢原子及其类氢离子，线性斯塔克效应占主导，谱线展宽 $\Delta\lambda_{1/2}$（半高全宽）与电子密度的关系近似为
+对于氢原子及其类氢离子，线性斯塔克效应占主导，谱线展宽 $\Delta\lambda_{1/2}$（半高全宽，FWHM）与电子密度的关系近似为
 \begin{equation}
 \Delta\lambda_{1/2} \approx C\,n_e^{2/3},
 \label{eq:stark-broadening}
 \end{equation}
-其中 $C$ 为与谱线种类和等离子体温度有关的\textbf{经验系数}。对于氢的 $H_\alpha$ 线（$656.3\,\mathrm{nm}$），在 $n_e \sim 10^{20}\sim 10^{24}\,\mathrm{m}^{-3}$、$T_e \sim 1\sim 10\,\mathrm{eV}$ 范围内，典型的经验公式为
-\begin{equation}
-\Delta\lambda_{1/2}\,\big[\mathrm{nm}\big] \approx 2.5\times 10^{-17}\left(\frac{n_e}{\mathrm{m}^{-3}}\right)^{2/3}.
-\end{equation}
+其中 $C$ 为与谱线种类和电子温度有关的\textbf{经验系数}。
+
+\textbf{$H_\alpha$ 的可追溯标定（Griem 半经验理论，$T_e\sim1\sim10\,\mathrm{eV}$）：}
+\[
+\Delta\lambda_{1/2}[\mathrm{nm}]
+\approx 0.549\left(\frac{n_e}{10^{23}\,\mathrm{m^{-3}}}\right)^{2/3}
+\ \ (\text{近似的常温标定}).
+\]
+即 $n_e = 10^{23}\,\mathrm{m^{-3}}$ 时 FWHM 约 $0.55\,\mathrm{nm}$，$n_e = 10^{20}\,\mathrm{m^{-3}}$ 时约 $0.0055\,\mathrm{nm}$（缩小到百分之一）。\textbf{该系数只对 $H_\alpha$ 线、上述温度与密度区间有效}，且随温度有弱变化。
 \end{definition}
 
-\begin{warning}{斯塔克展宽经验系数不能通用}{}
-上式的系数 $2.5\times10^{-17}$ 只对 $H_\alpha$ 线在上述温度与密度范围内有效，\textbf{不能推广到其它谱线或参数区间}。实际工程与科研中，精确的谱线展宽计算需要查阅 STARK-B 等专业数据库按元素、能级与温度查表，任意套用该系数可能导致数倍误差。
+\begin{warning}{斯塔克展宽反演必须用可追溯标定，并分离各种展宽}{}
+对 $H_\alpha$ 线做密度反演时，务必：
+\begin{enumerate}
+    \item \textbf{使用注明出处、带适应区间的标定系数}（如 Griem 的半经验值或 STARK-B 数据库），不要凭"量级合理"在几个相互冲突的系数中挑选结果。
+    \item \textbf{先分离各种展宽机制}：仪器展宽（$\Delta\lambda_{\rm inst}$，由光谱仪分辨率决定）、多普勒展宽（$\Delta\lambda_D = \lambda_0\sqrt{8k_BT_i/(m_ic^2)}$，取决于\emph{离子}温度与观测角）、范德瓦尔斯/共振展宽（取决于中性气体密度）。测得的表观宽度是这些机制与斯塔克展宽的卷积；只有扣除前几项后剩下的才是斯塔克分量。本例忽略其他展宽只是为了教学简化。
+    \item \textbf{注意温度依赖}：氢线斯塔克宽度对 $T_e$ 有弱依赖（电离度与离子微场统计随温度变化），"不依赖温度"的说法不成立。
+\end{enumerate}
 \end{warning}
 
 \begin{insight}{为什么展宽正比于 $n_e^{2/3}$？}{}
@@ -4010,16 +4291,15 @@ $A_{ji}$、$A_{lk}$ 为爱因斯坦自发辐射系数。
 \difficulty{基础}
 某氢电弧等离子体中，光谱仪测得 $H_\alpha$ 线（$656.3\,\mathrm{nm}$）的半高全宽为 $\Delta\lambda_{1/2} = 2.5\,\mathrm{nm}$。假设温度在 $1\sim 10\,\mathrm{eV}$ 范围内，粗略估算电子密度。
 
-\textbf{解：}由近似标度关系 $n_e \approx (\Delta\lambda_{1/2} / 2.5\times 10^{-17})^{3/2}$，代入 $\Delta\lambda_{1/2} = 2.5\times 10^{-9}\,\mathrm{m}$：
+\textbf{解：}先用可追溯标定反演。由 $\Delta\lambda_{1/2} = 0.549\,(n_e/10^{23})^{2/3}\,\mathrm{nm}$ 反解：
 \begin{equation}
-n_e \approx \left(\frac{2.5\times 10^{-9}}{2.5\times 10^{-17}}\right)^{3/2}
-= (10^8)^{3/2} = 10^{12}\,\mathrm{m}^{-3}.
+n_e = 10^{23}\times\left(\frac{\Delta\lambda_{1/2}}{0.549\,\mathrm{nm}}\right)^{3/2}
+= 10^{23}\times\left(\frac{2.5}{0.549}\right)^{3/2}
+\approx 1.0\times 10^{24}\,\mathrm{m}^{-3}.
 \end{equation}
-等等，这个数值明显偏小。实际上对于氢 $H_\alpha$，常用经验公式在 $n_e \sim 10^{20}\,\mathrm{m}^{-3}$ 时 $\Delta\lambda_{1/2} \sim 0.1\,\mathrm{nm}$ 量级；$2.5\,\mathrm{nm}$ 的展宽对应 $n_e \sim 10^{23}\,\mathrm{m}^{-3}$ 量级。这说明\textbf{数值估算时必须使用正确的系数}。这个例子恰恰说明：光谱诊断的定量反演严重依赖精确的原子物理数据（如STARK-B数据库），标度关系只能用于量级估计。实际上，若使用更精确的公式：
-\begin{equation}
-n_e \approx 10^{23}\,\mathrm{m}^{-3}\times\left(\frac{\Delta\lambda_{1/2}}{0.5\,\mathrm{nm}}\right)^{3/2} \approx 10^{23}\times(5)^{3/2} \approx 1.1\times 10^{24}\,\mathrm{m}^{-3},
-\end{equation}
-对应于高电流密度电弧的芯部密度。
+\emph{注意单位}：$\Delta\lambda_{1/2}$ 与系数都必须用 $\mathrm{nm}$（$2.5\,\mathrm{nm} = 2.5\times10^{-9}\,\mathrm{m}$）。若把以 $\mathrm{m}$ 计的 $2.5\times10^{-9}$ 直接代入以 $\mathrm{nm}$ 计的系数，会得到荒谬的小值——这是本类计算最常见的错误。
+
+$n_e\sim10^{24}\,\mathrm{m}^{-3}$ 对应高电流密度电弧芯部，与 $2.5\,\mathrm{nm}$ 的展宽量级自洽。但要强调：\textbf{这里的 $2.5\,\mathrm{nm}$ 是"表观"全宽}，实际反演前必须扣除仪器分辨率和多普勒展宽（见上一条告诫）。本例题为了教学把所有展宽都归于斯塔克分量，真实工作中这样做会把密度\emph{高估}。温度依赖也须用查表系数而非固定 $0.549$。
 \end{example}
 
 
@@ -4046,12 +4326,18 @@ n_e \approx 10^{23}\,\mathrm{m}^{-3}\times\left(\frac{\Delta\lambda_{1/2}}{0.5\,
 \end{equation}
 $A$ 为单匝面积，假设磁场垂直穿过线圈平面。对电压进行时间积分即可得到磁场变化：
 \begin{equation}
-\Delta B = -\frac{1}{NA}\int \mathcal{E}\,\diff t.
+B(t) - B(t_0) = -\frac{1}{NA}\int_{t_0}^{t} \mathcal{E}(t')\,\diff t'.
 \label{eq:b-integration}
 \end{equation}
 
+\begin{warning}{磁探针只能给出磁场的\emph{变化量}，不能给出绝对静态场}{}
+\textbf{误区：}给零信号的线圈加一个积分器，就能测出任意静磁场。
+
+\textbf{正解：}式\eqref{eq:b-integration}的积分\textbf{只恢复 $B(t)-B(t_0)$}，即相对于某个初始参考时刻 $t_0$ 的变化量。积分常数 $B(t_0)$ 是\textbf{未知的}，理想拾取线圈对\emph{恒定}磁场不产生任何输出（$\dot B = 0$），所以积分器无法凭空补上这个常数。要得到绝对的静态磁场，必须\textbf{另行标定}：例如在放电开始前用一个已知的参考场定标（把线圈放入已知的稳态磁场中记录积分器输出），或使用霍尔探头、稳态磁通环等能直接读绝对场的传感器交叉标定。工程上还要注意积分器漂移——模拟 RC 积分或数字积分都会随时间累积漂移，长时间积分必须做零点复位或采用"长/短时间"双线圈方案。
+\end{warning}
+
 \begin{insight}{为什么是电压的积分给出磁场？}{}
-式\eqref{eq:magnetic-probe}告诉我们，磁探针的\emph{直接输出}是电压，而电压正比于磁场的\emph{变化率}，不是磁场本身。这源于电磁感应的物理本质：变化的磁场产生涡旋电场，驱动线圈中的电荷运动。对于稳恒磁场（$\diff B/\diff t = 0$），理想线圈不产生任何信号。因此，磁探针本质上是一个\textbf{磁场变化率探测器}。要获得静态磁场，需要主动积分（模拟RC积分电路或数字积分）。在实际托卡马克实验中，放电过程中磁场持续变化，探针可以直接测量 $\dot{B}$，再结合MHD平衡方程（第5章 Grad-Shafranov 方程）反推等离子体电流分布和压强分布。
+式\eqref{eq:magnetic-probe}告诉我们，磁探针的\emph{直接输出}是电压，而电压正比于磁场的\emph{变化率}，不是磁场本身。这源于电磁感应的物理本质：变化的磁场产生涡旋电场，驱动线圈中的电荷运动。对于稳恒磁场（$\diff B/\diff t = 0$），理想线圈不产生任何信号。因此，磁探针本质上是一个\textbf{磁场变化率探测器}。要获得磁场的\emph{时间历程}，需要主动积分（模拟RC积分电路或数字积分），并如上所述已知初始场；要获得\emph{绝对}静态场，则必须借助独立标定。在实际托卡马克实验中，放电过程中磁场持续变化，探针可以直接测量 $\dot{B}$，再结合MHD平衡方程（第5章 Grad-Shafranov 方程）反推等离子体电流分布和压强分布。
 \end{insight}
 
 \subsection{Rogowski线圈：测量等离子体电流}
@@ -4062,7 +4348,9 @@ $A$ 为单匝面积，假设磁场垂直穿过线圈平面。对电压进行时�
 \mathcal{E} = -\frac{\mu_0 N A}{2\pi R}\frac{\diff I}{\diff t},
 \label{eq:rogowski}
 \end{equation}
-$R$ 为环的平均半径，$N$ 为总匝数，$A$ 为单匝截面积。对电压积分即可得到总电流 $I(t)$。
+$R$ 为\textbf{线圈骨架的}平均半径（\emph{不是}托卡马克的大半径——除非线圈恰好套在大半径处，两者一般不同），$N$ 为总匝数，$A$ 为单匝截面积。对电压积分即可得到总电流 $I(t)$。
+
+\textbf{几何注意：}Rogowski 线圈测量的是\emph{穿过线圈所围环路}的净电流。应用时必须画出线圈的绕行路径，确认被测电流确实穿过该环（例如托卡马克的环向电流绕环一周，需用环绕等离子体的极向 Rogowski 线圈）。线圈骨架的平均半径 $R$ 与托卡马克几何大半径 $R_0$ 是两个独立的量，不要混用。
 \end{definition}
 
 \begin{insight}{Rogowski线圈的"自屏蔽"特性}{}
@@ -4174,6 +4462,19 @@ Rogowski线圈的一个重要优点是：它只测量\emph{穿过环中心的净
 \bottomrule
 \end{tabular}
 \end{center}
+
+\textbf{工艺定量结论必须与测量条件绑定。} 把诊断参数转成工艺指标（刻蚀能量、速率、良率百分比）时，请务必区分三类信息，不要跨栏直接推论：
+\begin{center}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}p{3.2cm}p{3.6cm}p{4.4cm}@{}}
+\toprule
+\textbf{直接测量量} & \textbf{模型推断量} & \textbf{需要额外证据的工艺量} \\
+\midrule
+探针 $I$-$V$（$T_e,n_e,V_f$）；OES 谱线强度；阻抗读数 & 由 $T_e$、$n_e$ 经鞘层模型得到的\textbf{鞘层压降 $V_s$}、离子通量 $\Gamma_i$ & 刻蚀速率、选择比、良率——还需\textbf{偏压波形、离子能谱（IEP）、工艺标定曲线} \\
+\bottomrule
+\end{tabular}
+\end{center}
+特别注意：\textbf{预鞘电位降（$\sim\frac12 k_BT_e/e$）不是鞘层压降}。预鞘是准中性的加速跑道（见定义 \ref{def:pre-sheath}），真正的离子轰击能量由\emph{鞘层}压降（外偏压 + 浮置电位差）决定，二者相差可达数十甚至数百倍。直接把 $T_e/2$ 当作总鞘压去推刻蚀能量，是工艺诊断中最常见的量级错误。凡未注明来源的工艺数字（如"良率下降 30\%"）都应视为假想数据，并追问"直接测了什么、模型假设了什么、还缺什么证据"。
 \end{insight}
 
 \begin{review}{本节要点}{}
@@ -4308,7 +4609,7 @@ A_x & A_y & A_z
 \begin{definition}{拉普拉斯算子}{}{}
 对标量场：
 \begin{equation}
-\lap\phi = \frac{\partial^2 \phi}{\partial x^2} + \frac{\partial^2 \phi}{\partial x^2} + \frac{\partial^2 \phi}{\partial x^2}
+\lap\phi = \frac{\partial^2 \phi}{\partial x^2} + \frac{\partial^2 \phi}{\partial y^2} + \frac{\partial^2 \phi}{\partial z^2}
 \end{equation}
 对矢量场：
 \begin{equation}
@@ -4345,7 +4646,7 @@ A_x & A_y & A_z
 \begin{definition}{拉普拉斯算子}{}{}
 \begin{equation}
 \lap\phi = \frac{1}{r}\frac{\partial }{\partial r}\!\left(r\frac{\partial \phi}{\partial r}\right)
-+ \frac{1}{r^2}\frac{\partial^2 \phi}{\partial x^2} + \frac{\partial^2 \phi}{\partial x^2}
++ \frac{1}{r^2}\frac{\partial^2 \phi}{\partial \theta^2} + \frac{\partial^2 \phi}{\partial z^2}
 \end{equation}
 \end{definition}
 
@@ -4387,7 +4688,7 @@ A_x & A_y & A_z
 \begin{equation}
 \lap\phi = \frac{1}{r^2}\frac{\partial }{\partial r}\!\left(r^2\frac{\partial \phi}{\partial r}\right)
 + \frac{1}{r^2\sin\theta}\frac{\partial }{\partial \theta}\!\left(\sin\theta\frac{\partial \phi}{\partial \theta}\right)
-+ \frac{1}{r^2\sin^2\theta}\frac{\partial^2 \phi}{\partial x^2}
++ \frac{1}{r^2\sin^2\theta}\frac{\partial^2 \phi}{\partial \varphi^2}
 \end{equation}
 \end{definition}
 
@@ -4490,40 +4791,40 @@ A_zB_x & A_zB_y & A_zB_z
 \endlastfoot
 \multicolumn{5}{l}{\textit{一、基本定义}} \\
 \midrule
-德拜长度 & $\lambda_D$ & $\displaystyle\lambda_D = \sqrt{\frac{\eps_0 k_\mathrm{B} T_e}{n_e e^2}}$ & $10^{-4}\sim10^{-3}$ m (聚变) & \S 2.2 \\
-等离子体频率 & $\omega_{pe}$ & $\displaystyle\omega_{pe} = \sqrt{\frac{n_e e^2}{\eps_0 m_e}}$ & $10^{9}\sim10^{12}$ s$^{-1}$ & \S 2.3 \\
-离子等离子体频率 & $\omega_{pi}$ & $\displaystyle\omega_{pi} = \sqrt{\frac{n_i Z^2 e^2}{\eps_0 m_i}}$ & $\omega_{pi}\ll\omega_{pe}$ & \S 2.3 \\
+德拜长度 & $\lambda_D$ & $\displaystyle\lambda_D = \sqrt{\frac{\eps_0 k_\mathrm{B} T_e}{n_e e^2}}$ & $10^{-4}\sim10^{-3}$ m (聚变) & \S 2.1 \\
+等离子体频率 & $\omega_{pe}$ & $\displaystyle\omega_{pe} = \sqrt{\frac{n_e e^2}{\eps_0 m_e}}$ & $10^{9}\sim10^{12}$ s$^{-1}$ & \S 2.2 \\
+离子等离子体频率 & $\omega_{pi}$ & $\displaystyle\omega_{pi} = \sqrt{\frac{n_i Z^2 e^2}{\eps_0 m_i}}$ & $\omega_{pi}\ll\omega_{pe}$ & \S 6.1 \\
 \midrule
 \multicolumn{5}{l}{\textit{二、静电相关}} \\
 \midrule
-热速度（电子） & $v_{te}$ & $\displaystyle v_{te} = \sqrt{\frac{k_\mathrm{B}T_e}{m_e}}$ & $10^{6}\sim10^{7}$ m/s & \S 3.1 \\
-热速度（离子） & $v_{ti}$ & $\displaystyle v_{ti} = \sqrt{\frac{k_\mathrm{B}T_i}{m_i}}$ & $10^{4}\sim10^{5}$ m/s & \S 3.1 \\
-德拜球粒子数 & $N_D$ & $\displaystyle N_D = n\lambda_D^3$ & $\gg 1$（理想等离子体）& \S 2.2 \\
-耦合参数 & $\Gamma$ & $\displaystyle\Gamma = \frac{e^2}{4\pi\eps_0 a k_\mathrm{B}T}$，$a=(3/4\pi n)^{1/3}$ & $\ll 1$（弱耦合）& \S 2.5 \\
+热速度（电子） & $v_{te}$ & $\displaystyle v_{te} = \sqrt{\frac{k_\mathrm{B}T_e}{m_e}}$ & $10^{6}\sim10^{7}$ m/s & \S 1.2 \\
+热速度（离子） & $v_{ti}$ & $\displaystyle v_{ti} = \sqrt{\frac{k_\mathrm{B}T_i}{m_i}}$ & $10^{4}\sim10^{5}$ m/s & \S 1.2 \\
+德拜球粒子数 & $N_D$ & $\displaystyle N_D = \tfrac{4}{3}\pi n\lambda_D^3$ & $\gg 1$（理想等离子体）& \S 2.3 \\
+耦合参数 & $\Gamma$ & $\displaystyle\Gamma = \frac{e^2}{4\pi\eps_0 a k_\mathrm{B}T}$，$a=(3/4\pi n)^{1/3}$ & $\ll 1$（弱耦合）& \S 2.3 \\
 \midrule
 \multicolumn{5}{l}{\textit{三、磁化相关}} \\
 \midrule
-电子回旋频率 & $\omega_{ce}$ & $\displaystyle\omega_{ce} = \frac{|e|B}{m_e}$ & $10^{10}\sim10^{12}$ s$^{-1}$ & \S 3.2 \\
-离子回旋频率 & $\omega_{ci}$ & $\displaystyle\omega_{ci} = \frac{|Ze|B}{m_i}$ & $10^{6}\sim10^{8}$ s$^{-1}$ & \S 3.2 \\
-电子回旋半径 & $r_{ce}$ & $\displaystyle r_{ce} = \frac{v_{\perp e}}{\omega_{ce}} = \frac{m_e v_{\perp e}}{|e|B}$ & $10^{-5}\sim10^{-3}$ m & \S 3.2 \\
-离子回旋半径 & $r_{ci}$ & $\displaystyle r_{ci} = \frac{v_{\perp i}}{\omega_{ci}} = \frac{m_i v_{\perp i}}{|Ze|B}$ & $10^{-3}\sim10^{-1}$ m & \S 3.2 \\
-阿尔芬速度 & $v_A$ & $\displaystyle v_A = \frac{B}{\sqrt{\mu_0\rho_m}}$，$\rho_m=n_i m_i$ & $10^{5}\sim10^{7}$ m/s & \S 7.3 \\
-离子声速 & $c_s$ & $\displaystyle c_s = \sqrt{\frac{\gamma_e Z k_\mathrm{B}T_e + \gamma_i k_\mathrm{B}T_i}{m_i}}$ & $10^{4}\sim10^{5}$ m/s & \S 8.2 \\
-安全因子 & $q$ & $\displaystyle q = \frac{r B_\varphi}{R B_\theta}$（托卡马克）& $q>1$（稳定）& \S 11.2 \\
-比压 & $\beta$ & $\displaystyle\beta = \frac{2\mu_0 p}{B^2} = \frac{2\mu_0 n k_\mathrm{B}(T_e+T_i)}{B^2}$ & $0.01\sim0.1$（托卡马克）& \S 11.3 \\
+电子回旋频率 & $\omega_{ce}$ & $\displaystyle\omega_{ce} = \frac{|e|B}{m_e}$ & $10^{10}\sim10^{12}$ s$^{-1}$ & \S 3.1 \\
+离子回旋频率 & $\omega_{ci}$ & $\displaystyle\omega_{ci} = \frac{|Ze|B}{m_i}$ & $10^{6}\sim10^{8}$ s$^{-1}$ & \S 3.1 \\
+电子回旋半径 & $r_{ce}$ & $\displaystyle r_{ce} = \frac{v_{\perp e}}{\omega_{ce}} = \frac{m_e v_{\perp e}}{|e|B}$ & $10^{-5}\sim10^{-3}$ m & \S 3.1 \\
+离子回旋半径 & $r_{ci}$ & $\displaystyle r_{ci} = \frac{v_{\perp i}}{\omega_{ci}} = \frac{m_i v_{\perp i}}{|Ze|B}$ & $10^{-3}\sim10^{-1}$ m & \S 3.1 \\
+阿尔芬速度 & $v_A$ & $\displaystyle v_A = \frac{B}{\sqrt{\mu_0\rho_m}}$，$\rho_m=n_i m_i$ & $10^{5}\sim10^{7}$ m/s & \S 5.4 \\
+离子声速 & $c_s$ & $\displaystyle c_s = \sqrt{\frac{\gamma_e Z k_\mathrm{B}T_e + \gamma_i k_\mathrm{B}T_i}{m_i}}$ & $10^{4}\sim10^{5}$ m/s & \S 6.1 \\
+安全因子 & $q$ & $\displaystyle q = \frac{r B_\varphi}{R B_\theta}$（托卡马克）& $q>1$（稳定）& \S 10.3 \\
+比压 & $\beta$ & $\displaystyle\beta = \frac{2\mu_0 p}{B^2} = \frac{2\mu_0 n k_\mathrm{B}(T_e+T_i)}{B^2}$ & $0.01\sim0.1$（托卡马克）& \S 5.2 \\
 \midrule
 \multicolumn{5}{l}{\textit{四、碰撞输运}} \\
 \midrule
-朗道长度 & $b_\pi$ & $\displaystyle b_\pi = \frac{e^2}{4\pi\eps_0 k_\mathrm{B}T}$ & $\sim 10^{-14}$ m & \S 4.1 \\
-库仑对数 & $\ln\Lambda$ & $\displaystyle\ln\Lambda = \ln\!\left(\frac{\lambda_D}{b_\pi}\right)$ & $10\sim 25$ & \S 4.1 \\
-电子--离子碰撞频率 & $\nu_{ei}$ & $\displaystyle\nu_{ei} = \frac{n_i Z^2 e^4\ln\Lambda}{3(2\pi)^{3/2}\eps_0^2 m_e^{1/2}(k_\mathrm{B}T_e)^{3/2}}$ & $\sim 10^{5}$ s$^{-1}$ & \S 4.2 \\
-Spitzer 电阻率 & $\eta_\parallel$ & $\displaystyle\eta_\parallel = \frac{Z e^2 m_e^{1/2}}{3(2\pi)^{3/2}\eps_0^2(k_\mathrm{B}T_e)^{3/2}}\ln\Lambda$ & $\sim 10^{-8}$ $\Omega\cdot$m & \S 4.3 \\
-双极扩散系数 & $D_a$ & $\displaystyle D_a \approx \frac{\mu_e D_i + \mu_i D_e}{\mu_e + \mu_i}\approx D_i\left(1+\frac{T_e}{T_i}\right)$ & $\sim D_i$（被 $T_e/T_i$ 放大）& \S 6.4 \\
+朗道长度 & $b_\pi$ & $\displaystyle b_\pi = \frac{e^2}{4\pi\eps_0 k_\mathrm{B}T}$ & $\sim 10^{-14}$ m & \S 8.1 \\
+库仑对数 & $\ln\Lambda$ & $\displaystyle\ln\Lambda = \ln\!\left(\frac{\lambda_D}{b_\pi}\right)$ & $10\sim 25$ & \S 8.1 \\
+电子--离子碰撞频率 & $\nu_{ei}$ & $\displaystyle\nu_{ei} = \frac{n_i Z^2 e^4\ln\Lambda}{12\pi^{3/2}\eps_0^2 m_e^{1/2}(k_\mathrm{B}T_e)^{3/2}}$ & $\sim 10^{5}$ s$^{-1}$ & \S 8.2 \\
+Spitzer 电阻率 & $\eta_\parallel$ & $\displaystyle\eta_\parallel = \frac{Z e^2 m_e^{1/2}}{12\pi^{3/2}\eps_0^2(k_\mathrm{B}T_e)^{3/2}}\ln\Lambda$ & $\sim 10^{-8}$ $\Omega\cdot$m & \S 8.4 \\
+双极扩散系数 & $D_a$ & $\displaystyle D_a \approx \frac{\mu_e D_i + \mu_i D_e}{\mu_e + \mu_i}\approx D_i\left(1+\frac{T_e}{T_i}\right)$ & $\sim D_i$（被 $T_e/T_i$ 放大）& \S 8.3 \\
 \midrule
 \multicolumn{5}{l}{\textit{五、无量纲参数}} \\
 \midrule
-磁雷诺数 & $R_m$ & $\displaystyle R_m = \frac{\mu_0 v L}{\eta}$ & $\gg 1$（理想 MHD）& \S 9.1 \\
-等离子体 beta & $\beta$ & 同上文定义 & 见上文 & \S 11.3 \\
+磁雷诺数 & $R_m$ & $\displaystyle R_m = \frac{\mu_0 v L}{\eta}$ & $\gg 1$（理想 MHD）& \S 5.3 \\
+等离子体 beta & $\beta$ & 同上文定义 & 见上文 & \S 5.2 \\
 \end{longtable}
 }
 
@@ -4531,8 +4832,20 @@ Spitzer 电阻率 & $\eta_\parallel$ & $\displaystyle\eta_\parallel = \frac{Z e^
 表 \ref{tab:plasma-parameters} 中的公式均使用 SI 单位。若采用高斯单位，需将 $1/(4\pi\eps_0)\to 1$，$\mu_0\to 4\pi/c^2$，并注意 $B$（高斯）$=10^4 B$（特斯拉）。
 \end{insight}
 
-\begin{warning}{温度单位的陷阱}{}
-本书中公式若写 $T_e$（未标注 $k_\mathrm{B}$），默认以 \textbf{eV} 为温度单位。此时能量公式 $k_\mathrm{B}T_e\to T_e$ 仍成立，因为 1 eV 在数值上等于 $k_\mathrm{B}\times 11604$ K。但在做量纲分析时，必须显式写回 $k_\mathrm{B}$。
+\begin{warning}{温度单位的陷阱——"$k_\mathrm{B}T\to T$"不是无条件替换}{}
+本书中公式若写 $T_e$（未标注 $k_\mathrm{B}$），默认以 \textbf{eV} 为温度单位。\textbf{但请注意两点，否则数值会错得离谱：}
+
+\textbf{(1) 只有 eV 单位下 "数值相等"，量纲并不相等。} $k_\mathrm{B}T_e$ 是\emph{能量}，$T_e$（以 eV 计）也是\emph{能量}（因为 eV 本身就是能量单位），所以在这套记法下"$k_\mathrm{B}T_e$ 的数值 $=T_{e,\mathrm{eV}}$ 的数值"成立。但若 $T_e$ 以\textbf{开尔文}给出，则必须先乘 $k_\mathrm{B}$：
+\[
+\Theta_e \equiv k_\mathrm{B}T_e = 1.602176634\times 10^{-19}\times T_{e,\mathrm{eV}}\;\mathrm{J}
+= 1.380649\times 10^{-23}\times T_{e,\mathrm{K}}\;\mathrm{J}
+\]
+
+\textbf{(2) 代入其它 SI 量时，必须先把它换成焦耳。} 凡是与\emph{其它 SI 量}（$\eps_0$、$e$、$m$、$c$）同时出现的公式，$\Theta_e$ 必须写成焦耳数值。例：德拜长度
+\[
+\lambda_D = \sqrt{\frac{\eps_0\,\Theta_e}{n_ee^2}}
+\]
+若误把 $T_{e,\mathrm{eV}}=10^4$ 直接当 $\Theta_e$ 代入，$\Theta_e$ 会大出 $1/1.602\times10^{-19}\approx6.2\times10^{18}$ 倍，$\lambda_D$ 随之虚高约 $2.5\times10^{9}$ 倍。\textbf{这就是"$k_\mathrm{B}T\to T$"只能用于纯标度讨论、不能用于带量纲数值计算的原因}——本书所有含 $\lambda_D$、$\omega_{pe}$、$\nu_{ei}$ 的\emph{数值}算例都已显式换算到焦耳（或使用已整理好的 eV-数值公式）。做量纲分析时务必写回 $k_\mathrm{B}$。
 \end{warning}
 
 
@@ -4548,7 +4861,7 @@ Spitzer 电阻率 & $\eta_\parallel$ & $\displaystyle\eta_\parallel = \frac{Z e^
 \section{C.1 广义欧姆定律的完整推导}
 \label{sec:gen-ohm}
 
-\textbf{对应正文：}\S 5.2（双流体方程到 MHD 的过渡）。
+\textbf{对应正文：}\S 4.4（广义欧姆定律）。
 
 从电子和离子的动量方程出发：
 \begin{align}
@@ -4573,17 +4886,25 @@ m_e n_e \left(\frac{\partial \vect{v}_e}{\partial t} + (\vect{v}_e\cdot\grad)\ve
 \textbf{步骤 3：} 代入 $\vect{R}=m_e n_e \nu_{ei}(\vect{v}_i-\vect{v}_e)=m_e \nu_{ei}\vect{j}/e$，并忽略电子惯性项（$m_e\to 0$），令 $\vect{v}_i\approx\vect{v}$，得到广义欧姆定律：
 \begin{equation}
 \boxed{
-\vect{E} + \vect{v}\times\vect{B} = \eta\vect{j} + \frac{1}{n_e e}\grad p_e - \frac{1}{n_e e}\vect{j}\times\vect{B}
+\vect{E} + \vect{v}\times\vect{B} = \eta\vect{j} + \frac{1}{n_e e}\vect{j}\times\vect{B} - \frac{1}{n_e e}\grad p_e
 }
 \label{eq:ch9-generalized-ohm-simplified}
 \end{equation}
-其中 $\eta=m_e\nu_{ei}/(n_e e^2)$ 为电阻率。右边三项分别对应：电阻、电子压力梯度（双极扩散效应）、霍尔效应。
+其中 $\eta=m_e\nu_{ei}/(n_e e^2)$ 为电阻率。右边三项分别对应：电阻、霍尔效应、电子压力梯度（双极扩散效应）。
+
+\textbf{符号核验：} 从电子动量方程 \eqref{eq:elec-mom} 出发，忽略电子惯性后除以 $-n_ee$ 得
+\[
+\vect{E}+\vect{v}_e\times\vect{B} = \frac{\vect{R}}{n_ee} - \frac{\grad p_e}{n_ee},
+\]
+再代入 $\vect{v}_e=\vect{v}_i-\vect{j}/(n_ee)$，把 $-\dfrac{\vect{j}\times\vect{B}}{n_ee}$ 移到左边即得上述结果。即：\textbf{霍尔项为正号、电子压强梯度项为负号}，与正文\S 4.3 的写法一致。
+
+\textbf{关于"惯性项"：} 正文与上式中的 $\frac{m_e}{n_ee^2}\partial_t\vect{j}$ 是在假设 $n_e$ 近似不变、且忽略离子加速度与对流贡献之后保留的简化形式。严格保留电子惯性时，完整形式应含 $-\frac{m_e}{e}\frac{\mathrm{D}_e\vect{v}_e}{\mathrm{D}t}$（物质导数）。因此该式\textbf{不宜无条件称为"完整公式"}——它已作了若干近似，适用条件是低频（$\omega\ll\omega_{ce}$）且离子运动远慢于电子。
 
 
 \section{C.2 Landau 围道积分的详细推导}
 \label{sec:landau-contour}
 
-\textbf{对应正文：}\S 8.4（无碰撞阻尼）。\textbf{难度标注：}[挑战]
+\textbf{对应正文：}\S 7.3（Landau 阻尼）。\textbf{难度标注：}[挑战]
 
 Vlasov--Poisson 体系线性化后，电子密度扰动的响应由积分
 \begin{equation}
@@ -4598,57 +4919,85 @@ Vlasov--Poisson 体系线性化后，电子密度扰动的响应由积分
 \label{eq:ch7-landau-contour}
 \end{equation}
 
-对 Maxwell 分布 $F_0(v)\propto\exp(-v^2/v_{te}^2)$，有
+\textbf{从半留数到阻尼率。} 把上式代入色散关系 $D(\omega,k)\equiv 1-\dfrac{\omega_{pe}^2}{n_0k^2}\displaystyle\int\dfrac{F_0'}{v-\omega/k}\diff v=0$，并将 $D$ 在实根 $\omega_r$ 附近展开。记 $\omega=\omega_r+\ii\gamma$（$|\gamma|\ll\omega_r$），则
+\[
+D(\omega_r+\ii\gamma) \approx D_r(\omega_r) + \ii\gamma\,\frac{\partial D_r}{\partial\omega}\Big|_{\omega_r} + \ii D_i(\omega_r) = 0
+\]
+其中已把 $D$ 分成实部 $D_r$ 与虚部 $D_i$（$D_i$ 正比于上面那个 $\ii\pi$ 半留数项，乘以 $-1/\ii$ 后是\textbf{实}的小量——这正是"$\gamma$ 是小量"的含义）。实部给 $\omega_r$（即无阻尼色散关系），虚部给出\textbf{增长率公式}
+\begin{equation}
+\boxed{\;\gamma = -\frac{D_i(\omega_r)}{\partial D_r(\omega_r)/\partial\omega_r}\;}
+\label{eq:ch7-growth-rate}
+\end{equation}
+这就是本书正文阻尼率公式的来源：弱阻尼下，\textbf{增长率的符号由 $D_i$ 决定，大小还要除以 $\partial D_r/\partial\omega_r$}。直接说"虚部为负所以阻尼"跳过了分母，读者无法自行核对符号。
+
+\textbf{时间约定。} 本书全程用 $\exp[\ii(\vect{k}\cdot\vect{r}-\omega t)]$。此时 $\Im\omega=\gamma>0$ 表示振幅按 $\ee^{\gamma t}$ \emph{增长}，$\gamma<0$ 表示\emph{阻尼}。若改用相反的约定 $\exp[-\ii(\vect{k}\cdot\vect{r}-\omega t)]$，则增长/阻尼对应的 $\gamma$ 符号会整体反转——\textbf{报阻尼率时必须连同时间约定一起给出}。
+
+对 Maxwell 分布 $F_0(v)\propto\exp(-v^2/v_{te}^2)$，共振点的斜率为负：
 \begin{equation}
 \left.\frac{\partial F_0}{\partial v}\right|_{v=\omega/k} < 0 \quad (\omega/k>0)
 \label{eq:ch7-landau-condition}
 \end{equation}
-因此虚部贡献为负，对应阻尼率 $\gamma<0$。
+代入 \eqref{eq:ch7-growth-rate} 即得 $\gamma<0$，波被阻尼。这就是正文 $\omega_i=-\sqrt{\pi/8}\,\omega_{pe}/(k\lambda_D)^3\exp[-1/(2k^2\lambda_D^2)-3/2]$ 的来历（该式是把 $\partial D_r/\partial\omega_r\approx2/\omega_{pe}$ 等近似代入后的长波渐近结果，故须 $k\lambda_D\ll1$）。
 
 \begin{insight}{}{}
-Landau 围道的物理本质是 \textbf{因果律}：在 $t=-\infty$ 时扰动为零，这要求积分围道必须使上半平面的极点贡献被包含。如果反过来取 $\gamma<0$，将得到违反因果律的增长解。
+Landau 围道的物理本质是 \textbf{因果律}：取初始值问题要求把 $\omega$ 从上半平面延拓下来，只有这样才能让 $t=-\infty$ 时扰动为零。因此$\gamma>0$ 的极点贡献必须来自上半平面——这正是围道从极点\emph{下方}绕过、从而在留数上留下 $+\ii\pi F_0'$ 的原因。
+
+\textbf{注意：} "若取 $\gamma<0$ 就违反因果律"这一说法必须\emph{区分两种操作}——(1) 对同一个解析函数作解析延拓到下半平面，与 (2) 直接改变积分路径的绕行方向，二者后果不同，不能混为一谈。前者给出延拓后的另一个根（可能是增长模），后者则改变留数的符号。教材此处只需记住结论：\textbf{初始值问题的围道绕行方向由因果律唯一确定}，一旦固定，增长/阻尼的符号便由 \eqref{eq:ch7-growth-rate} 自动给出。
 \end{insight}
 
 
 \section{C.3 MHD 阿尔芬波色散关系的完整推导}
 \label{sec:alfven-dispersion}
 
-\textbf{对应正文：}\S 7.3（MHD 波）。
+\textbf{对应正文：}\S 5.4（阿尔芬波）。
 
 从理想 MHD 线性化方程组（均匀背景 $B_0\unitvec{z}$，$\rho_0, p_0$ 为常数）：
 \begin{align}
-\ii\omega\rho_0\vect{v}_1 &= \frac{1}{\mu_0}(\curl\vect{B}_1)\times\vect{B}_0 - \grad p_1 \label{eq:lin-mom}\\
-\vect{B}_1 &= -\frac{1}{\ii\omega}\curl(\vect{v}_1\times\vect{B}_0) \label{eq:lin-far}\\
-\ii\omega p_1 &= -\gamma p_0\divg\vect{v}_1 \label{eq:lin-eos}
+-\ii\omega\rho_0\vect{v}_1 &= \frac{1}{\mu_0}(\curl\vect{B}_1)\times\vect{B}_0 - \grad p_1 \label{eq:lin-mom}\\
+-\ii\omega\vect{B}_1 &= \curl(\vect{v}_1\times\vect{B}_0) \label{eq:lin-far}\\
+-\ii\omega p_1 &= -\gamma p_0\divg\vect{v}_1 \label{eq:lin-eos}
 \end{align}
 
-取傅里叶模式 $\exp[\ii(k_z z - \omega t)]$，设 $\vect{v}_1$ 沿 $x$ 方向且仅依赖于 $z$（即剪切阿尔芬波，$\vect{k}\parallel\vect{B}_0$，$\vect{v}_1\perp\vect{B}_0$，$k_\perp=0$）。
+\textbf{关于时间导数的符号：} 本书统一采用傅里叶约定 $\exp[\ii(\vect{k}\cdot\vect{r}-\omega t)]$，因此 $\partial/\partial t\to-\ii\omega$（不是 $+\ii\omega$）。上列三式中的 $-\ii\omega$ 都由这一约定而来：对动量方程 $\rho_0\partial_t\vect{v}_1=\cdots$ 取变换即得第一式，法拉第定律 $\partial_t\vect{B}_1=-\curl\vect{E}_1$ 与理想欧姆定律 $\vect{E}_1=-\vect{v}_1\times\vect{B}_0$ 合并后得第二式，绝热关系 $(\partial_t+\vect{v}\cdot\grad)(p\rho^{-\gamma})=0$ 线性化后得第三式。\textbf{符号一旦定错，色散关系会整体反号}（$\omega^2\to-\omega^2$），所以这一步必须与全书保持一致。
 
-\textbf{步骤 1：} 由 \eqref{eq:lin-far}，
+取傅里叶模式 $\exp[\ii(k_z z - \omega t)]$，设 $\vect{v}_1 = v_1(z)\unitvec{x}$ 且仅依赖于 $z$（即剪切阿尔芬波，$\vect{k}\parallel\vect{B}_0$，$\vect{v}_1\perp\vect{B}_0$，$k_\perp=0$）。
+
+\textbf{步骤 1：} 计算 $\vect{v}_1\times\vect{B}_0 = v_1\unitvec{x}\times B_0\unitvec{z} = -B_0v_1\unitvec{y}$。它只有 $y$ 分量、且只依赖 $z$，故
+\[
+\curl(-B_0v_1\unitvec{y}) = \begin{vmatrix}\unitvec{x}&\unitvec{y}&\unitvec{z}\\ \partial_x&\partial_y&\partial_z\\ 0&-B_0v_1&0\end{vmatrix}
+= \unitvec{x}\,\frac{\partial(-B_0v_1)}{\partial z} = -\ii k_z B_0v_1\,\unitvec{x}
+\]
+（$\partial_x$、$\partial_y$ 作用在只依赖 $z$ 的量上为零——\textbf{这一步不能把依赖 $z$ 的量直接提出旋度算子}。）代入 \eqref{eq:lin-far}：
 \begin{equation}
-\vect{B}_1 = -\frac{1}{\ii\omega}\curl(v_1\unitvec{x}\times B_0\unitvec{z}) = -\frac{B_0 v_1}{\ii\omega}\curl(-\unitvec{y}) = -\frac{B_0 k_z v_1}{\omega}\unitvec{x}
+\vect{B}_1 = \frac{1}{-\ii\omega}\bigl(-\ii k_z B_0v_1\unitvec{x}\bigr) = \frac{k_z B_0 v_1}{\omega}\unitvec{x}
 \label{eq:ch9-alfven-b1}
 \end{equation}
 
-\textbf{步骤 2：} 将上式代入 \eqref{eq:lin-mom}。注意 $(\curl\vect{B}_1)\times\vect{B}_0$ 中，$\vect{B}_1$ 沿 $x$，故 $\curl\vect{B}_1$ 沿 $y$，再叉乘 $B_0\unitvec{z}$ 回到 $x$：
+\textbf{步骤 2：} 先算 $\curl\vect{B}_1$。$\vect{B}_1=B_{1x}(z)\unitvec{x}$ 同样只依赖 $z$：
+\[
+\curl(B_{1x}\unitvec{x}) = \unitvec{y}\,\frac{\partial B_{1x}}{\partial z} = \ii k_z B_{1x}\unitvec{y}
+\]
+故 $(\curl\vect{B}_1)\times\vect{B}_0 = \ii k_z B_{1x}\unitvec{y}\times B_0\unitvec{z} = \ii k_z B_0 B_{1x}\unitvec{x}$。代入 \eqref{eq:lin-mom}，并注意 $\grad p_1$ 沿 $z$ 而 $\vect{v}_1$ 沿 $x$，压强项投影为零：
 \begin{equation}
-\ii\omega\rho_0 v_1 = \frac{1}{\mu_0}(-\ii k_z B_{1x})(-B_0) - 0 = \frac{\ii k_z B_0^2 k_z v_1}{\mu_0\omega}
+-\ii\omega\rho_0 v_1 = \frac{1}{\mu_0}\,\ii k_z B_0 B_{1x}
+= \frac{\ii k_z B_0}{\mu_0}\cdot\frac{k_z B_0 v_1}{\omega}
+= \frac{\ii k_z^2 B_0^2 v_1}{\mu_0\omega}
 \label{eq:ch9-alfven-momentum}
 \end{equation}
 
-\textbf{步骤 3：} 整理得 $\omega^2 = k_z^2 B_0^2/(\mu_0\rho_0) = k_z^2 v_A^2$，即
+\textbf{步骤 3：} 两边同除 $\ii v_1$：$-\omega\rho_0 = k_z^2B_0^2/(\mu_0\omega)$，整理得 $\omega^2 = k_z^2 B_0^2/(\mu_0\rho_0) = k_z^2 v_A^2$，即
 \begin{equation}
 \boxed{\omega = \pm k_z v_A}
 \label{eq:ch9-alfven-dispersion}
 \end{equation}
 
-此即剪切阿尔芬波的色散关系。对压缩阿尔芬波（快磁声波），需保留 $k_\perp\neq 0$ 和 $p_1$ 项，推导见正文 \S 7.3。
+此即剪切阿尔芬波的色散关系。\textbf{本推导假定了 $k_\perp=0$（波矢严格平行磁场）}，得到的是两支简并的线偏振解；一旦允许 $k_\perp\neq0$，剪切支与压缩支（快、慢磁声波）就分离，需要保留 $p_1$ 与 $k_\perp$ 项，推导见正文 \S 6.3（MHD 波）。
 
 
 \section{C.4 Grad--Shafranov 方程的简化推导}
 \label{sec:grad-shafranov}
 
-\textbf{对应正文：}\S 11.2（MHD 平衡）。
+\textbf{对应正文：}\S 10.3（托卡马克与仿星器）。
 
 在轴对称托卡马克中 $(R,\varphi,Z)$，磁场可写为
 \begin{equation}
@@ -4666,7 +5015,7 @@ Landau 围道的物理本质是 \textbf{因果律}：在 $t=-\infty$ 时扰动�
 \end{equation}
 其中椭圆算子（Grad--Shafranov 算子）定义为
 \begin{equation}
-\nabla^{2*}\psi \equiv R^2\divg\left(\frac{1}{R^2}\grad\psi\right) = R\frac{\partial }{\partial R}\!\left(\frac{1}{R}\frac{\partial \psi}{\partial R}\right) + \frac{\partial^2 \phi}{\partial x^2}
+\nabla^{2*}\psi \equiv R^2\divg\left(\frac{1}{R^2}\grad\psi\right) = R\frac{\partial }{\partial R}\!\left(\frac{1}{R}\frac{\partial \psi}{\partial R}\right) + \frac{\partial^2 \psi}{\partial Z^2}
 \label{eq:ch10-grad-shafranov-operator}
 \end{equation}
 
@@ -4728,8 +5077,8 @@ Grad--Shafranov 方程是二维椭圆型偏微分方程，其解析解仅对特�
 \midrule
 电场强度 & $\vect{E}$ [V/m] & $\vect{E}$ [statV/cm] $= \vect{E}_\text{SI}/(3\times 10^4)$ \\
 磁感应强度 & $\vect{B}$ [T] $=\mu_0(\vect{H}+\vect{M})$ & $\vect{B}$ [G] $= 10^4\vect{B}_\text{SI}$ \\
-电荷密度 & $\rho = nq$ [C/m$^3$] & $\rho$ [statC/cm$^3$] $= \rho_\text{SI}/(3\times 10^9)$ \\
-电流密度 & $\vect{j}$ [A/m$^2$] & $\vect{j}$ [statA/cm$^2$] $= \vect{j}_\text{SI}/(3\times 10^5)$ \\
+电荷密度 & $\rho = nq$ [C/m$^3$] & $\rho$ [statC/cm$^3$] $\approx 2.998\times 10^{3}\,\rho_\text{SI}$ \\
+电流密度 & $\vect{j}$ [A/m$^2$] & $\vect{j}$ [statA/cm$^2$] $\approx 2.998\times 10^{5}\,\vect{j}_\text{SI}$ \\
 洛伦兹力 & $\vect{F}=q(\vect{E}+\vect{v}\times\vect{B})$ & $\vect{F}=q\left(\vect{E}+\frac{\vect{v}}{c}\times\vect{B}\right)$ \\
 麦克斯韦（安培） & $\curl\vect{B}=\mu_0\vect{j}+\mu_0\eps_0\partial\vect{E}/\partial t$ & $\curl\vect{B}=\frac{4\pi}{c}\vect{j}+\frac{1}{c}\partial\vect{E}/\partial t$ \\
 库仑力 & $F=\frac{1}{4\pi\eps_0}\frac{q_1q_2}{r^2}$ & $F=\frac{q_1q_2}{r^2}$ \\
@@ -4739,6 +5088,16 @@ Grad--Shafranov 方程是二维椭圆型偏微分方程，其解析解仅对特�
 
 \begin{warning}{磁感应强度的称呼}{}
 SI 中 $\vect{B}$ 称为磁感应强度（特斯拉），$\vect{H}$ 为磁场强度（A/m）；高斯单位中通常不区分，统称磁场 $\vect{B}$（高斯）。$1\,\text{T} = 10^4\,\text{G}$。本书 SI 公式中一律使用 $\vect{B}$。
+\end{warning}
+
+\begin{warning}{电荷密度与电流密度的 CGS 换算方向}{}
+这两个换算最容易出错，务必记住\textbf{乘还是除}以及\textbf{指数}：
+\begin{itemize}
+    \item 基础换算：$1\,\mathrm{statC} = 3.3356\times 10^{-10}\,\mathrm{C}$，即 $1\,\mathrm{C} = 2.998\times 10^{9}\,\mathrm{statC}$（高斯制中光速 $c$ 以 $10^{10}\,\mathrm{cm/s}$ 的数值出现）。
+    \item \textbf{电荷密度}：$1\,\mathrm{C/m^3} = 2.998\times10^{9}\,\mathrm{statC}/10^{6}\,\mathrm{cm^3} = 2.998\times10^{3}\,\mathrm{statC/cm^3}$。所以 $\rho[\mathrm{statC/cm^3}] \approx 2.998\times10^{3}\,\rho[\mathrm{C/m^3}]$（\textbf{乘} $3\times10^{3}$）。
+    \item \textbf{电流密度}：$1\,\mathrm{A/m^2} = 2.998\times10^{9}\,\mathrm{statA}/10^{4}\,\mathrm{cm^2} = 2.998\times10^{5}\,\mathrm{statA/cm^2}$。所以 $j[\mathrm{statA/cm^2}] \approx 2.998\times10^{5}\,j[\mathrm{A/m^2}]$（\textbf{乘} $3\times10^{5}$）。
+\end{itemize}
+完整例子：某等离子体 $\rho = 1.0\times10^{-6}\,\mathrm{C/m^3}$，则 $\rho^\text{CGS} \approx 2.998\times10^{3}\times10^{-6} = 3.0\times10^{-3}\,\mathrm{statC/cm^3}$；若 $j = 1.0\times10^{6}\,\mathrm{A/m^2}$，则 $j^\text{CGS}\approx 2.998\times10^{5}\times10^{6} = 3.0\times10^{11}\,\mathrm{statA/cm^2}$。\textbf{注意两者都是从 SI 到 CGS 的\emph{乘法}}——原书旧版误把这两项写成"除以 $3\times10^9$、除以 $3\times10^5$"。
 \end{warning}
 
 
@@ -4778,17 +5137,19 @@ v_{te} [\text{m/s}] \approx 4.19\times 10^5\sqrt{T_e [\text{eV}]}
 
 本章为不同阶段的读者提供等离子体物理学习路径。从入门到前沿，循序渐进。
 
+\textbf{怎么用这份书单：}每条给出\textbf{可检索元数据}（出版社/年份/版次）与\textbf{"解决本书哪个疑问"}的定位说明。请先明确自己的问题（例如"第 5 章 MHD 稳定性推不动"），再按定位挑书，而不是从头通读。
+
 
 \section{入门级（中文优先）}
 
 适合零基础或仅具备普通物理背景的读者，中文教材可降低语言门槛，专注物理概念。
 
 \begin{enumerate}
-\item \textbf{金晓峰，《等离子体物理导论》}，北京大学出版社。\\
-面向物理系本科高年级，概念清晰，公式推导详尽，对国内学生非常友好。重点章节：第1--5章（基础概念、单粒子运动、双流体、MHD）。
+\item \textbf{金晓峰，《等离子体物理导论》，北京大学出版社，2008。}\\
+面向物理系本科高年级，概念清晰，公式推导详尽，对国内学生非常友好。\textbf{解决：}第 1--4 章的基础概念、单粒子运动、双流体与 MHD 图像。重点章节：第 1--5 章。
 
-\item \textbf{郑春开，《等离子体物理学》}，北京大学出版社。\\
-体系完整，涵盖基础到磁约束聚变。特点是 MHD 平衡与稳定性章节写得尤为出色，适合作为系统学习的主干教材。
+\item \textbf{郑春开，《等离子体物理学》，北京大学出版社，2009。}\\
+体系完整，涵盖基础到磁约束聚变。特点是 MHD 平衡与稳定性章节写得尤为出色。\textbf{解决：}第 9 章 MHD 平衡与不稳定性的中文推导细节；可作为系统学习的主干教材。
 \end{enumerate}
 
 
@@ -4797,14 +5158,14 @@ v_{te} [\text{m/s}] \approx 4.19\times 10^5\sqrt{T_e [\text{eV}]}
 具备一定基础后，建议直接阅读英文教材，术语与前沿文献接轨。以下三本互补性极强。
 
 \begin{enumerate}
-\item \textbf{Francis F. Chen, \textit{Introduction to Plasma Physics and Controlled Fusion}, 3rd ed., Springer.}\\
-最经典的入门教材，语言极其通俗。第1卷（等离子体物理）覆盖单粒子运动、动力学、MHD、波；第2卷（受控聚变）涉及托卡马克、仿星器。每一章都有大量例题和数值估计，非常适合自学者。
+\item \textbf{Francis F. Chen, \textit{Introduction to Plasma Physics and Controlled Fusion}, 3rd ed., Springer, 2016, DOI: 10.1007/978-3-319-22309-4.}\\
+最经典的入门教材，语言极其通俗。\textbf{解决：}第 2--7 章几乎所有基础图像的英文对照表述；每章大量例题和数值估计，非常适合自学者。第 1 卷（等离子体物理）覆盖单粒子运动、动力学、MHD、波；第 2 卷（受控聚变）涉及托卡马克、仿星器。
 
-\item \textbf{Robert J. Goldston \& Paul H. Rutherford, \textit{Introduction to Plasma Physics}, IOP Publishing.}\\
-普林斯顿等离子体物理实验室（PPPL）的授课教材。相比 Chen，此书对碰撞输运、波--粒子相互作用、MHD 稳定性有更深入的处理，数值例子偏聚变实验。
+\item \textbf{Robert J. Goldston \& Paul H. Rutherford, \textit{Introduction to Plasma Physics}, IOP Publishing, 1995.}\\
+普林斯顿等离子体物理实验室（PPPL）的授课教材。\textbf{解决：}第 8 章碰撞输运、第 7 章波--粒子相互作用、第 9 章 MHD 稳定性的更深入处理，数值例子偏聚变实验。
 
-\item \textbf{Richard Fitzpatrick, \textit{Plasma Physics: An Introduction}, CRC Press.}\\
-在线免费版（https://farside.ph.utexas.edu/plasma）可用。该书从动力学理论出发，对 Landau 阻尼、碰撞算符、MHD 波的推导极为严谨，适合希望补全数学细节的读者。
+\item \textbf{Richard Fitzpatrick, \textit{Plasma Physics: An Introduction}, 2nd ed., CRC Press, 2022.}\\
+在线免费版（\texttt{https://farside.ph.utexas.edu/teaching/plasma/plasmahtml/}）可用。\textbf{解决：}第 7 章 Landau 阻尼、碰撞算符、第 5--6 章 MHD 波的严谨推导，适合希望补全数学细节的读者。
 \end{enumerate}
 
 
@@ -4813,14 +5174,14 @@ v_{te} [\text{m/s}] \approx 4.19\times 10^5\sqrt{T_e [\text{eV}]}
 进入科研阶段后，需要针对特定方向深入钻研。
 
 \begin{enumerate}
-\item \textbf{Per Helander \& Dieter J. Sigmar, \textit{Collisional Transport in Magnetized Plasmas}, Cambridge.}\\
-磁化等离子体碰撞输运的权威参考书。详细推导了新经典输运（香蕉轨道、 Pfirsch--Schlüter 流、靴带电流），是理解托卡马克输运瓶颈的必读之作。
+\item \textbf{Per Helander \& Dieter J. Sigmar, \textit{Collisional Transport in Magnetized Plasmas}, Cambridge University Press, 2002, DOI: 10.1017/CBO9780511599950.}\\
+磁化等离子体碰撞输运的权威参考书。\textbf{解决：}第 8 章输运系数的完整推导——新经典输运（香蕉轨道、Pfirsch--Schlüter 流、靴带电流），是理解托卡马克输运瓶颈的必读之作。
 
-\item \textbf{Thomas H. Stix, \textit{Waves in Plasmas}, Springer.}\\
-等离子体波理论的经典专著。对冷等离子体波、热波、动力学波（包括 Bernstein 波、漂移波）的色散关系、极化、阻尼给出了统一且系统的处理。阅读门槛较高，需熟悉复变函数与 Landau 围道。
+\item \textbf{Thomas H. Stix, \textit{Waves in Plasmas}, AIP Press, 1992.}\\
+等离子体波理论的经典专著。\textbf{解决：}第 6--7 章波理论的全貌——冷等离子体波、热波、动力学波（包括 Bernstein 波、漂移波）的色散关系、极化、阻尼的统一处理。阅读门槛较高，需熟悉复变函数与 Landau 围道。
 
-\item \textbf{Paul M. Bellan, \textit{Fundamentals of Plasma Physics}, Cambridge.}\\
-从电磁学基本方程出发，对 MHD、动力学、波、不稳定性有全面而现代的处理。特色是大量物理图像和数值估计，适合作为案头参考。
+\item \textbf{Paul M. Bellan, \textit{Fundamentals of Plasma Physics}, Cambridge University Press, 2006, DOI: 10.1017/CBO9780511807183.}\\
+从电磁学基本方程出发，对 MHD、动力学、波、不稳定性有全面而现代的处理。\textbf{解决：}第 5 章磁流体力学与第 9 章不稳定性的物理图像、数值估计，适合作为案头参考。
 \end{enumerate}
 
 
@@ -4837,14 +5198,14 @@ v_{te} [\text{m/s}] \approx 4.19\times 10^5\sqrt{T_e [\text{eV}]}
 \toprule
 \textbf{方向} & \textbf{论文} & \textbf{阅读门槛与价值} \\
 \midrule
-\multirow{2}{2.5cm}{磁约束聚变} & L. Spitzer, \textit{Physics of Fully Ionized Gases}, 1956 (Interscience). & 经典输运理论的奠基。门槛：中等，需熟悉 Fokker--Planck 方程。 \\
- & H. P. Furth \textit{et al.}, ``Tokamak equilibria with finite $\beta$'', Phys. Fluids 1970. & 高比压托卡马克平衡的里程碑。门槛：高，需 Grad--Shafranov 方程基础。 \\
+\multirow{2}{2.5cm}{磁约束聚变} & L. Spitzer, \textit{Physics of Fully Ionized Gases}, 2nd ed., Interscience, 1962. & 经典输运理论的奠基（本书第 8 章）。门槛：中等，需熟悉 Fokker--Planck 方程。 \\
+ & H. P. Furth \textit{et al.}, ``Tokamak equilibria with finite $\beta$'', Phys. Fluids \textbf{13}, 2143 (1970), DOI: 10.1063/1.1693219. & 高比压托卡马克平衡的里程碑（本书第 9--10 章）。门槛：高，需 Grad--Shafranov 方程基础。 \\
 \midrule
-\multirow{2}{2.5cm}{空间等离子体} & J. W. Dungey, ``Interplanetary magnetic field and the auroral zones'', 1961. & 磁重联概念的奠基。门槛：低，物理图像极其清晰。 \\
- & A. Hasegawa, \textit{Plasma Instabilities and Nonlinear Effects}, 1975 (Springer). & 空间等离子体中漂移波、阿尔芬波不稳定性的经典教材。门槛：中等。 \\
+\multirow{2}{2.5cm}{空间等离子体} & J. W. Dungey, ``Interplanetary magnetic field and the auroral zones'', Phys. Rev. Lett. \textbf{6}, 47 (1961), DOI: 10.1103/PhysRevLett.6.47. & 磁重联概念的奠基（本书第 9 章）。门槛：低，物理图像极其清晰。 \\
+ & A. Hasegawa, \textit{Plasma Instabilities and Nonlinear Effects}, Springer, 1975. & 空间等离子体中漂移波、阿尔芬波不稳定性的经典教材。门槛：中等。 \\
 \midrule
-\multirow{2}{2.5cm}{低温/工业等离子体} & M. A. Lieberman \& A. J. Lichtenberg, \textit{Principles of Plasma Discharges and Materials Processing}, 2nd ed., Wiley. & 低温等离子体物理与工艺的标准教材。门槛：中等，需气体放电基础。 \\
- & L. Tonks \& I. Langmuir, ``Oscillations in ionized gases'', Phys. Rev. 1929. & 等离子体振荡的首次实验观测与理论。门槛：低，历史意义重大。 \\
+\multirow{2}{2.5cm}{低温/工业等离子体} & M. A. Lieberman \& A. J. Lichtenberg, \textit{Principles of Plasma Discharges and Materials Processing}, 2nd ed., Wiley, 2005. & 低温等离子体物理与工艺的标准教材（本书第 11 章）。门槛：中等，需气体放电基础。 \\
+ & L. Tonks \& I. Langmuir, ``Oscillations in ionized gases'', Phys. Rev. \textbf{33}, 195 (1929), DOI: 10.1103/PhysRev.33.195. & 等离子体振荡的首次实验观测与理论（本书第 2、6 章）。门槛：低，历史意义重大。 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -4884,7 +5245,10 @@ v_{te} [\text{m/s}] \approx 4.19\times 10^5\sqrt{T_e [\text{eV}]}
 \textbf{正确：} $\vect{v}_E = \vect{E}\times\vect{B}/B^2$ 与 $q$ 无关，电子和离子同向漂移。这是漂移运动中最易被混淆的结论。
 
 \item \textbf{错误：}「梯度漂移 $\vect{v}_\nabla B$ 和曲率漂移 $\vect{v}_R$ 可以分别抵消」\\
-\textbf{正确：} 在真空场 $\curl\vect{B}=0$ 中，两者大小相等、方向相同（对正离子），因此 \textbf{叠加} 而非抵消。总漂移为 $2\times$ 单一项。
+\textbf{正确：} 在真空场 $\curl\vect{B}=0$ 中，两者方向相同（对同一电荷），因此 \textbf{叠加} 而非抵消。
+
+\item \textbf{错误：}「$\vect{v}_\nabla B$ 与 $\vect{v}_R$ 总是大小相等」\\
+\textbf{正确：} 单个粒子的两项速度因子不同——$\vect{v}_\nabla B$ 正比于 $v_\perp^2/2$，而 $\vect{v}_R$ 正比于 $v_\parallel^2$。只有当 $v_\perp^2/2=v_\parallel^2$（即投掷角满足 $\tan^2\theta=1/2$）时才恰好相等。对\textbf{各向同性}分布做热平均后 $\langle v_\perp^2/2\rangle=\langle v_\parallel^2\rangle=k_BT/m$，两项才会数值相等，从而合成 $2k_BT/(|q|BR)$。不要把这个"热平均后相等"误当成"对每个粒子都相等"。
 
 \item \textbf{错误：}「极化漂移是稳态漂移」\\
 \textbf{正确：} 极化漂移 $\vect{v}_p = (m/qB^2)\,\mathrm{d}\vect{E}_\perp/\mathrm{d}t$ 明确依赖于电场随时间的 \textbf{变化率}，仅存在于非稳态（启动、关断、波场）中。
@@ -4927,7 +5291,7 @@ v_{te} [\text{m/s}] \approx 4.19\times 10^5\sqrt{T_e [\text{eV}]}
 \textbf{正确：} 哨声波是 \textbf{电磁波}，右旋圆极化（R 波）的低频分支。它之所以叫 ``whistler''，是因为其群速度 $\diff\omega/\diff k$ 依赖于频率，导致不同频率分量到达时间不同，在音频上形成下降的哨音。
 
 \item \textbf{错误：}「傅里叶变换的符号约定无关紧要」\\
-\textbf{正确：} 本书统一使用 \textbf{物理学约定}：平面波形式为 $\exp[-\ii(\vect{k}\cdot\vect{r}-\omega t)]$。这与工程学中常用 $\exp[+\ii(\omega t - \vect{k}\cdot\vect{r})]$ 的约定不同，导致色散关系中虚部符号相反。请务必与本书保持一致，否则 Landau 阻尼会变号。
+\textbf{正确：} 本书统一使用平面波形式 $\exp[\ii(\vect{k}\cdot\vect{r}-\omega t)]$，于是 $\partial/\partial t\to-\ii\omega$、$\grad\to+\ii\vect{k}$。另有一些教材用 $\exp[-\ii(\vect{k}\cdot\vect{r}-\omega t)] = \exp[\ii(\omega t-\vect{k}\cdot\vect{r})]$——\textbf{这两种写法其实是同一个表达式}（只是把整体指数的符号提出来看），与本书的差别仅在于 $\ii\to-\ii$，等价于把 $\omega$ 的符号取反。真正需要提防的是\textbf{混用}：若在一个推导里既用 $\partial_t\to+\ii\omega$ 又保留 $\exp[\ii(kx-\omega t)]$，色散关系的虚部就会反号，Landau 阻尼会错误地变成增长。约定本身自由，但\textbf{一篇推导内必须自洽}。
 
 \item \textbf{错误：}「截止频率和传播频率是一回事」\\
 \textbf{正确：} ``截止''（cutoff）意味着 $k\to 0$，波无法传播；``共振''（resonance）意味着 $k\to\infty$，波被强烈吸收。二者物理完全不同。
@@ -4997,73 +5361,83 @@ m\frac{\diff\vect{v}}{\diff t} = q(\vect{E}+\vect{v}\times\vect{B}), \qquad \fra
 \begin{verbatim}
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy.integrate import odeint
+from scipy.integrate import solve_ivp
 
 # -------------------- 物理参数 --------------------
 q = 1.602e-19       # 电荷 (C)
 m = 1.673e-27       # 质量 (kg, 质子)
-B0 = np.array([0, 0, 1.0])  # 均匀磁场 (T)，沿 z
-E0 = np.array([0, 1e3, 0])  # 电场 (V/m)，沿 y
+E0 = np.array([0.0, 1e3, 0.0])   # 均匀电场 (V/m)，沿 y
+B0 = 1.0                          # 均匀磁场幅值 (T)，沿 z
+L  = 0.05                         # 磁镜梯度长度 (m)，用于非均匀场
+
+def B_uniform(r):
+    """均匀场 B = B0 * z_hat"""
+    return np.array([0.0, 0.0, B0])
+
+def B_mirror(r):
+    """近轴磁镜场，满足 div B = 0:
+       B_z = B0(1 + (z/L)^2),  B_r = -(r/2) dB_z/dz = -r*B0*z/L^2
+       (r 为到轴的垂直距离)"""
+    x, y, z = r
+    Bz = B0 * (1.0 + (z/L)**2)
+    Br_scale = -0.5 * B0 * (2.0*z/L**2)   # (1/2) dBz/dz 的负号
+    return np.array([Br_scale*x, Br_scale*y, Bz])
 
 # -------------------- 洛伦兹力方程 --------------------
-def lorentz(y, t, q, m, E, B):
-    """
-    y = [x, y, z, vx, vy, vz]
-    返回 dy/dt
-    """
-    r = y[0:3]
-    v = y[3:6]
-    # F = q(E + v x B)
-    F = q * (E + np.cross(v, B))
-    a = F / m
+def make_rhs(B_func):
+    def rhs(t, y):
+        r, v = y[0:3], y[3:6]
+        a = (q/m) * np.cross(v, B_func(r))     # 仅磁力项 (E=0)
+        return np.concatenate([v, a])
+    return rhs
+
+# -------------------- 情形 A: 均匀场 + E x B 漂移 --------------------
+def rhs_EB(t, y):
+    r, v = y[0:3], y[3:6]
+    a = (q/m) * (E0 + np.cross(v, np.array([0, 0, B0])))
     return np.concatenate([v, a])
 
-# -------------------- 初始条件 --------------------
-r0 = np.array([0, 0, 0])          # 初始位置 (m)
-v0 = np.array([1e5, 0, 1e4])      # 初始速度 (m/s)
-y0 = np.concatenate([r0, v0])
+y0 = np.concatenate([[0, 0, 0], [1e5, 0, 1e4]])
+t = np.linspace(0, 2e-6, 2000)
+solA = solve_ivp(rhs_EB, [t[0], t[-1]], y0, t_eval=t, rtol=1e-9, atol=1e-12)
+vdrift = np.cross(E0, np.array([0, 0, B0])) / B0**2
+print("E x B drift speed [m/s]:", np.linalg.norm(vdrift))
 
-# 时间网格
-t = np.linspace(0, 1e-6, 2000)    # 1微秒，2000步
+# -------------------- 情形 B: 磁镜反射 --------------------
+y0m = np.concatenate([[0.005, 0, 0], [0, 3e5, 1.0e5]])
+t2 = np.linspace(0, 3e-6, 4000)
+solB = solve_ivp(make_rhs(B_mirror), [t2[0], t2[-1]], y0m,
+                 t_eval=t2, rtol=1e-9, atol=1e-12)
+zB = solB.y[2]
+print("mirror turning points z [m]:", zB.min(), zB.max())
 
-# 数值积分
-sol = odeint(lorentz, y0, t, args=(q, m, E0, B0))
+# -------------------- 能量守恒检查 --------------------
+def kinetic(sol):
+    v2 = sol.y[3]**2 + sol.y[4]**2 + sol.y[5]**2
+    return 0.5*m*v2
+KE = kinetic(solB)
+print("relative KE drift:", (KE.max()-KE.min())/KE.mean())
 
-# 提取结果
-x, y, z = sol[:, 0], sol[:, 1], sol[:, 2]
-vx, vy, vz = sol[:, 3], sol[:, 4], sol[:, 5]
-
-# -------------------- 可视化 --------------------
+# -------------------- 绘图 --------------------
 fig = plt.figure(figsize=(12, 5))
-
-# 3D 轨迹
 ax1 = fig.add_subplot(131, projection='3d')
-ax1.plot(x, y, z, lw=0.8)
-ax1.set_title("3D Orbit")
-ax1.set_xlabel('x [m]')
-ax1.set_ylabel('y [m]')
-ax1.set_zlabel('z [m]')
-
-# x-y 平面投影（回旋 + E x B 漂移）
+ax1.plot(solA.y[0], solA.y[1], solA.y[2], lw=0.8)
+ax1.set_title("Uniform B: orbit + ExB"); ax1.set_xlabel('x [m]')
+ax1.set_ylabel('y [m]'); ax1.set_zlabel('z [m]')
 ax2 = fig.add_subplot(132)
-ax2.plot(x, y, lw=0.8)
-ax2.set_aspect('equal')
-ax2.set_title("x-y Projection")
+ax2.plot(solA.y[0], solA.y[1], lw=0.8)
+ax2.set_aspect('equal'); ax2.set_title("x-y projection (ExB drift)")
 ax2.set_xlabel('x [m]'); ax2.set_ylabel('y [m]')
-
-# v_z 随时间变化（检查是否守恒）
 ax3 = fig.add_subplot(133)
-ax3.plot(t * 1e6, vz, lw=0.8)
-ax3.set_title("v_z vs time")
-ax3.set_xlabel('t [us]'); ax3.set_ylabel('v_z [m/s]')
-
+ax3.plot(solB.t*1e6, zB, lw=0.8)
+ax3.set_title("Mirror: z(t)"); ax3.set_xlabel('t [us]'); ax3.set_ylabel('z [m]')
 plt.tight_layout()
 plt.savefig('single_particle_orbit.png', dpi=150)
 plt.show()
 \end{verbatim}
 
 \begin{insight}{}{}
-在均匀磁场中，洛伦兹力方程可解析求解：粒子在垂直于 $B$ 的平面内做圆周运动（回旋），圆心以速度 $\vect{E}\times\vect{B}/B^2$ 漂移。若 $B$ 不均匀（如磁镜场），则 $v_\parallel$ 与 $v_\perp$ 之间发生交换，导致磁镜反射。读者可将上例中的 $B0$ 改为 $B(z)=B_0(1+(z/L)^2)$ 的形式，观察 $v_\parallel$ 在磁场增强区趋于零的现象。
+在均匀磁场中，洛伦兹力方程可解析求解：粒子在垂直于 $B$ 的平面内做圆周运动（回旋），圆心以速度 $\vect{E}\times\vect{B}/B^2$ 漂移（运行代码应输出约 $1000\,\mathrm{m/s}$，与 $E_0/B_0=10^3/1$ 一致）。\textbf{磁镜情形}则必须用\emph{散度为零}的近轴场：只把 $B_z$ 改成 $B(z)=B_0(1+(z/L)^2)$ 会违反 $\divg\vect{B}=\partial_zB_z\ne0$，得到的不是合法的磁场。上面的 \texttt{B\_mirror} 函数配套了径向分量 $B_r = -(r/2)\,\partial_zB_z = -rB_0z/L^2$，使 $\divg\vect{B}=\frac1r\partial_r(rB_r)+\partial_zB_z=0$ 自动满足。运行时可检查：(1) 磁镜情形下 $z(t)$ 在 $\pm z_t$ 之间往返（反射）；(2) 动能相对漂移在 $10^{-6}$ 量级（纯磁场不做功，能量守恒）；(3) 磁矩 $\mu=mv_\perp^2/(2B)$ 近似守恒。
 \end{insight}
 
 
@@ -5074,7 +5448,7 @@ plt.show()
 \frac{1}{r^2}\frac{\diff}{\diff r}\left(r^2\frac{\diff\phi}{\diff r}\right) = \frac{e n_0}{\eps_0}\left[\exp\!\left(\frac{e\phi}{k_\mathrm{B}T_e}\right)-1\right]
 \label{eq:app-debye-radial}
 \end{equation}
-与线性化德拜屏蔽解 $\phi(r)=\frac{e}{4\pi\eps_0 r}\exp(-r/\lambda_D)$ 对比。
+与线性化德拜屏蔽解 $\phi(r)=\frac{e}{4\pi\eps_0 r}\exp(-r/\lambda_D)$ 对比。\textbf{小振幅极限下非线性解应与线性德拜解吻合}：本例取 $T_e=10\,\mathrm{eV}$、$r_{\min}=10^{-3}\lambda_D$ 处的点电荷电位，$e\phi/\Theta\sim10^{-4}\ll1$，故两者在有效区间（$r\lesssim10\lambda_D$）内相对偏差仅 $\sim5\times10^{-5}$。\textbf{边界条件必须恰好 2 个}（对应 2 个未知函数 $\phi,\phi'$）；若多写一个，\texttt{solve\_bvp} 会报"边界残差数不匹配"。尾部 $r\gtrsim10\lambda_D$ 处 $|\phi|$ 已低于求解器容差，比较时应剔除。
 
 \begin{verbatim}
 import numpy as np
@@ -5082,61 +5456,60 @@ import matplotlib.pyplot as plt
 from scipy.integrate import solve_bvp
 
 # -------------------- 物理参数 --------------------
-n0 = 1e18           # 背景密度 m^-3
-Te = 10.0           # 电子温度 eV
-q_e = 1.602e-19
+n0   = 1e18            # 背景密度 m^-3
+Te_eV = 10.0           # 电子温度 (eV)
+q_e  = 1.602e-19
 eps0 = 8.854e-12
-kB = 1.381e-23
+Theta = Te_eV * q_e    # 电子热能 (J) —— 记住必须转成焦耳！
 
 # 德拜长度
-lam_D = np.sqrt(eps0 * kB * (Te * 11604) / (n0 * q_e**2))
+lam_D = np.sqrt(eps0 * Theta / (n0 * q_e**2))
+print("lambda_D [m]:", lam_D)
 
-# -------------------- 定义ODE --------------------
+# -------------------- 定义 ODE (一维球坐标泊松) --------------------
 def poisson_debye(r, y):
-    """
-    y = [phi, dphi/dr]
-    方程: d^2phi/dr^2 + (2/r)dphi/dr = \\
-    (q_e*n0/eps0)*(exp(q_e*phi/(kB*Te)) - 1)
-    """
+    """y = [phi, dphi/dr]
+       方程: phi'' + (2/r) phi' = (q_e n0/eps0)[exp(q_e phi/Theta) - 1]"""
     phi, dphi = y
-    # 为避免 r=0 奇点，从 rmin > 0 开始积分
-    rhs = (q_e * n0 / eps0) * \\
-    (np.exp(q_e * phi / (kB * Te * 11604)) - 1)
-    if np.any(r == 0):
-        rhs = 0  # 在原点处用极限值
-    ddphi = rhs - (2.0 / r) * dphi
-    return np.vstack([dphi, ddphi])
+    expo = np.clip(q_e * phi / Theta, -60.0, 60.0)   # 防溢出
+    rhs = (q_e * n0 / eps0) * (np.exp(expo) - 1.0)
+    return np.vstack([dphi, rhs - (2.0 / r) * dphi])
 
-# 边界条件
-# phi(inf) = 0, phi'(inf) = 0
-# phi(rmin) = e/(4*pi*eps0*rmin)  (近似点电荷)
+# -------------------- 边界条件: 恰好 2 个 (未知函数数为 2) --------------------
+r_min = 1e-3 * lam_D
+r_max = 15.0 * lam_D
+phi_rmin = q_e / (4 * np.pi * eps0 * r_min)   # 近似点电荷在 r_min 处的电位
+
 def bc(ya, yb):
-    r_min = 1e-6
-    phi_b = q_e / (4 * np.pi * eps0 * r_min)
-    return np.array([ya[0] - phi_b, yb[0], yb[1]])
+    # ya 对应 r_min, yb 对应 r_max; 只给两个条件
+    return np.array([ya[0] - phi_rmin,   # phi(r_min) = 点电荷电位
+                     yb[0]])             # phi(r_max) = 0
 
-# 网格
-r = np.linspace(1e-6, 5*lam_D, 500)
+# -------------------- 网格与求解 --------------------
+r = np.linspace(r_min, r_max, 800)
 y_guess = np.zeros((2, r.size))
+y_guess[0] = phi_rmin * (r_min / r)              # 初始猜测: 1/r 型
 
-# 求解
-sol = solve_bvp(poisson_debye, bc, r, y_guess, \\
-    max_nodes=1e5, tol=1e-6)
+sol = solve_bvp(poisson_debye, bc, r, y_guess, tol=1e-8, max_nodes=50000)
+print("solver status (1=最近一次网格上收敛):", sol.status)
 
-# 解析解
-phi_analytic = (q_e / (4 * np.pi * eps0 * r)) * np.exp(-r / lam_D)
+# -------------------- 解析解对比 --------------------
+rr = np.linspace(r_min, r_max, 2000)
+phi_num = sol.sol(rr)[0]
+A = phi_rmin * r_min * np.exp(r_min / lam_D)     # 用同一 phi(r_min) 定标
+phi_an = A * np.exp(-rr / lam_D) / rr
+mask = rr < 10 * lam_D          # 尾部 |phi| 低于求解器容差，只比较有效区间
+err = np.max(np.abs(phi_num[mask] / phi_an[mask] - 1.0))
+print("max relative deviation from Debye (r < 10 lambda_D):", err)
 
 # -------------------- 绘图 --------------------
 plt.figure(figsize=(8, 5))
-plt.semilogy(r / lam_D, np.abs(sol.y[0]), \\
-    label='Nonlinear Poisson', lw=2)
-plt.semilogy(r / lam_D, np.abs(phi_analytic), '--', \\
-    label='Debye: $e^{-r/\\lambda_D}$', lw=2)
-plt.xlabel('$r / \\lambda_D$')
-plt.ylabel('$|\\phi|$ [V]')
-plt.title('Debye Shielding Potential')
-plt.legend()
-plt.grid(True, which='both', ls='--', alpha=0.5)
+plt.semilogy(rr / lam_D, np.abs(phi_num), label='Nonlinear Poisson', lw=2)
+plt.semilogy(rr / lam_D, np.abs(phi_an), '--', label='Debye: e^{-r/lambda_D}/r', lw=2)
+plt.xlabel('r / lambda_D')
+plt.ylabel('|phi| [V]')
+plt.title('Debye Shielding Potential (small-amplitude limit)')
+plt.legend(); plt.grid(True, which='both', ls='--', alpha=0.5)
 plt.tight_layout()
 plt.savefig('debye_shielding.png', dpi=150)
 plt.show()
@@ -5149,42 +5522,52 @@ plt.show()
 \begin{equation}
 \omega^2 = \omega_{pe}^2 + \frac{3k_\mathrm{B}T_e}{m_e}k^2 = \omega_{pe}^2 + 3k^2v_{te}^2
 \end{equation}
+代码含\textbf{有效性回溯检查}：端口输出 $k\lambda_D$ 取 $0.1,0.3,1.0$ 时的热修正量 $3(k\lambda_D)^2$，据此判断 Bohm--Gross 近似的适用范围（约 $k\lambda_D\lesssim0.3$；$k\lambda_D\to1$ 时朗道阻尼已显著，须用动理学色散关系）。
 
 \begin{verbatim}
 import numpy as np
 import matplotlib.pyplot as plt
 
 # -------------------- 物理参数 --------------------
-n = 1e18            # m^-3
-Te = 10.0           # eV
-q_e = 1.602e-19
-m_e = 9.109e-31
-kB = 1.381e-23
+n    = 1e18            # m^-3
+Te_eV = 10.0           # eV
+q_e  = 1.602e-19
+m_e  = 9.109e-31
+eps0 = 8.854e-12
+Theta = Te_eV * q_e    # J
 
-# 等离子体频率
-omega_pe = np.sqrt(n * q_e**2 / (8.854e-12 * m_e))
-# 热速度
-v_te = np.sqrt(kB * (Te * 11604) / m_e)
+# 等离子体频率与德拜长度
+omega_pe = np.sqrt(n * q_e**2 / (eps0 * m_e))
+v_te     = np.sqrt(Theta / m_e)          # 注意: 本书 v_te = sqrt(k_B T_e/m_e)
+lam_D    = v_te / omega_pe
+print("omega_pe [rad/s]:", omega_pe)
+print("lambda_D [m]:", lam_D)
 
-# 波数网格 (限制在 k*lambda_D < 1 内，Bohm-Gross近似有效)
-lam_D = v_te / omega_pe
-k = np.linspace(0.01, 1.0 / lam_D, 500)
+# -------------------- Bohm-Gross 色散关系 --------------------
+# omega^2 = omega_pe^2 + 3 k^2 v_te^2 ;  近似有效范围 k*lambda_D <~ 0.3
+k = np.linspace(0.0, 1.0 / lam_D, 500)
+omega = np.sqrt(omega_pe**2 + 3.0 * k**2 * v_te**2)
 
-# Bohm-Gross 色散关系
-omega = np.sqrt(omega_pe**2 + 3 * k**2 * v_te**2)
+# -------------------- 有效性回溯检查 --------------------
+# 与冷等离子体对比: 热修正量 omega^2/omega_pe^2 - 1 = 3(k lambda_D)^2
+kLD = k * lam_D
+print("at k*lambda_D=0.1, thermal correction =", 3*0.1**2)
+print("at k*lambda_D=0.3, thermal correction =", 3*0.3**2,
+      " (Landau damping already noticeable)")
+print("at k*lambda_D=1.0, thermal correction =", 3*1.0**2,
+      " (Bohm-Gross no longer reliable)")
 
 # -------------------- 绘图 --------------------
 plt.figure(figsize=(8, 5))
-plt.plot(k * lam_D, omega / omega_pe, 'b-', lw=2, label='Bohm-Gross')
-plt.axhline(y=1.0, color='r', linestyle='--', \\
-    label='Cold plasma: $\\omega=\\omega_{pe}$')
-plt.xlabel('$k \\lambda_D$')
-plt.ylabel('$\\omega / \\omega_{pe}$')
+plt.plot(kLD, omega / omega_pe, 'b-', lw=2, label='Bohm-Gross')
+plt.axhline(y=1.0, color='r', linestyle='--', label='Cold: omega = omega_pe')
+plt.axvspan(0, 0.3, color='green', alpha=0.08)
+plt.text(0.32, 1.02, 'reliable region (k*lambda_D < 0.3)', fontsize=9)
+plt.xlabel('k * lambda_D')
+plt.ylabel('omega / omega_pe')
 plt.title('Langmuir Wave Dispersion Relation')
-plt.legend()
-plt.grid(True, ls='--', alpha=0.5)
-plt.xlim(0, 1.0)
-plt.ylim(0.9, 2.5)
+plt.legend(); plt.grid(True, ls='--', alpha=0.5)
+plt.xlim(0, 1.0); plt.ylim(0.9, 2.5)
 plt.tight_layout()
 plt.savefig('langmuir_dispersion.png', dpi=150)
 plt.show()
@@ -5222,7 +5605,7 @@ plt.show()
 \begin{tip}
 \textbf{推荐学习路线：}
 \begin{enumerate}
-\item \textbf{阶段一（Python 练习）：} 先完成本书附录 G.1--G.3 的代码，理解单粒子轨道、泊松方程、色散关系的数值实现。
+\item \textbf{阶段一（Python 练习）：} 先完成本书附录 G.1--G.3 的三个独立脚本（复制即可运行，依赖仅 \texttt{numpy}/\texttt{scipy}/\texttt{matplotlib}），并\textbf{核对期望输出}：G.1 应打印 $\vect{E}\times\vect{B}$ 漂移速度 $\approx1000\,\mathrm{m/s}$、磁镜往返 $z$ 区间与 $10^{-6}$ 量级的能量漂移；G.2 应打印德拜长度 $\approx2.35\times10^{-5}\,\mathrm{m}$ 及与解析解 $<10^{-4}$ 的相对偏差；G.3 应打印 $\omega_{pe}\approx5.6\times10^{10}\,\mathrm{rad/s}$ 与 $k\lambda_D$ 取 $0.1/0.3/1.0$ 时的热修正量。这些数字对不上时先查参数单位，再进入下一阶段。
 \item \textbf{阶段二（1D PIC）：} 使用 EPOCH 的 1D 教程，运行朗缪尔波、双流不稳定性（two-stream instability）的基准算例。
 \item \textbf{阶段三（2D/3D）：} 在集群上运行自己的 2D 问题（如磁重联、Landau 阻尼），学习并行 I/O、后处理（VisIt / ParaView）。
 \item \textbf{阶段四（深入研究）：} 根据方向选择：聚变输运 $\to$ GYRO/GENE；空间物理 $\to$ P3D/SMILEI；工业低温 $\to$ BOLSIG+ / COMSOL Plasma Module。

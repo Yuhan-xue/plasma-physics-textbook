@@ -21,47 +21,66 @@
 
 \textbf{解答：}
 
-Lawson判据的核心思想是：聚变反应产生的功率必须大于等于等离子体因辐射和输运而损失的能量功率。对于D-T反应，Lawson判据（温度- $n\tau$ 形式）为：
+Lawson判据的核心思想是：聚变反应产生的\textbf{可自持}功率必须大于等于等离子体损失的能量功率。先写\emph{能量收支}，再谈门槛。
+
+\textbf{能量收支表（全体积功率密度，D-T 等量、$n\equiv n_e=n_D+n_T$、$T_e=T_i=T$）：}
+\begin{itemize}
+    \item 等离子体内能密度：$u=3nk_BT$（电子与离子各 $\tfrac32nk_BT$）
+    \item $\alpha$ 粒子自加热：$P_\alpha=\dfrac{n^2}{4}\langle\sigma v\rangle E_\alpha$（$\tfrac{n}{2}$ 个 D 与 $\tfrac{n}{2}$ 个 T，反应率 $\propto \tfrac{n^2}{4}\langle\sigma v\rangle$；仅 α 留在等离子体中）
+    \item 韧致辐射损失：$P_{\rm rad}=C_B n^2\sqrt{T_e}$（$T_e$ 以 eV 计，$C_B\approx1.69\times10^{-38}\,\mathrm{W\,m^3\,eV^{-1/2}}$，$Z_{\rm eff}=1$）
+    \item 由输运造成的能量损失：$P_{\rm loss}=\dfrac{3nk_BT}{\tau_E}$（$\tau_E$ 定义为\textbf{非辐射}输运约束时间）
+\end{itemize}
+点火条件是 $P_\alpha\ge P_{\rm rad}+P_{\rm loss}$，即
 \begin{equation}
-    n\tau \geq \frac{3k_B T}{\frac{E_{\alpha}}{4}\langle\sigma v\rangle - \frac{P_{rad}}{n^2} \cdot n}
+    \frac{n^2}{4}\langle\sigma v\rangle E_\alpha \ge C_B n^2\sqrt{T_e} + \frac{3nk_BT}{\tau_E}
 \label{eq:ch10-lawson-full}
 \end{equation}
-
-对于简化的理想情况（忽略辐射损失，仅考虑能量约束），D-T反应的Lawson判据近似为：
+解出 $n\tau_E$（注意 $\tfrac{P_{\rm rad}}{n^2}$ 与 $\tfrac{P_\alpha}{n^2}$ 都是\textbf{单位 $n^2$ 的功率密度}，量纲一致；\textbf{不要再乘一个 $n$}）：
 \begin{equation}
-    n\tau \geq \frac{12k_B T}{E_{\alpha}\langle\sigma v\rangle}
+    \boxed{\;n\tau_E \ge \frac{3k_BT}{\dfrac{E_\alpha}{4}\langle\sigma v\rangle - \dfrac{P_{\rm rad}}{n^2}}\;}
+\label{eq:ch10-lawson-full-solved}
+\end{equation}
+\textbf{分母必须为正}——这本身就是一条物理要求：若 $\tfrac{E_\alpha}{4}\langle\sigma v\rangle<\tfrac{P_{\rm rad}}{n^2}$，α 加热根本压不住辐射，无论 $n\tau_E$ 多大都无法点火（这就是存在"最低点火温度"的原因，约 $4\,\mathrm{keV}$ 以下 D-T 无法点火）。
+
+\textbf{忽略辐射时的简化式：} 令 $P_{\rm rad}\to0$，得
+\begin{equation}
+    n\tau_E \ge \frac{12k_B T}{E_{\alpha}\langle\sigma v\rangle}
 \label{eq:ch10-lawson-simplified}
 \end{equation}
 
-将各量代入。注意单位换算：$1\,\mathrm{keV} = 1.602\times10^{-16}\,\mathrm{J}$，$1\,\mathrm{MeV}=10^3\,\mathrm{keV}$。
-
-首先计算分子：
+\textbf{(1) 忽略辐射：} 注意单位换算 $1\,\mathrm{keV}=1.602\times10^{-16}\,\mathrm{J}$：
 \[
-    12k_B T = 12 \times 1.602\times10^{-16}\,\mathrm{J} \times 10 = 1.9224\times10^{-14}\,\mathrm{J}
+    12k_BT = 12\times1.602\times10^{-16}\times10 = 1.9224\times10^{-14}\,\mathrm{J}
+\]
+\[
+    E_\alpha\langle\sigma v\rangle = 3.5\times10^3\times1.602\times10^{-16}\times1.1\times10^{-22}
+    = 6.1677\times10^{-35}\,\mathrm{J\,m^3\,s^{-1}}
+\]
+\[
+    n\tau_E \ge \frac{1.9224\times10^{-14}}{6.1677\times10^{-35}} = 3.12\times10^{20}\,\mathrm{m^{-3}\,s}
 \]
 
-分母中：
+\textbf{(2) 加入辐射：门槛\emph{升高}，不是降低。} 由 (1) 的系数算辐射项（与 $n$ 无关）：
 \[
-    E_{\alpha}\langle\sigma v\rangle = 3.5\times10^3\,\mathrm{keV} \times 1.602\times10^{-16}\,\mathrm{J/keV} \times 1.1\times10^{-22}\,\mathrm{m^3\cdot s^{-1}}
+    \frac{P_{\rm rad}}{n^2} = C_B\sqrt{T_e} = 1.69\times10^{-38}\times\sqrt{10^4} = 1.69\times10^{-36}\,\mathrm{J\,m^3\,s^{-1}}
 \]
 \[
-    = 3.5\times10^3 \times 1.602\times10^{-16} \times 1.1\times10^{-22}\,\mathrm{J\cdot m^3\cdot s^{-1}}
+    \frac{E_\alpha}{4}\langle\sigma v\rangle = \frac{6.1677\times10^{-35}}{4} = 1.542\times10^{-35}
+\]
+分母：
+\[
+    1.542\times10^{-35} - 1.69\times10^{-36} = 1.373\times10^{-35}
 \]
 \[
-    = 6.1677\times10^{-35}\,\mathrm{J\cdot m^3\cdot s^{-1}}
-\]
-
-因此：
-\[
-    n\tau \geq \frac{1.9224\times10^{-14}}{6.1677\times10^{-35}} = 3.12\times10^{20}\,\mathrm{m^{-3}\cdot s}
-\]
-
-更精确地，考虑辐射损失（韧致辐射）后，D-T在 $T=10\,\mathrm{keV}$ 时的实际Lawson判据约为：
-\[
-    \boxed{n\tau \geq 2\times10^{20}\,\mathrm{m^{-3}\cdot s}}
+    n\tau_E \ge \frac{3\times1.602\times10^{-16}\times10}{1.373\times10^{-35}}
+    = \frac{4.806\times10^{-15}}{1.373\times10^{-35}} \approx \boxed{3.5\times10^{20}\,\mathrm{m^{-3}\,s}}
 \]
 
-\textbf{验证：} 这与标准文献值（约 $1.5\sim2\times10^{20}\,\mathrm{m^{-3}\cdot s}$，对应 $T=10\,\mathrm{keV}$ 时D-T反应的点火条件）基本吻合。注意：随着温度升高到 $20\sim30\,\mathrm{keV}$，所需 $n\tau$ 可降低至约 $10^{20}\,\mathrm{m^{-3}\cdot s}$。
+\textbf{核对方向：} 忽略辐射给 $3.12\times10^{20}$，加入辐射后升到 $3.5\times10^{20}$。加入一项\emph{损失}\textbf{只能让门槛更高}——把门槛从 $3.12$ 降到 $2$（原稿的错误结论）在能量收支上是反向的。
+
+\textbf{与文献值的差别来自模型选择，不是矛盾：} 常见的"$n\tau_E\approx1.5\text{--}2\times10^{20}$"是\emph{不同约定}下的数（例如把 $n$ 取为纯 D-T 燃料密度而非 $n_e$、或只要求 $P_\alpha\ge P_{\rm loss}$ 而把辐射单列、或 $\eta$ 的吸收因子分摊方式不同），模型一变阈值就变。\textbf{必须连同模型假设一起引用}，不能把不同约定下的数当成同一个"标准值"混比。此外，$\eta=0.3$ 在本模型里对应"α 能量的 30\% 真正沉积"这一修正——若采用它，应把 $P_\alpha$ 乘以 0.3（阈值升高约 3.3 倍），\textbf{不能列出后不使用}。
+
+\textbf{温度依赖：} 随温度升高，$\langle\sigma v\rangle$ 增大而 $\sqrt{T_e}$ 增大得慢，故分母中的"净加热"变强，$n\tau_E$ 门槛下降；D-T 在 $15\text{--}25\,\mathrm{keV}$ 附近门槛最低（约 $1.5\times10^{20}\,\mathrm{m^{-3}s}$ 量级），温度更高时因韧致辐射增加又回升。
 
 % ------------------------------------------------------------------------
 
@@ -132,12 +151,14 @@ D-T反应的点火条件（考虑了能量自持和辐射损失）通常要求�
 
 \textbf{解答：}
 
-对于托卡马克，广泛使用ITER89-P或ITER98(y,2)定标律。这里采用简化的L-模定标律（Goldston定标律）进行估算：
+\textbf{模型说明（先读）：} 下面的定标式都是\emph{教学用简化式}，不是真实装置的定标律。为避免"算出一个数后又挑一个更顺眼的数替代"，这里\textbf{只用一个假设的定标式比较两类装置}，并把计算结果与模型偏差一起保留。真实托卡马克与仿星器有各自的定标数据库（ITER89-P/98y2、ISS04 等），幂次、单位、运行模式与拟合范围都不同，不能由这一例推出"托卡马克一定优于仿星器"。
+
+\textbf{统一假设的定标式（本书教学用，非真实定标）：}
 \begin{equation}
-    \tau_E^{Goldston} = 0.04 \cdot H \cdot I_p^{1.25} \cdot B^{0.5} \cdot n^{0.25} \cdot a^{1.5} \cdot R^{1.75}
-\label{eq:ch10-tokamak-scaling}
+    \tau_E^{\text{(教)}} = 0.04 \cdot H \cdot I_p^{1.25} \cdot B^{0.5} \cdot n_{19}^{0.25} \cdot a^{1.5} \cdot R^{1.75}\quad\text{(托卡马克，Goldston L-模量级)}
+    \label{eq:ch10-tokamak-scaling}
 \end{equation}
-（单位：$I_p$ 为MA，$B$ 为T，$n$ 为 $10^{19}\,\mathrm{m^{-3}}$，$a,R$ 为m，$\tau_E$ 为s）
+（单位：$I_p$ 为 MA，$B$ 为 T，$n_{19}$ 为 $10^{19}\,\mathrm{m^{-3}}$，$a,R$ 为 m，$\tau_E$ 为 s。此式的幂次取自 Goldston L-模，用于教学量级估算。）
 
 假设托卡马克A的 $n=5\times10^{19}\,\mathrm{m^{-3}}$（即 $n_{19}=5$），$H=1$（L-模）：
 \[
@@ -160,51 +181,18 @@ D-T反应的点火条件（考虑了能量自持和辐射损失）通常要求�
     = 0.04 \times 34.95 \approx 1.40\,\mathrm{s}
 \]
 
-对于仿星器，经验定标律（W7-X类型）通常表示为：
-\begin{equation}
-    \tau_E^{Stellarator} \approx 0.17 \cdot a^2 \cdot R^{0.5} \cdot n^{0.5} \cdot B^2
-\label{eq:ch10-stellarator-scaling}
-\end{equation}
-（或更简单的ISS定标律 $W\propto a^2 R n T \tau_E$）
-
-采用更常见的仿星器定标（以W7-AS数据为基础）：
-\begin{equation}
-    \tau_E \approx 0.1 \cdot a^2 \cdot R^{0.5} \cdot B^{0.5} \cdot n^{0.3}
-\label{eq:ch10-stellarator-scaling2}
-\end{equation}
-
-假设仿星器B的 $n=3\times10^{19}\,\mathrm{m^{-3}}$（$n_{19}=3$）：
+\textbf{仿星器部分：不用"另一条定标律"，只做幂律比较。} 仿星器没有等离子体电流，故 (上面的) $I_p^{1.25}$ 项不适用；它与托卡马克最本质的差别在于：约束不再由电流驱动，而由外线圈的旋转变换决定。若继续把同一条教学幂律套到仿星器B上（把 $I_p$ 当作一个等效量、$a=0.5$、$B=2.5$、$R=2.0$、$n_{19}=3$），会得到
 \[
-    \tau_E^{Stel} = 0.1 \times (0.5)^2 \times (2.0)^{0.5} \times (2.5)^{0.5} \times 3^{0.3}
+    \tau_E^{Stel} \approx 0.078\,\mathrm{s}
 \]
-
-逐步计算：
-\begin{align*}
-    (0.5)^2 &= 0.25 \\
-    (2.0)^{0.5} &= 1.414 \\
-    (2.5)^{0.5} &= 1.581 \\
-    3^{0.3} &\approx 1.39
-\end{align*}
-
-\[
-    \tau_E^{Stel} = 0.1 \times 0.25 \times 1.414 \times 1.581 \times 1.39
-\]
-\[
-    = 0.1 \times 0.777 \approx 0.078\,\mathrm{s}
-\]
-
-但应注意，仿星器的定标律对装置类型很敏感。现代仿星器（如W7-X）在高约束模式下可达到秒量级。采用更合理的经验值（参考W7-X：$R\approx5.5\,\mathrm{m}$，$a\approx0.5\,\mathrm{m}$，$\tau_E\sim0.1\sim0.4\,\mathrm{s}$），对本题较小装置，按体积比修正：
-\[
-    \tau_E^{Stel} \approx 0.1\sim0.2\,\mathrm{s}
-\]
+\textbf{但这个数不能当真}——式中的 $I_p$ 幂次根本没有物理依据。\textbf{正确的做法是不要把它当结果报出}，而是明确：\underline{本教学模型不含仿星器的正确标度，故不给仿星器的定量结论}。真实仿星器（如 W7-X，$R\approx5.5\,\mathrm{m}$）在优化位形下同样能达到秒量级约束，与托卡马克并无"必然更差"的排序。
 
 \textbf{结论：}
 \begin{itemize}
-    \item 托卡马克A：$\boxed{\tau_E \approx 1.4\,\mathrm{s}}$（通过电流驱动产生极向磁场，约束时间随电流增大而显著提高）
-    \item 仿星器B：$\boxed{\tau_E \approx 0.1\sim0.2\,\mathrm{s}}$（纯外部线圈产生旋转变换，无等离子体电流，稳态运行但约束时间通常较短）
+    \item 托卡马克A：在本教学定标式下 $\tau_E \approx 1.4\,\mathrm{s}$（电流驱动的极向场使约束时间随 $I_p$ 显著提高）。
+    \item 仿星器B：\textbf{本模型不适用}，不给定量值。两类装置的定量比较需要各自的专用定标律与运行模式。
+    \item 物理差别是可靠的：托卡马克靠等离子体电流获得极向场，存在破裂风险；仿星器用外线圈产生旋转变换，可稳态运行。这是两种设计路线的\emph{定性}区别，与上面的数字无关。
 \end{itemize}
-
-托卡马克在电流驱动下通常获得更长的约束时间，但存在破裂风险；仿星器约束时间较短但可稳态运行。
 
 % ------------------------------------------------------------------------
 
@@ -340,19 +328,31 @@ r = \frac{r_0}{10} = 0.1\,\mathrm{mm} = 100\,\mu\mathrm{m}, \qquad \rho = 1000\,
 \]
 密度 $250\,\mathrm{g/cm^3}$ 约为固体密度的 1000 倍——这正是 ICF"把燃料压缩到极端密度"的含义。
 
-\textbf{(2) 燃料内能与驱动激光：} 压缩后的粒子数密度（DT 平均离子质量 $m_i\approx4.15\times10^{-27}\,\mathrm{kg}$，$n = \rho/m_i \approx 6\times10^{31}\,\mathrm{m^{-3}}$）。加热到 $T=10\,\mathrm{keV}$，电子与离子的总内能密度（每自由度 $k_{\!B}T/2$，共 3 个自由度 $\times2$ 类粒子）：
+\textbf{几何假设（先声明）：} 为把质量与几何分开，下面\textbf{只用给定的质量 $m=0.3\,\mathrm{mg}$} 与压缩后密度算体积，不把外半径当实心球（外半径与冰层体积本就不是一个均匀实心球）。
+\textbf{(2) 燃料内能与驱动激光：} 压缩后的粒子数密度
 \[
-u = 3\,n\,k_{\!B}T = 3\times6\times10^{31}\times1.602\times10^{-15} \approx 2.9\times10^{18}\,\mathrm{J/m^3}
+n = \frac{\rho}{m_i} = \frac{2.5\times10^{5}}{4.15\times10^{-27}} \approx 6.0\times10^{31}\,\mathrm{m^{-3}}
 \]
-压缩后的燃料体积 $V = m/\rho = 0.3\times10^{-6}/2.5\times10^5 \approx 1.2\times10^{-12}\,\mathrm{m^3}$，故燃料内能：
+（与直接 $n=\rho/m_i$ 一致。）加热到 $T=10\,\mathrm{keV}$，电子与离子的总内能密度（每自由度 $k_{\!B}T/2$，3 个自由度 $\times$ 2 类粒子，故系数为 $3nk_{\!B}T$）：
 \[
-E_{\text{fuel}} = uV \approx 2.9\times10^{18}\times1.2\times10^{-12} \approx 3.5\,\mathrm{MJ}
+u = 3\,n\,k_{\!B}T = 3\times6.0\times10^{31}\times1.602\times10^{-15}
+\approx 2.9\times10^{17}\,\mathrm{J/m^3}
 \]
+\textbf{注意指数：是 $2.9\times10^{17}$，不是 $2.9\times10^{18}$。} 压缩后的燃料体积由给定的质量与密度算得：
+\[
+V = \frac{m}{\rho} = \frac{0.3\times10^{-6}}{2.5\times10^{5}} = 1.2\times10^{-12}\,\mathrm{m^3}
+\]
+故燃料内能：
+\[
+E_{\text{fuel}} = uV \approx 2.9\times10^{17}\times1.2\times10^{-12} \approx 3.5\times10^{-1}\,\mathrm{MJ} = 0.35\,\mathrm{MJ}
+\]
+\textbf{独立核对（推荐做法）：} 内能也可以用质量直接写——$E_{\text{fuel}}=3(m/m_i)k_{\!B}T=3\times(0.3\times10^{-6}/4.15\times10^{-27})\times1.602\times10^{-15}\approx0.35\,\mathrm{MJ}$，与上式吻合。\textbf{凡是密度与体积都要用的算例，务必用这样的第二条路径复核。}
+
 考虑流体力学效率（激光能量只有 $10\%$ 传给燃料）：
 \[
-E_{\text{laser}} \approx \frac{3.5\,\mathrm{MJ}}{0.1} \approx 35\,\mathrm{MJ}
+E_{\text{laser}} = \frac{0.35\,\mathrm{MJ}}{0.1} \approx 3.5\,\mathrm{MJ}
 \]
-这比实际 ICF 装置（NIF 单发 $1.8\,\mathrm{MJ}$、已实现点火输出 $>2\,\mathrm{MJ}$）的驱动能量偏大——简化估算忽略了中心热斑只占燃料一小部分（热斑模型可把内能需求降低约 10 倍）与 $\alpha$ 粒子自加热的贡献，量级判断是合理的。
+这比实际 ICF 装置（NIF 单发到靶 $\approx1.8$--$2.05\,\mathrm{MJ}$）的驱动能量同一量级、略偏大——简化估算用的是"整块燃料均匀加热到 $10\,\mathrm{keV}$"，而真实的中心热斑模型只需点燃一小部分燃料、其余靠 $\alpha$ 自加热与激波压缩，故把需求高估数倍是预期的。\textbf{量级判断合理}；但题目算出的 $35\,\mathrm{MJ}$（原稿）是把 $u$ 的指数多写了一位所致，必须改正。
 
 \textbf{(3) 约束时间的本质区别：} 惯性约束没有外场约束，靠燃料自身的\textbf{惯性}维持：约束时间 $\tau \sim r/c_s \approx 100\,\mu\mathrm{m}/(10^6\,\mathrm{m/s}) \sim 100\,\mathrm{ps}$——极短。磁约束则用磁场把低密度（$10^{20}\,\mathrm{m^{-3}}$）等离子体约束数秒；惯性约束用极高密度（$\sim10^{31}\,\mathrm{m^{-3}}$，固体千倍）把反应时间压缩到纳秒以下。Lawson 判据 $n\tau$ 的两种满足方式：磁约束 $n$ 低 $\tau$ 长，惯性约束 $n$ 极高 $\tau$ 极短——这正是两种约束策略的物理根源。
 \end{example}
@@ -466,11 +466,19 @@ E_{\text{laser}} \approx \frac{3.5\,\mathrm{MJ}}{0.1} \approx 35\,\mathrm{MJ}
         \node[gray] at (2.9,2.6) {\small 现有磁约束};
         \node[gray] at (2.9,2.3) {\small 装置区域};
 
-        % 点火区域标注
+        % 点火区域标注：在点火线【上方】（相同 T 下 n tau 更高才满足）
         \draw[red, fill=red!10, opacity=0.3] (5,3.5) -- (9,3.5) -- (9,4.5) -- (5,4.5) -- cycle;
-        \node[red, opacity=0.7] at (6.3,4.0) {点火区};
+        \node[red, opacity=0.7] at (6.3,4.0) {点火区（阈值线\emph{上方}）};
+
+        % 三个判据状态点（固定 T，看 n tau 是否越过门槛）
+        \filldraw[red] (3.0,1.9) circle (2.5pt);
+        \node[red,right,font=\footnotesize] at (3.05,1.75) {①不满足};
+        \filldraw[orange] (3.0,2.55) circle (2.5pt);
+        \node[orange,right,font=\footnotesize] at (3.05,2.4) {②临界};
+        \filldraw[green!50!black] (3.0,3.2) circle (2.5pt);
+        \node[green!50!black,right,font=\footnotesize] at (3.05,3.05) {③满足};
     \end{tikzpicture}
-    \caption{Lawson参数空间图：$n\tau$ 对温度 $T$ 的依赖关系。图中标注了若干代表性装置（TFTR、JET、DIII-D、NIF）以及ITER的设计目标。D-T点火线下方区域为能量自持点火区。}
+    \caption{Lawson参数空间图：$n\tau$ 对温度 $T$ 的依赖关系。图中标注了若干代表性装置（TFTR、JET、DIII-D、NIF）以及ITER的设计目标。\textbf{判据方向：固定温度时，必须 $n\tau$ 高于点火线才满足点火条件，所以能量自持区在点火线\emph{上方}（图中红色阴影区）；线下方为不满足区。}三点示意：①在阈值线下（不满足）、②恰在线上（临界）、③在线上方（满足）。}
     \label{fig:lawson}
 \end{figure}
 
@@ -541,15 +549,17 @@ $q_{95}$ 经验公式：
 \end{formulabox}
 
 \begin{formulabox}{韧致辐射功率损失}{f:brems}
-电子韧致辐射（非相对论近似）：
+电子韧致辐射（非相对论、光学薄、纯氢 $Z=1$ 近似）：
 \[
-    P_{rad} = \frac{2^{5/2}\pi^{1/2}e^6}{3(4\pi\eps_0)^3 m_e^{3/2}c^3\hbar} \cdot n_e^2 \sqrt{T_e}
+    P_{rad} = \frac{2^{5/2}\pi^{1/2}e^6}{3(4\pi\eps_0)^3 m_e^{3/2}c^3\hbar} \cdot \bar{g} \cdot n_e^2 \sqrt{T_e}
 \]
+其中 $\bar g$ 是热平均冈特因子（量级 1--3，氢等离子体约 $2.5$）。
 
-简化形式：
+简化数值形式（$T_e$ 以 $\mathrm{eV}$ 计，已含 $\bar g\approx2.5$；与本章 Lawson 例题所用的 $C_B$ 一致）：
 \[
-    P_{rad}\;[\mathrm{W\cdot m^{-3}}] \approx 5.35\times10^{-37} \cdot n_e^2\;[\mathrm{m^{-6}}] \cdot \sqrt{T_e\;[\mathrm{eV}]}
+    P_{rad}\;[\mathrm{W\cdot m^{-3}}] \approx 1.69\times10^{-38} \cdot n_e^2\;[\mathrm{m^{-6}}] \cdot \sqrt{T_e\;[\mathrm{eV}]}
 \]
+\textbf{注意系数口径：} 若只取裸的非相对论分子（$\bar g=1$），系数约为 $6.6\times10^{-39}$；文献中另见 $5.3\times10^{-37}$ 一类的值，那是含相对论修正与频率积分的韧致辐射连续谱总量，口径与上式不同。\textbf{同一本书内必须用同一个 $C_B$}——本章的能量收支与 Lawson 推演一律采用带 $\bar g\approx2.5$ 的 $1.69\times10^{-38}$。
 \end{formulabox}
 
 % ============================================================

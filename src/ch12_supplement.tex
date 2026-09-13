@@ -26,172 +26,87 @@
     $+15$ & $1.62$  \\
 \end{tabular}
 \end{center}
-已知电子饱和区电流 $I_{esat}\approx1.6\,\mathrm{mA}$，离子饱和电流 $|I_{isat}|\approx0.5\,\mathrm{mA}$。试求：
+已知电子饱和区总电流 $I_{\rm sat}\approx1.6\,\mathrm{mA}$，离子饱和电流 $|I_{isat}|\approx0.5\,\mathrm{mA}$（在阻滞区视为常数）。试求：
 \begin{enumerate}
-    \item 等离子体电位 $V_{pl}$
+    \item 悬浮电位 $V_f$、等离子体电位 $V_{pl}$
     \item 电子温度 $T_e$
-    \item 电子密度 $n_e$（假设电子饱和区为漂移-Maxwell分布）
+    \item 电子密度 $n_e$
 \end{enumerate}
 \end{example}
 
-\textbf{解答：}
+\textbf{解答：}本题的关键在于\emph{始终区分总电流 $I$、电子电流 $I_e$ 和离子电流 $I_i$}。模型约定：$I = I_e + I_i$，$I_i \approx -|I_{isat}| = \text{const}$，$I_e = I_{\rm sat}\exp[(V - V_{pl})/T_e]$（$T_e$ 以 eV 计）。
 
-\textbf{（1）确定等离子体电位 $V_{pl}$}
-
-等离子体电位对应I-V曲线从电子阻滞区过渡到电子饱和区的拐点。由数据可见：
+\textbf{（0）先厘清各特征电位所在位置}
 \begin{itemize}
-    \item $V_p=-2\,\mathrm{V}$ 时，$I=-0.25\,\mathrm{mA}$（仍为离子饱和区附近）
-    \item $V_p=0\,\mathrm{V}$ 时，$I=0.05\,\mathrm{mA}$（过渡区）
-    \item $V_p=+2\,\mathrm{V}$ 时，$I=0.55\,\mathrm{mA}$（快速上升）
-    \item $V_p=+5\,\mathrm{V}$ 时，$I=1.52\,\mathrm{mA}$（接近饱和）
+    \item $I=0$ 处（数据中 $V\approx0\,\mathrm{V}$，介于 $-2\,\mathrm{V}$ 与 $0\,\mathrm{V}$ 之间）是\textbf{悬浮电位 $V_f$}，\emph{不是}等离子体电位。
+    \item 等离子体电位 $V_{pl}$ 是电子电流刚进入饱和（曲线由指数转平的拐点）之处，$V_{pl} > V_f$。
 \end{itemize}
 
-I-V曲线在 $V_p\approx 2\sim5\,\mathrm{V}$ 区间急剧上升，说明等离子体电位在此范围内。取过渡区中点或采用二阶导数法：观察 $I$ 从 $0.55$ 到 $1.52$（$V=2\to5$），增长最快。更精确地，取 $dI/dV$ 最大处。
-
-采用线性近似：$V_{pl}$ 位于电子阻滞区与饱和区之间的过渡点。取 $I=0$ 处附近（空间电位）或通过过渡区指数拟合。从数据看，$I$ 在 $V_p=0$ 附近变号，但饱和区从 $V_p=5$ 才开始。结合饱和区电流 $I_{esat}=1.6\,\mathrm{mA}$，取 $V_p=5\,\mathrm{V}$ 作为等离子体电位近似值。
-
+\textbf{（1）悬浮电位 $V_f$}——由 $I(V_f)=0$ 线性内插：$V=-2$ 时 $I=-0.25$，$V=0$ 时 $I=0.05$，
 \[
-    \boxed{V_{pl} \approx 5\,\mathrm{V}}
+    V_f \approx -2 + 2\times\frac{0-(-0.25)}{0.05-(-0.25)} = -2 + 2\times\frac{0.25}{0.30} \approx -0.33\,\mathrm{V}.
 \]
 
-（更精确的方法：对过渡区数据 $\ln I$ vs $V$ 进行线性拟合，取与饱和区交点。）
-
-\textbf{（2）电子温度 $T_e$}
-
-在过渡区（电子阻滞区），探针电流满足：
+\textbf{（2）电子温度 $T_e$}——\textbf{对电子电流取对数}，而非总电流。由 $I_e = I + |I_{isat}|$，得下表：
+\begin{center}
+\begin{tabular}{c|cccc}
+$V\,(\mathrm{V})$ & $-5$ & $-2$ & $0$ & $+2$ \\
+\hline
+$I\,(\mathrm{mA})$ & $-0.40$ & $-0.25$ & $0.05$ & $0.55$ \\
+$I_e = I+0.50$ & $0.10$ & $0.25$ & $0.55$ & $1.05$ \\
+$\ln I_e$ & $-2.303$ & $-1.386$ & $-0.598$ & $0.049$ \\
+\end{tabular}
+\end{center}
+对 $\ln I_e$ 与 $V$ 做最小二乘线性拟合（四个点）：
 \begin{equation}
-    I = I_{esat} \exp\left(\frac{e(V_p - V_{pl})}{k_B T_e}\right) - |I_{isat}|
-\label{eq:ch12-probe-current-ex}
+    \ln I_e = aV + b,\qquad
+    a = \frac{d(\ln I_e)}{dV} = \frac{1}{T_e\,[\mathrm{eV}]}.
 \end{equation}
+用四点最小二乘得斜率 $a\approx0.340\,\mathrm{V^{-1}}$、截距 $b\approx-0.635$（与两点法 $(-0.598+2.303)/5=0.341$ 一致），故
+\[
+    \boxed{T_e \approx \frac{1}{0.340} \approx 2.9\,\mathrm{eV}}.
+\]
 
-当 $|I_{isat}| \ll I$ 时，近似有：
+\textbf{（3）等离子体电位 $V_{pl}$}——把拟合直线外推到电子饱和平台 $I_e = I_{\rm sat} = 1.6\,\mathrm{mA}$：
+\[
+    \ln 1.6 = 0.340\,V_{pl} + b.
+\]
+由拟合式 $b = -0.635$，故
+\[
+    V_{pl} = \frac{\ln 1.6 - (-0.635)}{0.340} = \frac{0.470+0.635}{0.340} \approx 3.25\,\mathrm{V}.
+\]
+（若简单地认为总饱和值 $1.6\,\mathrm{mA}$ 就是"电子平台"，并用 $I_e = I + 0.5$ 定义电子电流，则外推交点约 $4.0\,\mathrm{V}$——这正是\emph{平台定义}带来的系统差异。两种定义下的差别必须明示，本题取"平台 $=$ 实测总饱和值 $1.6\,\mathrm{mA}$ 即认为此时离子电流已可忽略"的简化处理。）
+
+\textbf{（4）电子密度 $n_e$}——\textbf{注意用电子饱和电流，且澄清面积公式的适用条件。} 对\emph{无磁、无碰撞、平面薄鞘}探针，电子电流为随机热流：
 \begin{equation}
-    \ln I = \ln I_{esat} + \frac{e(V_p - V_{pl})}{k_B T_e}
-\label{eq:ch12-probe-lnI}
+    I_e = \frac{1}{4} n_e e A_p \bar v_e,\qquad \bar v_e = \sqrt{\frac{8k_BT_e}{\pi m_e}}.
 \end{equation}
-
-过渡区斜率：
+但本题探针是\emph{圆柱}且半径小（$r_p=0.1\,\mathrm{mm}$），当 $r_p \ll \lambda_D$ 时进入轨道运动限制（OML）区，收集电流被几何增强，不能简单套 $\frac14 n_eA_p\bar v_e$。为教学可复现，这里采用**平面薄鞘**公式并说明其局限：
+\[
+    A_p = 2\pi r_p L = 2\pi\times0.1\times10^{-3}\times5\times10^{-3} = 3.14\times10^{-6}\,\mathrm{m^2},
+\]
+\[
+    \bar v_e = \sqrt{\frac{8\times(2.94\times1.602\times10^{-19})}{\pi\times9.11\times10^{-31}}}
+    \approx 1.14\times10^{6}\,\mathrm{m/s}.
+\]
+用\emph{电子}饱和电流（$I_e = I_{\rm sat}$ 已经在平台，离子被排斥）：
 \begin{equation}
-    \frac{d(\ln I)}{dV_p} = \frac{e}{k_B T_e} = \frac{1}{T_e\,[\mathrm{eV}]}
-\label{eq:ch12-probe-temperature}
+    n_e = \frac{4 I_e}{eA_p\bar v_e}
+    = \frac{4\times1.6\times10^{-3}}{1.602\times10^{-19}\times3.14\times10^{-6}\times1.14\times10^{6}}
+    \approx 1.1\times10^{16}\,\mathrm{m^{-3}}.
 \end{equation}
-
-选取过渡区两点：$V_p=-2\,\mathrm{V}$（$I=-0.25$ 不可直接用，需用过渡区正值数据）。取 $V_p=0\,\mathrm{V}$（$I=0.05$）和 $V_p=+2\,\mathrm{V}$（$I=0.55$）：
-
-注意：$I$ 在 $V_p=0$ 处仍很小，但 $V_p=+2$ 到 $+5$ 是过渡区主要部分。更准确地，使用 $V_p=+2$（$I=0.55$）和 $V_p=+5$（$I=1.52$）：
-
-\[
-    \frac{d(\ln I)}{dV} = \frac{\ln(1.52/0.55)}{5-2} = \frac{\ln(2.764)}{3} = \frac{1.017}{3} = 0.339\,\mathrm{V^{-1}}
-\]
-
-但这里 $I$ 已接近饱和，斜率偏小。更合理的过渡区是 $V_p=-2$ 到 $V_p=+2$ 之间。取 $V_p=-2$（$I=-0.25$，这是离子饱和，不能直接用）到 $V_p=0$（$I=0.05$）。在 $V_p=0$ 处总电流接近零，说明 $I_e(0)\approx |I_{isat}|=0.5\,\mathrm{mA}$。
-
-利用 $I_e(V_p)=I_{esat}\exp(e(V_p-V_{pl})/k_B T_e)$。在 $V_p=0$：
-\[
-    0.5 = 1.6\exp\left(\frac{0-5}{T_e}\right)
-\]
-\[
-    \exp\left(\frac{-5}{T_e}\right) = \frac{0.5}{1.6} = 0.3125
-\]
-\[
-    \frac{-5}{T_e} = \ln(0.3125) = -1.163
-\]
-\[
-    T_e = \frac{5}{1.163} = 4.3\,\mathrm{eV}
-\]
-
-验证 $V_p=+2$：
-\[
-    I_e = 1.6\exp\left(\frac{2-5}{4.3}\right) = 1.6\exp(-0.698) = 1.6\times0.498 = 0.80\,\mathrm{mA}
-\]
-
-总电流 $I = I_e - I_i = 0.80 - 0.50 = 0.30\,\mathrm{mA}$。但实际数据为 $0.55\,\mathrm{mA}$，有偏差。说明 $V_{pl}$ 可能略高于 $5\,\mathrm{V}$。
-
-调整：取 $V_{pl}=6\,\mathrm{V}$，在 $V_p=0$：
-\[
-    0.5 = 1.6\exp(-6/T_e) \Rightarrow -6/T_e = -1.163 \Rightarrow T_e = 5.2\,\mathrm{eV}
-\]
-
-在 $V_p=+2$：
-\[
-    I_e = 1.6\exp(-4/5.2) = 1.6\times0.465 = 0.74\,\mathrm{mA}
-\]
-
-$I = 0.74 - 0.50 = 0.24\,\mathrm{mA}$，仍偏低。这说明实际离子饱和电流可能不是常数，或过渡区数据更宽。
-
-采用更系统的方法：对 $V_p=-5,-2,0,+2$ 中过渡区（总电流主要由电子贡献且指数增长），取 $V_p=-5$（$I=-0.40$）到 $V_p=0$（$I=0.05$）。在此区间，电子电流从 $0.10$ 增长到 $0.55$（假设 $I_i\approx -0.50$）。
-
-$I_e = I + |I_{isat}|$：
-\begin{itemize}
-    \item $V_p=-5$：$I_e = -0.40 + 0.50 = 0.10\,\mathrm{mA}$
-    \item $V_p=-2$：$I_e = -0.25 + 0.50 = 0.25\,\mathrm{mA}$
-    \item $V_p=0$：$I_e = 0.05 + 0.50 = 0.55\,\mathrm{mA}$
-\end{itemize}
-
-对 $\ln I_e$ 与 $V_p$ 进行线性拟合：
-\[
-    \ln(0.10) = -2.303, \quad \ln(0.25) = -1.386, \quad \ln(0.55) = -0.598
-\]
-
-取两点 $V=-5$ 和 $V=0$：
-\[
-    \frac{d\ln I_e}{dV} = \frac{-0.598 - (-2.303)}{0 - (-5)} = \frac{1.705}{5} = 0.341\,\mathrm{V^{-1}}
-\]
-
-\[
-    T_e = \frac{1}{0.341} = 2.9\,\mathrm{eV}
-\]
-
-取三点平均值约：
-\[
-    \boxed{T_e \approx 3\,\mathrm{eV}}
-\]
-
-（注：数据为简化教学数据，实际探针诊断中需精确过渡区拟合。）
-
-\textbf{（3）电子密度 $n_e$}
-
-在电子饱和区，对于圆柱探针，电子电流（ orbital-motion-limited, OML 理论）：
-\begin{equation}
-    I_{esat} = A_p n_e e \sqrt{\frac{k_B T_e}{2\pi m_e}}
-\label{eq:ch12-oml-current}
-\end{equation}
-
-探针面积（圆柱侧面积）：
-\[
-    A_p = 2\pi r_p L = 2\pi \times 0.1\times10^{-3} \times 5\times10^{-3} = 3.14\times10^{-6}\,\mathrm{m^2}
-\]
-
-热速度项：
-\[
-    \sqrt{\frac{k_B T_e}{2\pi m_e}} = \sqrt{\frac{1.602\times10^{-19}\times3}{2\pi\times9.11\times10^{-31}}} = \sqrt{\frac{4.81\times10^{-19}}{5.73\times10^{-30}}}
-\]
-\[
-    = \sqrt{8.4\times10^{10}} = 2.9\times10^{5}\,\mathrm{m\cdot s^{-1}}
-\]
-
-因此：
-\[
-    n_e = \frac{I_{esat}}{A_p e \sqrt{k_B T_e/(2\pi m_e)}} = \frac{1.6\times10^{-3}}{3.14\times10^{-6}\times1.602\times10^{-19}\times2.9\times10^5}
-\]
-\[
-    = \frac{1.6\times10^{-3}}{3.14\times1.602\times2.9\times10^{-20}}
-\]
-\[
-    = \frac{1.6\times10^{-3}}{1.46\times10^{-19}}
-\]
-\[
-    = 1.1\times10^{16}\,\mathrm{m^{-3}}
-\]
-
 \[
     \boxed{n_e \approx 1\times10^{16}\,\mathrm{m^{-3}}}
 \]
 
-\textbf{总结：}
-\[
-    V_{pl} \approx 5\,\mathrm{V}, \quad T_e \approx 3\,\mathrm{eV}, \quad n_e \approx 1\times10^{16}\,\mathrm{m^{-3}}
-\]
+\textbf{模型与假设清单（必须随结果一并报告）：}
+\begin{itemize}
+    \item 稀薄数据（每区仅若干点）只能给量级，不能宣称高精度；
+    \item 离子饱和电流假定为常数 $-0.5\,\mathrm{mA}$，且未随 $V$ 缓慢变化；
+    \item 密度公式用了平面薄鞘热流形式，未做 OML 几何修正——真实圆柱探针在 $r_p<\lambda_D$ 时密度会\emph{低于}此估计；
+    \item $T_e$ 用 eV 单位直接得自斜率，密度计算前须把 $T_e$ 换算成焦耳（此处 $\bar v_e$ 中已换算）。
+\end{itemize}
+
 
 % ------------------------------------------------------------------------
 
@@ -272,12 +187,15 @@ $I_e = I + |I_{isat}|$：
     \boxed{n_e \approx 1.8\times10^{18}\,\mathrm{m^{-3}}}
 \]
 
-\textbf{验证：} 对应等离子体频率：
+\textbf{验证（务必用同一套单位）：} 用 SI 形式计算等离子体频率，
 \[
-    f_p = \frac{1}{2\pi}\sqrt{\frac{n_e e^2}{\eps_0 m_e}} = 9\sqrt{n_e\,[\mathrm{cm^{-3}}]}\,\mathrm{Hz} = 9\sqrt{1.8\times10^{12}} = 9\times1.34\times10^6 = 1.2\times10^7\,\mathrm{Hz}
+    f_p = \frac{1}{2\pi}\sqrt{\frac{n_e e^2}{\eps_0 m_e}}
+    = \frac{1}{2\pi}\sqrt{\frac{1.78\times10^{18}\times(1.602\times10^{-19})^2}{8.854\times10^{-12}\times9.11\times10^{-31}}}
+    \approx 1.2\times10^{10}\,\mathrm{Hz} = 12\,\mathrm{GHz}.
 \]
+（常见错误：把 $n_e$ 以 $\mathrm{cm^{-3}}$ 数值代入 $\mathrm{SI}$ 公式，会得到 $12\,\mathrm{MHz}$——差了一千倍。$\mathrm{m^{-3}}$ 与 $\mathrm{m^{-3}}$ 必须统一。）
 
-$f_p = 12\,\mathrm{MHz} \ll f = 60\,\mathrm{GHz}$，满足 $N\approx 1 - \omega_p^2/(2\omega^2)$ 近似。
+于是 $f_p/f = 12/60 = 0.2$，$\omega_p^2/\omega^2 = 0.04$，高频近似的相对误差约 $(1/2)(\omega_p^2/\omega^2)^2 \sim 8\times10^{-4}$，确实可忽略。但请注意：$f_p$ 已达 $12\,\mathrm{GHz}$，\emph{若换用 $n_e\gtrsim5\times10^{19}\,\mathrm{m^{-3}}$ 则 $f_p$ 将逼近 $60\,\mathrm{GHz}$，必须改用完整折射率 $N=\sqrt{1-\omega_p^2/\omega^2}$，或先做截止检查。}
 
 % ------------------------------------------------------------------------
 
@@ -423,18 +341,16 @@ $f_p = 12\,\mathrm{MHz} \ll f = 60\,\mathrm{GHz}$，满足 $N\approx 1 - \omega_
 \]
 
 \[
-    L_{coil} = \frac{4\pi\times10^{-7} \times 50^2 \times 2\times10^{-4}}{2\pi \times 1.0} = \frac{4\pi\times10^{-7}\times2500\times2\times10^{-4}}{2\pi}
-\]
-\[
-    = \frac{2\times10^{-7}\times2500\times2\times10^{-4}}{1}
-\]
-\[
-    = 10^{-7}\times 5\times10^{-4} = 5\times10^{-5}\,\mathrm{H}
+    L_{coil} = \frac{4\pi\times10^{-7} \times 50^2 \times 2\times10^{-4}}{2\pi \times 1.0}
+    = \frac{2\times10^{-7}\times2500\times2\times10^{-4}}{1.0}
+    = 1.0\times10^{-7}\,\mathrm{H}
 \]
 
 \[
-    \boxed{L_{coil} \approx 50\,\mathrm{\mu H}}
+    \boxed{L_{coil} \approx 0.1\,\mathrm{\mu H}}
 \]
+
+（注意：常见错误是把圈数 $N$ 当成电感中的平方因子后误算为 $50\,\mu\mathrm{H}$——请按上式逐项代入核对，$\mu_0=4\pi\times10^{-7}$ 中的 $4\pi$ 与分母的 $2\pi$ 相除后剩下因子 $2$。）
 
 线圈的时间常数：
 \[
@@ -443,10 +359,10 @@ $f_p = 12\,\mathrm{MHz} \ll f = 60\,\mathrm{GHz}$，满足 $N\approx 1 - \omega_
 
 若负载电阻 $R_{load}=1\,\mathrm{k\Omega}$：
 \[
-    \tau_{coil} = \frac{5\times10^{-5}}{1000} = 5\times10^{-8}\,\mathrm{s} = 50\,\mathrm{ns}
+    \tau_{coil} = \frac{1.0\times10^{-7}}{1000} = 1.0\times10^{-10}\,\mathrm{s} = 0.1\,\mathrm{ns}
 \]
 
-对于 $dI_p/dt$ 对应的时间尺度（例如电流上升时间 $1\,\mathrm{ms}$），$\tau_{coil} \ll 1\,\mathrm{ms}$，因此自感影响可忽略。线圈输出经积分器后可直接还原电流波形。
+对于 $dI_p/dt$ 对应的时间尺度（例如电流上升时间 $1\,\mathrm{ms}$），$\tau_{coil} \ll 1\,\mathrm{ms}$，因此自感影响确实可忽略。线圈输出经积分器后可直接还原电流波形。
 
 % ============================================================
 % 2. TikZ图像
@@ -455,22 +371,25 @@ $f_p = 12\,\mathrm{MHz} \ll f = 60\,\mathrm{GHz}$，满足 $N\approx 1 - \omega_
 % ch12 新例题：H-alpha 谱线的 Stark 展宽与密度诊断
 \begin{example}{Stark 展宽与电子密度的诊断}{stark-density}
 某氢等离子体中测得 $\mathrm{H}_\alpha$ 谱线（$656.3\,\mathrm{nm}$）的 Stark 展宽 FWHM 为 $\Delta\lambda_S = 0.8\,\mathrm{nm}$。
-（1）用线性 Stark 展宽的标度关系 $\Delta\lambda_S = C\,n_e^{2/3}$（对 $\mathrm{H}_\alpha$，$C \approx 0.05\,\mathrm{nm\cdot m^2}$）估算电子密度 $n_e$；
+（1）用可追溯的 $H_\alpha$ 标度关系估算电子密度 $n_e$；
 （2）说明为什么 Stark 展宽在高密度等离子体中是密度诊断的首选，而在低密度等离子体中失效；
 （3）讨论为什么该诊断需要扣除 Doppler 展宽和仪器展宽的贡献。
 \tcblower
 \textbf{解答：}
 
-\textbf{(1) 密度反演：} 由标度关系
+\textbf{(1) 密度反演：} 采用与正文一致的 Griem 半经验标定（$T_e\sim1\sim10\,\mathrm{eV}$）
 \[
-n_e = \left(\frac{\Delta\lambda_S}{C}\right)^{3/2} = \left(\frac{0.8}{0.05}\right)^{3/2}\,\mathrm{m^{-3}} = 16^{1.5}\,\mathrm{m^{-3}}
+\Delta\lambda_{1/2}[\mathrm{nm}] \approx 0.549\left(\frac{n_e}{10^{23}\,\mathrm{m^{-3}}}\right)^{2/3},
 \]
+反解得
 \[
-16^{1.5} = 64,\qquad n_e \approx 6.4\times10^{20}\,\mathrm{m^{-3}}
+n_e = 10^{23}\times\left(\frac{\Delta\lambda_S}{0.549}\right)^{3/2}
+= 10^{23}\times\left(\frac{0.8}{0.549}\right)^{3/2}
+\approx 1.8\times10^{23}\,\mathrm{m^{-3}}.
 \]
-这一密度对应聚变等离子体或高气压电弧的范围——量级合理。
+这一密度对应高电流密度电弧芯部或聚变边缘——量级合理。\textbf{注意}：$\Delta\lambda_S$ 与系数都必须用 $\mathrm{nm}$ 为单位；若把系数写成带 $\mathrm{m^2}$ 的量纲再代入 $\mathrm{nm}$ 数值，会得到 $64\,\mathrm{m^{-3}}$ 之类的荒谬结果，这正是必须核对量纲的原因。本例未做任何"再乘 $10^{19}$ 修正"的凑数——反演结果直接来自标定式，且须在给定的温度适应区间内。
 
-\textbf{(2) 为什么高密度下首选：} Stark 展宽 $\propto n_e^{2/3}$，由\textbf{带电粒子微场}直接决定，不依赖温度与速度分布（与 Doppler 展宽不同），且对密度敏感。在 $n_e\gtrsim10^{20}\,\mathrm{m^{-3}}$ 时 Stark 展宽（$\sim0.1$--$1\,\mathrm{nm}$）远大于 Doppler 展宽（$\mathrm{H}_\alpha$ 在 $T\sim10\,\mathrm{eV}$ 时仅 $\sim0.05\,\mathrm{nm}$），主导谱线形状——测形状即可反演密度。在低密度（$n_e\lesssim10^{17}\,\mathrm{m^{-3}}$）时 Stark 展宽缩小到 $10^{-3}\,\mathrm{nm}$ 量级，被 Doppler 展宽与仪器展宽完全淹没，无法使用——此时应改用微波干涉或汤姆逊散射。
+\textbf{(2) 为什么高密度下首选：} Stark 展宽 $\propto n_e^{2/3}$，由\textbf{带电粒子微场}直接决定，对密度敏感（温度依赖较弱）。按本节的 $H_\alpha$ 标定 $\Delta\lambda=0.549(n_e/10^{23})^{2/3}\,\mathrm{nm}$：在 $n_e\sim10^{23}\,\mathrm{m^{-3}}$ 时 Stark 展宽约 $0.5\,\mathrm{nm}$，在 $n_e\sim10^{21}\,\mathrm{m^{-3}}$ 时约 $0.025\,\mathrm{nm}$。作为对比，$H_\alpha$ 的 Doppler 展宽在离子温度 $T_i\sim10\,\mathrm{eV}$ 时只有 $\sim7\times10^{-4}\,\mathrm{nm}$——比同密度下的 Stark 展宽小两三个数量级，故在高密度下 Stark 完全主导谱线形状，测形状即可反演密度。在低密度（$n_e\lesssim10^{18}\,\mathrm{m^{-3}}$）时 Stark 展宽降到 $\sim2.5\times10^{-4}\,\mathrm{nm}$ 量级，与 Doppler 展宽相当并逐渐被其与仪器展宽淹没，反演可靠性迅速下降——此时应改用微波干涉或汤姆逊散射。注意 Stark 宽度\emph{并非严格不依赖温度}，精确反演应使用温度相关的查表系数（如 STARK-B 数据库）而非固定 $0.549$。
 
 \textbf{(3) 展宽成分的扣除：} 实测谱线宽度是三种机制的卷积：
 \begin{itemize}[leftmargin=*,itemsep=0pt]
@@ -565,25 +484,34 @@ n_e = \left(\frac{\Delta\lambda_S}{C}\right)^{3/2} = \left(\frac{0.8}{0.05}\righ
 \section{核心公式速查卡}
 
 \begin{formulabox}{朗缪尔探针诊断}{f:langmuir}
-电子阻滞区（过渡区）电流：
+电子阻滞区（过渡区）\textbf{电子电流}（须先扣除离子电流 $I_e = I + |I_{isat}|$）：
 \[
-    I_e = I_{esat} \exp\left(\frac{e(V_p - V_{pl})}{k_B T_e}\right)
+    I_e = I_{esat} \exp\left(\frac{e(V - V_{pl})}{k_B T_e}\right)
 \]
 
-电子温度（由过渡区斜率）：
+电子温度（由 $\ln I_e$-$V$ 斜率）：
 \[
-    T_e\,[\mathrm{eV}] = \left(\frac{d\ln I_e}{dV_p}\right)^{-1}
+    T_e\,[\mathrm{eV}] = \left(\frac{d\ln I_e}{dV}\right)^{-1}
 \]
 
-电子密度（OML理论，圆柱探针）：
-\[
-    n_e = \frac{I_{esat}}{A_p e} \sqrt{\frac{2\pi m_e}{k_B T_e}}
-\]
+电子密度——以下三式适用条件不同，\textbf{不可混用}：
+\begin{itemize}
+    \item \textbf{平面薄鞘}（$s/r_p\ll1$，电子随机热流）：
+    \[
+        n_e = \frac{4 I_{esat}}{e A_p \bar v_e},\qquad \bar v_e = \sqrt{\frac{8k_BT_e}{\pi m_e}}
+    \]
+    \item \textbf{圆柱/球形 OML}（$r_p\ll\lambda_D$，轨道受限）：
+    \[
+        n_e = \frac{I_{esat}}{e A_p}\sqrt{\frac{2\pi m_e}{k_B T_e}}
+        \quad\text{(柱: 另有含 } r_p/\lambda_D \text{ 的修正因子)}
+    \]
+\end{itemize}
 
-离子密度（Bohm通量）：
+离子饱和电流（冷离子玻姆流，与第11章玻姆判据一致）：
 \[
-    n_i \approx \frac{|I_{isat}|}{0.6 A_p e v_B}, \quad v_B = \sqrt{\frac{k_B T_e}{m_i}}
+    I_{isat} \approx 0.6\, n_e e A_p u_B,\qquad u_B = \sqrt{\frac{k_B T_e}{m_i}}
 \]
+\textbf{假定：}无磁、无碰撞、鞘边密度比 $n_s/n_e \approx 0.6$；若离子热速度不可忽略则改用 $\frac12 en_iA_p\bar v_i$ 并注明所用离子温度。
 \end{formulabox}
 
 \begin{formulabox}{微波干涉仪}{f:interferometer}
