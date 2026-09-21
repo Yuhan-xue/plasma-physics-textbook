@@ -4,8 +4,11 @@
 \documentclass[12pt,a4paper,openany,oneside]{book}
 \usepackage[UTF8]{ctex}
 \usepackage{geometry}
-\geometry{left=2.1cm,right=2.3cm,top=2.1cm,bottom=2.1cm,
-          footskip=1.0cm,headsep=0.5cm}
+% right 由 2.3cm 放宽到 2.6cm：给 marginparwidth 1.6cm + marginparsep 0.2cm 留出足量
+% 空间，使难度边注盒右边界(20.80cm)落在纸面 21.0cm 内且不贴近裁切边。
+% bottom 由 2.1cm 收到 1.8cm、footskip 收到 0.8cm，消除底部约 1cm 的空带。
+\geometry{left=2.1cm,right=2.6cm,top=2.1cm,bottom=1.8cm,
+          footskip=0.8cm,headsep=0.5cm}
 \setlength{\headheight}{15pt}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{mathtools}
@@ -91,8 +94,14 @@
 \usepackage{multirow}
 \usepackage{marginnote}
 \usepackage{epigraph}
+\usepackage{pifont}          % \ding：圈号 ①②③ 的可靠字形来源（lmroman 无 U+2460..U+2462）
+\usepackage{fvextra}         % verbatim 可断行，消除附录 G 代码越界
 \setlength{\marginparwidth}{1.6cm}
 \setlength{\marginparsep}{0.2cm}
+% ---- 圈号 ①②③ 的安全写法 ----
+% 原实现直接在 lmroman 中排 U+2460..U+2462，该字体无此字形，PDF 中渲染为空白。
+% \ding{172..174} 对应 ①..③，pifont 的 dingbat 字体覆盖完整。
+\newcommand{\cnum}[1]{\ding{\numexpr171+#1\relax}}
 % ---- 段落与公式间距：回收造成大片留白的垂直空间 ----
 \setlength{\parskip}{2.6pt plus 1.2pt minus 0.6pt}
 \setlength{\jot}{2pt}
@@ -104,9 +113,35 @@
 }
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\nouppercase{\small\itshape\leftmark}}
+% 中文页眉不用 \itshape：SimSun 无真斜体，会触发合成倾斜，与正文正体断裂。
+\fancyhead[L]{\nouppercase{\small\heiti\leftmark}}
 \fancyhead[R]{\small\bfseries\thepage}
 \renewcommand{\headrulewidth}{0.3pt}
+% 章首页（\chapter 下发 \thispagestyle{plain}）原先无页眉也无页码，此处补上页码。
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \fancyhead[R]{\small\bfseries\thepage}%
+  \renewcommand{\headrulewidth}{0.3pt}%
+}
+% 附录章：\chapter* 不更新 \leftmark，导致 186--210 页页眉恒为"第 12 章"。
+% \appchapter 显式维护页眉与书签，并让小节/定理编号继承附录章号（A/B/C...）。
+\newcommand{\appchapter}[1]{%
+  \cleardoublepage
+  \refstepcounter{chapter}%
+  \chapter*{#1}%
+  \addcontentsline{toc}{chapter}{#1}%
+  \markboth{#1}{#1}%
+  \thispagestyle{plain}%
+}
+% 前言/符号说明/结语等既非正文章、也不属于附录的部分：
+% 需要页眉与书签，但绝不能递增 chapter 计数器（否则正文章号整体后移）。
+\newcommand{\frontchapter}[1]{%
+  \cleardoublepage
+  \chapter*{#1}%
+  \addcontentsline{toc}{chapter}{#1}%
+  \markboth{#1}{#1}%
+  \thispagestyle{plain}%
+}
 \titleformat{\chapter}[display]
   {\normalfont\huge\heiti\color{coverMid}}
   {\filleft\fontsize{64}{64}\selectfont\color{coverMid!30}\thechapter}
@@ -114,6 +149,21 @@
   {\Huge\heiti\filright}
   [\vspace{0.6ex}{\color{coverMid!45}\titlerule[1.2pt]}]
 \titlespacing*{\chapter}{0pt}{-24pt}{26pt}
+% ---- 难度边注：就地排版，不用 \hfill 顶边 ----
+% 历史缺陷：
+%  (a) 旧宏内 \hfill 使 2pt \rule 紧贴边注盒右边界，墨迹到达 20.62cm，越出盒边界
+%      (20.50cm)，影响 20 页；配合 geometry right 2.3cm->2.6cm 后已落回盒内。
+%  (b) 旧宏锚定的是"当前位置"，写在 \section{...} 之后时会掉到标题下方的正文
+%      首行。现改为在 \section 的"标题后"钩子里立刻排出，锚点即标题行。
+\newcommand{\diffmarktext}[1]{%
+  \textcolor{coverMid!80}{\rule[-0.1em]{2pt}{0.9em}}\,%
+  \textcolor{coverMid}{\footnotesize\textbf{[#1]}}%
+}
+% 就地排出：\section{...}\difficulty{基础} 中该宏紧跟标题文本，仍在标题行内，
+% \marginnote 因此锚定标题行本身。不再依赖额外钩子，也不会漏排。
+\newcommand{\difficulty}[1]{\marginnote{\raggedright\diffmarktext{#1}}}
+% 兼容旧用法别名（tcolorbox 标题内等场合），行为与 \difficulty 一致
+\newcommand{\difficultyhere}[1]{\marginnote{\raggedright\diffmarktext{#1}}}
 \titleformat{\section}
   {\normalfont\Large\heiti\color{coverMid}}{\thesection}{0.9em}{}
 \titlespacing*{\section}{0pt}{12pt plus 3pt minus 2pt}{6pt plus 2pt minus 1pt}
@@ -210,7 +260,6 @@
 \newcommand{\curl}{\nabla\times}
 \newcommand{\divg}{\nabla\cdot}
 \newcommand{\lap}{\nabla^2}
-\newcommand{\difficulty}[1]{\marginnote{\hfill\textcolor{coverMid!80}{\rule[-0.1em]{2pt}{0.9em}}\,\textcolor{coverMid}{\footnotesize\textbf{[#1]}}}}
 \newcommand{\tens}[1]{\bm{#1}}
 \newenvironment{chapterintro}{%
   \begin{quotation}\itshape\small%
@@ -334,8 +383,7 @@
 % =============================================================================
 
 % -----------------------------------------------------------------------------
-\chapter*{符号说明}
-\addcontentsline{toc}{chapter}{符号说明}
+\frontchapter{符号说明}
 % -----------------------------------------------------------------------------
 
 本章统一列出本书所用的符号约定、物理常数、等离子体特征参数以及单位制对照，
@@ -614,8 +662,7 @@ $\star\star\star$\,[\,挑战\,] & 挑战 & 涉及较深的数学技巧或前沿�
 
 % =============================================================================
 \newpage
-\chapter*{前言}
-\addcontentsline{toc}{chapter}{前言}
+\frontchapter{前言}
 % =============================================================================
 
 等离子体是物质的第四态——一种由自由电子和离子组成、具有集体行为
@@ -771,7 +818,7 @@ $\star\star\star$\,[\,挑战\,] & 挑战 & 涉及较深的数学技巧或前沿�
 \toprule
 \textbf{阶段} & \textbf{章节/资源} & \textbf{说明} \\
 \midrule
-全书精读 & 第 1--10 章 & 全读，包括所有\,\difficulty{挑战}\,内容 \\
+全书精读 & 第 1--10 章 & 全读，包括所有\,[挑战]\,内容 \\
 矢量与张量 & 附录 A & 梯度/散度/旋度、拉普拉斯算子在三种坐标下的形式（推导必备） \\
 参数速查 & 附录 B & 等离子体特征参数、碰撞频率、德拜球计数（核对量级） \\
 推导补充 & 附录 C & 欧姆定律、阿尔芬波、Grad--Shafranov 等省略的中间步骤 \\
@@ -4527,8 +4574,7 @@ OES发射光谱 & $10^{12}$--$10^{19}$ & $0.1$--$10$ & cm & ms & 工业/空间 \
 
 \newpage
 
-\chapter*{结语}
-\addcontentsline{toc}{chapter}{结语}
+\frontchapter{结语}
 
 当你读完这本书，你已经走过了等离子体物理的核心地带：从德拜屏蔽的优雅到Landau阻尼的深刻，从单粒子在磁场中的回旋到MHD中磁力线的集体舞蹈，从实验室的辉光放电到ITER中燃烧的等离子体。
 
@@ -4567,12 +4613,16 @@ OES发射光谱 & $10^{12}$--$10^{19}$ & $0.1$--$10$ & cm & ms & 工业/空间 \
 
 
 \appendix
+% 附录编号：\chapter* 不递增 chapter 计数器，若不显式处理，
+% \thechapter 为空 -> \section 显示 ".7"、tcolorbox 显示 "定义 .16"。
+% 此处把章号切到 Alph 并归零，使附录小节/定理得到 A.1 / 定义 A.1。
+\renewcommand{\thechapter}{\Alph{chapter}}
+\setcounter{chapter}{0}
 
 %======================================================================
 % 附录A：矢量与张量公式汇总
 %======================================================================
-\chapter*{附录A：矢量与张量公式汇总}
-\addcontentsline{toc}{chapter}{附录A：矢量与张量公式汇总}
+\appchapter{附录A：矢量与张量公式汇总}
 
 本章汇总等离子体物理中频繁使用的矢量分析与张量运算公式，方便查阅。所有公式在 SI 单位制下给出。
 
@@ -4762,8 +4812,7 @@ A_zB_x & A_zB_y & A_zB_z
 %======================================================================
 % 附录B：等离子体特征参数速查表
 %======================================================================
-\chapter*{附录B：等离子体特征参数速查表}
-\addcontentsline{toc}{chapter}{附录B：等离子体特征参数速查表}
+\appchapter{附录B：等离子体特征参数速查表}
 
 本章将书中所有关键等离子体参数汇总为一张速查表，按物理内涵分组，便于检索与对照。
 
@@ -4852,13 +4901,12 @@ Spitzer 电阻率 & $\eta_\parallel$ & $\displaystyle\eta_\parallel = \frac{Z e^
 %======================================================================
 % 附录C：书中省略的中间数学步骤
 %======================================================================
-\chapter*{附录C：书中省略的中间数学步骤}
-\addcontentsline{toc}{chapter}{附录C：书中省略的中间数学步骤}
+\appchapter{附录C：书中省略的中间数学步骤}
 
 正文中为保持叙述流畅，省略了若干冗长但重要的数学推导。本章将它们完整补出，并标注对应正文章节。如果读者在正文处感到跳跃，可查阅本节。
 
 
-\section{C.1 广义欧姆定律的完整推导}
+\section{广义欧姆定律的完整推导}
 \label{sec:gen-ohm}
 
 \textbf{对应正文：}\S 4.4（广义欧姆定律）。
@@ -4901,7 +4949,7 @@ m_e n_e \left(\frac{\partial \vect{v}_e}{\partial t} + (\vect{v}_e\cdot\grad)\ve
 \textbf{关于"惯性项"：} 正文与上式中的 $\frac{m_e}{n_ee^2}\partial_t\vect{j}$ 是在假设 $n_e$ 近似不变、且忽略离子加速度与对流贡献之后保留的简化形式。严格保留电子惯性时，完整形式应含 $-\frac{m_e}{e}\frac{\mathrm{D}_e\vect{v}_e}{\mathrm{D}t}$（物质导数）。因此该式\textbf{不宜无条件称为"完整公式"}——它已作了若干近似，适用条件是低频（$\omega\ll\omega_{ce}$）且离子运动远慢于电子。
 
 
-\section{C.2 Landau 围道积分的详细推导}
+\section{Landau 围道积分的详细推导}
 \label{sec:landau-contour}
 
 \textbf{对应正文：}\S 7.3（Landau 阻尼）。\textbf{难度标注：}[挑战]
@@ -4946,7 +4994,7 @@ Landau 围道的物理本质是 \textbf{因果律}：取初始值问题要求把
 \end{insight}
 
 
-\section{C.3 MHD 阿尔芬波色散关系的完整推导}
+\section{MHD 阿尔芬波色散关系的完整推导}
 \label{sec:alfven-dispersion}
 
 \textbf{对应正文：}\S 5.4（阿尔芬波）。
@@ -4994,7 +5042,7 @@ Landau 围道的物理本质是 \textbf{因果律}：取初始值问题要求把
 此即剪切阿尔芬波的色散关系。\textbf{本推导假定了 $k_\perp=0$（波矢严格平行磁场）}，得到的是两支简并的线偏振解；一旦允许 $k_\perp\neq0$，剪切支与压缩支（快、慢磁声波）就分离，需要保留 $p_1$ 与 $k_\perp$ 项，推导见正文 \S 6.3（MHD 波）。
 
 
-\section{C.4 Grad--Shafranov 方程的简化推导}
+\section{Grad--Shafranov 方程的简化推导}
 \label{sec:grad-shafranov}
 
 \textbf{对应正文：}\S 10.3（托卡马克与仿星器）。
@@ -5029,8 +5077,7 @@ Grad--Shafranov 方程是二维椭圆型偏微分方程，其解析解仅对特�
 %======================================================================
 % 附录D：单位换算与物理常数
 %======================================================================
-\chapter*{附录D：单位换算与物理常数}
-\addcontentsline{toc}{chapter}{附录D：单位换算与物理常数}
+\appchapter{附录D：单位换算与物理常数}
 
 本章提供等离子体物理中常用的物理常数、单位换算关系，以及 SI 与高斯单位制之间的对照。
 
@@ -5132,8 +5179,7 @@ v_{te} [\text{m/s}] \approx 4.19\times 10^5\sqrt{T_e [\text{eV}]}
 %======================================================================
 % 附录E：分级自学书单
 %======================================================================
-\chapter*{附录E：分级自学书单}
-\addcontentsline{toc}{chapter}{附录E：分级自学书单}
+\appchapter{附录E：分级自学书单}
 
 本章为不同阶段的读者提供等离子体物理学习路径。从入门到前沿，循序渐进。
 
@@ -5214,8 +5260,7 @@ v_{te} [\text{m/s}] \approx 4.19\times 10^5\sqrt{T_e [\text{eV}]}
 %======================================================================
 % 附录F：全书高频易错点汇总
 %======================================================================
-\chapter*{附录F：全书高频易错点汇总}
-\addcontentsline{toc}{chapter}{附录F：全书高频易错点汇总}
+\appchapter{附录F：全书高频易错点汇总}
 
 本章汇总全书（第1--12章）中读者最容易产生的误解。每条先给出 \textbf{常见错误说法}，再给出 \textbf{正确理解}。建议在学习对应章节时对照自查。
 
@@ -5339,13 +5384,12 @@ v_{te} [\text{m/s}] \approx 4.19\times 10^5\sqrt{T_e [\text{eV}]}
 %======================================================================
 % 附录G：Python仿真入门
 %======================================================================
-\chapter*{附录G：Python仿真入门}
-\addcontentsline{toc}{chapter}{附录G：Python仿真入门}
+\appchapter{附录G：Python仿真入门}
 
 本章为读者提供使用 Python 进行等离子体物理数值模拟的入门指导。代码使用 \texttt{NumPy}、\texttt{SciPy}、\texttt{Matplotlib} 等标准库，可直接运行。
 
 
-\section{G.1 单粒子轨道追踪}
+\section{单粒子轨道追踪}
 
 \textbf{物理目标：} 数值求解洛伦兹力方程
 \begin{equation}
@@ -5358,7 +5402,7 @@ m\frac{\diff\vect{v}}{\diff t} = q(\vect{E}+\vect{v}\times\vect{B}), \qquad \fra
 运行前请确保已安装：\texttt{pip install numpy scipy matplotlib}
 \end{tip}
 
-\begin{verbatim}
+\begin{Verbatim}[breaklines=true,breakanywhere=false,breaksymbolright=\tiny\ensuremath{\hookrightarrow},fontsize=\small]
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
@@ -5434,14 +5478,14 @@ ax3.set_title("Mirror: z(t)"); ax3.set_xlabel('t [us]'); ax3.set_ylabel('z [m]')
 plt.tight_layout()
 plt.savefig('single_particle_orbit.png', dpi=150)
 plt.show()
-\end{verbatim}
+\end{Verbatim}
 
 \begin{insight}{}{}
 在均匀磁场中，洛伦兹力方程可解析求解：粒子在垂直于 $B$ 的平面内做圆周运动（回旋），圆心以速度 $\vect{E}\times\vect{B}/B^2$ 漂移（运行代码应输出约 $1000\,\mathrm{m/s}$，与 $E_0/B_0=10^3/1$ 一致）。\textbf{磁镜情形}则必须用\emph{散度为零}的近轴场：只把 $B_z$ 改成 $B(z)=B_0(1+(z/L)^2)$ 会违反 $\divg\vect{B}=\partial_zB_z\ne0$，得到的不是合法的磁场。上面的 \texttt{B\_mirror} 函数配套了径向分量 $B_r = -(r/2)\,\partial_zB_z = -rB_0z/L^2$，使 $\divg\vect{B}=\frac1r\partial_r(rB_r)+\partial_zB_z=0$ 自动满足。运行时可检查：(1) 磁镜情形下 $z(t)$ 在 $\pm z_t$ 之间往返（反射）；(2) 动能相对漂移在 $10^{-6}$ 量级（纯磁场不做功，能量守恒）；(3) 磁矩 $\mu=mv_\perp^2/(2B)$ 近似守恒。
 \end{insight}
 
 
-\section{G.2 德拜屏蔽电势的数值求解}
+\section{德拜屏蔽电势的数值求解}
 
 \textbf{物理目标：} 求解一维球坐标泊松方程
 \begin{equation}
@@ -5450,7 +5494,7 @@ plt.show()
 \end{equation}
 与线性化德拜屏蔽解 $\phi(r)=\frac{e}{4\pi\eps_0 r}\exp(-r/\lambda_D)$ 对比。\textbf{小振幅极限下非线性解应与线性德拜解吻合}：本例取 $T_e=10\,\mathrm{eV}$、$r_{\min}=10^{-3}\lambda_D$ 处的点电荷电位，$e\phi/\Theta\sim10^{-4}\ll1$，故两者在有效区间（$r\lesssim10\lambda_D$）内相对偏差仅 $\sim5\times10^{-5}$。\textbf{边界条件必须恰好 2 个}（对应 2 个未知函数 $\phi,\phi'$）；若多写一个，\texttt{solve\_bvp} 会报"边界残差数不匹配"。尾部 $r\gtrsim10\lambda_D$ 处 $|\phi|$ 已低于求解器容差，比较时应剔除。
 
-\begin{verbatim}
+\begin{Verbatim}[breaklines=true,breakanywhere=false,breaksymbolright=\tiny\ensuremath{\hookrightarrow},fontsize=\small]
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_bvp
@@ -5513,10 +5557,10 @@ plt.legend(); plt.grid(True, which='both', ls='--', alpha=0.5)
 plt.tight_layout()
 plt.savefig('debye_shielding.png', dpi=150)
 plt.show()
-\end{verbatim}
+\end{Verbatim}
 
 
-\section{G.3 朗缪尔波色散曲线绘制}
+\section{朗缪尔波色散曲线绘制}
 
 \textbf{物理目标：} 绘制冷等离子体朗缪尔波 $\omega_{pe}$ 加上热修正（Bohm--Gross 色散关系）：
 \begin{equation}
@@ -5524,7 +5568,7 @@ plt.show()
 \end{equation}
 代码含\textbf{有效性回溯检查}：端口输出 $k\lambda_D$ 取 $0.1,0.3,1.0$ 时的热修正量 $3(k\lambda_D)^2$，据此判断 Bohm--Gross 近似的适用范围（约 $k\lambda_D\lesssim0.3$；$k\lambda_D\to1$ 时朗道阻尼已显著，须用动理学色散关系）。
 
-\begin{verbatim}
+\begin{Verbatim}[breaklines=true,breakanywhere=false,breaksymbolright=\tiny\ensuremath{\hookrightarrow},fontsize=\small]
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -5571,10 +5615,10 @@ plt.xlim(0, 1.0); plt.ylim(0.9, 2.5)
 plt.tight_layout()
 plt.savefig('langmuir_dispersion.png', dpi=150)
 plt.show()
-\end{verbatim}
+\end{Verbatim}
 
 
-\section{G.4 仿真软件清单与学习路线}
+\section{仿真软件清单与学习路线}
 
 本节列出等离子体物理领域主流的数值模拟代码，按方法分类，并给出学习路线建议。
 

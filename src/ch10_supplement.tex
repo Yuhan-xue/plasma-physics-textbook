@@ -26,7 +26,7 @@ Lawson判据的核心思想是：聚变反应产生的\textbf{可自持}功率�
 \textbf{能量收支表（全体积功率密度，D-T 等量、$n\equiv n_e=n_D+n_T$、$T_e=T_i=T$）：}
 \begin{itemize}
     \item 等离子体内能密度：$u=3nk_BT$（电子与离子各 $\tfrac32nk_BT$）
-    \item $\alpha$ 粒子自加热：$P_\alpha=\dfrac{n^2}{4}\langle\sigma v\rangle E_\alpha$（$\tfrac{n}{2}$ 个 D 与 $\tfrac{n}{2}$ 个 T，反应率 $\propto \tfrac{n^2}{4}\langle\sigma v\rangle$；仅 α 留在等离子体中）
+    \item $\alpha$ 粒子自加热：$P_\alpha=\dfrac{n^2}{4}\langle\sigma v\rangle E_\alpha$（$\tfrac{n}{2}$ 个 D 与 $\tfrac{n}{2}$ 个 T，反应率 $\propto \tfrac{n^2}{4}\langle\sigma v\rangle$；仅 $\alpha$ 留在等离子体中）
     \item 韧致辐射损失：$P_{\rm rad}=C_B n^2\sqrt{T_e}$（$T_e$ 以 eV 计，$C_B\approx1.69\times10^{-38}\,\mathrm{W\,m^3\,eV^{-1/2}}$，$Z_{\rm eff}=1$）
     \item 由输运造成的能量损失：$P_{\rm loss}=\dfrac{3nk_BT}{\tau_E}$（$\tau_E$ 定义为\textbf{非辐射}输运约束时间）
 \end{itemize}
@@ -40,7 +40,7 @@ Lawson判据的核心思想是：聚变反应产生的\textbf{可自持}功率�
     \boxed{\;n\tau_E \ge \frac{3k_BT}{\dfrac{E_\alpha}{4}\langle\sigma v\rangle - \dfrac{P_{\rm rad}}{n^2}}\;}
 \label{eq:ch10-lawson-full-solved}
 \end{equation}
-\textbf{分母必须为正}——这本身就是一条物理要求：若 $\tfrac{E_\alpha}{4}\langle\sigma v\rangle<\tfrac{P_{\rm rad}}{n^2}$，α 加热根本压不住辐射，无论 $n\tau_E$ 多大都无法点火（这就是存在"最低点火温度"的原因，约 $4\,\mathrm{keV}$ 以下 D-T 无法点火）。
+\textbf{分母必须为正}——这本身就是一条物理要求：若 $\tfrac{E_\alpha}{4}\langle\sigma v\rangle<\tfrac{P_{\rm rad}}{n^2}$，$\alpha$ 加热根本压不住辐射，无论 $n\tau_E$ 多大都无法点火（这就是存在"最低点火温度"的原因，约 $4\,\mathrm{keV}$ 以下 D-T 无法点火）。
 
 \textbf{忽略辐射时的简化式：} 令 $P_{\rm rad}\to0$，得
 \begin{equation}
@@ -78,7 +78,7 @@ Lawson判据的核心思想是：聚变反应产生的\textbf{可自持}功率�
 
 \textbf{核对方向：} 忽略辐射给 $3.12\times10^{20}$，加入辐射后升到 $3.5\times10^{20}$。加入一项\emph{损失}\textbf{只能让门槛更高}——把门槛从 $3.12$ 降到 $2$（原稿的错误结论）在能量收支上是反向的。
 
-\textbf{与文献值的差别来自模型选择，不是矛盾：} 常见的"$n\tau_E\approx1.5\text{--}2\times10^{20}$"是\emph{不同约定}下的数（例如把 $n$ 取为纯 D-T 燃料密度而非 $n_e$、或只要求 $P_\alpha\ge P_{\rm loss}$ 而把辐射单列、或 $\eta$ 的吸收因子分摊方式不同），模型一变阈值就变。\textbf{必须连同模型假设一起引用}，不能把不同约定下的数当成同一个"标准值"混比。此外，$\eta=0.3$ 在本模型里对应"α 能量的 30\% 真正沉积"这一修正——若采用它，应把 $P_\alpha$ 乘以 0.3（阈值升高约 3.3 倍），\textbf{不能列出后不使用}。
+\textbf{与文献值的差别来自模型选择，不是矛盾：} 常见的"$n\tau_E\approx1.5\text{--}2\times10^{20}$"是\emph{不同约定}下的数（例如把 $n$ 取为纯 D-T 燃料密度而非 $n_e$、或只要求 $P_\alpha\ge P_{\rm loss}$ 而把辐射单列、或 $\eta$ 的吸收因子分摊方式不同），模型一变阈值就变。\textbf{必须连同模型假设一起引用}，不能把不同约定下的数当成同一个"标准值"混比。此外，$\eta=0.3$ 在本模型里对应"$\alpha$ 能量的 30\% 真正沉积"这一修正——若采用它，应把 $P_\alpha$ 乘以 0.3（阈值升高约 3.3 倍），\textbf{不能列出后不使用}。
 
 \textbf{温度依赖：} 随温度升高，$\langle\sigma v\rangle$ 增大而 $\sqrt{T_e}$ 增大得慢，故分母中的"净加热"变强，$n\tau_E$ 门槛下降；D-T 在 $15\text{--}25\,\mathrm{keV}$ 附近门槛最低（约 $1.5\times10^{20}\,\mathrm{m^{-3}s}$ 量级），温度更高时因韧致辐射增加又回升。
 
@@ -472,13 +472,13 @@ E_{\text{laser}} = \frac{0.35\,\mathrm{MJ}}{0.1} \approx 3.5\,\mathrm{MJ}
 
         % 三个判据状态点（固定 T，看 n tau 是否越过门槛）
         \filldraw[red] (3.0,1.9) circle (2.5pt);
-        \node[red,right,font=\footnotesize] at (3.05,1.75) {①不满足};
+        \node[red,right,font=\footnotesize] at (3.05,1.75) {\cnum{1}不满足};
         \filldraw[orange] (3.0,2.55) circle (2.5pt);
-        \node[orange,right,font=\footnotesize] at (3.05,2.4) {②临界};
+        \node[orange,right,font=\footnotesize] at (3.05,2.4) {\cnum{2}临界};
         \filldraw[green!50!black] (3.0,3.2) circle (2.5pt);
-        \node[green!50!black,right,font=\footnotesize] at (3.05,3.05) {③满足};
+        \node[green!50!black,right,font=\footnotesize] at (3.05,3.05) {\cnum{3}满足};
     \end{tikzpicture}
-    \caption{Lawson参数空间图：$n\tau$ 对温度 $T$ 的依赖关系。图中标注了若干代表性装置（TFTR、JET、DIII-D、NIF）以及ITER的设计目标。\textbf{判据方向：固定温度时，必须 $n\tau$ 高于点火线才满足点火条件，所以能量自持区在点火线\emph{上方}（图中红色阴影区）；线下方为不满足区。}三点示意：①在阈值线下（不满足）、②恰在线上（临界）、③在线上方（满足）。}
+    \caption{Lawson参数空间图：$n\tau$ 对温度 $T$ 的依赖关系。图中标注了若干代表性装置（TFTR、JET、DIII-D、NIF）以及ITER的设计目标。\textbf{判据方向：固定温度时，必须 $n\tau$ 高于点火线才满足点火条件，所以能量自持区在点火线\emph{上方}（图中红色阴影区）；线下方为不满足区。}三点示意：\cnum{1}在阈值线下（不满足）、\cnum{2}恰在线上（临界）、\cnum{3}在线上方（满足）。}
     \label{fig:lawson}
 \end{figure}
 
