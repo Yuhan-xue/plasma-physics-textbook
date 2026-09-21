@@ -1,0 +1,309 @@
+﻿% ============================================================
+% 第3章补充：经典例题与自学元素
+% 插入位置：第3章现有miniquiz之后（\end{miniquiz} 之后）
+% ============================================================
+
+\section*{习题精选与详解}
+\addcontentsline{toc}{section}{习题精选}
+
+\begin{example}{托卡马克中不同粒子的回旋参数}{gyro-params}
+在磁约束聚变装置中，磁场 $B=5\,\mathrm{T}$，等离子体温度 $T=10\,\mathrm{keV}$。分别计算电子、质子（$\mathrm{H}^+$）和氘核（$\mathrm{D}^+$）的回旋频率、回旋半径和回旋周期。质量取 $m_e=9.11\times 10^{-31}\,\mathrm{kg}$，$m_p=1.673\times 10^{-27}\,\mathrm{kg}$，$m_D\approx 3.34\times 10^{-27}\,\mathrm{kg}$。
+\tcblower
+\textbf{解答：}
+$k_{\!B}T = 10^4\,\mathrm{eV} = 1.602\times 10^{-15}\,\mathrm{J}$。热速度 $v_{th}=\sqrt{2k_{\!B}T/m}$。
+
+\textbf{电子：}
+\[
+v_{th,e} = \sqrt{\frac{2\times 1.602\times 10^{-15}}{9.11\times 10^{-31}}} = \sqrt{3.51\times 10^{15}} \approx 5.93\times 10^{7}\,\mathrm{m/s}
+\]
+\[
+\omega_{ce} = \frac{eB}{m_e} = \frac{1.602\times 10^{-19}\times 5}{9.11\times 10^{-31}} \approx 8.79\times 10^{11}\,\mathrm{rad/s}
+\]
+\[
+f_{ce} = \frac{\omega_{ce}}{2\pi} \approx 140\,\mathrm{GHz},\qquad r_{ce} = \frac{v_{th,e}}{\omega_{ce}} \approx \frac{5.93\times 10^{7}}{8.79\times 10^{11}} \approx 6.7\times 10^{-5}\,\mathrm{m} = 67\,\mu\mathrm{m}
+\]
+
+\textbf{质子：}
+\[
+v_{th,p} = \sqrt{\frac{2\times 1.602\times 10^{-15}}{1.673\times 10^{-27}}} \approx 1.38\times 10^{6}\,\mathrm{m/s}
+\]
+\[
+\omega_{cp} = \frac{eB}{m_p} = \frac{1.602\times 10^{-19}\times 5}{1.673\times 10^{-27}} \approx 4.79\times 10^{8}\,\mathrm{rad/s}
+\]
+\[
+f_{cp} \approx 76.2\,\mathrm{MHz},\qquad r_{cp} \approx \frac{1.38\times 10^{6}}{4.79\times 10^{8}} \approx 2.88\times 10^{-3}\,\mathrm{m} = 2.88\,\mathrm{mm}
+\]
+
+\textbf{氘核：}
+\[
+v_{th,D} = \sqrt{\frac{2\times 1.602\times 10^{-15}}{3.34\times 10^{-27}}} \approx 9.79\times 10^{5}\,\mathrm{m/s}
+\]
+\[
+\omega_{cD} = \frac{eB}{m_D} \approx 2.40\times 10^{8}\,\mathrm{rad/s},\quad f_{cD}\approx 38.2\,\mathrm{MHz},\quad r_{cD}\approx 4.08\,\mathrm{mm}
+\]
+
+\textbf{对比：} 电子回旋频率比离子高约 $10^3$ 倍，回旋半径则小约 $10^2$ 倍。这就是为什么在磁约束中，电子通常被很好约束，而离子轨道半径较大，需更大的装置尺寸。
+\end{example}
+
+\begin{example}{$E\times B$ 漂移速度计算}{exb-drift-calc}
+在均匀电磁场中，$\vect{B}=5\,\mathrm{T}\,\unitvec{z}$，$\vect{E}=10^3\,\mathrm{V/m}\,\unitvec{y}$。计算正离子和电子的 $E\times B$ 漂移速度，并判断其是否与粒子质量、电荷量或速度无关。
+\tcblower
+\textbf{解答：}
+$E\times B$ 漂移速度公式为
+\[
+\vect{v}_E = \frac{\vect{E}\times\vect{B}}{B^2}
+\]
+
+先计算 $\vect{E}\times\vect{B}$：
+\[
+\vect{E}\times\vect{B} = (E\unitvec{y})\times(B\unitvec{z}) = EB\,(\unitvec{y}\times\unitvec{z}) = EB\,\unitvec{x}
+\]
+
+代入数值：
+\[
+\vect{v}_E = \frac{10^3\times 5}{5^2}\,\unitvec{x} = \frac{5\times 10^3}{25}\,\unitvec{x} = 200\,\mathrm{m/s}\,\unitvec{x}
+\]
+
+\textbf{讨论：} 结果 $200\,\mathrm{m/s}$ 与粒子质量、电荷量、速度大小均无关。这意味着等离子体中所有粒子（正离子、电子、不同质量离子）都以相同速度向 $+x$ 方向漂移。这是 $E\times B$ 漂移的重要特征，也是磁约束装置中粒子输运的基础之一。
+\end{example}
+
+\begin{example}{磁镜损失锥与粒子反射判断}{mirror-loss-cone}
+某磁镜装置中，轴上最小磁场 $B_{\min}=1\,\mathrm{T}$，磁镜喉部最大磁场 $B_{\max}=3\,\mathrm{T}$。
+\begin{enumerate}[label=(\arabic*)]
+\item 求损失锥半角 $\theta_m$；
+\item 一粒子在 $B_{\min}$ 处总速度 $v=2\times 10^6\,\mathrm{m/s}$，平行速度 $v_{\parallel}=1.8\times 10^6\,\mathrm{m/s}$，判断该粒子能否被约束。
+\end{enumerate}
+\tcblower
+\textbf{解答：}
+
+\textbf{(1) 损失锥半角：}
+由磁镜比 $R_m = B_{\max}/B_{\min}=3$，损失锥条件为
+\[
+\sin^2\theta_m = \frac{1}{R_m} = \frac{1}{3}
+\]
+\[
+\theta_m = \arcsin\!\left(\frac{1}{\sqrt{3}}\right) \approx 35.3^{\circ}
+\]
+
+\textbf{(2) 粒子判断：}
+先求垂直速度：
+\[
+v_{\perp} = \sqrt{v^2 - v_{\parallel}^2} = \sqrt{(2\times 10^6)^2 - (1.8\times 10^6)^2} = \sqrt{0.76\times 10^{12}} \approx 8.72\times 10^{5}\,\mathrm{m/s}
+\]
+
+计算投掷角的正弦平方：
+\[
+\sin^2\theta = \left(\frac{v_{\perp}}{v}\right)^2 = \left(\frac{8.72\times 10^5}{2\times 10^6}\right)^2 \approx (0.436)^2 \approx 0.19
+\]
+
+与损失锥条件比较：
+\[
+\sin^2\theta = 0.19 < \frac{1}{3} \approx 0.333
+\]
+
+\textbf{结论：} 该粒子的 $\sin^2\theta$ 小于 $1/R_m$，位于损失锥内，因此它将穿过磁镜喉部逃逸，无法被约束。要约束该粒子，需要增大磁镜比（提高 $B_{\max}$）或注入具有更大垂直速度分量的粒子。
+\end{example}
+
+\begin{example}{托卡马克中的梯度漂移与曲率漂移}{tokamak-drifts}
+在一大环半径 $R=2\,\mathrm{m}$ 的托卡马克中，磁场 $B=5\,\mathrm{T}$。取电子温度与离子温度均为 $T=10\,\mathrm{keV}$，且速度分布各向同性。分别估算电子和氘核的\textbf{梯度漂移与曲率漂移的合速度}大小与方向。（本题未给定电场，故不要求 $E\times B$ 漂移；若需计入，可另设 $E$ 并按 $v_E=E/B$ 叠加。）
+\tcblower
+\textbf{解答：}
+在圆环磁场中，$|\nabla B|\approx B/R$，且梯度漂移与曲率漂移方向相同（垂直环面）。两者可合并为
+\[
+\vect{v}_{\nabla B+R} = \frac{m}{qB^{2}R}\left(v_{\parallel}^2 + \frac{v_{\perp}^2}{2}\right)\hat{\vect{R}}\times\vect{B}
+\]
+注意 $\hat{\vect{R}}\times\vect{B}$ 本身带一个 $B$ 的因子（$|\hat{\vect{R}}\times\vect{B}|=B$），因此\textbf{速度大小的分母只有一个 $B$}：
+\[
+v_{\text{drift}} = \frac{m}{|q|BR}\left(v_{\parallel}^2 + \frac{v_{\perp}^2}{2}\right)
+\]
+
+对各向同性分布，$\langle v_{\parallel}^2\rangle = v^2/3$，$\langle v_{\perp}^2\rangle = 2v^2/3$，于是
+\[
+\left\langle v_{\parallel}^2 + \frac{v_{\perp}^2}{2}\right\rangle = \frac{v^2}{3} + \frac{v^2}{3} = \frac{2v^2}{3}
+\]
+
+故漂移速度大小为
+\[
+v_{\text{drift}} = \frac{2mv^2}{3|q|BR} = \frac{2k_{\!B}T}{|q|BR}
+\]
+最后一步利用了 $mv^2 = 3k_{\!B}T$（三维各向同性）。
+
+\textbf{电子漂移：}
+\[
+v_{\text{drift},e} = \frac{2\times 1.602\times 10^{-15}}{(1.602\times 10^{-19})\times 5\times 2} = \frac{3.204\times 10^{-15}}{1.602\times 10^{-18}} \approx 2.0\times 10^{3}\,\mathrm{m/s}
+\]
+方向垂直环面向\textbf{下}（与离子反向）。
+
+\textbf{氘核漂移：}
+\[
+v_{\text{drift},D} = \frac{2\times 1.602\times 10^{-15}}{(1.602\times 10^{-19})\times 5\times 2} \approx 2.0\times 10^{3}\,\mathrm{m/s}
+\]
+方向垂直环面向\textbf{上}。
+
+\textbf{物理后果：} 电子与离子漂移方向相反，在托卡马克中形成垂直环面的电荷分离，产生电场。该电场又驱动 $E\times B$ 漂移，形成环向输运（即经典扩散与新经典输运的根源之一）。漂移大小约 $2\,\mathrm{km/s}$，虽仍远低于热速度（氘核在 $10\,\mathrm{keV}$ 下 $v_{th}\approx 10^{6}\,\mathrm{m/s}$），但长期累积造成显著的粒子与能量损失。
+\end{example}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.0]
+% 左图：正离子
+\begin{scope}[xshift=-4.5cm]
+\draw[->,thick] (-2,0) -- (2.5,0) node[right] {$x$};
+\draw[->,thick] (0,-1.5) -- (0,2) node[above] {$y$};
+
+% 磁场出纸面
+\foreach \x in {-1.5,-0.75,0,0.75,1.5} {
+  \foreach \y in {-1,-0.5,0,0.5,1} {
+    \node at (\x,\y) {\tiny $\odot$};
+  }
+}
+\node[right] at (1.5,1.5) {$\vect{B}\parallel +\unitvec{z}$};
+
+% 电场向上
+\draw[->,red,thick] (0,1.5) -- (0,2.3) node[right] {$\vect{E}$};
+
+% 正离子轨迹：顺时针回旋 + 向右漂移
+% （B 出纸面、初速向右时，F=qv×B 指向下方，故正离子顺时针）
+\draw[blue,thick,domain=0:720,samples=200,smooth] plot({0.7*cos(-\x)+0.08*\x/180},{0.7*sin(-\x)});
+\fill[blue] (0.7,0) circle (2pt);
+\node[blue,align=center] at (0.8,-1.2) {正离子\\$r_{ci}\sim 1\,\mathrm{mm}$};
+\draw[->,blue,thick] (0.7,0) -- (0.72,-0.22);
+
+% 漂移方向
+\draw[->,blue!60!black,very thick] (1.5,-1.5) -- (2.3,-1.5) node[right] {$\vect{v}_E$};
+\end{scope}
+
+% 右图：电子
+\begin{scope}[xshift=3cm]
+\draw[->,thick] (-2,0) -- (2.5,0) node[right] {$x$};
+\draw[->,thick] (0,-1.5) -- (0,2) node[above] {$y$};
+
+% 磁场出纸面
+\foreach \x in {-1.5,-0.75,0,0.75,1.5} {
+  \foreach \y in {-1,-0.5,0,0.5,1} {
+    \node at (\x,\y) {\tiny $\odot$};
+  }
+}
+\node[right] at (1.5,1.5) {$\vect{B}\parallel +\unitvec{z}$};
+
+% 电场向上
+\draw[->,red,thick] (0,1.5) -- (0,2.3) node[right] {$\vect{E}$};
+
+% 电子轨迹：逆时针回旋 + 向右漂移
+% （负电荷受力方向与正离子相反，故逆时针）
+\draw[orange,thick,domain=0:720,samples=200,smooth] plot({0.2*cos(\x)+0.08*\x/180},{0.2*sin(\x)});
+\fill[orange] (0.2,0) circle (1.5pt);
+\node[orange,align=center] at (0.3,-0.6) {电子\\$r_{ce}\sim 70\,\mu\mathrm{m}$};
+\draw[->,orange,thick] (0.2,0) -- (0.22,0.08);
+
+% 漂移方向
+\draw[->,orange!60!black,very thick] (1.5,-1.5) -- (2.3,-1.5) node[right] {$\vect{v}_E$};
+\end{scope}
+\end{tikzpicture}
+\caption{$E\times B$ 漂移的摆线轨迹。磁场垂直纸面向外（$+\unitvec{z}$），电场沿 $+y$ 方向。取初速度方向向右：正电荷受力 $q\vect{v}\times\vect{B}$ 指向下方，故\textbf{正离子顺时针回旋}；电子受力反向，故\textbf{电子逆时针回旋}。两者回旋方向相反，但漂移方向相同（均沿 $+\unitvec{x}$，因 $\vect{v}_E=\vect{E}\times\vect{B}/B^2$ 与电荷符号无关）。}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.1]
+% 磁镜轮廓（沙漏形）
+\draw[thick,blue] (-2,3) .. controls (-1,2) and (-0.7,1) .. (-0.5,0.5);
+\draw[thick,blue] (-2,-3) .. controls (-1,-2) and (-0.7,-1) .. (-0.5,-0.5);
+\draw[thick,blue] (2,3) .. controls (1,2) and (0.7,1) .. (0.5,0.5);
+\draw[thick,blue] (2,-3) .. controls (1,-2) and (0.7,-1) .. (0.5,-0.5);
+\draw[thick,blue] (-0.5,0.5) -- (-0.5,-0.5);
+\draw[thick,blue] (0.5,0.5) -- (0.5,-0.5);
+
+% 磁场标注
+\node[blue,right] at (2,2.5) {$B_{\max}$};
+\node[blue] at (0,0) {$B_{\min}$};
+\draw[->,blue] (1.8,2.8) -- (1.2,2.2);
+\draw[->,blue] (-1.8,2.8) -- (-1.2,2.2);
+\draw[->,blue] (1.8,-2.8) -- (1.2,-2.2);
+\draw[->,blue] (-1.8,-2.8) -- (-1.2,-2.2);
+
+% 损失锥边界
+\draw[red,thick] (-1.5,2.5) -- (0,0) -- (1.5,2.5);
+\draw[red,thick] (-1.5,-2.5) -- (0,0) -- (1.5,-2.5);
+\draw[red,->] (0,0.4) arc (90:55:0.4);
+\draw[red,->] (0,-0.4) arc (-90:-55:0.4);
+\node[red] at (0.25,1.5) {$\theta_m$};
+\node[red] at (0.25,-1.5) {$\theta_m$};
+
+% 被反射粒子（大角度）
+\draw[green!60!black,thick,->] (0,-2.2) -- (0.2,-1.2) -- (0,-0.3);
+\draw[green!60!black,thick,->] (0,-0.3) -- (-0.2,0.8) -- (0,1.8);
+\node[green!60!black,right] at (0.4,-1.5) {被反射};
+\node[green!60!black] at (-0.6,1.0) {\small $\theta>\theta_m$};
+
+% 逃逸粒子（小角度）
+\draw[orange,thick,->] (0,-2.2) -- (0.1,-1.2) -- (0.2,-0.3);
+\draw[orange,thick,->] (0.2,-0.3) -- (0.5,0.8) -- (1.0,2.2);
+\node[orange,right] at (1.2,1.5) {逃逸};
+\node[orange] at (0.8,0.2) {\small $\theta<\theta_m$};
+\end{tikzpicture}
+\caption{磁镜损失锥示意图。粒子在强场区被反射的条件是 $\sin^2\theta\ge1/R_m$：投掷角 $\theta>\theta_m$ 的粒子垂直速度分量足够大，向镜点运动时 $v_\perp$ 随 $B$ 增大而增大，最终 $v_\parallel$ 降为零并被反射；而 $\theta<\theta_m$ 的粒子 $v_\perp$ 太小，磁矩不变性不足以在其抵达镜点前反转 $v_\parallel$，因而穿过磁镜逃逸。这些 $\theta<\theta_m$ 的方向构成损失锥。}
+\end{figure}
+
+% ch3 新例题：磁镜与损失锥
+\begin{example}{磁镜约束与损失锥角估算}{ch3-mirror-est}
+一磁镜装置中，中心磁场 $B_0 = 0.2\,\mathrm{T}$，镜点磁场 $B_m = 1.0\,\mathrm{T}$（磁镜比 $R_m = B_m/B_0 = 5$）。
+（1）推导损失锥角 $\theta_{lc}$（以 $B_0$ 处计）的表达式并求其数值；
+（2）若粒子在中心处垂直速度分量占总动能的 $90\%$（即 $\sin^2\theta = 0.9$），判断它是否被约束；
+（3）说明磁镜约束为何无法完全约束各向同性等离子体。
+\tcblower
+\textbf{解答：}
+
+\textbf{(1) 损失锥角：} 磁矩不变量 $\mu = m v_\perp^2/(2B)$ 要求 $v_\perp^2/B = \text{const}$，粒子向强场区运动时 $v_\perp$ 增大、$v_\parallel$ 减小。粒子被反射的条件是平行速度在到达镜点前降为零。结合能量守恒，粒子能到达镜点的条件为
+\[
+\frac{v_\perp^2}{v^2}\bigg|_{B_0} \le \frac{B_0}{B_m} = \frac{1}{R_m}
+\]
+不满足上式的粒子构成\textbf{损失锥}，锥角满足
+\[
+\sin^2\theta_{lc} = \frac{1}{R_m} \quad\Rightarrow\quad \theta_{lc} = \arcsin\!\left(\frac{1}{\sqrt{R_m}}\right) = \arcsin\!\left(\frac{1}{\sqrt{5}}\right) \approx 26.6^\circ
+\]
+
+\textbf{(2) 判断约束：} 该粒子 $\sin^2\theta = 0.9 > 1/R_m = 0.2$，$\theta > \theta_{lc}$，\textbf{在损失锥之外，被磁镜约束}。它在中心处 $v_\parallel^2/v^2 = 0.1$，到达镜点前平行速度降为零并反射。
+
+\textbf{(3) 无法完全约束的原因：} 对各向同性分布，投掷角在立体角内均匀，落在\textbf{单端}损失锥（$0\le\theta\le\theta_{lc}$）内的比例为
+\[
+f_{\text{一端}}=\frac{1}{2}\int_{0}^{\theta_{lc}}\sin\theta\,\diff\theta
+=\frac{1-\cos\theta_{lc}}{2}
+=\frac{1-\sqrt{1-1/R_m}}{2}.
+\]
+$R_m=5$ 时 $\cos\theta_{lc}=\sqrt{4/5}=0.8944$，故
+\[
+f_{\text{一端}}=\frac{1-0.8944}{2}\approx 5.3\%,
+\qquad
+f_{\text{两端}}=1-\cos\theta_{lc}\approx 10.6\% .
+\]
+\textbf{注意：} 常见简写 $1/(2R_m)$（$-10\%$）是 $R_m\gg1$ 时对两端总数的近似，\textbf{不能}用于单端计数；精确值须用 $1-\cos\theta_{lc}$ 计算。
+
+以上是\textbf{初始}角分布中落在锥内的比例，并不自动等于每个反弹周期的持续损失率：理想无碰撞磁镜中，锥内粒子一旦耗空便不再补充，只有靠碰撞或其他散射机制重新填充损失锥，才会继续按此通量损失。这正是磁镜约束时间受限于碰撞填充率的原因。此外磁镜对静电与湍流散射（使粒子扩散进损失锥）也很敏感。因此单纯磁镜难以稳定约束热等离子体，现代磁镜实验需辅以中性束注入、偶极场或 ECRH 填充等手段。
+\end{example}
+
+\begin{formulabox}{第3章核心公式速查}{ch3-formulas}
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item 回旋频率：$\displaystyle\omega_c = \frac{|q|B}{m}$，$\displaystyle r_c = \frac{v_{\perp}}{\omega_c}$
+\item $E\times B$ 漂移：$\displaystyle\vect{v}_E = \frac{\vect{E}\times\vect{B}}{B^2}$（与 $q,m$ 无关）
+\item 梯度漂移：$\displaystyle\vect{v}_{\nabla B} = \frac{m v_{\perp}^2}{2qB^3}\,(\vect{B}\times\nabla B)$
+\item 曲率漂移：$\displaystyle\vect{v}_R = \frac{m v_{\parallel}^2}{qB^2R_c^2}\,(\vect{B}\times\vect{R}_c)$，$\vect{R}_c$ 指向曲率中心
+\item 磁镜反射条件：$\displaystyle\sin^2\theta_{\min} > \frac{B_{\min}}{B_{\max}} = \frac{1}{R_m}$
+\item 损失锥半角：$\displaystyle\theta_m = \arcsin\!\left(\frac{1}{\sqrt{R_m}}\right)$
+\item 磁矩绝热不变量：$\displaystyle\mu = \frac{m v_{\perp}^2}{2B}$
+\item 纵向绝热不变量：$\displaystyle J = \oint v_{\parallel}\,\diff s$
+\end{itemize}
+\end{formulabox}
+
+\begin{checklistbox}{第3章自学检查清单}{ch3-checklist}
+\begin{itemize}[leftmargin=*,label=$\square$]
+\item 我能计算不同粒子在给定磁场中的回旋频率、半径和周期
+\item 我掌握了 $E\times B$ 漂移公式，并理解其方向与粒子种类无关
+\item 我能用梯度漂移和曲率漂移公式估算托卡马克中的粒子漂移
+\item 我能计算磁镜损失锥角，并判断给定速度粒子是否被反射
+\item 我理解了磁矩 $\mu$ 作为绝热不变量的条件：$\tau_{\text{bounce}}\ll\tau_{\text{slow}}$
+\item 我知道为什么托卡马克中梯度漂移和曲率漂移会导致电荷分离
+\end{itemize}
+\end{checklistbox}
+
+\endinput

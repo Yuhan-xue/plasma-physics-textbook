@@ -1,0 +1,338 @@
+﻿% ============================================================
+% 第4章补充：经典例题与自学元素
+% 插入位置：第4章现有miniquiz之后（\end{miniquiz} 之后）
+% ============================================================
+
+\section*{习题精选与详解}
+\addcontentsline{toc}{section}{习题精选}
+
+\begin{example}{从玻尔兹曼方程推导连续性方程}{boltzmann-to-continuity}
+从玻尔兹曼方程
+\[
+\frac{\partial f}{\partial t} + \vect{v}\cdot\grad f + \frac{\vect{F}}{m}\cdot\grad_v f = \left(\frac{\partial f}{\partial t}\right)_c
+\]
+出发，取零阶矩（对全速度空间积分），推导连续性方程 $\frac{\partial n}{\partial t} + \divg(n\vect{u}) = 0$。
+\tcblower
+\textbf{解答：}
+
+将玻尔兹曼方程对速度空间积分（即取零阶矩）：
+\[
+\int\frac{\partial f}{\partial t}\,\diff^3 v + \int\vect{v}\cdot\grad f\,\diff^3 v + \int\frac{\vect{F}}{m}\cdot\grad_v f\,\diff^3 v = \int\left(\frac{\partial f}{\partial t}\right)_c\diff^3 v
+\]
+
+\textbf{第一项（时间导数项）：} 由于时空坐标与速度独立，积分与微分可交换：
+\[
+\int\frac{\partial f}{\partial t}\,\diff^3 v = \frac{\partial}{\partial t}\int f\,\diff^3 v = \frac{\partial n}{\partial t}
+\]
+
+\textbf{第二项（对流项）：} 梯度算子 $\grad$ 与速度 $\vect{v}$ 无关，可交换：
+\[
+\int\vect{v}\cdot\grad f\,\diff^3 v = \grad\cdot\int\vect{v}f\,\diff^3 v = \grad\cdot(n\vect{u}) = \divg(n\vect{u})
+\]
+其中用到平均速度定义 $n\vect{u} = \int\vect{v}f\,\diff^3 v$。
+
+\textbf{第三项（力项）：} 写成分量形式：
+\[
+\int\frac{\vect{F}}{m}\cdot\grad_v f\,\diff^3 v = \frac{1}{m}\sum_{i=x,y,z}\int F_i\frac{\partial f}{\partial v_i}\,\diff^3 v
+\]
+对每一分量做分部积分：
+\[
+\int_{-\infty}^{+\infty} F_i\frac{\partial f}{\partial v_i}\,\diff v_i = \left[F_i f\right]_{-\infty}^{+\infty} - \int_{-\infty}^{+\infty} f\frac{\partial F_i}{\partial v_i}\,\diff v_i
+\]
+对于洛伦兹力 $\vect{F} = q(\vect{E} + \vect{v}\times\vect{B})$，其 $i$ 分量 $F_i$ 不含有 $v_i$（例如 $F_x = q(E_x + v_y B_z - v_z B_y)$ 不含 $v_x$），故 $\partial F_i/\partial v_i = 0$；同时 $f$ 在无穷远处为零。因此第三项为零。
+
+\textbf{第四项（碰撞项）：} 碰撞只改变粒子的速度分布，不改变粒子总数，故：
+\[
+\int\left(\frac{\partial f}{\partial t}\right)_c\diff^3 v = 0
+\]
+
+\textbf{综合}四项结果：
+\[
+\frac{\partial n}{\partial t} + \divg(n\vect{u}) = 0
+\]
+
+\textbf{要点：} 连续性方程是质量守恒的局域表达，其推导不依赖于力的具体形式，只要求碰撞项守恒粒子数。它是从微观动理学到宏观流体的第一座桥梁。
+\end{example}
+
+\begin{example}{广义欧姆定律各项的量级估算}{ohms-law-estimate}
+在磁约束聚变装置中，典型参数为：$B=5\,\mathrm{T}$，$n=10^{20}\,\mathrm{m}^{-3}$，$T_e=10\,\mathrm{keV}$，特征尺度 $L=1\,\mathrm{m}$，流体速度 $u=10^4\,\mathrm{m/s}$，电流密度 $j=10^5\,\mathrm{A/m^2}$，特征频率 $\omega=10^3\,\mathrm{rad/s}$。估算广义欧姆定律
+\[
+\vect{E} + \vect{u}\times\vect{B} = \eta\vect{j} + \frac{1}{en}\vect{j}\times\vect{B} - \frac{1}{en}\grad p_e + \frac{m_e}{ne^2}\frac{\partial\vect{j}}{\partial t}
+\]
+右端各项的量级，并判断哪些项在理想MHD近似下可以忽略。
+\tcblower
+\textbf{解答：}
+
+\textbf{第 0 步：先想清楚"和谁比"。} 广义欧姆定律的所有项都是 $\mathrm{V/m}$，但拿什么当分母决定了结论。本题统一以 $uB=10^4\times5=5\times10^4\,\mathrm{V/m}$ 为\textbf{参考尺度}（reference scale），即把方程写成
+\[
+\frac{\vect{E} + \vect{u}\times\vect{B}}{uB}
+= \underbrace{\frac{\eta\vect{j}}{uB}}_{\epsilon_\eta}
++ \underbrace{\frac{\vect{j}\times\vect{B}}{enuB}}_{\epsilon_H}
+- \underbrace{\frac{\grad p_e}{enuB}}_{\epsilon_p}
++ \underbrace{\frac{m_e}{ne^2uB}\frac{\partial\vect{j}}{\partial t}}_{\epsilon_I}
+\]
+再逐项算无量纲比值。\textbf{注意 $uB$ 只是参考尺度，不等于左端的真实大小}：理想极限下 $\vect{E}+\vect{u}\times\vect{B}\to0$，左端比 $uB$ 小得多。所以下面报出的比值是"相对 $uB$"的，用它判断能否删项时必须同时说明所求精度。
+
+\textbf{1. 电阻项 $\eta\vect{j}$：}
+Spitzer电阻率（近似公式 $\eta \approx 5\times 10^{-5} Z\ln\Lambda / T_e^{3/2}\,[\Omega\mathrm{m}]$，$T_e$ 单位为 $\mathrm{eV}$）：
+\[
+\eta \approx \frac{5\times 10^{-5}\times 10}{(10^4)^{3/2}} = \frac{5\times 10^{-4}}{10^6} = 5\times 10^{-10}\,\Omega\mathrm{m}
+\]
+\[
+|\eta\vect{j}| \approx 5\times 10^{-10}\times 10^5 = 5\times 10^{-5}\,\mathrm{V/m},
+\qquad \epsilon_\eta = \frac{5\times10^{-5}}{5\times10^4} = 10^{-9}
+\]
+
+\textbf{2. 霍尔项 $\dfrac{1}{en}\vect{j}\times\vect{B}$：}
+\[
+\left|\frac{1}{en}\vect{j}\times\vect{B}\right| \approx \frac{jB}{en} = \frac{10^5\times 5}{1.602\times 10^{-19}\times 10^{20}} = \frac{5\times 10^5}{16.02} \approx 3.1\times 10^4\,\mathrm{V/m}
+\]
+\[
+\epsilon_H = \frac{3.1\times10^4}{5\times10^4} \approx 0.62
+\]
+
+\textbf{3. 电子压强梯度项 $-\dfrac{1}{en}\grad p_e$：}
+电子压强 $p_e = nk_{\!B}T_e = 10^{20}\times 1.602\times 10^{-15} = 1.602\times 10^5\,\mathrm{Pa}$。
+取梯度估计 $|\grad p_e| \sim p_e/L = 1.6\times 10^5\,\mathrm{Pa/m}$：
+\[
+\left|\frac{\grad p_e}{en}\right| \approx \frac{1.6\times 10^5}{1.602\times 10^{-19}\times 10^{20}} \approx \frac{1.6\times 10^5}{16.02} \approx 10^4\,\mathrm{V/m},
+\qquad \epsilon_p = \frac{10^4}{5\times10^4} \approx 0.2
+\]
+
+\textbf{4. 电子惯性项 $\dfrac{m_e}{ne^2}\dfrac{\partial\vect{j}}{\partial t}$：}
+\[
+\left|\frac{m_e}{ne^2}\frac{\partial\vect{j}}{\partial t}\right| \approx \frac{m_e}{ne^2}\,\omega j = \frac{9.109\times 10^{-31}}{10^{20}\times (1.602\times 10^{-19})^2}\times 10^3\times 10^5
+\]
+系数：$\dfrac{9.109\times 10^{-31}}{2.566\times 10^{-18}} \approx 3.55\times 10^{-13}$，故：
+\[
+3.55\times 10^{-13}\times 10^8 \approx 3.6\times 10^{-5}\,\mathrm{V/m},
+\qquad \epsilon_I = \frac{3.6\times10^{-5}}{5\times10^4} \approx 7\times10^{-10}
+\]
+
+\textbf{量级对比（相对 $uB$）：}
+\[
+\epsilon_H(0.62) > \epsilon_p(0.2) \gg \epsilon_\eta(10^{-9}) \approx \epsilon_I(7\times10^{-10})
+\]
+
+\textbf{结论：}
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item \textbf{电阻项与惯性项}：$\epsilon_\eta,\epsilon_I\sim10^{-9}$，比参考尺度小 9 个数量级。要在 $10^{-6}$ 相对精度内描述电场，它们确实可以删；但这来自"精度要求"，不是"必然可忽略"。
+\item \textbf{霍尔项与压强项}：$\epsilon_H\approx0.62$、$\epsilon_p\approx0.2$。\textbf{两者都不满足"小修正"的渐近条件（$\epsilon\ll1$）}——霍尔项甚至与参考尺度同量级。把它们当作修正项删掉，会丢掉 $O(1)$ 的物理。
+\item \textbf{理想MHD}：$\vect{E}+\vect{u}\times\vect{B}=0$ 要求右端四项全部远小于左端。本题只有电阻项与惯性项满足；保留霍尔项即为\textbf{Hall MHD}，保留压强项即需要\textbf{电子压强闭合}。请先报告所需的相对精度，再决定删哪几项。
+\end{itemize}
+\end{example}
+
+\begin{example}{双极扩散的物理起源与扩散系数估算}{ambipolar-diffusion}
+在实验室弱电离等离子体中，电子扩散系数 $D_e$ 远大于离子扩散系数 $D_i$（因为 $m_e\ll m_i$），但准中性条件要求电子和离子的通量必须相等。设一维扩散中电子和离子的迁移率分别为 $\mu_e$、$\mu_i$，扩散系数为 $D_e$、$D_i$，且满足爱因斯坦关系 $D_\alpha = \mu_\alpha k_{\!B}T_\alpha/e$。证明等离子体将以统一的\textbf{双极扩散速度}运动，并求双极扩散系数 $D_a$。给定氢等离子体 $T_e=4\,\mathrm{eV}$，$T_i=1\,\mathrm{eV}$，$D_i=10^{-3}\,\mathrm{m^2/s}$，估算 $D_a$。
+\tcblower
+\textbf{解答：}
+
+电子和离子的通量（密度 $\times$ 速度）为：
+\begin{align*}
+\Gamma_e &= -D_e\frac{\partial n}{\partial x} - \mu_e n E \quad \text{（电子带负电，漂移与电场反向）}\\
+\Gamma_i &= -D_i\frac{\partial n}{\partial x} + \mu_i n E \quad \text{（离子带正电，漂移与电场同向）}
+\end{align*}
+
+\textbf{准中性条件}要求 $\Gamma_e = \Gamma_i = \Gamma_a$（否则电荷积累会产生巨大库仑能，不被允许）。令两式相等：
+\[
+-(D_e - D_i)\frac{\partial n}{\partial x} = (\mu_e + \mu_i)nE
+\]
+解出自建电场（双极电场）：
+\[
+E = -\frac{D_e - D_i}{\mu_e + \mu_i}\,\frac{1}{n}\frac{\partial n}{\partial x}
+\]
+
+将 $E$ 代回 $\Gamma_i$（或 $\Gamma_e$）的表达式，得到统一的双极扩散通量：
+\[
+\Gamma_a = -\frac{\mu_i D_e + \mu_e D_i}{\mu_e + \mu_i}\,\frac{\partial n}{\partial x} = -D_a\frac{\partial n}{\partial x}
+\]
+其中\textbf{双极扩散系数}为：
+\[
+D_a = \frac{\mu_i D_e + \mu_e D_i}{\mu_e + \mu_i}
+\]
+
+利用爱因斯坦关系 $D_\alpha = \mu_\alpha k_{\!B}T_\alpha/e$：
+\[
+D_a = \frac{\mu_i\mu_e k_{\!B}T_e/e + \mu_e\mu_i k_{\!B}T_i/e}{\mu_e + \mu_i} = \frac{\mu_e\mu_i}{\mu_e + \mu_i}\cdot\frac{k_{\!B}(T_e + T_i)}{e}
+\]
+
+由于 $m_e\ll m_i$，有 $\mu_e\gg\mu_i$，因此 $\mu_e + \mu_i \approx \mu_e$，上式简化为：
+\[
+D_a \approx \mu_i\frac{k_{\!B}(T_e + T_i)}{e} = D_i\left(1 + \frac{T_e}{T_i}\right)
+\]
+
+\textbf{数值估算：} 代入 $T_e=4\,\mathrm{eV}$，$T_i=1\,\mathrm{eV}$，$D_i=10^{-3}\,\mathrm{m^2/s}$：
+\[
+D_a \approx 10^{-3}\times\left(1 + \frac{4}{1}\right) = 5\times 10^{-3}\,\mathrm{m^2/s}
+\]
+
+\textbf{物理图像：} 电子本可以更快地扩散离开，但电荷分离产生的双极电场 $E_a$ 会：
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item 拉慢电子（电场与电子扩散方向相反）
+\item 加速离子（电场与离子扩散方向相同）
+\end{itemize}
+最终两者以相同的“双极扩散速度”运动，扩散系数由离子扩散系数决定，但被电子温度大大增强（因子 $1+T_e/T_i$）。这是壁面约束等离子体（如放电管）中粒子损失的主要机制。
+\end{example}
+
+\begin{example}{等离子体中的离子声速计算}{ion-sound-speed}
+一实验室氢等离子体，电子温度 $T_e=4\,\mathrm{eV}$，离子温度 $T_i=0.1\,\mathrm{eV}$。求：
+\begin{enumerate}[label=(\arabic*)]
+\item 离子声速 $c_s$；
+\item 离子声速与离子热速度 $v_{ti}$ 的比值；
+\item 判断条件 $T_e\gg T_i$ 是否满足，并说明为何这是离子声波存在的必要条件。
+\end{enumerate}
+\tcblower
+\textbf{解答：}
+
+\textbf{(1) 离子声速：} 在 $T_e\gg T_i$ 条件下，电子热压提供恢复力，离子质量提供惯性：
+\[
+c_s = \sqrt{\frac{k_{\!B}T_e}{m_i}}
+\]
+其中 $k_{\!B}T_e = 4\times 1.602\times 10^{-19} = 6.408\times 10^{-19}\,\mathrm{J}$，$m_i = m_p = 1.673\times 10^{-27}\,\mathrm{kg}$。
+\[
+c_s = \sqrt{\frac{6.408\times 10^{-19}}{1.673\times 10^{-27}}} = \sqrt{3.83\times 10^8} \approx 1.96\times 10^4\,\mathrm{m/s} \approx 19.6\,\mathrm{km/s}
+\]
+
+\textbf{(2) 离子热速度：} $v_{ti} = \sqrt{2k_{\!B}T_i/m_i}$
+\[
+v_{ti} = \sqrt{\frac{2\times 0.1\times 1.602\times 10^{-19}}{1.673\times 10^{-27}}} = \sqrt{1.91\times 10^7} \approx 4.37\times 10^3\,\mathrm{m/s} = 4.37\,\mathrm{km/s}
+\]
+\[
+\frac{c_s}{v_{ti}} = \frac{1.96\times 10^4}{4.37\times 10^3} \approx 4.5
+\]
+
+\textbf{(3) 条件判断：}
+\[
+\frac{T_e}{T_i} = \frac{4}{0.1} = 40 \gg 1
+\]
+条件满足。
+
+\textbf{物理原因：} 离子声波的恢复力来自电子热压（通过准中性电场传递）。如果 $T_i\sim T_e$，离子的热运动同样剧烈，会破坏波的相干性——离子会迅速扩散抹平密度扰动，导致强烈的Landau阻尼（见第7章）。只有当 $T_e\gg T_i$ 时，电子才能迅速响应建立静电恢复力，而离子的热扩散相对较慢，波才能稳定传播。
+\end{example}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.0]
+% 等离子体区域
+\draw[thick,fill=blue!5] (-3,-2) rectangle (3,2);
+\node[blue!60] at (0,0) {\large 等离子体};
+
+% 电子速度场（红色，较快，较密）
+\foreach \x in {-2,-1,0,1,2} {
+  \foreach \y in {-1.5,-0.5,0.5,1.5} {
+    \draw[->,red,thick] (\x,\y) -- ++(0.8,0.2);
+  }
+}
+\node[red] at (2.5,1.8) {$\vect{u}_e$};
+
+% 离子速度场（蓝色，较慢，较疏）
+\foreach \x in {-2.5,-1.5,0.5,1.5} {
+  \foreach \y in {-1,0,1} {
+    \draw[->,blue,thick] (\x,\y) -- ++(0.3,-0.1);
+  }
+}
+\node[blue] at (-2.5,1.8) {$\vect{u}_i$};
+
+% 坐标轴
+\draw[->,thick] (-3.5,-2) -- (-3.5,2) node[above] {$y$};
+\draw[->,thick] (-3.5,-2) -- (3.5,-2) node[right] {$x$};
+
+% 标注说明
+\draw[red,->,very thick] (-4.5,-1) -- (-3.8,-1);
+\node[red,left] at (-4.5,-1) {电子速度快};
+\draw[blue,->,very thick] (-4.5,-1.5) -- (-3.8,-1.5);
+\node[blue,left] at (-4.5,-1.5) {离子速度慢};
+\end{tikzpicture}
+\caption{双流体模型示意图。电子和离子作为两种独立的流体，可以具有不同的宏观流速 $\vect{u}_e$ 和 $\vect{u}_i$。由于 $m_e\ll m_i$，电子的响应远快于离子。}
+\end{figure}
+
+% ch4 新例题：离子声波的流体色散推导
+\begin{example}{离子声波的流体色散关系推导}{ion-acoustic-derivation}
+用双流体方程组推导离子声波的色散关系（允许有限离子温度 $T_i$），并说明在什么极限下退化为 $c_s = \sqrt{k_{\!B}T_e/m_i}$。
+\tcblower
+\textbf{解答：}
+
+\textbf{步骤1：线性化流体方程组。} 对离子（绝热指数 $\gamma_i = 3$ 一维）和电子（Boltzmann 响应）：
+
+离子连续性与动量方程线性化（平衡态静止、均匀）：
+\[
+\frac{\partial n_{i1}}{\partial t} + n_0\frac{\partial u_{i1}}{\partial x} = 0, \qquad
+m_i\frac{\partial u_{i1}}{\partial t} = -\ee\frac{\partial\phi_1}{\partial x} - \frac{1}{n_0}\frac{\partial p_{i1}}{\partial x}
+\]
+电子为 Boltzmann 分布：$n_{e1} = n_0\ee\phi_1/(k_{\!B}T_e)$。
+
+\textbf{步骤2：用平面波 $\propto\ee^{\ii(kx-\omega t)}$ 化简。}
+\[
+-\ii\omega n_{i1} + \ii k n_0 u_{i1} = 0 \;\Rightarrow\; n_{i1} = \frac{k n_0}{\omega}u_{i1}
+\]
+\[
+-\ii\omega m_i u_{i1} = -\ii k \ee\phi_1 - \frac{\ii k}{n_0}\gamma_i k_{\!B}T_i\, n_{i1}
+\;\Rightarrow\; m_i\omega u_{i1} = k\ee\phi_1 + \gamma_i k_{\!B}T_i\frac{k}{\omega}u_{i1}
+\]
+
+\textbf{步骤3：消去 $u_{i1}$、$n_{i1}$。} 由动量方程解出 $u_{i1}$，再代入连续性方程：
+\[
+n_{i1} = \frac{k n_0}{\omega}u_{i1}, \qquad
+u_{i1} = \frac{k\ee\phi_1}{m_i(\omega^2 - \gamma_i k^2 v_{ti}^2)}\,\omega
+\;\Longrightarrow\;
+n_{i1} = \frac{\ee n_0 k^2\phi_1}{m_i(\omega^2 - \gamma_i k^2 v_{ti}^2)}
+\]
+
+\textbf{步骤4：闭合关系的选择。} 到这一步为止，未知量是 $n_{i1}$、$u_{i1}$ 与 $\phi_1$ 三个，而方程只有两个——\textbf{必须补一个闭合关系}。两种做法得到的是同一物理，但适用范围不同。
+
+\smallskip
+\textbf{(A) 泊松闭合（严格，适用于任意 $k\lambda_{De}$）。} 保留泊松方程 $-k^2\phi_1 = \dfrac{e}{\epsilon_0}(n_{e1}-n_{i1})$，与电子玻尔兹曼响应 $n_{e1}=n_0\ee\phi_1/(k_{\!B}T_e)$ 联立：
+\[
+-k^2\phi_1 = \frac{\ee n_0\phi_1}{\epsilon_0 k_{\!B}T_e} - \frac{\ee}{\epsilon_0}n_{i1}
+\]
+把 $n_{i1}$ 代入并整理，得到\textbf{完整色散关系}：
+\[
+\boxed{\;\omega^2 = k^2\left(\frac{\gamma_i k_{\!B}T_i}{m_i} + \frac{k_{\!B}T_e}{m_i}\cdot\frac{1}{1+k^2\lambda_{De}^2}\right)\;}
+\]
+其中 $\lambda_{De}=\sqrt{\epsilon_0 k_{\!B}T_e/(n_0e^2)}$。第二项中的 $1/(1+k^2\lambda_{De}^2)$ 是\textbf{泊松方程引入的}：电子屏蔽使有效恢复力随 $k$ 增大而减弱。
+
+\smallskip
+\textbf{(B) 准中性闭合（长波极限）。} 若直接令 $n_{i1}=n_{e1}$（即 $\grad\cdot\vect E\approx0$），则上式中的分母 $1+k^2\lambda_{De}^2$ 从源头就不出现：
+\[
+\omega^2 = \frac{k^2 k_{\!B}T_e}{m_i} + \gamma_i k^2 v_{ti}^2
+= k^2\left(\frac{k_{\!B}T_e}{m_i} + \frac{\gamma_i k_{\!B}T_i}{m_i}\right)
+\]
+这正是离子声波的标准形式，相速度 $\omega/k=\sqrt{(k_{\!B}T_e+\gamma_i k_{\!B}T_i)/m_i}=c_s\sqrt{1+\gamma_i T_i/T_e}$。
+
+\smallskip
+\textbf{两者如何衔接：} 当 $k\lambda_{De}\to0$ 时 $\dfrac{1}{1+k^2\lambda_{De}^2}\to1$，(A) 式精确退化为 (B) 式。所以\textbf{准中性闭合不是独立假设，而是泊松闭合的长波极限}——$k\lambda_{De}\ll1$ 时等离子体尺度远大于屏蔽尺度，"净电荷为零"才成立。
+
+\textbf{极限讨论：}
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item \textbf{长波极限}（$k\lambda_{De}\ll1$，$T_e\gg T_i$）：$1/(1+k^2\lambda_{De}^2)\approx1$，离子热项可忽略，$\omega \approx kc_s = k\sqrt{k_{\!B}T_e/m_i}$，即声波。此时相速度最大。
+\item \textbf{短波修正}：$k\lambda_{De}$ 增大时电子屏蔽削弱恢复力，\textbf{相速度随 $k$ 增大而单调下降}，不是升高。当 $k\lambda_{De}\gtrsim1$ 时色散关系完全弯曲，离子声波在 $\omega\to\omega_{pi}$ 附近消失（此频段转为离子朗缪尔振荡）。
+\item \textbf{离子热贡献}：$T_i$ 不可忽略时恢复力增加，色散关系中的 $\gamma_i k^2v_{ti}^2=3k^2k_{\!B}T_i/m_i$ 项使波速变为 $\omega/k=\sqrt{(k_{\!B}T_e/\text{屏蔽因子}+3k_{\!B}T_i)/m_i}$，长波下即 $c_s=\sqrt{(T_e+3T_i)/m_i}$（一维 $\gamma_i=3$）。若 $T_i\sim T_e$，离子热运动导致强 Landau 阻尼（第7章），波难以传播。
+\end{itemize}
+
+\textbf{关于 $v_{ti}$ 的定义：} 本题统一采用 $v_{ti}^2=k_{\!B}T_i/m_i$（与 $\lambda_{De}$ 的定义一致），故一维离子绝热项写作 $\gamma_i k^2v_{ti}^2=3k^2k_{\!B}T_i/m_i$。注意这与"热速度"的另一种常见定义 $v_{th}=\sqrt{2k_{\!B}T/m}$ 相差 $\sqrt2$，见上面的离子热速度例题；在同一题内必须只用一种定义。
+\end{example}
+
+\begin{formulabox}{第4章核心公式速查}{ch4-formulas}
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item 玻尔兹曼方程：$\displaystyle\frac{\partial f}{\partial t} + \vect{v}\cdot\grad f + \frac{\vect{F}}{m}\cdot\grad_v f = \left(\frac{\partial f}{\partial t}\right)_c$
+\item 连续性方程（零阶矩）：$\displaystyle\frac{\partial n}{\partial t} + \divg(n\vect{u}) = 0$
+\item 运动方程（一阶矩）：$\displaystyle nm\left(\frac{\partial\vect{u}}{\partial t} + \vect{u}\cdot\grad\vect{u}\right) = qn(\vect{E}+\vect{u}\times\vect{B}) - \grad p + \vect{R}$
+\item 双流体状态方程：$\displaystyle p_\alpha = n_\alpha k_{\!B}T_\alpha\quad(\alpha=e,i)$
+\item 广义欧姆定律：$\displaystyle\vect{E} + \vect{u}\times\vect{B} = \eta\vect{j} + \frac{1}{en}\vect{j}\times\vect{B} - \frac{1}{en}\grad p_e + \frac{m_e}{ne^2}\frac{\partial\vect{j}}{\partial t}$
+\item 双极扩散系数：$\displaystyle D_a \approx D_i\left(1 + \frac{T_e}{T_i}\right)$
+\item 离子声速：$\displaystyle c_s = \sqrt{\frac{k_{\!B}T_e}{m_i}}$（当 $T_e\gg T_i$）
+\end{itemize}
+\end{formulabox}
+
+\begin{checklistbox}{第4章自学检查清单}{ch4-checklist}
+\begin{itemize}[leftmargin=*,label=$\square$]
+\item 我能从玻尔兹曼方程出发，取零阶矩和一阶矩推导连续性方程和动量方程
+\item 我理解了双流体模型中电子和离子脱耦的物理根源（$m_e/m_i\sim 1/1836$）
+\item 我能估算广义欧姆定律中各项的量级，并判断在什么近似下可以忽略
+\item 我掌握了双极扩散的物理图像：电荷分离产生自建电场，约束电子和离子一起扩散
+\item 我能计算离子声速，并理解 $T_e\gg T_i$ 是离子声波存在的前提条件
+\item 我知道状态方程的闭合问题：需要额外条件（如等温、绝热）才能使方程组封闭
+\end{itemize}
+\end{checklistbox}
+
+\endinput

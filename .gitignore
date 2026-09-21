@@ -31,6 +31,7 @@ src/chk*.toc
 
 # 临时工作目录与脚本（含临时校验脚本）
 tmp/
+reviews_tmp/
 
 # 临时文件
 *.tmp

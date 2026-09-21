@@ -1,0 +1,245 @@
+﻿% ============================================================
+% 第2章补充：经典例题与自学元素
+% 插入位置：第2章现有miniquiz之后（\end{miniquiz} 之后）
+% ============================================================
+
+\section*{习题精选与详解}
+\addcontentsline{toc}{section}{习题精选}
+
+\begin{example}{低温等离子体的基本参数估算}{low-temp-params}
+一实验室氩气放电等离子体，测得电子密度 $n_e = 10^{18}\,\mathrm{m}^{-3}$，电子温度 $T_e = 4\,\mathrm{eV}$。请计算：
+\begin{enumerate}[label=(\arabic*)]
+\item 德拜长度 $\lambda_D$；
+\item 电子等离子体频率 $\omega_{pe}$；
+\item 德拜球内粒子数 $N_D$。
+\end{enumerate}
+并判断其是否满足理想等离子体条件。
+\tcblower
+\textbf{解答：}
+取 $\eps_0 = 8.854\times 10^{-12}\,\mathrm{F/m}$，$e=1.602\times 10^{-19}\,\mathrm{C}$，$k_{\!B}T_e = 4\,\mathrm{eV} = 6.408\times 10^{-19}\,\mathrm{J}$，$m_e = 9.109\times 10^{-31}\,\mathrm{kg}$。
+
+\textbf{(1) 德拜长度：}
+\[
+\lambda_D = \sqrt{\frac{\eps_0 k_{\!B}T_e}{n_e e^2}} = \sqrt{\frac{8.854\times 10^{-12}\times 6.408\times 10^{-19}}{10^{18}\times (1.602\times 10^{-19})^2}}
+\]
+分子：$8.854\times 10^{-12}\times 6.408\times 10^{-19} = 5.673\times 10^{-30}$；
+分母：$10^{18}\times 2.566\times 10^{-38} = 2.566\times 10^{-20}$。
+\[
+\lambda_D = \sqrt{\frac{5.673\times 10^{-30}}{2.566\times 10^{-20}}} = \sqrt{2.210\times 10^{-10}} \approx 1.49\times 10^{-5}\,\mathrm{m} = 14.9\,\mu\mathrm{m}
+\]
+
+\textbf{(2) 电子等离子体频率：}
+\[
+\omega_{pe} = \sqrt{\frac{n_e e^2}{\eps_0 m_e}} = \sqrt{\frac{10^{18}\times (1.602\times 10^{-19})^2}{8.854\times 10^{-12}\times 9.109\times 10^{-31}}}
+\]
+分子：$10^{18}\times 2.566\times 10^{-38} = 2.566\times 10^{-20}$；
+分母：$8.854\times 10^{-12}\times 9.109\times 10^{-31} = 8.065\times 10^{-42}$。
+\[
+\omega_{pe} = \sqrt{\frac{2.566\times 10^{-20}}{8.065\times 10^{-42}}} = \sqrt{3.18\times 10^{21}} \approx 5.64\times 10^{10}\,\mathrm{rad/s}
+\]
+对应频率 $f_{pe} = \omega_{pe}/2\pi \approx 8.97\,\mathrm{GHz}$。
+
+\textbf{(3) 德拜球内粒子数：}
+\[
+N_D = n_e \cdot \frac{4}{3}\pi \lambda_D^3 = 10^{18}\times \frac{4}{3}\pi\times(1.49\times 10^{-5})^3 \approx 1.4\times 10^{4}
+\]
+
+\textbf{判断：} $N_D\gg 1$（德拜球内约 $1.4$ 万个粒子）且 $\lambda_D\ll L$（实验室装置尺度 $L\sim 0.1\,\mathrm{m}$），满足理想等离子体条件。
+\end{example}
+
+\begin{example}{判断给定电离气体是否为等离子体}{plasma-criteria}
+某氩气放电装置中，测得电离度极低，电子密度 $n_e = 10^{16}\,\mathrm{m}^{-3}$，电子温度 $T_e = 2\,\mathrm{eV}$，装置特征尺寸为 $L = 0.1\,\mathrm{m}$。请判断该体系是否满足等离子体的基本判据。
+\tcblower
+\textbf{解答：}
+等离子体三大判据：\textbf{(i)} 德拜屏蔽要求 $\lambda_D\ll L$；\textbf{(ii)} 集体行为要求 $N_D\gg 1$；\textbf{(iii)} 准中性要求相互作用以库仑力为主。
+
+计算德拜长度：
+\[
+\lambda_D = \sqrt{\frac{\eps_0 k_{\!B}T_e}{n_e e^2}} = \sqrt{\frac{8.854\times 10^{-12}\times 2\times 1.602\times 10^{-19}}{10^{16}\times (1.602\times 10^{-19})^2}}
+\]
+\[
+\lambda_D = \sqrt{\frac{2.836\times 10^{-30}}{2.566\times 10^{-22}}} = \sqrt{1.105\times 10^{-8}} \approx 1.05\times 10^{-4}\,\mathrm{m} = 105\,\mu\mathrm{m}
+\]
+
+判据 (i)：
+\[
+\frac{L}{\lambda_D} = \frac{0.1}{1.05\times 10^{-4}} \approx 952 \gg 1 \quad \checkmark
+\]
+
+判据 (ii)：
+\[
+N_D = n_e \lambda_D^3 = 10^{16}\times (1.05\times 10^{-4})^3 = 10^{16}\times 1.16\times 10^{-12} \approx 1.16\times 10^{4} \gg 1 \quad \checkmark
+\]
+判据 (iii)：库仑作用势能与热能之比 $\Gamma = \frac{e^2}{4\pi\eps_0\lambda_D k_{\!B}T_e}$。由于 $N_D\gg 1$，等价于 $\Gamma\ll 1$。此处 $N_D\approx 1.16\times10^4$，故 $\Gamma \sim N_D^{-2/3}\approx 2\times10^{-3}\ll 1$，弱耦合成立（若按 $\Gamma = N_D^{-1}$ 估算亦为 $\sim10^{-4}$，同样远小于 $1$）。
+
+\textbf{结论：} 三个判据均满足，该体系是理想等离子体。虽然电离度低，但只要德拜球内包含足够多的粒子，集体屏蔽效应就能建立。
+\end{example}
+
+\begin{example}{不同环境等离子体参数对比}{env-comparison}
+分别计算并对比星际介质、实验室低温等离子体和磁约束聚变等离子体的德拜长度、等离子体频率和德拜球粒子数。参数如下：
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item 星际介质：$n = 10^{6}\,\mathrm{m}^{-3}$，$T = 10^{4}\,\mathrm{K}$（约 $0.86\,\mathrm{eV}$）
+\item 实验室低温：$n = 10^{18}\,\mathrm{m}^{-3}$，$T = 4\,\mathrm{eV}$
+\item 磁约束聚变：$n = 10^{20}\,\mathrm{m}^{-3}$，$T = 10\,\mathrm{keV}$
+\end{itemize}
+\tcblower
+\textbf{解答：}
+将 $k_{\!B}T$ 统一换算为焦耳：$1\,\mathrm{eV}=1.602\times 10^{-19}\,\mathrm{J}$。
+
+\textbf{星际介质：}
+\[
+\lambda_D = \sqrt{\frac{8.854\times 10^{-12}\times 0.86\times 1.602\times 10^{-19}}{10^6\times (1.602\times 10^{-19})^2}} \approx 6.89\,\mathrm{m}
+\]
+\[
+\omega_{pe} = \sqrt{\frac{10^6\times (1.602\times 10^{-19})^2}{8.854\times 10^{-12}\times 9.109\times 10^{-31}}} \approx 5.64\times 10^{4}\,\mathrm{rad/s}\;(f_{pe}\approx 9.0\,\mathrm{kHz})
+\]
+\[
+N_D = \frac{4}{3}\pi\times 10^6\times (6.89)^3 \approx 1.4\times 10^{9}
+\]
+
+\textbf{实验室低温：}（见例题 \ref{ex:low-temp-params}）
+$\lambda_D\approx 14.9\,\mu\mathrm{m}$，$\omega_{pe}\approx 5.64\times 10^{10}\,\mathrm{rad/s}$，$N_D\approx 1.4\times 10^4$。
+
+\textbf{磁约束聚变：}
+\[
+\begin{aligned}
+\lambda_D &= \sqrt{\frac{8.854\times 10^{-12}\times 10^4\times 1.602\times 10^{-19}}
+                        {10^{20}\times (1.602\times 10^{-19})^2}}
+          = \sqrt{\frac{1.418\times 10^{-26}}{2.566\times 10^{-21}}} \\
+          &\approx 7.4\times 10^{-5}\,\mathrm{m} = 74\,\mu\mathrm{m}
+\end{aligned}
+\]
+\[
+\omega_{pe} = \sqrt{\frac{10^{20}\times 2.566\times 10^{-38}}{8.065\times 10^{-42}}} \approx 5.64\times 10^{11}\,\mathrm{rad/s}\;(f_{pe}\approx 89.8\,\mathrm{GHz})
+\]
+\[
+N_D = \frac{4}{3}\pi\times 10^{20}\times (7.4\times 10^{-5})^3 \approx 1.7\times 10^{8}
+\]
+
+\textbf{对比总结：} 星际介质虽密度极低，但德拜长度巨大、德拜球内粒子数极多，集体效应仍成立；实验室等离子体参数适中；聚变等离子体密度最高、温度最高，德拜长度最短，但德拜球内粒子数依然庞大，屏蔽效应极强。
+\end{example}
+
+\begin{example}{德拜屏蔽势的数值计算}{debye-potential-calc}
+在电子密度 $n_e=10^{18}\,\mathrm{m}^{-3}$、电子温度 $T_e=4\,\mathrm{eV}$ 的等离子体中，一个位于原子的孤立电荷 $Q=e$ 产生的电势在距离 $r$ 处被屏蔽。请计算 $r=10\,\mu\mathrm{m}$、$50\,\mu\mathrm{m}$、$100\,\mu\mathrm{m}$ 和 $1\,\mathrm{mm}$ 处的屏蔽电势，并与未屏蔽的库仑势对比。
+\tcblower
+\textbf{解答：}
+已知 $\lambda_D\approx 14.9\,\mu\mathrm{m}$（见例题 \ref{ex:low-temp-params}）。德拜屏蔽势为
+\[
+\phi(r) = \frac{Q}{4\pi\eps_0 r}\exp\!\left(-\frac{r}{\lambda_D}\right) = \phi_0(r)\exp\!\left(-\frac{r}{\lambda_D}\right)
+\]
+其中 $Q/(4\pi\eps_0)=e/(4\pi\eps_0)\approx 1.44\times 10^{-9}\,\mathrm{V\cdot m}$。
+
+\textbf{计算结果：}
+\begin{center}
+\begin{tabular}{ccccc}
+\hline
+$r$ & $\phi_0(r)$ & $r/\lambda_D$ & $\exp(-r/\lambda_D)$ & $\phi(r)$ \\
+\hline
+$10\,\mu\mathrm{m}$ & $1.44\times 10^{-4}\,\mathrm{V}$ & $0.67$ & $0.51$ & $7.4\times 10^{-5}\,\mathrm{V}$ \\
+$50\,\mu\mathrm{m}$ & $2.88\times 10^{-5}\,\mathrm{V}$ & $3.36$ & $0.035$ & $1.0\times 10^{-6}\,\mathrm{V}$ \\
+$100\,\mu\mathrm{m}$ & $1.44\times 10^{-5}\,\mathrm{V}$ & $6.71$ & $0.0012$ & $1.8\times 10^{-8}\,\mathrm{V}$ \\
+$1\,\mathrm{mm}$ & $1.44\times 10^{-6}\,\mathrm{V}$ & $67.1$ & $1.3\times 10^{-29}$ & $\sim 0$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{分析：} 在 $r\approx\lambda_D$ 处，电势衰减为裸库仑势的一半；当 $r\sim 3\lambda_D$ 时，屏蔽因子已小于 $5\%$；到 $r\sim 7\lambda_D$ 时，势能被压制到裸势的千分之一以下。这直观地说明了德拜屏蔽是短程效应。
+\end{example}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.95,font=\small]
+% 坐标轴
+\draw[->,thick] (0,0) -- (10.5,0) node[right] {$T\;(\mathrm{eV})$};
+\draw[->,thick] (0,0) -- (0,7.5) node[above] {$n\;(\mathrm{m}^{-3})$};
+
+% 温度刻度（对数示意）
+\foreach \x/\lab in {1/{$10^{-2}$},3/{$10^{0}$},5/{$10^{2}$},7/{$10^{4}$}}
+  \draw (\x,0.1) -- (\x,-0.1) node[below] {\lab};
+
+% 密度刻度（对数示意）
+\foreach \y/\lab in {1/{$10^{6}$},3/{$10^{12}$},5/{$10^{18}$},7/{$10^{24}$}}
+  \draw (0.1,\y) -- (-0.1,\y) node[left] {\lab};
+
+% 星际介质
+\fill[blue!20] (0.8,0.5) rectangle (2.2,2);
+\node[blue!60!black,align=center] at (1.5,1.25) {\footnotesize 星际介质\\[-1pt]$n\sim10^6$\\[-1pt]$T\sim10^4\,\mathrm{K}$};
+
+% 太阳日冕
+\fill[orange!20] (3.5,1.5) rectangle (4.8,2.8);
+\node[orange!70!black,align=center] at (4.15,2.15) {\footnotesize 太阳日冕\\[-1pt]$n\sim10^{12}$\\[-1pt]$T\sim10^2\,\mathrm{eV}$};
+
+% 实验室低温
+\fill[green!20] (4.8,4.5) rectangle (6.2,5.8);
+\node[green!50!black,align=center] at (5.5,5.15) {\footnotesize 实验室低温\\[-1pt]$n\sim10^{18}$\\[-1pt]$T\sim 1$--$10\,\mathrm{eV}$};
+
+% 磁约束聚变
+\fill[red!20] (6.5,5.5) rectangle (8,6.8);
+\node[red!70!black,align=center] at (7.25,6.15) {\footnotesize 磁约束聚变\\[-1pt]$n\sim10^{20}$\\[-1pt]$T\sim10\,\mathrm{keV}$};
+
+% 惯性约束聚变
+\fill[purple!20] (6.8,6.8) rectangle (8.3,7.3);
+\node[purple!70!black,align=center] at (7.55,7.05) {\footnotesize ICF\\[-1pt]$n\sim10^{32}$};
+
+% 辅助虚线
+\draw[dashed,gray] (0,3) -- (10,3);
+\node[right,gray] at (10,3) {$N_D=1$（示意）};
+\end{tikzpicture}
+\caption{四种典型等离子体在 $n$--$T$ 参数空间中的分布。图中位置仅为示意，纵轴与横轴均为对数尺度。}
+\end{figure}
+
+% ch2 新例题：德拜屏蔽的数值计算与判据
+\begin{example}{德拜屏蔽的数值计算与等离子体判据}{debye-calculation}
+两个典型的氢等离子体：
+（A）辉光放电：$n=10^{16}\,\mathrm{m^{-3}}$，$T=2\,\mathrm{eV}$；
+（B）托卡马克：$n=10^{20}\,\mathrm{m^{-3}}$，$T=10\,\mathrm{keV}$。
+分别计算德拜长度 $\lambda_D$、德拜球内粒子数 $N_D$，判断它们是否满足理想等离子体判据，并解释为什么（B）中一个放入的测试电荷在距离 $1\,\mathrm{cm}$ 处几乎探测不到。
+\tcblower
+\textbf{解答：}
+
+德拜长度公式（$T$ 以 $\mathrm{eV}$ 计）：$\lambda_D = \sqrt{\eps_0 T\ee/(n\ee^2)} \approx 7430\sqrt{T[\mathrm{eV}]/n[\mathrm{m^{-3}}]}\,\mathrm{m}$。
+
+\textbf{(A) 辉光放电：}
+\[
+\lambda_D = 7430\sqrt{\frac{2}{10^{16}}} = 7430\times1.41\times10^{-8} \approx 1.05\times10^{-4}\,\mathrm{m} \approx 0.1\,\mathrm{mm}
+\]
+\[
+N_D = \frac{4\pi}{3}n\lambda_D^3 = 4.19\times10^{16}\times(1.05\times10^{-4})^3 \approx 4.9\times10^4 \gg 1 \quad\checkmark
+\]
+
+\textbf{(B) 托卡马克：}
+\[
+\lambda_D = 7430\sqrt{\frac{10^4}{10^{20}}} = 7430\times10^{-8} \approx 7.4\times10^{-5}\,\mathrm{m} \approx 74\,\mu\mathrm{m}
+\]
+\[
+N_D = 4.19\times10^{20}\times(7.4\times10^{-5})^3 \approx 1.7\times10^8 \gg 1 \quad\checkmark
+\]
+
+两种等离子体都满足 $N_D\gg1$（理想等离子体判据），集体行为良好。
+
+\textbf{(B) 中的屏蔽效应：} 放入测试电荷后，其电场在 $\lambda_D\approx74\,\mu\mathrm{m}$ 之外被指数压制：$\phi(r)\sim (Q/4\pi\eps_0 r)\ee^{-r/\lambda_D}$。在 $r=1\,\mathrm{cm}$ 处，$r/\lambda_D \approx 135$，屏蔽因子 $\ee^{-135}\sim10^{-59}$——电场被德拜屏蔽完全抹平，任何探针在 $1\,\mathrm{cm}$ 外都只能感受到准中性的集体响应，而非该电荷的裸电场。这正是德拜屏蔽"等离子体名片"的含义：等离子体内部的长程库仑力被集体响应改造为短程屏蔽相互作用。
+\end{example}
+
+\begin{formulabox}{第2章核心公式速查}{ch2-formulas}
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item 德拜长度：$\displaystyle\lambda_D = \sqrt{\frac{\eps_0 k_{\!B}T_e}{n_e e^2}}$
+\item 电子等离子体频率：$\displaystyle\omega_{pe} = \sqrt{\frac{n_e e^2}{\eps_0 m_e}}$
+\item 离子等离子体频率：$\displaystyle\omega_{pi} = \sqrt{\frac{n_i Z^2 e^2}{\eps_0 m_i}}$
+\item 德拜球粒子数：$\displaystyle N_D = \frac{4\pi}{3} n_e \lambda_D^3 \gg 1$（理想等离子体判据）
+\item 德拜屏蔽势：$\displaystyle\phi(r) = \frac{Q}{4\pi\eps_0 r}\exp\!\left(-\frac{r}{\lambda_D}\right)$
+\item 耦合参数：$\displaystyle\Gamma = \frac{e^2}{4\pi\eps_0 a_{\!W}k_{\!B}T}$，其中 $a_{\!W}=\left(\frac{3}{4\pi n}\right)^{1/3}$
+\item 等离子体判据：$\lambda_D\ll L$，$N_D\gg 1$，$\omega_{pe}\tau_{\text{coll}}>1$
+\end{itemize}
+\end{formulabox}
+
+\begin{checklistbox}{第2章自学检查清单}{ch2-checklist}
+\begin{itemize}[leftmargin=*,label=$\square$]
+\item 我能从 $n_e$ 和 $T_e$ 出发估算 $\lambda_D$、$\omega_{pe}$ 和 $N_D$
+\item 我理解德拜屏蔽的物理图像：大量带电粒子通过集体运动屏蔽外场
+\item 我知道等离子体三大判据（$\lambda_D\ll L$、$N_D\gg 1$、准中性）并能用于判断给定体系是否为等离子体
+\item 我能在不同尺度上比较等离子体参数（星际 vs 实验室 vs 聚变）
+\item 我了解弱耦合（$\Gamma\ll 1$）与强耦合（$\Gamma\gtrsim 1$）的区别
+\end{itemize}
+\end{checklistbox}
+
+\endinput

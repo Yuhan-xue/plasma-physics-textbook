@@ -1,0 +1,411 @@
+﻿% ============================================================
+% 第6章补充：经典例题与自学元素
+% 插入位置：第6章现有miniquiz之后（\end{miniquiz} 之后）
+% ============================================================
+
+\section*{习题精选与详解}
+\addcontentsline{toc}{section}{习题精选}
+
+\begin{example}{Langmuir波的色散关系与热修正}{langmuir-dispersion}
+一实验室氢等离子体，电子密度 $n_e=10^{18}\,\mathrm{m}^{-3}$，电子温度 $T_e=4\,\mathrm{eV}$。求：
+\begin{enumerate}[label=(\arabic*)]
+\item 电子等离子体频率 $\omega_{pe}$ 和对应的波长 $\lambda_{pe}$（将 $c$ 作为相速度时的真空波长）；
+\item 对波长 $\lambda=10^{-2}\,\mathrm{m}$ 的扰动，用Bohm-Gross修正求实际频率 $\omega$，并计算热修正的相对大小；
+\item 验证条件 $k\lambda_{De}\ll 1$ 是否成立。
+\end{enumerate}
+\tcblower
+\textbf{解答：}
+
+\textbf{(1) 电子等离子体频率：}
+\[
+\omega_{pe} = \sqrt{\frac{n_e e^2}{\eps_0 m_e}} = \sqrt{\frac{10^{18}\times (1.602\times 10^{-19})^2}{8.854\times 10^{-12}\times 9.109\times 10^{-31}}}
+\]
+分子：$10^{18}\times 2.566\times 10^{-38} = 2.566\times 10^{-20}$；
+分母：$8.854\times 10^{-12}\times 9.109\times 10^{-31} = 8.065\times 10^{-42}$。
+\[
+\omega_{pe} = \sqrt{\frac{2.566\times 10^{-20}}{8.065\times 10^{-42}}} = \sqrt{3.182\times 10^{21}} \approx 5.64\times 10^{10}\,\mathrm{rad/s}
+\]
+\[
+f_{pe} = \frac{\omega_{pe}}{2\pi} \approx 8.98\,\mathrm{GHz}
+\]
+
+若把 $\omega_{pe}$ 当作真空电磁波频率，对应波长：
+\[
+\lambda_{pe} = \frac{2\pi c}{\omega_{pe}} = \frac{2\pi\times 3\times 10^8}{5.64\times 10^{10}} \approx 3.34\times 10^{-2}\,\mathrm{m} = 3.34\,\mathrm{cm}
+\]
+
+\textbf{(2) Bohm-Gross色散关系：}
+电子热速度：
+\[
+v_{te} = \sqrt{\frac{k_{\!B}T_e}{m_e}} = \sqrt{\frac{6.408\times 10^{-19}}{9.109\times 10^{-31}}} = \sqrt{7.04\times 10^{11}} \approx 8.39\times 10^5\,\mathrm{m/s}
+\]
+
+波数 $k=2\pi/\lambda = 2\pi/10^{-2} = 628.3\,\mathrm{rad/m}$。
+\[
+\omega^2 = \omega_{pe}^2 + 3k^2v_{te}^2 = 3.182\times 10^{21} + 3\times(628.3)^2\times(8.39\times 10^5)^2
+\]
+计算热修正项：
+\[
+3k^2v_{te}^2 = 3\times 3.944\times 10^5\times 7.035\times 10^{11} = 8.32\times 10^{17}
+\]
+\[
+\omega^2 = 3.182\times 10^{21} + 8.32\times 10^{17} = 3.182\times 10^{21}\left(1 + 2.62\times 10^{-4}\right)
+\]
+
+\textbf{注意有效数字：} 修正项只有 $\omega_{pe}^2$ 的万分之几，若先各自取三位有效数字再相减，会\emph{完全}丢掉这一修正。正确做法是\emph{只用无量纲比值}表达结果，而不是拿两个已取整的大数去相减。令
+\[
+\frac{\omega^2}{\omega_{pe}^2} = 1 + \varepsilon, \qquad \varepsilon = \frac{3k^2v_{te}^2}{\omega_{pe}^2} = 2.62\times 10^{-4}
+\]
+\[
+\frac{\omega}{\omega_{pe}} = \sqrt{1+\varepsilon} \approx 1 + \frac{\varepsilon}{2} = 1 + 1.31\times 10^{-4} = 1.000131
+\]
+
+\textbf{热修正相对大小：}
+\[
+\frac{\omega - \omega_{pe}}{\omega_{pe}} \approx \frac{\varepsilon}{2} \approx 1.3\times 10^{-4} \approx 0.013\%
+\]
+
+\textbf{绝对频率：} 把 $\omega_{pe}=5.640\times 10^{10}\,\mathrm{rad/s}$ 与上面\emph{独立}得到的无量纲比值相乘：
+\[
+\omega = 5.640\times 10^{10}\times 1.000131 = 5.6407\times 10^{10}\,\mathrm{rad/s}
+\]
+按三位有效数字仍记作 $\boxed{5.64\times 10^{10}\,\mathrm{rad/s}}$——\textbf{不是 $5.65\times 10^{10}$}。修正量 $7.4\times10^6\,\mathrm{rad/s}$ 落在第四位有效数字上，所以"$\omega$ 与 $\omega_{pe}$ 在三位有效数字下相等"正是热修正很小的正确表述；千万不要写成 $\omega$ 变了、更不要靠相减去"发现"它。这也正是本题要教的点：\textbf{小量修正必须用相对量报告，不能靠大数相减}。
+
+\textbf{(3) 德拜长度验证：}
+\[
+\lambda_{De} = \frac{v_{te}}{\omega_{pe}} = \frac{8.39\times 10^5}{5.64\times 10^{10}} \approx 1.49\times 10^{-5}\,\mathrm{m} = 14.9\,\mu\mathrm{m}
+\]
+\[
+k\lambda_{De} = 628.3\times 1.49\times 10^{-5} \approx 9.35\times 10^{-3} \ll 1
+\]
+
+\textbf{结论：} $k\lambda_{De}\ll 1$ 条件满足，Bohm-Gross修正很小。这说明Langmuir波在长波极限下几乎不受热运动影响，表现为以 $\omega_{pe}$ 为频率的局域集体振荡。
+\end{example}
+
+\begin{example}{截止频率与电磁波传播判断}{cutoff-calculation}
+\textbf{模型说明（先读）：} 本题使用\emph{均匀、无磁场}的冷等离子体模型，只考虑垂直入射。判据只有一条：\textbf{载频 $f$ 与当地电子等离子体频率 $f_{pe}$ 的大小关系}——与信号用幅度调制（AM）还是频率调制（FM）\emph{毫无关系}。AM/FM 只是三个频率恰好对应的常见业务名称，不是物理分类。
+
+给定电离层典型电子密度 $n_e=10^{12}\,\mathrm{m}^{-3}$，有三个不同载频的信号：$f=5,\,20,\,30\,\mathrm{MHz}$。判断各能否在该均匀层中传播，若能传播则计算波数和波长。
+\tcblower
+\textbf{解答：}
+
+首先计算等离子体截止频率：
+\[
+\omega_{pe} = \sqrt{\frac{10^{12}\times (1.602\times 10^{-19})^2}{8.854\times 10^{-12}\times 9.109\times 10^{-31}}} = \sqrt{\frac{2.566\times 10^{-26}}{8.065\times 10^{-42}}}
+\]
+\[
+\omega_{pe} = \sqrt{3.182\times 10^{15}} \approx 5.64\times 10^7\,\mathrm{rad/s}
+\]
+\[
+f_{pe} = \frac{\omega_{pe}}{2\pi} \approx 8.97\times 10^6\,\mathrm{Hz} \approx 8.97\,\mathrm{MHz}
+\]
+
+\textbf{传播条件：} 冷等离子体中电磁波色散关系为 $\omega^2 = \omega_{pe}^2 + c^2k^2$。只有当 $\omega > \omega_{pe}$（即 $f > f_{pe}$）时，$k$ 为实数，波才能传播；$\omega < \omega_{pe}$ 时波指数衰减（被反射）。
+
+\textbf{(1) $f=5\,\mathrm{MHz}$：}
+$5\,\mathrm{MHz} < 8.97\,\mathrm{MHz}$，低于截止频率，\textbf{不能传播}。波被电离层反射回地面。
+
+\textbf{(2) $f=20\,\mathrm{MHz}$：}
+$20\,\mathrm{MHz} > 8.97\,\mathrm{MHz}$，高于截止频率，\textbf{可以传播}。
+\[
+k = \frac{\sqrt{\omega^2 - \omega_{pe}^2}}{c} = \frac{2\pi\sqrt{(20\times 10^6)^2 - (8.97\times 10^6)^2}}{3\times 10^8}
+\]
+\[
+\sqrt{(20)^2 - (8.97)^2}\times 10^6 = \sqrt{400 - 80.5}\times 10^6 = \sqrt{319.5}\times 10^6 \approx 17.88\times 10^6\,\mathrm{Hz}
+\]
+\[
+k = \frac{2\pi\times 17.88\times 10^6}{3\times 10^8} \approx 0.374\,\mathrm{rad/m}
+\]
+\[
+\lambda = \frac{2\pi}{k} \approx 16.8\,\mathrm{m}
+\]
+
+\textbf{(3) $f=30\,\mathrm{MHz}$：}
+$30\,\mathrm{MHz} > 8.97\,\mathrm{MHz}$，\textbf{可以传播}。
+\[
+k = \frac{2\pi\sqrt{(30)^2 - (8.97)^2}\times 10^6}{3\times 10^8} = \frac{2\pi\times 28.6\times 10^6}{3\times 10^8} \approx 0.599\,\mathrm{rad/m}
+\]
+\[
+\lambda = \frac{2\pi}{k} \approx 10.5\,\mathrm{m}
+\]
+
+\textbf{物理解释（局限在本模型内）：} 在这个均匀层里，只有一条规则——\textbf{载频低于 $f_{pe}$ 的被反射，高于 $f_{pe}$ 的穿透}。所以 $5\,\mathrm{MHz}$ 被反射，$20$ 和 $30\,\mathrm{MHz}$ 穿透。请注意这是一个\emph{均匀、垂直入射}模型，它能回答的只有"该频率在该密度处能否传播"。
+
+\begin{warning}{不要把本模型直接推广成真实电离层的通信结论}{cutoff-ionosphere-caveat}
+例题里 $30\,\mathrm{MHz}$ 在本模型中判为"可传播"，但这\textbf{不能}推出"$30\,\mathrm{MHz}$ 不能跨半球通信"。真实电离层是\emph{有厚度、密度随高度变化、分层}的介质，还必须考虑\emph{斜入射}。实际短波通信依赖两个本模型没有包含的机制：
+\begin{itemize}
+\item \textbf{密度剖面}：反射发生在此波频率等于\emph{局部}等离子体频率的高度，而 $f_{pe}$ 随高度先增后减（F 层峰值可达 $\sim10^{12}\,\mathrm{m^{-3}}$ 甚至更高）。同一频率在低处可能穿透、在高处被反射；
+\item \textbf{斜入射}：斜入射时有效判据是 $\omega=\omega_{pe}\cos\theta$ 的折射条件（Snell 定律 + 分层介质），斜射波可以在\emph{高于垂直截止频率}的频率下被反射回来——这正是短波能靠电离层"跳"到数千公里外、甚至跨半球的原因。
+\end{itemize}
+所以本题的"反射/穿透"只对应\emph{垂直入射+单一密度}的理想情形。真实的电离层传播需要另设模型（分层 + 斜入射），不能把截止频率与一个频段的全部通信行为画等号。
+\end{warning}
+\end{example}
+
+\begin{example}{哨声波在电离层中的传播参数}{whistler-ionosphere}
+电离层中典型参数：$B=5\times 10^{-5}\,\mathrm{T}$，$n=10^{12}\,\mathrm{m}^{-3}$。求：
+\begin{enumerate}[label=(\arabic*)]
+\item 电子回旋频率 $f_{ce}$ 和等离子体频率 $f_{pe}$；
+\item R波的截止频率和共振频率；
+\item 频率 $f=10\,\mathrm{kHz}$ 的哨声波的波数 $k$、相速度 $v_p$ 和群速度 $v_g$；
+\item 说明为什么地面上听到的哨声是音调从高到低的"滑落"声。
+\end{enumerate}
+\tcblower
+\textbf{解答：}
+
+\textbf{(1) 特征频率：}
+\[
+\omega_{ce} = \frac{eB}{m_e} = \frac{1.602\times 10^{-19}\times 5\times 10^{-5}}{9.109\times 10^{-31}} = \frac{8.01\times 10^{-24}}{9.109\times 10^{-31}} \approx 8.79\times 10^6\,\mathrm{rad/s}
+\]
+\[
+f_{ce} = \frac{\omega_{ce}}{2\pi} \approx 1.40\times 10^6\,\mathrm{Hz} = 1.40\,\mathrm{MHz}
+\]
+
+由例题2已得 $f_{pe} \approx 8.97\,\mathrm{MHz}$。
+
+\textbf{(2) R波的截止与共振：}
+R波折射率 $n_R^2 = 1 - \dfrac{\omega_{pe}^2}{\omega(\omega - \omega_{ce})}$。
+
+\textbf{截止}（$n_R^2 = 0$）：
+\[
+\omega(\omega - \omega_{ce}) = \omega_{pe}^2 \quad\Rightarrow\quad \omega^2 - \omega_{ce}\omega - \omega_{pe}^2 = 0
+\]
+\[
+\omega = \frac{\omega_{ce} + \sqrt{\omega_{ce}^2 + 4\omega_{pe}^2}}{2} \approx \frac{8.79\times 10^6 + 1.131\times 10^8}{2} \approx 6.09\times 10^7\,\mathrm{rad/s}
+\]
+\[
+f_{\text{截止}} \approx \frac{6.09\times 10^7}{2\pi} \approx 9.69\,\mathrm{MHz}
+\]
+
+\textbf{共振}（$n_R^2 \to \infty$）：
+\[
+\omega = \omega_{ce} \quad\Rightarrow\quad f_{\text{共振}} = f_{ce} = 1.40\,\mathrm{MHz}
+\]
+
+\textbf{(3) $f=10\,\mathrm{kHz}$ 的哨声波：}
+$\omega = 2\pi\times 10^4 = 6.28\times 10^4\,\mathrm{rad/s} \ll \omega_{ce}$，满足低频条件。
+
+色散关系（近似）：
+\[
+\omega \approx \frac{c^2 k^2 \omega_{ce}}{\omega_{pe}^2}
+\]
+\[
+\begin{aligned}
+k &= \frac{\omega_{pe}}{c}\sqrt{\frac{\omega}{\omega_{ce}}} = \frac{5.64\times 10^7}{3\times 10^8}\sqrt{\frac{6.28\times 10^4}{8.79\times 10^6}} \approx 0.188\times\sqrt{7.14\times 10^{-3}}\\
+&\approx 0.188\times 0.0845 \approx 1.59\times 10^{-2}\,\mathrm{rad/m}
+\end{aligned}
+\]
+
+\textbf{相速度：}
+\[
+v_p = \frac{\omega}{k} = \frac{6.28\times 10^4}{1.59\times 10^{-2}} \approx 3.95\times 10^6\,\mathrm{m/s}
+\]
+
+\textbf{群速度：} 由 $\omega \propto k^2$，得 $v_g = \partial\omega/\partial k = 2\omega/k = 2v_p$：
+\[
+v_g = 2\times 3.95\times 10^6 \approx 7.9\times 10^6\,\mathrm{m/s}
+\]
+
+\textbf{(4) 滑落音调的成因：}
+群速度 $v_g \propto \sqrt{\omega}$（或 $v_g \propto \sqrt{f}$），这意味着：
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item 高频分量的群速度大，传播快，先到达地面；
+\item 低频分量的群速度小，传播慢，后到达地面。
+\end{itemize}
+闪电产生从几kHz到几十kHz的宽频电磁脉冲。当这个脉冲沿磁力线传播数百至数千公里后，高频先到、低频后到，地面接收机就听到一个音调从高到低滑落的"哨声"。一次闪电可能激发多次来回反射，形成多声"合唱"。
+\end{example}
+
+\begin{example}{相速度与群速度的计算与对比}{phase-group-velocity}
+在密度 $n=10^{12}\,\mathrm{m}^{-3}$ 的等离子体中，一束频率 $f=20\,\mathrm{MHz}$ 的电磁波入射。计算：
+\begin{enumerate}[label=(\arabic*)]
+\item 该波的相速度 $v_p$ 和群速度 $v_g$；
+\item 验证关系式 $v_p v_g = c^2$；
+\item 若等离子体密度变为 $n=10^{18}\,\mathrm{m}^{-3}$，该波还能否传播？为什么？
+\end{enumerate}
+并讨论相速度超光速是否违反狭义相对论。
+\tcblower
+\textbf{解答：}
+
+由例题2已知，$n=10^{12}\,\mathrm{m}^{-3}$ 时 $f_{pe} \approx 8.97\,\mathrm{MHz}$，$\omega = 2\pi\times 20\times 10^6 = 1.257\times 10^8\,\mathrm{rad/s}$，$\omega_{pe} = 5.64\times 10^7\,\mathrm{rad/s}$。
+
+\textbf{(1) 相速度与群速度：}
+
+由色散关系 $\omega^2 = \omega_{pe}^2 + c^2k^2$：
+\[
+k = \frac{\sqrt{\omega^2 - \omega_{pe}^2}}{c} = \frac{\sqrt{(1.257\times 10^8)^2 - (5.64\times 10^7)^2}}{3\times 10^8}
+\]
+\[
+\sqrt{1.580\times 10^{16} - 3.181\times 10^{15}} = \sqrt{1.262\times 10^{16}} = 1.123\times 10^8\,\mathrm{rad/s}
+\]
+\[
+k = \frac{1.123\times 10^8}{3\times 10^8} \approx 0.374\,\mathrm{rad/m}
+\]
+
+\textbf{相速度：}
+\[
+v_p = \frac{\omega}{k} = \frac{1.257\times 10^8}{0.374} \approx 3.36\times 10^8\,\mathrm{m/s} > c
+\]
+
+\textbf{群速度：}
+对 $\omega^2 = \omega_{pe}^2 + c^2k^2$ 两边求导：$2\omega\,\diff\omega = 2c^2k\,\diff k$，故：
+\[
+v_g = \frac{\diff\omega}{\diff k} = \frac{c^2k}{\omega} = \frac{c^2}{v_p}
+\]
+\[
+v_g = \frac{(3\times 10^8)^2}{3.36\times 10^8} = \frac{9\times 10^{16}}{3.36\times 10^8} \approx 2.68\times 10^8\,\mathrm{m/s} < c
+\]
+
+\textbf{(2) 验证：}
+\[
+v_p v_g = 3.36\times 10^8\times 2.68\times 10^8 = 9.0\times 10^{16}\,\mathrm{m^2/s^2} = c^2
+\]
+验证成立。
+
+\textbf{(3) 高密度等离子体 ($n=10^{18}\,\mathrm{m}^{-3}$)：}
+\[
+f_{pe} = \frac{1}{2\pi}\sqrt{\frac{10^{18}\times (1.602\times 10^{-19})^2}{8.854\times 10^{-12}\times 9.109\times 10^{-31}}} \approx 8.98\,\mathrm{GHz}
+\]
+$f = 20\,\mathrm{MHz} \ll f_{pe}$，远低于截止频率，\textbf{不能传播}。波在等离子体边界即被反射，类似于金属对电磁波的屏蔽效应。
+
+\textbf{关于超光速的讨论：}
+相速度 $v_p = \omega/k > c$ 并不违反狭义相对论，因为相速度描述的是等相位面的传播速度，不携带信息或能量。信息以群速度 $v_g < c$ 传播。等离子体中电磁波的这种"异常"色散是介质响应的集体效应，而非单个粒子超光速运动。
+\end{example}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.0,
+  level 1/.style={sibling distance=5.5cm,level distance=1.8cm},
+  level 2/.style={sibling distance=2.5cm,level distance=1.8cm}]
+\node[draw,thick,fill=blue!15,rounded corners] {等离子体中的波}
+  child {node[draw,thick,fill=green!15,rounded corners] {无磁场 $B_0=0$}
+    child {node[draw,thick,fill=yellow!15,rounded corners] {静电波（纵波）}
+      child {node {Langmuir波}}
+      child {node {离子声波}}
+    }
+    child {node[draw,thick,fill=yellow!15,rounded corners] {电磁波（横波）}
+      child {node {O波}}
+    }
+  }
+  child {node[draw,thick,fill=green!15,rounded corners] {有磁场 $B_0\neq 0$}
+    child {node[draw,thick,fill=yellow!15,rounded corners] {$\vect{k}\parallel\vect{B}_0$}
+      child {node {哨声波}}
+      child {node {阿尔芬波}}
+      child {node {离子回旋波}}
+    }
+    child {node[draw,thick,fill=yellow!15,rounded corners] {$\vect{k}\perp\vect{B}_0$}
+      child {node {低混杂波}}
+      child {node {高混杂波}}
+    }
+  };
+\end{tikzpicture}
+\caption{等离子体波分类分支图。按有无磁场、波矢与磁场的方向关系以及偏振特性进行划分。注意实际等离子体中可能存在混合模式。}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.0]
+% 地球
+\draw[thick,fill=blue!20] (0,0) circle (1.5);
+\node[white] at (0,0) {\small 地球};
+
+% 电离层
+\draw[dashed,gray] (0,0) circle (2.0);
+\draw[dashed,gray] (0,0) circle (2.5);
+\draw[dashed,gray] (0,0) circle (3.2);
+\node[gray] at (2.2,-0.2) {\small D};
+\node[gray] at (2.7,-0.2) {\small E};
+\node[gray] at (3.4,-0.2) {\small F};
+
+% 磁力线（从南半球到北半球）
+\draw[red,thick] (-1.06,-1.06) .. controls (-2.5,0) and (-2.5,2) .. (0,3.5) .. controls (2.5,2) and (2.5,0) .. (1.06,-1.06);
+\node[red] at (0,4) {磁力线};
+
+% 闪电源（南半球）
+\fill[yellow] (-1.06,-1.06) circle (3pt);
+\node[yellow] at (-1.4,-1.4) {闪电};
+
+% 波传播箭头
+\draw[->,orange,very thick] (-1.5,-0.5) -- (-1.3,0.5);
+\draw[->,orange,very thick] (-1.2,1.5) -- (-0.8,2.2);
+\draw[->,orange,very thick] (-0.3,2.9) -- (0.3,2.9);
+\draw[->,orange,very thick] (0.8,2.2) -- (1.2,1.5);
+\draw[->,orange,very thick] (1.3,0.5) -- (1.5,-0.5);
+\node[orange] at (-1.5,1.5) {哨声波};
+
+% 地面站（北半球）
+\fill[black] (1.06,-1.06) circle (3pt);
+\node at (1.4,-1.4) {地面站};
+
+% 卫星
+\fill[green] (0,2.5) circle (3pt);
+\node[green] at (0.6,2.7) {卫星};
+
+\node at (0,-2.2) {\small 闪电产生的宽频脉冲沿磁力线传播，高频先到、低频后到};
+\end{tikzpicture}
+\caption{哨声波传播路径示意图。闪电激发的电磁脉冲沿地球磁力线传播，在电离层D/E/F层中穿过，到达另一半球的地面站。}
+\end{figure}
+
+% ch6 新例题：电磁波在等离子体中的群速度与波包
+\begin{example}{电磁波在等离子体中的群速度与波包传播}{group-velocity-wavepacket}
+一均匀等离子体（$n_e = 10^{17}\,\mathrm{m^{-3}}$）中入射一列频率 $f = 9\,\mathrm{GHz}$ 的电磁波脉冲。
+（1）求等离子体频率并判断波能否传播；
+（2）若能传播，求相速度 $v_p$ 和群速度 $v_g$；
+（3）一个脉冲在等离子体中传播 $10\,\mathrm{m}$ 需要多长时间？比真空中慢多少？
+\tcblower
+\textbf{解答：}
+
+\textbf{(1) 等离子体频率：} 由 $f_{pe}\,[\mathrm{Hz}] \approx 8.98\sqrt{n[\mathrm{m^{-3}}]}$：
+\[
+f_{pe} = 8.98\sqrt{10^{17}} \approx 8.98\times3.16\times10^8 \approx 2.8\times10^9\,\mathrm{Hz} = 2.8\,\mathrm{GHz}
+\]
+$f = 9\,\mathrm{GHz} > f_{pe} = 2.8\,\mathrm{GHz}$，\textbf{波可以传播}。
+
+\textbf{(2) 相速度与群速度：} 冷等离子体色散关系 $\omega^2 = \omega_{pe}^2 + c^2k^2$ 给出
+\[
+v_p = \frac{\omega}{k} = \frac{c}{\sqrt{1-\omega_{pe}^2/\omega^2}}, \qquad v_g = \frac{\diff\omega}{\diff k} = c\sqrt{1-\frac{\omega_{pe}^2}{\omega^2}}
+\]
+代入 $\omega_{pe}/\omega = f_{pe}/f = 2.8/9 = 0.311$（保留三位：$2.84/9 = 0.315$）：
+\[
+v_p = \frac{3\times10^8}{\sqrt{1-0.0968}} \approx \frac{3\times10^8}{0.950} \approx 3.16\times10^8\,\mathrm{m/s} > c
+\]
+\[
+v_g = 3\times10^8\times0.950 \approx 2.85\times10^8\,\mathrm{m/s} < c
+\]
+相速度超光速（不携带信息和能量，无因果矛盾），群速度亚光速（能量与信号传播速度）。
+
+\textbf{(3) 脉冲传播时间：}
+\[
+t = \frac{10}{v_g} = \frac{10}{2.85\times10^8} \approx 3.5\times10^{-8}\,\mathrm{s} = 35\,\mathrm{ns}
+\]
+真空中 $t_0 = 10/c \approx 33.3\,\mathrm{ns}$，比真空慢约 $1.8\,\mathrm{ns}$（$5\%$）。密度越高、频率越接近截止，群速度越小，延迟越大——这正是用微波群延迟反演等离子体密度的原理（对脉冲雷达诊断尤为重要）。
+\end{example}
+
+\begin{formulabox}{第6章核心公式速查}{ch6-formulas}
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item Langmuir波（冷）：$\displaystyle\omega^2 = \omega_{pe}^2$
+\item Langmuir波（热修正）：$\displaystyle\omega^2 = \omega_{pe}^2 + 3k^2v_{te}^2$
+\item 离子声波：$\displaystyle\omega^2 = \frac{k^2c_s^2}{1+k^2\lambda_{De}^2}$，$\displaystyle c_s = \sqrt{\frac{k_{\!B}T_e}{m_i}}$（$T_e\gg T_i$）
+\item 电磁波（无磁场）：$\displaystyle\omega^2 = \omega_{pe}^2 + c^2k^2$
+\item 截止频率：$\displaystyle\omega_{pe} = \sqrt{\frac{n_e e^2}{\eps_0 m_e}}$
+\item R波（沿磁场，仅电子、$\omega\gg\omega_{ci}$）：$\displaystyle n_R^2 = 1 - \frac{\omega_{pe}^2}{\omega(\omega-\omega_{ce})}$
+\item L波（沿磁场，仅电子、$\omega\gg\omega_{ci}$）：$\displaystyle n_L^2 = 1 - \frac{\omega_{pe}^2}{\omega(\omega+\omega_{ce})}$
+\item 传播判据：\textbf{逐点算 $n^2>0$}。$n_L^2>0\iff\omega(\omega+\omega_{ce})>\omega_{pe}^2$，与 $\omega$ 是否小于 $\omega_{ce}$ 无关
+\item 哨声波（$\omega\ll\omega_{ce}$ \emph{且} $n^2\gg1$）：$\displaystyle\omega \approx \frac{c^2k^2\omega_{ce}}{\omega_{pe}^2}$，$v_g = 2v_p$
+\item 相速度：$\displaystyle v_p = \frac{\omega}{k}$，群速度：$\displaystyle v_g = \frac{\partial\omega}{\partial k}$（冷Langmuir波 $v_g=0$ 但 $v_p=\omega_{pe}/k\neq0$）
+\item 等离子体中EM波：$\displaystyle v_p v_g = c^2$
+\end{itemize}
+\end{formulabox}
+
+\begin{checklistbox}{第6章自学检查清单}{ch6-checklist}
+\begin{itemize}[leftmargin=*,label=$\square$]
+\item 我能计算Langmuir波的等离子体频率和Bohm-Gross热修正
+\item 我理解了截止频率的物理意义：$\omega < \omega_{pe}$ 时电磁波不能传播
+\item 我能计算R波和L波的截止频率与共振频率，并解释其物理来源
+\item 我掌握了哨声波的色散关系 $v_g = 2v_p$，并理解其"滑落"音调的成因
+\item 我能计算等离子体中电磁波的相速度和群速度，并知道 $v_p v_g = c^2$
+\item 我理解了等离子体波分类的物理依据：静电/电磁、纵向/横向、有无磁场
+\item 我知道为什么电离层能反射低频无线电：\textbf{判据是载频与当地 $f_{pe}$ 的关系，与调制方式（AM/FM）无关}；真实传播还需密度剖面与斜入射
+\item 我能区分相速度与群速度：冷Langmuir波 $v_g=0$ 但 $v_p=\omega_{pe}/k\neq0$，能量不传播不等于相位不移动
+\end{itemize}
+\end{checklistbox}
+
+\endinput

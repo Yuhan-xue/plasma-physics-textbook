@@ -1,0 +1,618 @@
+﻿% ch12_supplement.tex — 第12章：等离子体基础诊断 补充内容
+% ============================================================
+% 经典例题 + 完整解答、TikZ图像、核心公式速查卡、自学检查清单
+
+% ============================================================
+% 1. 经典例题
+% ============================================================
+
+\section{经典例题与解答}
+
+\begin{example}{从朗缪尔探针I-V曲线提取 $T_e$ 和 $n_e$}{ex:langmuir}
+圆柱形朗缪尔探针（半径 $r_p=0.1\,\mathrm{mm}$，长度 $L=5\,\mathrm{mm}$）在氩等离子体中测得I-V数据如下（部分采样点）：
+\begin{center}
+\begin{tabular}{c|c}
+    $V_p\,\mathrm{(V)}$ & $I\,\mathrm{(mA)}$ \\
+    \hline
+    $-20$ & $-0.51$ \\
+    $-15$ & $-0.50$ \\
+    $-10$ & $-0.48$ \\
+    $-5$  & $-0.40$ \\
+    $-2$  & $-0.25$ \\
+    $0$   & $0.05$  \\
+    $+2$  & $0.55$  \\
+    $+5$  & $1.52$  \\
+    $+10$ & $1.60$  \\
+    $+15$ & $1.62$  \\
+\end{tabular}
+\end{center}
+已知电子饱和区总电流 $I_{\rm sat}\approx1.6\,\mathrm{mA}$，离子饱和电流 $|I_{isat}|\approx0.5\,\mathrm{mA}$（在阻滞区视为常数）。试求：
+\begin{enumerate}
+    \item 悬浮电位 $V_f$、等离子体电位 $V_{pl}$
+    \item 电子温度 $T_e$
+    \item 电子密度 $n_e$
+\end{enumerate}
+\end{example}
+
+\textbf{解答：}本题的关键在于\emph{始终区分总电流 $I$、电子电流 $I_e$ 和离子电流 $I_i$}。模型约定：$I = I_e + I_i$，$I_i \approx -|I_{isat}| = \text{const}$，$I_e = I_{\rm sat}\exp[(V - V_{pl})/T_e]$（$T_e$ 以 eV 计）。
+
+\textbf{（0）先厘清各特征电位所在位置}
+\begin{itemize}
+    \item $I=0$ 处（数据中 $V\approx0\,\mathrm{V}$，介于 $-2\,\mathrm{V}$ 与 $0\,\mathrm{V}$ 之间）是\textbf{悬浮电位 $V_f$}，\emph{不是}等离子体电位。
+    \item 等离子体电位 $V_{pl}$ 是电子电流刚进入饱和（曲线由指数转平的拐点）之处，$V_{pl} > V_f$。
+\end{itemize}
+
+\textbf{（1）悬浮电位 $V_f$}——由 $I(V_f)=0$ 线性内插：$V=-2$ 时 $I=-0.25$，$V=0$ 时 $I=0.05$，
+\[
+    V_f \approx -2 + 2\times\frac{0-(-0.25)}{0.05-(-0.25)} = -2 + 2\times\frac{0.25}{0.30} \approx -0.33\,\mathrm{V}.
+\]
+
+\textbf{（2）电子温度 $T_e$}——\textbf{对电子电流取对数}，而非总电流。由 $I_e = I + |I_{isat}|$，得下表：
+\begin{center}
+\begin{tabular}{c|cccc}
+$V\,(\mathrm{V})$ & $-5$ & $-2$ & $0$ & $+2$ \\
+\hline
+$I\,(\mathrm{mA})$ & $-0.40$ & $-0.25$ & $0.05$ & $0.55$ \\
+$I_e = I+0.50$ & $0.10$ & $0.25$ & $0.55$ & $1.05$ \\
+$\ln I_e$ & $-2.303$ & $-1.386$ & $-0.598$ & $0.049$ \\
+\end{tabular}
+\end{center}
+对 $\ln I_e$ 与 $V$ 做最小二乘线性拟合（四个点）：
+\begin{equation}
+    \ln I_e = aV + b,\qquad
+    a = \frac{d(\ln I_e)}{dV} = \frac{1}{T_e\,[\mathrm{eV}]}.
+\end{equation}
+用四点最小二乘得斜率 $a\approx0.340\,\mathrm{V^{-1}}$、截距 $b\approx-0.635$（与两点法 $(-0.598+2.303)/5=0.341$ 一致），故
+\[
+    \boxed{T_e \approx \frac{1}{0.340} \approx 2.9\,\mathrm{eV}}.
+\]
+
+\textbf{（3）等离子体电位 $V_{pl}$}——把拟合直线外推到电子饱和平台 $I_e = I_{\rm sat} = 1.6\,\mathrm{mA}$：
+\[
+    \ln 1.6 = 0.340\,V_{pl} + b.
+\]
+由拟合式 $b = -0.635$，故
+\[
+    V_{pl} = \frac{\ln 1.6 - (-0.635)}{0.340} = \frac{0.470+0.635}{0.340} \approx 3.25\,\mathrm{V}.
+\]
+（若简单地认为总饱和值 $1.6\,\mathrm{mA}$ 就是"电子平台"，并用 $I_e = I + 0.5$ 定义电子电流，则外推交点约 $4.0\,\mathrm{V}$——这正是\emph{平台定义}带来的系统差异。两种定义下的差别必须明示，本题取"平台 $=$ 实测总饱和值 $1.6\,\mathrm{mA}$ 即认为此时离子电流已可忽略"的简化处理。）
+
+\textbf{（4）电子密度 $n_e$}——\textbf{注意用电子饱和电流，且澄清面积公式的适用条件。} 对\emph{无磁、无碰撞、平面薄鞘}探针，电子电流为随机热流：
+\begin{equation}
+    I_e = \frac{1}{4} n_e e A_p \bar v_e,\qquad \bar v_e = \sqrt{\frac{8k_BT_e}{\pi m_e}}.
+\end{equation}
+但本题探针是\emph{圆柱}且半径小（$r_p=0.1\,\mathrm{mm}$），当 $r_p \ll \lambda_D$ 时进入轨道运动限制（OML）区，收集电流被几何增强，不能简单套 $\frac14 n_eA_p\bar v_e$。为教学可复现，这里采用**平面薄鞘**公式并说明其局限：
+\[
+    A_p = 2\pi r_p L = 2\pi\times0.1\times10^{-3}\times5\times10^{-3} = 3.14\times10^{-6}\,\mathrm{m^2},
+\]
+\[
+    \bar v_e = \sqrt{\frac{8\times(2.94\times1.602\times10^{-19})}{\pi\times9.11\times10^{-31}}}
+    \approx 1.14\times10^{6}\,\mathrm{m/s}.
+\]
+用\emph{电子}饱和电流（$I_e = I_{\rm sat}$ 已经在平台，离子被排斥）：
+\begin{equation}
+    n_e = \frac{4 I_e}{eA_p\bar v_e}
+    = \frac{4\times1.6\times10^{-3}}{1.602\times10^{-19}\times3.14\times10^{-6}\times1.14\times10^{6}}
+    \approx 1.1\times10^{16}\,\mathrm{m^{-3}}.
+\end{equation}
+\[
+    \boxed{n_e \approx 1\times10^{16}\,\mathrm{m^{-3}}}
+\]
+
+\textbf{模型与假设清单（必须随结果一并报告）：}
+\begin{itemize}
+    \item 稀薄数据（每区仅若干点）只能给量级，不能宣称高精度；
+    \item 离子饱和电流假定为常数 $-0.5\,\mathrm{mA}$，且未随 $V$ 缓慢变化；
+    \item 密度公式用了平面薄鞘热流形式，未做 OML 几何修正——真实圆柱探针在 $r_p<\lambda_D$ 时密度会\emph{低于}此估计；
+    \item $T_e$ 用 eV 单位直接得自斜率，密度计算前须把 $T_e$ 换算成焦耳（此处 $\bar v_e$ 中已换算）。
+\end{itemize}
+
+
+% ------------------------------------------------------------------------
+
+\begin{example}{微波干涉相位移动与密度关系}{ex:interferometer}
+某H波段微波干涉仪（频率 $f=60\,\mathrm{GHz}$）用于测量直径 $D=10\,\mathrm{cm}$ 的圆柱形等离子体。测得通过等离子体后的相位移动 $\Delta\phi = 2.5\,\mathrm{rad}$。假设等离子体均匀，求平均电子密度 $n_e$。
+\end{example}
+
+\textbf{解答：}
+
+微波在等离子体中传播时，由于等离子体介电常数小于1，微波相速度改变，导致与参考路径产生相位差。
+
+等离子体频率：
+\begin{equation}
+    \omega_p = \sqrt{\frac{n_e e^2}{\eps_0 m_e}}
+\label{eq:ch12-plasma-frequency}
+\end{equation}
+
+对于高频微波（$\omega \gg \omega_p$），折射率近似为：
+\begin{equation}
+    N = \sqrt{1 - \frac{\omega_p^2}{\omega^2}} \approx 1 - \frac{\omega_p^2}{2\omega^2}
+\label{eq:ch12-refractive-index-ex2}
+\end{equation}
+
+通过等离子体路径 $L$ 后，相位移动为：
+\[
+    \Delta\phi = \frac{\omega}{c}(N-1)L = -\frac{\omega}{c}\cdot\frac{\omega_p^2}{2\omega^2}\cdot L = -\frac{\omega_p^2 L}{2\omega c}
+\]
+
+取绝对值：
+\begin{equation}
+    |\Delta\phi| = \frac{\omega_p^2 L}{2\omega c}
+\label{eq:ch12-phase-shift}
+\end{equation}
+
+代入 $\omega_p^2 = n_e e^2/(\eps_0 m_e)$ 和 $\omega = 2\pi f$：
+\[
+    |\Delta\phi| = \frac{n_e e^2}{2\eps_0 m_e \cdot 2\pi f \cdot c} \cdot L = \frac{n_e e^2 L}{4\pi\eps_0 m_e f c}
+\]
+
+解出 $n_e$：
+\begin{equation}
+    n_e = \frac{4\pi\eps_0 m_e f c \cdot |\Delta\phi|}{e^2 L}
+\label{eq:ch12-density-phase}
+\end{equation}
+
+已知：
+\begin{itemize}
+    \item $f = 60\,\mathrm{GHz} = 60\times10^9\,\mathrm{Hz}$
+    \item $L = D = 0.1\,\mathrm{m}$（假设微波横穿等离子体直径）
+    \item $\Delta\phi = 2.5\,\mathrm{rad}$
+    \item $c = 3\times10^8\,\mathrm{m\cdot s^{-1}}$
+\end{itemize}
+
+代入数值：
+\[
+    n_e = \frac{4\pi \times 8.854\times10^{-12} \times 9.11\times10^{-31} \times 60\times10^9 \times 3\times10^8 \times 2.5}{(1.602\times10^{-19})^2 \times 0.1}
+\]
+
+计算分子：
+\begin{align*}
+    4\pi \times 8.854\times10^{-12} &= 1.112\times10^{-10} \\
+    \times 9.11\times10^{-31} &= 1.013\times10^{-40} \\
+    \times 60\times10^9 &= 6.08\times10^{-30} \\
+    \times 3\times10^8 &= 1.824\times10^{-21} \\
+    \times 2.5 &= 4.56\times10^{-21}
+\end{align*}
+
+分母：
+\[
+    (1.602\times10^{-19})^2 \times 0.1 = 2.566\times10^{-38} \times 0.1 = 2.566\times10^{-39}
+\]
+
+\[
+    n_e = \frac{4.56\times10^{-21}}{2.566\times10^{-39}} = 1.78\times10^{18}\,\mathrm{m^{-3}}
+\]
+
+\[
+    \boxed{n_e \approx 1.8\times10^{18}\,\mathrm{m^{-3}}}
+\]
+
+\textbf{验证（务必用同一套单位）：} 用 SI 形式计算等离子体频率，
+\[
+    f_p = \frac{1}{2\pi}\sqrt{\frac{n_e e^2}{\eps_0 m_e}}
+    = \frac{1}{2\pi}\sqrt{\frac{1.78\times10^{18}\times(1.602\times10^{-19})^2}{8.854\times10^{-12}\times9.11\times10^{-31}}}
+    \approx 1.2\times10^{10}\,\mathrm{Hz} = 12\,\mathrm{GHz}.
+\]
+（常见错误：把 $n_e$ 以 $\mathrm{cm^{-3}}$ 数值代入 $\mathrm{SI}$ 公式，会得到 $12\,\mathrm{MHz}$——差了一千倍。$\mathrm{m^{-3}}$ 与 $\mathrm{m^{-3}}$ 必须统一。）
+
+于是 $f_p/f = 12/60 = 0.2$，$\omega_p^2/\omega^2 = 0.04$，高频近似的相对误差约 $(1/2)(\omega_p^2/\omega^2)^2 \sim 8\times10^{-4}$，确实可忽略。但请注意：$f_p$ 已达 $12\,\mathrm{GHz}$，\emph{若换用 $n_e\gtrsim5\times10^{19}\,\mathrm{m^{-3}}$ 则 $f_p$ 将逼近 $60\,\mathrm{GHz}$，必须改用完整折射率 $N=\sqrt{1-\omega_p^2/\omega^2}$，或先做截止检查。}
+
+% ------------------------------------------------------------------------
+
+\begin{example}{汤姆逊散射光谱展宽与温度关系}{ex:thomson}
+某Nd:YAG（钕掺杂钇铝石榴石）激光汤姆逊散射系统（激光波长 $\lambda_0 = 1064\,\mathrm{nm}$）测得散射光谱的半高全宽（FWHM）$\Delta\lambda_{1/2} = 12\,\mathrm{nm}$。已知散射角 $\theta = 90°$。估算等离子体电子温度 $T_e$。
+\end{example}
+
+\textbf{解答：}
+
+汤姆逊散射中，散射光谱的展宽直接反映电子的热运动速度分布。对于非相干汤姆逊散射（$\alpha = 1/(k\lambda_D) \ll 1$），散射光谱的展宽由电子热运动多普勒效应决定。
+
+散射光谱的FWHM（波长域）与电子温度的关系：
+\[
+    \Delta\lambda_{1/2} = 4\lambda_0 \sqrt{\frac{2k_B T_e}{m_e c^2}} \sin\frac{\theta}{2} \cdot \sqrt{\ln 2}
+\]
+
+或更常见的形式（对于高斯谱形，半高全宽）：
+\begin{equation}
+    \Delta\lambda_{1/2} = 2\lambda_0 \sqrt{\frac{8k_B T_e \ln 2}{m_e c^2}} \sin\frac{\theta}{2}
+\label{eq:ch12-thomson-fwhm}
+\end{equation}
+
+简化形式（常数已合并）：
+\[
+    \frac{\Delta\lambda_{1/2}}{\lambda_0} = 2\sqrt{\frac{8k_B T_e \ln 2}{m_e c^2}} \sin\frac{\theta}{2}
+\]
+
+对于 $\theta = 90°$，$\sin(\theta/2) = \sin(45°) = \sqrt{2}/2 = 0.707$。
+
+将公式改写为求解 $T_e$：
+\[
+    \left(\frac{\Delta\lambda_{1/2}}{2\lambda_0 \sin(\theta/2)}\right)^2 = \frac{8k_B T_e \ln 2}{m_e c^2}
+\]
+\begin{equation}
+    T_e = \frac{m_e c^2}{8k_B \ln 2} \left(\frac{\Delta\lambda_{1/2}}{2\lambda_0 \sin(\theta/2)}\right)^2
+\label{eq:ch12-thomson-temperature}
+\end{equation}
+
+已知 $m_e c^2 = 511\,\mathrm{keV} = 5.11\times10^5\,\mathrm{eV}$，$\ln 2 = 0.693$。
+
+代入数值：
+\[
+    \frac{\Delta\lambda_{1/2}}{2\lambda_0 \sin(45°)} = \frac{12}{2\times1064\times0.707} = \frac{12}{1504} = 7.98\times10^{-3}
+\]
+
+\[
+    T_e = \frac{5.11\times10^5}{8\times0.693} \times (7.98\times10^{-3})^2
+\]
+\[
+    = \frac{5.11\times10^5}{5.544} \times 6.37\times10^{-5}
+\]
+\[
+    = 9.22\times10^4 \times 6.37\times10^{-5}
+\]
+\[
+    = 5.87\,\mathrm{eV}
+\]
+
+\[
+    \boxed{T_e \approx 6\,\mathrm{eV}}
+\]
+
+\textbf{验证：} 对应电子热速度：
+\[
+    v_{th,e} = \sqrt{\frac{2k_B T_e}{m_e}} = 5.93\times10^5\times\sqrt{6} = 1.45\times10^6\,\mathrm{m\cdot s^{-1}}
+\]
+
+多普勒频移：
+\[
+    \frac{\Delta f}{f} = \frac{v_{th,e}}{c} = \frac{1.45\times10^6}{3\times10^8} = 4.8\times10^{-3}
+\]
+
+对应波长展宽：
+\[
+    \Delta\lambda \sim \lambda_0 \frac{\Delta f}{f} = 1064\times 4.8\times10^{-3} \approx 5.1\,\mathrm{nm}
+\]
+
+考虑 $\theta = 90°$ 和谱形因子（FWHM $\approx 2.355\sigma$），总展宽约 $10\sim15\,\mathrm{nm}$，与给定数据一致。
+
+% ------------------------------------------------------------------------
+
+\begin{example}{磁探针感应电压与等离子体电流关系}{ex:magnetic}
+在托卡马克实验中，在真空壁内侧放置 $N=50$ 匝的罗戈夫斯基线圈（Rogowski coil），线圈截面积 $A = 2\,\mathrm{cm^2} = 2\times10^{-4}\,\mathrm{m^2}$，环绕等离子体大圆周一圈（大半径 $R=1.0\,\mathrm{m}$）。测得感应电压 $\mathcal{E} = 2.5\,\mathrm{V}$。假设等离子体电流以 $dI_p/dt = 5\times10^6\,\mathrm{A\cdot s^{-1}}$ 的速率上升，验证线圈参数是否匹配，并估算线圈自感 $L$ 对测量的影响是否可忽略。
+\end{example}
+
+\textbf{解答：}
+
+\textbf{（1）罗戈夫斯基线圈感应电压}
+
+根据法拉第电磁感应定律，罗戈夫斯基线圈中的感应电动势：
+\begin{equation}
+    \mathcal{E} = -N \frac{d\Phi}{dt} = -N A \frac{dB_{\theta}}{dt}
+\label{eq:ch12-faraday-law}
+\end{equation}
+
+对于托卡马克中由等离子体电流 $I_p$ 产生的极向磁场，由安培定律：
+\begin{equation}
+    \oint B_{\theta} dl = \mu_0 I_p \quad\Rightarrow\quad B_{\theta} = \frac{\mu_0 I_p}{2\pi R}
+\label{eq:ch12-ampere-law}
+\end{equation}
+
+（假设线圈位于等离子体环外侧，包围全部等离子体电流。）
+
+因此：
+\begin{equation}
+    \mathcal{E} = -N A \frac{d}{dt}\left(\frac{\mu_0 I_p}{2\pi R}\right) = -\frac{N A \mu_0}{2\pi R} \frac{dI_p}{dt}
+\label{eq:ch12-rogowski-emf}
+\end{equation}
+
+代入数值：
+\[
+    \mathcal{E} = -\frac{50 \times 2\times10^{-4} \times 4\pi\times10^{-7}}{2\pi \times 1.0} \times 5\times10^6
+\]
+\[
+    = -\frac{50 \times 2\times10^{-4} \times 2\times10^{-7}}{1.0} \times 5\times10^6
+\]
+\[
+    = -50 \times 2\times10^{-4} \times 2\times10^{-7} \times 5\times10^6
+\]
+\[
+    = -50 \times 2\times10^{-4} \times 1.0
+\]
+\[
+    = -1.0\times10^{-2}\,\mathrm{V}
+\]
+
+\[
+    \boxed{|\mathcal{E}| = 0.01\,\mathrm{V} = 10\,\mathrm{mV}}
+\]
+
+（注意：题设给定的 $\mathcal{E}=2.5\,\mathrm{V}$ 与 $dI_p/dt=5\times10^6\,\mathrm{A/s}$ 不匹配。若 $\mathcal{E}=2.5\,\mathrm{V}$，则实际电流变化率应为：
+\[
+    \frac{dI_p}{dt} = \frac{2\pi R \mathcal{E}}{N A \mu_0} = \frac{2\pi \times 1.0 \times 2.5}{50 \times 2\times10^{-4} \times 4\pi\times10^{-7}} = \frac{5\pi}{1.257\times10^{-8}} \approx 1.25\times10^9\,\mathrm{A\cdot s^{-1}}
+\]
+
+或题设可能指使用了积分器，输出为电流本身而非感应电压。）
+
+\textbf{（2）自感影响的估算}
+
+罗戈夫斯基线圈自身电感 $L_{coil}$：
+\[
+    L_{coil} \approx \frac{\mu_0 N^2 A}{2\pi R}
+\]
+
+\[
+    L_{coil} = \frac{4\pi\times10^{-7} \times 50^2 \times 2\times10^{-4}}{2\pi \times 1.0}
+    = \frac{2\times10^{-7}\times2500\times2\times10^{-4}}{1.0}
+    = 1.0\times10^{-7}\,\mathrm{H}
+\]
+
+\[
+    \boxed{L_{coil} \approx 0.1\,\mathrm{\mu H}}
+\]
+
+（注意：常见错误是把圈数 $N$ 当成电感中的平方因子后误算为 $50\,\mu\mathrm{H}$——请按上式逐项代入核对，$\mu_0=4\pi\times10^{-7}$ 中的 $4\pi$ 与分母的 $2\pi$ 相除后剩下因子 $2$。）
+
+线圈的时间常数：
+\[
+    \tau_{coil} = \frac{L_{coil}}{R_{load}}
+\]
+
+若负载电阻 $R_{load}=1\,\mathrm{k\Omega}$：
+\[
+    \tau_{coil} = \frac{1.0\times10^{-7}}{1000} = 1.0\times10^{-10}\,\mathrm{s} = 0.1\,\mathrm{ns}
+\]
+
+对于 $dI_p/dt$ 对应的时间尺度（例如电流上升时间 $1\,\mathrm{ms}$），$\tau_{coil} \ll 1\,\mathrm{ms}$，因此自感影响确实可忽略。线圈输出经积分器后可直接还原电流波形。
+
+% ============================================================
+% 2. TikZ图像
+% ============================================================
+
+% ch12 新例题：H-alpha 谱线的 Stark 展宽与密度诊断
+\begin{example}{Stark 展宽与电子密度的诊断}{stark-density}
+某氢等离子体中测得 $\mathrm{H}_\alpha$ 谱线（$656.3\,\mathrm{nm}$）的 Stark 展宽 FWHM 为 $\Delta\lambda_S = 0.8\,\mathrm{nm}$。
+（1）用可追溯的 $H_\alpha$ 标度关系估算电子密度 $n_e$；
+（2）说明为什么 Stark 展宽在高密度等离子体中是密度诊断的首选，而在低密度等离子体中失效；
+（3）讨论为什么该诊断需要扣除 Doppler 展宽和仪器展宽的贡献。
+\tcblower
+\textbf{解答：}
+
+\textbf{(1) 密度反演：} 采用与正文一致的 Griem 半经验标定（$T_e\sim1\sim10\,\mathrm{eV}$）
+\[
+\Delta\lambda_{1/2}[\mathrm{nm}] \approx 0.549\left(\frac{n_e}{10^{23}\,\mathrm{m^{-3}}}\right)^{2/3},
+\]
+反解得
+\[
+n_e = 10^{23}\times\left(\frac{\Delta\lambda_S}{0.549}\right)^{3/2}
+= 10^{23}\times\left(\frac{0.8}{0.549}\right)^{3/2}
+\approx 1.8\times10^{23}\,\mathrm{m^{-3}}.
+\]
+这一密度对应高电流密度电弧芯部或聚变边缘——量级合理。\textbf{注意}：$\Delta\lambda_S$ 与系数都必须用 $\mathrm{nm}$ 为单位；若把系数写成带 $\mathrm{m^2}$ 的量纲再代入 $\mathrm{nm}$ 数值，会得到 $64\,\mathrm{m^{-3}}$ 之类的荒谬结果，这正是必须核对量纲的原因。本例未做任何"再乘 $10^{19}$ 修正"的凑数——反演结果直接来自标定式，且须在给定的温度适应区间内。
+
+\textbf{(2) 为什么高密度下首选：} Stark 展宽 $\propto n_e^{2/3}$，由\textbf{带电粒子微场}直接决定，对密度敏感（温度依赖较弱）。按本节的 $H_\alpha$ 标定 $\Delta\lambda=0.549(n_e/10^{23})^{2/3}\,\mathrm{nm}$：在 $n_e\sim10^{23}\,\mathrm{m^{-3}}$ 时 Stark 展宽约 $0.5\,\mathrm{nm}$，在 $n_e\sim10^{21}\,\mathrm{m^{-3}}$ 时约 $0.025\,\mathrm{nm}$。作为对比，$H_\alpha$ 的 Doppler 展宽在离子温度 $T_i\sim10\,\mathrm{eV}$ 时只有 $\sim7\times10^{-4}\,\mathrm{nm}$——比同密度下的 Stark 展宽小两三个数量级，故在高密度下 Stark 完全主导谱线形状，测形状即可反演密度。在低密度（$n_e\lesssim10^{18}\,\mathrm{m^{-3}}$）时 Stark 展宽降到 $\sim2.5\times10^{-4}\,\mathrm{nm}$ 量级，与 Doppler 展宽相当并逐渐被其与仪器展宽淹没，反演可靠性迅速下降——此时应改用微波干涉或汤姆逊散射。注意 Stark 宽度\emph{并非严格不依赖温度}，精确反演应使用温度相关的查表系数（如 STARK-B 数据库）而非固定 $0.549$。
+
+\textbf{(3) 展宽成分的扣除：} 实测谱线宽度是三种机制的卷积：
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item \textbf{Doppler 展宽}：$\Delta\lambda_D \propto \sqrt{T_i}$（离子热运动），需由独立测得的离子温度扣除；
+\item \textbf{仪器展宽}：光谱仪狭缝与光栅决定，用标准灯标定后扣除；
+\item \textbf{Stark 展宽}：待测量。
+\end{itemize}
+通常用 Voigt 线型拟合（Gauss 的 Doppler 与 Lorentz 的 Stark 卷积），或在高密度下 Stark 占优时直接用 FWHM 近似。若不扣除，密度反演会偏高——这是光谱密度诊断的主要系统误差来源。
+\end{example}
+
+\section{微波干涉仪光路示意图}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[scale=1.0, >=Stealth]
+        % 微波源
+        \draw[thick, fill=orange!20] (-2,0) rectangle (0,1);
+        \node at (-1,0.5) {微波源};
+        \node at (-1,0.0) {\small $f=60\,\mathrm{GHz}$};
+        
+        % 出射波
+        \draw[->, ultra thick, red] (0,0.5) -- (1.5,0.5);
+        \node[red] at (0.7,0.9) {$\omega$};
+        
+        % 喇叭天线
+        \draw[thick] (1.5,0.2) -- (2,0) -- (2,1) -- (1.5,0.8);
+        \node at (2.2,0.5) {\tiny 喇叭};
+        
+        % 波导
+        \draw[thick] (2,0.1) rectangle (2.5,0.9);
+        
+        % 分束器（部分反射）
+        \draw[thick, fill=blue!20] (3,0) -- (3.5,0.5) -- (3,1) -- (2.5,0.5) -- cycle;
+        \node[blue] at (3,0.5) {\tiny 分束器};
+        
+        % 参考臂（上）
+        \draw[->, thick, green!60!black] (3.5,0.5) -- (6,0.5);
+        \draw[thick, green!60!black] (6,0.5) -- (7,0.5);
+        % 反射镜
+        \draw[thick, fill=gray!40] (7,0.3) -- (7.2,0.3) -- (7.2,0.7) -- (7,0.7);
+        % 返回
+        \draw[->, thick, green!60!black] (7,0.5) -- (5,0.5);
+        \draw[thick, green!60!black] (5,0.5) -- (3.5,0.5);
+        \node[green!60!black] at (5.5,0.9) {参考臂};
+        
+        % 测量臂（下）
+        \draw[->, thick, purple] (2.5,0.5) -- (2, -1);
+        \draw[thick, purple] (2,-1) -- (2,-2);
+        % 等离子体区域
+        \draw[thick, fill=cyan!15] (1,-2.5) rectangle (3,-1.5);
+        \node[cyan!70!black] at (2,-2) {等离子体};
+        \draw[->, thick, purple] (2,-2) -- (2,-3);
+        % 反射镜
+        \draw[thick, fill=gray!40] (1.8,-3) -- (2.2,-3) -- (2.2,-3.2) -- (1.8,-3.2);
+        % 返回
+        \draw[->, thick, purple] (2,-3) -- (2,-2);
+        \draw[thick, purple] (2,-1.5) -- (2,-1);
+        \draw[thick, purple] (2,-1) -- (3,-0.5);
+        \node[purple] at (1.2,-2.5) {测量臂};
+        
+        % 合束/干涉
+        \draw[->, thick, green!60!black] (3.5,0.5) -- (3,-0.5);
+        \draw[->, thick, purple] (3,-0.5) -- (3.5,0.5);
+        % 重新到分束器或到探测器
+        \draw[->, thick, red] (3,0) -- (3,-1);
+        
+        % 探测器
+        \draw[thick, fill=yellow!20] (2.5,-1.5) rectangle (3.5,-2.5);
+        \node at (3,-2) {探测器};
+        
+        % 信号输出
+        \draw[->, thick] (3,-2.5) -- (3,-3.5);
+        \node at (3,-3.8) {干涉信号 $I(\phi)$};
+        
+        % 相位差标注
+        \draw[<->, thick, blue] (4.5,0.8) -- (4.5,-2.2);
+        \node[blue, right] at (4.5,-0.7) {$\Delta\phi = \frac{\omega}{c}(N-1)L$};
+        
+        % 图例
+        \node[anchor=west] at (8,0.5) {\color{green!60!black}\small 参考波};
+        \node[anchor=west] at (8,0) {\color{purple}\small 测量波};
+        \node[anchor=west] at (8,-0.5) {\color{red}\small 干涉信号};
+    \end{tikzpicture}
+    \caption{微波干涉仪光路示意图。微波源经分束器分为参考臂和测量臂，测量臂穿过等离子体后产生相位移动 $\Delta\phi$，两束波在分束器处重新汇合产生干涉，由探测器记录。}
+    \label{fig:interferometer}
+\end{figure}
+
+% ============================================================
+% 3. 核心公式速查卡
+% ============================================================
+
+\section{核心公式速查卡}
+
+\begin{formulabox}{朗缪尔探针诊断}{f:langmuir}
+电子阻滞区（过渡区）\textbf{电子电流}（须先扣除离子电流 $I_e = I + |I_{isat}|$）：
+\[
+    I_e = I_{esat} \exp\left(\frac{e(V - V_{pl})}{k_B T_e}\right)
+\]
+
+电子温度（由 $\ln I_e$-$V$ 斜率）：
+\[
+    T_e\,[\mathrm{eV}] = \left(\frac{d\ln I_e}{dV}\right)^{-1}
+\]
+
+电子密度——以下三式适用条件不同，\textbf{不可混用}：
+\begin{itemize}
+    \item \textbf{平面薄鞘}（$s/r_p\ll1$，电子随机热流）：
+    \[
+        n_e = \frac{4 I_{esat}}{e A_p \bar v_e},\qquad \bar v_e = \sqrt{\frac{8k_BT_e}{\pi m_e}}
+    \]
+    \item \textbf{圆柱/球形 OML}（$r_p\ll\lambda_D$，轨道受限）：
+    \[
+        n_e = \frac{I_{esat}}{e A_p}\sqrt{\frac{2\pi m_e}{k_B T_e}}
+        \quad\text{(柱: 另有含 } r_p/\lambda_D \text{ 的修正因子)}
+    \]
+\end{itemize}
+
+离子饱和电流（冷离子玻姆流，与第11章玻姆判据一致）：
+\[
+    I_{isat} \approx 0.6\, n_e e A_p u_B,\qquad u_B = \sqrt{\frac{k_B T_e}{m_i}}
+\]
+\textbf{假定：}无磁、无碰撞、鞘边密度比 $n_s/n_e \approx 0.6$；若离子热速度不可忽略则改用 $\frac12 en_iA_p\bar v_i$ 并注明所用离子温度。
+\end{formulabox}
+
+\begin{formulabox}{微波干涉仪}{f:interferometer}
+等离子体折射率（$\omega \gg \omega_p$）：
+\begin{equation}
+    N = \sqrt{1 - \frac{\omega_p^2}{\omega^2}} \approx 1 - \frac{\omega_p^2}{2\omega^2}
+\label{eq:ch12-refractive-index-ex}
+\end{equation}
+
+相位移动：
+\[
+    \Delta\phi = \frac{\omega}{c}(N-1)L = -\frac{e^2}{2\eps_0 m_e c \omega} n_e L
+\]
+
+电子密度（由相位移动）：
+\[
+    n_e = \frac{2\eps_0 m_e c \omega}{e^2 L} |\Delta\phi| = \frac{4\pi\eps_0 m_e c f}{e^2 L} |\Delta\phi|
+\]
+
+截止密度（$N=0$）：
+\[
+    n_{cut} = \frac{\eps_0 m_e \omega^2}{e^2} \approx 1.24\times10^{10} f^2\,[\mathrm{GHz}]
+\,\mathrm{cm^{-3}} \quad\left(= 1.24\times10^{16} f^2\,[\mathrm{GHz}]\,\mathrm{m^{-3}}\right)
+\]
+\end{formulabox}
+
+\begin{formulabox}{汤姆逊散射}{f:thomson}
+汤姆逊散射截面：
+\[
+    \sigma_T = \frac{8\pi}{3} r_e^2 = 6.65\times10^{-29}\,\mathrm{m^2}
+\]
+
+非相干散射条件（Salpeter参数）：
+\[
+    \alpha = \frac{1}{k\lambda_D} = \frac{\lambda_0}{4\pi\lambda_D\sin(\theta/2)} \ll 1
+\]
+
+散射光谱FWHM（温度）：
+\[
+    \frac{\Delta\lambda_{1/2}}{\lambda_0} = 2\sqrt{\frac{8k_B T_e \ln 2}{m_e c^2}} \sin\frac{\theta}{2}
+\]
+
+\textbf{波长域形式}：
+\[
+    T_e\,[\mathrm{eV}] = \frac{m_e c^2}{8k_B \ln 2} \left(\frac{\Delta\lambda_{1/2}}{2\lambda_0 \sin(\theta/2)}\right)^2
+\]
+\end{formulabox}
+
+\begin{formulabox}{磁探针与罗戈夫斯基线圈}{f:magnetic}
+磁探针感应电压（法拉第定律）：
+\[
+    \mathcal{E} = -N A \frac{dB}{dt}
+\]
+
+罗戈夫斯基线圈（环形，包围电流）：
+\[
+    \mathcal{E} = -\frac{\mu_0 N A}{2\pi R} \frac{dI_p}{dt}
+\]
+
+经积分器输出：
+\[
+    V_{out} = \frac{1}{RC} \int \mathcal{E}\,dt \propto I_p
+\]
+\end{formulabox}
+
+\begin{formulabox}{光谱诊断}{f:spectroscopy}
+谱线展宽机制：
+\begin{itemize}
+    \item 自然展宽：$\Delta\lambda_N \sim 10^{-5}\,\mathrm{nm}$（可忽略）
+    \item 多普勒展宽：$\frac{\Delta\lambda_D}{\lambda_0} = \frac{2}{c}\sqrt{\frac{2k_B T_i \ln 2}{m_i}}$
+    \item 斯塔克展宽（电场导致）：$\Delta\lambda_S \propto n_e^{2/3}$（氢线为主）
+    \item 范德瓦尔斯展宽：$\Delta\lambda_V \propto n_g$（中性密度）
+\end{itemize}
+
+离子温度（多普勒展宽）：
+\[
+    T_i = \frac{m_i c^2}{8k_B \ln 2} \left(\frac{\Delta\lambda_D}{\lambda_0}\right)^2
+\]
+\end{formulabox}
+
+% ============================================================
+% 4. 自学检查清单
+% ============================================================
+
+\section{自学检查清单}
+
+\begin{checklistbox}{第12章自学检查清单}{ch12-checklist}
+\begin{itemize}[leftmargin=*,label=$\square$]
+\item[$\square$] 我能画出朗缪尔探针的I-V曲线，并标出离子饱和区、过渡区、电子饱和区
+\item[$\square$] 我能从过渡区斜率计算电子温度 $T_e$，并理解为什么取 $\ln I$ 对 $V$ 的导数
+\item[$\square$] 我能用电子饱和电流和探针面积计算电子密度 $n_e$
+\item[$\square$] 我知道浮动电位 $V_f$ 和等离子体电位 $V_{pl}$ 的物理含义及它们的关系
+\item[$\square$] 我能解释微波干涉仪的工作原理：为什么相位移动与 $n_e$ 成正比？
+\item[$\square$] 我知道等离子体截止频率的意义，以及为什么微波频率必须高于截止频率
+\item[$\square$] 我能从汤姆逊散射光谱的展宽估算电子温度
+\item[$\square$] 我知道非相干汤姆逊散射（$\alpha \ll 1$）与相干散射（$\alpha \gg 1$）的区别
+\item[$\square$] 我能解释磁探针（Rogowski coil）如何测量等离子体电流
+\item[$\square$] 我了解光谱诊断中不同展宽机制（多普勒、斯塔克、范德瓦尔斯）的物理来源
+\item[$\square$] 我能区分有源诊断（如探针、微波）与无源诊断（如光谱）的优缺点
+\item[$\square$] 我知道为什么朗缪尔探针在强磁场或RF等离子体中需要特殊设计（如补偿、RF扼流）
+\end{itemize}
+\end{checklistbox}
+
+\endinput

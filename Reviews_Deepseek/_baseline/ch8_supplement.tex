@@ -1,0 +1,410 @@
+﻿% ============================================================
+% 第8章补充：经典例题与自学元素
+% 插入位置：第8章现有miniquiz之后（\end{miniquiz} 之后）
+% ============================================================
+
+\section*{习题精选与详解}
+\addcontentsline{toc}{section}{习题精选}
+
+\begin{example}{库仑对数在不同等离子体环境中的计算}{coulomb-log-calc}
+分别计算以下三种等离子体的库仑对数 $\ln\Lambda$：
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item 实验室低温等离子体：$n_e = 10^{18}\,\mathrm{m}^{-3}$，$T_e = 4\,\mathrm{eV}$
+\item 太阳日冕：$n_e = 10^{12}\,\mathrm{m}^{-3}$，$T_e = 100\,\mathrm{eV}$
+\item 托卡马克聚变等离子体：$n_e = 10^{20}\,\mathrm{m}^{-3}$，$T_e = 10\,\mathrm{keV}$
+\end{itemize}
+并讨论 $\ln\Lambda$ 随等离子体参数的变化规律。
+\tcblower
+\textbf{解答：}
+
+\textbf{先统一约定，再谈"等价"。} 库仑对数的不同写法\emph{不}都相等，必须明确所用约定。本书采用：
+\[
+\boxed{\;\ln\Lambda = \ln\!\left(\frac{\lambda_D}{b_0}\right),\qquad b_0 = \frac{e^2}{4\pi\eps_0 k_{\!B}T_e}\;}
+\]
+这是"最大碰撞参数取德拜长度、最小取 $90^\circ$ 碰撞参数"这一约定的结果。它和德拜球内粒子数 $N_D=\frac{4\pi}{3}n_e\lambda_D^3$ 的关系可以精确算出来：
+\[
+\frac{\lambda_D}{b_0} = \lambda_D\cdot\frac{4\pi\eps_0 k_{\!B}T_e}{e^2} = 3\cdot\frac{4\pi}{3}n_e\lambda_D^3 = 3N_D
+\]
+（用了 $\lambda_D^2=\eps_0k_{\!B}T_e/(n_ee^2)$。）所以\textbf{在本约定下 $\ln\Lambda=\ln(3N_D)$}。
+
+\textbf{三个容易混淆的"等价式"，只有前两个是同一个东西：}
+\begin{itemize}
+\item $\lambda_D/b_0 = 3N_D$ \quad$\checkmark$（本书约定）
+\item $12\pi n_e\lambda_D^3 = 9N_D$ \quad（注意是 $9N_D$，\textbf{不是} $12\pi N_D$）
+\item $\dfrac{12\pi\eps_0k_{\!B}T_e}{e^2n_e^{1/3}}$ \quad$\times$ \textbf{与前两者都不等}：把它展开为
+\[
+n_e\lambda_D^3 = n_e\left(\frac{\eps0 k_{\!B}T_e}{n_ee^2}\right)^{3/2} = \frac{(\eps0k_{\!B}T_e)^{3/2}}{e^3n_e^{1/2}}
+\propto T_e^{3/2}n_e^{-1/2}
+\]
+而第三式的标度是 $T_en_e^{-1/3}$——\textbf{对 $T_e,n_e$ 的幂次不同，属于改变了物理标度}，不能画等号。（它对应"最小碰撞参数取平均粒子间距 $n^{-1/3}$、而不是 $90^\circ$ 参数"的另一种约定。）
+\end{itemize}
+\textbf{结论：} 遇到库仑对数的任何写法，先问两个问题——(i) 最大碰撞参数取什么？(ii) 最小碰撞参数取经典最近距离、90° 参数还是量子截断 $\hbar/(m_ev)$？\textbf{不能靠"对数变化慢"跳过这一步}：常数因子只改变 $\ln\Lambda$ 的相加项，但幂次不同会改变 $\ln\Lambda$ 随 $T,n$ 的变化趋势，那是有物理后果的。
+
+对典型等离子体，$\ln\Lambda$ 在 $10$--$30$ 之间。下面用 $N_D = \frac{4\pi}{3} n_e \lambda_D^3$ 与 $\ln\Lambda=\ln(3N_D)$ 计算。
+
+已知 $\lambda_D = \sqrt{\frac{\eps_0 k_{\!B}T_e}{n_e e^2}}$，故
+\[
+N_D = \frac{4\pi}{3} n_e \lambda_D^3 = \frac{4\pi}{3} n_e \left(\frac{\eps_0 k_{\!B}T_e}{n_e e^2}\right)^{3/2}
+= \frac{4\pi}{3}\frac{(\eps_0 k_{\!B}T_e)^{3/2}}{n_e^{1/2}e^3}
+\]
+
+\textbf{（1）实验室低温等离子体：}
+\[
+N_D = \frac{4\pi}{3}\times10^{18}\times (1.49\times 10^{-5})^3
+= 4.19\times10^{18}\times 3.31\times 10^{-15}
+\approx 1.39\times 10^4
+\]
+\[
+\ln\Lambda = \ln(3N_D) = \ln(3\times 1.39\times 10^4) = \ln(4.17\times 10^4) \approx 10.6
+\]
+
+\textbf{（2）太阳日冕：}
+$k_{\!B}T_e = 100\,\mathrm{eV} = 1.602\times 10^{-17}\,\mathrm{J}$
+\[
+\lambda_D = \sqrt{\frac{8.854\times 10^{-12}\times 1.602\times 10^{-17}}{10^{12}\times 2.566\times 10^{-38}}}
+= \sqrt{5.53\times 10^{-3}} \approx 7.43\times 10^{-2}\,\mathrm{m} = 7.43\,\mathrm{cm}
+\]
+\[
+N_D = \frac{4\pi}{3}\times10^{12}\times (7.43\times 10^{-2})^3 \approx 4.19\times10^{12}\times 4.1\times 10^{-4} \approx 1.72\times 10^9
+\]
+\[
+\ln\Lambda = \ln(3N_D) = \ln(3\times 1.72\times 10^9) = \ln(5.16\times 10^9) \approx 22.4
+\]
+
+\textbf{（3）托卡马克聚变等离子体：}
+$k_{\!B}T_e = 10^4\,\mathrm{eV} = 1.602\times 10^{-15}\,\mathrm{J}$
+\[
+\lambda_D = \sqrt{\frac{8.854\times 10^{-12}\times 1.602\times 10^{-15}}{10^{20}\times 2.566\times 10^{-38}}}
+\approx 7.43\times 10^{-5}\,\mathrm{m} = 74.3\,\mu\mathrm{m}
+\]
+\[
+N_D = \frac{4\pi}{3}\times10^{20}\times (7.43\times 10^{-5})^3 \approx 4.19\times10^{20}\times 4.1\times 10^{-13} \approx 1.72\times 10^8
+\]
+\[
+\ln\Lambda = \ln(3N_D) = \ln(3\times 1.72\times 10^8) = \ln(5.16\times 10^8) \approx 20.1
+\]
+
+\textbf{规律总结：}
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item $\ln\Lambda$ 对等离子体参数的变化极为缓慢：跨越十几个数量级的密度和温度，$\ln\Lambda$ 仅从约 $11$ 变到约 $22$。
+\item 高温低密度等离子体（日冕）$\ln\Lambda$ 较大，因为德拜球内粒子数更多。
+\item 实验室等离子体 $\ln\Lambda$ 较小，但仍 $\gg 1$，保证小角度散射主导、两体碰撞近似有效。
+\item 在大多数计算中，$\ln\Lambda$ 可以取为 $15$--$20$ 的常数，误差不大。
+\end{itemize}
+\end{example}
+
+\begin{example}{Spitzer电阻率的数值计算与对比}{spitzer-calc}
+某托卡马克装置中，等离子体参数为：$n_e = 5\times 10^{19}\,\mathrm{m}^{-3}$，$T_e = 2\,\mathrm{keV}$，$Z_{\text{eff}} = 1.5$（有效电荷数），库仑对数 $\ln\Lambda = 18$。请计算：
+\begin{enumerate}[label=(\arabic*)]
+\item 该等离子体的Spitzer电阻率 $\eta$；
+\item 对应的电导率 $\sigma = 1/\eta$；
+\item 与铜（$\eta_{\text{Cu}} = 1.7\times 10^{-8}\,\Omega\cdot\mathrm{m}$）和海水（$\eta_{\text{seawater}} \approx 0.2\,\Omega\cdot\mathrm{m}$）的电阻率进行对比。
+\end{enumerate}
+\tcblower
+\textbf{解答：}
+
+Spitzer电阻率的数值公式（平行方向）为：
+\[
+\eta_{\parallel} \approx 5.2\times 10^{-5}\frac{Z\ln\Lambda}{T_e^{3/2}\,\mathrm{(eV)}}\,\Omega\cdot\mathrm{m}
+\]
+
+\textbf{(1) 计算Spitzer电阻率：}
+
+将 $T_e = 2\,\mathrm{keV} = 2000\,\mathrm{eV}$，$Z = 1.5$，$\ln\Lambda = 18$ 代入：
+\[
+\eta = 5.2\times 10^{-5}\times\frac{1.5\times 18}{(2000)^{3/2}}
+\]
+
+计算分母：
+\[
+(2000)^{3/2} = 2000\times\sqrt{2000} = 2000\times 44.72 \approx 8.94\times 10^4
+\]
+
+计算分子：
+\[
+1.5\times 18 = 27
+\]
+
+\[
+\eta = 5.2\times 10^{-5}\times\frac{27}{8.94\times 10^4}
+= 5.2\times 10^{-5}\times 3.02\times 10^{-4}
+\approx 1.57\times 10^{-8}\,\Omega\cdot\mathrm{m}
+\]
+
+\textbf{(2) 计算电导率：}
+\[
+\sigma = \frac{1}{\eta} \approx \frac{1}{1.57\times 10^{-8}} \approx 6.4\times 10^{7}\,\mathrm{S/m}
+\]
+
+\textbf{(3) 对比：}
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item 铜：$\eta_{\text{Cu}} = 1.7\times 10^{-8}\,\Omega\cdot\mathrm{m}$
+\item 该等离子体：$\eta \approx 1.57\times 10^{-8}\,\Omega\cdot\mathrm{m}$
+\item 海水：$\eta_{\text{seawater}} \approx 0.2\,\Omega\cdot\mathrm{m}$
+\end{itemize}
+
+\textbf{分析：}
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item 在 $T_e = 2\,\mathrm{keV}$ 时，聚变等离子体的电阻率已与铜相当！这说明Spitzer电阻率随温度下降极快：$\eta \propto T_e^{-3/2}$。
+\item 若温度升高到 $10\,\mathrm{keV}$，电阻率将下降为 $(10/2)^{3/2} = 11.2$ 倍，即约 $1.4\times 10^{-9}\,\Omega\cdot\mathrm{m}$，仅为铜的约 $1/12$。
+\item 海水的电阻率比等离子体高约 $10^{10}$ 倍，这说明即使是"高温"等离子体，其导电能力也远非日常生活中的盐水可比。
+\item 电阻率与密度无关：若将密度加倍，载流子数加倍，但碰撞频率也加倍，两者抵消。
+\end{itemize}
+\end{example}
+
+\begin{example}{双极扩散系数的计算}{ambipolar-calc}
+一弱电离氩等离子体中，电子温度 $T_e = 3\,\mathrm{eV}$，离子温度 $T_i = 0.3\,\mathrm{eV}$（即 $T_e/T_i = 10$），电子密度 $n_e = 10^{18}\,\mathrm{m}^{-3}$。已知电子扩散系数 $D_e = 0.5\,\mathrm{m}^2/\mathrm{s}$，离子扩散系数 $D_i = 2.5\times 10^{-3}\,\mathrm{m}^2/\mathrm{s}$。求：
+\begin{enumerate}[label=(\arabic*)]
+\item 双极扩散系数 $D_a$；
+\item 电子和离子在无耦合情况下各自扩散 $1\,\mathrm{cm}$ 所需的时间；
+\item 双极扩散下共同扩散 $1\,\mathrm{cm}$ 所需的时间。
+\end{enumerate}
+\tcblower
+\textbf{解答：}
+
+\textbf{(1) 计算双极扩散系数：}
+
+双极扩散系数公式为：
+\[
+D_a = \frac{\mu_i D_e + \mu_e D_i}{\mu_i + \mu_e}
+\]
+
+\textbf{符号约定（务必先统一）：} 本题中 $\mu_\alpha\equiv e|Z_\alpha|/(m_\alpha\nu_\alpha)$ 取\textbf{正}值（迁移率\emph{大小}），电荷符号单独放在通量表达式里——电子漂移与电场反向、离子漂移与电场同向。若改用带符号的迁移率 $\mu_e=-e/(m_e\nu_e)<0$，则通量应写成 $\Gamma_e=-D_e\partial_xn+\mu_enE$ 且 $\mu_e$ 为负，$D_a$ 的表达式中一个减号随之翻正。\textbf{两种约定给出同一个 $D_a$}，但不能混用——混用会让电子项符号出错。本书采用"$\mu$ 取正、符号写在通量里"的约定。
+
+在 $T_e \gg T_i$ 时，可近似为：
+\[
+D_a \approx D_i\left(1 + \frac{T_e}{T_i}\right)
+\]
+
+代入 $D_i = 2.5\times 10^{-3}\,\mathrm{m}^2/\mathrm{s}$，$T_e/T_i = 10$：
+\[
+D_a = 2.5\times 10^{-3}\times (1 + 10) = 2.5\times 10^{-3}\times 11 = 2.75\times 10^{-2}\,\mathrm{m}^2/\mathrm{s}
+\]
+
+对比：$D_a \approx 11 D_i \ll D_e$。电子扩散被离子"拖慢"，离子扩散被电子温度"加速"。
+
+\textbf{(2) 无耦合扩散时间：}
+
+扩散的特征时间尺度：$\tau \sim L^2/D$。取 $L = 1\,\mathrm{cm} = 0.01\,\mathrm{m}$：
+
+电子：
+\[
+\tau_e = \frac{L^2}{D_e} = \frac{(0.01)^2}{0.5} = \frac{10^{-4}}{0.5} = 2\times 10^{-4}\,\mathrm{s} = 0.2\,\mathrm{ms}
+\]
+
+离子：
+\[
+\tau_i = \frac{L^2}{D_i} = \frac{10^{-4}}{2.5\times 10^{-3}} = 0.04\,\mathrm{s} = 40\,\mathrm{ms}
+\]
+
+\textbf{(3) 双极扩散时间：}
+\[
+\tau_a = \frac{L^2}{D_a} = \frac{10^{-4}}{2.75\times 10^{-2}} \approx 3.64\times 10^{-3}\,\mathrm{s} \approx 3.6\,\mathrm{ms}
+\]
+
+\textbf{物理分析：}
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item 无耦合时，电子只需 $0.2\,\mathrm{ms}$ 就能扩散 $1\,\mathrm{cm}$，而离子需要 $40\,\mathrm{ms}$。
+\item 双极扩散下，电子和离子以相同速率 $D_a$ 扩散，耗时约 $3.6\,\mathrm{ms}$。这个时间介于两者之间，但更接近离子的扩散时间（因为离子是"瓶颈"）。
+\item 电子温度越高（$T_e/T_i$ 越大），双极扩散系数越大，等离子体边界损失越快。这是放电等离子体（如霓虹灯、ICP刻蚀机）设计中的关键参数。
+\end{itemize}
+\end{example}
+
+\begin{example}{电子--离子碰撞频率随温度的变化}{collision-freq-temp}
+某氢等离子体中，电子密度 $n_e = 10^{20}\,\mathrm{m}^{-3}$，库仑对数 $\ln\Lambda = 17$。计算电子--离子碰撞频率 $\nu_{ei}$ 在 $T_e = 100\,\mathrm{eV}$、$1\,\mathrm{keV}$ 和 $10\,\mathrm{keV}$ 时的值，并分析其温度依赖关系。
+\tcblower
+\textbf{解答：}
+
+电子--离子碰撞频率公式为：
+\[
+\nu_{ei} = \frac{n_i Z^2 e^4 \ln\Lambda}{12\pi^{3/2}\eps_0^2 m_e^{1/2}(k_{\!B}T_e)^{3/2}}
+\]
+
+对氢等离子体 $Z=1$，$n_i = n_e = 10^{20}\,\mathrm{m}^{-3}$。代入 SI 常数，整理为数值形式：
+\[
+\nu_{ei} \approx 2.06\times 10^{-12}\,\frac{n_e\ln\Lambda}{T_e^{3/2}\,\mathrm{(eV)}}\,\mathrm{s}^{-1}
+\]
+
+\textbf{关于系数 $2.06$ 与 $2.9$：} 分母 $12\pi^{3/2}$ 给出系数 $2.06\times10^{-12}$（与正文 \S8.2 一致）。文献中另有一支把分母写成 $3(2\pi)^{3/2}$，对应系数 $2.91\times10^{-12}$，两者\textbf{相差 $\sqrt2$}——这是碰撞频率\emph{定义}（90° 偏转率 vs 动量输运率，以及所平均的分布）不同所致，不是有效数字误差。\textbf{本书全篇统一用 $2.06\times10^{-12}$ 这一种}。
+
+\textbf{(1) $T_e = 100\,\mathrm{eV}$：}
+\[
+\begin{aligned}
+\nu_{ei} &= 2.06\times 10^{-12}\times\frac{10^{20}\times 17}{(100)^{3/2}}
+= 2.06\times 10^{-12}\times\frac{1.7\times 10^{21}}{10^3}\\
+&= 2.06\times 10^{-12}\times 1.7\times 10^{18}
+\approx 3.5\times 10^{6}\,\mathrm{s}^{-1}
+\end{aligned}
+\]
+
+对应碰撞时间：$\tau_{ei} = 1/\nu_{ei} \approx 2.9\times 10^{-7}\,\mathrm{s} = 0.29\,\mu\mathrm{s}$。
+
+\textbf{(2) $T_e = 1\,\mathrm{keV} = 1000\,\mathrm{eV}$：}
+\[
+\nu_{ei} = 2.06\times 10^{-12}\times\frac{1.7\times 10^{21}}{(1000)^{3/2}}
+= 2.06\times 10^{-12}\times\frac{1.7\times 10^{21}}{3.16\times 10^4}
+\approx 1.1\times 10^{5}\,\mathrm{s}^{-1}
+\]
+
+对应 $\tau_{ei} \approx 9.0\,\mu\mathrm{s}$。
+
+\textbf{(3) $T_e = 10\,\mathrm{keV} = 10^4\,\mathrm{eV}$：}
+\[
+\nu_{ei} = 2.06\times 10^{-12}\times\frac{1.7\times 10^{21}}{(10^4)^{3/2}}
+= 2.06\times 10^{-12}\times\frac{1.7\times 10^{21}}{10^6}
+\approx 3.5\times 10^{3}\,\mathrm{s}^{-1}
+\]
+
+对应 $\tau_{ei} \approx 2.9\times 10^{-4}\,\mathrm{s} = 0.29\,\mathrm{ms}$。
+
+\textbf{总结：}
+\[
+\begin{array}{c|c|c}
+T_e & \nu_{ei} & \tau_{ei} \\ \hline
+100\,\mathrm{eV} & 3.5\times 10^{6}\,\mathrm{s}^{-1} & 0.29\,\mu\mathrm{s} \\
+1\,\mathrm{keV} & 1.1\times 10^{5}\,\mathrm{s}^{-1} & 9.0\,\mu\mathrm{s} \\
+10\,\mathrm{keV} & 3.5\times 10^{3}\,\mathrm{s}^{-1} & 0.29\,\mathrm{ms}
+\end{array}
+\]
+
+\textbf{物理分析：} $\nu_{ei} \propto T_e^{-3/2}$，温度升高一个数量级，碰撞频率下降 $10^{3/2}\approx32$ 倍。这是因为高温电子速度更快，在靶离子附近停留时间更短，偏转更小。在聚变等离子体（$T_e\sim 10\,\mathrm{keV}$）中，经典碰撞极为稀少，碰撞输运很弱——这解释了为什么等离子体是近乎理想的导体，也说明了为什么反常输运（由不稳定性导致）成为主要损失机制。
+\end{example}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.1,font=\small]
+% 入射粒子轨迹
+\draw[->,thick,blue] (-4,2) -- (-1.5,0.5);
+\draw[->,thick,blue] (-1.5,0.5) -- (3,-1);
+\draw[->,thick,blue] (-4,-2) -- (-1.5,-0.5);
+\draw[->,thick,blue] (-1.5,-0.5) -- (3,1);
+
+% 靶粒子
+\fill[red] (0,0) circle (4pt);
+\node[red,right] at (0.3,0) {$q_2$};
+
+% 入射粒子标注
+\node[blue,left] at (-4,2.2) {$q_1$, $v$};
+\node[blue,left] at (-4,-2.2) {$q_1$, $v$};
+
+% 碰撞参数
+\draw[dashed,gray] (-1.5,0.5) -- (-1.5,-0.5);
+\node[gray,right] at (-1.3,0) {$b$};
+
+% 偏转角标注
+\draw[dashed] (0,0) -- (-1,0.67);
+\draw[dashed] (0,0) -- (2,-0.67);
+\draw[->,thick,red] (0.8,0) arc (0:-18:0.8);
+\node[red] at (1.2,-0.25) {$\theta$};
+
+% 另一偏转角
+\draw[dashed] (0,0) -- (-1,-0.67);
+\draw[dashed] (0,0) -- (2,0.67);
+\draw[->,thick,red] (0.8,0) arc (0:18:0.8);
+\node[red] at (1.2,0.25) {$\theta$};
+
+% 小角度示意
+\node[align=center] at (0,-2.5) {\footnotesize 单次散射偏转角很小：$\theta \ll 1$};
+\node[align=center] at (0,-3) {\footnotesize 多次小角度散射累积等效于一次大角度偏转};
+\end{tikzpicture}
+\caption{库仑碰撞小角度散射示意图。带电粒子 $q_1$ 以速度 $v$ 经过靶粒子 $q_2$ 附近，由于长程库仑力，轨迹发生轻微偏折。偏转角 $\theta$ 很小，但远距离碰撞频繁发生，累积效应主导了动量输运。}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=1.0, >=Stealth, font=\small]
+    % 角扩散随机游走：入射束经多次小角散射逐渐展宽
+    % 初始准直束
+    \draw[->, very thick, blue] (-4.5,0) -- (-2.5,0);
+    \node[blue, above] at (-3.5,0.15) {入射束 $\theta=0$};
+
+    % 多次小角偏折的轨迹（随机游走）
+    \draw[->, thick, red] (-2.5,0) -- (-1.2,0.3) -- (0.1,0.15) -- (1.4,0.75) -- (2.7,0.5) -- (4.2,1.2);
+    % 展宽包络
+    \draw[dashed, gray] (-2.5,0) -- (4.2,1.55);
+    \draw[dashed, gray] (-2.5,0) -- (4.2,-1.55);
+    \node[gray, right] at (4.2,1.55) {展宽包络};
+
+    % 每段小偏折标注
+    \draw[->, thick, orange] (-1.2,0.3) arc (0:25:0.9);
+    \node[orange, font=\footnotesize] at (-0.55,0.62) {$\delta\theta$};
+    \draw[->, thick, orange] (0.1,0.15) arc (0:28:0.9);
+    \node[orange, font=\footnotesize] at (0.75,0.5) {$\delta\theta$};
+    \draw[->, thick, orange] (1.4,0.75) arc (0:22:0.9);
+    \node[orange, font=\footnotesize] at (2.05,1.05) {$\delta\theta$};
+
+    % 方均根角扩散标注
+    \draw[<->, thick, purple!80!black] (4.7,0) -- (4.7,1.2);
+    \node[purple!80!black, right, font=\footnotesize, align=left] at (4.75,0.6) {方均根偏转角\\ $\theta_{\mathrm{rms}}\approx\sqrt{N}\,\delta\theta$};
+
+    % 说明
+    \node[align=center, font=\footnotesize] at (0,-2.3) {单次偏折 $\delta\theta\ll1$（随机方向），$N$ 次累积后方均根偏转角 $\theta_{\mathrm{rms}}=\sqrt{N}\,\delta\theta$\\
+    偏转角达到 $90°$（速度"记忆"完全丢失）所需碰撞数 $N_{90}\sim1/\delta\theta^2$，即动量弛豫时间 $\tau\sim N_{90}/\nu$};
+\end{tikzpicture}
+\caption{库仑碰撞的角扩散（速度空间随机游走）。带电粒子经历大量小角偏折，每次偏折 $\delta\theta\ll1$ 且方向随机；累积 $N$ 次后方均根偏转角按 $\sqrt{N}$ 增长。这正是库仑碰撞"小角散射累积主导动量输运"的定量含义，也是库仑对数 $\ln\Lambda$ 的物理来源。}
+\label{fig:coulomb-angle-diffusion}
+\end{figure}
+
+% ch8 新例题：Spitzer 电阻率随温度的标度与等离子体加热
+\begin{example}{欧姆加热与温度的稳态}{ohmic-heating}
+实验室氩等离子体由欧姆加热维持：电流密度 $j = 10^4\,\mathrm{A/m^2}$，密度 $n_e = 10^{19}\,\mathrm{m^{-3}}$，库仑对数 $\ln\Lambda = 10$。
+（1）写出欧姆加热功率密度 $P = \eta j^2$ 关于 $T_e$ 的表达式，说明其温度标度；
+（2）计算 $T_e = 5\,\mathrm{eV}$ 时的欧姆加热功率密度；
+（3）解释为什么纯欧姆加热难以把等离子体加热到高温（远高于 $\sim100\,\mathrm{eV}$）。
+\tcblower
+\textbf{解答：}
+
+\textbf{(1) 温度标度：} Spitzer 电阻率 $\eta \approx 5\times10^{-5}\,Z\ln\Lambda/T_e^{3/2}\,\Omega\mathrm{m}$（$T_e$ 以 eV 计），故
+\[
+P = \eta j^2 \approx \frac{5\times10^{-5}\,Z\ln\Lambda\,j^2}{T_e^{3/2}} \propto T_e^{-3/2}
+\]
+欧姆加热功率随温度升高而\textbf{下降}（电阻率随温度下降）。
+
+\textbf{(2) $T_e = 5\,\mathrm{eV}$ 时：}
+\[
+\eta \approx \frac{5\times10^{-5}\times1\times10}{5^{3/2}} = \frac{5\times10^{-4}}{11.2} \approx 4.5\times10^{-5}\,\Omega\mathrm{m}
+\]
+\[
+P = \eta j^2 = 4.5\times10^{-5}\times(10^4)^2 = 4.5\times10^3\,\mathrm{W/m^3}
+\]
+
+\textbf{(3) 欧姆加热为什么"上不去"——必须引入损失模型才能谈上限：}
+仅由 (1) 只能得出一个偏导数的符号：固定 $j$ 时 $P_\Omega\propto T_e^{-3/2}$ 单调下降。这\emph{不}足以给出任何温度上限——单看这条曲线，会以为温度越高加热越弱、最终趋于零，却永远说不出"停在多少 eV"。\textbf{温度上限是加热与损失两条曲线的交点，缺了损失模型就没有交点可求。}
+
+\textbf{要把上限算出来，必须先写出损失项。} 例如只考虑碰撞输运损失（能量约束时间 $\tau_E$）时，单位体积损失率为 $P_{\text{loss}} = \dfrac{3nk_{\!B}T_e}{\tau_E}$，令 $P_\Omega=P_{\text{loss}}$ 才得到平衡温度：
+\[
+\frac{5\times10^{-5}Z\ln\Lambda\,j^2}{T_e^{3/2}} = \frac{3nk_{\!B}T_e}{\tau_E}
+\quad\Longrightarrow\quad
+T_e^{5/2} = \frac{5\times10^{-5}Z\ln\Lambda\,j^2\,\tau_E}{3nk_{\!B}}
+\]
+\textbf{上限完全由 $j$、$n$、$\tau_E$ 决定，不是一个普适的数。} 若把 $\tau_E$ 换成韧致辐射损失（$\propto n^2T_e^{1/2}$），平衡点又会移动。这正是本题不给 $\tau_E$、不给 $n$ 之外信息时\textbf{不能断言"约 100 eV 达到平衡"}的原因。
+
+\textbf{正确的结论表述：} 欧姆加热在高温下被 $T_e^{-3/2}$ 强烈抑制，所以在给定电流下它能达到的温区\emph{量级上}偏低；要把它推到聚变温度（keV 量级），要么大幅提高 $j$（工程上受不稳定性限制），要么换用中性束注入、ICRF/ECRH 等辅助加热。\textbf{这不等于"欧姆加热一定停在 100 eV"}——那需要针对具体装置的 $j,n,\tau_E$ 逐个计算。请把这一条读成"标度分析 + 需要闭合"的例子，而不是一个普适常数。
+\end{example}
+
+\begin{formulabox}{第8章核心公式速查}{ch8-formulas}
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item Rutherford散射角：$\displaystyle\tan\frac{\theta}{2} = \frac{b_0}{b}$，其中 $b_0 = \frac{|q_1 q_2|}{4\pi\eps_0 m_r v^2}$ 是 $90^\circ$ 散射的碰撞参数（头碰最近距离 $=2b_0$）
+\item 电子--离子碰撞频率：$\displaystyle\nu_{ei} = \frac{n_i Z^2 e^4 \ln\Lambda}{12\pi^{3/2}\eps_0^2 m_e^{1/2}(k_{\!B}T_e)^{3/2}} \approx \frac{2.06\times10^{-12}\,n_iZ^2\ln\Lambda}{T_{e,\mathrm{eV}}^{3/2}}\,\mathrm{s^{-1}}$
+\item 库仑对数（本书约定：$\Lambda=\lambda_D/b_0=3N_D$）：$\displaystyle\ln\Lambda = \ln(3N_D)$，$N_D = \tfrac{4\pi}{3}n_e\lambda_D^3$（注意 $12\pi n_e\lambda_D^3=9N_D$，且 $12\pi\eps_0 k_BT_e/(e^2n_e^{1/3})$ 的 $T,n$ 幂次不同，是另一种约定）
+\item Spitzer电阻率：$\displaystyle\eta_{\parallel} \approx 5.2\times 10^{-5}\frac{Z\ln\Lambda}{T_e^{3/2}\,\mathrm{(eV)}}\,\Omega\cdot\mathrm{m}$
+\item 双极扩散系数：$\displaystyle D_a = \frac{\mu_i D_e + \mu_e D_i}{\mu_i + \mu_e} \approx D_i\left(1 + \frac{T_e}{T_i}\right)$
+\item 扩散系数（Fick定律）：$\displaystyle\Gamma = -D\grad n$
+\item 迁移率：$\displaystyle\mu = \frac{q}{m\nu}$
+\item 电阻率与温度关系：$\displaystyle\eta \propto T_e^{-3/2}$（与密度无关）
+\end{itemize}
+\end{formulabox}
+
+\begin{checklistbox}{第8章自学检查清单}{ch8-checklist}
+\begin{itemize}[leftmargin=*,label=$\square$]
+\item 我能理解库仑碰撞与硬球碰撞的区别：长程力导致小角度散射主导
+\item 我能计算给定等离子体参数下的库仑对数 $\ln\Lambda$
+\item 我知道为什么 $\ln\Lambda$ 在很宽的参数范围内变化缓慢（$10$--$30$）
+\item 我能从Spitzer公式估算等离子体的电阻率，并理解它与密度无关的原因
+\item 我能解释双极扩散的物理图像：电子扩散快 $\to$ 电荷分离 $\to$ 电场拉回 $\to$ 共同扩散
+\item 我知道碰撞频率 $\nu_{ei} \propto T_e^{-3/2}$，并理解高温等离子体为何近乎理想导体
+\item 我能区分经典输运（碰撞主导）和反常输运（不稳定性/湍流主导）
+\end{itemize}
+\end{checklistbox}
+
+\endinput
