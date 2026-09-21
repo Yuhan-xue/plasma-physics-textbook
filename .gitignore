@@ -46,3 +46,6 @@ __pycache__/
 # OS 鏂囦欢
 .DS_Store
 Thumbs.db
+
+# AgentTeams 运行态（非交付物）
+.agent-teams/
