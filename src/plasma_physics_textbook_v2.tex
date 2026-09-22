@@ -3169,7 +3169,7 @@ ECR可以产生极高密度（$n_e \sim 10^{18}\sim 10^{19}\,\mathrm{m^{-3}}$）
 
 \begin{definition}{等离子体鞘层}{}{}
 \label{def:sheath}
-等离子体鞘层是紧邻固体壁面、准中性被破坏（$n_e \neq n_i$）的薄层区域。其典型厚度为 $3\sim 5\,\lambda_D$（见第2章德拜长度定义）。鞘层内存在强电场，将电子反射回等离子体，同时加速离子向壁面运动。
+等离子体鞘层是紧邻固体壁面、准中性被破坏（$n_e \neq n_i$）的薄层区域。在低压、小鞘压（$V_s\sim$ 几个 $T_e$）情形下其典型厚度为 $3\sim 5\,\lambda_D$（见第2章德拜长度定义）；\textbf{高鞘压下 $s\propto V_s^{3/4}$ 可以远超此值}，详见本章 \S 玻姆判据与 Child--Langmuir 定律。鞘层内存在强电场，将电子反射回等离子体，同时加速离子向壁面运动。
 \end{definition}
 
 \begin{insight}{}{}
@@ -3198,12 +3198,12 @@ V_f = -\frac{k_B T_e}{2e} \ln\!\left(\frac{m_i}{2\pi m_e}\right)
 \end{theorem}
 
 \begin{warning}{常见误区：离子收集通量的两套公式不能混用}{}
-本章正文式\eqref{eq:ion-sat}把离子饱和电流写成 $I_{\mathrm{i,sat}} = \frac{1}{2}en_iA\bar{v}_i$（离子\emph{热}通量），而定理 \ref{thm:floating-potential} 与第11章的壁面分析使用玻姆流 $I_i \simeq 0.6\,en_eAu_B$。两者\emph{不可无条件互换}：
+第12章正文式\eqref{eq:ion-sat}把离子饱和电流写成 $I_{\mathrm{i,sat}} = \frac{1}{2}en_iA\bar{v}_i$（离子\emph{热}通量），而定理 \ref{thm:floating-potential} 与本章的壁面分析使用玻姆流 $I_i \simeq 0.6\,en_eAu_B$。两者\emph{不可无条件互换}：
 \begin{itemize}
     \item \textbf{冷离子（无碰撞、有预鞘）}：离子热速度 $\bar v_i\to 0$，热通量公式给出\emph{零}电流，显然错误。此时鞘前已把离子加速到 $u_B$，必须用玻姆流，$I_i \simeq 0.6en_eAu_B$（系数 $0.6$ 来自 $n_s/n_e$ 与 $u_B$ 的乘积）。
     \item \textbf{离子热速度不可忽略（无鞘、或极高气压强碰撞使离子未加速）}：离子尚未被加速到 $u_B$，热通量公式更接近实际。此时应注明 $\bar v_i$ 用的是体离子温度。
 \end{itemize}
-工程上测量离子饱和电流反推密度时，默认用哪一套\emph{必须写明}——它们给出的密度可以差一倍以上。本章后文（\S\ref{sec:12.2}的悬浮电位、密度反演）统一采用玻姆流模型。
+工程上测量离子饱和电流反推密度时，默认用哪一套\emph{必须写明}——它们给出的密度可以差一倍以上。第12章（\S\ref{sec:12.2}的悬浮电位、密度反演）统一采用玻姆流模型。
 \end{warning}
 
 \begin{warning}{}{}
@@ -3800,13 +3800,13 @@ P_{\text{abs}} \propto n_e \cdot E_{\text{loss}} \propto \frac{1}{3.75} \times \
 \begin{enumerate}
 \item \textbf{气体放电基础}：汤森放电描述电子雪崩和自持条件；帕邢定律给出击穿电压与 $pd$ 的U型关系；DC辉光放电有明确空间结构（阴极暗区、负辉光、正柱）；射频放电（$13.56\,\mathrm{MHz}$）通过时变电场克服绝缘表面积电荷问题；ECR在 $\omega = \omega_{ce}$ 时实现高效电子加热。
 
-\item \textbf{鞘层理论}：鞘层是壁面附近的非准中性层（$3\sim 5\,\lambda_D$），是"离子加速器"+"电子屏障"；绝缘壁面自动达到浮置电位（比等离子体电位低 $4\sim 5\,T_e$）；玻姆判据要求离子进入鞘层的速度 $\ge u_B = \sqrt{k_B T_e/m_i}$；预鞘是尺度远大于鞘层的准中性过渡区，将离子从热速度加速到 $u_B$；射频鞘层时变振荡，离子响应时间平均电位；Child-Langmuir定律给出鞘层厚度 $s \propto V_s^{3/4}$，锁定在德拜长度量级。
+\item \textbf{鞘层理论}：鞘层是壁面附近的非准中性层，是"离子加速器"+"电子屏障"；绝缘壁面自动达到浮置电位（比等离子体电位低 $4\sim 5\,T_e$）；玻姆判据要求离子进入鞘层的速度 $\ge u_B = \sqrt{k_B T_e/m_i}$；预鞘是尺度远大于鞘层的准中性过渡区，将离子从热速度加速到 $u_B$；射频鞘层时变振荡，离子响应时间平均电位；Child-Langmuir定律给出鞘层厚度 $s \propto V_s^{3/4}$，\textbf{其倍数随鞘压变化}——低压（$V_s\sim$ 几个 $T_e$）时约 $3\sim 5\,\lambda_D$，高鞘压（如 $1\,\mathrm{kV}$ 偏压）下可达毫米乃至厘米量级，不可一概说成"锁定在几个德拜长度"。
 
 \item \textbf{化学反应与应用}：自由基主导各向同性化学刻蚀，离子主导各向异性物理效应，激发态传递能量；RIE通过离子增强化学刻蚀实现协同效应；PECVD用等离子体降低沉积温度；Bosch工艺通过刻蚀/钝化循环实现高深宽比刻蚀。
 
 \item \textbf{磁控溅射与输运}：磁控溅射利用 $E\times B$ 漂移约束电子（见第3章），提高电离效率；磁场约束电子而非离子；刻蚀腔中粒子通过双极扩散（见第8章）向边界损失，损失通量与体电离率平衡维持稳态。
 
-\item \textbf{参数估算}：辉光放电 $n_e \sim 10^{16}\sim 10^{18}\,\mathrm{m^{-3}}$，$T_e \sim 1\sim 10\,\mathrm{eV}$；CCP刻蚀机 $n_e \sim 10^{16}\,\mathrm{m^{-3}}$，ICP $n_e \sim 10^{18}\,\mathrm{m^{-3}}$；通过功率平衡和玻姆流可以"信封背面"估算等离子体密度。
+\item \textbf{参数估算}：辉光放电 $n_e \sim 10^{16}\sim 10^{18}\,\mathrm{m^{-3}}$，$T_e \sim 1\sim 10\,\mathrm{eV}$；CCP刻蚀机 $n_e \sim 10^{16}\sim 10^{18}\,\mathrm{m^{-3}}$，ICP $n_e \sim 10^{18}\sim 10^{19}\,\mathrm{m^{-3}}$；通过功率平衡和玻姆流可以"信封背面"估算等离子体密度。
 \end{enumerate}
 \end{chapterreview}
 
