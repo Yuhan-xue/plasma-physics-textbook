@@ -223,10 +223,11 @@ pdftotext plasma_physics_textbook_v2.pdf - | grep -c "自学检查清单：第" 
 | 路径 | 说明 |
 |---|---|
 | `processed.md` | 本文件——两轮评审全部问题的处理台账 |
-| `src/plasma_physics_textbook_v2.tex` | 主文件（含本轮 11 项修复） |
+| `src/plasma_physics_textbook_v2.tex` | 主文件（含本轮 11 项修复 + 版本号 v1.3.0→v1.4.0） |
 | `src/ch1_supplement.tex` … `ch9_supplement.tex` | 9 处公式速查卡标题修正 |
-| `pdf/plasma_physics_textbook_v2.pdf` | 重编译的 208 页成品 |
+| `pdf/plasma_physics_textbook_v2.pdf` | 重编译的 208 页成品（元数据与封面均为 v1.4.0） |
 | `README.md` | 页数更新 210→208；新增 v1.4.0 变更记录 |
+| `.gitignore` | 修复了此前被 GBK 追加破坏的 UTF-8 编码（文件曾非合法 UTF-8） |
 
 **已删除**：`Reviews_Astra/`（15 个文件）、`Reviews_Deepseek/`（评审报告、复算脚本、渲染对照图）、`src/style_v2_preview.tex/.pdf`（视觉重设计样张——按用户指示不做重设计，以优化为主）。
 
