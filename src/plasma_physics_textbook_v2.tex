@@ -235,7 +235,7 @@
 % 兼容两参数签名的检查清单（{标题}{key}）：key 不再掉入正文
 \NewTColorBox{checklistbox}{m m}{%
   colback=green!5,colframe=green!60,fonttitle=\bfseries,breakable,
-  title={自学检查清单：#1},
+  title={#1},
   phantomlabel={ckl:#2},
   left=4pt,right=4pt,top=4pt,bottom=4pt}
 % ---- 统一色块样式：必须在上面 15 个定义之后，否则被各自的 left=4pt 反压 ----
@@ -729,7 +729,7 @@ $\star\star\star$\,[\,挑战\,] & 挑战 & 涉及较深的数学技巧或前沿�
 \textbf{前置知识} & \textbf{本书对应回顾位置} & \textbf{若看不懂的影响} \\
 \midrule
 矢量分析（梯度、散度、旋度） & 第 1 章 \S 1.1 & 看不懂后续所有推导 \\
-常微分方程（可分离变量、线性ODE） & 第 1 章 \S 1.1 & 单粒子轨道、波动方程无法求解 \\
+常微分方程（可分离变量、线性ODE） & 本书未系统复习，建议先修 & 单粒子轨道、波动方程无法求解 \\
 统计力学与分布函数 & 第 1 章 \S 1.2 & 看不懂第 4 章流体方程、第 7 章动理学 \\
 麦克斯韦方程组 & 第 1 章复习 & 看不懂第 2 章德拜屏蔽、第 6 章波 \\
 复变函数基础（留数、围道积分） & 第 7 章 \S 7.4、附录 C.2 & 动理学 Landau 阻尼推导受阻 \\
@@ -770,8 +770,8 @@ $\star\star\star$\,[\,挑战\,] & 挑战 & 涉及较深的数学技巧或前沿�
 必读 & 第 2 章 & 德拜屏蔽、准中性、鞘层（等离子体边界核心） \\
 必读 & 第 3 章 & 单粒子运动（重点：$\vect{E}\times\vect{B}$ 漂移、磁镜），
 \textbf{跳过}高阶漂移（曲率漂移、极化漂移） \\
-必读 & 第 4 章 & 只读双流体方程（\S 4.1--\S 4.3），
-跳过 MHD 近似与磁流体力学 \\
+必读 & 第 4 章 & 只读 \S 4.1--\S 4.3（玻尔兹曼方程、矩方程、双流体方程组）；
+\S 4.4 广义欧姆定律可先跳过。第 5 章（磁流体力学）整章跳过 \\
 必读 & 第 8 章 & 碰撞与输运（重点：双极扩散） \\
 必读 & 第 11 章 & 低温工业等离子体（化学、放电模式） \\
 必读 & 第 12 章 & 诊断方法（朗缪尔探针、光谱、质谱） \\
@@ -856,7 +856,7 @@ $\star\star\star$\,[\,挑战\,] & 挑战 & 涉及较深的数学技巧或前沿�
 \midrule
 第 1 章 & 无（基础复习） & 无 \\
 第 2 章 & 第 1 章 \S 1.1（矢量分析） & 无 \\
-第 3 章 & 第 1 章 \S 1.1（微分方程） & 第 2 章（准中性概念） \\
+第 3 章 & 第 1 章 \S 1.1（矢量分析） & 第 2 章（准中性概念） \\
 第 4 章 & 第 1 章 \S 1.2（分布函数）、\S 1.3（傅里叶） & 第 2、3 章（电磁环境） \\
 第 5 章 & 第 4 章（MHD 方程） & 第 1--3 章 \\
 第 6 章 & 第 1 章 \S 1.3（傅里叶）、第 4 章 \S 4.1（玻尔兹曼方程） & 第 2--5 章 \\
@@ -873,7 +873,7 @@ $\star\star\star$\,[\,挑战\,] & 挑战 & 涉及较深的数学技巧或前沿�
 \begin{tip}
 \textbf{非线性阅读策略：}
 若你的目标是第 11 章（工业等离子体），而时间有限，可以按以下顺序：
-第 1 章 $\to$ 第 2 章 $\to$ 第 4 章（仅 \S 4.1--\S 4.3）$\to$ 第 11 章。
+第 1 章 $\to$ 第 2 章 $\to$ 第 4 章（\S 4.1--\S 4.3：玻尔兹曼、矩方程、双流体）$\to$ 第 11 章。
 遇到第 11 章引用第 3 章漂移时，再回头补相关小节即可。
 \end{tip}
 
@@ -923,7 +923,7 @@ $\star\star\star$\,[\,挑战\,] & 挑战 & 涉及较深的数学技巧或前沿�
 \addcontentsline{toc}{section}{电子配套资源说明}
 % =============================================================================
 
-本书配有完整的线上资源，通过随书二维码或指定网址访问：
+本书的配套资源情况如下：
 
 \begin{table}[htbp]
 \centering
@@ -2641,6 +2641,12 @@ D_a = \frac{\mu_i D_e + \mu_e D_i}{\mu_i + \mu_e} \approx D_i\left(1 + \frac{T_e
 \[
 \eta_{\parallel} \approx 5.2\times 10^{-5} \frac{Z \ln\Lambda}{T_e^{3/2}\,\mathrm{(eV)}}\,\Omega\cdot\mathrm{m}
 \]
+
+\textbf{关于这个系数的两种口径（务必分清）：} 上式中的 $5.2\times10^{-5}$ 是\emph{含}
+Spitzer 动力学修正因子（$\gamma_E\approx0.58$ 一类，$1/1.4\approx0.71$）的标准值；
+若直接对上面的解析式常数求值，得到的是\emph{不含}该修正的 $7.3\times10^{-5}$。
+\textbf{两者相差约 1.4 倍，属模型修正而非计算误差}——引用时必须连同修正一并说明，
+不要把一个口径的公式配上另一个口径的数值。本节下方的算例统一采用 $5.2\times10^{-5}$。
 
 关键特征：
 \begin{itemize}
@@ -4865,9 +4871,9 @@ A_zB_x & A_zB_y & A_zB_z
 \multicolumn{5}{l}{\textit{四、碰撞输运}} \\
 \midrule
 朗道长度 & $b_\pi$ & $\displaystyle b_\pi = \frac{e^2}{4\pi\eps_0 k_\mathrm{B}T}$ & $\sim 10^{-14}$ m & \S 8.1 \\
-库仑对数 & $\ln\Lambda$ & $\displaystyle\ln\Lambda = \ln\!\left(\frac{\lambda_D}{b_\pi}\right)$ & $10\sim 25$ & \S 8.1 \\
+库仑对数 & $\ln\Lambda$ & $\displaystyle\ln\Lambda = \ln\!\left(\frac{\lambda_D}{b_\pi}\right)$（$b_\pi$ 即 \S 8.1 的 $b_0$ 取热平均 $m_rv^2\to2k_\mathrm{B}T$ 后的形式） & $10\sim 25$ & \S 8.1 \\
 电子--离子碰撞频率 & $\nu_{ei}$ & $\displaystyle\nu_{ei} = \frac{n_i Z^2 e^4\ln\Lambda}{12\pi^{3/2}\eps_0^2 m_e^{1/2}(k_\mathrm{B}T_e)^{3/2}}$ & $\sim 10^{5}$ s$^{-1}$ & \S 8.2 \\
-Spitzer 电阻率 & $\eta_\parallel$ & $\displaystyle\eta_\parallel = \frac{Z e^2 m_e^{1/2}}{12\pi^{3/2}\eps_0^2(k_\mathrm{B}T_e)^{3/2}}\ln\Lambda$ & $\sim 10^{-8}$ $\Omega\cdot$m & \S 8.4 \\
+Spitzer 电阻率 & $\eta_\parallel$ & $\displaystyle\eta_\parallel = \frac{Z e^2 m_e^{1/2}}{12\pi^{3/2}\eps_0^2(k_\mathrm{B}T_e)^{3/2}}\ln\Lambda$（数值式含 $\gamma_E$ 修正，见 \S 8.4） & $10^{-9}$（10\,keV）$\sim 10^{-4}$（低温放电）$\Omega\cdot$m & \S 8.4 \\
 双极扩散系数 & $D_a$ & $\displaystyle D_a \approx \frac{\mu_e D_i + \mu_i D_e}{\mu_e + \mu_i}\approx D_i\left(1+\frac{T_e}{T_i}\right)$ & $\sim D_i$（被 $T_e/T_i$ 放大）& \S 8.3 \\
 \midrule
 \multicolumn{5}{l}{\textit{五、无量纲参数}} \\
