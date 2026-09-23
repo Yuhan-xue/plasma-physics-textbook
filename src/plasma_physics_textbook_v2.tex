@@ -82,7 +82,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{5pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.4.0},
+  pdftitle={等离子体物理自学教材 v1.4.1},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -370,7 +370,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.4.0}}
+  {\small\textcolor{white!45}{v1.4.1}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -637,23 +637,28 @@ $\ee^{+\ii(k\cdot r-\omega t)}$ 为物理相位。若从其他文献引用色散
 % =============================================================================
 
 为帮助读者根据自身背景选择阅读深度，本书在每小节标题前使用
-边注难度标识（命令 \texttt{\textbackslash difficulty}），分为三个等级：
+边注难度标识（命令 \texttt{\textbackslash difficulty}），分为四个等级：
 
 \begin{table}[htbp]
 \centering
 \begin{tabular}{@{}llp{8cm}@{}}
 \toprule
-\textbf{标识} & \textbf{名称} & \textbf{含义} \\
+\textbf{建议深度} & \textbf{名称} & \textbf{含义} \\
 \midrule
-$\star$\,[\,基础\,] & 基础 & 核心概念，所有读者必须掌握。跳过将直接影响后续章节理解。 \\
-$\star\star$\,[\,提高\,] & 提高 & 进阶推导或拓展应用。理工科研究生或希望深入理解的读者应阅读。 \\
-$\star\star\star$\,[\,挑战\,] & 挑战 & 涉及较深的数学技巧或前沿问题。供科研方向读者或有志于理论工作的读者选读。 \\
+$\star$ & 基础 & 核心概念，所有读者必须掌握。跳过将直接影响后续章节理解。 \\
+$\star\star$ & 提高 & 进阶推导或拓展应用。理工科研究生或希望深入理解的读者应阅读。 \\
+$\star\star$ & 应用 & 面向工程场景的工艺诊断与参数估算（第 11 章工艺故障例题使用）。需要把物理判据落到具体设备参数上。 \\
+$\star\star\star$ & 挑战 & 涉及较深的数学技巧或前沿问题。供科研方向读者或有志于理论工作的读者选读。 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
+\textbf{边注的实际写法：} 页边只显示方括号内的名称，如\,[基础]\,、\,[提高]\,、\,[应用]\,——\emph{不}显示星号；上表的星号只表示建议的阅读深度，供选择阅读顺序时参考。
+
+\textbf{关于「挑战」：} 挑战级内容针对的是\emph{个别推导}而非整节，因此不用边注标记，而是在正文中就地标明——例如小节标题写作「Vlasov方程（挑战）」、或在正文里直接写「此处从略\,[挑战]\,」。读到方括号\,[挑战]\,即可放心跳过，不影响后续章节。
+
 \begin{miniquiz}
-在本书中，你会看到边注如\,[基础]\,或\,[挑战]\,。
+在本书中，你会看到边注如\,[基础]\,或\,[应用]\,，以及正文中就地标注的\,[挑战]\,。
 请根据你的学习目标，合理选择阅读深度。基础内容优先保证，
 挑战内容可以第一轮自学时跳过标记，第二轮再补。
 \end{miniquiz}
@@ -732,13 +737,13 @@ $\star\star\star$\,[\,挑战\,] & 挑战 & 涉及较深的数学技巧或前沿�
 常微分方程（可分离变量、线性ODE） & 本书未系统复习，建议先修 & 单粒子轨道、波动方程无法求解 \\
 统计力学与分布函数 & 第 1 章 \S 1.2 & 看不懂第 4 章流体方程、第 7 章动理学 \\
 麦克斯韦方程组 & 第 1 章复习 & 看不懂第 2 章德拜屏蔽、第 6 章波 \\
-复变函数基础（留数、围道积分） & 第 7 章 \S 7.4、附录 C.2 & 动理学 Landau 阻尼推导受阻 \\
+复变函数基础（留数、围道积分） & 附录 C.2（第 7 章 \S 7.3 用到） & 动理学 Landau 阻尼推导受阻 \\
 张量运算与指标求和约定 & 第 4 章 \S 4.3、附录 A & 双流体方程、压强张量理解困难 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\begin{review}{本节要点}{}
+\begin{review}{前置知识优先级}{}
 \begin{itemize}
 \item 矢量分析与微分方程是\textbf{最低门槛}；
 \item 统计力学与分布函数是\textbf{核心桥梁}；
@@ -981,7 +986,7 @@ Alfv\'{e}n 1942、Rosenbluth--Rostoker 1962），提供背景与要点摘要。 
 \begin{itemize}[leftmargin=*]
 \item[\textcolor{red}{$\blacksquare$}] \textbf{必学（必须掌握）}：\S1.1 矢量分析复习；\S1.2 分布函数与统计平均；\S1.3 傅里叶变换与色散关系基础
 \item[\textcolor{orange}{$\blacksquare$}] \textbf{重要（建议掌握）}：\S1.3 曲线坐标系（柱坐标全书高频）
-\item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：\S1.5 $\delta$函数与点粒子描述（第2章德拜屏蔽用到）；\S1.6 张量运算进阶（第5章 MHD 应力张量才需要）
+\item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：\S1.4 $\delta$函数与点粒子描述（第2章德拜屏蔽用到）；附录 A.5 极简二阶张量入门（第5章 MHD 应力张量才需要）
 \end{itemize}
 
 \textbf{本章学完你应该能够：}
@@ -1289,8 +1294,8 @@ v_p = \frac{\omega}{k} = \frac{\sqrt{\omega_p^2 + c^2k^2}}{k} = c\sqrt{1 + \frac
 
 \begin{itemize}[leftmargin=*]
 \item[\textcolor{red}{$\blacksquare$}] \textbf{必学}：\S2.1 德拜屏蔽（等离子体的"名片"）；\S2.2 等离子体频率（特征时间尺度）；\S2.3 等离子体判据（准中性、集体行为）
-\item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：\S2.4 耦合参数与等离子体分类（强/弱耦合）
-\item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：\S2.5 等离子体参数的数值估算（用到时回看）
+\item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：\S2.3 等离子体判据（含耦合参数与强/弱耦合分类）
+\item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：章末「习题精选」中的等离子体参数估算例题（用到时回看）
 \end{itemize}
 
 \textbf{本章新符号：}$\lambda_D$（德拜长度，屏蔽特征尺度）；$\omega_p$（等离子体频率，集体振荡特征频率）；$N_D$（德拜球内粒子数，集体性判据）；$\Gamma$（耦合参数，势能/动能之比）。全书通用符号见前言速查表。
@@ -1561,8 +1566,8 @@ N_D = \frac{4}{3}\pi n\lambda_D^3 \approx 4.4\times10^{13} \gg 1 .
 
 \begin{itemize}[leftmargin=*]
 \item[\textcolor{red}{$\blacksquare$}] \textbf{必学}：\S3.1 均匀磁场中的回旋运动；\S3.2 $\vect{E}\times\vect{B}$ 漂移；\S3.3 非均匀磁场中的梯度漂移与曲率漂移
-\item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：\S3.4 磁镜效应与磁瓶约束；\S3.5 绝热不变量
-\item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：\S3.6 导向中心运动的系统推导（高阶漂移）
+\item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：\S3.3 磁镜与磁瓶约束；章末补充中的绝热不变量（磁矩 $\mu$）
+\item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：导向中心运动的系统推导（高阶漂移）——本书未展开，见附录 E 书单
 \end{itemize}
 \end{insight}
 
@@ -1703,7 +1708,7 @@ m\dot{\vect{v}'} = q(\vect{E} + (\vect{v}' + \vect{v}_E)\times\vect{B}) = q\vect
 由于漂移速度与 $q$ 无关，电子和离子的漂移方向相同。这一点极其重要：$\vect{E}\times\vect{B}$ 漂移不会导致电荷分离！
 \end{insight}
 
-\begin{warning}{$\vect{E}\times\vect{B}$ 漂移的常见误区}{exb-mistake}
+\begin{warning}{$\vect{E}\times\vect{B}$ 漂移的三个易错点}{exb-mistake}
 \begin{enumerate}
 \item 误以为 $\vect{v}_E$ 与 $q$ 有关。实际上它是\textbf{电磁场的几何属性}，任何粒子都以相同速度漂移。
 \item 当 $\vect{E}$ 有平行于 $\vect{B}$ 的分量时，粒子会沿磁场加速（$F_\parallel = qE_\parallel$），同时垂直方向仍有 $\vect{E}\times\vect{B}$ 漂移。两部分运动独立叠加。
@@ -1722,7 +1727,7 @@ m\dot{\vect{v}'} = q(\vect{E} + (\vect{v}' + \vect{v}_E)\times\vect{B}) = q\vect
 \[
 \vect{v}_{\nabla B} = \frac{\mu}{qB^2}(\vect{B}\times\grad B) = \frac{m v_\perp^2}{2qB^3}(\vect{B}\times\grad B)
 \]
-其中 $\mu = mv_\perp^2/2B$ 是磁矩（见\S3.5）。
+其中 $\mu = mv_\perp^2/2B$ 是磁矩（见章末补充「绝热不变量」）。
 
 \textbf{曲率漂移}（由磁力线弯曲引起）：
 \[
@@ -1822,7 +1827,7 @@ m\dot{\vect{v}'} = q(\vect{E} + (\vect{v}' + \vect{v}_E)\times\vect{B}) = q\vect
 \begin{itemize}[leftmargin=*]
 \item[\textcolor{red}{$\blacksquare$}] \textbf{必学}：\S4.1 玻尔兹曼方程与矩方程；\S4.2 双流体方程组；\S4.3 广义欧姆定律
 \item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：\S4.4 状态方程与闭合问题
-\item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：\S4.5 碰撞项的简化模型（用到时回看）
+\item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：碰撞项的简化模型——见章末「习题精选」中的矩方程推导（用到时回看）
 \end{itemize}
 \end{insight}
 
@@ -2025,8 +2030,8 @@ c_{s,\text{绝热}}=\sqrt{\frac{\gamma_sk_BT_e}{m_i}}
 
 \begin{itemize}[leftmargin=*]
 \item[\textcolor{red}{$\blacksquare$}] \textbf{必学}：\S5.1 MHD方程组；\S5.2 磁压与磁张力；\S5.3 磁力线冻结；\S5.4 阿尔芬波
-\item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：\S5.5 MHD平衡（Grad-Shafranov方程简介）
-\item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：\S5.6 电阻MHD与磁重联
+\item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：MHD 平衡与 Grad--Shafranov 方程简介——见附录 C.4
+\item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：电阻 MHD 与磁重联——见章末「习题精选」的磁雷诺数讨论
 \end{itemize}
 \end{insight}
 
@@ -2127,7 +2132,7 @@ MHD做了以下关键近似：
 
 \section{磁力线冻结}\difficulty{基础}
 
-\begin{theorem}{阿尔芬定理：磁力线冻结}{flux-freezing}
+\begin{theorem}{磁力线冻结（阿尔芬定理）}{flux-freezing}
 在理想 MHD 中（$\eta = 0$），与流体一起运动的任意回路所包围的磁通量守恒：
 \[
 \frac{\diff\Phi}{\diff t} = 0, \qquad \Phi = \int_S \vect{B}\cdot\diff\vect{S}
@@ -2235,8 +2240,8 @@ v_A = \frac{B}{\sqrt{\mu_0\rho_m}} = \frac{10^{-3}}{\sqrt{(4\pi\times 10^{-7})(1
 
 \begin{itemize}[leftmargin=*]
 \item[\textcolor{red}{$\blacksquare$}] \textbf{必学}：\S6.1 静电波（Langmuir波、离子声波）；\S6.2 冷等离子体中的电磁波；\S6.3 截止与共振
-\item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：\S6.4 磁化等离子体中的波（哨声波、低混杂波）
-\item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：\S6.5 波--粒子相互作用简介
+\item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：\S6.3 磁化等离子体中的波（哨声波、低混杂波）
+\item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：波--粒子相互作用简介——见第 7 章章末的 bump-on-tail 例题
 \end{itemize}
 
 \textbf{本章新符号：}$v_{te}$（电子热速度）；$c_s$（离子声速，由 $T_e$ 决定）；$\omega_{ce}$（电子回旋频率，第3章）；$\omega_{pe}$（朗缪尔频率）；下标 $\parallel,\perp$（平行/垂直磁场分量）。全书通用符号见前言速查表。
@@ -2413,14 +2418,14 @@ c^2 k^2 \approx \frac{\omega_{pe}^2 \omega}{\omega_{ce}}
 \begin{insight}{本章核心目标}{ch7-goal}
 从Vlasov方程出发，理解无碰撞等离子体中波与粒子的相互作用。掌握Landau阻尼的物理图像和数学推导，认识动理学描述不可替代的价值。
 \tcblower
-\textbf{前置依赖：}第1章（\S1.2 分布函数 $f(\vect{r},\vect{v},t)$、\S1.3 傅里叶变换）；第4章（\S4.1 玻尔兹曼方程）。若对复变函数中的围道积分不熟悉，\S7.4 推导可标记 [挑战] 延后阅读。
+\textbf{前置依赖：}第1章（\S1.2 分布函数 $f(\vect{r},\vect{v},t)$、\S1.3 傅里叶变换）；第4章（\S4.1 玻尔兹曼方程）。若对复变函数中的围道积分不熟悉，附录 C.2 的推导可标记 [挑战] 延后阅读。
 
 \textbf{学习路径建议：}
 
 \begin{itemize}[leftmargin=*]
 \item[\textcolor{red}{$\blacksquare$}] \textbf{必学}：\S7.1 Vlasov方程；\S7.2 线性化Vlasov方程；\S7.3 Landau阻尼的物理图像
-\item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：\S7.4 Landau阻尼的数学推导（围道积分）
-\item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：\S7.5  bump-on-tail不稳定性
+\item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：Landau 阻尼的数学推导（围道积分）——见附录 C.2
+\item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：bump-on-tail 不稳定性——见章末「习题精选」的例题
 \end{itemize}
 \end{insight}
 
@@ -2553,7 +2558,7 @@ f = f_0(v) + f_1(x,v,t), \qquad E = E_1(x,t)
 \begin{itemize}[leftmargin=*]
 \item[\textcolor{red}{$\blacksquare$}] \textbf{必学}：\S8.1 库仑碰撞与Rutherford散射；\S8.2 碰撞频率；\S8.3 扩散与双极扩散
 \item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：\S8.4 Spitzer电阻率
-\item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：\S8.5 新经典输运简介
+\item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：新经典输运简介——本书未展开，见附录 E 书单
 \end{itemize}
 \end{insight}
 
@@ -2714,8 +2719,8 @@ Spitzer 动力学修正因子（$\gamma_E\approx0.58$ 一类，$1/1.4\approx0.71
 
 \begin{itemize}[leftmargin=*]
 \item[\textcolor{red}{$\blacksquare$}] \textbf{必学}：\S9.1 不稳定性分类；\S9.2 瑞利--泰勒不稳定性；\S9.3 双流不稳定性
-\item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：\S9.4 MHD不稳定性简介（扭曲模、交换模）
-\item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：\S9.5 微观不稳定性（漂移波）
+\item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：MHD 不稳定性（扭曲模、交换模）——见章末「习题精选」的 sausage/kink 模例题
+\item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：微观不稳定性（漂移波）——见章末「习题精选」的漂移波例题
 \end{itemize}
 \end{insight}
 
@@ -3004,6 +3009,10 @@ $n\tau$ & $\sim 10^{20}\,\mathrm{m}^{-3}\cdot\mathrm{s}$ & $\sim 10^{21}\,\mathr
 低温等离子体（$T_e \sim 1\sim 10\,\mathrm{eV}$，$T_i \sim$ 室温）虽然温度远低于核聚变等离子体，却是现代半导体工业、材料加工、表面处理的核心工具。本章面向自学者，从气体放电的物理基础出发，深入讲解鞘层这一被全书此前章节忽略的关键结构，再延伸到化学反应、磁控溅射与工艺参数估算。我们的目标是：不仅知道公式，更能在脑中"看到"等离子体在反应腔中的运动图像。
 \end{chapterintro}
 
+\begin{insight}{本章核心目标}{ch11-goal}
+掌握低温等离子体的产生机理（汤森放电、帕邢定律）与鞘层结构（玻姆判据、Child--Langmuir 定律），理解刻蚀、沉积、表面处理三类工艺各自的物理判据。最终目标是能把等离子体参数（$n_e$、$T_e$、鞘层厚度）与设备工艺参数（气压、功率、偏压）互相对应，并对常见工艺故障作出物理诊断。
+\end{insight}
+
 \begin{tip}{前置依赖：低温工业等离子体}{ch11-preq}
 \textbf{前置依赖：}第2章（\S2.1 德拜屏蔽、鞘层概念）；第3章（\S3.2 E×B漂移）；第4章（\S4.2 双极扩散、\S4.3 广义欧姆定律）。若只关注工业应用，可跳过第7--10章（动理学、不稳定性、聚变）。
 \end{tip}
@@ -3197,7 +3206,7 @@ V_f = -\frac{k_B T_e}{2e} \ln\!\left(\frac{m_i}{2\pi m_e}\right)
 对于氩离子，$V_f \approx -4.7\,\dfrac{k_B T_e}{e}$；即壁面电位比等离子体电位低约 $4\sim 5\,T_e$（以eV为单位）。
 \end{theorem}
 
-\begin{warning}{常见误区：离子收集通量的两套公式不能混用}{}
+\begin{warning}{离子收集通量的两套公式不能混用}{}
 第12章正文式\eqref{eq:ion-sat}把离子饱和电流写成 $I_{\mathrm{i,sat}} = \frac{1}{2}en_iA\bar{v}_i$（离子\emph{热}通量），而定理 \ref{thm:floating-potential} 与本章的壁面分析使用玻姆流 $I_i \simeq 0.6\,en_eAu_B$。两者\emph{不可无条件互换}：
 \begin{itemize}
     \item \textbf{冷离子（无碰撞、有预鞘）}：离子热速度 $\bar v_i\to 0$，热通量公式给出\emph{零}电流，显然错误。此时鞘前已把离子加速到 $u_B$，必须用玻姆流，$I_i \simeq 0.6en_eAu_B$（系数 $0.6$ 来自 $n_s/n_e$ 与 $u_B$ 的乘积）。
@@ -3819,6 +3828,10 @@ P_{\text{abs}} \propto n_e \cdot E_{\text{loss}} \propto \frac{1}{3.75} \times \
 等离子体是"看不见摸得着"的物质第四态。它不像固体、液体或普通气体那样可以直接观察，却又遍布从实验室到宇宙空间的各个角落。本章将系统介绍四种基础诊断手段——电探针、微波、光学光谱和磁探针——并阐明一个核心思想：\emph{诊断是等离子体理论预言与实验观测之间的桥梁}。每一种诊断方法，本质上都是将第2章的德拜屏蔽、第5章的磁流体力学、第6章的电磁波传播和第7章的动理学分布函数等抽象概念，转化为电压表、示波器和光谱仪上可读取的信号。
 \end{quotation}
 
+\begin{insight}{本章核心目标}{ch12-goal}
+理解等离子体诊断的共性逻辑——把不可直接观测的内部参数转化为可测量的外部信号。掌握四种基础手段的原理与适用范围：朗缪尔探针给出\emph{局部} $n_e$ 与 $T_e$，微波干涉给出\emph{线平均}密度，汤姆逊散射是 $T_e$ 的"黄金标准"，光谱与磁探针则分别给出成分/温度与磁场/电流。学完后应能判断在给定参数范围内，哪种诊断手段可行、精度如何。
+\end{insight}
+
 \begin{tip}{前置依赖：等离子体诊断}{ch12-preq}
 \textbf{前置依赖：}第2章（\S2.1 德拜长度、鞘层理论）；第6章（\S6.1 等离子体频率、\S6.2 电磁波传播）；第7章（\S7.1 动理学分布函数）。诊断是等离子体理论与实验观测之间的接口，理解诊断需要扎实的理论基础。
 \end{tip}
@@ -3939,7 +3952,7 @@ $A$ 为探针收集面积，$u_B = \sqrt{k_BT_e/m_i}$ 为玻姆速度（见第11
 曲线的"S"形，本质上就是等离子体中正负电荷响应\emph{不对称性}的直观体现。
 \end{insight}
 
-\begin{warning}{常见误区：探针尺寸与德拜长度的关系}{}
+\begin{warning}{探针尺寸与德拜长度的关系}{}
 \textbf{误区：}只要探针半径 $r_p$ 与德拜长度 $\lambda_D$（见第2章式\eqref{eq:debye-length}）满足某个关系（例如 $r_p\lesssim\lambda_D$），式\eqref{eq:langmuir-iv}的薄鞘理论就成立。
 
 \textbf{正解：}"薄鞘"说的是\emph{鞘层厚度 $s$ 相对探针曲率半径很小}，即
@@ -4006,7 +4019,7 @@ n_e \approx \frac{I_{\mathrm{i,sat}}}{0.6\, e A u_B}
 注意这里\emph{已经不再出现离子温度 $T_i$}：离子饱和电流由玻姆速度 $u_B\propto\sqrt{T_e/m_i}$ 决定，而不是离子热速度。若误用热通量式 $n\approx 2I_{\mathrm{i,sat}}/(eA\bar v_i)$，需要输入离子温度且在小 $T_i$ 时给出荒谬的大密度——这正是本节要强调的模型一致性。
 \end{corollary}
 
-\begin{warning}{常见误区：磁化等离子体中的探针}{}
+\begin{warning}{磁化等离子体中的探针}{}
 在存在磁场的等离子体（如磁约束聚变装置）中，电子回旋半径 $r_{ce} = v_{\perp e}/\omega_{ce}$（见第5章）可能远小于探针尺寸。此时电子沿磁场自由运动，但在垂直方向被磁化，探针收集电流不再由式\eqref{eq:langmuir-iv}简单描述。电子饱和电流被磁化抑制，过渡区斜率也不再单纯给出 $T_e$。磁化探针分析需要引入\emph{磁化鞘层理论}，通常需要数值模拟或经验标定，不能直接套用无磁化公式。
 \end{warning}
 
@@ -4027,7 +4040,7 @@ F(\eps) = \frac{2\sqrt{2 m_e \eps}}{A e^3}
 若改用归一到 1 的 EEPF，则 $f_\eps = F/n_e$，即需把上式除以 $n_e$。
 \end{theorem}
 
-\begin{warning}{常见误区：不可丢掉 $\sqrt{\eps}$ 因子}{}
+\begin{warning}{不可丢掉 $\sqrt{\eps}$ 因子}{}
 \eqref{eq:druyvesteyn} 中的 $\sqrt{\eps}$ 因子不可用一个常数吸收——它改变谱形。验证很简单：麦克斯韦 EEDF 为
 \[
 F_{\mathrm{Maxwell}}(\eps) \propto \sqrt{\eps}\,\exp\!\left(-\frac{\eps}{k_BT_e}\right),
@@ -4090,7 +4103,7 @@ V_f - V_p = T_e \ln\!\left(\sqrt{\frac{2\pi m_e}{m_i}}\right)
 式\eqref{eq:floating-potential-2}中，$V_f < V_p$ 的根本原因在于\textbf{电子的流动性远高于离子}。电子质量小，热速度大，"冲向"探针的通量天然就比离子大几个数量级。如果探针保持中性电位，它会被\emph{过度充电}为负电位。只有探针自身积累足够负的电荷，形成排斥电子的势垒，才能使电子通量降低到与离子通量相等，达到动态平衡。取 $T_i \approx T_e$ 时，$V_f - V_p \approx -4.7\,T_e$（氩）。因此，悬浮电位\emph{不是}等离子体电位，这是初学者最容易混淆的概念。同时注意：$V_f$ 对应的是 $I=0$ 的探针电位，而\textbf{等离子体电位 $V_p$ 对应 $I$-$V$ 曲线电子饱和区的拐点}，二者在曲线上是不同的位置。
 \end{insight}
 
-\begin{history}{物理史话：朗缪尔与探针诊断的诞生}{}{}
+\begin{history}{朗缪尔与探针诊断的诞生}{}{}
 1924年，美国通用电气研究实验室的欧文·朗缪尔（Irving Langmuir，1881--1957）在研究汞蒸气放电时，首次系统地利用插入金属丝测量电流-电压特性，从而推导出电子温度和密度。朗缪尔当时并没有复杂的等离子体理论框架，他凭借对气体放电的深刻直觉，提出了鞘层（Sheath）的概念，并正确认识到探针周围必然存在一个非中性的空间电荷区。这项工作不仅为等离子体诊断奠定了实验基础，也直接催生了"等离子体"（Plasma）一词在物理学中的现代用法——朗缪尔本人于1928年正式提议用这个词描述电离气体。朗缪尔探针至今仍是等离子体实验室的"标配"，其简洁之美历经百年而不衰。
 \end{history}
 
@@ -4156,7 +4169,7 @@ n_r \approx 1 - \frac{1}{2}\frac{\omega_{pe}^2}{\omega^2}
 式\eqref{eq:phase-shift}具有极其简洁的物理意义：每一个电子对电磁波相位延迟的"贡献"是独立的，且贡献量与电子密度成正比。等离子体柱越长，参与相互作用的电子越多，累积相位移动越大。值得注意的是，\textbf{离子基本不参与}，因为离子质量大，在微波频率下几乎不动，对介电常数的修正被 $(m_e/m_i)$ 因子抑制。微波干涉诊断本质上是一种\textbf{纯电子密度测量}。
 \end{insight}
 
-\begin{warning}{常见误区：相位移动与频率的关系}{}
+\begin{warning}{相位移动与频率的关系}{}
 \textbf{误区：}使用更高频率的微波可以得到更大的相位移动，从而提高灵敏度。
 
 \textbf{正解：}由式\eqref{eq:phase-shift}，$\Delta\phi \propto 1/\omega$。频率越高，相位移动反而\emph{越小}。但高频率允许测量更高密度（截止密度 $n_{\mathrm{cut}} \propto f^2$）。因此，实验设计中需要权衡：频率太低则无法穿透高密度等离子体；频率太高则相位移动微弱，难以检测。典型选择是使 $n_{\mathrm{cut}}$ 为预期最大密度的 $2\sim 3$ 倍。例如，对于峰值密度 $n_e \sim 10^{18}\,\mathrm{m}^{-3}$，选用 $f = 50\,\mathrm{GHz}$（$n_{\mathrm{cut}} \approx 3.1\times 10^{19}\,\mathrm{m}^{-3}$）是合理的。
@@ -4252,7 +4265,7 @@ S(\omega_s) \propto \exp\!\left[-\frac{(\omega_s - \omega_i)^2}{2\sigma_\omega^2
 式\eqref{eq:ion-electron-ratio}揭示了自然界中一个深刻的数量级规律：由于电子质量远小于离子，电子在相同电场下的加速度大 $(m_i/m_e)$ 倍，辐射振幅大 $(m_i/m_e)$ 倍，辐射功率（正比于振幅平方）大 $(m_i/m_e)^2$ 倍。这导致汤姆逊散射几乎完全是电子的"独角戏"，离子只是背景噪音。这也是为什么汤姆逊散射是\emph{最纯净的电子温度诊断}——它几乎不受离子成分、杂质或电荷态的影响。
 \end{insight}
 
-\begin{warning}{常见误区：相干散射与非相干散射的界限}{}
+\begin{warning}{相干散射与非相干散射的界限}{}
 当密度升高时，德拜球内的电子数 $N_D = \tfrac{4}{3}\pi n_e \lambda_D^3$ 不再是大量，电子间的相关性增强，散射波不再完全随机叠加，而会出现集体效应——\textbf{相干散射}（或称为集体汤姆逊散射）。此时散射光谱不再单纯反映电子温度，还会出现与离子声波相关的窄峰（离子成分）和与电子等离子体波相关的宽峰。非相干散射的判据通常取 $k\lambda_D \gg 1$（$k = |\vect{q}|$），即探测尺度远小于德拜长度。对于 $90^\circ$ 散射和 $1064\,\mathrm{nm}$（Nd:YAG，钕掺杂钇铝石榴石激光）激光，这一条件通常在 $n_e \ll 10^{23}\,\mathrm{m}^{-3}$ 时满足。聚变堆芯密度（$\sim 10^{20}\,\mathrm{m}^{-3}$）远低于此阈值，因此非相干近似仍然适用。
 \end{warning}
 
@@ -4410,7 +4423,7 @@ $R$ 为\textbf{线圈骨架的}平均半径（\emph{不是}托卡马克的大半
 Rogowski线圈的一个重要优点是：它只测量\emph{穿过环中心的净电流}，对环外部电流不敏感。这是因为外部电流产生的磁场在环内部绕行一周时，从不同方向穿过绕组，贡献相互抵消。这一特性使得Rogowski线圈可以方便地套在真空室或导体棒外部，测量其中的等离子体电流，而不受外部杂散磁场的显著干扰。在托卡马克中，环向等离子体电流 $I_p$ 通常达到 $10^6\,\mathrm{A}$ 量级，Rogowski线圈缠绕在真空室外围，是监测这一核心MHD参数的标准手段。通过与极向磁探针阵列结合，还可以重构等离子体边界和内部的磁通面结构（安全因子 $q$ 分布），为等离子体平衡和稳定性分析提供输入。
 \end{insight}
 
-\begin{warning}{常见误区：磁探针是否扰动等离子体？}{}
+\begin{warning}{磁探针是否扰动等离子体？}{}
 \textbf{误区：}磁探针只是被动接收磁场，完全不扰动等离子体。
 
 \textbf{正解：}磁探针本身是导体，插入等离子体后会与等离子体发生相互作用。首先，探针表面可能形成鞘层（类似朗缪尔探针），改变局部电位；其次，探针作为固态障碍物，会扰动等离子体流，产生尾流或激波；第三，在快速变化的磁场中，探针中感应的涡电流可能产生次级磁场，干扰原始信号。因此，磁探针通常设计得尽可能小（直径 $1\sim 3\,\mathrm{mm}$），并使用高阻抗前置放大器以减少电流回路。Rogowski线圈则由于位于等离子体外部，扰动问题较轻，但需要注意杂散电容和分布电感对快速瞬态信号的影响。
@@ -4530,7 +4543,7 @@ Rogowski线圈的一个重要优点是：它只测量\emph{穿过环中心的净
 特别注意：\textbf{预鞘电位降（$\sim\frac12 k_BT_e/e$）不是鞘层压降}。预鞘是准中性的加速跑道（见定义 \ref{def:pre-sheath}），真正的离子轰击能量由\emph{鞘层}压降（外偏压 + 浮置电位差）决定，二者相差可达数十甚至数百倍。直接把 $T_e/2$ 当作总鞘压去推刻蚀能量，是工艺诊断中最常见的量级错误。凡未注明来源的工艺数字（如"良率下降 30\%"）都应视为假想数据，并追问"直接测了什么、模型假设了什么、还缺什么证据"。
 \end{insight}
 
-\begin{review}{本节要点}{}
+\begin{review}{四大诊断手段的定位}{}
 \begin{itemize}
     \item 等离子体诊断的本质是将理论预言（德拜长度、等离子体频率、分布函数等）转化为可测量信号。
     \item 朗缪尔探针通过 $I$-$V$ 曲线测量局部 $T_e$ 和 $n_e$；过渡区 $\ln I$-$V$ 斜率给出 $T_e$，饱和电流给出 $n_e$。
