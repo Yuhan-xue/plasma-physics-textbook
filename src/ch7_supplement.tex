@@ -41,6 +41,8 @@ f_0(v) = n\sqrt{\frac{m}{2\pi k_{\!B}T}}\,\exp\!\left(-\frac{mv^2}{2k_{\!B}T}\ri
 
 因此 $f_0(v)$ 满足Vlasov方程。\textbf{物理意义}：在没有电磁场和梯度的情况下，任何只依赖 $v$ 的分布都是Vlasov方程的稳态解——麦克斯韦分布只是其中一员。
 
+\end{example}
+
 \begin{warning}{"稳态解"不等于"热平衡"，也不等于"稳定"}{vlasov-steady-caution}
 这是本节最容易滑过去的一步。上面的验证只说明 $f_0(v)$ 满足 $\partial_tf=0$，它\emph{没有}说明系统通过无碰撞过程达到了热平衡。请把三件事分清：
 \begin{itemize}
@@ -51,7 +53,6 @@ f_0(v) = n\sqrt{\frac{m}{2\pi k_{\!B}T}}\,\exp\!\left(-\frac{mv^2}{2k_{\!B}T}\ri
 
 \textbf{反问题（请自行验证）：} 取双峰分布 $f_0(v)=n[A_1\ee^{-(v-u)^2/2v_{t1}^2}+A_2\ee^{-(v+u)^2/2v_{t2}^2}]$（两束相向运动的电子），它同样只依赖 $v$，因此\emph{同样}是 Vlasov 方程的稳态解——但它是\textbf{双流不稳定性}的经典不稳定平衡（第9章）。可见"满足 Vlasov 稳态"与"能稳定存在"是两回事。真正决定稳定性的是 $\partial f_0/\partial v$ 的符号结构（第9章、本章末的 bump-on-tail），而不是"是否满足 $\partial_tf=0$"。
 \end{warning}
-\end{example}
 
 \begin{example}{Landau阻尼率的数值估算}{landau-damping-calc}
 实验室氩等离子体中，测得电子密度 $n_e = 10^{18}\,\mathrm{m}^{-3}$，电子温度 $T_e = 4\,\mathrm{eV}$。一列电子Langmuir波的波数为 $k = 10^{4}\,\mathrm{m}^{-1}$。请估算该波的Landau阻尼率 $|\omega_i|$ 和对应的衰减时间 $\tau = 1/|\omega_i|$。

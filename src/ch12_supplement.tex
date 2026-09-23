@@ -371,9 +371,11 @@ $\ln I_e$ & $-2.303$ & $-1.386$ & $-0.598$ & $0.049$ \\
 % ch12 新例题：H-alpha 谱线的 Stark 展宽与密度诊断
 \begin{example}{Stark 展宽与电子密度的诊断}{stark-density}
 某氢等离子体中测得 $\mathrm{H}_\alpha$ 谱线（$656.3\,\mathrm{nm}$）的 Stark 展宽 FWHM 为 $\Delta\lambda_S = 0.8\,\mathrm{nm}$。
-（1）用可追溯的 $H_\alpha$ 标度关系估算电子密度 $n_e$；
-（2）说明为什么 Stark 展宽在高密度等离子体中是密度诊断的首选，而在低密度等离子体中失效；
-（3）讨论为什么该诊断需要扣除 Doppler 展宽和仪器展宽的贡献。
+\begin{enumerate}[label=(\arabic*)]
+\item 用可追溯的 $H_\alpha$ 标度关系估算电子密度 $n_e$；
+\item 说明为什么 Stark 展宽在高密度等离子体中是密度诊断的首选，而在低密度等离子体中失效；
+\item 讨论为什么该诊断需要扣除 Doppler 展宽和仪器展宽的贡献。
+\end{enumerate}
 \tcblower
 \textbf{解答：}
 
@@ -389,7 +391,9 @@ n_e = 10^{23}\times\left(\frac{\Delta\lambda_S}{0.549}\right)^{3/2}
 \]
 这一密度对应高电流密度电弧芯部或聚变边缘——量级合理。\textbf{注意}：$\Delta\lambda_S$ 与系数都必须用 $\mathrm{nm}$ 为单位；若把系数写成带 $\mathrm{m^2}$ 的量纲再代入 $\mathrm{nm}$ 数值，会得到 $64\,\mathrm{m^{-3}}$ 之类的荒谬结果，这正是必须核对量纲的原因。本例未做任何"再乘 $10^{19}$ 修正"的凑数——反演结果直接来自标定式，且须在给定的温度适应区间内。
 
-\textbf{(2) 为什么高密度下首选：} Stark 展宽 $\propto n_e^{2/3}$，由\textbf{带电粒子微场}直接决定，对密度敏感（温度依赖较弱）。按本节的 $H_\alpha$ 标定 $\Delta\lambda=0.549(n_e/10^{23})^{2/3}\,\mathrm{nm}$：在 $n_e\sim10^{23}\,\mathrm{m^{-3}}$ 时 Stark 展宽约 $0.5\,\mathrm{nm}$，在 $n_e\sim10^{21}\,\mathrm{m^{-3}}$ 时约 $0.025\,\mathrm{nm}$。作为对比，$H_\alpha$ 的 Doppler 展宽在离子温度 $T_i\sim10\,\mathrm{eV}$ 时只有 $\sim7\times10^{-4}\,\mathrm{nm}$——比同密度下的 Stark 展宽小两三个数量级，故在高密度下 Stark 完全主导谱线形状，测形状即可反演密度。在低密度（$n_e\lesssim10^{18}\,\mathrm{m^{-3}}$）时 Stark 展宽降到 $\sim2.5\times10^{-4}\,\mathrm{nm}$ 量级，与 Doppler 展宽相当并逐渐被其与仪器展宽淹没，反演可靠性迅速下降——此时应改用微波干涉或汤姆逊散射。注意 Stark 宽度\emph{并非严格不依赖温度}，精确反演应使用温度相关的查表系数（如 STARK-B 数据库）而非固定 $0.549$。
+\textbf{(2) 为什么高密度下首选：} Stark 展宽 $\propto n_e^{2/3}$，由\textbf{带电粒子微场}直接决定，对密度敏感（温度依赖较弱）。按本节的 $H_\alpha$ 标定 $\Delta\lambda=0.549(n_e/10^{23})^{2/3}\,\mathrm{nm}$：在 $n_e\sim10^{23}\,\mathrm{m^{-3}}$ 时 Stark 展宽约 $0.5\,\mathrm{nm}$，在 $n_e\sim10^{21}\,\mathrm{m^{-3}}$ 时约 $0.025\,\mathrm{nm}$。作为对比，$H_\alpha$ 的 Doppler 展宽在离子温度 $T_i\sim10\,\mathrm{eV}$ 时只有 $\sim7\times10^{-4}\,\mathrm{nm}$——比同密度下的 Stark 展宽小两三个数量级，故在高密度下 Stark 完全主导谱线形状，测形状即可反演密度。
+
+在低密度（$n_e\lesssim10^{18}\,\mathrm{m^{-3}}$）时 Stark 展宽降到 $\sim2.5\times10^{-4}\,\mathrm{nm}$ 量级，与 Doppler 展宽相当并逐渐被其与仪器展宽淹没，反演可靠性迅速下降——此时应改用微波干涉或汤姆逊散射。注意 Stark 宽度\emph{并非严格不依赖温度}，精确反演应使用温度相关的查表系数（如 STARK-B 数据库）而非固定 $0.549$。
 
 \textbf{(3) 展宽成分的扣除：} 实测谱线宽度是三种机制的卷积：
 \begin{itemize}[leftmargin=*,itemsep=0pt]

@@ -130,7 +130,12 @@ f(v_x) = n\sqrt{\frac{m}{2\pi k_{\!B}T}}\,\exp\!\left(-\frac{mv_x^2}{2k_{\!B}T}\
 % ch1 新例题：分布函数矩的计算
 \begin{example}{麦克斯韦分布的矩与最概然速率}{ch1-maxwell-dist}
 一维麦克斯韦分布 $f(v) = \dfrac{n}{\sqrt{\pi}\,v_t}\exp(-v^2/v_t^2)$，其中 $v_t = \sqrt{2k_{\!B}T/m}$（\textbf{注意}：此处 $v_t$ 为一维分布的尺度参数，满足 $v_t = \sqrt{2}\,v_{\mathrm{rms}}$，其中 $v_{\mathrm{rms}}=\sqrt{k_{\!B}T/m}$ 为一维方均根速率；不要与三维最概然速率 $v_p=\sqrt{2k_{\!B}T/m}$ 的数值巧合混淆——两者表达式相同但含义不同）。计算：
-（1）平均速度 $\langle v\rangle$；（2）平均速率 $\langle|v|\rangle$；（3）方均根速率 $v_{\mathrm{rms}}=\sqrt{\langle v^2\rangle}$；（4）最概然速率 $v_p$。
+\begin{enumerate}[label=(\arabic*)]
+\item 平均速度 $\langle v\rangle$；
+\item 平均速率 $\langle|v|\rangle$；
+\item 方均根速率 $v_{\mathrm{rms}}=\sqrt{\langle v^2\rangle}$；
+\item 最概然速率 $v_p$。
+\end{enumerate}
 \tcblower
 \textbf{解答：}
 以下积分统一按 $n^{-1}\!\int g(v)f(v)\diff v$ 归一化，因为 $\int_{-\infty}^{+\infty} f(v)\diff v = n$。

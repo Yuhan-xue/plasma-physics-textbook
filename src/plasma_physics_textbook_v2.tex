@@ -82,7 +82,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{5pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.4.1},
+  pdftitle={等离子体物理自学教材 v1.5.0},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -190,7 +190,7 @@
   colback=defgreen!5,colframe=defgreen,fonttitle=\bfseries,breakable,
   left=4pt,right=4pt,top=4pt,bottom=4pt}{def}
 \newtcbtheorem[number within=chapter]{corollary}{推论}{
-  colback=cororange!5,colframe=cororange,fonttitle=\bfseries,breakable,
+  colback=cororange!5,colframe=cororange,colbacktitle=cororange!62!black,fonttitle=\bfseries,breakable,
   left=4pt,right=4pt,top=4pt,bottom=4pt}{cor}
 \newtcbtheorem[number within=chapter]{example}{例题}{
   colback=exampurple!5,colframe=exampurple,fonttitle=\bfseries,breakable,
@@ -199,7 +199,7 @@
   colback=insightred!5,colframe=insightred!80,fonttitle=\bfseries,breakable,
   left=4pt,right=4pt,top=4pt,bottom=4pt}{ins}
 \newtcbtheorem[number within=chapter]{warning}{常见误区}{
-  colback=warnyellow!8,colframe=warnyellow,fonttitle=\bfseries,breakable,
+  colback=warnyellow!8,colframe=warnyellow,colbacktitle=warnyellow!55!black,fonttitle=\bfseries,breakable,
   left=4pt,right=4pt,top=4pt,bottom=4pt}{warn}
 \newtcbtheorem[number within=chapter]{history}{物理史话}{
   colback=historybrown!5,colframe=historybrown,fonttitle=\bfseries,breakable,
@@ -208,7 +208,7 @@
   colback=reviewblue!5,colframe=reviewblue,fonttitle=\bfseries,breakable,
   left=4pt,right=4pt,top=4pt,bottom=4pt}{rev}
 \newtcbtheorem[number within=chapter]{tip}{学习提示}{
-  colback=tipgreen!5,colframe=tipgreen,fonttitle=\bfseries,breakable,
+  colback=tipgreen!5,colframe=tipgreen,colbacktitle=tipgreen!62!black,fonttitle=\bfseries,breakable,
   left=4pt,right=4pt,top=4pt,bottom=4pt}{tip}
 \newtcolorbox{miniquiz}[1][]{
   colback=reviewblue!3,colframe=reviewblue,fonttitle=\bfseries,
@@ -370,7 +370,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.4.1}}
+  {\small\textcolor{white!45}{v1.5.0}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -3034,11 +3034,11 @@ $n\tau$ & $\sim 10^{20}\,\mathrm{m}^{-3}\cdot\mathrm{s}$ & $\sim 10^{21}\,\mathr
 其中 $p$ 为气压，$E$ 为电场强度，$A$、$B$ 为与气体种类相关的实验常数。
 \end{definition}
 
-\begin{insight}{}{}
+\begin{insight}{汤森第一电离系数的物理图像}{}
 \cref{def:townsend-alpha} 的物理含义清晰：气压 $p$ 越高，电子自由程越短，所以每次电离需要更强的电场 $E$ 来补偿（指数中 $Bp/E$ 项）；但一旦电场足够强，电离系数随 $E/p$ 呈指数增长，雪崩便不可阻挡。
 \end{insight}
 
-\begin{history}{}{}
+\begin{history}{汤森与电子雪崩理论（1903）}{}
 1903年，英国物理学家约翰·汤森（John Townsend）系统研究了低气压气体中的电流增长规律，建立了电子雪崩理论。他用手摇真空泵和简单电极做出了精密的电离系数测量，奠定了气体放电物理的基石。
 \end{history}
 
@@ -3052,11 +3052,11 @@ $n\tau$ & $\sim 10^{20}\,\mathrm{m}^{-3}\cdot\mathrm{s}$ & $\sim 10^{21}\,\mathr
 时，气体发生自持放电。其中 $\gamma$ 为汤森第二电离系数（每个入射离子在阴极产生的二次电子数）。
 \end{theorem}
 
-\begin{insight}{}{}
+\begin{insight}{自持放电的"正反馈"图像}{}
 \cref{thm:townsend-breakdown} 的左边 $\gamma(\ee^{\alpha d}-1)$ 表示一个电子从阴极出发、在阳极被收集前，通过电离雪崩在阴极"生出"的新电子数。如果这个数等于1，系统就实现了自持：不需要外部种子电子，放电也能维持。这是反馈放大器中的"正反馈"概念在等离子体中的最早体现。
 \end{insight}
 
-\begin{warning}{}{}
+\begin{warning}{$\alpha$ 与 $\gamma$ 不是同一件事}{}
 初学者常混淆 $\alpha$ 与 $\gamma$ 的物理来源：$\alpha$ 是电子与中性气体碰撞产生的体电离，发生在气体内部；$\gamma$ 是离子轰击阴极产生的表面二次电子发射，发生在电极表面。二者是完全不同的物理过程！
 \end{warning}
 
@@ -3074,7 +3074,7 @@ V_{\text{bd}} = \frac{B\,pd}{\ln(Apd) - \ln\!\bigl[\ln(1+1/\gamma)\bigr]}
 对于给定气体和电极材料，$V_{\text{bd}}$ 随 $pd$ 的变化呈U型曲线，存在最小击穿电压 $V_{\text{min}}$。
 \end{theorem}
 
-\begin{insight}{}{}
+\begin{insight}{帕邢曲线为何是 U 型}{}
 帕邢曲线的U型特征可理解如下：
 \begin{itemize}
 \item \textbf{左侧（低 $pd$）}：气压太低或极距太小，电子自由程过长，还没撞到中性原子就打到阳极去了，电离效率低，需要很高电压才能击穿。
@@ -3107,11 +3107,11 @@ V_{\text{bd}} = \frac{B\,pd}{\ln(Apd) - \ln\!\bigl[\ln(1+1/\gamma)\bigr]}
 \end{enumerate}
 \end{definition}
 
-\begin{insight}{}{}
+\begin{insight}{DC 辉光放电各区的物理图像}{}
 DC辉光放电的物理图像可作如下理解：阴极暗区对应强电场中的电子加速区，负辉光对应电子能量达到激发阈值的强发光区，法拉第暗区对应电子能量因非弹性碰撞而降低的弱发光区，正柱区则是电子在较弱电场中再次加速并形成准中性等离子体柱的稳定区。整个过程中电子经历电场加速、碰撞、激发、再加速的循环。
 \end{insight}
 
-\begin{warning}{}{}
+\begin{warning}{最亮的地方电场最强吗？}{}
 认为负辉光最亮所以电场最强。实际上，负辉光区电场已经较弱，亮度来源于大量电子能量恰好落在激发函数峰值附近；而阴极暗区电场最强，反而不发光，因为电子能量还未达到激发阈值。亮度和电场强度没有直接对应关系！
 \end{warning}
 
@@ -3129,7 +3129,7 @@ DC辉光放电有一个致命缺陷：绝缘靶材或介质窗上会积累电荷
 因此，离子看到的是时间平均电场，电子则能形成准稳态的射频鞘层振荡。
 \end{definition}
 
-\begin{insight}{}{}
+\begin{insight}{为什么射频能让离子"看见"平均电位}{}
 \cref{def:rf-frequency} 的物理图像：在 $13.56\,\mathrm{MHz}$ 的一个周期（$74\,\mathrm{ns}$）内，电子可以跑完德拜长度量级的距离（见第2章），而离子仅移动约 $10^{-4}$ 倍德拜长度。因此鞘层边界以射频频率往复振荡，离子以远慢于鞘层边界振荡的时间尺度穿过该边界，被持续加速。这正是射频鞘层可以产生高能离子轰击的关键。
 \end{insight}
 
@@ -3157,7 +3157,7 @@ DC辉光放电有一个致命缺陷：绝缘靶材或介质窗上会积累电荷
 对于 $2.45\,\mathrm{GHz}$ 的微波，共振磁场为 $B \approx 875\,\mathrm{G}$（$0.0875\,\mathrm{T}$）。
 \end{theorem}
 
-\begin{insight}{}{}
+\begin{insight}{ECR 为何能"只加热电子"}{}
 ECR可以产生极高密度（$n_e \sim 10^{18}\sim 10^{19}\,\mathrm{m^{-3}}$）和低离子温度（$T_i \sim 0.1\,\mathrm{eV}$）的等离子体，因为加热只针对电子，离子基本不直接吸收微波能量。ECR源在离子注入、深度反应离子刻蚀（DRIE, Deep Reactive Ion Etching）等需要高密度、低损伤的工艺中不可替代。
 \end{insight}
 
@@ -3181,7 +3181,7 @@ ECR可以产生极高密度（$n_e \sim 10^{18}\sim 10^{19}\,\mathrm{m^{-3}}$）
 等离子体鞘层是紧邻固体壁面、准中性被破坏（$n_e \neq n_i$）的薄层区域。在低压、小鞘压（$V_s\sim$ 几个 $T_e$）情形下其典型厚度为 $3\sim 5\,\lambda_D$（见第2章德拜长度定义）；\textbf{高鞘压下 $s\propto V_s^{3/4}$ 可以远超此值}，详见本章 \S 玻姆判据与 Child--Langmuir 定律。鞘层内存在强电场，将电子反射回等离子体，同时加速离子向壁面运动。
 \end{definition}
 
-\begin{insight}{}{}
+\begin{insight}{鞘层的"二合一"结构}{}
 鞘层可以形象地看作一个"离子加速器"+"电子屏障"的二合一结构：
 \begin{itemize}
 \item \textbf{电子屏障}：鞘层电场方向从等离子体指向壁面，电子（带负电）受到的电场力指向等离子体内部，因此大多数电子被反射回去，只有能量最高的"尾巴"电子能克服势垒到达壁面。
@@ -3215,7 +3215,7 @@ V_f = -\frac{k_B T_e}{2e} \ln\!\left(\frac{m_i}{2\pi m_e}\right)
 工程上测量离子饱和电流反推密度时，默认用哪一套\emph{必须写明}——它们给出的密度可以差一倍以上。第12章（\S\ref{sec:12.2}的悬浮电位、密度反演）统一采用玻姆流模型。
 \end{warning}
 
-\begin{warning}{}{}
+\begin{warning}{壁面电位不等于等离子体电位}{}
 认为壁面电位就是等离子体电位。实际上，由于电子热速度远大于离子声速，壁面必须足够负才能排斥过剩的电子，否则电子流会远大于离子流。任何没有外部电流的绝缘表面都会自动"负漂移"到浮置电位！
 \end{warning}
 
@@ -3250,7 +3250,7 @@ n_e(x) &= n_0 \exp\!\left(\frac{e\phi(x)}{k_B T_e}\right)
 \end{equation}
 \end{proof}
 
-\begin{insight}{}{}
+\begin{insight}{玻姆判据为何要求"声速"}{}
 玻姆判据的物理含义极其深刻：鞘层边界的离子速度不能任意小，否则任何微小的电位扰动都会被等离子体通过德拜屏蔽效应迅速中和，无法形成稳定的鞘层。只有当离子具有足够的惯性（速度 $\ge u_B$），才能越过准中性到非准中性的过渡区，形成鞘层所需的电荷分离。换言之，预鞘区的作用相当于一个"加速跑道"，将离子从热速度加速到声速，使其具备进入鞘层的最低动能。
 \end{insight}
 
@@ -3263,11 +3263,11 @@ n_e(x) &= n_0 \exp\!\left(\frac{e\phi(x)}{k_B T_e}\right)
 预鞘是鞘层边界与准中性体等离子体之间的过渡区域，尺度远大于鞘层厚度（通常为装置尺寸量级）。在预鞘中，等离子体仍近似准中性（$n_e \approx n_i$），但存在微弱的电场使离子从热速度加速到 $u_B$。预鞘中电位下降约为 $\frac{1}{2}k_B T_e/e$。
 \end{definition}
 
-\begin{insight}{}{}
+\begin{insight}{预鞘如何把离子加速到玻姆速度}{}
 预鞘的物理图像可作如下描述：体等离子体内部没有宏观电场，离子以热速度随机运动；当离子接近鞘层边界时，感受到来自鞘层过渡区的微弱电场作用，逐渐获得定向速度。该加速区的尺度延伸至装置尺寸 $L$ 量级，因为准中性要求电场足够弱，使得 $n_e$ 和 $n_i$ 的微小差异恰好由空间电荷方程平衡。在预鞘末端，离子速度达到 $u_B$，随后进入真正的鞘层并被急剧加速。
 \end{insight}
 
-\begin{history}{}{}
+\begin{history}{玻姆与鞘层判据（1949）}{}
 1949年，英国理论物理学家大卫·玻姆（David Bohm）在研究电弧放电时提出了离子进入鞘层的最低速度判据。这一简洁而深刻的结论成为此后70年等离子体鞘层理论的基石，深刻影响了所有低温等离子体工艺的设计。
 \end{history}
 
@@ -3290,7 +3290,7 @@ E_i \approx e\bar{V} + \frac{1}{2}k_B T_i \approx e\bar{V}
 其中 $\bar{V} \sim V_{\text{RF}}/2$，$V_{\text{RF}}$ 为射频电压幅值。
 \end{theorem}
 
-\begin{insight}{}{}
+\begin{insight}{离子为何只响应时间平均电位}{}
 射频鞘层的动态行为可作如下描述：鞘层边界以 $13.56\,\mathrm{MHz}$ 频率往复振荡，电子在该边界附近被周期性地压缩和膨胀。离子由于惯性大，仅响应时间平均电位，以准稳态方式穿过振荡鞘层，最终获得由时间平均鞘层压降决定的动能。这种离子在时变电场中持续加速的机制是RIE（反应离子刻蚀）中离子能量可控的关键。
 \end{insight}
 
@@ -3325,11 +3325,11 @@ n_i(x) u(x) &= n_s u_B \quad (\text{连续性})
 将 $n_i$ 用 $\phi$ 表示，积分两次，并应用边界条件 $\phi(0)=0$，$\diff\phi/\diff x(0)=0$（准中性过渡），$\phi(s)=-V_s$，最终得到 \cref{eq:child-langmuir}。
 \end{proof}
 
-\begin{insight}{}{}
+\begin{insight}{鞘层厚度不是"锁定在几个德拜长度"}{}
 Child-Langmuir定律的 $V_s^{3/4}$ 依赖关系非常有趣：鞘层厚度不是线性随电压增长，而是增长得更慢（因为更强的电压加速离子更快，使离子密度降低，部分抵消了空间电荷效应）。\textbf{但"更慢"不等于"不变"：} 在直流高电压鞘层中，$s\propto V_s^{3/4}$ 可以比德拜长度大出很多个数量级——例如工件偏压 $V_s\sim1\,\mathrm{kV}$ 时，$s$ 可达毫米乃至厘米量级。所谓"几个德拜长度"只适用于 $V_s\sim$ 几个 $T_e$ 的低压鞘层。
 \end{insight}
 
-\begin{warning}{}{}
+\begin{warning}{关于鞘层厚度的两个误解}{}
 两个常见误解要一起纠正：
 \begin{itemize}
 \item \textbf{误解一："鞘层厚度可以任意大。"} 在直流高压下 $s\propto V_s^{3/4}$，确实可以很大——但受限于腔体尺寸与帕邢击穿，实际有上限。\emph{误解}在于把它当成无界。
@@ -3363,7 +3363,7 @@ Child-Langmuir定律的 $V_s^{3/4}$ 依赖关系非常有趣：鞘层厚度不�
 \end{itemize}
 \end{definition}
 
-\begin{insight}{}{}
+\begin{insight}{自由基、离子、激发态的"分工"}{}
 三种物种的"分工"非常清晰：自由基像"化学溶剂"，到处扩散，溶解材料（化学刻蚀）；离子像"手术刀"，定向切割，实现精密图形转移（物理+化学刻蚀）；激发态则像"信使"，传递能量但不直接参与反应。三者的协同是等离子体工艺的核心。
 \end{insight}
 
@@ -3388,7 +3388,7 @@ R_{\text{RIE}} \gg R_{\text{phys}} + R_{\text{chem}}
 这一现象称为离子增强刻蚀（Ion-enhanced etching），其微观机制包括：离子轰击破坏表面钝化层、提高表面温度、增加反应位点。
 \end{theorem}
 
-\begin{insight}{}{}
+\begin{insight}{RIE 协同效应为何远大于两者之和}{}
 RIE的协同效应是等离子体工艺中典型的离子增强化学反应：纯化学刻蚀（自由基作用）速率较慢且各向同性，纯物理溅射（离子轰击）效率低且选择性差；而离子轰击破坏表面化学键、增加反应位点，同时自由基与表面反应生成挥发性产物，两者协同使刻蚀速率远大于纯物理与纯化学速率之和。这正是RIE中离子促进化学反应的物理图像。
 \end{insight}
 
@@ -3406,7 +3406,7 @@ RIE的协同效应是等离子体工艺中典型的离子增强化学反应：�
 \textbf{数值估算}：ICP功率 $2\,\mathrm{kW}$，$n_e \sim 10^{17}\,\mathrm{m^{-3}}$，鞘层压降 $200\,\mathrm{V}$，离子能量 $E_i \sim 200\,\mathrm{eV}$，硅的溅射阈值约 $20\,\mathrm{eV}$，化学刻蚀速率约 $1\,\mu\mathrm{m}/\mathrm{min}$，物理溅射速率约 $0.1\,\mu\mathrm{m}/\mathrm{min}$，RIE协同后速率可达 $5\sim 10\,\mu\mathrm{m}/\mathrm{min}$。
 \end{example}
 
-\begin{warning}{}{}
+\begin{warning}{高深宽比刻蚀不只靠离子能量}{}
 认为高深宽比刻蚀只要离子能量足够高就行。实际上，侧壁保护和钝化层管理才是关键。纯物理溅射在深孔底部会产生"微沟槽效应"（micro-trenching），因为离子在侧壁反射后汇聚到底部角落；纯化学刻蚀则完全各向同性。Bosch工艺的成功在于精确平衡了刻蚀与钝化的循环，而非简单提高功率。
 \end{warning}
 
@@ -3422,7 +3422,7 @@ PECVD利用等离子体中的电子碰撞将反应气体（如 $\mathrm{SiH}_4$�
 溅射沉积利用辉光放电或磁控放电产生的离子轰击靶材，将靶原子溅射出来并沉积到衬底上形成薄膜。磁控溅射（见 \cref{sec:magnetron-sputtering}）通过磁场约束提高等离子体密度和沉积速率。
 \end{definition}
 
-\begin{insight}{}{}
+\begin{insight}{PECVD 与溅射沉积的本质区别}{}
 PECVD与溅射沉积的物理机制完全不同：PECVD是"化学反应在表面"，等离子体只在气相中生成前驱体；溅射沉积是"物理动量传递"，靶材原子被溅射后沉积。因此PECVD薄膜的化学计量比可以灵活调控（改变气体配比），而溅射沉积薄膜的组分与靶材基本一致。实际工艺中，PECVD用于 $\mathrm{SiO}_2$、$\mathrm{SiN}_x$ 等绝缘层，溅射用于金属互连（Al、Cu、W）。
 \end{insight}
 
@@ -3452,7 +3452,7 @@ PECVD与溅射沉积的物理机制完全不同：PECVD是"化学反应在表面
 漂移方向平行于靶面，形成闭合的环形漂移轨道。电子被"困"在靶面附近，大大增加了电离碰撞次数，使等离子体密度提高 $10\sim 100$ 倍。
 \end{theorem}
 
-\begin{insight}{}{}
+\begin{insight}{磁控溅射为何能提高一两个数量级}{}
 磁控溅射的物理图像可作如下理解：电子在电场和磁场共同作用下沿靶面做 $E\times B$ 漂移，形成闭合的环形轨道。由于漂移运动将电子约束在靶面附近，电子在到达阳极或壁面之前经历多次电离碰撞，显著提高了等离子体密度和电离效率（可比无磁场情形提高 $10\sim 100$ 倍）。这种电子约束效应是磁控溅射高沉积速率的核心物理机制。
 \end{insight}
 
@@ -3466,7 +3466,7 @@ PECVD与溅射沉积的物理机制完全不同：PECVD是"化学反应在表面
 \end{itemize}
 \end{definition}
 
-\begin{warning}{}{}
+\begin{warning}{磁场约束的是电子，不是离子}{}
 认为磁控溅射中磁场是用来加速离子轰击靶材的。实际上磁场主要约束电子，离子因质量大几乎不受磁场影响（回旋半径 $\rho_i \gg$ 装置尺寸）。离子是被鞘层电场加速的！磁场通过约束电子来提高等离子体密度，间接增加离子密度，从而增加溅射速率。混淆磁场对电子和离子的作用是初学者常见错误。
 \end{warning}
 
@@ -3488,7 +3488,7 @@ D_a = \frac{k_B T_e}{e} \mu_i \approx \frac{k_B T_e}{m_i \nu_{in}}
 其中 $\mu_i$ 为离子迁移率，$\nu_{in}$ 为离子-中性碰撞频率。损失通量必须与体电离率平衡，以维持稳态等离子体。
 \end{theorem}
 
-\begin{insight}{}{}
+\begin{insight}{双极扩散："兔子与乌龟"的比喻}{}
 双极扩散的物理图像是：电子像"急性的兔子"，想迅速逃离；离子像"慢性的乌龟"，跟不上。但兔子一跑远，就被"电场绳子"拽回来（因为电荷分离产生的电场将兔子拉回）。最终兔子和乌龟以中间速度共同移动——这个速度由乌龟（离子）的 mobility 和兔子的"焦躁程度"（$T_e$）共同决定。在刻蚀腔中，粒子不断从中心产生，向边界扩散损失，形成密度分布 $n(r)$。
 \end{insight}
 
@@ -3514,7 +3514,7 @@ D_a = \frac{4.806\times10^{-19}}{1.162\times10^{-25}\times10^5} \approx 41\,\mat
 \textbf{这只是题设的径向模型。} 实际刻蚀腔是有限高度的圆柱，轴向损失常常与径向同量级甚至更大（轴的 $L_{\text{eff}}$ 由腔长 $h$ 与两端鞘层决定）。完整的粒子约束时间应由径向与轴向损失共同给出，例如按 $\tau^{-1}\approx\tau_r^{-1}+\tau_z^{-1}$ 量级合并。\textbf{不要把这里的 $90\,\mu\mathrm{s}$ 直接当成完整装置的粒子约束时间}；它只是"只算径向"这一假设下的结果。
 \end{example}
 
-\begin{history}{}{}
+\begin{history}{平面磁控溅射的发明（1974）}{}
 1974年，美国物理学家彼得·克兰（Peter J. Clarke）和约翰·帕滕（John S. Chapin）分别独立发明了平面磁控溅射技术。利用永磁体在靶面产生拱形磁场，使电子做 $E\times B$ 漂移，溅射速率提高了10倍以上。这一发明彻底改变了薄膜工业，使低成本大面积镀膜成为可能，从建筑玻璃到硬盘磁头，无处不在。
 \end{history}
 
@@ -3549,7 +3549,7 @@ $\nu_{en}\;(\mathrm{s^{-1}})$ & $10^7\sim 10^9$ & $10^6\sim 10^8$ & $10^4\sim 10
 \end{tabular}
 \end{table}
 
-\begin{insight}{}{}
+\begin{insight}{为什么低温等离子体要刻意维持 $T_e\gg T_i$}{}
 \cref{tab:plasma-params}揭示了一个深刻对比：聚变等离子体追求 $T_e = T_i \sim 10\,\mathrm{keV}$ 的完全热平衡，而低温等离子体刻意维持 $T_e \gg T_i$（非热平衡）。这种非平衡正是低温等离子体可以"冷处理"热敏感材料的原因：电子提供电离和化学反应能量，离子保持低温，不损伤衬底。这是低温等离子体区别于热等离子体和聚变等离子体的本质特征。
 \end{insight}
 
@@ -3577,11 +3577,11 @@ R_{\text{iz}} = \frac{P_{\text{iz}}}{e E_{\text{iz}}} = \frac{75}{1.6\times 10^{
 这与 \cref{tab:plasma-params} 中CCP的典型范围一致。若改用ICP（功率 $2\,\mathrm{kW}$，效率更高），密度可提高 $1\sim 2$ 个量级。
 \end{example}
 
-\begin{insight}{}{}
+\begin{insight}{工程估算："信封背面"的物理}{}
 \cref{ex:density-estimation} 展示了工程估算的核心思想：不求精确解，而是通过物理平衡关系（功率输入 $=$ 能量损失）和特征尺度（德拜长度、玻姆速度、双极扩散）快速锁定参数数量级。在工业现场，工程师就是这样"估算"等离子体状态的——不是解完整的流体方程，而是抓住主要矛盾（功率平衡、粒子平衡），用"信封背面"算出可用参数。
 \end{insight}
 
-\begin{warning}{}{}
+\begin{warning}{别忘预鞘密度降（$n_s\approx n_0/2$）}{}
 在密度估算中忘记预鞘密度降。玻姆判据要求鞘层边界密度 $n_s$ 约为体密度 $n_0$ 的一半（预鞘中电位降 $\sim k_B T_e/2e$ 使离子加速、密度下降）。若直接用体密度计算玻姆流，会高估密度约2倍。记住：玻姆流公式中的 $n$ 是鞘层边界密度，不是体密度！
 \end{warning}
 
@@ -3628,7 +3628,9 @@ s \approx s_0 \times 1.414 \approx 0.1\,\mathrm{mm} \times 1.414 \approx 0.141\,
 
 \textbf{第二步：分析离子入射角的变化}
 
-在鞘层中，离子从等离子体边界加速向壁面运动。对于\emph{一维平面}鞘层、且离子横向初速度为零的理想情形，离子只有法向运动，\textbf{增厚不产生横向动量}，入射角保持 $0^\circ$。所以"鞘层增厚 40\% $\Rightarrow$ 入射角 15°"这一推断\textbf{不能由本题的模型直接得出}——它需要额外的横向场或横向初速度。这里把 $15^\circ$ 明确当作\textbf{另行测量/设定的经验数据}，并给出它的来源：真实 ICP 腔体中，晶片边缘的磁场不均、预鞘的二维电场、以及从体区进入鞘层的离子自身的热横向速度（$v_\perp\sim v_B\sim\sqrt{k_BT_e/m_i}$）都会提供横向动量。当鞘层增厚、离子过鞘时间变长时，\emph{这些已存在的横向速度在法向加速中所占的相对比重}会改变，从而改变有效入射角。因此正确的因果链是：\textbf{鞘层增厚是放大器，而不是横向动量的来源}。
+在鞘层中，离子从等离子体边界加速向壁面运动。对于\emph{一维平面}鞘层、且离子横向初速度为零的理想情形，离子只有法向运动，\textbf{增厚不产生横向动量}，入射角保持 $0^\circ$。所以"鞘层增厚 40\% $\Rightarrow$ 入射角 15°"这一推断\textbf{不能由本题的模型直接得出}——它需要额外的横向场或横向初速度。
+
+这里把 $15^\circ$ 明确当作\textbf{另行测量/设定的经验数据}，并给出它的来源：真实 ICP 腔体中，晶片边缘的磁场不均、预鞘的二维电场、以及从体区进入鞘层的离子自身的热横向速度（$v_\perp\sim v_B\sim\sqrt{k_BT_e/m_i}$）都会提供横向动量。当鞘层增厚、离子过鞘时间变长时，\emph{这些已存在的横向速度在法向加速中所占的相对比重}会改变，从而改变有效入射角。因此正确的因果链是：\textbf{鞘层增厚是放大器，而不是横向动量的来源}。
 
 \textbf{可计算的判据：} 若离子以 $v_\perp$ 进入鞘层、在法向被加速到 $\sqrt{2eV_s/m_i}$，则到达壁面时的倾角为 $\tan\theta\approx v_\perp/\sqrt{2eV_s/m_i}$。本题 $T_e=4\,\mathrm{eV}$、$V_s\sim$ 数十伏，$v_\perp\sim v_B$ 给出的倾角是几度量级——要到 $15^\circ$ 需要 $v_\perp$ 明显更大或存在二维场。请把 $15^\circ$ 作为给定数据接受，而不要把它标成"工程估算的必然结果"。
 
@@ -4896,7 +4898,7 @@ Spitzer 电阻率 & $\eta_\parallel$ & $\displaystyle\eta_\parallel = \frac{Z e^
 \end{longtable}
 }
 
-\begin{insight}{}{}
+\begin{insight}{单位制换算的注意事项}{}
 表 \ref{tab:plasma-parameters} 中的公式均使用 SI 单位。若采用高斯单位，需将 $1/(4\pi\eps_0)\to 1$，$\mu_0\to 4\pi/c^2$，并注意 $B$（高斯）$=10^4 B$（特斯拉）。
 \end{insight}
 
@@ -5006,7 +5008,7 @@ D(\omega_r+\ii\gamma) \approx D_r(\omega_r) + \ii\gamma\,\frac{\partial D_r}{\pa
 \end{equation}
 代入 \eqref{eq:ch7-growth-rate} 即得 $\gamma<0$，波被阻尼。这就是正文 $\omega_i=-\sqrt{\pi/8}\,\omega_{pe}/(k\lambda_D)^3\exp[-1/(2k^2\lambda_D^2)-3/2]$ 的来历（该式是把 $\partial D_r/\partial\omega_r\approx2/\omega_{pe}$ 等近似代入后的长波渐近结果，故须 $k\lambda_D\ll1$）。
 
-\begin{insight}{}{}
+\begin{insight}{Landau 围道与因果律}{}
 Landau 围道的物理本质是 \textbf{因果律}：取初始值问题要求把 $\omega$ 从上半平面延拓下来，只有这样才能让 $t=-\infty$ 时扰动为零。因此$\gamma>0$ 的极点贡献必须来自上半平面——这正是围道从极点\emph{下方}绕过、从而在留数上留下 $+\ii\pi F_0'$ 的原因。
 
 \textbf{注意：} "若取 $\gamma<0$ 就违反因果律"这一说法必须\emph{区分两种操作}——(1) 对同一个解析函数作解析延拓到下半平面，与 (2) 直接改变积分路径的绕行方向，二者后果不同，不能混为一谈。前者给出延拓后的另一个根（可能是增长模），后者则改变留数的符号。教材此处只需记住结论：\textbf{初始值问题的围道绕行方向由因果律唯一确定}，一旦固定，增长/阻尼的符号便由 \eqref{eq:ch7-growth-rate} 自动给出。
@@ -5286,7 +5288,7 @@ v_{te} [\text{m/s}] \approx 4.19\times 10^5\sqrt{T_e [\text{eV}]}
 
 \section{第1--2章：等离子体基本概念}
 
-\begin{warning}{}{}
+\begin{warning}{常见概念错误（一）}{}
 \begin{enumerate}
 \item \textbf{错误：}「准中性 = 完全无电场」\\
 \textbf{正确：} 准中性意味着在远大于德拜长度的尺度上宏观电荷密度为零；但在德拜球内部，局部可以存在显著的净电荷和电场。
@@ -5302,7 +5304,7 @@ v_{te} [\text{m/s}] \approx 4.19\times 10^5\sqrt{T_e [\text{eV}]}
 
 \section{第3--4章：单粒子运动与碰撞}
 
-\begin{warning}{}{}
+\begin{warning}{常见概念错误（二）}{}
 \begin{enumerate}
 \setcounter{enumi}{3}
 \item \textbf{错误：}「$\vect{E}\times\vect{B}$ 漂移与电荷 $q$ 有关」\\
@@ -5328,7 +5330,7 @@ v_{te} [\text{m/s}] \approx 4.19\times 10^5\sqrt{T_e [\text{eV}]}
 
 \section{第5--6章：流体方程与输运}
 
-\begin{warning}{}{}
+\begin{warning}{常见概念错误（三）}{}
 \begin{enumerate}
 \setcounter{enumi}{7}
 \item \textbf{错误：}「双极扩散中电子和离子扩散系数相同」\\
@@ -5345,7 +5347,7 @@ v_{te} [\text{m/s}] \approx 4.19\times 10^5\sqrt{T_e [\text{eV}]}
 
 \section{第7--8章：波与动力学}
 
-\begin{warning}{}{}
+\begin{warning}{常见概念错误（四）}{}
 \begin{enumerate}
 \setcounter{enumi}{10}
 \item \textbf{错误：}「Landau 阻尼是碰撞导致的能量耗散」\\
@@ -5365,7 +5367,7 @@ v_{te} [\text{m/s}] \approx 4.19\times 10^5\sqrt{T_e [\text{eV}]}
 
 \section{第9--11章：MHD、平衡与不稳定性}
 
-\begin{warning}{}{}
+\begin{warning}{常见概念错误（五）}{}
 \begin{enumerate}
 \setcounter{enumi}{14}
 \item \textbf{错误：}「MHD 可以描述所有等离子体现象」\\
@@ -5388,7 +5390,7 @@ v_{te} [\text{m/s}] \approx 4.19\times 10^5\sqrt{T_e [\text{eV}]}
 
 \section{第12章：应用与前沿}
 
-\begin{warning}{}{}
+\begin{warning}{常见概念错误（六）}{}
 \begin{enumerate}
 \setcounter{enumi}{19}
 \item \textbf{错误：}「托卡马克中所有等离子体电流都是外部驱动的」\\
@@ -5499,7 +5501,7 @@ plt.savefig('single_particle_orbit.png', dpi=150)
 plt.show()
 \end{Verbatim}
 
-\begin{insight}{}{}
+\begin{insight}{数值实验应当验证什么}{}
 在均匀磁场中，洛伦兹力方程可解析求解：粒子在垂直于 $B$ 的平面内做圆周运动（回旋），圆心以速度 $\vect{E}\times\vect{B}/B^2$ 漂移（运行代码应输出约 $1000\,\mathrm{m/s}$，与 $E_0/B_0=10^3/1$ 一致）。\textbf{磁镜情形}则必须用\emph{散度为零}的近轴场：只把 $B_z$ 改成 $B(z)=B_0(1+(z/L)^2)$ 会违反 $\divg\vect{B}=\partial_zB_z\ne0$，得到的不是合法的磁场。上面的 \texttt{B\_mirror} 函数配套了径向分量 $B_r = -(r/2)\,\partial_zB_z = -rB_0z/L^2$，使 $\divg\vect{B}=\frac1r\partial_r(rB_r)+\partial_zB_z=0$ 自动满足。运行时可检查：(1) 磁镜情形下 $z(t)$ 在 $\pm z_t$ 之间往返（反射）；(2) 动能相对漂移在 $10^{-6}$ 量级（纯磁场不做功，能量守恒）；(3) 磁矩 $\mu=mv_\perp^2/(2B)$ 近似守恒。
 \end{insight}
 

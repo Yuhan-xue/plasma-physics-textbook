@@ -131,6 +131,8 @@ k = \frac{2\pi\sqrt{(30)^2 - (8.97)^2}\times 10^6}{3\times 10^8} = \frac{2\pi\ti
 
 \textbf{物理解释（局限在本模型内）：} 在这个均匀层里，只有一条规则——\textbf{载频低于 $f_{pe}$ 的被反射，高于 $f_{pe}$ 的穿透}。所以 $5\,\mathrm{MHz}$ 被反射，$20$ 和 $30\,\mathrm{MHz}$ 穿透。请注意这是一个\emph{均匀、垂直入射}模型，它能回答的只有"该频率在该密度处能否传播"。
 
+\end{example}
+
 \begin{warning}{不要把本模型直接推广成真实电离层的通信结论}{cutoff-ionosphere-caveat}
 例题里 $30\,\mathrm{MHz}$ 在本模型中判为"可传播"，但这\textbf{不能}推出"$30\,\mathrm{MHz}$ 不能跨半球通信"。真实电离层是\emph{有厚度、密度随高度变化、分层}的介质，还必须考虑\emph{斜入射}。实际短波通信依赖两个本模型没有包含的机制：
 \begin{itemize}
@@ -139,7 +141,6 @@ k = \frac{2\pi\sqrt{(30)^2 - (8.97)^2}\times 10^6}{3\times 10^8} = \frac{2\pi\ti
 \end{itemize}
 所以本题的"反射/穿透"只对应\emph{垂直入射+单一密度}的理想情形。真实的电离层传播需要另设模型（分层 + 斜入射），不能把截止频率与一个频段的全部通信行为画等号。
 \end{warning}
-\end{example}
 
 \begin{example}{哨声波在电离层中的传播参数}{whistler-ionosphere}
 电离层中典型参数：$B=5\times 10^{-5}\,\mathrm{T}$，$n=10^{12}\,\mathrm{m}^{-3}$。求：
@@ -349,9 +350,11 @@ $f = 20\,\mathrm{MHz} \ll f_{pe}$，远低于截止频率，\textbf{不能传播
 % ch6 新例题：电磁波在等离子体中的群速度与波包
 \begin{example}{电磁波在等离子体中的群速度与波包传播}{group-velocity-wavepacket}
 一均匀等离子体（$n_e = 10^{17}\,\mathrm{m^{-3}}$）中入射一列频率 $f = 9\,\mathrm{GHz}$ 的电磁波脉冲。
-（1）求等离子体频率并判断波能否传播；
-（2）若能传播，求相速度 $v_p$ 和群速度 $v_g$；
-（3）一个脉冲在等离子体中传播 $10\,\mathrm{m}$ 需要多长时间？比真空中慢多少？
+\begin{enumerate}[label=(\arabic*)]
+\item 求等离子体频率并判断波能否传播；
+\item 若能传播，求相速度 $v_p$ 和群速度 $v_g$；
+\item 一个脉冲在等离子体中传播 $10\,\mathrm{m}$ 需要多长时间？比真空中慢多少？
+\end{enumerate}
 \tcblower
 \textbf{解答：}
 

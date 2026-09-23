@@ -373,9 +373,11 @@ $\vect{E}\times\vect{B}$ 漂移速度与电子热速度量级相近。在磁控�
 % ch11 新例题：射频鞘层厚度与自偏压
 \begin{example}{射频鞘层与自偏压估算}{rf-sheath-bias}
 电容耦合射频放电（CCP）中，极板间距 $d = 3\,\mathrm{cm}$，射频频率 $f = 13.56\,\mathrm{MHz}$，等离子体密度 $n_e = 10^{16}\,\mathrm{m^{-3}}$，电子温度 $T_e = 3\,\mathrm{eV}$。
-（1）解释为什么电极会自动形成负自偏压 $V_{dc}$；
-（2）估算射频鞘层厚度 $s_m$（设鞘层压降 $V_{rf}\approx 200\,\mathrm{V}$）；
-（3）计算鞘层厚度与极板间距之比，说明 CCP 中体等离子区的厚度。
+\begin{enumerate}[label=(\arabic*)]
+\item 解释为什么电极会自动形成负自偏压 $V_{dc}$；
+\item 估算射频鞘层厚度 $s_m$（设鞘层压降 $V_{rf}\approx 200\,\mathrm{V}$）；
+\item 计算鞘层厚度与极板间距之比，说明 CCP 中体等离子区的厚度。
+\end{enumerate}
 \tcblower
 \textbf{解答：}
 
@@ -407,7 +409,13 @@ s \approx \frac{\sqrt2}{3}\times0.13\,\mathrm{mm}\times39
 \]
 鞘层明显薄于极板间距，体等离子区仍有约 $25\,\mathrm{mm}$ 的准中性区，薄鞘近似成立。若提高密度到 $10^{17}\,\mathrm{m^{-3}}$，$\lambda_D$ 缩小 $\sqrt{10}$ 倍，$s$ 也相应缩小到约 $0.75\,\mathrm{mm}$，$s/d\approx0.025$。这就是工业 CCP 在高密度下加工更均匀的原因：鞘层薄，离子加速区窄，入射能量分散小，各向异性刻蚀更好。
 
-\textbf{适用性检查（必须做）：} 上面用的是\emph{平面、无碰撞、高鞘压}的 Child-Langmuir 近似。请核对三点：(i) $s/r_p$——鞘层厚度远小于电极曲率半径时才可当平面；(ii) $s\ll\lambda_{i}$（离子-中性碰撞平均自由程）——否则鞘层内有电荷交换碰撞，须用碰撞鞘层模型；(iii) 离子过鞘时间 $\tau_i\sim s/u_B$ 远大于射频周期——本题 $\tau_i\sim2.4\,\mathrm{mm}/(2\times10^5\,\mathrm{m/s})\sim10^{-8}\,\mathrm{s}$，与 $74\,\mathrm{ns}$ 的射频周期同量级，故严格说要考虑鞘层的时变，此处只用时间平均近似。低气压 CCP 通常满足，工业高气压刻蚀机则需修正。
+\textbf{适用性检查（必须做）：} 上面用的是\emph{平面、无碰撞、高鞘压}的 Child-Langmuir 近似。请核对三点：
+\begin{itemize}[leftmargin=*,itemsep=0pt]
+\item $s/r_p$——鞘层厚度远小于电极曲率半径时才可当平面；
+\item $s\ll\lambda_{i}$（离子-中性碰撞平均自由程）——否则鞘层内有电荷交换碰撞，须用碰撞鞘层模型；
+\item 离子过鞘时间 $\tau_i\sim s/u_B$ 远大于射频周期——本题 $\tau_i\sim2.4\,\mathrm{mm}/(2\times10^5\,\mathrm{m/s})\sim10^{-8}\,\mathrm{s}$，与 $74\,\mathrm{ns}$ 的射频周期同量级，故严格说要考虑鞘层的时变，此处只用时间平均近似。
+\end{itemize}
+低气压 CCP 通常满足，工业高气压刻蚀机则需修正。
 \end{example}
 
 \section{DC辉光放电空间结构图}
