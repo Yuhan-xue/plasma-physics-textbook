@@ -34,7 +34,7 @@
 | 结构计数 | 标签 425、引用 98、例题 78、编号小节 90 |
 
 依赖版本（复现用）：XeTeX 3.141592653-2.6-0.999998（TeX Live 2026）、pdfinfo 25.02.0、Python 3.14.7、
-numpy 2.5.3、scipy 1.18.1、PyMuPDF 1.28.2。
+numpy 2.5.3、scipy 1.18.1、PyMuPDF 1.28.2、matplotlib 3.11.1（v1.7.1 起附录 G.2 清单复现夹具也需要它）。
 
 ---
 
@@ -307,4 +307,11 @@ v1.7.0 交付后，被追问「TODO 都做了吗」时逐条复核，发现完�
   共 12 个 release
 - 报告落盘：`tmp/ui_v171.txt`、`tmp/audit_v171.txt`、`tmp/phys_v171.txt`、`tmp/fig_v171.txt`、
   `tmp/outline_v171.txt`、`tmp/full_v171*.txt`、`tmp/locate_pages.txt`（均为 UTF-8 文件，避免 Windows CP936 控制台假失败）
+- **提交后在干净工作区复跑**（`tmp/final_*_v171.txt`）：六套件 FAIL 0——
+  `full_check` 32 项（WARN 1）、`ui_readability` 35 项（WARN 16）、`consistency_audit` 14 项、
+  `physics_regression` 113 项、`figure_layout` 13 项、`pdf_outline` 11 项（WARN 2）；
+  五套夹具全部 PASS；`git status` 干净。
+- **可复现性**：在上述依赖组合下重跑 `full_check.py` 的完整 `latexmk -xelatex` 构建，
+  产物 `src/plasma_physics_textbook_v2.pdf` 的 SHA256 仍为 `69C3AF4F…C23A6`，
+  与提交/发布的 `pdf/` 副本**逐字节一致**（构建可复现，非近似重建）。
 
