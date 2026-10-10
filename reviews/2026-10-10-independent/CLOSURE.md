@@ -231,3 +231,12 @@ numpy 2.5.3、scipy 1.18.1、PyMuPDF 1.28.2。
 - 版本号：**v1.7.0**（源码封面、`pdftitle`、README 版本历史三处一致；`full_check.py` 的版本一致性项 PASS）
 - PDF：222 页、1 723 272 B、SHA256 `664B1154…454DAB9`（`src/` 与 `pdf/` 两份字节一致）
 - 随本文件一同提交、打标签并发布到 Gitea（发行说明含 13 项修复与新增检查资产）
+- 提交：`5e19007`（15 个文件，+1917／−180，`main`）；标注标签 **v1.7.0** = `f10e737a` → `5e19007`
+  （tagger `DeepSeek Review <deepseek@local>`），已推送：远端 `refs/heads/main` = `5e19007`、`refs/tags/v1.7.0` = `f10e737a`
+- Gitea release：**id=79**，`http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.7.0`，
+  附件 `plasma_physics_textbook_v2.pdf`（HTTP 201）；下载复核 **HTTP 200 / 1 723 272 B / SHA256 `664B1154…454DAB9` / `%PDF-1.7`**，
+  共 11 个 release
+- 提交后的最终复跑（工作区干净）：`full_check` 32 项 FAIL 0／WARN 1、`ui_readability` 35 项 FAIL 0／WARN 16、
+  `consistency_audit` 14 项 FAIL 0、`physics_regression` 96 项 FAIL 0、`figure_layout` 13 项 FAIL 0；
+  三套夹具 `gate_compile_log`／`gate_figure_layout`／`gate_physics_negative` 均 exit 0
+- 报告落盘：`tmp/final_all_*.txt`（本轮所有检查输出均为 UTF-8 文件，避免 Windows CP936 控制台假失败）
