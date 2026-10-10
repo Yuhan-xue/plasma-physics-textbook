@@ -407,6 +407,20 @@ v1.7.0 交付后，被追问「TODO 都做了吗」时逐条复核，发现完�
 
 ### 11.7 版本与发布
 
-（发布元数据——提交号、标签对象、远端 refs、Gitea release id 与附件复核——随发布后补记的文档提交写入本节。）
+- 版本号：**v1.8.0**（源码封面、`pdftitle`、README 版本历史三处一致；`full_check.py` 版本一致性项 PASS）
+- PDF：**239 页**、1 806 797 B、SHA256 `DCB8B6E313F6FF1F26AF8911CC9E64A530E769BDAA2E6682786046C5D0EABDFA`
+  （`src/` 与 `pdf/` 两份字节一致）
+- 提交：`bddbd1e`（11 个文件，+1173／−29，`main`）；标注标签 **v1.8.0** = `29c45d1` → `bddbd1e`
+  （tagger `DeepSeek Review <deepseek@local>`），已推送：远端 `refs/heads/main` = `bddbd1e8c8932cf5556363880d7317e8aeb698c7`、
+  `refs/tags/v1.8.0` = `29c45d1d77d0cbe9e0b9c818497d3b91c6c8559b`
+- Gitea release：**id=82**，`http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.8.0`，
+  附件 `plasma_physics_textbook_v2.pdf`（HTTP 201）；下载复核 **HTTP 200 / 1 806 797 B /
+  SHA256 `DCB8B6E3…EABDFA` / `%PDF-1.7`**，共 13 个 release
+- 报告落盘（UTF-8）：`tmp/final_full_v18.txt`、`tmp/final_ui_v18.txt`、`tmp/final_cons_v18.txt`、
+  `tmp/final_phys_v18.txt`、`tmp/final_fig_v18.txt`、`tmp/final_outline_v18.txt`、
+  `tmp/final_fixture_*_v18.txt`；提交后复跑：`tmp/final2_*_v18.txt` 与 `tmp/final2_summary_v18.txt`
+- **提交后在干净工作区复跑**：六套件 FAIL 0——`full_check` 32 项（WARN 1）、`ui_readability` 35 项（WARN 17）、
+  `consistency_audit` 14 项、`physics_regression` 122 项、`figure_layout` 13 项、`pdf_outline` 11 项（WARN 2）；
+  五套夹具全部 PASS；`git status` 干净。
 
 
