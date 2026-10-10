@@ -101,12 +101,15 @@ plasma-physics-textbook/
 │   ├── full_check.py                  # 结构/内容/编译/PDF/一致性 五类共 32 项
 │   ├── ui_readability.py              # 可读性/版式 两类共 35 项
 │   ├── consistency_audit.py           # 术语/符号/附录/标签 一致性与规范 14 项
-│   ├── physics_regression.py          # 物理数值复核/表述断言/附录编号 共 96 项（纯标准库）
+│   ├── physics_regression.py          # 物理数值复核/表述断言/附录编号 共 113 项（纯标准库）
 │   ├── figure_layout.py               # 图形版式几何守卫 共 13 项（需 PyMuPDF）
+│   ├── pdf_outline.py                 # 目录/书签/附录 F 指针一致性 共 11 项（需 PyMuPDF）
 │   └── fixtures/                      # 可证伪夹具：故意植入缺陷，验证套件真的会 FAIL
 │       ├── gate_compile_log.py        #   合成编译日志 7 例（缺字 / 溢出 / TeX 错误）
 │       ├── gate_physics_negative.py   #   4 处数值回退（并检查文件未被改成 CRLF）
-│       └── gate_figure_layout.py      #   5 张合成 PDF（节点交叠 / 裁切 / 跨框 / 图形消失 / 叠字）
+│       ├── gate_figure_layout.py      #   5 张合成 PDF（节点交叠 / 裁切 / 跨框 / 图形消失 / 叠字）
+│       ├── gate_pdf_outline.py        #   3 处书签篡改（改名 / 乱序 / 清空），验 pdf_outline 会报错
+│       └── gate_g2_listing.py         #   实跑附录 G.2 清单，与印刷输出逐行比对（含篡改负例）
 ├── pdf/
 │   └── plasma_physics_textbook_v2.pdf # 最终 PDF（222 页，元数据含版本号）
 ├── src/                               # LaTeX 源码（唯一入口）
@@ -120,14 +123,15 @@ plasma-physics-textbook/
 ## 质量检查
 
 本仓库把「本书是否正确、是否好读」写成可复现的脚本，而不是依赖人工翻检。
-五套检查均以 **FAIL 0** 为准入线（退出码非 0 即代表有必须处理的问题）：
+六套检查均以 **FAIL 0** 为准入线（退出码非 0 即代表有必须处理的问题）：
 
 ```bash
 python check/full_check.py         # 五类 32 项：结构 / 内容 / 编译 / PDF / 文档一致性
 python check/ui_readability.py     # 两类 35 项：可读性 / 版式（UI）
 python check/consistency_audit.py  # 四类 14 项：术语 / 符号 / 附录 / 标签一致性
-python check/physics_regression.py # 三类 96 项：物理数值复核 / 表述断言 / 附录编号（纯标准库）
+python check/physics_regression.py # 三类 113 项：物理数值复核 / 表述断言 / 附录编号（纯标准库）
 python check/figure_layout.py      # 图形版式 13 项：节点交叠 / 裁切 / 跨框 / 版心 / 叠字（需 PyMuPDF）
+python check/pdf_outline.py        # 目录/书签 11 项：书签页码与印刷目录对齐 / 附录 F 指针（需 PyMuPDF）
 ```
 
 - `full_check.py` 查**对不对**：悬空交叉引用、标签唯一性、盒子标题重复、
@@ -147,13 +151,18 @@ python check/figure_layout.py      # 图形版式 13 项：节点交叠 / 裁切
   检查图 9.1／9.2 的节点框两两交叠、标签被框边裁切、一块文字跨两个框、节点越出版心；
   对没有节点框的示意图（图 9.3）改查**文字互相压盖**与**彩色箭头/连线穿过文字**
   （这两条规则正是目视第 114 页时发现问题后补上的）。
+- `pdf_outline.py` 查**导航是否真的对得上**：书签页码是否落在 `[1, 页数]` 且单调不减、
+  187 条印刷目录与 187 条书签是否按文档顺序一一对应（含重名条目，如 9 处「习题精选」）、
+  目录链接目标页与书签页码是否一致、附录 F 的 35 个 `\S\ref` 指针显示的节号是否与
+  `.aux` 里该 label 的真实节号一致、附录 F 区内链接数是否与正文引用数吻合。
 
 `full_check.py` 与 `ui_readability.py` 会先剥离 LaTeX 注释与行间公式再统计——否则公式会被误判成超长句子。
 `ui_readability.py` 另将「本章要点回顾」这类结构化小结**单独统计**：
 其条目本就密集（全书 57 条无一使用嵌套列表），不该套用正文散文的句长阈值。
 
-`check/fixtures/` 是这三套判定的**可证伪夹具**：它们故意在源码或合成 PDF 里植入缺陷
-（假缺字 α、200 pt 溢出、例题数值回退、节点框交叠、图形消失、两块文字叠在一起……），
+`check/fixtures/` 是各套判定的**可证伪夹具**：它们故意在源码、合成 PDF 或 PDF 书签里植入缺陷
+（假缺字 α、200 pt 溢出、例题数值回退、节点框交叠、图形消失、两块文字叠在一起、
+书签被改名/乱序/清空、附录 G.2 印刷输出被篡改……），
 确认对应套件确实报 FAIL、恢复后确实回到 FAIL 0——
 否则「检查通过」有可能只是检查失效：
 
@@ -161,6 +170,8 @@ python check/figure_layout.py      # 图形版式 13 项：节点交叠 / 裁切
 python check/fixtures/gate_compile_log.py       # 合成编译日志，验 full_check / ui_readability 的判定
 python check/fixtures/gate_physics_negative.py  # 植入 4 处数值回退，验 physics_regression 会报错
 python check/fixtures/gate_figure_layout.py     # 合成 5 张 PDF，验 figure_layout 会报错（需 PyMuPDF）
+python check/fixtures/gate_pdf_outline.py       # 篡改书签（改名/乱序/清空），验 pdf_outline 会报错（需 PyMuPDF）
+python check/fixtures/gate_g2_listing.py        # 实跑附录 G.2 清单并逐行比对印刷输出（需 NumPy/SciPy/Matplotlib）
 ```
 
 ---
@@ -226,7 +237,7 @@ python check/fixtures/gate_figure_layout.py     # 合成 5 张 PDF，验 figure_
 | v1.5.0 | 2026-09-22 | 可读性与版式（UI）审核轮：新增 `check/ui_readability.py`（可读性 + 版式两类共 29 项，FAIL 0）。修复：① **37 个语义盒标题为空**——第 11 章 28 个、附录 9 个以 `\begin{insight}{}{}` 书写，tcolorbox 在标题为空时不渲染冒号，PDF 中直接显示成「物理洞见 11.5」再接正文（同书第 10、12 章却都有标题），已逐一补写；② **3 个盒标题栏对比度低于 WCAG AA**（`warning` 2.04:1、`corollary` 3.79:1、`tip` 4.12:1），加 `colbacktitle` 调深标题栏，盒子底色与边框不变；③ **2 处 `example` 内嵌 `warning`**，把 `\end{example}` 前移取消嵌套；④ **8 处例题小题写成长句**，改为本书通行的 `enumerate[label=(\arabic*)]`；⑤ 2 个超长段落（313/305 字）拆段。全书 123 个盒头现已全部带标题（208 页） |
 | v1.6.0 | 2026-10-10 | 一致性与符号规范审核轮：新增 `check/consistency_audit.py`（术语/符号/附录/标签四类共 14 项，FAIL 0）。修复与补充：① **22 张速查卡全部补「符号说明」**——此前卡片只有公式、符号含义要靠读者自己回正文找，现按「符号→物理量→单位」逐卡补齐并按语义断句；② **新增附录 H「符号与术语总表」**——37 条通用符号与算符、128 条物理量符号（含同一字母在不同章节含义不同的并列注记）、136 条术语中英对照，并逐条核对「首次出现」小节号（原稿有 13 处引用不存在的小节）；③ **统一记法**——回旋半径统一为 $\rho_L$、磁压/比压补定义 $p_B$ 与 $\beta$、双极扩散补 Fick 定律与粒子通量 $\Gamma$；④ **查出检查套件自身的假通过**——`full_check.py` 的 `^!` 正则漏了 `re.M`，「LaTeX 错误 0」此前从未真正检测过编译错误（本轮据此修掉附录 H 中 3 处无法编译的宏写法，latexmk 退出码 12→0）；⑤ 消除唯一的 `Missing character`（第 10 章速查卡里一个裸 `α` 字符）；⑥ README 数字与正文对齐（218 页 / 8 附录）；⑦ 全书术语与排版规范化——主文件与 8 个补充材料统一「Landau 阻尼 / 玻姆速度 / en dash（Child--Langmuir）/ 拉丁专名与中文之间补空格」 |
 | v1.7.0 | 2026-10-10 | 多视角独立评审修复轮：新增 `check/physics_regression.py`（物理数值复核/表述断言/附录编号 96 项）、`check/figure_layout.py`（图形版式 13 项）与 `check/fixtures/` 三套**可证伪夹具**。修复：① **双流不稳定性**改为无量纲推导，更正阈值 $|ku|=2\omega_{pe}$、$\gamma_{\max}=\omega_{pe}/\sqrt8$ 与例题 $k_{\max}$、$k_{\rm opt}$、$\tau$；② **Buneman 增长率**的标度是 $2/3$ 次幂（$\mu^{1/3}$）而非 $1/2$，并补复根与渐近条件；③ $\int\delta'(v)/(v-c)\diff v=+1/c^2$ 的符号与色散结果 $+n_0k^2/\omega^2$；④ **Druyvesteyn 反演**补回被漏掉的 $\sqrt{\epsilon}$，删去「测温固定偏大 2 倍」的错误结论（合成电流可精确反演 $T=4$ eV）；⑤ 斜入射基频是 $\omega=\omega_{pe}/\cos\theta_0$；⑥ 磁镜俯仰角 $\tan^2\theta=2$（54.74°）；⑦ $10/\ln 10\approx4.34$，不是 $\ln 10\approx2.3$ 倍；⑧ **附录 G.2** 德拜屏蔽例题改为无量纲边值问题，教读者辨认 `solve_bvp` 的 `success`/`status` 与未收敛（原 SI 写法看似收敛、实为 `status=1` 失败）；⑨ **图 9.1／9.2 重排**——节点框不再互相压盖、标签不再被框边裁切；⑩ **图 9.3** 的重力箭头与其 $g$ 标签原先正压在「重流体 ($\rho_2$)」区域标签上（箭杆穿过文字、$g$ 盖住 $(\rho_2)$），已移到左侧空白处并把「谷处轻流体上升」右移让开；⑪ **附录 F** 按当前章号重建 6 组，编号连续 1--23 并给每条可点击章节引用；⑫ 检查套件补齐「缺字按码点豁免、溢出按幅度分级、示意图叠字/线条穿字」的判定与自证夹具（222 页 / 425 标签） |
-
+| v1.7.1 | 2026-10-11 | 验收补强轮：把 v1.7.0 的人工核对升级为**可重复的守卫**。新增 ① `check/pdf_outline.py`（目录/书签/附录 F 指针一致性 11 项，需 PyMuPDF）——核对书签页码是否在 $[1,\text{页数}]$ 内且单调不减、187 条印刷目录与 187 条书签是否**按文档顺序**一一对应（含 9 处重名「习题精选」、4 组同名节）、目录链接目标页与书签页码是否一致、附录 F 的 35 个 `\S\ref` 显示节号是否与 `.aux` 记录的 label 真实节号一致、附录 F 区内链接数是否等于正文引用数；② 两套新夹具 `check/fixtures/gate_pdf_outline.py`（篡改书签：改名/乱序/清空，验 `pdf_outline` 确实报 FAIL）与 `check/fixtures/gate_g2_listing.py`（**实跑**附录 G.2 清单，14 行印刷输出逐行复现，numpy 2.5.3 / scipy 1.18.1，另含 2 个篡改负例）；③ `physics_regression.py` 由 96 项扩到 **113 项**——补 $a=1.2$ 稳定侧与双流多项式根 $x=a^2+\frac12\pm\frac12\sqrt{1+8a^2}$ 的等价性、$0.75$ ms 与 $3.3$ ms 两个时间尺度的相容性（比值须为 $10/\ln 10\approx4.34$ 而非 $\ln 10\approx2.3$）、附录 F **逐条指针章号与所在分组标题声明章的静态校验**。修复：**附录 F 三个分组标题补上跨章入口的真实章号**——第 2 章→「第 2、8 章」、第 5、9、10 章→「第 5、7、9、10 章」、第 8、10 章→「第 2、8、10 章」，使「标题声明的章」与「组内指针实际指向的章」完全一致（此前 3 处跨章条目指向标题未列出的章）。核对结论：187 条书签全部在 1--222 页内且单调不减、与印刷目录按序一一对应、附录 F 35 个指针全部与 `.aux` 一致；其中 **17 条书签落点比印刷页码少 1 页**（点开落在标题的对开页，成因是锚点 whatsit 与 `\addcontentsline` 写页码的 shipout 相差一页），属一致且有界的现象，已在 CLOSURE 如实记录而不是逐个手改（222 页 / 425 标签） |
 ---
 
 ## 贡献与反馈

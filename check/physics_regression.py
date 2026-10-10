@@ -133,6 +133,32 @@ def check_M01_two_stream():
     (rec('PASS', 'M', '扫描确认最大增长率位置：%s' % msg) if ok
      else rec('FAIL', 'M', '扫描到的最大增长率位置不符：%s' % msg))
 
+    # 闭式解必须同时是色散关系化简后的二次方程之根：
+    # (w²−a²)² = w²+a² ⟹ x² − (2a²+1)x + a⁴ − a² = 0（x=w²）
+    worst_poly, worst_at = 0.0, 0.0
+    for i in range(1, 41):
+        a = i / 20.0
+        disc = math.sqrt(1.0 + 8.0 * a * a)
+        x_lo = a * a + 0.5 - 0.5 * disc          # 低根：不稳定侧的 w²
+        x_hi = a * a + 0.5 + 0.5 * disc          # 高根：稳定支
+        d = max(abs(w2_min(a) - x_lo),
+                abs((x_lo * x_lo - (2 * a * a + 1) * x_lo + a ** 4 - a * a)),
+                abs((x_hi * x_hi - (2 * a * a + 1) * x_hi + a ** 4 - a * a)))
+        if d > worst_poly:
+            worst_poly, worst_at = d, a
+    if worst_poly < 1e-12:
+        rec('PASS', 'M', '闭式解与色散关系多项式根（x²−(2a²+1)x+a⁴−a²=0，x=w²）一致：'
+                         '20 个 a 值最大偏差 %.3e' % worst_poly)
+    else:
+        rec('FAIL', 'M', '闭式解与多项式根不一致：最大偏差 %.3e（a=%.2f）' % (worst_poly, worst_at))
+
+    # 稳定侧深水区：a=1.2（|ku|=2.4ω_pe）必须无实频不稳定（w²>0）
+    w2_12 = w2_min(1.2)
+    if w2_12 > 0:
+        rec('PASS', 'M', '稳定侧 a=1.2（|ku|=2.4ω_pe）：w²=%.6f>0，无非零实频解' % w2_12)
+    else:
+        rec('FAIL', 'M', '稳定侧 a=1.2 判别错误：w²=%.6f（应 >0）' % w2_12)
+
     # 例题数值 ω_pe=5e10 rad/s, u=2e7 m/s
     wpe, u = 5e10, 2e7
     items = [
@@ -431,6 +457,55 @@ def check_M07_eedf():
     has(main, r'\diff v/\diff\eps=1/\sqrt{2m_e\eps}', 'src/%s（EEDF 雅可比）' % MAIN)
 
 
+def check_M08_timescale():
+    """增长时间尺度：振幅十倍（ln10/γ）与十个 e-folding（10/γ）的相容性。
+
+    ch9 瑞利--泰勒例取 γ=3.07e3 /s，书中写 0.75 ms 与 3.3 ms；
+    两者之比必须等于 10/ln10≈4.34294，而不能按 ln10≈2.3 理解。
+    """
+    gamma = 3.07e3
+    ratio = 10.0 / math.log(10.0)
+
+    t10x = math.log(10.0) / gamma
+    ok, msg = near(t10x * 1e3, 0.75, 5e-3, 'ms')
+    (rec('PASS', 'M', '十倍振幅时间 ln10/γ（γ=3.07e3）：%s' % msg) if ok
+     else rec('FAIL', 'M', '十倍振幅时间 ln10/γ：%s' % msg))
+
+    t10e = 10.0 / gamma
+    ok, msg = near(t10e * 1e3, 3.3, 5e-2, 'ms')
+    (rec('PASS', 'M', '十个 e-folding 时间 10/γ：%s' % msg) if ok
+     else rec('FAIL', 'M', '十个 e-folding 时间 10/γ：%s' % msg))
+
+    ok, msg = near(t10e / t10x, ratio, 1e-9)
+    (rec('PASS', 'M', '两者之比精确等于 10/ln10：%s' % msg) if ok
+     else rec('FAIL', 'M', '两者之比不等于 10/ln10：%s' % msg))
+
+    # 书值 3.3 ms / 0.75 ms = 4.4 与 10/ln10 的相对差须落在四舍五入范围内
+    src_ratio = 3.3 / 0.75
+    rel = abs(src_ratio - ratio) / ratio
+    if rel < 0.02:
+        rec('PASS', 'M', '书中 3.3 ms 与 0.75 ms 相容：比值 %.3f vs 10/ln10=%.6f，'
+                         '相对差 %.2f%% < 2%%（两位有效数字的舍入范围内）'
+            % (src_ratio, ratio, rel * 100))
+    else:
+        rec('FAIL', 'M', '书中 3.3 ms / 0.75 ms = %.3f 与 10/ln10=%.6f 不相容（相对差 %.2f%%）'
+            % (src_ratio, ratio, rel * 100))
+
+    ok, msg = near(1.0 / gamma * 1e3, 0.33, 5e-3, 'ms')
+    (rec('PASS', 'M', '一个 e-folding 时间 τ=1/γ：%s' % msg) if ok
+     else rec('FAIL', 'M', 'τ=1/γ：%s' % msg))
+
+    sup = strip_comments(read(os.path.join(SRC, 'ch9_supplement.tex')))
+    for s in (r't_{10\times} = \frac{\ln 10}{\gamma}',
+              r'\approx 7.5\times 10^{-4}\,\mathrm{s} = 0.75\,\mathrm{ms}',
+              r't_{10e} = \frac{10}{\gamma}',
+              r'\approx 3.3\times 10^{-3}\,\mathrm{s} = 3.3\,\mathrm{ms}',
+              r'\dfrac{10}{\ln10}\approx4.34',
+              '不是 $\\ln10\\approx2.3$ 倍',
+              '不能互换'):
+        has(sup, s, 'src/ch9_supplement.tex（增长时间尺度）')
+
+
 # ------------------------------------------------------------ O. 交叉一致性
 
 def check_O01_appendix_f():
@@ -455,14 +530,14 @@ def check_O01_appendix_f():
         rec('FAIL', 'O', '附录 F 条目编号不连续：序列=%s（重复 %s）' % (seq, sorted(set(dup)) or '无'))
 
     titles = re.findall(r'\\section\{([^}]*)\}', blk)
-    want = ['第 2 章：等离子体基本概念',
+    want = ['第 2、8 章：等离子体基本概念',
             '第 3、8 章：单粒子运动与库仑碰撞',
             '第 4、5、8 章：流体方程、MHD 与输运',
             '第 1、6、7 章：傅里叶约定、等离子体波与动理学',
-            '第 5、9、10 章：MHD 局限、不稳定性与磁约束',
-            '第 8、10 章：碰撞过程与聚变装置']
+            '第 5、7、9、10 章：MHD 局限、不稳定性与磁约束',
+            '第 2、8、10 章：碰撞过程与聚变装置']
     if titles == want:
-        rec('PASS', 'O', '附录 F 六个分组标题与正文真实章号一致（第 2 / 3、8 / 4、5、8 / 1、6、7 / 5、9、10 / 8、10 章）')
+        rec('PASS', 'O', '附录 F 六个分组标题与各条目的真实入口章一致（第 2、8 / 3、8 / 4、5、8 / 1、6、7 / 5、7、9、10 / 2、8、10 章）')
     else:
         rec('FAIL', 'O', '附录 F 分组标题不符：实际 %s' % titles)
 
@@ -487,6 +562,76 @@ def check_O01_appendix_f():
         rec('FAIL', 'O', '附录 F 有 %d 条没有章节指针：%s' % (len(nop), nop))
     else:
         rec('PASS', 'O', '附录 F 全部 %d 条都带可点击章节指针（跨章条目给出多个入口）' % len(items))
+
+
+def check_O03_appendix_f_chapters():
+    """附录 F 逐条的章节归属：按 .aux 的 \\newlabel 号核对每个 \\S\\ref 的章号。
+
+    静态版（不读 PDF）：分组标题声明「第 X、Y 章」，则该组内每个 \\S\\ref
+    指向的小节号首段必须落在 {X, Y} 内；反过来每个声明的章都要有真实入口。
+    """
+    t = read(os.path.join(SRC, MAIN))
+    i0 = t.find(r'\appchapter{附录F')
+    i1 = t.find('% 附录G：Python仿真入门')
+    if i0 < 0 or i1 < 0 or i1 <= i0:
+        rec('FAIL', 'O', 'src/%s 中找不到附录 F 区块（锚点缺失）' % MAIN)
+        return
+    blk = strip_comments(t[i0:i1])
+
+    aux_path = os.path.join(SRC, MAIN[:-4] + '.aux')
+    if not os.path.exists(aux_path):
+        rec('WARN', 'O', '未找到 %s，附录 F 章号归属无法静态核对（需先构建一次）'
+            % os.path.relpath(aux_path, ROOT))
+        return
+    aux = read(aux_path)
+    label2num = {}
+    for m in re.finditer(r'\\newlabel\{([^}]+)\}\{\{([^{}]*)\}\{([^{}]*)\}', aux):
+        label2num[m.group(1)] = m.group(2)
+
+    # 按 \section 切段，逐段取声明章集合与段内指针
+    heads = [(m.start(), m.group(1)) for m in re.finditer(r'\\section\{([^}]*)\}', blk)]
+    heads.append((len(blk), None))
+    bad, unknown, total_refs, missing_entry = [], [], 0, []
+    for k in range(len(heads) - 1):
+        start, title = heads[k]
+        body = blk[start:heads[k + 1][0]]
+        declared = [int(x) for x in re.findall(r'(\d+)', title.split('：')[0])]
+        seen = set()
+        for m in re.finditer(r'\\S\\ref\{([^}]+)\}', body):
+            total_refs += 1
+            lab = m.group(1)
+            num = label2num.get(lab)
+            if num is None:
+                unknown.append(lab)
+                continue
+            mm = re.match(r'\s*(\d+)', num)
+            if not mm:
+                unknown.append(lab)
+                continue
+            ch = int(mm.group(1))
+            seen.add(ch)
+            if ch not in declared:
+                bad.append((title, lab, num, declared))
+        gone = [c for c in declared if c not in seen]
+        if gone:
+            missing_entry.append((title, gone))
+
+    if bad:
+        rec('FAIL', 'O', '附录 F 有 %d 处指针的章号与所在分组标题声明的章不符，例如 %s'
+            % (len(bad), [(b[1], b[2], b[3]) for b in bad[:3]]))
+    else:
+        rec('PASS', 'O', '附录 F 的 %d 个 \\S\\ref 指针章号全部落在所在分组声明的章集合内'
+            '（按 .aux 的 \\newlabel 号核对）' % total_refs)
+    if missing_entry:
+        rec('FAIL', 'O', '附录 F 有分组标题声明了却没有任何入口的章：%s'
+            % [(m[0][:12], m[1]) for m in missing_entry])
+    else:
+        rec('PASS', 'O', '附录 F 每个分组标题声明的每一章都至少有一个真实入口（跨章条目给出多个入口）')
+    if unknown:
+        rec('WARN', 'O', '附录 F 有 %d 个指针在 .aux 中查不到号（标签名或构建产物不同步）：%s'
+            % (len(unknown), sorted(set(unknown))))
+    else:
+        rec('PASS', 'O', '附录 F 全部指针都能在 .aux 中查到小节号')
 
 
 def check_O02_appendix_g():
@@ -522,8 +667,10 @@ def main():
     check_M05_oblique()
     check_M06_pitch_and_efolding()
     check_M07_eedf()
+    check_M08_timescale()
     check_O01_appendix_f()
     check_O02_appendix_g()
+    check_O03_appendix_f_chapters()
 
     if args.json:
         print(json.dumps([{'level': a, 'cat': b, 'msg': c} for a, b, c in RESULTS],
