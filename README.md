@@ -7,7 +7,7 @@
 
 ## 项目简介
 
-本项目是《等离子体物理自学教材》的完整 LaTeX 源码仓库。教材共 **218 页**，涵盖 12 章正文 + 8 附录，系统介绍从单粒子运动到聚变约束、从低温工业等离子体到实验诊断的核心内容。
+本项目是《等离子体物理自学教材》的完整 LaTeX 源码仓库。教材共 **222 页**，涵盖 12 章正文 + 8 附录，系统介绍从单粒子运动到聚变约束、从低温工业等离子体到实验诊断的核心内容。
 
 教材定位：**让有微积分和电磁学基础的读者，无需导师即可系统入门等离子体物理。**
 
@@ -17,7 +17,7 @@
 
 | 格式 | 文件 | 说明 |
 |------|------|------|
-| PDF（最终版） | [`pdf/plasma_physics_textbook_v2.pdf`](pdf/plasma_physics_textbook_v2.pdf) | 218 页完整教材，可直接阅读 |
+| PDF（最终版） | [`pdf/plasma_physics_textbook_v2.pdf`](pdf/plasma_physics_textbook_v2.pdf) | 222 页完整教材，可直接阅读 |
 | 源代码 | [`src/`](src/) 目录 | 全部 LaTeX 源文件，可编译修改 |
 
 > 如需在线阅读，请访问 [Release 页面](http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases) 下载 PDF。
@@ -97,14 +97,20 @@ plasma-physics-textbook/
 ├── LICENSE                            # CC BY-NC-SA 4.0 协议
 ├── processed.md                       # 历轮评审的处理记录与结论
 ├── .gitignore                         # 忽略编译产物
-├── check/                             # 可复现质量检查套件（Python 3，无第三方依赖）
+├── check/                             # 可复现质量检查套件（Python 3）
 │   ├── full_check.py                  # 结构/内容/编译/PDF/一致性 五类共 32 项
-│   ├── ui_readability.py              # 可读性/版式 两类共 29 项
-│   └── consistency_audit.py           # 术语/符号/附录/标签 一致性与规范 14 项
+│   ├── ui_readability.py              # 可读性/版式 两类共 35 项
+│   ├── consistency_audit.py           # 术语/符号/附录/标签 一致性与规范 14 项
+│   ├── physics_regression.py          # 物理数值复核/表述断言/附录编号 共 96 项（纯标准库）
+│   ├── figure_layout.py               # 图形版式几何守卫 共 13 项（需 PyMuPDF）
+│   └── fixtures/                      # 可证伪夹具：故意植入缺陷，验证套件真的会 FAIL
+│       ├── gate_compile_log.py        #   合成编译日志 7 例（缺字 / 溢出 / TeX 错误）
+│       ├── gate_physics_negative.py   #   4 处数值回退（并检查文件未被改成 CRLF）
+│       └── gate_figure_layout.py      #   5 张合成 PDF（节点交叠 / 裁切 / 跨框 / 图形消失 / 叠字）
 ├── pdf/
-│   └── plasma_physics_textbook_v2.pdf # 最终 PDF（218 页，元数据含版本号）
+│   └── plasma_physics_textbook_v2.pdf # 最终 PDF（222 页，元数据含版本号）
 ├── src/                               # LaTeX 源码（唯一入口）
-│   ├── plasma_physics_textbook_v2.tex # 主文件（~6120 行，正文全内联，含封面/前言/附录 A--H）
+│   ├── plasma_physics_textbook_v2.tex # 主文件（~6220 行，正文全内联，含封面/前言/附录 A--H）
 │   └── ch1_supplement.tex ~ ch12_supplement.tex  # 每章补充（例题+TikZ+速查+清单）
 └── LICENSE
 ```
@@ -114,12 +120,14 @@ plasma-physics-textbook/
 ## 质量检查
 
 本仓库把「本书是否正确、是否好读」写成可复现的脚本，而不是依赖人工翻检。
-两套检查均以 **FAIL 0** 为准入线（退出码非 0 即代表有必须处理的问题）：
+五套检查均以 **FAIL 0** 为准入线（退出码非 0 即代表有必须处理的问题）：
 
 ```bash
-python check/full_check.py        # 五类 32 项：结构 / 内容 / 编译 / PDF / 文档一致性
-python check/ui_readability.py    # 两类 29 项：可读性 / 版式（UI）
-python check/consistency_audit.py # 四类 15 项：术语 / 符号 / 附录 / 标签一致性
+python check/full_check.py         # 五类 32 项：结构 / 内容 / 编译 / PDF / 文档一致性
+python check/ui_readability.py     # 两类 35 项：可读性 / 版式（UI）
+python check/consistency_audit.py  # 四类 14 项：术语 / 符号 / 附录 / 标签一致性
+python check/physics_regression.py # 三类 96 项：物理数值复核 / 表述断言 / 附录编号（纯标准库）
+python check/figure_layout.py      # 图形版式 13 项：节点交叠 / 裁切 / 跨框 / 版心 / 叠字（需 PyMuPDF）
 ```
 
 - `full_check.py` 查**对不对**：悬空交叉引用、标签唯一性、盒子标题重复、
@@ -131,10 +139,29 @@ python check/consistency_audit.py # 四类 15 项：术语 / 符号 / 附录 / �
 - `consistency_audit.py` 查**前后是否自洽**：术语变体（朗道/Landau、玻姆/Bohm）、
   速查卡公式符号是否都在「符号说明」里、附录 H 符号总表是否覆盖全书通用符号
   且每条都在正文出现过、附录章编号连续与挂载顺序、`README` 与正文的页数/附录数对齐。
+- `physics_regression.py` 查**算得对不对**：把本轮修掉的每个数值都独立复算一遍——
+  双流 $|ku|=2\omega_{pe}$ 与 $\gamma_{\max}=\omega_{pe}/\sqrt8$、Buneman 的 $\mu^{1/3}$ 标度与复根残差、
+  $\int\delta'(v)/(v-c)\diff v=+1/c^2$、Salpeter 的 $\alpha$ 与阈值条件、斜入射 $\omega=\omega_{pe}/\cos\theta_0$、
+  Druyvesteyn 往返反演——并断言源码里必须出现正确表述、不得再出现已修正的错误表述。
+- `figure_layout.py` 查**图有没有画坏**：直接读 PDF 里的填充矩形与文字包围盒，
+  检查图 9.1／9.2 的节点框两两交叠、标签被框边裁切、一块文字跨两个框、节点越出版心；
+  对没有节点框的示意图（图 9.3）改查**文字互相压盖**与**彩色箭头/连线穿过文字**
+  （这两条规则正是目视第 114 页时发现问题后补上的）。
 
-两套脚本都会先剥离 LaTeX 注释与行间公式再统计——否则公式会被误判成超长句子。
+`full_check.py` 与 `ui_readability.py` 会先剥离 LaTeX 注释与行间公式再统计——否则公式会被误判成超长句子。
 `ui_readability.py` 另将「本章要点回顾」这类结构化小结**单独统计**：
 其条目本就密集（全书 57 条无一使用嵌套列表），不该套用正文散文的句长阈值。
+
+`check/fixtures/` 是这三套判定的**可证伪夹具**：它们故意在源码或合成 PDF 里植入缺陷
+（假缺字 α、200 pt 溢出、例题数值回退、节点框交叠、图形消失、两块文字叠在一起……），
+确认对应套件确实报 FAIL、恢复后确实回到 FAIL 0——
+否则「检查通过」有可能只是检查失效：
+
+```bash
+python check/fixtures/gate_compile_log.py       # 合成编译日志，验 full_check / ui_readability 的判定
+python check/fixtures/gate_physics_negative.py  # 植入 4 处数值回退，验 physics_regression 会报错
+python check/fixtures/gate_figure_layout.py     # 合成 5 张 PDF，验 figure_layout 会报错（需 PyMuPDF）
+```
 
 ---
 
@@ -198,6 +225,7 @@ python check/consistency_audit.py # 四类 15 项：术语 / 符号 / 附录 / �
 | v1.4.1 | 2026-09-22 | 全量检查轮：新增可复现检查套件 `check/full_check.py`（结构/内容/编译/PDF/一致性五类共 32 项，FAIL 0、WARN 0），由脚本主动扫描而非依赖人工报告。修复：① **17 处悬空 `§X.Y` 散引用**——第 1--9 章章首阅读导引按已不存在的编号书写，而纯文本 `§X.Y` 不是 `\ref`、LaTeX 永不报错；② **10 处盒子标题重复类型名**（`本节要点 0.1: 本节要点`、`常见误区 12.1: 常见误区：…`、`物理史话 12.1: 物理史话：…`）；③ **第 11、12 章补「本章核心目标」**——此前自学者看不到这两章的学习目标；④ 难度等级表补入实际使用的「应用」级，并说明「挑战」级采用正文就地标注（208 页） |
 | v1.5.0 | 2026-09-22 | 可读性与版式（UI）审核轮：新增 `check/ui_readability.py`（可读性 + 版式两类共 29 项，FAIL 0）。修复：① **37 个语义盒标题为空**——第 11 章 28 个、附录 9 个以 `\begin{insight}{}{}` 书写，tcolorbox 在标题为空时不渲染冒号，PDF 中直接显示成「物理洞见 11.5」再接正文（同书第 10、12 章却都有标题），已逐一补写；② **3 个盒标题栏对比度低于 WCAG AA**（`warning` 2.04:1、`corollary` 3.79:1、`tip` 4.12:1），加 `colbacktitle` 调深标题栏，盒子底色与边框不变；③ **2 处 `example` 内嵌 `warning`**，把 `\end{example}` 前移取消嵌套；④ **8 处例题小题写成长句**，改为本书通行的 `enumerate[label=(\arabic*)]`；⑤ 2 个超长段落（313/305 字）拆段。全书 123 个盒头现已全部带标题（208 页） |
 | v1.6.0 | 2026-10-10 | 一致性与符号规范审核轮：新增 `check/consistency_audit.py`（术语/符号/附录/标签四类共 14 项，FAIL 0）。修复与补充：① **22 张速查卡全部补「符号说明」**——此前卡片只有公式、符号含义要靠读者自己回正文找，现按「符号→物理量→单位」逐卡补齐并按语义断句；② **新增附录 H「符号与术语总表」**——37 条通用符号与算符、128 条物理量符号（含同一字母在不同章节含义不同的并列注记）、136 条术语中英对照，并逐条核对「首次出现」小节号（原稿有 13 处引用不存在的小节）；③ **统一记法**——回旋半径统一为 $\rho_L$、磁压/比压补定义 $p_B$ 与 $\beta$、双极扩散补 Fick 定律与粒子通量 $\Gamma$；④ **查出检查套件自身的假通过**——`full_check.py` 的 `^!` 正则漏了 `re.M`，「LaTeX 错误 0」此前从未真正检测过编译错误（本轮据此修掉附录 H 中 3 处无法编译的宏写法，latexmk 退出码 12→0）；⑤ 消除唯一的 `Missing character`（第 10 章速查卡里一个裸 `α` 字符）；⑥ README 数字与正文对齐（218 页 / 8 附录）；⑦ 全书术语与排版规范化——主文件与 8 个补充材料统一「Landau 阻尼 / 玻姆速度 / en dash（Child--Langmuir）/ 拉丁专名与中文之间补空格」 |
+| v1.7.0 | 2026-10-10 | 多视角独立评审修复轮：新增 `check/physics_regression.py`（物理数值复核/表述断言/附录编号 96 项）、`check/figure_layout.py`（图形版式 13 项）与 `check/fixtures/` 三套**可证伪夹具**。修复：① **双流不稳定性**改为无量纲推导，更正阈值 $|ku|=2\omega_{pe}$、$\gamma_{\max}=\omega_{pe}/\sqrt8$ 与例题 $k_{\max}$、$k_{\rm opt}$、$\tau$；② **Buneman 增长率**的标度是 $2/3$ 次幂（$\mu^{1/3}$）而非 $1/2$，并补复根与渐近条件；③ $\int\delta'(v)/(v-c)\diff v=+1/c^2$ 的符号与色散结果 $+n_0k^2/\omega^2$；④ **Druyvesteyn 反演**补回被漏掉的 $\sqrt{\epsilon}$，删去「测温固定偏大 2 倍」的错误结论（合成电流可精确反演 $T=4$ eV）；⑤ 斜入射基频是 $\omega=\omega_{pe}/\cos\theta_0$；⑥ 磁镜俯仰角 $\tan^2\theta=2$（54.74°）；⑦ $10/\ln 10\approx4.34$，不是 $\ln 10\approx2.3$ 倍；⑧ **附录 G.2** 德拜屏蔽例题改为无量纲边值问题，教读者辨认 `solve_bvp` 的 `success`/`status` 与未收敛（原 SI 写法看似收敛、实为 `status=1` 失败）；⑨ **图 9.1／9.2 重排**——节点框不再互相压盖、标签不再被框边裁切；⑩ **图 9.3** 的重力箭头与其 $g$ 标签原先正压在「重流体 ($\rho_2$)」区域标签上（箭杆穿过文字、$g$ 盖住 $(\rho_2)$），已移到左侧空白处并把「谷处轻流体上升」右移让开；⑪ **附录 F** 按当前章号重建 6 组，编号连续 1--23 并给每条可点击章节引用；⑫ 检查套件补齐「缺字按码点豁免、溢出按幅度分级、示意图叠字/线条穿字」的判定与自证夹具（222 页 / 425 标签） |
 
 ---
 

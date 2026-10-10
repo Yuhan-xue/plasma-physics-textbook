@@ -137,7 +137,11 @@ k = \frac{2\pi\sqrt{(30)^2 - (8.97)^2}\times 10^6}{3\times 10^8} = \frac{2\pi\ti
 例题里 $30\,\mathrm{MHz}$ 在本模型中判为"可传播"，但这\textbf{不能}推出"$30\,\mathrm{MHz}$ 不能跨半球通信"。真实电离层是\emph{有厚度、密度随高度变化、分层}的介质，还必须考虑\emph{斜入射}。实际短波通信依赖两个本模型没有包含的机制：
 \begin{itemize}
 \item \textbf{密度剖面}：反射发生在此波频率等于\emph{局部}等离子体频率的高度，而 $f_{pe}$ 随高度先增后减（F 层峰值可达 $\sim10^{12}\,\mathrm{m^{-3}}$ 甚至更高）。同一频率在低处可能穿透、在高处被反射；
-\item \textbf{斜入射}：斜入射时有效判据是 $\omega=\omega_{pe}\cos\theta$ 的折射条件（Snell 定律 + 分层介质），斜射波可以在\emph{高于垂直截止频率}的频率下被反射回来——这正是短波能靠电离层"跳"到数千公里外、甚至跨半球的原因。
+\item \textbf{斜入射}：斜入射时用 Snell 定律 $n(z)\sin\theta(z)=\sin\theta_0$（$\theta_0$ 为入射角）配合 $n^2=1-\omega_{pe}^2/\omega^2$。反射发生在 $n=\sin\theta_0$ 处，即 $1-\omega_{pe}^2/\omega^2=\sin^2\theta_0$，于是有效判据是
+\[
+\omega=\frac{\omega_{pe}}{\cos\theta_0},
+\]
+\textbf{是除以 $\cos\theta_0$，不是乘}：斜射时反射频率\emph{高于}垂直入射的截止频率（$\cos\theta_0<1\Rightarrow\omega_{pe}/\cos\theta_0>\omega_{pe}$）。斜射波因此可以在\emph{高于垂直截止频率}的频率下被反射回来——这正是短波能靠电离层"跳"到数千公里外、甚至跨半球的原因。（注意这里说的是\emph{无磁场}的折射反射；若有磁场还需按 Appleton--Hartree 色散关系分 O/X 模处理。）
 \end{itemize}
 所以本题的"反射/穿透"只对应\emph{垂直入射+单一密度}的理想情形。真实的电离层传播需要另设模型（分层 + 斜入射），不能把截止频率与一个频段的全部通信行为画等号。
 \end{warning}

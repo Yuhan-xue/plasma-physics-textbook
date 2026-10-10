@@ -553,3 +553,76 @@ release 标题当时写成 `.ps1` 脚本里的字符串**字面量**，而
 核对小节编号前必须先做「虚拟文档拼接」。此外，新增内容要和既有检查**互相印证**：
 附录 H 的 `\dd` 行就是靠「编译退出码」而不是靠「符号覆盖率报表」暴露出来的。
 
+---
+
+## 10. 多视角独立评审修复轮（v1.7.0，2026-10-10）
+
+**基线**：v1.6.0（commit `f6317da`）→ **v1.7.0**（222 页）
+**本轮目标**：处理 `reviews/2026-10-10-independent/TODO.md` 的 13 项独立评审问题
+（PP-C01…C09 内容类、PP-W01/W02 工作流类、PP-U01/U02 界面类），并把「评审说的对不对」
+变成**可复现的独立验算**；评审原文不回写，完成状态记在 `reviews/2026-10-10-independent/CLOSURE.md`。
+
+### 10.1 新增两套检查 + 三套可证伪夹具
+
+- **`check/physics_regression.py`（96 项，纯标准库）**：把本轮修掉的每个数值都重新算一遍——
+  双流阈值 $|ku|=2\omega_{pe}$ 与 $\gamma_{\max}=\omega_{pe}/\sqrt8$、Buneman 的 $\mu^{1/3}$ 标度与复根残差、
+  $\int\delta'(v)/(v-c)\diff v=+1/c^2$、Salpeter 的 $\alpha$ 与阈值、斜入射 $\omega=\omega_{pe}/\cos\theta_0$、
+  Druyvesteyn 往返反演、附录 F 编号与 G.2 状态语义；并断言「正确表述必须出现、已修正的错误表述必须不再出现」。
+  复根用自写 Durand–Kerner 迭代——牛顿单点法会跳到实根，把 $\gamma$ 算成 $1.4\times10^{-29}$。
+- **`check/figure_layout.py`（13 项，需 PyMuPDF）**：直接读 PDF 的填充矩形与文字包围盒，
+  查节点框两两交叠、标签被框边裁切、一块文字跨两个框、节点越出版心；
+  对没有节点框的示意图（图 9.3）改查**文字互相压盖**与**彩色线条/箭头穿过文字**。
+  关键是把「区间」按题注锚点动态划分（固定「题注上方 300 pt」会漏掉高图顶部节点）。
+- **`check/fixtures/`（可证伪夹具）**：`gate_compile_log.py`（7 例合成日志）、
+  `gate_physics_negative.py`（植入 4 处数值回退，恢复后必须回到 FAIL 0，并检查未被改成 CRLF）、
+  `gate_figure_layout.py`（5 张合成 PDF：交叠/裁切/跨框/消失/叠字）。
+  教训：夹具本身也会「假失败」——`full_check` 的退出码是整份报告的结论，
+  其它无关 FAIL（当时 README 仍写 218 页）会让「期望 exit 0」的断言失败，故夹具须按**条目级别**断言。
+
+### 10.2 内容类修复（PP-C01…C09，详见 CLOSURE）
+
+① 双流不稳定性改为无量纲推导（$w=\omega/\omega_{pe}$、$a=ku/2\omega_{pe}$），阈值 $|ku|=2\omega_{pe}$、
+$\gamma_{\max}=\omega_{pe}/\sqrt8$，例题 $k_{\max}/k_{\rm opt}/\tau$ 全部复算；
+② Buneman 增长率是 $\mu^{1/3}$（$2/3$ 次幂）而非 $\mu^{1/2}$，补复根与「共振附近才适用」的条件；
+③ $\delta'$ 分部积分给 $+1/c^2$，冷极限色散结果为 $+n_0k^2/\omega^2$（反向结果只留在「常见错误」里）；
+④ 分开带密度 EEDF / 概率 EEDF / EEPF，统一 J/eV 测度（$\diff v/\diff\epsilon=1/\sqrt{2m_e\epsilon}$）；
+⑤ 删去「测温固定偏大 2 倍」——正演 $I(u)=\Theta\mathrm{e}^{-u/\Theta}$ 时 $\ln I''$ 斜率恒为 $-1/\Theta$，
+$T=4$ eV 可精确反演，被破坏的是 $\sqrt{\epsilon}$ 上升段与归一化；
+⑥ Salpeter 的 $\alpha\equiv1/(q\lambda_D)$ 与全部阈值都注明温度/波长/角度；⑦ 斜入射基频 $\omega=\omega_{pe}/\cos\theta_0$；
+⑧ 磁镜俯仰角 $\tan^2\theta=2$ → 54.7356°（并保留「各向同性热平均后两项相等」的区别）；
+⑨ $10/\ln10\approx4.34294$。
+
+### 10.3 工作流与界面修复（PP-W01/W02、PP-U01/U02）
+
+- **W01**：`full_check.py` 缺字判定改为按码点精确豁免（只有 `U+000A` 放行，正则必须带 `re.S`——
+  真实日志里缺字字符本身就是换行），溢出改为按幅度分级（≥50 pt FAIL、5–50 pt WARN）；
+  `ui_readability.py` 同步（35 项）。顺带发现并修掉 `overfull` 的旧口径造成的假 PASS。
+- **W02**：附录 G.2 改为无量纲 BVP（边界条件**恰好 2 个**），教读者读 `success`/`status`/`message`/`rms_residuals`；
+  旧 SI 写法保留为反面教材——它 `status=1`（节点 45151、rms 与容差差约 600 倍）却「曲线看着很漂亮」。
+  判据也随之改为固定探针点 $x=1$（偏差 $\propto y_{\text{amp}}$，比率恒 $\approx-2.41\times10^{-4}$），
+  不再用「与线性解的最大相对偏差」——$x\gtrsim10$ 处 $|y|\sim10^{-11}$ 已被数值噪声主导。
+- **U01**：重排图 9.1／9.2（`ch9_supplement.tex:257-323`），并**实际渲染目视**第 113/114 页；
+  用旧 PDF 做 A/B：旧版 `figure_layout` FAIL 3（8 对节点框交叠、最严重 1129 pt²、文字裁切、6 处跨框），
+  新版 FAIL 0。目视过程中还发现**评审范围之外**的图 9.3 叠字（重力箭头与 $\vect{g}$ 正压在「重流体 $(\rho_2)$」上），
+  已一并修复（`:342-343`、`:352`）并用新规则 `textcut` 夹具固定下来。
+- **U02**：附录 F 按当前章号重建 6 组，最终 PDF 上编号 1–23 连续（p.203–205），每条带可点击 `§` 引用。
+
+### 10.4 本轮结论
+
+- `check/full_check.py`：**FAIL 0 / WARN 1**（32 项）——`latexmk` 退出码 0、`!` 错误 0、
+  真实缺字 0（豁免 U+000A 1 处）、Overfull 2（6.77 pt / 0.84 pt，均为基线遗留）、
+  散引用 51 个全部指向真实小节、PDF **222 页** / 标题 v1.7.0。
+- `check/ui_readability.py`：**FAIL 0 / WARN 16**（35 项）；`check/consistency_audit.py`：**FAIL 0**（14 项）；
+  `check/physics_regression.py`：**FAIL 0**（96 项）；`check/figure_layout.py`：**FAIL 0**（13 项）。
+- 夹具：`gate_compile_log` 7/7、`gate_physics_negative` 植入→FAIL 4 / 恢复→0、`gate_figure_layout` 5/5。
+- 页数 218（v1.6.0）→ **222**（v1.7.0，附录 F 重建 + 附录 G.2 扩写）。
+- 交付：PDF 1 723 272 B / SHA256 `664B1154…454DAB9`（`src/` 与 `pdf/` 字节一致）。
+
+**教训（给下一轮）**：① 「检查通过」必须配一条**会失败的负例**——本轮每套判定都补了夹具，
+且刻意用旧 PDF 做 A/B（旧版 FAIL 3 / 新版 FAIL 0）才算证据；② **自动检查替代不了目视**：
+图 9.3 的叠字是自动扫描 194 处「疑似交叠」淹没在公式假阳性里、靠看第 114 页才认出来的；
+③ 打印检查报告要落 UTF-8 文件——Windows 控制台 CP936 遇到 `²`/`∝` 会抛 `UnicodeEncodeError`，
+表现得像「套件失败但无汇总」；④ 历史评审脚本是**基线绊线**，修复后它们按设计会报错，
+不要为了「变绿」去改历史证据，另写回归资产并在 CLOSURE 里说明。
+
+

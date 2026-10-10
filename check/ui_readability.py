@@ -468,16 +468,45 @@ def check_G_ui(files):
     if os.path.exists(log):
         lt = read(log)
         mo = len(re.findall(r'Marginpar.*too (?:wide|high)', lt))
-        ov = len(re.findall(r'Overfull \\hbox', lt))
         un = len(re.findall(r'Underfull \\hbox', lt))
         rec('PASS' if mo == 0 else 'FAIL', 'G',
             '边注（难度标记）溢出：%d' % mo)
-        rec('PASS' if ov <= 5 else 'WARN', 'G', 'Overfull hbox：%d' % ov)
+
+        # 缺字：按码点精确豁免，只有 U+000A（行尾伪缺字）可放过（评审 PP-W01）
+        # re.S 必须有：缺字字符本身可能就是换行符，日志中该处是真正的换行。
+        miss_items = re.findall(
+            r'Missing character: There is no (.*?) \(U\+([0-9A-Fa-f]{4,6})\) '
+            r'in font ([^\s!]+)', lt, re.S)
+        bad = [it for it in miss_items if it[1].upper() != '000A']
+        if bad:
+            rec('FAIL', 'G', '缺字（非 U+000A）：%d 处——%s'
+                % (len(bad), '；'.join('「%s」U+%s@%s' % (c if c.strip() else '（换行符）',
+                                                        p.upper(), f)
+                                       for c, p, f in bad[:5])))
+        elif miss_items:
+            rec('PASS', 'G', '缺字：仅 %d 处 U+000A 换行符（可豁免）' % len(miss_items))
+        else:
+            rec('PASS', 'G', '缺字：0 处')
+
+        # 溢出按幅度分级：≥50 pt 属明显缺陷，5--50 pt 需人工复核（评审 PP-W01）
+        ov_items = [(float(m.group(1)), m.group(0)) for m in
+                    re.finditer(r'Overfull \\hbox \(([\d.]+)pt too wide\)'
+                                r'[^\n]*', lt)]
+        ov = len(re.findall(r'Overfull \\hbox', lt))
+        ov_max = max([o[0] for o in ov_items], default=0.0)
+        if ov_max >= 50.0:
+            rec('FAIL', 'G', 'Overfull hbox：%d 处，最大 %.1f pt（≥50 pt 属明显排版缺陷）'
+                % (ov, ov_max))
+        elif ov_max >= 5.0:
+            rec('WARN', 'G', 'Overfull hbox：%d 处，最大 %.1f pt（5--50 pt 需人工复核）'
+                % (ov, ov_max))
+        else:
+            rec('PASS', 'G', 'Overfull hbox：%d 处，最大 %.1f pt（均 <5 pt，可忽略）'
+                % (ov, ov_max))
         rec('INFO', 'G', 'Underfull hbox：%d' % un)
         # 宽表格导致的 overfull
-        for m in re.finditer(r'Overfull \\hbox \(([\d.]+)pt too wide\)'
-                             r'[^\n]*', lt):
-            rec('INFO', 'G', '  溢出 %s pt —— %s' % (m.group(1), m.group(0)[:80]))
+        for pt, line in sorted(ov_items, reverse=True):
+            rec('INFO', 'G', '  溢出 %.1f pt —— %s' % (pt, line[:80]))
 
     # ---- 页眉一致性（从 PDF 检查附录页眉）
     pdf = os.path.join(SRC, MAIN.replace('.tex', '.pdf'))

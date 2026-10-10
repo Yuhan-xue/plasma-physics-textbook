@@ -490,25 +490,62 @@ def check_C_compile(do_compile):
     # 注意：必须以 re.M 扫描，否则 '^' 只匹配整个日志的第一个字符，
     # 「! Undefined control sequence.」这类错误会被静默计成 0（v1.6.0 轮发现）。
     errs = count(r'^! ', re.M)
-    missing = count(r'Missing character')
-    overfull = count(r'Overfull \\hbox')
-    underfull = count(r'Underfull \\hbox')
     lwarn = count(r'LaTeX Warning')
     refun = count(r'Reference `[^\']*\' on page')
     citeun = count(r'Citation `[^\']*\' on page')
+    underfull = count(r'Underfull \\hbox')
 
     rec('PASS' if errs == 0 else 'FAIL', 'C', 'LaTeX 错误（! 开头）：%d' % errs)
     rec('PASS' if refun == 0 else 'FAIL', 'C', '未定义引用：%d' % refun)
     rec('PASS' if citeun == 0 else 'FAIL', 'C', '未定义引文：%d' % citeun)
     rec('PASS' if lwarn == 0 else 'WARN', 'C', 'LaTeX Warning：%d' % lwarn)
-    rec('PASS' if missing <= 1 else 'WARN', 'C',
-        'Missing character：%d（1 = 仅 U+000A 换行符属正常）' % missing)
-    rec('PASS' if overfull <= 5 else 'WARN', 'C', 'Overfull hbox：%d' % overfull)
+
+    # ---- Missing character：按码点与字体精确豁免 -------------------------
+    # 只有换行符 U+000A（XeLaTeX 在行尾报出的伪缺字）可以豁免；其余任何码点
+    # （希腊字母、CJK、数学符号）都必须点名报出字体，不允许再用「总数 ≤ 1
+    # 就算过」的粗口径——那会把一个真实的 Ω 缺字静默放过（v1.6.0 评审 PP-W01）。
+    miss_all = count(r'Missing character')
+    # 注意 re.S：缺字字符本身可能是换行符，日志里该字符位置就是一个真的换行，
+    # 不加 DOTALL 会匹配不到任何一条、进而把真实缺字误判成「无码点信息」。
+    miss_items = re.findall(
+        r'Missing character: There is no (.*?) \(U\+([0-9A-Fa-f]{4,6})\) '
+        r'in font ([^\s!]+)', t, re.S)
+    if miss_all and not miss_items:
+        rec('WARN', 'C',
+            'Missing character：%d 处，但日志无码点信息（旧格式），无法自动豁免'
+            % miss_all)
+    else:
+        exempt = [it for it in miss_items if it[1].upper() == '000A']
+        bad = [it for it in miss_items if it[1].upper() != '000A']
+        rec('PASS' if not bad else 'FAIL', 'C',
+            'Missing character：%d 处（豁免 U+000A 换行符 %d 处，真实缺字 %d 处）'
+            % (len(miss_items), len(exempt), len(bad)))
+        for ch, cp, font in bad[:20]:
+            rec('FAIL', 'C', '  缺字：「%s」U+%s 于字体 %s'
+                % (ch if ch.strip() else '（换行符）', cp.upper(), font))
+
+    # ---- Overfull：按溢出幅度分级（不再只看条数）-------------------------
+    ov_total = count(r'Overfull \\hbox')
+    ov_items = [(float(m.group(1)), m.group(0)) for m in
+                re.finditer(r'Overfull \\hbox \(([\d.]+)pt too wide\)[^\n]*', t)]
+    ov_max = max([o[0] for o in ov_items], default=0.0)
+    if ov_total != len(ov_items):
+        rec('WARN', 'C', 'Overfull hbox：共 %d 处，其中 %d 处可从日志解析出幅度'
+            % (ov_total, len(ov_items)))
+    if ov_max >= 50.0:
+        rec('FAIL', 'C', 'Overfull hbox：%d 处，最大 %.1f pt（≥50 pt 属明显排版缺陷）'
+            % (ov_total, ov_max))
+    elif ov_max >= 5.0:
+        rec('WARN', 'C', 'Overfull hbox：%d 处，最大 %.1f pt（5--50 pt 需人工复核）'
+            % (ov_total, ov_max))
+    else:
+        rec('PASS', 'C', 'Overfull hbox：%d 处，最大 %.1f pt（均 <5 pt，可忽略）'
+            % (ov_total, ov_max))
     rec('INFO', 'C', 'Underfull hbox：%d' % underfull)
 
-    # 具体列出 overfull 细节
-    for m in re.finditer(r'Overfull \\hbox \(([\d.]+)pt too wide\)[^\n]*', t):
-        rec('INFO', 'C', '  Overfull %s pt —— %s' % (m.group(1), m.group(0)[:90]))
+    # 具体列出 overfull 细节（按幅度从大到小）
+    for pt, line in sorted(ov_items, reverse=True):
+        rec('INFO', 'C', '  溢出 %.1f pt —— %s' % (pt, line[:90]))
 
 
 # ---------------------------------------------------------------- D. PDF
