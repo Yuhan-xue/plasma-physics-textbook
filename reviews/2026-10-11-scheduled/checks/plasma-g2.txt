@@ -1,0 +1,5 @@
+[OK] extract: code=65 lines, printed_output=14 lines
+[OK] reproduce: exit=0, match=14/14 lines (numpy 2.5.3 / scipy 1.18.1 / matplotlib 3.11.1)
+[OK] comparator: tampered-number detected=True (1 shown)
+[OK] comparator: dropped-line detected=True (1 shown)
+fixture verdict: PASS

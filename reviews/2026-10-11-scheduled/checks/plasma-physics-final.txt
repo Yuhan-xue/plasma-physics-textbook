@@ -1,0 +1,131 @@
+==============================================================================
+《等离子体物理自学教材》物理数值回归检查
+==============================================================================
+
+--- PASS (122) ---
+  [M] 双流闭式解满足原始色散关系 1=½[1/(w−a)²+1/(w+a)²]：最大残差 1.421e-14（阈值 1e-9）
+  [M] 阈值 a=1（|ku|=2ω_pe）处 w²=0：算得 0，期望 0±1e-12
+  [M] 稳定侧 a=1.0001（w²=6.668e-05>0）与不稳定侧 a=0.9999（w²=-6.666e-05<0）分界正确
+  [M] γ_max/ω_pe=1/√8：算得 0.3535533906，期望 0.3535533906±1e-12（a_opt=√(3/8)=0.612372）
+  [M] 扫描确认最大增长率位置：算得 0.6123719381，期望 0.6123724357±1e-05
+  [M] 闭式解与色散关系多项式根（x²−(2a²+1)x+a⁴−a²=0，x=w²）一致：20 个 a 值最大偏差 7.105e-15
+  [M] 稳定侧 a=1.2（|ku|=2.4ω_pe）：w²=0.170819>0，无非零实频解
+  [M] 例题数值 k_max=2ω_pe/u：算得 5000，期望 5000±0.5m^-1
+  [M] 例题数值 λ_min=2π/k_max：算得 1.256637061，期望 1.25664±0.0001mm
+  [M] 例题数值 k_opt=√(3/2)ω_pe/u：算得 3061.862178，期望 3061.862±0.01m^-1
+  [M] 例题数值 γ_max=ω_pe/√8：算得 1.767766953e+10，期望 1.767767e+10±10000s^-1
+  [M] 例题数值 τ=1/γ_max：算得 56.56854249，期望 56.56854±0.001ps
+  [M] 例题数值 a=0.75 的 w²（书值 −0.1101）：算得 -0.11010394，期望 -0.1101±0.0001
+  [M] 例题数值 a=0.75 的 γ/ω_pe（书值 0.332）：算得 0.3318191374，期望 0.332±0.0005
+  [N] src/ch9_supplement.tex（双流例题） 含必需表述：0<|ku|<2\,\omega_{pe}
+  [N] src/ch9_supplement.tex（双流例题） 含必需表述：k_{\max}=\frac{2\,\omega_{pe}}{u}
+  [N] src/ch9_supplement.tex（双流例题） 含必需表述：5.0\times 10^{3}
+  [N] src/ch9_supplement.tex（双流例题） 含必需表述：1.26\,\mathrm{mm}
+  [N] src/ch9_supplement.tex（双流例题） 含必需表述：\gamma_{\max}=\frac{\omega_{pe}}{\sqrt8}
+  [N] src/ch9_supplement.tex（双流例题） 含必需表述：1.768\times 10^{10}
+  [N] src/ch9_supplement.tex（双流例题） 含必需表述：\sqrt{3/2}\,\omega_{pe}
+  [N] src/ch9_supplement.tex（双流例题） 含必需表述：3.06\times10^{3}
+  [N] src/ch9_supplement.tex（双流例题） 含必需表述：56.6\,\mathrm{ps}
+  [N] src/ch9_supplement.tex（双流例题） 含必需表述：w^2\approx-0.1101
+  [N] src/ch9_supplement.tex（双流例题） 含必需表述：\gamma/\omega_{pe}\approx0.332
+  [N] src/ch9_supplement.tex（双流例题） 含必需表述：那是错的
+  [M] Buneman 精确求根 γ/ω_pe：算得 0.05437341189，期望 0.0543±0.0005（书值 0.0543）
+  [M] Buneman 复根 w=0.035531+0.054373j 代回原式残差 1.552e-17（阈值 1e-10）
+  [M] γ 对 μ 的对数斜率：算得 0.3326556027，期望 0.3333333333±0.005（即 γ∝μ^{1/3}；对质量比 m_i/m_e 为 -0.332656，书值 −0.333）
+  [N] src/plasma_physics_textbook_v2.tex（Buneman） 含必需表述：0.0543
+  [N] src/plasma_physics_textbook_v2.tex（Buneman） 含必需表述：-0.333
+  [N] src/plasma_physics_textbook_v2.tex（Buneman） 含必需表述：幂次是 $2/3$
+  [N] src/plasma_physics_textbook_v2.tex（Buneman） 含必需表述：\mu^{1/3}
+  [N] src/plasma_physics_textbook_v2.tex（Buneman） 含必需表述：\tfrac13
+  [N] src/plasma_physics_textbook_v2.tex（Buneman） 含必需表述：\omega_{pi}^2
+  [N] src/plasma_physics_textbook_v2.tex（Buneman） 已无错误表述：\gamma/\omega_{pe}\propto\mu^{1/2}
+  [M] 数值积分 ∫δ′(v)/(v−c)dv=+1/c²（c=1,2,3；σ=1e-3…1e-5）：最大相对误差 3.00e-06（阈值 1e-4）
+  [N] src/plasma_physics_textbook_v2.tex（δ′ 冷极限） 含必需表述：\int\delta'(v)\phi(v)\diff v=-\phi'(0)
+  [N] src/plasma_physics_textbook_v2.tex（δ′ 冷极限） 含必需表述：\int\delta'(v)/(v-c)\diff v=+1/c^2
+  [N] src/plasma_physics_textbook_v2.tex（δ′ 冷极限） 含必需表述：\boxed{+n_0k^2/\omega^2}
+  [N] src/plasma_physics_textbook_v2.tex（δ′ 冷极限） 已无错误表述：-n_0k^2/\omega^2
+  [N] src/plasma_physics_textbook_v2.tex 中反向结果 $1=-\omega_{pe}^2/\omega^2$ 只作为反例出现
+  [M] Salpeter λ_D(10 eV,1e20)：算得 2.35081887，期望 2.35082±1e-05μm
+  [M] Salpeter N_D：算得 5441.844322，期望 5442±1
+  [M] Salpeter α(90°)：算得 0.05093632334，期望 0.0509363±1e-06
+  [M] Salpeter α(1°)：算得 4.127344654，期望 4.127338±1e-05
+  [M] Salpeter α=1 的 n_e(90°)：算得 3.854293766e+22，期望 3.85429e+22±1e+18m^-3
+  [M] Salpeter α(1e23,90°)：算得 1.610747974，期望 1.610752±1e-05
+  [M] Salpeter 聚变堆芯 λ_D(10 keV,1e20)：算得 74.33941995，期望 74.3394±0.001μm
+  [M] Salpeter 聚变堆芯 α(90°)：算得 0.001610747974，期望 0.00161075±1e-07
+  [N] src/plasma_physics_textbook_v2.tex（Salpeter 参数） 含必需表述：\alpha \equiv \frac{1}{q\lambda_D}
+  [N] src/plasma_physics_textbook_v2.tex（Salpeter 参数） 含必需表述：q = |\vect{k}_s-\vect{k}_i| = \frac{4\pi}{\lambda_0}\sin\frac{\theta}{2}
+  [N] src/plasma_physics_textbook_v2.tex（Salpeter 参数） 含必需表述：2.35\,\mu\mathrm{m}
+  [N] src/plasma_physics_textbook_v2.tex（Salpeter 参数） 含必需表述：5.4\times10^3
+  [N] src/plasma_physics_textbook_v2.tex（Salpeter 参数） 含必需表述：\alpha\approx0.051
+  [N] src/plasma_physics_textbook_v2.tex（Salpeter 参数） 含必需表述：\alpha\approx4.1
+  [N] src/plasma_physics_textbook_v2.tex（Salpeter 参数） 含必需表述：3.9\times10^{22}
+  [N] src/plasma_physics_textbook_v2.tex（Salpeter 参数） 含必需表述：\alpha\approx1.6
+  [N] src/plasma_physics_textbook_v2.tex（Salpeter 参数） 含必需表述：74\,\mu\mathrm{m}
+  [N] src/plasma_physics_textbook_v2.tex（Salpeter 参数） 含必需表述：\alpha\approx1.6\times10^{-3}
+  [N] src/plasma_physics_textbook_v2.tex（Salpeter 参数） 含必需表述：过松
+  [N] src/plasma_physics_textbook_v2.tex（Salpeter 参数） 已无错误表述：N_D\gg1 就
+  [M] 数值（Snell 守恒）反射频率 = ω_pe/cosθ₀：30°/60°/80° 最大相对差 2.00e-15（阈值 1e-9）
+  [N] src/ch6_supplement.tex（斜入射） 含必需表述：\omega=\frac{\omega_{pe}}{\cos\theta_0}
+  [N] src/ch6_supplement.tex（斜入射） 含必需表述：是除以 $\cos\theta_0$，不是乘
+  [N] src/ch6_supplement.tex（斜入射） 含必需表述：n=\sin\theta_0
+  [N] src/ch6_supplement.tex（斜入射） 已无错误表述：\omega_{pe}\cos\theta
+  [M] tan²θ=2 的俯仰角：算得 54.73561032，期望 54.7356103±1e-05°
+  [M] 回代两项相等：v_⊥²/2=0.333333333333, v_∥²=0.333333333333（算得 0.3333333333，期望 0.3333333333±1e-12）
+  [M] 正文在同一处把「单粒子 tan²θ=2」与「各向同性热平均后才相等」区分开
+  [M] 十个 e-folding / 十倍振幅时间比 10/ln10：算得 4.342944819，期望 4.342944819±1e-08
+  [N] src/plasma_physics_textbook_v2.tex（漂移速度比较） 含必需表述：\theta\approx54.74^\circ
+  [N] src/plasma_physics_textbook_v2.tex（漂移速度比较） 含必需表述：\tan^2\theta=v_\perp^2/v_\parallel^2=2
+  [N] src/ch9_supplement.tex（e-folding） 含必需表述：\dfrac{10}{\ln10}\approx4.34
+  [N] src/ch9_supplement.tex（e-folding） 含必需表述：不是 $\ln10\approx2.3$ 倍
+  [M] Druyvesteyn 反演 F∝√ε·I″ 与输入 F 成正比：比例常数离散度 1.96e-07（阈值 1e-6）
+  [M] 麦克斯韦合成电流：ln I″ 斜率反演 T_e：算得 3.999999995，期望 4±1e-06 eV
+  [M] Maxwell EEDF 归一化 ∫F dε=1：算得 0.9999995691，期望 1±1e-05
+  [M] 丢掉 √ε 后 ∫F dε=1/√π：算得 0.5641895846，期望 0.564189584±1e-05（证明 √ε 不可吸收进常数）
+  [N] src/plasma_physics_textbook_v2.tex（Druyvesteyn 公式） 含必需表述：F(\eps) = \frac{2\sqrt{2 m_e \eps}}{A e^3}
+  [N] src/plasma_physics_textbook_v2.tex（EEDF 归一化） 含必需表述：\int_0^\infty F(\eps)\diff\eps=n_e
+  [N] src/plasma_physics_textbook_v2.tex（EEDF 警告框） 含必需表述：没有"固定偏差"这回事
+  [N] src/plasma_physics_textbook_v2.tex（EEDF 雅可比） 含必需表述：\diff v/\diff\eps=1/\sqrt{2m_e\eps}
+  [M] 十倍振幅时间 ln10/γ（γ=3.07e3）：算得 0.7500277176，期望 0.75±0.005ms
+  [M] 十个 e-folding 时间 10/γ：算得 3.25732899，期望 3.3±0.05ms
+  [M] 两者之比精确等于 10/ln10：算得 4.342944819，期望 4.342944819±1e-09
+  [M] 书中 3.3 ms 与 0.75 ms 相容：比值 4.400 vs 10/ln10=4.342945，相对差 1.31% < 2%（两位有效数字的舍入范围内）
+  [M] 一个 e-folding 时间 τ=1/γ：算得 0.325732899，期望 0.33±0.005ms
+  [N] src/ch9_supplement.tex（增长时间尺度） 含必需表述：t_{10\times} = \frac{\ln 10}{\gamma}
+  [N] src/ch9_supplement.tex（增长时间尺度） 含必需表述：\approx 7.5\times 10^{-4}\,\mathrm{s} = 0.75\,\mathrm{ms}
+  [N] src/ch9_supplement.tex（增长时间尺度） 含必需表述：t_{10e} = \frac{10}{\gamma}
+  [N] src/ch9_supplement.tex（增长时间尺度） 含必需表述：\approx 3.3\times 10^{-3}\,\mathrm{s} = 3.3\,\mathrm{ms}
+  [N] src/ch9_supplement.tex（增长时间尺度） 含必需表述：\dfrac{10}{\ln10}\approx4.34
+  [N] src/ch9_supplement.tex（增长时间尺度） 含必需表述：不是 $\ln10\approx2.3$ 倍
+  [N] src/ch9_supplement.tex（增长时间尺度） 含必需表述：不能互换
+  [O] 附录 F 条目编号连续无重复：1..23（共 23 条）
+  [O] 附录 F 六个分组标题与各条目的真实入口章一致（第 2、8 / 3、8 / 4、5、8 / 1、6、7 / 5、7、9、10 / 2、8、10 章）
+  [O] 附录 F 的 35 个 \S\ref 指针全部指向唯一存在的标签（19 个不同目标）
+  [O] 附录 F 全部 23 条都带可点击章节指针（跨章条目给出多个入口）
+  [N] src/plasma_physics_textbook_v2.tex（附录 G.2） 含必需表述：\texttt{sol.success}
+  [N] src/plasma_physics_textbook_v2.tex（附录 G.2） 含必需表述：\texttt{sol.status}
+  [N] src/plasma_physics_textbook_v2.tex（附录 G.2） 含必需表述：0}=收敛到指定精度
+  [N] src/plasma_physics_textbook_v2.tex（附录 G.2） 含必需表述：网格节点数超过
+  [N] src/plasma_physics_textbook_v2.tex（附录 G.2） 含必需表述：sol.rms_residuals
+  [N] src/plasma_physics_textbook_v2.tex（附录 G.2） 含必需表述：max_nodes
+  [N] src/plasma_physics_textbook_v2.tex（附录 G.2） 含必需表述：读反是常见事故
+  [N] src/plasma_physics_textbook_v2.tex（附录 G.2） 含必需表述：而是失败
+  [N] src/plasma_physics_textbook_v2.tex（附录 G.2） 含必需表述：无量纲化: x = r/lam_D
+  [N] src/plasma_physics_textbook_v2.tex（附录 G.2） 含必需表述：y'' + (2/x) y' = exp(y) - 1
+  [O] src/plasma_physics_textbook_v2.tex（附录 G.2）代码中已无「status=1 即收敛」的错误注释
+  [O] 附录 F 的 35 个 \S\ref 指针章号全部落在所在分组声明的章集合内（按 .aux 的 \newlabel 号核对）
+  [O] 附录 F 每个分组标题声明的每一章都至少有一个真实入口（跨章条目给出多个入口）
+  [O] 附录 F 全部指针都能在 .aux 中查到小节号
+  [P] 附录 I/K 的 26 个物理量全部与独立复算一致（逐值 1%--5% 容差）
+  [P] 附录 J 逐章对照表覆盖第 1--12 章，共 12 行
+  [P] 附录 J 对照表每行都是 5 列（本书／主题／Chen／Fitz／其他专著）
+  [P] 附录 J 对照表的 Chen 章号 ≤10、Fitzpatrick 章号 ≤9（无幻章）
+  [P] 附录 J 对照表每一行都至少给出一个外文教材定位
+  [P] 附录 I 出处表 8 条 DOI 全部格式合法且互不重复
+  [P] 附录 I 有 8 条期刊卷期页定位（可据此复核文献是否真实存在）
+  [P] 主文件附录字母连续 A--K（共 11 个，含新增 I/J/K）
+  [P] 附录 I/J/K 均已 \input 挂载、章标题在主文件、各含 ≥4 小节
+
+==============================================================================
+汇总：FAIL 0 ／ WARN 0 ／ 合计 122 项
+==============================================================================

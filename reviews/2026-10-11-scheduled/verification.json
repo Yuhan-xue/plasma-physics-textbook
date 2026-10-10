@@ -1,0 +1,90 @@
+{
+  "meaning": "PASS = 当前缺陷反例与旧项正对照复现；未修改教材",
+  "P-C01": {
+    "source_marker": true,
+    "curvature": [
+      -1.0,
+      0.0,
+      0.0
+    ],
+    "drift": [
+      0.0,
+      -0.0,
+      1.0
+    ],
+    "dot": 0.0
+  },
+  "P-C02": {
+    "s_book_m": 0.0014161364271795228,
+    "s_consistent_CL_m": 0.0018131768969538483,
+    "wall_current_Am2": 2.621608410977274,
+    "current_implied_by_book_Am2": 4.297718706520122,
+    "thickness_ratio": 1.2803687993289596
+  },
+  "P-C03": {
+    "source_marker": true,
+    "book_vA_over_c": 0.025651078920737893,
+    "resistive_example_eta": 1.6443843832875572e-05,
+    "diffusion_time_L1m_s": 0.07641990977849424,
+    "static_fluid_flux_fraction_after_tau_ln2": 0.5,
+    "note": "电阻感应方程的静止流体反例；题目自身缺少温度、电阻率及流动尺度，不能据 vA/c 判定理想性"
+  },
+  "P-W01": {
+    "mutation": "K.5 最终阻尼率 -2.00e-2 改成 +2.00e-2",
+    "baseline": [
+      [
+        "PASS",
+        "P",
+        "附录 I/K 的 26 个物理量全部与独立复算一致（逐值 1%--5% 容差）"
+      ]
+    ],
+    "mutated": [
+      [
+        "PASS",
+        "P",
+        "附录 I/K 的 26 个物理量全部与独立复算一致（逐值 1%--5% 容差）"
+      ]
+    ]
+  },
+  "PP-C04_reopened": {
+    "source_still_equates_EEPF_to_normalized_EEDF": true,
+    "epsilon_eV": [
+      0.25,
+      1.0,
+      4.0
+    ],
+    "normalized_EEDF": [
+      0.06625088308600714,
+      0.1098478223669306,
+      0.10377687435514868
+    ],
+    "EEPF": [
+      0.13250176617201428,
+      0.1098478223669306,
+      0.05188843717757434
+    ],
+    "ratio": [
+      0.5,
+      1.0,
+      2.0
+    ],
+    "reference": "https://cantera.org/3.2/cxx/d6/ded/PlasmaPhase_8h_source.html"
+  },
+  "PP-C06_partial": {
+    "wrong_appendix_marker_present": true,
+    "main_text_correct_marker_present": true,
+    "definition": "alpha=1/(q*lambda_D)",
+    "alpha_small_means": "q*lambda_D much larger than 1, noncollective"
+  },
+  "previous": {
+    "two_stream_w2": -0.11010393995585743,
+    "two_stream_growth": 0.3318191374165412,
+    "buneman_ku_over_wpe": 1,
+    "buneman_root": [
+      0.033436549296795876,
+      0.05431458448074869
+    ],
+    "pitch_angle_deg": 54.735610317245346,
+    "efolding_ratio": 4.3429448190325175
+  }
+}
