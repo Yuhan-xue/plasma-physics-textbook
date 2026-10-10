@@ -484,10 +484,12 @@ def check_C_compile(do_compile):
 
     t = read(log)
 
-    def count(pat):
-        return len(re.findall(pat, t))
+    def count(pat, flags=0):
+        return len(re.findall(pat, t, flags))
 
-    errs = count(r'^! ')
+    # 注意：必须以 re.M 扫描，否则 '^' 只匹配整个日志的第一个字符，
+    # 「! Undefined control sequence.」这类错误会被静默计成 0（v1.6.0 轮发现）。
+    errs = count(r'^! ', re.M)
     missing = count(r'Missing character')
     overfull = count(r'Overfull \\hbox')
     underfull = count(r'Underfull \\hbox')

@@ -74,7 +74,7 @@
 再逐项算无量纲比值。\textbf{注意 $uB$ 只是参考尺度，不等于左端的真实大小}：理想极限下 $\vect{E}+\vect{u}\times\vect{B}\to0$，左端比 $uB$ 小得多。所以下面报出的比值是"相对 $uB$"的，用它判断能否删项时必须同时说明所求精度。
 
 \textbf{1. 电阻项 $\eta\vect{j}$：}
-Spitzer电阻率（近似公式 $\eta \approx 5\times 10^{-5} Z\ln\Lambda / T_e^{3/2}\,[\Omega\mathrm{m}]$，$T_e$ 单位为 $\mathrm{eV}$）：
+Spitzer 电阻率（近似公式 $\eta \approx 5\times 10^{-5} Z\ln\Lambda / T_e^{3/2}\,[\Omega\mathrm{m}]$，$T_e$ 单位为 $\mathrm{eV}$）：
 \[
 \eta \approx \frac{5\times 10^{-5}\times 10}{(10^4)^{3/2}} = \frac{5\times 10^{-4}}{10^6} = 5\times 10^{-10}\,\Omega\mathrm{m}
 \]
@@ -207,7 +207,7 @@ v_{ti} = \sqrt{\frac{2\times 0.1\times 1.602\times 10^{-19}}{1.673\times 10^{-27
 \]
 条件满足。
 
-\textbf{物理原因：} 离子声波的恢复力来自电子热压（通过准中性电场传递）。如果 $T_i\sim T_e$，离子的热运动同样剧烈，会破坏波的相干性——离子会迅速扩散抹平密度扰动，导致强烈的Landau阻尼（见第7章）。只有当 $T_e\gg T_i$ 时，电子才能迅速响应建立静电恢复力，而离子的热扩散相对较慢，波才能稳定传播。
+\textbf{物理原因：} 离子声波的恢复力来自电子热压（通过准中性电场传递）。如果 $T_i\sim T_e$，离子的热运动同样剧烈，会破坏波的相干性——离子会迅速扩散抹平密度扰动，导致强烈的Landau 阻尼（见第7章）。只有当 $T_e\gg T_i$ 时，电子才能迅速响应建立静电恢复力，而离子的热扩散相对较慢，波才能稳定传播。
 \end{example}
 
 \begin{figure}[htbp]
@@ -323,6 +323,7 @@ n_{i1} = \frac{\ee n_0 k^2\phi_1}{m_i(\omega^2 - \gamma_i k^2 v_{ti}^2)}
 \item 双极扩散系数：$\displaystyle D_a \approx D_i\left(1 + \frac{T_e}{T_i}\right)$
 \item 离子声速：$\displaystyle c_s = \sqrt{\frac{k_{\!B}T_e}{m_i}}$（当 $T_e\gg T_i$）
 \end{itemize}
+\textbf{符号说明：}$f(\vect{r},\vect{v},t)$ 为分布函数；$\vect{F}$ 为外力、$\vect{u}$ 为流体速度、$\vect{j}$ 为电流密度、$\vect{R}$ 为碰撞阻力（摩擦）项；$p$ 为压强（$p_e$ 为电子分压强），下标 $\alpha=e,i$ 标记电子、离子组分。$\eta$ 为电阻率；$D_a$ 为双极扩散系数，$D_i$ 为离子扩散系数；$c_s$ 为离子声速。
 \end{formulabox}
 
 \begin{checklistbox}{第4章自学检查清单}{ch4-checklist}

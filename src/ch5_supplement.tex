@@ -98,7 +98,7 @@ v_A = \frac{10^{-3}}{\sqrt{4\pi\times 10^{-7}\times 1.673\times 10^{-13}}} = \fr
 \item 托卡马克：$L=1\,\mathrm{m}$，$v=10^4\,\mathrm{m/s}$，$T_e=10\,\mathrm{keV}$；
 \item 实验室氩气放电：$L=0.1\,\mathrm{m}$，$v=10^3\,\mathrm{m/s}$，$T_e=4\,\mathrm{eV}$。
 \end{enumerate}
-Spitzer电阻率近似公式：$\eta \approx 5\times 10^{-5} Z\ln\Lambda / T_e^{3/2}\,[\Omega\mathrm{m}]$，$T_e$ 单位为 $\mathrm{eV}$，取 $\ln\Lambda=10$。
+Spitzer 电阻率近似公式：$\eta \approx 5\times 10^{-5} Z\ln\Lambda / T_e^{3/2}\,[\Omega\mathrm{m}]$，$T_e$ 单位为 $\mathrm{eV}$，取 $\ln\Lambda=10$。
 
 \textbf{模型的适用性提示：} Spitzer 公式\emph{只计入电子--离子库仑碰撞}。下面第 (2) 问的"氩气放电"题面没有给电离度与中性气体密度，因此\textbf{这里只研究一个假设库仑碰撞主导的假想氩等离子体}；真实低温放电中电子--中性碰撞常使 $\eta$ 高出若干个数量级，绝不能把下面的 $R_m$ 直接当成实际装置的数值。这是"选模型"这一步的意义所在，请对照正文\S5.1 的"MHD 适用条件：三道独立的门槛"。
 \tcblower
@@ -347,6 +347,7 @@ T_e + T_i = \frac{5.0\times10^{-17}}{1.381\times10^{-23}}\,\mathrm{K} = 3.6\time
 \item 磁雷诺数：$\displaystyle R_m = \frac{\mu_0 v L}{\eta} = \frac{\tau_\eta}{\tau_{\text{流}}}$
 \item 静态平衡：$\displaystyle\grad p = \vect{j}\times\vect{B}$（Grad-Shafranov方程的基础）
 \end{itemize}
+\textbf{符号说明：}$\rho_m$ 为质量密度；$\vect{u}$ 为流速；$p$ 为热压强，$p_B=B^2/2\mu_0$ 为磁压，$\beta$ 为比压；$\omega$、$k$ 为波角频率与波数（$k_\parallel$ 为其平行分量）。$\vect{v}_g$ 为群速度、$v_p$ 为相速度、$v_A$ 为阿尔芬速度；$\theta$ 为波矢与磁场的夹角；$R_m=\mu_0vL/\eta$ 为磁雷诺数，$L$ 为特征长度，$\eta$ 为电阻率；$\tau_\eta$ 为磁扩散时间、$\tau_{\text{流}}$ 为流动时间。
 \end{formulabox}
 
 \begin{checklistbox}{第5章自学检查清单}{ch5-checklist}

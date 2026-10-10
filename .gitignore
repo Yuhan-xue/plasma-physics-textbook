@@ -49,3 +49,7 @@ Thumbs.db
 
 # AgentTeams 运行态（非交付物）
 .agent-teams/
+
+# GraphFlow 索引缓存（非交付物）
+.graphflow/
+graphflow-out/
