@@ -296,3 +296,15 @@ v1.7.0 交付后，被追问「TODO 都做了吗」时逐条复核，发现完�
 ④ 依赖库限制要写进文档：PyMuPDF `set_toc()` 自身拒绝越界页码，故 `O2` 的越界分支**没有**负例夹具，
 「有检查」不等于「有负例」。
 
+### 10.5 版本与发布
+
+- 版本号：**v1.7.1**（源码封面、`pdftitle`、README 版本历史三处一致；`full_check.py` 版本一致性项 PASS）
+- PDF：222 页、1 723 290 B、SHA256 `69C3AF4F…C23A6`（`src/` 与 `pdf/` 两份字节一致）
+- 提交：`ea8cc9f`（9 个文件，+920／−17，`main`）；标注标签 **v1.7.1** = `6ac7a2b3` → `ea8cc9f`
+  （tagger `DeepSeek Review <deepseek@local>`），已推送：远端 `refs/heads/main` = `ea8cc9f`、`refs/tags/v1.7.1` = `6ac7a2b3`
+- Gitea release：**id=80**，`http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.7.1`，
+  附件 `plasma_physics_textbook_v2.pdf`（HTTP 201）；下载复核 **HTTP 200 / 1 723 290 B / SHA256 `69C3AF4F…C23A6` / `%PDF-1.7`**，
+  共 12 个 release
+- 报告落盘：`tmp/ui_v171.txt`、`tmp/audit_v171.txt`、`tmp/phys_v171.txt`、`tmp/fig_v171.txt`、
+  `tmp/outline_v171.txt`、`tmp/full_v171*.txt`、`tmp/locate_pages.txt`（均为 UTF-8 文件，避免 Windows CP936 控制台假失败）
+
