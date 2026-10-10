@@ -15,6 +15,8 @@
                    俯仰角、e-folding 比值、Druyvesteyn 往返
   N. 结论口径   —— 源码必须写出的正确表述，以及必须已被删除的错误表述
   O. 交叉一致性 —— 附录 F 条目编号/指针可解析、附录 G.2 的返回值语义
+  P. 新增附录   —— 附录 I/K 的物理量独立复算、附录 J 对照表完备性、
+                   附录 I 的 DOI 出处、附录 I/J/K 的挂载与字母连续性
 
 用法：
     python check/physics_regression.py
@@ -653,6 +655,236 @@ def check_O02_appendix_g():
         rec('PASS', 'O', 'src/%s（附录 G.2）代码中已无「status=1 即收敛」的错误注释' % MAIN)
 
 
+# ------------------------------------------------- P. 新增附录（I/J/K，v1.8.0）
+
+APP_FILES = {
+    'I': 'appendix_i_learning.tex',
+    'J': 'appendix_j_textbook_map.tex',
+    'K': 'appendix_k_problems.tex',
+}
+
+# CODATA 2018 常数（与附录 D 的单位换算表同一组值）
+E_CHG = 1.602176634e-19
+EPS0 = 8.8541878128e-12
+MU0 = 1.25663706212e-6
+M_P = 1.67262192369e-27
+M_D = 2.013553212745 * M_P        # 氘核质量（含其电子）
+M_AR = 39.948 * M_P               # 氩原子质量（≈ Ar+）
+
+
+def values_in(text):
+    """抽出文本中出现的所有数值（普通小数、``1.3\\times10^{-4}``、``1.3e-4``）。
+
+    只做「这个数在不在文中」的存在性判断，不绑定排版写法——否则
+    ``\\times`` 前后有没有空格、单位写 μm 还是 m 都会让断言变脆。
+    """
+    out = []
+    for m in re.finditer(r'(\d+(?:\.\d+)?)\s*\\times\s*10\s*\^\{?(-?\d+)\}?', text):
+        out.append(float(m.group(1)) * 10.0 ** int(m.group(2)))
+    for m in re.finditer(r'(\d+(?:\.\d+)?)[eE]([-+]?\d+)', text):
+        out.append(float(m.group(1)) * 10.0 ** int(m.group(2)))
+    for m in re.finditer(r'(?<![\d.])(\d+(?:\.\d+)?)(?![\d.])', text):
+        out.append(float(m.group(1)))
+    return out
+
+
+def has_value(vec, v, rel):
+    """按**绝对值**比对：正文里的数常只印大小，符号写在文字里（如「阻尼率 2.00×10⁻²」）。"""
+    return any(abs(abs(x) - abs(v)) <= rel * abs(v) for x in vec)
+
+
+def check_P01_new_appendix_numbers():
+    """附录 I/K 引用的物理量必须与独立复算一致（逐值给容差，缺失即 FAIL）。
+
+    这是「教材里的数不是抄来的」这一纪律在新增附录上的落地：
+    每个期望值都由本函数用常数从头算一遍，再到正文里找**印出来的那个数**。
+    只查存在性（不查出现次数与位置），所以容差取得比排版舍入略宽。
+    被证伪的方式很直接：把附录 K 里任何一个数改掉，本项立刻 FAIL。
+    """
+    vi = values_in(read(os.path.join(SRC, APP_FILES['I'])))
+    vk = values_in(read(os.path.join(SRC, APP_FILES['K'])))
+
+    def lam_d(te, n):
+        return math.sqrt(EPS0 * te / (n * E_CHG))
+
+    ld10 = lam_d(10.0, 1e18)                       # 德拜长度 @10 eV, 1e18 m^-3
+    n_d = (4.0 / 3.0) * math.pi * 1e18 * ld10 ** 3  # 德拜球内粒子数
+    rho_n = 1e20 * M_D
+    v_a = 5.0 / math.sqrt(MU0 * rho_n)             # Alfvén 速度 @5 T, 1e20 m^-3
+    r_loss = 1.0 - math.sqrt(1.0 - 1.0 / 10.0)     # 磁镜 R=10 损失锥内份额
+
+    def rho_l(te):                                 # 回旋半径（D+, B=5 T）
+        return math.sqrt(2.0 * M_D * te * E_CHG) / (E_CHG * 5.0)
+
+    kld = 0.3                                      # K.5 Landau 阻尼
+    gam = -math.sqrt(math.pi / 8.0) * kld ** -3 * math.exp(-1.0 / (2 * kld ** 2) - 1.5)
+    per_damp = (1.0 - math.exp(2 * math.pi * gam)) * 100.0
+    eta_kev = 5.2e-5 * 17 / 1000.0 ** 1.5          # K.6 Spitzer 电阻率
+    eta_10ev = 5.2e-5 * 10 / 10.0 ** 1.5
+    tau_eta = MU0 * 1.0 / eta_kev
+    c_s = math.sqrt(3.0 * E_CHG / M_AR)            # K.7 玻姆速度 @3 eV, Ar+
+    lam_s = lam_d(3.0, 1e16)
+    s_sh = math.sqrt(2.0) / 3.0 * lam_s * (2 * 100.0 / 3.0) ** 0.75
+    flux = 0.61 * 1e16 * c_s
+    eta_sp = 5.2e-5 * 20 / 86.0 ** 1.5             # K.8 Sweet-Parker
+    s_sp = MU0 * 1e5 * 1e5 / eta_sp
+    v_in = 1e5 / math.sqrt(s_sp)
+    tau_sp = 1e5 / v_in
+
+    cases = [
+        ('K', vk, ld10, 0.01, 'K.1 λ_D=%.4e m' % ld10),
+        ('K', vk, n_d, 0.02, 'K.1 N_D=%.4e' % n_d),
+        ('I', vi, ld10 / 1e-6, 0.01, 'I.4 λ_D=%.2f μm' % (ld10 / 1e-6)),
+        ('I', vi, n_d, 0.02, 'I.4 N_D=%.3e' % n_d),
+        ('K', vk, math.degrees(math.asin(1.0 / math.sqrt(10.0))), 0.001,
+         'K.2 损失锥角=%.3f°' % math.degrees(math.asin(1.0 / math.sqrt(10.0)))),
+        ('K', vk, r_loss * 100.0, 0.01, 'K.2 损失份额=%.2f%%' % (r_loss * 100.0)),
+        ('I', vi, rho_l(10.0) / 1e-3, 0.01, 'I.4 ρ_L(10 eV)=%.3f mm' % (rho_l(10.0) / 1e-3)),
+        ('I', vi, rho_l(1000.0) / 1e-3, 0.01, 'I.4 ρ_L(1 keV)=%.3f mm' % (rho_l(1000.0) / 1e-3)),
+        ('I', vi, rho_l(10000.0) / 1e-3, 0.01, 'I.4 ρ_L(10 keV)=%.3f mm' % (rho_l(10000.0) / 1e-3)),
+        ('K', vk, v_a, 0.01, 'K.4 v_A=%.4e m/s' % v_a),
+        ('I', vi, v_a / 1e6, 0.01, 'I.4 v_A=%.2f Mm/s' % (v_a / 1e6)),
+        ('K', vk, gam, 0.01, 'K.5 γ/ω=%.4e' % gam),
+        ('K', vk, per_damp, 0.01, 'K.5 每周期衰减=%.2f%%' % per_damp),
+        ('K', vk, eta_kev, 0.01, 'K.6 η(1 keV)=%.3e Ω·m' % eta_kev),
+        ('K', vk, tau_eta, 0.01, 'K.6 τ_η=%.2f s' % tau_eta),
+        ('K', vk, eta_10ev, 0.01, 'K.6 η(10 eV)=%.3e Ω·m' % eta_10ev),
+        ('K', vk, MU0 / eta_10ev, 0.01, 'K.6 τ_η(10 eV)=%.4f s' % (MU0 / eta_10ev)),
+        ('K', vk, c_s, 0.01, 'K.7 c_s=%.1f m/s' % c_s),
+        ('K', vk, lam_s, 0.01, 'K.7 λ_D(1e16)=%.3e m' % lam_s),
+        ('K', vk, s_sh, 0.01, 'K.7 鞘厚=%.3e m' % s_sh),
+        ('K', vk, flux, 0.03, 'K.7 离子通量=%.3e m^-2s^-1' % flux),
+        ('K', vk, eta_sp, 0.01, 'K.8 η=%.3e Ω·m' % eta_sp),
+        ('K', vk, s_sp, 0.02, 'K.8 S=%.3e' % s_sp),
+        ('K', vk, v_in, 0.01, 'K.8 v_in=%.3f m/s' % v_in),
+        ('K', vk, tau_sp, 0.02, 'K.8 τ_SP=%.3e s' % tau_sp),
+        ('K', vk, tau_sp / 3600.0, 0.05, 'K.8 τ_SP=%.1f h' % (tau_sp / 3600.0)),
+    ]
+    miss = [(tag, desc, val) for tag, vec, val, rel, desc in cases
+            if not has_value(vec, val, rel)]
+    if miss:
+        rec('FAIL', 'P', '附录 I/K 有 %d/%d 个独立复算值在正文中找不到（容差内）：%s'
+            % (len(miss), len(cases), ['%s→%.4g' % (m[1], m[2]) for m in miss[:4]]))
+    else:
+        rec('PASS', 'P', '附录 I/K 的 %d 个物理量全部与独立复算一致（逐值 1%%--5%% 容差）'
+            % len(cases))
+
+
+def check_P02_appendix_j_map():
+    """附录 J 逐章对照表的完备性：覆盖 1--12 章、每行 5 列、章号不越界。
+
+    可证伪点：删掉一行（覆盖不全）、把 Chen 第 10 章写成第 11 章（幻章）、
+    把某一行的外文定位留空（该章失去对照目标）——三种都会 FAIL。
+    Chen 第 3 版共 10 章、Fitzpatrick 第 2 版共 9 章，这两个上限写死在这里；
+    换版本时必须同时改这里，正是我们想要的提醒。
+    """
+    t = read(os.path.join(SRC, APP_FILES['J']))
+    m = re.search(r'\\label\{tab:app-j-map\}.*?\\end\{longtable\}', t, re.S)
+    if not m:
+        rec('FAIL', 'P', '附录 J 找不到逐章对照表（label tab:app-j-map 缺失，表格被删或改名）')
+        return
+    blk = m.group(0)
+    rows = re.findall(r'^第\s*(\d+)\s*章\s*&(.*?)\\\\?\s*$', blk, re.M)
+    got = [int(n) for n, _ in rows]
+    if got != list(range(1, 13)):
+        rec('FAIL', 'P', '附录 J 逐章对照表覆盖的章号不是 1--12：%s（共 %d 行）'
+            % (got, len(got)))
+    else:
+        rec('PASS', 'P', '附录 J 逐章对照表覆盖第 1--12 章，共 %d 行' % len(got))
+
+    bad_cols, phantom, empty = [], [], []
+    for n, rest in rows:
+        fields = [f.strip() for f in re.split(r'(?<!\\)&', rest)]
+        if len(fields) != 4:
+            bad_cols.append((int(n), len(fields) + 1))
+            continue
+        chen = [int(x) for x in re.findall(r'第\s*(\d+)\s*章', fields[1])]
+        fitz = [int(x) for x in re.findall(r'第\s*(\d+)\s*章', fields[2])]
+        if any(x > 10 for x in chen) or any(x > 9 for x in fitz):
+            phantom.append((int(n), chen, fitz))
+        if not chen and not fitz:
+            empty.append(int(n))
+    if bad_cols:
+        rec('FAIL', 'P', '附录 J 对照表有 %d 行列数不是 5：%s' % (len(bad_cols), bad_cols))
+    else:
+        rec('PASS', 'P', '附录 J 对照表每行都是 5 列（本书／主题／Chen／Fitz／其他专著）')
+    if phantom:
+        rec('FAIL', 'P', '附录 J 对照表引用了不存在的章号（Chen 只有 10 章、Fitzpatrick 只有 9 章）：%s'
+            % phantom)
+    else:
+        rec('PASS', 'P', '附录 J 对照表的 Chen 章号 ≤10、Fitzpatrick 章号 ≤9（无幻章）')
+    if empty:
+        rec('FAIL', 'P', '附录 J 对照表有 %d 行既没给 Chen 也没给 Fitzpatrick 定位：%s'
+            % (len(empty), empty))
+    else:
+        rec('PASS', 'P', '附录 J 对照表每一行都至少给出一个外文教材定位')
+
+
+def check_P03_appendix_i_refs():
+    """附录 I 的文献出处表：DOI 格式合法、无重复、卷期页齐全。
+
+    学习策略类的论断必须有可核查的出处。DOI 写错一个字符就查不到，
+    所以这里查的是「8 条 DOI 全部形如 10.xxxx/yyy 且互不重复」。
+    """
+    t = read(os.path.join(SRC, APP_FILES['I']))
+    dois = [d.replace('\\_', '_').rstrip('，。；,;')
+            for d in re.findall(r'DOI:\s*([^\s&,，。；]+)', t)]
+    bad = [d for d in dois if not re.fullmatch(r'10\.\d{4,9}/[-._;()/:A-Za-z0-9]+', d)]
+    dup = sorted({d for d in dois if dois.count(d) > 1})
+    vol = re.findall(r'\d+\(\d+\),\s*\d+--\d+', t)
+    if len(dois) < 8:
+        rec('FAIL', 'P', '附录 I 出处表只有 %d 条 DOI（门槛 8 条）' % len(dois))
+    elif bad:
+        rec('FAIL', 'P', '附录 I 有 %d 条 DOI 格式非法：%s' % (len(bad), bad))
+    elif dup:
+        rec('FAIL', 'P', '附录 I 有重复 DOI：%s' % dup)
+    else:
+        rec('PASS', 'P', '附录 I 出处表 %d 条 DOI 全部格式合法且互不重复' % len(dois))
+    if len(vol) < 6:
+        rec('FAIL', 'P', '附录 I 只有 %d 条「卷(期), 页--页」的期刊定位（门槛 6 条）' % len(vol))
+    else:
+        rec('PASS', 'P', '附录 I 有 %d 条期刊卷期页定位（可据此复核文献是否真实存在）' % len(vol))
+
+
+def check_P04_new_appendix_wiring():
+    """附录 I/J/K 必须真的挂进主文件，且章标题留在主文件里。
+
+    两个都容易出错且都不报错：① 内容写好了却忘了 ``\\input``——编译照样成功，
+    读者看不到；② ``\\appchapter`` 写进被 ``\\input`` 的文件——LaTeX 没问题，
+    但按主文件判定附录字母的检查套件会漏掉它（v1.8.0 首稿正是这么写的，
+    本轮修正后加此项防回归）。
+    """
+    t = read(os.path.join(SRC, MAIN))
+    letters = re.findall(r'\\appchapter\{附录([A-Z])[：:]', t)
+    want = [chr(ord('A') + i) for i in range(len(APP_FILES) + 8)]
+    if letters != want:
+        rec('FAIL', 'P', '主文件附录字母不是 A--%s 连续：%s（共 %d 个）'
+            % (want[-1], ''.join(letters), len(letters)))
+    else:
+        rec('PASS', 'P', '主文件附录字母连续 A--%s（共 %d 个，含新增 I/J/K）'
+            % (want[-1], len(letters)))
+
+    problems = []
+    for letter, fname in sorted(APP_FILES.items()):
+        stem = fname[:-4]
+        path = os.path.join(SRC, fname)
+        if not os.path.exists(path):
+            problems.append('%s 文件缺失' % fname)
+            continue
+        if not re.search(r'\\appchapter\{附录%s[：:][^\n]*\}\s*\n\s*\\input\{%s\}'
+                         % (letter, re.escape(stem)), t):
+            problems.append('附录%s 的 \\appchapter 未紧接 \\input{%s}' % (letter, stem))
+        body = read(path)
+        if '\\appchapter' in strip_comments(body):
+            problems.append('%s 里又写了一次 \\appchapter（会与主文件重复计字母）' % fname)
+        if body.count('\\section{') < 4:
+            problems.append('%s 的小节少于 4 个（内容疑似被截断）' % fname)
+    if problems:
+        rec('FAIL', 'P', '新增附录挂载有问题：%s' % problems)
+    else:
+        rec('PASS', 'P', '附录 I/J/K 均已 \\input 挂载、章标题在主文件、各含 ≥4 小节')
+
+
 # ------------------------------------------------------------------ 主流程
 
 def main():
@@ -671,6 +903,10 @@ def main():
     check_O01_appendix_f()
     check_O02_appendix_g()
     check_O03_appendix_f_chapters()
+    check_P01_new_appendix_numbers()
+    check_P02_appendix_j_map()
+    check_P03_appendix_i_refs()
+    check_P04_new_appendix_wiring()
 
     if args.json:
         print(json.dumps([{'level': a, 'cat': b, 'msg': c} for a, b, c in RESULTS],

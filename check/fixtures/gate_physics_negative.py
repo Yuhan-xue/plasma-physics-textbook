@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 """可证伪性夹具：故意在源码里植入本轮的典型回退，确认 check/physics_regression.py 会 FAIL。
 
-流程：备份 → 植入 4 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥3）→ `finally` 恢复 → 再跑（期望 0）。
+流程：备份 → 植入 6 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥6）→ `finally` 恢复 → 再跑（期望 0）。
+其中两处打在 v1.8.0 新增的附录 I/J/K 上（K.5 的阻尼率、J 的逐章对照表章号），
+用来证明 P 类新检查确实会失败——不是「从来没红过」的装饰。
 恢复用 `newline=''` 写回，保证不把 LF 改写成 CRLF（否则整个文件变成「已修改」）。
 
 对应验收：reviews/2026-10-10-independent/TODO.md 完成条件「复算本轮负例与正对照……
@@ -18,6 +20,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 MAIN = os.path.join(ROOT, 'src', 'plasma_physics_textbook_v2.tex')
 CH9 = os.path.join(ROOT, 'src', 'ch9_supplement.tex')
 CH6 = os.path.join(ROOT, 'src', 'ch6_supplement.tex')
+APPJ = os.path.join(ROOT, 'src', 'appendix_j_textbook_map.tex')
+APPK = os.path.join(ROOT, 'src', 'appendix_k_problems.tex')
 SUITE = os.path.join(ROOT, 'check', 'physics_regression.py')
 
 PATCHES = [
@@ -25,6 +29,8 @@ PATCHES = [
     (MAIN, '0.0543', '0.0600'),                                            # Buneman 标度回退
     (CH6, r'\omega=\frac{\omega_{pe}}{\cos\theta_0}', r'\omega=\omega_{pe}\cos\theta_0'),
     (MAIN, r'w^2\approx-0.1101', r'w^2\approx-0.2202'),                    # 双流复核例回退
+    (APPK, r'=-2.00\times10^{-2}$', r'=-2.50\times10^{-2}$'),              # 附录 K.5 阻尼率
+    (APPJ, '第 10 章 & 约束与受控核聚变', '第 13 章 & 约束与受控核聚变'),   # 附录 J 幻章/漏行
 ]
 
 
@@ -64,9 +70,9 @@ def main():
                 continue
             io.open(path, 'w', encoding='utf-8', newline='').write(t.replace(old, new, 1))
         code, nf, _ = run_suite()
-        print('[%s] 植入回退后：退出码=%d FAIL=%d（期望 !=0 且 >=3）'
-              % ('OK' if (code != 0 and nf >= 3) else 'X', code, nf))
-        ok = ok and code != 0 and nf >= 3
+        print('[%s] 植入回退后：退出码=%d FAIL=%d（期望 !=0 且 >=6）'
+              % ('OK' if (code != 0 and nf >= 6) else 'X', code, nf))
+        ok = ok and code != 0 and nf >= 6
     finally:
         for path, t in backup.items():
             write(path, t)

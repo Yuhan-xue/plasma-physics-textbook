@@ -82,7 +82,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{5pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.7.1},
+  pdftitle={等离子体物理自学教材 v1.8.0},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -370,7 +370,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.7.1}}
+  {\small\textcolor{white!45}{v1.8.0}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -5279,7 +5279,7 @@ v_{te} [\text{m/s}] \approx 4.19\times 10^5\sqrt{T_e [\text{eV}]}
 普林斯顿等离子体物理实验室（PPPL）的授课教材。\textbf{解决：}第 8 章碰撞输运、第 7 章波--粒子相互作用、第 9 章 MHD 稳定性的更深入处理，数值例子偏聚变实验。
 
 \item \textbf{Richard Fitzpatrick, \textit{Plasma Physics: An Introduction}, 2nd ed., CRC Press, 2022.}\\
-在线免费版（\texttt{https://farside.ph.utexas.edu/teaching/plasma/plasmahtml/}）可用。\textbf{解决：}第 7 章 Landau 阻尼、碰撞算符、第 5--6 章 MHD 波的严谨推导，适合希望补全数学细节的读者。
+在线免费版（{\small\url{https://farside.ph.utexas.edu/Books/Plasma2/Plasma2.html}}）可用。\textbf{解决：}第 7 章 Landau 阻尼、碰撞算符、第 5--6 章 MHD 波的严谨推导，适合希望补全数学细节的读者。逐章对照见附录 J。
 \end{enumerate}
 
 
@@ -6214,6 +6214,19 @@ Landau 阻尼 & Landau damping & 无碰撞相混导致的波阻尼 \\
 \begin{insight}{怎样使用本附录}{}
 复习时建议按「术语 $\to$ 符号 $\to$ 公式」三步走：先在术语表中找到中文说法对应的英文（便于检索文献），再到符号表中确认该量的定义与单位，最后回到正文相应章节核对公式的适用条件。若发现某符号在正文中的写法与本表不一致，以正文该章节的定义为准，并欢迎反馈。
 \end{insight}
+
+%======================================================================
+% 附录I/J/K：学习策略、教材对照与跨教材例题（v1.8.0 新增）
+% 文件分离以控制单文件体积；插入位置紧随附录 H，保证附录字母连续。
+% 章标题（\appchapter）留在主文件：检查套件按主文件的 \appchapter 判定
+% 附录字母连续性与 README 附录清单，写进 \input 文件里会被漏掉。
+%======================================================================
+\appchapter{附录I：学习策略与刻意练习手册}
+\input{appendix_i_learning}
+\appchapter{附录J：经典教材逐章对照与延伸阅读}
+\input{appendix_j_textbook_map}
+\appchapter{附录K：跨教材经典例题精选（注明出处）}
+\input{appendix_k_problems}
 
 % 附录结束
 

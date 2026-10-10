@@ -19,6 +19,10 @@
       并统计链接目标页与 .aux 页是否一致（信息，用于量化 +1 偏移）
   O5 链接计数自洽：印刷目录链接数 == 书签数；报告正文 § 链接数
 
+印刷目录的页跨度**动态探测**（`detect_toc_pages`）：从第 2 页起连续「链接数
+≥ MIN_TOC_LINKS」的页即为印刷目录页，探测失败（<2 页）才退回常量 TOC_PAGES。
+这样附录增删导致目录从 7 页涨到 8 页时，O3／O5 自动跟上，不会静默漏扫或误扫。
+
 O3b 的口径：hyperref 的书签落点由锚点 whatsit 决定，而 `\\addcontentsline`
 写页码发生在 shipout，两者相差一页时会系统性偏移（见 CLOSURE「书签偏移」）。
 实测 17/187 条为 **书签页 = 印刷页 − 1**（点击落在标题所在页的**前一页**）。
@@ -47,7 +51,9 @@ DEFAULT_PDF = os.path.join(ROOT, 'pdf', 'plasma_physics_textbook_v2.pdf')
 DEFAULT_AUX = os.path.join(ROOT, 'src', 'plasma_physics_textbook_v2.aux')
 MAIN_TEX = os.path.join(ROOT, 'src', 'plasma_physics_textbook_v2.tex')
 
-TOC_PAGES = 7          # 印刷目录位于 PDF 第 2--7 页（1-based）
+TOC_PAGES = 7          # 印刷目录页数的退路常量（动态探测失败时使用）
+MIN_TOC_LINKS = 12     # 判定「这一页是印刷目录」所需的最少链接数
+TOC_FIRST = 1          # 印刷目录从第 2 页（0-based 索引 1）开始，封面无链接
 OFFSET_MAX = 0.15      # +1 偏移条数占比容忍上限
 
 RESULTS = []
@@ -55,6 +61,24 @@ RESULTS = []
 
 def rec(level, cat, msg):
     RESULTS.append((level, cat, msg))
+
+
+def detect_toc_pages(doc, min_links=MIN_TOC_LINKS, start=TOC_FIRST):
+    """动态探测印刷目录占用的页数（返回页数，不含封面）。
+
+    为什么不能写死：附录增删会让目录从 7 页涨到 8 页甚至更多，写死常量会
+    静默漏扫（O3 少比对一页条目、O5 少算链接数）。
+    判据：目录页每页有几十个指向正文章节的 goto 链接，而封面无链接、正文页
+    的交叉引用链接数远低于 min_links；目录页在文档中连续且紧接封面之后，
+    故取「从 start 起连续满足阈值」的最长前缀。
+    """
+    n = 0
+    for pno in range(start, doc.page_count):
+        if len(doc[pno].get_links()) >= min_links:
+            n += 1
+        else:
+            break
+    return n
 
 
 def norm(s):
@@ -100,8 +124,16 @@ def analyze(doc, aux_path):
         levels[lvl] = levels.get(lvl, 0) + 1
     n_links = sum(len(doc[p].get_links()) for p in range(pages))
     link_pages = sum(1 for p in range(pages) if doc[p].get_links())
-    rec('INFO', 'O1', '页数 %d；书签 %d 条（层级 %s）；带链接页 %d 页，链接总数 %d'
-        % (pages, len(toc), sorted(levels.items()), link_pages, n_links))
+    toc_pages = detect_toc_pages(doc)
+    if toc_pages < 2:
+        rec('WARN', 'O1', '印刷目录动态探测只得到 %d 页（阈值 %d 个链接/页），'
+                          '退回到常量 %d 页' % (toc_pages, MIN_TOC_LINKS, TOC_PAGES))
+        toc_pages = TOC_PAGES
+    toc_span = range(min(toc_pages + TOC_FIRST, pages))   # 含封面，供逐页扫描
+    rec('INFO', 'O1', '页数 %d；书签 %d 条（层级 %s）；带链接页 %d 页，链接总数 %d；'
+                      '印刷目录 %d 页（第 %d--%d 页，动态探测）'
+        % (pages, len(toc), sorted(levels.items()), link_pages, n_links,
+           toc_pages, TOC_FIRST + 1, toc_pages + TOC_FIRST))
     if not toc:
         rec('FAIL', 'O1', 'PDF 没有任何书签（导航失效）')
         return
@@ -127,7 +159,7 @@ def analyze(doc, aux_path):
     entry_pages = [page for _lvl, _title, page in toc]
 
     entries = []           # (标题, 链接目标页, 印刷页码)
-    for pno in range(min(TOC_PAGES, pages)):
+    for pno in toc_span:
         page = doc[pno]
         links = page.get_links()
         if not links:
@@ -255,13 +287,13 @@ def analyze(doc, aux_path):
                     rec('PASS', 'O4', '附录 F 链接目标页与 .aux 记录页一致')
 
     # ---------- O5 链接计数自洽 ----------
-    toc_links = sum(len(doc[p].get_links()) for p in range(min(TOC_PAGES, pages)))
+    toc_links = sum(len(doc[p].get_links()) for p in toc_span)
     if toc_links == len(toc):
-        rec('PASS', 'O5', '印刷目录链接数（%d）== 书签数（%d），目录条目与书签一一对应'
-            % (toc_links, len(toc)))
+        rec('PASS', 'O5', '印刷目录链接数（%d，第 %d--%d 页）== 书签数（%d），目录条目与书签一一对应'
+            % (toc_links, TOC_FIRST + 1, toc_pages + TOC_FIRST, len(toc)))
     else:
-        rec('WARN', 'O5', '印刷目录链接数（%d）≠ 书签数（%d），需人工确认差异来源'
-            % (toc_links, len(toc)))
+        rec('WARN', 'O5', '印刷目录链接数（%d，第 %d--%d 页）≠ 书签数（%d），需人工确认差异来源'
+            % (toc_links, TOC_FIRST + 1, toc_pages + TOC_FIRST, len(toc)))
     body = n_links - toc_links
     rec('INFO', 'O5', '正文（含附录）交叉引用链接 %d 个' % body)
 

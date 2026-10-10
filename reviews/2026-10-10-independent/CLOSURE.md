@@ -315,3 +315,98 @@ v1.7.0 交付后，被追问「TODO 都做了吗」时逐条复核，发现完�
   产物 `src/plasma_physics_textbook_v2.pdf` 的 SHA256 仍为 `69C3AF4F…C23A6`，
   与提交/发布的 `pdf/` 副本**逐字节一致**（构建可复现，非近似重建）。
 
+---
+
+## 11. 内容与学习策略扩充轮（v1.8.0，2026-10-11）：借鉴经典教材并注明来源
+
+### 11.1 任务与范围
+
+用户指示（逐字）：「丰富教材内容与学习策略，主动从别的经典教材借鉴（并说明来源）。」
+
+本轮不在既有正文里改动物理结论（v1.7.0／v1.7.1 刚验收过），而是**新增**三个附录：
+
+| 附录 | 回答的问题 | 与既有内容的分工 |
+| --- | --- | --- |
+| **I 学习策略与刻意练习手册** | 怎么学、多久复习一次、怎么自测 | 前言的路线图管「先读什么」，附录 I 管「读后怎么巩固」 |
+| **J 经典教材逐章对照** | 第 N 章卡住时翻哪本书的哪一章 | 附录 E 管「读哪本书」，附录 J 管「读到哪一节」 |
+| **K 跨教材经典例题精选（8 道）** | 用别处的经典题检验自己 | 正文例题讲本书推导，附录 K 讲跨教材题型与出处 |
+
+### 11.2 来源与核实方式（每条都注明出处，且章号只写核实过的层级）
+
+- 本机 `web_search` 不可用（缺 `DEEPSEEK_API_KEY`），全部改用 `web_fetch` 直连：
+  **Crossref REST**（`api.crossref.org/works?query.bibliographic=…`，核对 DOI/卷/期/页）、
+  **OpenLibrary search**（核对出版社与首版年）、**DuckDuckGo HTML**（图书馆编目摘要）。
+- 出版社站点不可达（`link.springer.com` 跳转登录、`routledge.com` fetch failed），
+  但**作者官方页面**给出最可靠目录：Fitzpatrick 的 `farside.ph.utexas.edu` 书页逐章列出 9 章小节名。
+- 章号层级的处理：
+  - **Chen**《Introduction to Plasma Physics and Controlled Fusion》3rd ed.（Springer 2016，ISBN 9783319223087）：精确到章（1–10 + 附录 A）；
+    核对中更正了一个旧印象——**第 3 版没有独立的「碰撞」章**（摩擦与电阻在第 5 章）。
+  - **Fitzpatrick**《Plasma Physics: An Introduction》2nd ed.（CRC 2022，ISBN 978-1-032-20251-8）：精确到章（1–9）；
+    免费 HTML 版在作者书页，另有配套讲义与 PIC 双流模拟程序 `pic.tgz`。
+  - **Goldston & Rutherford**（IOP 1995）：只给**主题级**定位，并在附录 J 开头声明「具体章节号以手头版本目录为准」；
+    网上流传的 PDF 副本属未授权来源，不予引用。
+- 学习科学文献全部经 Crossref 核对（附录 I 文献表 8 条）：Dunlosky 等 2013 *PSPI* **14**(1) 4--58（DOI 10.1177/1529100612453266）、
+  Roediger & Karpicke 2006 *Psych. Sci.* **17**(3) 249--255（10.1111/j.1467-9280.2006.01693.x）、
+  Karpicke & Blunt 2011 *Science* **331**(6018) 772--775（10.1126/science.1199327）、
+  Cepeda 等 2006 *Psych. Bull.* **132**(3) 354--380（10.1037/0033-2909.132.3.354）、
+  Rohrer & Taylor 2007 *Instr. Sci.* **35**(6) 481--498（10.1007/s11251-007-9015-8）、
+  Chi 等 1989 *Cog. Sci.* **13**(2) 145--182（10.1207/s15516709cog1302_1）、
+  Sweller & Cooper 1985 *Cog. Instr.* **2**(1) 59--89（10.1207/s1532690xci0201_3）、
+  Ericsson 等 1993 *Psych. Rev.* **100**(3) 363--406（10.1037/0033-295x.100.3.363）；
+  另列 Ebbinghaus 1885、Bjork 1994（desirable difficulties）、Polya 1945 三条经典书目。
+- 核实日期：**2026-10-11**（已写进附录 J.7 与附录 I 的文献表脚注）。
+
+### 11.3 新增内容清单
+
+- `src/appendix_i_learning.tex`（7 节）：三个误区 → 五个可执行动作（合书复述＝检索练习、1/3/7/21 间隔重复、
+  交错练习、自我解释、例题读完空白重做）→ 元认知三栏错题本 + 每周复盘 `checklistbox` → 量级估算与量纲检验 →
+  **12 周节奏 `longtable`** → 自测题四型（判据／量级／反例／迁移）→ 文献表（含 DOI）。
+- `src/appendix_j_textbook_map.tex`（7 节）：分工与免责 → 七本书性格速写 → **12 章逐章对照 `longtable`**
+  （本书／主题／Chen／Fitzpatrick／其他专著）→ 每章「外文教材独有视角」12 条 → 10 本进阶专著表 →
+  免费在线资源 → 核对说明。
+- `src/appendix_k_problems.tex`（8 道 `example`）：德拜屏蔽与 $N_D$、磁镜损失锥、$\nabla B$ 与曲率漂移方向判别、
+  Alfvén 速度与磁冻结、Landau 阻尼率、Spitzer 电阻率与磁场扩散时间、玻姆判据与 Child--Langmuir 鞘厚、
+  Sweet--Parker 重联「为何太慢」；每题含题目／解／**出处**／常见错误，末尾附对应表。
+- 主文件接线：三行 `\appchapter{附录I/J/K}` 与对应 `\input` 相邻放在主文件（附录文件只留正文）；
+  附录 E 的 Fitzpatrick 免费版失效链接（旧 URL 实测 404）改为作者官方书页并加「逐章对照见附录 J」；
+  版本串三处升到 v1.8.0（封面、`pdftitle`、README）。
+- 全部 26 个印刷数值由 CODATA 常数独立复算（见 `processed.md` §12.4 的表）。
+
+### 11.4 本轮新增/加强的守卫
+
+- `check/physics_regression.py` **113 → 122 项**：P01 26 个新数值复算后回文比对（容差 1%–5%，绝对值比较）；
+  P02 附录 J 对照表覆盖 1–12 章、每行 5 列、Chen ≤10 / Fitzpatrick ≤9（防幻章）；P03 附录 I 的 DOI 格式与去重；
+  P04 附录挂载、字母连续到 K、附录文件不得再发 `\appchapter`、每附录 ≥4 小节。
+- `check/fixtures/gate_physics_negative.py` **4 → 6 处植入**（新增附录 K 阻尼率、附录 J 幻章），判定改「FAIL ≥ 6」。
+- `check/pdf_outline.py` 印刷目录页跨度改**动态探测**（连续「链接数 ≥12」的最长前缀，常量 7 仅作退路）——
+  否则目录 7→8 页会让 `O5`（目录链接数 == 书签数）假 FAIL（187 ≠ 220）。
+
+### 11.5 验收结果（重建后实测）
+
+- **六套件 FAIL 0**：`full_check` 32（WARN 1：基线 overfull 2 处 0.84/6.77 pt）、`ui_readability` 35（WARN 17）、
+  `consistency_audit` 14、`physics_regression` **122**、`figure_layout` 13、`pdf_outline` 11（WARN 2）。
+- **五套夹具 PASS**：`gate_compile_log` 7 例、`gate_physics_negative`（植入 FAIL 6 → 恢复 0）、
+  `gate_figure_layout` 5 例、`gate_pdf_outline` 3 例、`gate_g2_listing` 1+2 例。
+- 编译：`latexmk -xelatex` exit 0（第二次 `Nothing to do`）、`^! ` 0、未定义引用 0、缺字仅 U+000A（豁免）、
+  Overfull 仅 2 处基线（本轮引入的 1.24/3.76/4.65 pt 已消除）。
+- PDF：**239 页**、1 806 797 B、SHA256 `DCB8B6E313F6FF1F26AF8911CC9E64A530E769BDAA2E6682786046C5D0EABDFA`、
+  标题 `等离子体物理自学教材 v1.8.0`；书签 220 条（1 级 26／2 级 137／3 级 57）、
+  印刷目录第 2–8 页共 220 链接；`src/` 与 `pdf/` 副本逐字节一致。
+- 报告落盘（UTF-8）：`tmp/final_full_v18.txt`、`tmp/final_ui_v18.txt`、`tmp/final_cons_v18.txt`、
+  `tmp/final_phys_v18.txt`、`tmp/final_fig_v18.txt`、`tmp/final_outline_v18.txt`、
+  `tmp/final_fixture_gate_*_v18.txt`。
+
+### 11.6 未完成 / 已知限制（如实声明）
+
+1. **`ui_readability` WARN 16 → 17**：新增的 4 条「超长句」是英文文献条目（按字符计数把作者与 DOI 一并算入）
+   与附录 K 的「出处」行；删掉它们就等于删掉本轮任务的「注明来源」要求，故如实保留并记录。
+2. **`O3b` 21/220 条书签落点比印刷页码少 1 页**（9.5%，全部为 −1，与 v1.7.1 的 17/187 同源）：
+   锚点 whatsit 与 `\addcontentsline` 写页码相差一页；统一且有界，不为它改动分页。
+3. 两处基线 Overfull（6.77 pt 于 `ch7_supplement`、0.84 pt 于主文件 2048--2049）仍未处理。
+4. 附录 J 对 Goldston & Rutherford 只到主题级；Chen／Fitzpatrick 的章号已核实到章，但**小节号级**对照未做。
+
+### 11.7 版本与发布
+
+（发布元数据——提交号、标签对象、远端 refs、Gitea release id 与附件复核——随发布后补记的文档提交写入本节。）
+
+

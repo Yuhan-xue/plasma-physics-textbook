@@ -1,0 +1,247 @@
+%======================================================================
+% 附录K：跨教材经典例题精选（注明出处）
+%======================================================================
+% 章标题 \appchapter{附录K：...} 由主文件发出，本文件只提供正文。
+
+本附录从 Chen、Fitzpatrick、Goldston \& Rutherford 等经典教材的题库与例题中，挑选八道\textbf{最能检验基础图像}的题目，逐题给出完整解答与出处。
+
+选取标准有三条：题目只用到本书第 1--12 章的工具；答案可以\textbf{独立复算}；题目背后都有一个"判断型"的物理结论，而不只是代数练习。
+
+\textbf{使用建议：}每道题先合书独立做一遍（动作五），再看解答。八道题覆盖八个不同的物理环节，适合按附录 I 的"交错练习"方式打乱使用。
+
+\begin{tip}
+本附录所有数值结果都可以用计算器在几分钟内复算。若你的结果与文中差一个量级，几乎总是以下几个原因之一：用错了温度（电子 / 离子、eV / K）、漏掉平方根、或把 SI 与 CGS 混用。建议对照附录 F 的高频易错点清单一起看。
+\end{tip}
+
+
+\section{德拜屏蔽与等离子体参数}
+
+\begin{example}{德拜长度、$N_D$ 与屏蔽势的衰减}{}
+\textbf{题目：}某氢等离子体 $T_e=10\ \mathrm{eV}$、$n=10^{18}\ \mathrm{m^{-3}}$。
+（a）求德拜长度 $\lambda_D$；
+（b）求德拜球内的粒子数 $N_D$，并判断能否用流体（连续介质）图像描述；
+（c）把测试电荷放在原点，$r=5\lambda_D$ 处的屏蔽势是裸库仑势的百分之几？
+
+\textbf{解：}
+（a）$\lambda_D=\sqrt{\dfrac{\eps_0 k_BT_e}{ne^2}}=7430\sqrt{\dfrac{T_e[\mathrm{eV}]}{n[\mathrm{m^{-3}}]}}\ \mathrm{m}
+=7430\sqrt{\dfrac{10}{10^{18}}}=2.35\times10^{-5}\ \mathrm{m}\approx23.5\ \mathrm{\mu m}$。
+
+（b）$N_D=\dfrac{4\pi}{3}n\lambda_D^3
+=\dfrac{4\pi}{3}\times10^{18}\times(2.3508\times10^{-5})^3\approx5.4\times10^{4}$。
+$N_D\gg1$，德拜球内粒子数极多，统计描述成立，流体图像在这里是合法的。
+
+（c）屏蔽势 $\phi(r)=\dfrac{q}{4\pi\eps_0 r}\ee^{-r/\lambda_D}$，比值即 $\ee^{-5}=6.7\times10^{-3}$，只有 $0.67\%$。
+
+\textbf{出处：}Chen《Introduction to Plasma Physics and Controlled Fusion》第 3 版第 1 章（德拜屏蔽）；Fitzpatrick 第 2 版第 1 章 Debye Shielding。
+
+\textbf{常见错误：}用离子温度算 $\lambda_D$（判据由电子决定）；漏掉 $N_D$ 中的 $4\pi/3$ 因子；把"$\lambda_D$ 内只有一个粒子"当成判据（正确判据是 $N_D\gg1$）。
+\end{example}
+
+
+\section{磁镜与损失锥}
+
+\begin{example}{磁镜比 $R=10$ 的临界角与损失锥比例}{}
+\textbf{题目：}磁镜的磁镜比 $R=B_{\max}/B_{\min}=10$。
+（a）求临界投掷角 $\theta_c$；
+（b）各向同性速度分布中，有多少比例的粒子落在损失锥内？
+（c）若把 $R$ 提高到 $100$，该比例变为多少？
+
+\textbf{解：}
+（a）由 $\sin^2\theta_c=B_{\min}/B_{\max}=1/R$ 得
+$\theta_c=\arcsin\sqrt{1/10}=18.43^\circ$。
+
+（b）各向同性分布中投掷角概率密度正比于 $\sin\theta$，故损失锥内的比例为
+$P=\displaystyle\int_0^{\theta_c}\sin\theta\,\diff\theta=1-\cos\theta_c
+=1-\sqrt{1-\tfrac1R}=1-\sqrt{0.9}=5.13\%$。
+
+（c）$R=100$ 时 $P=1-\sqrt{0.99}=0.50\%$：磁镜比提高十倍，损失锥比例降到约十分之一。
+
+\textbf{出处：}Chen 第 2 章（单粒子运动，磁镜）；Fitzpatrick 第 2 版第 2 章 Magnetic Mirrors。
+
+\textbf{常见错误：}写成 $\sin\theta_c=1/R$（漏掉开方）；用 $v_\parallel/v_\perp$ 而不是 $\sin^2\theta$ 表达判据；把损失锥比例当成 $\theta_c/90^\circ$ 的线性比例。
+\end{example}
+
+
+\section{梯度漂移与曲率漂移的方向}
+
+\begin{example}{$\grad B$ 漂移的方向判别与电荷分离}{}
+\textbf{题目：}设磁场沿 $z$ 方向、大小沿 $x$ 线性减弱：$\vect{B}=B_0(1-x/L)\unitvec{z}$，$B_0>0$，$L>0$。
+（a）求 $\grad B$，并判断离子与电子的 $\grad B$ 漂移方向；
+（b）说明在托卡马克中，$\grad B$ 漂移与曲率漂移为什么会导致电荷分离，以及它是如何被抑制的。
+
+\textbf{解：}
+（a）$\grad B=-\dfrac{B_0}{L}\unitvec{x}$，于是
+$\vect{B}\times\grad B=B_0\left(1-\dfrac{x}{L}\right)\unitvec{z}\times\left(-\dfrac{B_0}{L}\unitvec{x}\right)
+=-\dfrac{B_0^2}{L}\left(1-\dfrac{x}{L}\right)\unitvec{y}$。
+代入 $\vect{v}_{\grad B}=\dfrac{mv_\perp^2}{2qB}\dfrac{\vect{B}\times\grad B}{B^2}$：
+离子（$q>0$）沿 $-\unitvec{y}$ 漂移，电子（$q<0$）沿 $+\unitvec{y}$ 漂移。方向相反，与电荷符号有关。
+
+（b）在托卡马克中 $B\propto1/R$，$\grad B$ 指向内侧；曲率漂移沿磁力线的曲率中心方向。两者的\textbf{竖直分量同向}，且都因含 $1/q$ 而对电子、离子反向，于是等离子体上下两侧积累异号电荷，形成竖直电场；该电场与环向磁场产生 $\vect{E}\times\vect{B}$ 漂移，把粒子向外推。
+抑制机制是\textbf{旋转变换}（磁力线的环向扭曲）：粒子沿磁力线运动时上下交替，,短接了电荷分离；这也是托卡马克需要足够大的等离子体电流、以及"磁通管"图像中出现 Pfirsch--Schl\"uter 电流的原因。
+
+\textbf{出处：}Chen 第 2 章（单粒子运动，非均匀磁场中的漂移）；Fitzpatrick 第 2 版第 2 章 Magnetic Drifts；托卡马克部分见 Wesson《Tokamaks》（按主题）。
+
+\textbf{常见错误：}认为 $\grad B$ 漂移与电荷符号无关——$\vect{B}\times\grad B$ 确实与 $q$ 无关，但漂移速度中含 $1/q$，所以方向相反；把曲率漂移与 $\grad B$ 漂移在本例的几何下判成反向（它们同向）；误以为电荷分离无法消除。
+\end{example}
+
+
+\section{Alfvén 速度与磁冻结}
+
+\begin{example}{Alfvén 速度的量级与磁场扰动的传播时间}{}
+\textbf{题目：}氘等离子体 $n=10^{20}\ \mathrm{m^{-3}}$、$B=5\ \mathrm{T}$。
+（a）求 Alfvén 速度 $v_A$；（b）它是光速的百分之几？
+（c）磁场扰动沿 $1\ \mathrm{m}$ 传播需要多久？（d）若密度增大到 $10^{22}\ \mathrm{m^{-3}}$，$v_A$ 变为多少？
+
+\textbf{解：}
+（a）质量密度由离子提供：$\rho\approx nm_D=10^{20}\times3.368\times10^{-27}=3.37\times10^{-7}\ \mathrm{kg\,m^{-3}}$，
+$v_A=\dfrac{B}{\sqrt{\mu_0\rho}}
+=\dfrac{5}{\sqrt{1.2566\times10^{-6}\times3.368\times10^{-7}}}
+=7.69\times10^{6}\ \mathrm{m\,s^{-1}}$。
+
+（b）$v_A/c=7.69\times10^{6}/2.998\times10^{8}=2.6\%$。磁冻结图像在非相对论等离子体中非常好。
+
+（c）$t=L/v_A=1/7.69\times10^{6}=1.30\times10^{-7}\ \mathrm{s}$。
+
+（d）$v_A\propto1/\sqrt{\rho}\propto1/\sqrt{n}$：密度增大 100 倍，$v_A$ 减小到 $1/10$，即 $7.7\times10^{5}\ \mathrm{m\,s^{-1}}$。
+
+\textbf{出处：}Fitzpatrick 第 2 版第 8 章（MHD 流体：磁压、磁通冻结、MHD 波）；Chen 第 4 章（等离子体中的波）。
+
+\textbf{常见错误：}用电子质量计算 $\rho$（惯性由离子提供）；忘记 $\mu_0$ 的平方根；把 $v_A$ 与离子声速 $c_s$ 混用（后者由电子温度决定，与 $B$ 无关）。
+\end{example}
+
+
+\section{Landau 阻尼率}
+
+\begin{example}{朗缪尔波的 Landau 阻尼率与每周期衰减}{}
+\textbf{题目：}朗缪尔波满足 $k\lambda_D=0.3$。
+（a）用 $\dfrac{\gamma}{\omega}=-\sqrt{\dfrac{\pi}{8}}\,(k\lambda_D)^{-3}
+\exp\!\left(-\dfrac{1}{2k^2\lambda_D^2}-\dfrac{3}{2}\right)$ 求阻尼率；
+（b）估算一个波周期内振幅衰减的百分比；
+（c）为什么 $k\lambda_D\ll1$ 时阻尼可以忽略？
+
+\textbf{解：}
+（a）$(k\lambda_D)^{-3}=0.3^{-3}=37.04$，
+$\exp[-1/(2\times0.09)]=\ee^{-5.556}=3.87\times10^{-3}$，$\ee^{-3/2}=0.2231$，
+故 $\dfrac{\gamma}{\omega}=-0.6267\times37.04\times3.87\times10^{-3}\times0.2231
+=-2.00\times10^{-2}$。
+
+（b）一个周期内振幅因子为 $\exp\!\left(2\pi\dfrac{\gamma}{\omega}\right)
+=\ee^{-0.126}=0.882$，即衰减约 $11.8\%$。
+
+（c）指数因子 $\exp[-1/(2k^2\lambda_D^2)]$ 随 $k\lambda_D$ 减小而\textbf{双重指数}衰减：$k\lambda_D=0.1$ 时它已是 $\ee^{-50}\approx2\times10^{-22}$。物理上，长波相速度远大于热速度，能与波共振的粒子数指数稀少，因此无碰撞阻尼可以忽略。
+
+\textbf{出处：}Fitzpatrick 第 2 版第 7 章 Landau Damping；Chen 第 7 章（动理学理论）。
+
+\textbf{常见错误：}把 $\gamma/\omega$ 直接当成"每周期衰减比例"（应乘以 $2\pi$）；把 $\ee^{-3/2}$ 漏掉；误认为 Landau 阻尼来自碰撞——它是无碰撞的相混合，因此不增加熵（在线性阶段）。
+\end{example}
+
+
+\section{Spitzer 电阻率与磁场扩散时间}
+
+\begin{example}{从温度估算电阻率与磁场扩散时间}{}
+\textbf{题目：}某托卡马克等离子体 $T=1\ \mathrm{keV}$、$Z=1$、$\ln\Lambda=17$，特征长度 $L=1\ \mathrm{m}$。
+（a）用 $\eta=5.2\times10^{-5}\dfrac{Z\ln\Lambda}{T[\mathrm{eV}]^{3/2}}\ \Omega\cdot\mathrm{m}$ 求电阻率；
+（b）求磁场扩散时间 $\tau_\eta=\mu_0L^2/\eta$；
+（c）若温度降到 $10\ \mathrm{eV}$（$\ln\Lambda=10$），$\eta$ 与 $\tau_\eta$ 各变为多少？
+
+\textbf{解：}
+（a）$T^{3/2}=1000^{1.5}=3.16\times10^{4}$，
+$\eta=5.2\times10^{-5}\times17/3.16\times10^{4}=2.80\times10^{-8}\ \Omega\cdot\mathrm{m}$。
+
+（b）$\tau_\eta=\dfrac{1.2566\times10^{-6}\times1}{2.80\times10^{-8}}=44.9\ \mathrm{s}$。
+
+（c）$10^{1.5}=31.6$，$\eta=5.2\times10^{-5}\times10/31.6=1.64\times10^{-5}\ \Omega\cdot\mathrm{m}$（约为原来的 $590$ 倍），
+$\tau_\eta=1.2566\times10^{-6}/1.64\times10^{-5}=7.6\times10^{-2}\ \mathrm{s}$。
+
+\textbf{结论：}温度提高两个数量级，磁场扩散时间延长近三个数量级。这解释了为什么"磁冻结"在高温聚变等离子体中是极好的近似，而在低温器件中磁场可以迅速扩散。
+
+\textbf{出处：}Chen 第 5 章（扩散与电阻率）；Fitzpatrick 第 2 版第 3、4 章（碰撞与输运）。
+
+\textbf{常见错误：}把开尔文直接代入公式（应为 eV）；漏掉 $T^{3/2}$；忽略 $\ln\Lambda$ 的温度依赖（它变化很慢，但并非常数）。
+\end{example}
+
+
+\section{玻姆判据与鞘层厚度}
+
+\begin{example}{离子声速、鞘层厚度与壁面离子通量}{}
+\textbf{题目：}氩等离子体 $T_e=3\ \mathrm{eV}$、$n_0=10^{16}\ \mathrm{m^{-3}}$，器壁偏压 $V_w=100\ \mathrm{V}$。
+（a）求玻姆速度（离子声速）$c_s$；（b）求德拜长度；
+（c）用 $s\approx\dfrac{\sqrt2}{3}\lambda_D\left(\dfrac{2V_w}{T_e}\right)^{3/4}$ 估算 Child--Langmuir 鞘层厚度；
+（d）求壁面离子通量。
+
+\textbf{解：}
+（a）$c_s=\sqrt{\dfrac{k_BT_e}{M_{\mathrm{Ar}}}}
+=\sqrt{\dfrac{3\times1.602\times10^{-19}}{6.68\times10^{-26}}}=2.68\times10^{3}\ \mathrm{m\,s^{-1}}$。
+
+（b）$\lambda_D=7430\sqrt{3/10^{16}}=1.29\times10^{-4}\ \mathrm{m}=0.129\ \mathrm{mm}$。
+
+（c）$(2\times100/3)^{0.75}=66.7^{0.75}=23.3$，
+$s=0.471\times1.29\times10^{-4}\times23.3=1.42\times10^{-3}\ \mathrm{m}\approx1.4\ \mathrm{mm}$。
+注意 $s\gg\lambda_D$（约 11 倍）：偏压远大于电子温度时，鞘层远厚于德拜长度。
+
+（d）鞘边密度 $n_s\approx0.61n_0=6.1\times10^{15}\ \mathrm{m^{-3}}$，
+$\Gamma=n_sc_s=6.1\times10^{15}\times2.68\times10^{3}=1.6\times10^{19}\ \mathrm{m^{-2}s^{-1}}$。
+每个离子在鞘层中被加速获得约 $100\ \mathrm{eV}$ 能量——这正是离子轰击在刻蚀与溅射中起作用的原因。
+
+\textbf{出处：}Fitzpatrick 第 2 版第 4 章末 Langmuir Sheaths 与 Langmuir Probes；Lieberman \& Lichtenberg《Principles of Plasma Discharges and Materials Processing》（按主题：鞘层与玻姆判据）。
+
+\textbf{常见错误：}用离子温度计算 $c_s$（玻姆判据由电子温度决定）；把鞘层厚度当成 $\lambda_D$；忘记 $n_s\approx0.61n_0$ 这个鞘边密度。
+\end{example}
+
+
+\section{Sweet--Parker 重联速率}
+
+\begin{example}{Sweet--Parker 重联为什么"太慢"}{}
+\textbf{题目：}日冕电流片：$T=86\ \mathrm{eV}$（约 $10^{6}\ \mathrm{K}$）、$\ln\Lambda=20$、$L=10^{5}\ \mathrm{m}$、$v_A=10^{5}\ \mathrm{m\,s^{-1}}$。
+（a）求电阻率 $\eta$ 与 Lundquist 数 $S=\mu_0Lv_A/\eta$；
+（b）求入流速度 $v_{\mathrm{in}}=v_A/\sqrt{S}$ 与重联时间 $\tau_{\mathrm{SP}}=L/v_{\mathrm{in}}$；
+（c）与太阳耀斑观测时标（$10^{2}$--$10^{3}\ \mathrm{s}$）比较，能得出什么结论？
+
+\textbf{解：}
+（a）$86^{1.5}=7.98\times10^{2}$，
+$\eta=5.2\times10^{-5}\times20/7.98\times10^{2}=1.30\times10^{-6}\ \Omega\cdot\mathrm{m}$；
+$S=\dfrac{1.2566\times10^{-6}\times10^{5}\times10^{5}}{1.30\times10^{-6}}=9.6\times10^{9}$。
+
+（b）$v_{\mathrm{in}}=v_A/\sqrt{S}=10^{5}/9.82\times10^{4}=1.02\ \mathrm{m\,s^{-1}}$，
+$\tau_{\mathrm{SP}}=10^{5}/1.02=9.8\times10^{4}\ \mathrm{s}\approx27\ \mathrm{h}$。
+
+（c）$27$ 小时比观测到的耀斑时标慢约 $10^{2}$--$10^{3}$ 倍。这就是著名的"Sweet--Parker 太慢"问题：全局电阻率太低，重联被限制在极薄的电流片内。解决方向是\textbf{局域化}——撕裂模不稳定性把电流片撕裂成许多小尺度结构（plasmoid 不稳定性），使有效重联率大幅提高。
+
+\textbf{补充关系：}磁场扩散时间 $\tau_\eta=\mu_0L^2/\eta=\sqrt{S}\,\tau_{\mathrm{SP}}=9.6\times10^{9}\ \mathrm{s}$（约 300 年），比 $\tau_{\mathrm{SP}}$ 大 $\sqrt{S}\approx10^{5}$ 倍——排除"整体扩散"解释的必要性，也说明重联必须发生在薄电流片中。
+
+\textbf{出处：}Fitzpatrick 第 2 版第 9 章（磁重联：Sweet--Parker 模型、撕裂模、plasmoid 不稳定性）。
+
+\textbf{常见错误：}把入流速度取成 $v_A$（$v_A$ 是入流在上游的极限值，重联率取决于 $\sqrt{S}$ 的压制）；漏掉 $S$ 定义中的 $L$ 或 $v_A$；把 $\tau_{\mathrm{SP}}$ 与 $\tau_\eta$ 混为一谈。
+\end{example}
+
+
+\section{八道题与本书章节的对应}
+
+\small
+\begin{longtable}{@{}p{1.2cm}p{4.5cm}p{4.3cm}p{4.9cm}@{}}
+\caption{附录 K 例题与本书章节、经典教材的对应}\label{tab:app-k-map}\\
+\toprule
+编号 & 主题 & 本书章节 & 主要出处 \\
+\midrule
+\endfirsthead
+\toprule
+编号 & 主题 & 本书章节 & 主要出处 \\
+\midrule
+\endhead
+\midrule
+\multicolumn{4}{r}{\small（续下页）}\\
+\endfoot
+\bottomrule
+\endlastfoot
+K.1 & 德拜屏蔽与 $N_D$ & 第 2 章 & Chen 第 1 章；Fitzpatrick 第 1 章 \\
+K.2 & 磁镜与损失锥 & 第 3 章 & Chen 第 2 章；Fitzpatrick 第 2 章 \\
+K.3 & 梯度漂移与曲率漂移 & 第 3 章 & Chen 第 2 章；Fitzpatrick 第 2 章 \\
+K.4 & Alfvén 速度与磁冻结 & 第 5 章 & Fitzpatrick 第 8 章；Chen 第 4 章 \\
+K.5 & Landau 阻尼 & 第 7 章 & Fitzpatrick 第 7 章；Chen 第 7 章 \\
+K.6 & Spitzer 电阻率与扩散 & 第 8 章 & Chen 第 5 章；Fitzpatrick 第 3、4 章 \\
+K.7 & 玻姆判据与鞘层 & 第 11 章 & Fitzpatrick 第 4 章；Lieberman \& Lichtenberg \\
+K.8 & Sweet--Parker 重联 & 第 9 章 & Fitzpatrick 第 9 章 \\
+\end{longtable}
+\normalsize
+
+\textbf{做完这八道题之后：}回到各章的自学检查清单（\texttt{checklistbox}）逐条自评，并把做错的题目按附录 I 的三栏法记入错题本。若你发现某道题"看答案全懂、合上书不会"，说明缺的是检索练习而不是理解——请按附录 I 的动作五，隔一天再做一遍。
