@@ -1,0 +1,470 @@
+{
+  "baseline": "f6317daf8b4203b96674304e08471caccb9f895f",
+  "meaning": "evidence reproduction; exit 0 is not release approval",
+  "two_stream": {
+    "cleared_polynomial": "a**4 - a**2 + w**4 - w**2*(2*a**2 + 1)",
+    "cases": [
+      {
+        "a": 0.5,
+        "roots": [
+          [
+            -1.2712298784187066,
+            0.0
+          ],
+          [
+            1.2712298784187066,
+            0.0
+          ],
+          [
+            -2.0816681711721685e-17,
+            0.34062501931660655
+          ],
+          [
+            -2.0816681711721685e-17,
+            -0.34062501931660655
+          ]
+        ],
+        "max_growth": 0.34062501931660655
+      },
+      {
+        "a": 0.6123724356957945,
+        "roots": [
+          [
+            -1.369306393762915,
+            0.0
+          ],
+          [
+            1.3693063937629149,
+            0.0
+          ],
+          [
+            -2.0816681711721685e-17,
+            0.35355339059327384
+          ],
+          [
+            -2.0816681711721685e-17,
+            -0.35355339059327384
+          ]
+        ],
+        "max_growth": 0.35355339059327384
+      },
+      {
+        "a": 1.0,
+        "roots": [
+          [
+            -1.7320508075688772,
+            0.0
+          ],
+          [
+            1.7320508075688776,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "max_growth": 0.0
+      },
+      {
+        "a": 1.2,
+        "roots": [
+          [
+            1.925923311374421,
+            0.0
+          ],
+          [
+            -1.9259233113744223,
+            0.0
+          ],
+          [
+            -0.41330303495690257,
+            0.0
+          ],
+          [
+            0.4133030349569028,
+            0.0
+          ]
+        ],
+        "max_growth": 0.0
+      },
+      {
+        "a": 1.5,
+        "roots": [
+          [
+            -2.220236354933939,
+            0.0
+          ],
+          [
+            2.22023635493394,
+            0.0
+          ],
+          [
+            -0.7553479517610828,
+            0.0
+          ],
+          [
+            0.7553479517610829,
+            0.0
+          ]
+        ],
+        "max_growth": 0.0
+      }
+    ],
+    "book_a_1_2_growth": 0.4000000000000002,
+    "book_root_residual_in_original_D": 4.045198661783418,
+    "correct_k_threshold": 5000.0,
+    "correct_lambda_min": 0.0012566370614359172,
+    "correct_gamma_max": 17677669529.66369,
+    "correct_k_opt": 3061.862178478972,
+    "correct_growth_time_s": 5.6568542494923806e-11
+  },
+  "buneman": {
+    "at": "k u_e / omega_pe = 1",
+    "cases": [
+      {
+        "mi_me": 100,
+        "root": [
+          0.09237309425238838,
+          0.13539781600016762
+        ],
+        "asymptotic_gamma_wp": 0.14808826096823643,
+        "gamma_over_asymptotic": 0.9143048551917914,
+        "residual": 2.2970149489377015e-15
+      },
+      {
+        "mi_me": 1836,
+        "root": [
+          0.033436549296795876,
+          0.05431458448074869
+        ],
+        "asymptotic_gamma_wp": 0.05613448477280808,
+        "gamma_over_asymptotic": 0.9675796384446204,
+        "residual": 3.502595287175881e-16
+      },
+      {
+        "mi_me": 10000,
+        "root": [
+          0.018755254156158887,
+          0.03131689435706735
+        ],
+        "asymptotic_gamma_wp": 0.03190464866164632,
+        "gamma_over_asymptotic": 0.9815777847669725,
+        "residual": 1.5823112613210482e-16
+      },
+      {
+        "mi_me": 1000000,
+        "root": [
+          0.00398420989347904,
+          0.006846369951271568
+        ],
+        "asymptotic_gamma_wp": 0.006873648184993015,
+        "gamma_over_asymptotic": 0.9960314765918624,
+        "residual": 1.0098713239139942e-16
+      },
+      {
+        "mi_me": 100000000,
+        "root": [
+          0.0008557185609280107,
+          0.001479616472552822
+        ],
+        "asymptotic_gamma_wp": 0.0014808826096823647,
+        "gamma_over_asymptotic": 0.9991450118184491,
+        "residual": 4.05862506730332e-17
+      }
+    ],
+    "log_mass_slope_last_two": -0.33265560267961974
+  },
+  "cold_delta": {
+    "integral_delta_prime_over_v_minus_c": "c**(-2)",
+    "book_sign": "negative",
+    "correct_sign": "positive"
+  },
+  "energy_distributions": {
+    "T_eV": 4.0,
+    "integral_normalized_EEDF": 0.9999999999999869,
+    "integral_sqrt_energy_times_EEPF": 0.9999999999999869,
+    "integral_EEPF_unweighted": 0.5641895835477563,
+    "temperature_from_log_I_second_derivative": 3.999999999999999,
+    "energy_eV": [
+      2,
+      4,
+      8
+    ],
+    "log_EEDF_slopes_per_eV": [
+      0.0,
+      -0.125,
+      -0.1875
+    ]
+  },
+  "thomson": {
+    "n_m3": 1e+20,
+    "T_eV": 10.0,
+    "wavelength_m": 1.064e-06,
+    "lambda_D_m": 2.3508188696828836e-06,
+    "N_D": 5441.844322267072,
+    "angles": [
+      {
+        "angle_deg": 1,
+        "alpha": 4.127344654223149
+      },
+      {
+        "angle_deg": 90,
+        "alpha": 0.050936323335301396
+      }
+    ]
+  },
+  "oblique_reflection": {
+    "incident_angle_from_vertical_deg": 60,
+    "correct_omega_over_local_wp": 1.9999999999999996,
+    "book_omega_over_local_wp": 0.5000000000000001,
+    "correct_kz_squared_normalized": 0.0,
+    "book_kz_squared_normalized": -0.9375
+  },
+  "pitch_angle": {
+    "correct_tan_squared": 2,
+    "correct_angle_degrees": 54.735610317245346,
+    "book_tan_squared": 0.5,
+    "book_angle_degrees": 35.264389682754654,
+    "gradB_over_curvature_at_book_angle": 0.25
+  },
+  "efolding": {
+    "t_10_efolds_over_t_tenfold": 4.3429448190325175,
+    "book_ratio": 2.302585092994046
+  },
+  "compile_gate_controls": {
+    "clean": [
+      [
+        "PASS",
+        "C",
+        "LaTeX 错误（! 开头）：0"
+      ],
+      [
+        "PASS",
+        "C",
+        "未定义引用：0"
+      ],
+      [
+        "PASS",
+        "C",
+        "未定义引文：0"
+      ],
+      [
+        "PASS",
+        "C",
+        "LaTeX Warning：0"
+      ],
+      [
+        "PASS",
+        "C",
+        "Missing character：0（1 = 仅 U+000A 换行符属正常）"
+      ],
+      [
+        "PASS",
+        "C",
+        "Overfull hbox：0"
+      ],
+      [
+        "INFO",
+        "C",
+        "Underfull hbox：0"
+      ]
+    ],
+    "known_newline": [
+      [
+        "PASS",
+        "C",
+        "LaTeX 错误（! 开头）：0"
+      ],
+      [
+        "PASS",
+        "C",
+        "未定义引用：0"
+      ],
+      [
+        "PASS",
+        "C",
+        "未定义引文：0"
+      ],
+      [
+        "PASS",
+        "C",
+        "LaTeX Warning：0"
+      ],
+      [
+        "PASS",
+        "C",
+        "Missing character：1（1 = 仅 U+000A 换行符属正常）"
+      ],
+      [
+        "PASS",
+        "C",
+        "Overfull hbox：0"
+      ],
+      [
+        "INFO",
+        "C",
+        "Underfull hbox：0"
+      ]
+    ],
+    "real_missing_glyph": [
+      [
+        "PASS",
+        "C",
+        "LaTeX 错误（! 开头）：0"
+      ],
+      [
+        "PASS",
+        "C",
+        "未定义引用：0"
+      ],
+      [
+        "PASS",
+        "C",
+        "未定义引文：0"
+      ],
+      [
+        "PASS",
+        "C",
+        "LaTeX Warning：0"
+      ],
+      [
+        "PASS",
+        "C",
+        "Missing character：1（1 = 仅 U+000A 换行符属正常）"
+      ],
+      [
+        "PASS",
+        "C",
+        "Overfull hbox：0"
+      ],
+      [
+        "INFO",
+        "C",
+        "Underfull hbox：0"
+      ]
+    ],
+    "huge_overfull": [
+      [
+        "PASS",
+        "C",
+        "LaTeX 错误（! 开头）：0"
+      ],
+      [
+        "PASS",
+        "C",
+        "未定义引用：0"
+      ],
+      [
+        "PASS",
+        "C",
+        "未定义引文：0"
+      ],
+      [
+        "PASS",
+        "C",
+        "LaTeX Warning：0"
+      ],
+      [
+        "PASS",
+        "C",
+        "Missing character：0（1 = 仅 U+000A 换行符属正常）"
+      ],
+      [
+        "PASS",
+        "C",
+        "Overfull hbox：1"
+      ],
+      [
+        "INFO",
+        "C",
+        "Underfull hbox：0"
+      ],
+      [
+        "INFO",
+        "C",
+        "  Overfull 200.0 pt —— Overfull \\hbox (200.0pt too wide) in paragraph at lines 1--2"
+      ]
+    ],
+    "real_tex_error": [
+      [
+        "FAIL",
+        "C",
+        "LaTeX 错误（! 开头）：1"
+      ],
+      [
+        "PASS",
+        "C",
+        "未定义引用：0"
+      ],
+      [
+        "PASS",
+        "C",
+        "未定义引文：0"
+      ],
+      [
+        "PASS",
+        "C",
+        "LaTeX Warning：0"
+      ],
+      [
+        "PASS",
+        "C",
+        "Missing character：0（1 = 仅 U+000A 换行符属正常）"
+      ],
+      [
+        "PASS",
+        "C",
+        "Overfull hbox：0"
+      ],
+      [
+        "INFO",
+        "C",
+        "Underfull hbox：0"
+      ]
+    ]
+  },
+  "published_pdf": {
+    "pages": 218,
+    "bookmarks": 187,
+    "sha256": "d19ab39b11babce9d963b14fa07ede917a6fcec9f40317617de31a7e41daac9a"
+  },
+  "pdf_text_hits": {
+    "冷分布极限": [
+      84
+    ],
+    "总电子密度": [
+      105,
+      108
+    ],
+    "恰好一半": [
+      163
+    ],
+    "后者归一到1": [
+      162
+    ],
+    "当密度升高时": [
+      168
+    ],
+    "斜入射时有效判据": [
+      78
+    ],
+    "投掷角满足": [
+      202
+    ],
+    "第3–4章": [
+      7,
+      202
+    ]
+  },
+  "source_hashes": {
+    "src/plasma_physics_textbook_v2.tex": "e3ccc3254d1f538fa36991361af28008ca8bf9bd4d8cfd3646362f1c94935aaa",
+    "src/ch6_supplement.tex": "fa3e966e43b126fb1361821b9e06b0634b7ee6db0c1db37b3e5ca29a5ca157ae",
+    "src/ch9_supplement.tex": "6956beef6a5a93ed90641cdf11542eed2fc4f1872143abdd69b9340ee77ac596",
+    "check/full_check.py": "ce770f3c7619a875cd82e0ca397be9767ff9deef9ac2f3e3079dac6286c93f99"
+  }
+}

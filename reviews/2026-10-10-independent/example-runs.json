@@ -1,0 +1,30 @@
+[
+  {
+    "example": 1,
+    "source_sha256": "b64ebf4282140f931cf01911b64ea5c2aff859a40d8cf40e94baa42eafc15271",
+    "exit_code": 0,
+    "stdout": "E x B drift speed [m/s]: 1000.0\nmirror turning points z [m]: -0.01652226090917731 0.016504811225494288\nrelative KE drift: 1.0260114805997187e-07\n",
+    "stderr": "$OUT\\g1.py:75: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown\n  plt.show()\n"
+  },
+  {
+    "example": 2,
+    "source_sha256": "dce1cc5f0c3cf1db0dc9a7c7cc026a9a583abec2ef37060959d46c5f0ee725f9",
+    "exit_code": 0,
+    "stdout": "lambda_D [m]: 2.3509235309107274e-05\nsolver status (1=最近一次网格上收敛): 1\nmax relative deviation from Debye (r < 10 lambda_D): 4.6635732387168005e-05\nREVIEW_SOLVER_STATE={\"status\": 1, \"success\": false, \"message\": \"The maximum number of mesh nodes is exceeded.\", \"mesh_nodes\": 45151, \"max_rms_residual\": 6.110961375200931e-06}\n",
+    "stderr": "$OUT\\g2.py:62: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown\n  plt.show()\n",
+    "solver_state": {
+      "status": 1,
+      "success": false,
+      "message": "The maximum number of mesh nodes is exceeded.",
+      "mesh_nodes": 45151,
+      "max_rms_residual": 6.110961375200931e-06
+    }
+  },
+  {
+    "example": 3,
+    "source_sha256": "c5b395ce8ca256ecf7c7861062a908112342a89fecb0fe6e222c74fa19adba02",
+    "exit_code": 0,
+    "stdout": "omega_pe [rad/s]: 56410169136.78705\nlambda_D [m]: 2.3509235309107274e-05\nat k*lambda_D=0.1, thermal correction = 0.030000000000000006\nat k*lambda_D=0.3, thermal correction = 0.27  (Landau damping already noticeable)\nat k*lambda_D=1.0, thermal correction = 3.0  (Bohm-Gross no longer reliable)\n",
+    "stderr": "$OUT\\g3.py:46: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown\n  plt.show()\n"
+  }
+]
