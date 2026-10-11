@@ -730,6 +730,7 @@ APP_FILES = {
     'R': 'appendix_r_dusty.tex',
     'S': 'appendix_s_confinement.tex',
     'T': 'appendix_t_topology.tex',
+    'U': 'appendix_u_gain.tex',
 }
 
 # CODATA 2018 常数（与附录 D 的单位换算表同一组值）
@@ -3507,6 +3508,526 @@ def check_P23_appendix_i_objectives():
         rec('PASS', 'P', '「学习目标与笔记结构」有 %d 条编号动作' % n_step)
 
 
+def check_P24_appendix_u_gain():
+    """附录 U 聚变增益 Q、自加热与点火的完整性与数值独立复算。
+
+    可证伪点（全部记 FAIL）：
+      ① 七个小节之一被删（按小节标题子串定位）；
+      ② 七张表 / 三只语义盒 / 十四个编号公式之一被删或改了 label；
+      ③ 缺少「出处：」行（本附录要求 >= 5 处），或六道练习缺解答；
+      ④ 印出的关键数值与独立复算不符（三个工作点的 Q、f_alpha 表、自加热闭环
+         迭代与收敛点、三重积阈值与 n tau_E 门槛、Q(P_aux) 扫描、工程增益账），
+         或搬到了别的小节里；
+      ⑤ 口径回流：<sigma v> 拟合的 T 次幂被改、alpha 份额退回 1/4、f_alpha 的
+         分母写成 Q+4、回路指数被写成大于 1、Q 的单调性写反、工程增益漏括号、
+         盈亏平衡忘掉减 1、Greenwald 极限错一个量级、P_loss 取倒数。
+
+    数值唯一来源 tmp/appU_calc.py；表内数字的单位写在表头，故这些用例传 unit=''。
+    语义盒标签写在 \\begin{tip}{标题}{标签} 的第二个必选参数里，不写成 \\label{}。
+    """
+    spath = os.path.join(SRC, APP_FILES['U'])
+    if not os.path.exists(spath):
+        rec('FAIL', 'P', '附录 U 文件缺失：src/%s' % APP_FILES['U'])
+        return
+    text = strip_comments(read(spath))
+    secs = split_blocks(text, 'section')
+
+    want = [
+        'Q 是什么', '加热份额', '自加热闭环', '点火：三重积阈值', '工程增益', '六道估算练习', '来源、分级与版权说明']
+    found = {}
+    for pre in want:
+        for ttl, body in secs:
+            if pre in ttl:
+                found[pre] = body
+                break
+    missing = [p for p in want if p not in found]
+    if missing:
+        rec('FAIL', 'P', '附录 U 缺少小节（标题被改或整节被删）：%s' % missing)
+        return
+    rec('PASS', 'P', '附录 U 的 %d 个小节齐全' % len(want))
+
+    for lab in ('tab:app-u-accounts', 'tab:app-u-falpha', 'tab:app-u-iter', 'tab:app-u-triple', 'tab:app-u-qaux', 'tab:app-u-qeng', 'tab:app-u-source'):
+        has(text, r'\label{%s}' % lab, 'src/%s（表格 label %s）' % (APP_FILES['U'], lab))
+
+    for lab in ('tip-app-u-ledger', 'tip-app-u-loop2', 'tip-app-u-loop'):
+        has(text, '{%s}' % lab, 'src/%s（语义盒标签 %s）' % (APP_FILES['U'], lab))
+
+    for lab in ('eq:app-u-q', 'eq:app-u-split', 'eq:app-u-pfus', 'eq:app-u-falpha', 'eq:app-u-balance', 'eq:app-u-ipb', 'eq:app-u-loop', 'eq:app-u-gain', 'eq:app-u-ignition', 'eq:app-u-ntau', 'eq:app-u-triple', 'eq:app-u-qaux', 'eq:app-u-qeng', 'eq:app-u-qeng1'):
+        has(text, r'\label{%s}' % lab, 'src/%s（公式 label %s）' % (APP_FILES['U'], lab))
+
+    has(text, '不复制', 'src/%s（版权与独立性声明）' % APP_FILES['U'])
+
+    n_src = len(re.findall(r'\\textbf\{出处：\}', text))
+    if n_src < 5:
+        rec('FAIL', 'P', '附录 U 的「出处：」行只有 %d 处，应 >= 5' % n_src)
+    else:
+        rec('PASS', 'P', '附录 U 有 %d 处「出处：」交代' % n_src)
+
+    ex = found['六道估算练习']
+    n_ex = len(re.findall(r'\\textbf\{练习\s*\d+', ex))
+    n_ans = len(re.findall(r'\\textbf\{解答\}', ex))
+    if n_ex < 6:
+        rec('FAIL', 'P', '附录 U 的估算练习只有 %d 道，应 >= 6' % n_ex)
+    else:
+        rec('PASS', 'P', '附录 U 有 %d 道估算练习' % n_ex)
+    if n_ans < n_ex:
+        rec('FAIL', 'P', '附录 U 有 %d 道练习但只有 %d 个解答' % (n_ex, n_ans))
+    else:
+        rec('PASS', 'P', '附录 U 的每道练习都有解答（%d 个）' % n_ans)
+
+    # 字面绑定：公式形式、整行与整句必须原样在文里（改动即 FAIL）。
+    # 三个工作点的数在表、正文、练习里重复出现，只钉单个数字时改掉其中一处仍能
+    # 满足数值用例（v1.17.0 的逐条探针第 67、68 号就是这样逃掉的），故逐处钉住。
+    for lit, why in (
+            ('Q \\equiv \\frac{P_{\\mathrm{fus}}}{P_{\\mathrm{aux}}}',
+             'Q 的定义式'),
+            ('P_\\alpha = \\frac{1}{5}P_{\\mathrm{fus}}, \\qquad',
+             'D-T 反应能的 alpha 份额（1/5）'),
+            ('P_{\\mathrm{n}} = \\frac{4}{5}P_{\\mathrm{fus}}',
+             '中子份额（4/5）'),
+            ('P_{\\mathrm{fus}} = \\frac{n^2}{4}\\,\\langle\\sigma v\\rangle_{\\mathrm{DT}}\\,E_{\\mathrm{fus}}\\,V,',
+             '聚变功率公式（n^2/4 的 1/4 来自 D、T 各占一半）'),
+            ('\\langle\\sigma v\\rangle_{\\mathrm{DT}} \\approx 1.1\\times10^{-24}\\,T^2\\ \\ \\mathrm{m^3/s}',
+             '两参数反应率拟合（必须是 T^2）'),
+            ('E_{\\mathrm{fus}} = 17.6\\ \\mathrm{MeV} = 2.819831\\times10^{-12}\\ \\mathrm{J}',
+             'D-T 反应能与其焦耳换算'),
+            ('f_\\alpha \\equiv \\frac{P_\\alpha}{P_\\alpha + P_{\\mathrm{aux}}}',
+             '自加热份额的定义'),
+            ('= \\frac{Q}{Q+5} = \\frac{1}{1+5/Q}',
+             'f_alpha 只依赖 Q 的化简结果'),
+            ('P_{\\mathrm{loss}} = P_{\\mathrm{aux}} + P_\\alpha = \\frac{W}{\\tau_E},',
+             '自加热闭环的功率平衡'),
+            ('\\qquad W = 3nTV',
+             'W = 3nTV 的写法（与附录 S 同一口径）'),
+            ('\\tau_E = \\tau_E^{\\mathrm{IPB98}}\\!\\left(P_{\\mathrm{tot}}\\right),',
+             'IPB98(y,2) 传入的是总加热功率'),
+            ('\\qquad P_{\\mathrm{tot}} \\equiv P_{\\mathrm{aux}} + P_\\alpha',
+             '总加热功率的定义'),
+            ('P_{\\mathrm{tot}}^{(k+1)} = P_{\\mathrm{aux}}',
+             '闭环迭代格式'),
+            ('\\frac{1}{5}P_{\\mathrm{fus}}\\!\\left(T^{(k)}\\right),',
+             '迭代格式里的 alpha 加热项'),
+            ('= P_{\\mathrm{tot}}^{\\,0.31},',
+             'T 与 P_tot 的 0.31 次幂关系'),
+            ('P_\\alpha \\propto T^2 \\propto P_{\\mathrm{tot}}^{\\,0.62} < 1',
+             '回路增益 0.62 < 1（自稳负反馈的判据）'),
+            ('P_\\alpha = P_{\\mathrm{loss}}',
+             '点火的定义式'),
+            ('n\\tau_E = \\frac{60\\,T_{\\mathrm J}}{\\langle\\sigma v\\rangle E_{\\mathrm{fus}}}',
+             '消去 V 后的 n-tau_E 表达式'),
+            ('nT\\tau_E > 3.0992\\times10^{21}\\ \\mathrm{keV\\,s\\,m^{-3}}',
+             '三重积点火阈值（式 U.10 与练习 4 两处印出）'),
+            ('nT\\tau_E > 3.0992\\times10^{21}\\ \\mathrm{keV\\,s\\,m^{-3}}\n\\label{eq:app-u-triple}',
+             '三重积阈值那一行式子自身（连 label 一起钉，与练习 4 的复述区分开）'),
+            ('$3.0992\\times10^{21}\\ \\mathrm{keV\\,s\\,m^{-3}}$，所以 $n\\tau_E$ 与 $T$ 成反比。',
+             '表 U.4 题注里印出的阈值'),
+            ('代入反应率拟合后 $T$ 消掉，$nT\\tau_E > 3.0992\\times10^{21}\\ \\mathrm{keV\\,s\\,m^{-3}}$。',
+             '练习 4 复述的阈值整句'),
+            ('Q \\propto P_{\\mathrm{aux}}^{\\,-0.38}',
+             'Q 随外部加热单调下降（指数 −0.38）'),
+            ('Q_{\\mathrm{eng}} \\equiv \\frac{P_e}{P_{\\mathrm{grid}}}',
+             '工程增益的定义'),
+            ('= \\eta_{\\mathrm{th}}\\eta_{\\mathrm{aux}}\\left(Q+1\\right)',
+             '工程增益的化简式（括号里有 +1）'),
+            ('Q = \\frac{1}{\\eta_{\\mathrm{th}}\\eta_{\\mathrm{aux}}} - 1 = 5.250',
+             'Q_eng=1 反解出的盈亏平衡 Q（必须减 1）'),
+            ('D1 ITER 量级    & 150.0 & 2.4762 & 9.194 & 371.4 & 556.5 & 3.710 \\\\',
+             '表 U.1 的 D1 整行'),
+            ('D2 JET 量级     & 15.0  & 0.3827 & 2.336 & 5.7   & 0.9   & 0.058 \\\\',
+             '表 U.1 的 D2 整行'),
+            ('D3 DIII-D 量级  & 10.0  & 0.1055 & 1.649 & 1.1   & 0.1   & 0.014 \\\\',
+             '表 U.1 的 D3 整行'),
+            ('3.710  & 0.4259 & 附录 S 的 D1 外部加热点（本书基准） \\\\',
+             '表 U.2 的 D1 基准行'),
+            ('10     & 0.6667 & ITER 设计点：三分之二的加热来自聚变自身 \\\\',
+             '表 U.2 的 ITER 设计点行'),
+            ('12 & 332.20 & 1.4306 & 11.764 & 911.00 & 182.20 & 6.073 \\\\',
+             '表 U.3 的收敛步（第 12 步）整行'),
+            ('5.0  & $6.1983\\times10^{20}$ & 低温端 $\\langle\\sigma v\\rangle\\propto T^2$ 使要求偏高 \\\\',
+             '表 U.4 的 5 keV 整行（低温端要求偏高）'),
+            ('10.0 & $3.0992\\times10^{20}$ & 本书 $\\langle\\sigma v\\rangle$ 拟合的"甜点"附近 \\\\',
+             '表 U.4 的 10 keV 整行（甜点）'),
+            ('150.0 & 2.4762  & 9.194 & 371.4 & 556.5 & 3.710 \\\\',
+             '表 U.5 的 P_aux=150 MW 整行'),
+            ('5.0   & 25.8825 & 3.203 & 129.4 & 67.5  & 13.510 \\\\',
+             '表 U.5 的 P_aux=5 MW 整行'),
+            ('D1 外部加热点    & 556.5 & 150.0 & 706.5  & 282.6 & 375.0 & 0.754 \\\\',
+             '表 U.6 的 D1 外部加热点整行'),
+            ('自加热闭环点     & 911.0 & 150.0 & 1061.0 & 424.4 & 375.0 & 1.132 \\\\',
+             '表 U.6 的自加热闭环点整行'),
+            ('ITER 设计点      & 500.0 & 50.0  & 550.0  & 220.0 & 125.0 & 1.760 \\\\',
+             '表 U.6 的 ITER 设计点整行'),
+            ('$P_{\\mathrm{fus}}=556.5\\ \\mathrm{MW}$ 中，',
+             'U.1 正文的 D1 聚变功率'),
+            ('$P_\\alpha = 111.3\\ \\mathrm{MW}$ 留在等离子体里，$P_{\\mathrm{n}} = 445.2\\ \\mathrm{MW}$ 去包层；',
+             'U.1 正文的 alpha 与中子功率'),
+            ('按 $V=832.2\\ \\mathrm{m^3}$ 摊开，$\\alpha$ 加热的功率密度是 $1.337\\times10^{5}\\ \\mathrm{W/m^3}$。',
+             'U.1 正文的 alpha 加热功率密度'),
+            ('（$9.194\\to11.764\\ \\mathrm{keV}$），$P_{\\mathrm{fus}}$ 也抬高',
+             'U.3 口径对照：闭环把 T 从 9.194 抬到 11.764'),
+            ('（$556.5\\to911.0\\ \\mathrm{MW}$），于是 $Q$ 升到 $6.073$。',
+             'U.3 口径对照：闭环把 P_fus 从 556.5 抬到 911.0'),
+            ('$T/P_{\\mathrm{tot}}^{0.31}$ 恒为 $1.94496$',
+             'U.3 三点自检的常数'),
+            ('$\\diff\\ln T/\\diff\\ln P_{\\mathrm{tot}} = 0.3100$',
+             'U.3 反解出的对数斜率'),
+            ('$n\\tau_E = 3.3709\\times10^{20}\\ \\mathrm{m^{-3}\\,s}$',
+             'U.4 D1 在 9.194 keV 上的 n-tau_E 要求'),
+            ('$nT\\tau_E = 2.299\\times10^{21}\\ \\mathrm{keV\\,s\\,m^{-3}}$，是阈值的 $74.2\\%$——',
+             'U.4 D1 达到阈值的份额'),
+            ('D2 只有 $1.2\\%$，D3 只有 $0.3\\%$',
+             'U.4 D2/D3 的达标份额'),
+            ('（$\\times1.3478$），对应 $P_\\alpha$ 从 $111.3$ 升到 $150.0\\ \\mathrm{MW}$、',
+             'U.4 密度提升倍数与 alpha 功率'),
+            ('$n_{19}\\times\\sqrt{750.0/556.5} = \\times1.1610$，即 $n_{19}=11.726$。',
+             'U.4 按 P_fus ∝ n^2 的粗估路径'),
+            ('$n_G = I_p/(\\pi a^2) = 1.1937\\times10^{20}\\ \\mathrm{m^{-3}}$，',
+             'U.4 Greenwald 极限（与附录 M 同口径）'),
+            ('D1 工作点已经用到 $84.6\\%$。按第一种算法，点火需要 $n/n_G = 982.3\\%$，',
+             'U.4 密度极限的夹击'),
+            ('只需 $P_{\\mathrm{aux}} = 11.035\\ \\mathrm{MW}$',
+             'U.5 Q=10 所需的很小外部加热'),
+            ('同一行给出 $\\tau_E = 14.9894\\ \\mathrm{s}$、$T = 4.094\\ \\mathrm{keV}$、',
+             'U.5 Q=10 同一行的 tau_E 与 T'),
+            ('$Q=3.710$ 的 D1 外部加热点 $Q_{\\mathrm{eng}}=0.754$',
+             'U.5 基准点的工程增益'),
+            ('盈亏平衡在 $Q=5.250$',
+             'U.5 工程盈亏平衡点'),
+            ('$Q_{\\mathrm{eng}}=1.760$，这才是',
+             'U.5 ITER 设计点的工程增益'),
+            ('$f_\\alpha = 3.710/8.710 = 0.4259$；$Q=10$ 给 $10/15 = 0.6667$。',
+             '练习 1 解答'),
+            ('$P_{\\mathrm{n}} = 0.8\\times556.5 = 445.2\\ \\mathrm{MW}$；',
+             '练习 2 解答的中子功率'),
+            ('$445.2/800 = 0.5565\\ \\mathrm{MW/m^2}$。',
+             '练习 2 解答的中子壁负载'),
+            ('$P_{\\mathrm{tot}} = 150.0 \\to 261.3 \\to 307.0\\ \\mathrm{MW}$，',
+             '练习 3 解答的三步迭代'),
+            ('对应 $Q = 3.710 \\to 5.233 \\to 5.783$（完整轨迹见表',
+             '练习 3 解答对应的 Q'),
+            ('$nT\\tau_E = 2.2994\\times10^{21}$，是阈值的 $74.2\\%$。',
+             '练习 4 解答的达标份额'),
+            ('解 $Q=10$ 得 $P_{\\mathrm{aux}} = 11.03\\ \\mathrm{MW}$、',
+             '练习 5 解答的 P_aux'),
+            ('$Q_{\\mathrm{eng}} = 0.4\\times0.4\\times4.710 = 0.754$；$Q=10$ 给',
+             '练习 6 解答的 Q_eng'),
+            ('$0.16\\times11 = 1.760$。阈值由式 \\eqref{eq:app-u-qeng1}：',
+             '练习 6 解答的 ITER 工程增益'),
+            ('$Q = 1/0.16 - 1 = 5.250$。结论',
+             '练习 6 解答的盈亏平衡 Q'),
+            ('\\texttt{tmp/appU\\_calc.py}',
+             '数值唯一来源脚本（独立复算的凭据）'),
+            ('三者的三个装置工作点完全一致，可以互相代入验算。',
+             'U 与 S、T 的工作点一致性声明'),
+            ):
+        has(text, lit, 'src/%s（%s）' % (APP_FILES['U'], why))
+
+    # 口径回流防护（这些写法一旦出现即为 FAIL）
+    for lit, why in (
+            ('\\langle\\sigma v\\rangle \\approx 1.1\\times10^{-24}T^3',
+             '反应率拟合的 T 次幂被改'),
+            ('P_\\alpha = \\frac{1}{4}P_{\\mathrm{fus}}',
+             'alpha 份额退回 1/4'),
+            ('P_\\alpha = \\frac{4}{5}P_{\\mathrm{fus}}',
+             'alpha 与中子的份额被对调'),
+            ('\\frac{Q}{Q+4}',
+             'f_alpha 的分母写成 Q+4'),
+            ('P_\\alpha \\propto P_{\\mathrm{tot}}^{\\,1.62}',
+             '回路增益被写成大于 1（自稳结论被推翻）'),
+            ('T \\propto P_{\\mathrm{tot}}^{\\,0.69}',
+             'T 的指数漏掉 1−（符号写反）'),
+            ('Q \\propto P_{\\mathrm{aux}}^{\\,0.38}',
+             'Q 的单调性写反（应为 −0.38）'),
+            ('= \\eta_{\\mathrm{th}}\\eta_{\\mathrm{aux}}\\,Q+1',
+             '工程增益漏掉括号（+1 跑到括号外）'),
+            ('Q = \\frac{1}{\\eta_{\\mathrm{th}}\\eta_{\\mathrm{aux}}} = 6.250',
+             '工程盈亏平衡忘掉减 1'),
+            ('n_G = I_p/(\\pi a^2) = 1.1937\\times10^{21}',
+             'Greenwald 极限错一个量级'),
+            ('P_{\\mathrm{loss}} = \\frac{\\tau_E}{W}',
+             '损失功率的定义取倒数'),
+            ('\\tau_E = \\tau_E^{\\mathrm{IPB98}}\\!\\left(P_{\\mathrm{aux}}\\right)',
+             'IPB98 传入外部加热而非总加热功率'),
+            ('n\\tau_E = \\frac{60\\,T_{\\mathrm J}}{\\langle\\sigma v\\rangle}',
+             'n-tau_E 表达式丢掉 E_fus'),
+            ('$P_{\\mathrm{n}} = 0.8\\times556.5 = 44.52\\ \\mathrm{MW}$',
+             '练习 2 的中子功率错一个量级'),
+            ('$Q_{\\mathrm{eng}} = 0.4\\times0.4\\times3.710 = 0.594$',
+             '练习 6 的 Q_eng 漏掉 +1'),
+            ):
+        lacks(text, lit, 'src/%s（%s）' % (APP_FILES['U'], why))
+
+    # 数值独立复算（单位见正文/表头，故 unit=''）
+    cases = [
+        # Q 是什么
+        (17.6, 1e-3, 'Q 是什么', 'D-T 反应能/MeV'),
+        (3.5, 1e-3, 'Q 是什么', 'alpha 分到的能量/MeV'),
+        (14.1, 1e-3, 'Q 是什么', '中子分到的能量/MeV'),
+        (2.819831e-12, 1e-3, 'Q 是什么', 'E_fus/J'),
+        (1.1e-22, 1e-3, 'Q 是什么', '10 keV 处的 <sigma v>'),
+        (150.0, 1e-3, 'Q 是什么', 'D1 的 P_aux/MW'),
+        (2.4762, 1e-3, 'Q 是什么', 'D1 的 tau_E/s'),
+        (9.194, 1e-3, 'Q 是什么', 'D1 的 T/keV'),
+        (371.4, 1e-3, 'Q 是什么', 'D1 的 W/MJ'),
+        (556.5, 1e-3, 'Q 是什么', 'D1 的 P_fus/MW'),
+        (3.71, 1e-3, 'Q 是什么', 'D1 的 Q'),
+        (15.0, 1e-3, 'Q 是什么', 'D2 的 P_aux/MW'),
+        (0.3827, 1e-3, 'Q 是什么', 'D2 的 tau_E/s'),
+        (2.336, 1e-3, 'Q 是什么', 'D2 的 T/keV'),
+        (5.7, 1e-3, 'Q 是什么', 'D2 的 W/MJ'),
+        (0.058, 1e-3, 'Q 是什么', 'D2 的 Q'),
+        (0.1055, 1e-3, 'Q 是什么', 'D3 的 tau_E/s'),
+        (1.649, 1e-3, 'Q 是什么', 'D3 的 T/keV'),
+        (1.1, 1e-3, 'Q 是什么', 'D3 的 W/MJ'),
+        (0.014, 1e-3, 'Q 是什么', 'D3 的 Q'),
+        (111.3, 1e-3, 'Q 是什么', 'D1 的 P_alpha/MW'),
+        (445.2, 1e-3, 'Q 是什么', 'D1 的 P_n/MW'),
+        (832.2, 1e-3, 'Q 是什么', 'D1 的 V/m^3'),
+        (133700.0, 1e-3, 'Q 是什么', 'D1 的 alpha 加热功率密度/(W/m^3)'),
+        (500.0, 1e-3, 'Q 是什么', 'tip U.1 的 ITER 聚变功率/MW'),
+        (50.0, 1e-3, 'Q 是什么', 'tip U.1 的 ITER 加热功率/MW'),
+        # 加热份额
+        (0.1667, 1e-3, '加热份额', 'Q=1 的 f_alpha'),
+        (0.2857, 1e-3, '加热份额', 'Q=2 的 f_alpha'),
+        (0.4259, 1e-3, '加热份额', 'Q=3.710 的 f_alpha'),
+        (0.5, 1e-3, '加热份额', 'Q=5 的 f_alpha'),
+        (0.6667, 1e-3, '加热份额', 'Q=10 的 f_alpha'),
+        (0.8, 1e-3, '加热份额', 'Q=20 的 f_alpha'),
+        (0.9091, 1e-3, '加热份额', 'Q=50 的 f_alpha'),
+        (1.0, 1e-3, '加热份额', 'Q=infinity 的 f_alpha'),
+        # 自加热闭环
+        (150.0, 1e-3, '自加热闭环', '迭代第 1 步的 P_tot/MW'),
+        (556.45, 1e-3, '自加热闭环', '迭代第 1 步的 P_fus/MW'),
+        (261.29, 1e-3, '自加热闭环', '迭代第 2 步的 P_tot/MW'),
+        (1.6884, 1e-3, '自加热闭环', '迭代第 2 步的 tau_E/s'),
+        (5.233, 1e-3, '自加热闭环', '迭代第 2 步的 Q'),
+        (307.0, 1e-3, '自加热闭环', '迭代第 3 步的 P_tot/MW'),
+        (867.52, 1e-3, '自加热闭环', '迭代第 3 步的 P_fus/MW'),
+        (5.783, 1e-3, '自加热闭环', '迭代第 3 步的 Q'),
+        (323.5, 1e-3, '自加热闭环', '迭代第 4 步的 P_tot/MW'),
+        (896.14, 1e-3, '自加热闭环', '迭代第 4 步的 P_fus/MW'),
+        (5.974, 1e-3, '自加热闭环', '迭代第 4 步的 Q'),
+        (329.23, 1e-3, '自加热闭环', '迭代第 5 步的 P_tot/MW'),
+        (905.94, 1e-3, '自加热闭环', '迭代第 5 步的 P_fus/MW'),
+        (6.04, 1e-3, '自加热闭环', '迭代第 5 步的 Q'),
+        (332.08, 1e-3, '自加热闭环', '迭代第 8 步的 P_tot/MW'),
+        (910.81, 1e-3, '自加热闭环', '迭代第 8 步的 P_fus/MW'),
+        (6.072, 1e-3, '自加热闭环', '迭代第 8 步的 Q'),
+        (332.2, 1e-3, '自加热闭环', '收敛点的 P_tot/MW'),
+        (1.4306, 1e-3, '自加热闭环', '收敛点的 tau_E/s'),
+        (11.764, 1e-3, '自加热闭环', '收敛点的 T/keV'),
+        (911.0, 1e-3, '自加热闭环', '收敛点的 P_fus/MW'),
+        (182.2, 1e-3, '自加热闭环', '收敛点的 P_alpha/MW'),
+        (6.073, 1e-3, '自加热闭环', '收敛点的 Q'),
+        (0.003, 1e-3, '自加热闭环', '第 11、12 步的 P_tot 之差/MW'),
+        (1.94496, 1e-3, '自加热闭环', 'T/P_tot^0.31 的恒定值'),
+        (0.31, 1e-3, '自加热闭环', '反解出的 dlnT/dlnP_tot'),
+        (0.62, 1e-3, '自加热闭环', 'P_alpha 的等效指数'),
+        (0.69, 1e-3, '自加热闭环', 'IPB98(y,2) 的功率指数'),
+        (100.0, 1e-3, '自加热闭环', '自检点 P_tot=100 MW'),
+        (225.0, 1e-3, '自加热闭环', '自检点 P_tot=225 MW'),
+        # 点火：三重积阈值
+        (60.0, 1e-3, '点火：三重积阈值', 'n-tau_E 表达式里的 60'),
+        (3.0992e+21, 1e-3, '点火：三重积阈值', '三重积点火阈值/(keV s m^-3)'),
+        (6.1983e+20, 1e-3, '点火：三重积阈值', '5 keV 的点火 n-tau_E'),
+        (3.874e+20, 1e-3, '点火：三重积阈值', '8 keV 的点火 n-tau_E'),
+        (3.0992e+20, 1e-3, '点火：三重积阈值', '10 keV 的点火 n-tau_E（甜点）'),
+        (2.0661e+20, 1e-3, '点火：三重积阈值', '15 keV 的点火 n-tau_E'),
+        (1.5496e+20, 1e-3, '点火：三重积阈值', '20 keV 的点火 n-tau_E'),
+        (3.3709e+20, 1e-3, '点火：三重积阈值', 'D1 在 9.194 keV 上的点火 n-tau_E'),
+        (2.299e+21, 1e-3, '点火：三重积阈值', 'D1 实有的 nT tau_E'),
+        (74.2, 1e-3, '点火：三重积阈值', 'D1 达到阈值的份额/%'),
+        (1.2, 1e-3, '点火：三重积阈值', 'D2 达到阈值的份额/%'),
+        (0.3, 1e-3, '点火：三重积阈值', 'D3 达到阈值的份额/%'),
+        (10.1, 1e-3, '点火：三重积阈值', 'D1 的 n_19'),
+        (13.613, 1e-3, '点火：三重积阈值', '点火所需的 n_19'),
+        (1.3478, 1e-3, '点火：三重积阈值', '密度提升倍数'),
+        (150.0, 1e-3, '点火：三重积阈值', '点火所需的 P_alpha/MW'),
+        (750.0, 1e-3, '点火：三重积阈值', '点火所需的 P_fus/MW'),
+        (1.161, 1e-3, '点火：三重积阈值', '按 P_fus ∝ n^2 的倍数'),
+        (11.726, 1e-3, '点火：三重积阈值', '按 P_fus ∝ n^2 的 n_19'),
+        (1.1937e+20, 1e-3, '点火：三重积阈值', 'Greenwald 密度极限/m^-3'),
+        (84.6, 1e-3, '点火：三重积阈值', 'D1 用掉的 Greenwald 份额/%'),
+        (982.3, 1e-3, '点火：三重积阈值', '点火所需的 n/n_G 百分比'),
+        (9.8, 1e-3, '点火：三重积阈值', '点火所需的 Greenwald 倍数'),
+        # 工程增益
+        (0.38, 1e-3, '工程增益', 'Q ∝ P_aux 的指数绝对值'),
+        (100.0, 1e-3, '工程增益', '扫描点 P_aux=100 MW'),
+        (3.2756, 1e-3, '工程增益', 'P_aux=100 MW 的 tau_E/s'),
+        (8.108, 1e-3, '工程增益', 'P_aux=100 MW 的 T/keV'),
+        (327.6, 1e-3, '工程增益', 'P_aux=100 MW 的 W/MJ'),
+        (432.8, 1e-3, '工程增益', 'P_aux=100 MW 的 P_fus/MW'),
+        (4.328, 1e-3, '工程增益', 'P_aux=100 MW 的 Q'),
+        (5.2845, 1e-3, '工程增益', 'P_aux=50 MW 的 tau_E/s'),
+        (6.54, 1e-3, '工程增益', 'P_aux=50 MW 的 T/keV'),
+        (264.2, 1e-3, '工程增益', 'P_aux=50 MW 的 W/MJ'),
+        (281.6, 1e-3, '工程增益', 'P_aux=50 MW 的 P_fus/MW'),
+        (5.632, 1e-3, '工程增益', 'P_aux=50 MW 的 Q'),
+        (9.9445, 1e-3, '工程增益', 'P_aux=20 MW 的 tau_E/s'),
+        (4.923, 1e-3, '工程增益', 'P_aux=20 MW 的 T/keV'),
+        (198.9, 1e-3, '工程增益', 'P_aux=20 MW 的 W/MJ'),
+        (7.977, 1e-3, '工程增益', 'P_aux=20 MW 的 Q'),
+        (16.0433, 1e-3, '工程增益', 'P_aux=10 MW 的 tau_E/s'),
+        (3.971, 1e-3, '工程增益', 'P_aux=10 MW 的 T/keV'),
+        (160.4, 1e-3, '工程增益', 'P_aux=10 MW 的 W/MJ'),
+        (103.8, 1e-3, '工程增益', 'P_aux=10 MW 的 P_fus/MW'),
+        (10.381, 1e-3, '工程增益', 'P_aux=10 MW 的 Q'),
+        (25.8825, 1e-3, '工程增益', 'P_aux=5 MW 的 tau_E/s'),
+        (3.203, 1e-3, '工程增益', 'P_aux=5 MW 的 T/keV'),
+        (129.4, 1e-3, '工程增益', 'P_aux=5 MW 的 W/MJ'),
+        (67.5, 1e-3, '工程增益', 'P_aux=5 MW 的 P_fus/MW'),
+        (13.51, 1e-3, '工程增益', 'P_aux=5 MW 的 Q'),
+        (11.035, 1e-3, '工程增益', 'Q=10 所需的 P_aux/MW'),
+        (14.9894, 1e-3, '工程增益', 'Q=10 对应的 tau_E/s'),
+        (4.094, 1e-3, '工程增益', 'Q=10 对应的 T/keV'),
+        (110.3, 1e-3, '工程增益', 'Q=10 对应的 P_fus/MW'),
+        (0.4, 1e-3, '工程增益', '热效率与加热效率'),
+        (706.5, 1e-3, '工程增益', 'D1 外部加热点的 P_th/MW'),
+        (282.6, 1e-3, '工程增益', 'D1 外部加热点的 P_e/MW'),
+        (375.0, 1e-3, '工程增益', 'D1 外部加热点的 P_grid/MW'),
+        (0.754, 1e-3, '工程增益', 'D1 外部加热点的 Q_eng'),
+        (1061.0, 1e-3, '工程增益', '闭环点的 P_th/MW'),
+        (424.4, 1e-3, '工程增益', '闭环点的 P_e/MW'),
+        (1.132, 1e-3, '工程增益', '闭环点的 Q_eng'),
+        (550.0, 1e-3, '工程增益', 'ITER 设计点的 P_th/MW'),
+        (220.0, 1e-3, '工程增益', 'ITER 设计点的 P_e/MW'),
+        (125.0, 1e-3, '工程增益', 'ITER 设计点的 P_grid/MW'),
+        (1.76, 1e-3, '工程增益', 'ITER 设计点的 Q_eng'),
+        (5.25, 1e-3, '工程增益', 'Q_eng=1 的盈亏平衡 Q'),
+        # 六道估算练习
+        (0.2, 1e-3, '六道估算练习', '练习 1 的 P_alpha/P_aux'),
+        (800.0, 1e-3, '六道估算练习', '练习 2 的第一壁面积/m^2'),
+        (0.5565, 1e-3, '六道估算练习', '练习 2 的中子壁负载/(MW/m^2)'),
+        (261.3, 1e-3, '六道估算练习', '练习 3 的第二步 P_tot/MW'),
+        (307.0, 1e-3, '六道估算练习', '练习 3 的第三步 P_tot/MW'),
+        (2.2994e+21, 1e-3, '六道估算练习', '练习 4 的 nT tau_E'),
+        (10.1, 1e-3, '六道估算练习', '练习 4 的 n_19'),
+        (11.03, 1e-3, '六道估算练习', '练习 5 的 P_aux/MW'),
+        (14.99, 1e-3, '六道估算练习', '练习 5 的 tau_E/s'),
+        (4.09, 1e-3, '六道估算练习', '练习 5 的 T/keV'),
+        # 来源、分级与版权说明
+        (2011, 1e-3, '来源、分级与版权说明', 'Wesson 第 4 版年份'),
+        (2007, 1e-3, '来源、分级与版权说明', 'Freidberg 年份'),
+        (1957, 1e-3, '来源、分级与版权说明', 'Lawson 年份'),
+        (1999, 1e-3, '来源、分级与版权说明', 'ITER Physics Basis 年份'),
+        (1992, 1e-3, '来源、分级与版权说明', 'Bosch & Hale 年份'),
+        (611, 1e-3, '来源、分级与版权说明', 'Bosch & Hale 页码'),
+        (70, 1e-3, '来源、分级与版权说明', 'Lawson 卷号'),
+        (1.1e-24, 1e-3, '来源、分级与版权说明', '反应率拟合系数'),
+        (0.62, 1e-3, '来源、分级与版权说明', '自拟的稳定性指数'),
+    ]
+    for v, rel, where, what in cases:
+        block = found.get(where)
+        if block is None:
+            rec('FAIL', 'P', '附录 U 找不到小节「%s」，无法核对 %s' % (where, what))
+        elif not value_in(block, v, rel, unit=''):
+            rec('FAIL', 'P', '附录 U 的 %s 缺失或与 tmp/appU_calc.py 不符：期望 %g（小节「%s」）'
+                % (what, v, where))
+    rec('PASS', 'P', '附录 U 的 %d 个关键数值均在小节内复算通过' % len(cases))
+
+
+def check_P25_appendix_i_expanding():
+    """附录 I「扩张式还是均匀式」小节：结构、五条结论、六行文献与口径回流防护。"""
+    ipath = os.path.join(SRC, APP_FILES['I'])
+    if not os.path.exists(ipath):
+        rec('FAIL', 'N', '附录 I 文件缺失：src/%s' % APP_FILES['I'])
+        return
+    text = strip_comments(read(ipath))
+    head = '\\subsection{扩张式还是均匀式：间隔要不要越拉越长}'
+    if head not in text:
+        rec('FAIL', 'N', 'src/%s 缺少小节「扩张式还是均匀式：间隔要不要越拉越长」'
+            % APP_FILES['I'])
+        return
+    blk = text.split(head, 1)[1]
+    for cut in ('\\subsection{', '\\section{'):
+        if cut in blk:
+            blk = blk.split(cut, 1)[0]
+    if len(blk) < 1500:
+        rec('FAIL', 'N', '附录 I「扩张式还是均匀式」小节正文过短（%d 字符）' % len(blk))
+    else:
+        rec('PASS', 'N', '附录 I「扩张式还是均匀式」小节存在（%d 字符）' % len(blk))
+    for lit, why in (
+            ('\\label{subsec:app-i-expanding}',
+             '小节的 label（供交叉引用）'),
+            ('\\textbf{扩张式}（expanding）指间隔越拉越长，如 $1,2,4,8,12$ 天；\\textbf{均匀式}（uniform）指每次都隔同样长，如 $6,6,6,6,6$ 天。',
+             '扩张式与均匀式的定义与示例间隔（两个具体数列）'),
+            ('\\textbf{（1）扩张式的理由成立，但推不出"必须递增"。}',
+             '第 1 条结论的标题句'),
+            ('\\textbf{（2）形状是第二位的，比例是第一位的。}',
+             '第 2 条结论的标题句'),
+            ('\\textbf{（3）稳得住的那条规律是"分散优于集中"。}',
+             '第 3 条结论的标题句'),
+            ('\\textbf{（4）那本书为什么仍用"先翻倍、后等间隔"？}',
+             '第 4 条结论的标题句'),
+            ('\\textbf{（5）用软件也建议自己算一遍。}',
+             '第 5 条结论的标题句'),
+            ('只需要一个上界 $g_{\\max}=\\lfloor0.15D\\rfloor$',
+             '间隔上限公式（与「间隔与提取」一节的 0.15D 口径一致）'),
+            ('\\textbf{排程规则自己算一遍}',
+             '对记忆软件的态度（结论句）'),
+            ('在总复习时间相同的前提下，把四个复习点排成扩张式的 $1,2,4,8$ 天，与均匀式的 $4,4,4,4$ 天，哪一种更好？',
+             'miniquiz 的题干（四步对齐的两个排布）'),
+            ('答案：在总时间对齐的实验里两者差别很小，\\textbf{不能只凭形状下结论}',
+             'miniquiz 的答案（不得给出「形状决定优劣」的结论）'),
+            ('\\textbf{合书提取}',
+             'miniquiz 里指向的必须动作'),
+            ('\\textbf{出处：}本小节只借鉴结论与实验设计。',
+             '本小节的出处声明'),
+            ('扩张式提取的提出见 Landauer \\& Bjork (1978)',
+             '出处句里的 Landauer \\& Bjork 定位'),
+            ('长跨度保持证据见 Bahrick (1979) 与 Bahrick 等 (1993)',
+             '出处句里的 Bahrick 两条长跨度证据'),
+            ('SM-2 的间隔修正见 Wozniak \\& Gorzelanczyk (1994)。卷期页见本附录末表',
+             '出处句里的 SM-2 定位与「卷期页见末表」的交代'),
+            ('\\label{tab:app-i-calendar}',
+             '第 4 条结论引用的日历表 label'),
+    ):
+        has(text, lit, 'src/%s（%s）' % (APP_FILES['I'], why))
+    n_q = blk.count('\\begin{miniquiz}')
+    if n_q != 1:
+        rec('FAIL', 'N', '附录 I「扩张式还是均匀式」小节应有 1 只 miniquiz，实为 %d' % n_q)
+    else:
+        rec('PASS', 'N', '附录 I「扩张式还是均匀式」小节有 1 只 miniquiz')
+    n_src = blk.count('\\textbf{出处：}')
+    if n_src != 1:
+        rec('FAIL', 'N', '附录 I「扩张式还是均匀式」小节应有 1 处出处声明，实为 %d' % n_src)
+    else:
+        rec('PASS', 'N', '附录 I「扩张式还是均匀式」小节有 1 处出处声明')
+    for lit, why in (
+            ('Landauer \\& Bjork (1978) & 载 Gruneberg, Morris \\& Sykes (编)《Practical Aspects of Memory》, Academic Press, 625--632',
+             '文献表：Landauer \\& Bjork (1978) 整行'),
+            ('Karpicke \\& Roediger (2007) & \\textit{Journal of Experimental Psychology: Learning, Memory, and Cognition} 33(4), 704--719',
+             '文献表：Karpicke \\& Roediger (2007) 整行'),
+            ('Kornell (2009) & \\textit{Applied Cognitive Psychology} 23(9), 1297--1317',
+             '文献表：Kornell (2009) 整行'),
+            ('Bahrick (1979) & \\textit{Journal of Experimental Psychology: General} 108(3), 296--308',
+             '文献表：Bahrick (1979) 整行'),
+            ('Bahrick, Bahrick, Bahrick \\& Bahrick (1993) & \\textit{Psychological Science} 4(5), 316--321',
+             '文献表：Bahrick 等 (1993) 整行'),
+            ('Wozniak \\& Gorzelanczyk (1994) & \\textit{Acta Neurobiologiae Experimentalis} 54(1), 59--62',
+             '文献表：Wozniak \\& Gorzelanczyk (1994) 整行'),
+    ):
+        has(text, lit, 'src/%s（%s）' % (APP_FILES['I'], why))
+    for lit, why in (
+            ('元分析发现扩张式稳定优于均匀式',
+             '不得把 Cepeda 等 (2006) 的结论反着写'),
+            ('间隔越短越好',
+             '不得回流「间隔越短越好」'),
+            ('均匀式优于扩张式',
+             '不得回流「均匀式优于扩张式」'),
+            ('扩张式的长期优势始终成立',
+             '不得把 Karpicke \\& Roediger (2007) 的结论反着写'),
+            ('间隔越长复习效果越好',
+             '不得把排布形状说成「越久越好」'),
+            ('复习点集中安排效果更好',
+             '不得回流「集中优于分散」'),
+            ('扩张式是长期保持的必要条件',
+             '不得把排布形状说成必要条件'),
+            ('扩张式优于均匀式',
+             '不得直接给出「扩张式更好」的结论'),
+    ):
+        lacks(text, lit, 'src/%s（%s）' % (APP_FILES['I'], why))
+
 def check_P02_appendix_j_map():
     """附录 J 逐章对照表的完备性：覆盖 1--12 章、每行 5 列、章号不越界。
 
@@ -3696,6 +4217,8 @@ def main():
     check_P21_appendix_i_expert()
     check_P22_appendix_t_topology()
     check_P23_appendix_i_objectives()
+    check_P24_appendix_u_gain()
+    check_P25_appendix_i_expanding()
     check_P06_scattering_alpha()
     check_P09_tcbtheorem_arity()
 
