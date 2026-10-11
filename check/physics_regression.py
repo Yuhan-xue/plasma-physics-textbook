@@ -3287,7 +3287,11 @@ def check_P22_appendix_t_topology():
             (r'\chi_\parallel=9.023\times10^{11}', '练习 4 给定的 χ_∥ 精确值'),
             (r'w_{2/1}=0.0531\ \mathrm{m}<w_{3/2}=0.0698\ \mathrm{m}', 'T.4 的岛宽比较句'),
             (r'w=0.0698\times\sqrt4=0.1396\ \mathrm{m}', '练习 3 解答的倍数推导'),
-            (r'w=0.0698\ \mathrm{m}$、$\tau_E=2.4762\ \mathrm{s}', '练习 4 给定的 w 与 τ_E')):
+            (r'w=0.0698\ \mathrm{m}$、$\tau_E=2.4762\ \mathrm{s}', '练习 4 给定的 w 与 τ_E'),
+            # v1.17.1：正文里印出的 τ_flat 必须与表 T.5、与脚本同值（表改对齐脚本时
+            # 正文曾漏改，3.125 与 3.128 的差别落在任何数值用例的容差之内，只能逐字钉）
+            (r'$2/1$ 面的 $\tau_{\mathrm{flat}}=w^2/\chi_\parallel=3.128\times10^{-15}'
+             r'\ \mathrm{s}$', 'T.4 正文里的 D1 2/1 面 τ_flat')):
         has(text, lit, 'src/%s（%s）' % (APP_FILES['T'], why))
 
     # 口径回流防护（这些写法一旦出现即为 FAIL）
@@ -3297,7 +3301,8 @@ def check_P22_appendix_t_topology():
             (r'w=2\sqrt{\frac{\tilde\Psi}{B_\theta\,s}}', '岛宽系数从 4 退回 2'),
             (r'q(\rho)=q_0+(q_{95}-q_0)\,\rho,', 'q 剖面从 ρ² 退回 ρ'),
             (r'r_{\mathrm{inv}}=a\frac{1-q_0}{q_{95}-q_0}', '反转半径丢掉根号'),
-            ("\\Psi_h''(r_{mn})=B_\\theta\\,s^2", '螺旋磁通二阶导数写成 s²')):
+            ("\\Psi_h''(r_{mn})=B_\\theta\\,s^2", '螺旋磁通二阶导数写成 s²'),
+            (r'=3.125\times10^{-15}', 'τ_flat 正文与表/脚本不一致（v1.17.1 修掉的旧写法）')):
         lacks(text, lit, 'src/%s（%s）' % (APP_FILES['T'], why))
 
     # 数值独立复算（单位见正文/表头，故 unit=''）
