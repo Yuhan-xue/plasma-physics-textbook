@@ -725,6 +725,7 @@ APP_FILES = {
     'M': 'appendix_m_heating.tex',
     'N': 'appendix_n_boundary.tex',
     'O': 'appendix_o_propulsion.tex',
+    'P': 'appendix_p_lowtemp.tex',
 }
 
 # CODATA 2018 常数（与附录 D 的单位换算表同一组值）
@@ -737,6 +738,8 @@ M_AR = 39.948 * M_P               # 氩原子质量（≈ Ar+）
 M_E = 9.1093837015e-31            # 电子质量（CODATA 2018）
 M_XE = 131.293 * 1.66053906660e-27   # 氙离子质量（131.293 u，附录 O 统一取这个值）
 G0 = 9.80665                      # 标准重力加速度（比冲与排气速度的换算）
+KB = 1.380649e-23                 # 玻尔兹曼常数（附录 P 的 p/(k_B T) 与 Torr 换算）
+LOSCHMIDT = 2.6867805e25          # 洛施密特常数（273.15 K、101325 Pa，附录 P 的 sccm 换气量）
 
 
 # 数值抽取：三种写法（``1.3\times10^{-4}``／``1.3e-4``／``1.3``）
@@ -1788,6 +1791,356 @@ def check_P11_appendix_o_propulsion():
         'src/%s（离线环境下的来源交代方式）' % APP_FILES['O'])
 
 
+def check_P12_appendix_p_lowtemp():
+    """附录 P 低温等离子体应用的结构完整性与数值独立复算。
+
+    可证伪点（全部记 FAIL）：
+      ① 八个主题小节之一被删（按小节标题前缀定位）；
+      ② 缺少「出处：」行（本附录要求 >= 6 处）；
+      ③ 六张表 / 三只语义盒 / 编号公式之一被删或改了 label；
+      ④ 六道估算练习缺答案（本题库的答案在正文叙述里，故要求每道题都有「解」）；
+      ⑤ 印出的关键数值与独立复算不符，或搬到了别的小节里；
+      ⑥ 旧口径回流：把 A/m^2 与 mA/cm^2 混用、把帕申公式外推到大气压
+         （正文必须承认 305.3 V 的最小值与 1.68 倍的偏差）。
+
+    约定与附录 M/N/O 相同：表内数值的单位写在表头，故这些用例传 unit=''。
+    语义盒的标签写在 \\begin{tip}{标题}{标签} 的第二个必选参数里，不写成 \\label{}。
+    """
+    ppath = os.path.join(SRC, APP_FILES['P'])
+    if not os.path.exists(ppath):
+        rec('FAIL', 'P', '附录 P 文件缺失：src/%s' % APP_FILES['P'])
+        return
+    text = strip_comments(read(ppath))
+    secs = split_blocks(text, 'section')
+
+    want_prefix = ['三种放电与参数地图', '汤森雪崩与帕申定律', '介质阻挡放电与大气压等离子体',
+                   '鞘层与离子轰击', 'PECVD 与溅射沉积', '等离子体医学与农业',
+                   '环境与催化', '六道估算练习', '来源、分级与版权说明']
+    found = {}
+    for pre in want_prefix:
+        for ttl, body in secs:
+            if ttl.startswith(pre):
+                found[pre] = body
+                break
+    missing = [p for p in want_prefix if p not in found]
+    if missing:
+        rec('FAIL', 'P', '附录 P 缺少小节（标题被改或整节被删）：%s' % missing)
+        return
+    rec('PASS', 'P', '附录 P 的 %d 个小节齐全' % len(want_prefix))
+
+    for lab in ('tab:app-p-regimes', 'tab:app-p-paschen', 'tab:app-p-dbd',
+                'tab:app-p-etch', 'tab:app-p-env', 'tab:app-p-source'):
+        has(text, r'\label{%s}' % lab, 'src/%s（表格 label %s）' % (APP_FILES['P'], lab))
+
+    # 语义盒标签是 \begin{tip}{标题}{标签} 的第二参数，不是 \label{}
+    for lab in ('tip-appp-units', 'tip-appp-chain', 'tip-appp-next'):
+        has(text, '{%s}' % lab, 'src/%s（语义盒标签 %s）' % (APP_FILES['P'], lab))
+
+    for lab in ('eq:app-p-debye', 'eq:app-p-flux', 'eq:app-p-townsend', 'eq:app-p-selfsustain',
+                'eq:app-p-paschen', 'eq:app-p-empirical', 'eq:app-p-dbdcd', 'eq:app-p-manley',
+                'eq:app-p-child', 'eq:app-p-etchrate', 'eq:app-p-pecvdrate', 'eq:app-p-o3eff'):
+        has(text, r'\label{%s}' % lab, 'src/%s（公式 label %s）' % (APP_FILES['P'], lab))
+
+    has(text, '不复制', 'src/%s（版权与独立性声明）' % APP_FILES['P'])
+    n_src = len(re.findall(r'\\textbf\{出处：\}', text))
+    if n_src < 6:
+        rec('FAIL', 'P', '附录 P 的「出处：」行只有 %d 处，应 >= 6' % n_src)
+    else:
+        rec('PASS', 'P', '附录 P 有 %d 处「出处：」交代' % n_src)
+
+    ex = found['六道估算练习']
+    n_ex = len(re.findall(r'\\textbf\{练习\s*\d+', ex))
+    n_sol = len(re.findall(r'\\textbf\{解答\}', ex))
+    if n_ex != 6 or n_sol < 6:
+        rec('FAIL', 'P', '附录 P 练习数为 %d、解答数为 %d（应为 6 与 >= 6）' % (n_ex, n_sol))
+    else:
+        rec('PASS', 'P', '附录 P 六道估算练习均有解答')
+
+    # ---- 独立复算：常量与公式全部来自 tmp/appP_calc.py 的同一套公式 ----
+    # 原子质量必须用原子质量单位 u（appP_calc.py 的 U = 1.66053906660e-27）：
+    # 若误用质子质量 M_P，m_Ar 与 m_Si 会系统性偏大 0.73%，正好被 1% 容差吞掉。
+    U_ATOM = 1.66053906660e-27
+    m_ar = 39.948 * U_ATOM
+    m_si = 28.0855 * U_ATOM
+    n_si = 2329.0 / m_si
+    k_b = KB
+    torr = 133.322
+    loschmidt = LOSCHMIDT
+    sccm = loschmidt * 1.6666667e-8
+
+    def debye_p(te, ne):
+        return math.sqrt(EPS0 * te * E_CHG / (ne * E_CHG ** 2))
+
+    def cs_p(te, m):
+        return math.sqrt(te * E_CHG / m)
+
+    a_pas, b_pas, gam = 15.0, 365.0, 0.01
+    k_pas = math.log(math.log(1 + 1 / gam))
+    pd_min = math.exp(k_pas + 1) / a_pas
+
+    def vb_p(pd):
+        return b_pas * pd / (math.log(a_pas * pd) - k_pas)
+
+    c_d = EPS0 * 10 * 0.01 / 1e-3
+    q_half = c_d * (4000 - 3000)
+    # 驱动频率 10 kHz：与附录 P 表头、以及 10 ns/100 微秒 = 1.0e-4 的占空比一致（appP_calc.py 亦为 1.0e4）
+    f_dbd = 1.0e4
+    p_dbd = 4 * f_dbd * c_d * 3000 * (4000 - 3000)
+    n_fil = 1000.0
+    v_fil = (4.0 / 3.0) * math.pi * (1e-4) ** 3
+
+    def sheath_p(te, ld, vs):
+        return (2.0 / 3.0) * ld * (2 * vs / te) ** 0.75
+
+    lam_d_etch = debye_p(3.0, 1e17)
+    gam_i = 1e17 * cs_p(3.0, m_ar)
+    n_dot_sih4 = 20 * sccm
+    a_waf = math.pi * 0.1 ** 2
+    r_pecvd = (n_dot_sih4 * 0.1 / a_waf) / n_si
+    gam_sput = 100.0 / E_CHG
+    n_ar = 1.3332 / (k_b * 300.0)
+
+    cases = [
+        # --- §P.1 参数地图 ---
+        ('三种放电与参数地图', '刻蚀基准 λ_D=40.72 μm', lam_d_etch * 1e6, 0.01, '', False),
+        ('三种放电与参数地图', '刻蚀基准 c_s=2692 m/s', cs_p(3.0, m_ar), 0.01, r'\mathrm{m/s}', False),
+        ('三种放电与参数地图', '刻蚀基准 j_i=4.313 mA/cm²', gam_i * E_CHG * 0.1, 0.01, '', False),
+        ('三种放电与参数地图', '射流 λ_D=2.88 μm', debye_p(1.5, 1e19) * 1e6, 0.01, '', False),
+        ('三种放电与参数地图', 'DBD 微放电 λ_D=0.33 μm', debye_p(2.0, 1e21) * 1e6, 0.02, '', False),
+        ('三种放电与参数地图', '聚变边界对照 j_i=1928.720 mA/cm²',
+         2e19 * cs_p(15.0, m_ar) * E_CHG * 0.1, 0.01, '', False),
+        ('三种放电与参数地图', '非平衡比 T_e/T_gas≈116', 3.0 / (k_b * 300.0 / E_CHG), 0.01, '', False),
+        # --- §P.2 帕申 ---
+        ('汤森雪崩与帕申定律', 'pd_min=0.8363 Torr·cm', pd_min, 0.01, r'\mathrm{Torr\cdot cm}', False),
+        ('汤森雪崩与帕申定律', 'V_b,min=305.27 V', vb_p(pd_min), 0.01, r'\mathrm{V}', False),
+        ('汤森雪崩与帕申定律', '外推 pd=76 → 5035 V', vb_p(76.0), 0.01, r'\mathrm{V}', False),
+        ('汤森雪崩与帕申定律', '经验击穿 30 kV/cm 的比值 1.68',
+         vb_p(76.0) / 3000.0, 0.01, '', False),
+        ('汤森雪崩与帕申定律', 'AN2 下 N=2.4463e25 m⁻³',
+          101325.0 / (k_b * 300.0), 0.01, r'\mathrm{m}^{-3}', False),
+        ('汤森雪崩与帕申定律', '约化场强 122.6 Td',
+          3e6 / (101325.0 / (k_b * 300.0)) * 1e21, 0.01, r'\mathrm{Td}', False),
+        ('汤森雪崩与帕申定律', 'α(30 kV/cm)=1.0993 cm⁻¹',
+          a_pas * 760 * math.exp(-b_pas * 760 / 3e4), 0.01, r'\mathrm{cm^{-1}}', False),
+        # --- §P.3 DBD ---
+        ('介质阻挡放电与大气压等离子体', 'C_d=0.8854 nF', c_d * 1e9, 0.01, r'\mathrm{nF}', False),
+        # 表头印的驱动频率必须与自己算出的 P、每周期能量、占空比一致：
+        # 20 kHz 会让 P 与每周期能量各差一倍（v1.13.0 修掉的正是这个表头笔误）
+        ('介质阻挡放电与大气压等离子体', '驱动频率 10 kHz', f_dbd / 1e3, 0.01,
+         r'\mathrm{kHz}', False),
+        ('介质阻挡放电与大气压等离子体', '驱动周期 100 μs', 1.0 / f_dbd * 1e6, 0.01,
+         r'\mathrm{\mu s}', False),
+        ('介质阻挡放电与大气压等离子体', '半周期电荷 0.8854 μC', q_half * 1e6, 0.01,
+         r'\mathrm{\mu C}', False),
+        ('介质阻挡放电与大气压等离子体', 'P=106.3 W', p_dbd, 0.01, r'\mathrm{W}', False),
+        # 表内数值：单位写在表头，故 unit 传空（与附录 M/N/O 的表内用例同口径）
+        ('介质阻挡放电与大气压等离子体', '功率密度 1.063 W/cm²', p_dbd / 100.0, 0.01,
+         '', False),
+        ('介质阻挡放电与大气压等离子体', '每周期 10.63 mJ', p_dbd / f_dbd * 1e3, 0.01,
+         r'\mathrm{mJ}', False),
+        ('介质阻挡放电与大气压等离子体', '单丝电荷 0.885 nC', q_half / n_fil * 1e9, 0.01,
+         r'\mathrm{nC}', False),
+        ('介质阻挡放电与大气压等离子体', '单丝能量 5.3 μJ',
+         (p_dbd / f_dbd * 1e3) / (2 * n_fil) * 1e3, 0.02, r'\mathrm{\mu J}', False),
+        ('介质阻挡放电与大气压等离子体', '时空填充因子 4.189e-8',
+         n_fil * v_fil / 1e-5 * (10e-9 / 100e-6), 0.02, '', False),
+        # --- §P.4 鞘层与刻蚀 ---
+        ('鞘层与离子轰击', 'V_s=100 V → s=0.633 mm', sheath_p(3.0, lam_d_etch, 100.0) * 1e3,
+         0.01, r'\mathrm{mm}', False),
+        ('鞘层与离子轰击', 'V_s=400 V → s=1.791 mm', sheath_p(3.0, lam_d_etch, 400.0) * 1e3,
+         0.01, r'\mathrm{mm}', False),
+        ('鞘层与离子轰击', 'V_s=100 V 张角 7.02°',
+         math.degrees(math.sqrt(3.0 / (2 * 100.0))), 0.01, '', False),
+        ('鞘层与离子轰击', 'V_s=400 V 张角 3.51°',
+         math.degrees(math.sqrt(3.0 / (2 * 400.0))), 0.01, '', False),
+        ('鞘层与离子轰击', '10 mTorr 平均自由程 3.11 mm', 1.0 / (n_ar * 1e-18) * 1e3,
+         0.01, r'\mathrm{mm}', False),
+        ('鞘层与离子轰击', '硅原子密度 4.9939e28 m⁻³', n_si, 0.01, '', False),
+        # 表内数值：速率单位写在表头 (nm/min)，故 unit 传空
+        ('鞘层与离子轰击', 'Y=1.0 → 323.4 nm/min', gam_i / n_si * 60 * 1e9, 0.01,
+         '', False),
+        ('鞘层与离子轰击', 'Y=0.1 → 32.3 nm/min', gam_i * 0.1 / n_si * 60 * 1e9, 0.01,
+         '', False),
+        # --- §P.5 沉积 ---
+        ('PECVD 与溅射沉积', '20 sccm SiH4=8.9559e18 s⁻¹', n_dot_sih4, 0.01, r'\mathrm{s^{-1}}', False),
+        ('PECVD 与溅射沉积', '晶圆面积 0.031416 m²', a_waf, 0.01, r'\mathrm{m^2}', False),
+        ('PECVD 与溅射沉积', '生长速率 34.3 nm/min', r_pecvd * 60 * 1e9, 0.01,
+         r'\mathrm{nm/min}', False),
+        ('PECVD 与溅射沉积', '长 1 μm 需 29.20 min', 1e-6 / r_pecvd / 60, 0.01,
+         r'\mathrm{min}', False),
+        ('PECVD 与溅射沉积', '溅射通量 6.2415e20 m⁻²s⁻¹', gam_sput, 0.01,
+         r'\mathrm{m^{-2}s^{-1}}', False),
+        ('PECVD 与溅射沉积', 'Y=0.5 → 374.9 nm/min', gam_sput * 0.5 / n_si * 60 * 1e9, 0.01,
+         r'\mathrm{nm/min}', False),
+        ('PECVD 与溅射沉积', '靶电荷 1.0800e6 C', 3.00 * 100 * 3600, 0.01, r'\mathrm{C}', False),
+        # --- §P.6 医学 ---
+        ('等离子体医学与农业', '剂量 60.000 J/cm²', 1.0 * 60.0 / 1e-4 * 1e-4, 0.01,
+         r'\mathrm{J/cm^2}', False),
+        ('等离子体医学与农业', 'H2O2 分子数 6.0221e16',
+         100e-6 * 1e-3 * 6.02214076e23, 0.01, '', False),
+        ('等离子体医学与农业', '每分子 6218.6 eV',
+         60.0 / (100e-6 * 1e-3 * 6.02214076e23) / E_CHG, 0.01, r'\mathrm{eV}', False),
+        ('等离子体医学与农业', '与 O-O 键能之比 0.0823%',
+         5.12 / (60.0 / (100e-6 * 1e-3 * 6.02214076e23) / E_CHG) * 100, 0.02, '', False),
+        ('等离子体医学与农业', '固氮 29965.0 MJ/kg N',
+         4.35 * E_CHG * 6.02214076e23 / 1e6 * 1000.0 / (14.0067 / 1000.0), 0.01,
+         r'\mathrm{MJ/kg\ N}', False),
+        # --- §P.7 环境 ---
+        ('环境与催化', '臭氧 1.2547e24 分子/kWh', 100.0 / 47.9982 * 6.02214076e23, 0.01, '', False),
+        ('环境与催化', '每分子 17.91 eV',
+         3.6e6 / (100.0 / 47.9982 * 6.02214076e23) / E_CHG, 0.01, r'\mathrm{eV}', False),
+        ('环境与催化', '极限效率 28.6%',
+         5.12 / (3.6e6 / (100.0 / 47.9982 * 6.02214076e23) / E_CHG) * 100, 0.01, '', False),
+        ('环境与催化', '产 1 kg 臭氧需 10.0 kWh', 1000.0 / 100.0, 0.01, r'\mathrm{kWh}', False),
+        ('环境与催化', '甲苯 1000 ppmv 每分子 69.7 eV',
+         300.0 / (1000e-6 * loschmidt * 1e-3) / E_CHG, 0.01, r'\mathrm{eV}', False),
+        # --- §P.8 练习答案 ---
+        ('六道估算练习', '[1] V_b,min=305.3 V', vb_p(pd_min), 0.01, r'\mathrm{V}', False),
+        ('六道估算练习', '[1] pd_min=0.8363 Torr·cm', pd_min, 0.01, r'\mathrm{Torr\cdot cm}', False),
+        ('六道估算练习', '[1] 外推 5035 V vs 经验 3000 V', vb_p(76.0), 0.01, r'\mathrm{V}', False),
+        ('六道估算练习', '[2] Y=1.2 → 388.1 nm/min', gam_i * 1.2 / n_si * 60 * 1e9, 0.01,
+         r'\mathrm{nm/min}', False),
+        ('六道估算练习', '[2] Y=0.1 → 32.3 nm/min', gam_i * 0.1 / n_si * 60 * 1e9, 0.01,
+         r'\mathrm{nm/min}', False),
+        ('六道估算练习', '[3] V_s=400 V → s=1.791 mm',
+         sheath_p(3.0, lam_d_etch, 400.0) * 1e3, 0.01, r'\mathrm{mm}', False),
+        ('六道估算练习', '[3] λ_CX=3.11 mm', 1.0 / (n_ar * 1e-18) * 1e3, 0.01,
+         r'\mathrm{mm}', False),
+        ('六道估算练习', '[4] 1 μm 需 29.2 min', 1e-6 / r_pecvd / 60, 0.01, r'\mathrm{min}', False),
+        ('六道估算练习', '[4] 硅烷利用率 100.0%', 100.0, 0.01, '', False),
+        ('六道估算练习', '[5] 17.91 eV/分子',
+         3.6e6 / (100.0 / 47.9982 * 6.02214076e23) / E_CHG, 0.01, r'\mathrm{eV}', False),
+        ('六道估算练习', '[5] 产 1 kg 需 10.0 kWh', 1000.0 / 100.0, 0.01, r'\mathrm{kWh}', False),
+        ('六道估算练习', '[6] D=30.0 J/cm²', 60.0 / 2.0, 0.01, r'\mathrm{J/cm^2}', False),
+        ('六道估算练习', '[6] 固氮 29965.0 MJ/kg N',
+         4.35 * E_CHG * 6.02214076e23 / 1e6 * 1000.0 / (14.0067 / 1000.0), 0.01,
+         r'\mathrm{MJ/kg\ N}', False),
+    ]
+    bad = []
+    for topic, desc, want, rel, unit, signed in cases:
+        if not value_in(found[topic], want, rel, unit, signed):
+            bad.append((topic, desc))
+    if bad:
+        rec('FAIL', 'P', '附录 P 有 %d 项数值与独立复算不符（或不在它所属的那一节内）：%s'
+            % (len(bad), bad[:6]))
+    else:
+        rec('PASS', 'P', '附录 P 的 %d 项关键数值全部与独立复算一致，且落在各自小节内'
+            % len(cases))
+
+    # 全篇口径与结论句（内容跨节，故对整个文件断言）
+    has(text, r'\texttt{day}', 'src/%s（时间单位写成 day 而不是中文字，避免数学字体缺字）'
+        % APP_FILES['P'])
+    has(text, '1\\ \\mathrm{A/m^2}=0.1\\ \\mathrm{mA/cm^2}',
+        'src/%s（A/m^2 与 mA/cm^2 的换算，最常错的口径）' % APP_FILES['P'])
+    has(text, r'\mathrm{Torr\cdot cm}', 'src/%s（帕申自变量 pd 的单位）' % APP_FILES['P'])
+    has(found['汤森雪崩与帕申定律'], '不能',
+        'src/%s（大气压不能外推低压帕申公式的结论）' % APP_FILES['P'])
+    has(found['汤森雪崩与帕申定律'], '流注',
+        'src/%s（大气压击穿由流注而非汤森机制主导）' % APP_FILES['P'])
+    has(found['介质阻挡放电与大气压等离子体'], '宏观冷',
+        'src/%s（大气压冷等离子体"宏观冷、微观热"的结论）' % APP_FILES['P'])
+    has(found['鞘层与离子轰击'], '各向异性',
+        'src/%s（提高偏压提高刻蚀各向异性的结论）' % APP_FILES['P'])
+    has(found['等离子体医学与农业'], '主导误差',
+        'src/%s（剂量学一节的误差交代）' % APP_FILES['P'])
+    has(found['环境与催化'], '成反比',
+        'src/%s（VOC 处理能量代价与浓度成反比的结论）' % APP_FILES['P'])
+    has(found['来源、分级与版权说明'], '不复制',
+        'src/%s（不复制任何题目、解答、图表与数据表的声明）' % APP_FILES['P'])
+    lacks(text, 'g_0v_{\\mathrm{ex}}',
+          'src/%s（比冲与排气速度乘除颠倒的旧口径不得回流）' % APP_FILES['P'])
+
+
+def check_P13_appendix_i_calendar():
+    """附录 I 的「间隔与提取：把复习排进日历」：借用数据的复算与排程表的逐行一致性。
+
+    这一节把 Ebbinghaus (1885) 的四点保留率当原始数据，用它反解单指数时间常数与幂律指数，
+    再按 g_max = floor(0.15 D) 加「间隔翻倍到顶后保持等间隔」的规则生成复习日。
+    正文里的结论句、排程表与这里重算的数只要对不上（或数据被悄悄改过），这一节就会 FAIL。
+    """
+    p = os.path.join(SRC, APP_FILES['I'])
+    if not os.path.exists(p):
+        rec('FAIL', 'P', '附录 I 文件不存在：%s' % APP_FILES['I'])
+        return
+    blk = ''
+    for ttl, body in split_blocks(strip_comments(read(p)), 'section'):
+        if ttl.startswith('间隔与提取'):
+            blk = body
+            break
+    if not blk:
+        rec('FAIL', 'P', '附录 I 缺少「间隔与提取：把复习排进日历」一节（标题被改或整节被删）')
+        return
+    rec('PASS', 'P', '附录 I 有「间隔与提取：把复习排进日历」一节')
+
+    # 1) 用 Ebbinghaus 的两点（1 天 33%、31 天 21%）反解两个模型，并复核 1/3/7/21 的定位
+    r1, r31 = 0.33, 0.21
+    tau1 = -1.0 / math.log(r1)
+    tau31 = -31.0 / math.log(r31)
+    b_pow = math.log(r1 / r31) / math.log(31.0)
+    cases = [
+        ('单指数 τ（由 1 天 33% 反解）', tau1, 0.02, ''),
+        ('单指数 τ（由 31 天 21% 反解）', tau31, 0.02, ''),
+        ('两个 τ 相差的倍数（单指数不成立的证据）', tau31 / tau1, 0.02, ''),
+        ('幂律指数 b', b_pow, 0.02, ''),
+        ('1/3/7/21 的末档间隔', 14.0, 0.01, ''),
+        ('四周（D=28）时的 20% 上界', 0.2 * 28.0, 0.01, ''),
+    ]
+    bad = []
+    for desc, want, rel, unit in cases:
+        if not value_in(blk, want, rel, unit=unit):
+            bad.append('%s（复算 %.4g）' % (desc, want))
+    if bad:
+        rec('FAIL', 'P', '附录 I 排程一节有 %d 项数据与独立复算不符：%s' % (len(bad), bad[:4]))
+    else:
+        rec('PASS', 'P', '附录 I 排程一节的 %d 项借用数据与派生量全部与独立复算一致' % len(cases))
+
+    # 2) 排程表：按规则重算末档间隔、复习日列表与次数，逐行比对字面值
+    def sched(D):
+        g = int(0.15 * D)                     # 末档间隔 = 保留期的 15%，向下取整到整天
+        gaps, step = [], 1
+        while step < g:                       # 间隔从 1 天起翻倍，翻到超过 g 就停
+            gaps.append(step)
+            step *= 2
+        gaps.append(g)
+        while sum(gaps) + g <= D - 1:         # 到顶后保持等间隔，铺到考试前
+            gaps.append(g)
+        days, s = [], 0
+        for x in gaps:
+            s += x
+            days.append(s)
+        return g, days
+
+    rows = [(7, 1, 6), (28, 4, 8), (84, 12, 9), (365, 54, 11)]
+    bad2 = []
+    for D, g_want, n_want in rows:
+        g, days = sched(D)
+        lit = r',\,'.join(str(x) for x in days)
+        if g != g_want:
+            bad2.append('D=%d 的末档间隔复算 %d 天、表中 %d 天' % (D, g, g_want))
+        if len(days) != n_want:
+            bad2.append('D=%d 的复习次数复算 %d、表中 %d' % (D, len(days), n_want))
+        if lit not in blk:
+            bad2.append('D=%d 的复习日列表与规则复算不一致（复算 %s）' % (D, lit))
+    if bad2:
+        rec('FAIL', 'P', '附录 I 复习排程表有 %d 处与规则复算不符：%s' % (len(bad2), bad2[:4]))
+    else:
+        rec('PASS', 'P', '附录 I 复习排程表 4 行（D=7/28/84/365）的末档间隔、复习日与次数全部与规则复算一致')
+
+    # 3) 借鉴来源必须逐条写清（这是本节的立项理由）
+    srcs = ['Ebbinghaus', 'Roediger', 'Karpicke', 'Cepeda', 'Dunlosky', 'Bjork', 'Rasch']
+    miss = [s for s in srcs if s not in blk]
+    if miss:
+        rec('FAIL', 'P', '附录 I 排程一节的「出处」缺 %d 个来源：%s' % (len(miss), miss))
+    else:
+        rec('PASS', 'P', '附录 I 排程一节逐条注明 7 个借鉴来源（Ebbinghaus 1885 原始数据、Cepeda 2006 间隔规则等）')
+    has(blk, r'\textbf{出处：}', 'src/%s（排程一节必须交代借鉴来源）' % APP_FILES['I'])
+    has(blk, '高效用', 'src/%s（Dunlosky 2013 的效用评级结论）' % APP_FILES['I'])
+    has(blk, '必要难度', 'src/%s（Bjork 的存储强度／提取强度口径）' % APP_FILES['I'])
+    has(blk, '幂律', 'src/%s（遗忘曲线按幂律描述这一结论）' % APP_FILES['I'])
+    has(blk, '长期版', 'src/%s（1/3/7/21 只适用于约三个月保留期的限定）' % APP_FILES['I'])
+    lacks(blk, '遗忘曲线是单指数', 'src/%s（不得退回「单指数足够」的旧口径）' % APP_FILES['I'])
+
+
 def check_P02_appendix_j_map():
     """附录 J 逐章对照表的完备性：覆盖 1--12 章、每行 5 列、章号不越界。
 
@@ -1965,6 +2318,8 @@ def main():
     check_P08_appendix_m_heating()
     check_P10_appendix_n_boundary()
     check_P11_appendix_o_propulsion()
+    check_P12_appendix_p_lowtemp()
+    check_P13_appendix_i_calendar()
     check_P06_scattering_alpha()
     check_P09_tcbtheorem_arity()
 
