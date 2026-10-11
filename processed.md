@@ -2349,7 +2349,7 @@ Bosch \& Hale (1992)、Lawson (1957) 与 ITER Physics Basis (1999)，逐节写�
 `tip-app-u-loop`（把闭环画成一条折线）。出处行 5 处（Wesson 2011 / ITER Physics Basis 1999 /
 Freidberg 2007 / Lawson 1957 / Bosch \& Hale 1992）。
 
-### 24.3 附录 I 新增「扩张式还是均匀式：间隔要不要越拉越长」（`§I.17`）
+### 24.3 附录 I 新增「扩张式还是均匀式：间隔要不要越拉越长」（渲染为 `I.12.2`）
 
 `src/appendix_i_learning.tex` 新增一节，回答 v1.13.0 排程表留下的一个悬问：
 间隔要不要越拉越长？五条编号结论：① 扩张式的理由成立但推不出「必须递增」；
@@ -2395,7 +2395,7 @@ P24 由 721 项增到 724 项；修后第 85 号单条植入的 FAIL 由 0 变 1
 | `pdf_outline` | FAIL 0 / WARN 2（14/337 条 −1 偏移、附录 F 2/35）/ 合计 11 项 | PASS |
 | 五套夹具 | 全 PASS（`gate_physics_negative` 94 处植入 → 合并 FAIL 106、恢复后 0） | PASS |
 | 印刷目录页跨度 | **10 页（第 2--11 页）** | PASS |
-| 目视复核（渲染 PNG） | 附录 U 七张表无断行、三只语义盒标题不再重复类型名、§I.17 表格与 miniquiz 正常 | PASS |
+| 目视复核（渲染 PNG） | 附录 U 七张表无断行、三只语义盒标题不再重复类型名、`I.12.2` 的正文、表格与 miniquiz 正常 | PASS |
 
 ### 24.6 教训
 
@@ -2413,10 +2413,15 @@ P24 由 721 项增到 724 项；修后第 85 号单条植入的 FAIL 由 0 变 1
 5. **生成器一律 all-or-nothing + `repr()`**。P24/P25 的门禁源码、README 补丁、夹具补丁都由脚本
    先校验锚点（每条替换必须命中恰好 1 次）再用 `repr()` 落盘，避免中文与 LaTeX 反斜杠在转写中走形；
    CRLF 文件必须用 `EOL='\r\n'` 拼接锚点（本轮在 P24 加固时踩到一次「锚点命中 0 次」）。
+6. **文档里的编号必须看图核对**。本轮一度把附录 I 的新小节写成「§I.17」——那是计划期的顺序号；
+   渲染后它是**附录 I 第 12 节「间隔与提取」的第 2 小节**，目录与页眉都印 `I.12.2`
+   （`\subsection` 编号由 LaTeX 按所在节自动生成，与源码里的书写顺序无关）。
+   提交信息（`317b357`）与首版 Release 正文里的「§I.17」同样是笔误：提交已推送、标签已指向它，
+   不改写历史，改为在 24.3/24.7 与 Release 正文（`create` 重跑走 PATCH）里更正。
 
 ### 24.7 发布记录（v1.18.0）
 
-- **内容提交**：`317b357` v1.18.0 新增附录 U（聚变增益 Q、自加热与点火，7 节 / 7 表 / 3 只语义盒 / 14 个公式标签 / 6 道估算题）+ 附录 I §I.17「扩张式还是均匀式」；门禁 P24+P25（609→758 项）、夹具 78→94 处（合并 106 / `MIN_FAIL` 95）；6 files changed, 1138 insertions(+), 5 deletions(-)。
+- **内容提交**：`317b357` v1.18.0 新增附录 U（聚变增益 Q、自加热与点火，7 节 / 7 表 / 3 只语义盒 / 14 个公式标签 / 6 道估算题）+ 附录 I `I.12.2`「扩张式还是均匀式」（提交信息里的「增 17 节」与首版 Release 正文的「§I.17」均为编号笔误，见 24.6 第 6 条）；门禁 P24+P25（609→758 项）、夹具 78→94 处（合并 106 / `MIN_FAIL` 95）；6 files changed, 1138 insertions(+), 5 deletions(-)。
 - **文档提交**：`ae684e8` docs(v1.18.0) README 同步（334 页 / 337 书签 / 21 附录 / 758 项 / 94 处回退）与 processed 第 24 节发布准备（2 files changed, 150 insertions(+), 17 deletions(-)）。
 - **标签**：`v1.18.0`（附注标签，标签对象 `2b2a8e8`，指向提交 `317b357`）。
 - **推送**：`git -c http.proxy= -c https.proxy= push origin main` → `20a2938..ae684e8`；`push origin v1.18.0` → `* [new tag] v1.18.0 -> v1.18.0`。两处都需清空 `http.proxy`/`https.proxy`（环境里的 `127.0.0.1:7897` 代理已失效）。
@@ -2424,4 +2429,5 @@ P24 由 721 项增到 724 项；修后第 85 号单条植入的 FAIL 由 0 变 1
 - **Gitea Release**：`POST status 201`，**release id=110**，<http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.18.0>；资产上传 `status=201 name=plasma_physics_textbook_v2.pdf size=2391236`。`gitea_release.py list` 返回 `status 200 count 26`（26 个标签 ↔ 26 个 Release，最新一条即 v1.18.0、assets=1）。
 - **独立复核**：清空四个代理环境变量后 `curl.exe -sS -L --noproxy '*'` 下载 `/releases/download/v1.18.0/plasma_physics_textbook_v2.pdf` → 2 391 236 B、SHA256 `59EDBE17D8D9E893D131956B20BB730997880868BDA3123DBF6D83A449BBF4DC`，与本地 `pdf/plasma_physics_textbook_v2.pdf` **逐字节一致**。
 - **远程 `reviews/`**：`git ls-tree -r origin/main --name-only` 过滤 `^reviews/` 共 **66** 个文件，与 v1.17.1 基线一致（没有人删改独立复核留档）。
-- **回填提交**：本次提交（`docs(v1.18.0): backfill section 24.7 release record`）。
+- **回填提交**：`8621212` docs(v1.18.0): backfill section 24.7 release record（1 file changed, 9 insertions(+), 9 deletions(-)）。
+- **勘误提交**：本次提交（`docs(v1.18.0): 更正附录 I 新节编号为 I.12.2 并同步 Release 正文`）——渲染核对时发现新小节实为 `I.12.2`（附录 I 第 12 节的第 2 小节），随即改 README 之外的文档与 Release 正文；PDF、标签 `v1.18.0`（`317b357`）与已上传资产**不变**（正文编号笔误不影响 PDF）。
