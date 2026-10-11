@@ -2825,3 +2825,23 @@ v1.21.0 说明段。夹具 **130 → 136 处**，`植入回退后：退出码=1 
    all-or-nothing 脚本中止——这正是它该做的事。
 5. **负号类回归要靠「整串 + 同文件负值存在」双重绑定**：只钉整串，正文换一种等价写法就失效；
    只查负值存在，别处的负值会顶替。两者合起来才咬得住。
+6. **改 README 的版本表不是纯文档操作。** 加上 v1.21.0 版本行后，`full_check` 立刻报出
+   「README 最新版本未出现在源码封面/元数据中」——文档声明的版本与源码印出的版本必须一致，
+   于是不得不回到主文件升版本串并重编。**改文档前先想一遍它会触发哪些一致性断言。**
+
+### 27.8 发布记录（v1.21.0）
+
+- 内容提交 `ec09900`（`check/physics_regression.py` +41、`check/fixtures/gate_physics_negative.py` +32/−2、
+  `src/plasma_physics_textbook_v2.tex` 4 行改版本串、PDF 2 505 778 → 2 505 779 B），
+  文档提交 `14fd21e`（`README.md` + 版本行与 P28 守卫段、`processed.md` 第 27 节）。
+- tag `v1.21.0` = 标签对象 `b8d649a9` → 文档提交 `14fd21e`；双推后远端
+  `refs/heads/main = 14fd21e180d8aa80f03efa8f66351d5cc914f863`、
+  `refs/tags/v1.21.0 = b8d649a9898248a7f857538f7cc07221e79134ec`。
+- Gitea release **id=117**（仓库累计 29 个），
+  `http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.21.0`；
+  资产 `plasma_physics_textbook_v2.pdf` 2 505 779 B。
+- 独立复核（清四个代理变量 + `curl.exe -sS -L --noproxy '*'` 下载附件后比 SHA256）：
+  远程与本地均 2 505 779 B、
+  `2B5795A5BCBFBEA1509E7AA1EC6187701E480EFABD606CF09F8E8F9E321B7DF3`，**逐字节一致**。
+- 远程 `reviews/` 仍为 `2026-10-10-independent`（16 项）与 `2026-10-11-scheduled`（14 项），
+  本轮**没有新的评审**；远端仓库根目录仍无 `todo/`。
