@@ -1813,11 +1813,76 @@ Sweller 1988 *Cognitive Science* **12**(2) 257--285（认知负荷）、Tufte 19
 
 | 项目 | 值 |
 | --- | --- |
-| 内容提交 | `4f8e034 feat(v1.15.0): appendix R dusty plasma (OML charging, coulomb crystals, Havnes, dust-acoustic waves, levitation, fusion/space dust); appendix I dual coding and action six; gates to 419 items / 41 fixture patches`（6 文件：`src/appendix_r_dusty.tex` 516 行新增、`src/appendix_i_learning.tex` +77 −3、`src/plasma_physics_textbook_v2.tex` +6 −3、`check/physics_regression.py` +323、`check/fixtures/gate_physics_negative.py` +41、`pdf/plasma_physics_textbook_v2.pdf` 2 145 599 → 2 207 347 B） |
-| 文档提交 | `3fb0f32 docs(v1.15.0): record section 20 in processed.md and refresh README numbers (301 pages / 18 appendices / 419 gate items / 41 fixture patches)`（README +50 −18、`processed.md` +153） |
+| 内容提交 | `4f8e034 feat(v1.15.0): appendix R dusty plasma (OML charging, coulomb crystals, Havnes, dust-acoustic waves, levitation, fusion/space dust); appendix I dual coding and action six; gates to 419 items / 41 fixture patches`（6 文件：`src/appendix_r_dusty.tex` **502 行新增**（11 节 / 5 表 / 2 语义盒 / 10 条编号公式）、`src/appendix_i_learning.tex` +77 −3、`src/plasma_physics_textbook_v2.tex` +6 −3、`check/physics_regression.py` +323、`check/fixtures/gate_physics_negative.py` +33 −8、`pdf/plasma_physics_textbook_v2.pdf` 2 145 599 → 2 207 347 B） |
+| 文档提交 | `3fb0f32 docs(v1.15.0): record section 20 in processed.md and refresh README numbers (301 pages / 18 appendices / 419 gate items / 41 fixture patches)`（README +32 −18、`processed.md` +153） |
 | 标签 | 标注标签 `v1.15.0` → 指向内容提交 `4f8e0340020000b1d2f38bf16fdd873a072c5746`；标签对象 `657f112b3f9aba101e8b5b9be88ce94e9abc8a26`；仓库第 **21** 个标签 |
 | 推送 | `git -c http.proxy= -c https.proxy= push origin main` → `1f3e861..3fb0f32  main -> main`；`push origin v1.15.0` → `* [new tag] v1.15.0 -> v1.15.0`；`git rev-list --count HEAD..origin/main` = 0、`origin/main..HEAD` = 0 |
 | Gitea 发布 | `POST status 201`、**release id=102**、`releases/tag/v1.15.0`、标题「v1.15.0 — 尘埃等离子体：从刻蚀腔到等离子体晶体（附录 R）+ 双编码与多媒体学习（附录 I）」、`assets=1`；资产 `plasma_physics_textbook_v2.pdf` 2 207 347 B（`attachments/a69c57b2-4824-4a50-b50a-0b9d5b1e2af6`）；仓库 release 总数 **21** |
 | 资产独立复核 | `curl.exe -sS -L --noproxy '*'`：HTTP **200**、download size 2 207 347 B、SHA256 `A9FBB3E47FA7C53DB5F843BDCEE73DA424CB085BA53996FEF41A760C296A88C4`（与本地 `src/`、`pdf/` 副本一致）、头 `%PDF-1.7`；PyMuPDF 读下载副本：**301 页 / 304 书签 / `pdftitle=等离子体物理自学教材 v1.15.0` / 末页含「尘埃」** |
 | 远程评审 | `git -c http.proxy= -c https.proxy= fetch origin` 后 `origin/main` = `3fb0f32`；`reviews/` 仍为 **66 个文件**（与 `v1.14.0` 时的清单逐条相同，本轮无新增）；最近触碰 `reviews/` 的提交仍是 `f5dbe82` |
 
+
+## 20.9 v1.15.1 勘误记录（2026-10-11）
+
+### 20.9.1 触发：看图，而不是跑门禁
+
+v1.15.0 发布后，按「以图为主」的验收习惯把关键页渲染成 PNG 逐页读（`tmp/render_v1150.py`，13 个锚点，
+zoom $=105/72$，输出 `tmp/png_v1150/`）。在 **p294 表 R.2** 的 C4 行读出 $a/\lambda_D$ 印着 $1.3\times10^{-7}$，
+而独立复算（`tmp/appR_calc.py` 新增 `a/lambda_D (sci)` 字段）给出 **1.3452e-08**——**十倍错，已随 v1.15.0
+的资产发出去**（asset SHA256 `A9FBB3E4...`）。随后把 p293--p298 的其余量级措辞逐条重算，共查出 **七处**正文口径错。
+
+### 20.9.2 七处修正（逐条：原文 → 修正 → 复算依据）
+
+| # | 位置 | v1.15.0 原文 | v1.15.1 修正 | 复算依据 |
+|---|---|---|---|---|
+| ① | 表 R.2 的 C4 行（`src/appendix_r_dusty.tex:92`） | $a/\lambda_D=1.3\times10^{-7}$ | $1.3\times10^{-8}$ | $0.1\ \mathrm{\mu m}/7.433942\ \mathrm{m}=1.3452\times10^{-8}$ |
+| ② | §R.1 质量比（`:13`） | 离子的 $10^{5}$--$10^{13}$ 倍 | $10^{5}$--$10^{14}$ 倍，并写清估算口径 | $(\rho a)_{\text{dust}}/(\rho a)_{\text{Ar}}$：$a=10\ \mathrm{\mu m}$、$\rho=2000$ 时 $1.26\times10^{14}$ |
+| ③ | §R.1 量级跨度（`:14`） | 四个工况跨越十四个数量级 | 电子密度跨十三个数量级、德拜长度跨六个数量级 | $n_e$ 从 $10^{6}$ 到 $2\times10^{19}$ 即 13.30 个数量级；$\lambda_D$ 从 40.72 µm 到 7.43 m 即 6.06 个 |
+| ④ | §R.1 德拜长度（`:36`） | 同一条公式跨了十四个量级 | 跨了六个量级 | 同 ③ 的 $\lambda_D$ 跨度 |
+| ⑤ | §R.5 Havnes 参数（`:248`） | C3、C4 的 $P$ 小到十四个数量级之外 | $1.45\times10^{-5}$ 与 $8.3\times10^{-11}$（比 C1 小三个多与八个多数量级） | C1 的 $P=2.4574\times10^{-2}$；3.2 / 8.5 个数量级 |
+| ⑥ | §R.6 尘埃声波（`:275-277`） | 尘埃质量是离子的 $10^{10}$ 倍，$\omega_{pd}$ 被压到 $10^{2}\ \mathrm{rad/s}$ 量级 | $1.6\times10^{10}$ 倍；$\omega_{pd}=4.1\times10^{3}$ rad/s（C1）、$48$ rad/s（C2）；补 $\omega_{pi}=6.6\times10^{7}$ rad/s 对照 | $m_d/m_i=1.5786\times10^{10}$（C1）；$\omega_{pd}=\sqrt{n_dZ_d^2e^2/(\varepsilon_0m_d)}$ |
+| ⑦ | §R.8 氚库存（`:358`） | （毫摩尔级） | $0.75\ \mathrm{g}$，即 $0.25\ \mathrm{mol}$ | $0.751240\ \mathrm{g}/3.016\ \mathrm{g/mol}=0.249081\ \mathrm{mol}$ |
+
+### 20.9.3 门禁为什么没抓到
+
+P17 的 §R.2 数值断言里**只写了 C1 一行** `('尘埃怎么带电', 'C1 a/λ_D=0.0123', 0.5e-6/lam_c1, 0.01)`——
+C2/C3/C4 的同一列从未被任何断言覆盖；而「十四个数量级」「毫摩尔级」「$10^{2}$ rad/s 量级」这类**措辞**
+根本不是 `value_in()` 的对象：它只在被点名的那段文字里找数，句子本身没有锚点。于是 419 项全绿、编译零错、
+PDF 指纹与书签全部正常，错值照样付印。一句话：**门禁的覆盖边界恰好等于作者写下的那几行。**
+
+### 20.9.4 加固（四层，全部在同轮交付）
+
+1. **数值层**：四个工况的 $a/\lambda_D$ 逐行复算（C4 用 5% 相对容差，注释写明这次的十倍错），
+   另加 $\omega_{pd}$(C1)、$\omega_{pd}$(C2)、$\omega_{pi}$(Ar) 三条 → P17 数值用例 51 → **57 项**；
+2. **字面层**：小节内字面绑定 9 → **14 条**（新增「电子密度跨十三个数量级、」「$10^{5}$--$10^{14}$ 倍」
+   「$1.3\times10^{-8}$」「$\omega_{pd}$ 也降到 $4.1\times10^{3}\ \mathrm{rad/s}$」「$0.75\ \mathrm{g}$，」）；
+3. **反向层**：4 条 `lacks` 挡住旧错回流——「十四个数量级」「十四个量级」「毫摩尔级」「$1.3\times10^{-7}$」
+   都是 v1.15.0 发出去的真实错话；
+4. **可证伪层**：夹具 41 → **46 处**（新增五条即这次发出去的口径错），逐条探针 `tmp/probe_neg_v1151.py`
+   实测 **46/46 全部命中**、单独计 **54** 个 FAIL、合并植入 **42**、未植入 exit $=0$ FAIL $=0$，
+   `MIN_FAIL` 35 → **42**。套件 419 → **428 项**。
+
+### 20.9.5 验收结果（勘误版 301 页）
+
+| 项目 | 结果 |
+| --- | --- |
+| PDF | **301 页**（与 v1.15.0 相同）、**2 207 895 B**、书签 **304** 条、`pdftitle=等离子体物理自学教材 v1.15.1` |
+| SHA256 | `EA305BE265B9F94C6D2617D1B30300774DEC0E298CED85FF5200586685913AA0`（`src/` 与 `pdf/` 一致） |
+| 编译 | `latexmk -xelatex` 两跑 exit 0；`^! ` 错误 **0**；Overfull 3 处（4.78427 / 2.46873 / 1.23474 pt，全部 <5 pt）；缺字 0；重复标签 0 |
+| 六套件 | `full_check` **33** 项 FAIL 0；`ui_readability` 47 项 FAIL 0 / WARN 28；`consistency_audit` 14 项 FAIL 0；`physics_regression` **428** 项 FAIL 0；`figure_layout` 13 项 FAIL 0；`pdf_outline` 11 项 FAIL 0 / WARN 2（两条已知且有界） |
+| 五夹具 | 全部 PASS（`gate_physics_negative` 46 处植入：单独计 54 / 合并 42 / 恢复 0） |
+
+### 20.9.6 教训
+
+1. **门禁只查它被写去查的那一列**：写了 C1 的 $a/\lambda_D$，C2--C4 就是法外之地。
+   凡「同一列多行」的表，断言必须逐行写（或改成对整列循环），否则全绿只是覆盖到的那一行的全绿。
+2. **量级与措辞也要能被断言**：数字有锚点，句子没有——「十四个数量级」这种话既不会被 `value_in()`
+   碰到，也不会被编译警告碰到；只有字面绑定与 `lacks` 能兜住它。
+3. **图像复核是最后一道物理审查**：本轮唯一的发现途径是把 PDF 渲染回图片逐页读表——门禁、编译、
+   指纹、书签全绿。用户「以图为主」的偏好因此不只是展示偏好，也是验收手段。
+4. **发出去的错要变成仓库里的教训**：修正文、加固门禁、写清 §20.9，三件事同轮交付，
+   勘误版才算完成——只改 PDF 而不改门禁，下一次同类错还会照样付印。
+
+### 20.10 发布记录（v1.15.1）
+
+（待回填：内容提交 / 文档提交 / 标签对象 / 推送 / Gitea release id 与资产 / 独立复核 / 远程评审）
