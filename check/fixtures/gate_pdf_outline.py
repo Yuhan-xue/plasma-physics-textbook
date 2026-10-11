@@ -14,6 +14,9 @@
              链接数 1 < MIN_TOC_LINKS）        → 期望 O5 WARN 且页跨度仍含该页
              这条锁住 `detect_toc_pages` 的「短尾页吸收」：老实现会把该页判成正文页，
              于是 O5 报出的跨度少一页（`第 2--N-1 页`），needle 对不上 → 夹具失败。
+             末页位置**必须由 `detect_toc_pages` 给出**（v1.12.0 修正）：夹具原先自己抄了
+             一份简化探测（只看「链接数 ≥ MIN_TOC_LINKS」的前缀），目录涨到 8 页、
+             末页只剩 9 个链接后，简化探测停在第 8 页 —— 篡改打错页，用例假失败。
 
 不加「页码越界」反例：PyMuPDF 的 `set_toc()` 自身就拒绝写入超出页数的行
 （`ValueError: row 0: page number out of range`），无法通过该路径构造出越界
@@ -41,7 +44,7 @@ CHECKER = os.path.join(ROOT, 'check', 'pdf_outline.py')
 OUTDIR = os.path.join(ROOT, 'tmp', 'outline-fixture')
 
 sys.path.insert(0, os.path.join(ROOT, 'check'))
-from pdf_outline import MIN_TOC_LINKS, TOC_FIRST      # noqa: E402  与守卫共用同一口径
+from pdf_outline import TOC_FIRST, detect_toc_pages   # noqa: E402  与守卫共用同一口径（含短尾页吸收）
 
 
 def run_checker(pdf):
@@ -73,15 +76,14 @@ def tamper(kind, dst):
     elif kind == 'empty':
         toc = []
     elif kind == 'toc-tail':
-        # 先按守卫的口径找印刷目录页前缀（第 2 页起连续「链接数 ≥12」），
-        # 再把最后一页的链接删到只剩 1 个 —— 复现「目录短尾页」。
-        n = 0
-        for pno in range(TOC_FIRST, doc.page_count):
-            if len(doc[pno].get_links()) >= MIN_TOC_LINKS:
-                n += 1
-            else:
-                break
-        last = TOC_FIRST + n - 1                      # 0-based：目录末页
+        # **用守卫自己的口径**定位印刷目录末页（含「短尾页吸收」），再把该页的链接删到只剩 1 个
+        # —— 复现「目录短尾页」。v1.12.0 的教训：这里原先自己抄了一份简化探测（只看
+        # 「链接数 ≥ MIN_TOC_LINKS」的前缀），目录涨到 8 页、末页只剩 9 个链接后，
+        # 简化探测停在第 8 页，于是篡改打在了第 8 页上，而守卫吸收短尾页后报的跨度是
+        # 第 2--9 页 —— 用例「看起来失败」但篡改目标已经错了。改用 detect_toc_pages 后
+        # 破坏目标与守卫的跨度口径永远一致。
+        toc_pages = detect_toc_pages(doc)
+        last = TOC_FIRST + toc_pages - 1              # 0-based：守卫认定的目录末页
         page = doc[last]
         for lk in page.get_links()[1:]:
             page.delete_link(lk)

@@ -312,6 +312,54 @@ $\lambda_D$ 的不确定度几乎完全由 $T_e$ 决定——所以讨论"德拜
 \textbf{出处：}Taylor《An Introduction to Error Analysis》（第 2 版，University Science Books）第 1--3 章（不确定度、传递规则、随机与系统误差）；Bevington \& Robinson《Data Reduction and Error Analysis for the Physical Sciences》（第 3 版）关于误差分类与加权平均的章节；本书第 12 章（诊断原理与探针公式）。
 
 
+\section{把书讲给别人听：费曼技巧、自我解释与同伴教学}
+
+自学的最大盲区是\textbf{没有人提问}。默读时"好像都懂"，一开口讲就会卡在某条"其实没想明白"的接缝上。本节把"讲出来"拆成三层：能自己讲、能对自己提问、能被别人追问。
+
+\textbf{第一层：费曼技巧（把概念讲到外行能听懂）。}
+\begin{enumerate}[nosep,leftmargin=1.6em]
+  \item 把要学的概念写在空白纸顶端；
+  \item 假装讲给只学过普通物理的大二学生听，只用最朴素的词，不许说"众所周知"；
+  \item 卡住的地方就是漏洞——回到书或笔记里补齐，不要绕过；
+  \item 简化并用一个类比收尾，直到讲得顺、讲得短。
+\end{enumerate}
+\textbf{一点诚实的说明：}"费曼技巧"的流行四步形式来自教学实践传统，\textbf{没有对照实验支持}；有实证支持的是它的内核——自我解释（下一层）。把它排在第一位，是因为它便宜、立刻可做，而不是因为它被证明最有效。
+
+\textbf{第二层：自我解释（讲给自己听）。}Chi 等 (1989) 观察学生做物理例题时发现：成绩好的学生并不是读得多，而是在读的过程中不断向自己解释"这一步为什么成立"。落到本书，就是把每一行公式都过一遍三个问题：
+\begin{enumerate}[nosep,leftmargin=1.6em]
+  \item \textbf{依据}：这一步用了哪条守恒律或哪个近似？（例如"这里用了 $\nabla\cdot\mathbf{B}=0$"）
+  \item \textbf{代价}：这个近似丢掉了哪一项，丢掉的项与保留项的量级比是多少？
+  \item \textbf{敏感性}：若某个量翻倍（$T_e$、$B$、$L$），结论会怎么变？换一个参数区间还成立吗？
+\end{enumerate}
+把这三问写在便签上贴在书页边，读完一节随手答一遍，效果远好于再读一遍。
+
+\textbf{第三层：被别人追问（同伴教学）。}Mazur 的同伴教学法把课堂变成"先独立作答 $\to$ 小组讨论 $\to$ 再作答"：讨论逼着你说出理由，而"说出来"本身就是一次检索练习。Hake (1998) 汇总了 62 门课、6542 名学生的数据，用归一化增益
+\begin{equation}
+\langle g\rangle=\frac{\text{后测}-\text{前测}}{100-\text{前测}}
+\end{equation}
+衡量教学效果：\textbf{交互式教学的平均增益约 $0.48$，传统讲授约 $0.23$}——同样的课时，增益差一倍。
+
+自学没有同伴怎么办？三条替代做法，本质都是"制造一个必须解释的对象"：
+\begin{enumerate}[nosep,leftmargin=1.6em]
+  \item 写讲解稿：把一节内容压成 $300$ 字，要求面向没学过这门课的人，不出现公式编号；
+  \item 去回答问题：在学习群或问答社区挑一个与本周内容相关的问题，写一份完整回答；
+  \item 对空椅子讲并录音：回放时只找"含糊带过"的地方——那些地方就是漏洞。
+\end{enumerate}
+
+\begin{tip}{每周 30 分钟的讲解环节}{tip-appi-explain}
+挑本周最没把握的一个概念，按上面的四步讲一遍并录音；回放时只记录一件事：\textbf{卡壳几次、卡在哪一步}。下周同一环节再讲一次，比较卡壳次数。这个环节的产出不是"讲得漂亮"，而是一张不断变短的漏洞清单——它比多做十道题更能定位真正没懂的地方。
+\end{tip}
+
+\textbf{出处：}本节三层讲法各自的方法来源（只借鉴方法与结论，例子与数字由本书自拟）：
+\begin{itemize}[nosep,leftmargin=1.6em]
+  \item Mazur《Peer Instruction: A User's Manual》（1997）：投票--讨论流程（独立作答 $\to$ 讨论 $\to$ 再作答）；
+  \item Hake (1998)，\textit{American Journal of Physics} \textbf{66}(1), 64--74：交互式教学与传统讲授的增益对比；
+  \item Chi 等 (1989)，\textit{Cognitive Science} \textbf{13}(2), 145--182：自我解释与例题学习；
+  \item Bisra 等 (2018)，\textit{Educational Psychology Review} \textbf{30}(3), 703--725：自我解释提示的元分析；
+  \item Feynman, Leighton \& Sands《The Feynman Lectures on Physics》（1965）：讲给别人听的实践传统（其四步形式无对照实验证据）。
+\end{itemize}
+
+
 \section{出处与延伸阅读}
 
 本附录的主张来自学习科学文献与经典解题方法论，列在下面以便读者自行核对。物理教材的对照关系见附录 J，分级书单见附录 E。
@@ -348,6 +396,10 @@ Adler \& Van Doren (1972) & \textit{How to Read a Book}, rev.\ ed., Simon \& Sch
 Taylor (1997) & \textit{An Introduction to Error Analysis}, 2nd ed., University Science Books & 不确定度的三条传递规则与"数值 $\pm$ 不确定度"的报告纪律（"测量与不确定度"一节） \\
 Bevington \& Robinson (2003) & \textit{Data Reduction and Error Analysis for the Physical Sciences}, 3rd ed., McGraw-Hill & 随机误差与系统误差的区分、平均值的 $1/\sqrt{N}$ 律、加权平均 \\
 Polya (1945) & \textit{How to Solve It}, Princeton University Press & 解题四步法（"解题四步法"一节）与"元认知三问" \\
+Feynman, Leighton \& Sands (1965) & \textit{The Feynman Lectures on Physics}, Addison-Wesley & "讲到外行能听懂"的讲解传统（"费曼技巧"四步形式属实践传统，无对照实验证据） \\
+Mazur (1997) & \textit{Peer Instruction: A User's Manual}, Prentice Hall & 同伴教学法：独立作答 $\to$ 小组讨论 $\to$ 再作答（"把书讲给别人听"一节） \\
+Hake (1998) & \textit{American Journal of Physics} 66(1), 64--74；DOI: 10.1119/1.18809 & 62 门课、6542 名学生的归一化增益：交互式教学 $\langle g\rangle\approx0.48$ 对传统讲授 $0.23$ \\
+Bisra, Liu, Nesbit, Salimi \& Winne (2018) & \textit{Educational Psychology Review} 30(3), 703--725（离线未能核验 DOI，故不写） & 自我解释提示的元分析：提示"为什么"能显著提高学习效果（自我解释三问的来源） \\
 \end{longtable}
 }
 \normalsize

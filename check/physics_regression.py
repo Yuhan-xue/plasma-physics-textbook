@@ -724,6 +724,7 @@ APP_FILES = {
     'L': 'appendix_l_problems.tex',
     'M': 'appendix_m_heating.tex',
     'N': 'appendix_n_boundary.tex',
+    'O': 'appendix_o_propulsion.tex',
 }
 
 # CODATA 2018 常数（与附录 D 的单位换算表同一组值）
@@ -733,6 +734,9 @@ MU0 = 1.25663706212e-6
 M_P = 1.67262192369e-27
 M_D = 2.013553212745 * M_P        # 氘核质量（含其电子）
 M_AR = 39.948 * M_P               # 氩原子质量（≈ Ar+）
+M_E = 9.1093837015e-31            # 电子质量（CODATA 2018）
+M_XE = 131.293 * 1.66053906660e-27   # 氙离子质量（131.293 u，附录 O 统一取这个值）
+G0 = 9.80665                      # 标准重力加速度（比冲与排气速度的换算）
 
 
 # 数值抽取：三种写法（``1.3\times10^{-4}``／``1.3e-4``／``1.3``）
@@ -1550,6 +1554,240 @@ def check_P10_appendix_n_boundary():
     has(found['燃料滞留'], 'TBR', 'src/%s（氚自持的增殖比判据）' % APP_FILES['N'])
 
 
+def check_P11_appendix_o_propulsion():
+    r"""附录 O（电推进：把等离子体当发动机）：结构完整 + 每个数值独立复算。
+
+    可证伪点（六种，全部 FAIL）：① 某节被删（节名按主题前缀匹配）；② 缺「出处」行；
+    ③ 六张表/三只语义盒/十条编号公式之一被删或改标签；④ 六道练习缺答案；⑤ 印出来的
+    关键数值与本函数独立复算不符——而且必须落在**它自己那一节**里（把 $40.8$ 改成
+    $4.08$、或把 $2100\ \mathrm{s}$ 搬到别的节都会被抓到）；⑥ 旧口径回流：把恒等式
+    $P_{\mathrm{jet}}=I_bV_b$ 误写成 $\frac12I_bV_b$，或把比冲定义写成
+    $I_{\mathrm{sp}}=g_0v_{\mathrm{ex}}$（乘除颠倒，量纲看起来仍然"对"）。
+
+    表内数值的单位写在表头，故这些用例传 unit=''（与附录 N 的门禁同一约定）。
+    """
+    opath = os.path.join(SRC, APP_FILES['O'])
+    if not os.path.exists(opath):
+        rec('FAIL', 'P', '附录 O 文件缺失：src/%s' % APP_FILES['O'])
+        return
+    text = strip_comments(read(opath))
+    secs = split_blocks(text, 'section')
+    want_prefix = ['为什么用电推进', '推力与功率账', '静电加速', '霍尔推力器', '磁喷嘴',
+                   '中和', '六道估算练习', '来源、分级与版权说明']
+    found = {}
+    for ttl, blk in secs:
+        for pre in want_prefix:
+            if ttl.startswith(pre):
+                found[pre] = blk
+    miss = [p for p in want_prefix if p not in found]
+    if miss:
+        rec('FAIL', 'P', '附录 O 缺少小节（或标题改得无法识别）：%s（实际 %d 节）' % (miss, len(secs)))
+        return
+    rec('PASS', 'P', '附录 O 的 %d 个小节齐全（%s）' % (len(want_prefix), '、'.join(want_prefix)))
+
+    for lab, what in (('tab:app-o-isp', '比冲-质量比表'), ('tab:app-o-tp', '推力-功率账表'),
+                      ('tab:app-o-beam', '静电加速速度表'), ('tab:app-o-power', '同一电源三档表'),
+                      ('tab:app-o-loss', '效率损失清单表'), ('tab:app-o-source', '来源与取材表')):
+        has(text, r'\label{%s}' % lab, 'src/%s（%s）' % (APP_FILES['O'], what))
+    # 语义盒的标签写在 \begin{tip}{标题}{标签} 的第二个必选参数里，不是 \label{}
+    for lab, what in (('tip-appo-units', '口径自查盒'), ('warn:appo-hall', '霍尔推力器警示盒'),
+                      ('tip-appo-chain', '与 K/M/N 串联盒')):
+        has(text, '{%s}' % lab, 'src/%s（%s）' % (APP_FILES['O'], what))
+    for lab, what in (('eq:app-o-rocket', '火箭方程与比冲定义'), ('eq:app-o-thrust', '推力与功率定义'),
+                      ('eq:app-o-tpratio', 'T/P 与推力无关的关系式'),
+                      ('eq:app-o-vbeam', '单离子能量方程'), ('eq:app-o-ibeam', '束流推力与恒等式'),
+                      ('eq:app-o-cl', 'Child--Langmuir 律'),
+                      ('eq:app-o-magnetized', '磁化判据'), ('eq:app-o-eb', 'E×B 漂移'),
+                      ('eq:app-o-triangle', '推力-功率-比冲交换关系'),
+                      ('eq:app-o-cex', 'CEX 概率')):
+        has(text, r'\label{%s}' % lab, 'src/%s（%s）' % (APP_FILES['O'], what))
+    has(text, '不复制', 'src/%s（版权与独立性声明）' % APP_FILES['O'])
+    n_src = len(re.findall(r'\\textbf\{出处：\}', text))
+    if n_src >= 6:
+        rec('PASS', 'P', '附录 O 有 %d 处「出处」行，逐节注明借鉴来源' % n_src)
+    else:
+        rec('FAIL', 'P', '附录 O 的「出处」行只有 %d 处（应 ≥6）：来源不可追溯' % n_src)
+    ex = found['六道估算练习']
+    n_item = len(re.findall(r'\\item\s*\\textbf\{（', ex))
+    n_ans = len(re.findall(r'\\textbf\{答案：\}', ex))
+    if n_item == 6 and n_ans == 6:
+        rec('PASS', 'P', '附录 O 的六道估算练习每题都有「答案」（6 题 / 6 答案）')
+    else:
+        rec('FAIL', 'P', '附录 O 练习数与答案数应为 6/6，实际 %d/%d' % (n_item, n_ans))
+    lacks(text, r'\frac12I_bV_b',
+          'src/%s（恒等式 P_jet=I_bV_b 被误写成 ½I_bV_b 的旧口径）' % APP_FILES['O'])
+    lacks(text, r'g_0v_{\mathrm{ex}}',
+          'src/%s（比冲定义写成 I_sp=g_0·v_ex 的旧口径）' % APP_FILES['O'])
+
+    # ---- 数值：全部由本函数从头算一遍（与 tmp/appO_calc.py 同一套公式）
+    v_ex = lambda isp: isp * G0                      # 排气速度
+    ratio = lambda dv, isp: math.exp(dv / v_ex(isp))  # 质量比 m0/mf
+    t_of = lambda ib, vb: ib * math.sqrt(2 * M_XE * vb / E_CHG)
+    cl_j = lambda v, d: (4 * EPS0 / 9) * math.sqrt(2 * E_CHG / M_XE) * v ** 1.5 / d ** 2
+    t_tpr = lambda isp, eta: 2 * eta / (G0 * isp)     # T/P_in [N/W]
+    hall_wce = E_CHG * 0.02 / M_E                     # B=0.02 T
+    hall_nu = 1e19 * 2e-19 * math.sqrt(2 * 20 * E_CHG / M_E)
+    hall_vi = math.sqrt(2 * E_CHG * 300 / M_XE)
+    pr_ex = lambda isp: 2 * 0.70 * 2e5 / (G0 * isp)   # 200 kW、η=0.70 的推力
+
+    cases = [
+        # (节, 说明, 期望值, 相对容差, 单位, 是否连符号)
+        ('为什么用电推进', '化学 Isp 上限 450 s', 450.0, 0.02, r'\mathrm{s}', False),
+        # 以下四行的四列都来自表 tab:app-o-isp，单位写在表头，故不校验单位
+        ('为什么用电推进', '450 s → 4.41 km/s', v_ex(450) / 1e3, 0.02, '', False),
+        ('为什么用电推进', '450 s → m0/mf=9.64', ratio(1e4, 450), 0.02, '', False),
+        ('为什么用电推进', '450 s → 推进剂 89.6%', 100 * (1 - 1 / ratio(1e4, 450)), 0.02, '', False),
+        ('为什么用电推进', '1800 s → 17.7 km/s', v_ex(1800) / 1e3, 0.02, '', False),
+        ('为什么用电推进', '1800 s → m0/mf=1.76', ratio(1e4, 1800), 0.02, '', False),
+        ('为什么用电推进', '1800 s → 推进剂 43.3%', 100 * (1 - 1 / ratio(1e4, 1800)), 0.02, '', False),
+        ('为什么用电推进', '3000 s → 29.4 km/s', v_ex(3000) / 1e3, 0.02, '', False),
+        ('为什么用电推进', '3000 s → m0/mf=1.40', ratio(1e4, 3000), 0.02, '', False),
+        ('为什么用电推进', '3000 s → 推进剂 28.8%', 100 * (1 - 1 / ratio(1e4, 3000)), 0.02, '', False),
+        ('为什么用电推进', '5000 s → 49.0 km/s', v_ex(5000) / 1e3, 0.02, '', False),
+        ('为什么用电推进', '5000 s → m0/mf=1.23', ratio(1e4, 5000), 0.02, '', False),
+        ('为什么用电推进', '5000 s → 推进剂 18.4%', 100 * (1 - 1 / ratio(1e4, 5000)), 0.02, '', False),
+        # 卫星例（Δv=3 km/s、1000 kg）
+        ('为什么用电推进', 'Isp=300 s 需 639 kg', 1000 * (1 - 1 / ratio(3000, 300)), 0.02, r'\mathrm{kg}', False),
+        ('为什么用电推进', '化学推进剂占 64%', 100 * (1 - 1 / ratio(3000, 300)), 0.02, '', False),
+        ('为什么用电推进', 'Isp=3000 s 只需 97 kg', 1000 * (1 - 1 / ratio(3000, 3000)), 0.02, r'\mathrm{kg}', False),
+        ('为什么用电推进', '省下 542 kg',
+         1000 * (1 / ratio(3000, 3000) - 1 / ratio(3000, 300)), 0.02, r'\mathrm{kg}', False),
+        ('为什么用电推进', '静电场 1000 V 给出 38 km/s', math.sqrt(2 * E_CHG * 1000 / M_XE) / 1e3,
+         0.02, r'\mathrm{km/s}', False),
+        # 表 tab:app-o-tp：单位写在表头，故不校验单位
+        ('推力与功率账', 'T/P=40.8 mN/kW（3000 s、η=0.6）', t_tpr(3000, 0.6) * 1e6, 0.02, '', False),
+        ('推力与功率账', '0.1 N → 3.40 mg/s', 0.1 / v_ex(3000) * 1e6, 0.02, '', False),
+        ('推力与功率账', '0.1 N → P_jet=1471 W', 0.5 * 0.1 * v_ex(3000), 0.02, '', False),
+        ('推力与功率账', '0.1 N → P_in=2452 W（η=0.6）', 0.5 * 0.1 * v_ex(3000) / 0.6, 0.02, '', False),
+        ('推力与功率账', '10 N → 339.9 mg/s', 10 / v_ex(3000) * 1e6, 0.02, '', False),
+        ('推力与功率账', '10 N → P_jet=1.47e5 W', 0.5 * 10 * v_ex(3000), 0.02, '', False),
+        ('推力与功率账', '10 N → P_in=2.45e5 W', 0.5 * 10 * v_ex(3000) / 0.6, 0.02, '', False),
+        ('推力与功率账', 'NSTAR 级 → 3.03 mg/s', 0.092 / v_ex(3100) * 1e6, 0.02, '', False),
+        ('推力与功率账', 'NSTAR 级 → P_jet=1398 W', 0.5 * 0.092 * v_ex(3100), 0.02, '', False),
+        ('推力与功率账', 'NSTAR 级 → P_in=2293 W（η=0.61）', 0.5 * 0.092 * v_ex(3100) / 0.61, 0.02, '', False),
+        ('推力与功率账', 'NSTAR 级 → T/P=40.1 mN/kW', t_tpr(3100, 0.61) * 1e6, 0.02, '', False),
+        ('推力与功率账', '10 N 推一年要 1.07e4 kg', 10 / v_ex(3000) * 3.156e7, 0.02, r'\mathrm{kg}', False),
+        ('推力与功率账', '折算 10.7 t/yr', 10 / v_ex(3000) * 3.156e7 / 1e3, 0.02, r'\mathrm{t/yr}', False),
+        ('推力与功率账', '1 N 要 24.5 kW', 1 / t_tpr(3000, 0.6) / 1e3, 0.02, r'\mathrm{kW}', False),
+        ('推力与功率账', '100 N 要 2.45 MW', 100 / t_tpr(3000, 0.6) / 1e6, 0.02, r'\mathrm{MW}', False),
+        # 表 tab:app-o-beam：单位写在表头，故不校验单位
+        ('静电加速', '300 V → 21.0 km/s', math.sqrt(2 * E_CHG * 300 / M_XE) / 1e3, 0.02, '', False),
+        ('静电加速', '300 V → Isp 2141 s', math.sqrt(2 * E_CHG * 300 / M_XE) / G0, 0.02, '', False),
+        ('静电加速', '1000 V → 38.3 km/s', math.sqrt(2 * E_CHG * 1000 / M_XE) / 1e3, 0.02, '', False),
+        ('静电加速', '1000 V → Isp 3909 s', math.sqrt(2 * E_CHG * 1000 / M_XE) / G0, 0.02, '', False),
+        ('静电加速', '1500 V → 47.0 km/s', math.sqrt(2 * E_CHG * 1500 / M_XE) / 1e3, 0.02, '', False),
+        ('静电加速', '1500 V → Isp 4788 s', math.sqrt(2 * E_CHG * 1500 / M_XE) / G0, 0.02, '', False),
+        ('静电加速', 'I_b=2 A、1000 V → T=0.104 N', t_of(2.0, 1000), 0.02, r'\mathrm{N}', False),
+        ('静电加速', '恒等式 P_jet=I_bV_b=2.00 kW', 2.0 * 1000 / 1e3, 0.02, r'\mathrm{kW}', False),
+        ('静电加速', 'ṁ=2.72 mg/s', 2.0 * M_XE / E_CHG * 1e6, 0.02, r'\mathrm{mg/s}', False),
+        ('静电加速', 'η=0.65 → P_in=3.08 kW', 2000 / 0.65 / 1e3, 0.02, r'\mathrm{kW}', False),
+        ('静电加速', 'CL(1500 V,1.5 mm)=123 A/m²', cl_j(1500, 1.5e-3), 0.02, r'\mathrm{A/m^2}', False),
+        ('静电加速', '3 A 需栅极 243 cm²', 3.0 / cl_j(1500, 1.5e-3) * 1e4, 0.02, r'\mathrm{cm^2}', False),
+        ('静电加速', '电流密度涨 84%', 100 * (1.5 ** 1.5 - 1), 0.02, '', False),
+        # 两项都是两位有效数字的舍入（22.5% 印成 22%），容差放到 3%
+        ('静电加速', '比冲只涨 22%', 100 * (math.sqrt(1500 / 1000) - 1), 0.03, '', False),
+        ('霍尔推力器', 'B=0.02 T → ω_ce=3.52e9', hall_wce, 0.02, r'\mathrm{rad/s}', False),
+        ('霍尔推力器', 'ν_en=5.30e6 s⁻¹', hall_nu, 0.02, r'\mathrm{s^{-1}}', False),
+        ('霍尔推力器', 'ω_ceτ_e≈663（电子被磁化）', hall_wce / hall_nu, 0.02, '', False),
+        ('霍尔推力器', 'ω_ci=1.47e4 rad/s', E_CHG * 0.02 / M_XE, 0.02, r'\mathrm{rad/s}', False),
+        ('霍尔推力器', 'τ_i=1.19 μs', 0.025 / hall_vi * 1e6, 0.02, r'\mu\mathrm{s}', False),
+        # 0.0175 印成 0.018（两位有效数字），容差放到 5%
+        ('霍尔推力器', 'ω_ciτ_i≈0.018≪1', E_CHG * 0.02 / M_XE * 0.025 / hall_vi, 0.05, '', False),
+        ('霍尔推力器', 'E=V_d/L=1.2e4 V/m', 300 / 0.025, 0.02, r'\mathrm{V/m}', False),
+        ('霍尔推力器', 'v_E=E/B=6.0e5 m/s', 12000 / 0.02, 0.02, r'\mathrm{m/s}', False),
+        ('霍尔推力器', '霍尔电流是束流的 28.6 倍', (12000 / 0.02) / hall_vi, 0.02, '', False),
+        ('霍尔推力器', 'I_b=5 A → T=0.143 N', t_of(5.0, 300), 0.02, r'\mathrm{N}', False),
+        ('霍尔推力器', 'P_jet=I_bV_d=1.50 kW', 5.0 * 300 / 1e3, 0.02, r'\mathrm{kW}', False),
+        ('霍尔推力器', 'η=0.5 → P_in=3.00 kW', 1500 / 0.5 / 1e3, 0.02, r'\mathrm{kW}', False),
+        ('霍尔推力器', 'T/P=47.6 mN/kW', t_of(5.0, 300) / 3000 * 1e6, 0.02, r'\mathrm{mN/kW}', False),
+        ('霍尔推力器', '比冲从 450 抬到 2100 s', 2100.0, 0.02, r'\mathrm{s}', False),
+        # 表 tab:app-o-power：单位写在表头，故不校验单位
+        ('磁喷嘴', 'Isp=2000 s → 19.6 km/s', v_ex(2000) / 1e3, 0.02, '', False),
+        ('磁喷嘴', 'Isp=2000 s → T=14.3 N', pr_ex(2000), 0.02, '', False),
+        ('磁喷嘴', 'Isp=2000 s → ṁ=727.9 mg/s', pr_ex(2000) / v_ex(2000) * 1e6, 0.02, '', False),
+        ('磁喷嘴', 'Isp=5000 s → 49.0 km/s', v_ex(5000) / 1e3, 0.02, '', False),
+        ('磁喷嘴', 'Isp=5000 s → T=5.71 N', pr_ex(5000), 0.02, '', False),
+        ('磁喷嘴', 'Isp=5000 s → ṁ=116.5 mg/s', pr_ex(5000) / v_ex(5000) * 1e6, 0.02, '', False),
+        ('磁喷嘴', 'Isp=10000 s → 98.1 km/s', v_ex(10000) / 1e3, 0.02, '', False),
+        ('磁喷嘴', 'Isp=10000 s → T=2.86 N', pr_ex(10000), 0.02, '', False),
+        ('磁喷嘴', 'Isp=10000 s → ṁ=29.1 mg/s', pr_ex(10000) / v_ex(10000) * 1e6, 0.02, '', False),
+        ('中和', '中和器功耗 30 W', 2.0 * 15, 0.02, r'\mathrm{W}', False),
+        ('中和', '占 2 kW 束功率的 1.5%', 100 * 30 / 2000, 0.02, '', False),
+        ('中和', 'CEX(n_n=1e17)=1.5%', 100 * 1e17 * 5e-19 * 0.3, 0.03, '', False),
+        ('中和', 'CEX(n_n=1e18)=15%', 100 * 1e18 * 5e-19 * 0.3, 0.02, '', False),
+        ('中和', '发散 15° 损失 3.4%', 100 * (1 - math.cos(math.radians(15))), 0.02, '', False),
+        ('中和', '发散 25° 损失 9.4%', 100 * (1 - math.cos(math.radians(25))), 0.02, '', False),
+        ('中和', '氙电离能 12.13 eV', 12.13, 0.02, r'\mathrm{eV}', False),
+        ('中和', '占 300 V 束能的 4.0%', 100 * 12.13 / 300, 0.02, '', False),
+        ('中和', '占 1000 V 的 1.2%', 100 * 12.13 / 1000, 0.02, '', False),
+        ('六道估算练习', '[1] v_ex=2.45e4 m/s', v_ex(2500), 0.02, r'\mathrm{m/s}', False),
+        ('六道估算练习', '[1] m0/mf=1.277', ratio(6000, 2500), 0.02, '', False),
+        ('六道估算练习', '[1] 推进剂占 21.7%', 100 * (1 - 1 / ratio(6000, 2500)), 0.02, '', False),
+        ('六道估算练习', '[2] ṁ=8.16e-6 kg/s', 0.2 / v_ex(2500), 0.02, r'\mathrm{kg/s}', False),
+        ('六道估算练习', '[2] P_jet=2452 W', 0.5 * 0.2 * v_ex(2500), 0.02, r'\mathrm{W}', False),
+        ('六道估算练习', '[2] P_in=4458 W（η=0.55）', 0.5 * 0.2 * v_ex(2500) / 0.55, 0.02, r'\mathrm{W}', False),
+        ('六道估算练习', '[3] v(1200 V)=4.20e4 m/s', math.sqrt(2 * E_CHG * 1200 / M_XE), 0.02,
+         r'\mathrm{m/s}', False),
+        ('六道估算练习', '[3] Isp=4282 s', math.sqrt(2 * E_CHG * 1200 / M_XE) / G0, 0.02, r'\mathrm{s}', False),
+        ('六道估算练习', '[3] T=0.229 N', t_of(4.0, 1200), 0.02, r'\mathrm{N}', False),
+        ('六道估算练习', '[3] P_jet=I_bV_b=4800 W', 4.0 * 1200, 0.02, r'\mathrm{W}', False),
+        ('六道估算练习', '[4] CL(1200 V,1 mm)=198 A/m²', cl_j(1200, 1e-3), 0.02, r'\mathrm{A/m^2}', False),
+        ('六道估算练习', '[4] 3 A 需 151 cm²', 3.0 / cl_j(1200, 1e-3) * 1e4, 0.02, r'\mathrm{cm^2}', False),
+        ('六道估算练习', '[4] 电压 +20% → 电流 +31%', 100 * (1.2 ** 1.5 - 1), 0.02, '', False),
+        ('六道估算练习', '[5] v_th(25 eV)=2.97e6 m/s',
+         math.sqrt(2 * 25 * E_CHG / M_E), 0.02, r'\mathrm{m/s}', False),
+        ('六道估算练习', '[5] ν_en=4.45e6 s⁻¹',
+         5e18 * 3e-19 * math.sqrt(2 * 25 * E_CHG / M_E), 0.02, r'\mathrm{s^{-1}}', False),
+        ('六道估算练习', '[5] ω_ce=2.64e9 rad/s', E_CHG * 0.015 / M_E, 0.02, r'\mathrm{rad/s}', False),
+        ('六道估算练习', '[5] ω_ceτ_e≈593',
+         E_CHG * 0.015 / M_E / (5e18 * 3e-19 * math.sqrt(2 * 25 * E_CHG / M_E)), 0.02, '', False),
+        ('六道估算练习', '[5] v_i(250 V)=1.92e4 m/s', math.sqrt(2 * E_CHG * 250 / M_XE), 0.02,
+         r'\mathrm{m/s}', False),
+        ('六道估算练习', '[5] Isp=1955 s', math.sqrt(2 * E_CHG * 250 / M_XE) / G0, 0.02, r'\mathrm{s}', False),
+        ('六道估算练习', '[6] T=9.94 N（300 kW、η=0.65）', 2 * 0.65 * 3e5 / v_ex(4000), 0.02,
+         r'\mathrm{N}', False),
+        ('六道估算练习', '[6] 1 t 推进剂用 45.7 day',
+         1000 / (2 * 0.65 * 3e5 / v_ex(4000) / v_ex(4000)) / 86400, 0.02, r'\mathrm{day}', False),
+    ]
+    bad = []
+    for topic, desc, want, rel, unit, signed in cases:
+        if not value_in(found[topic], want, rel, unit, signed):
+            bad.append((topic, desc))
+    if bad:
+        rec('FAIL', 'P', '附录 O 有 %d 项数值与独立复算不符（或不在它所属的那一节内）：%s'
+            % (len(bad), bad[:6]))
+    else:
+        rec('PASS', 'P', '附录 O 的 %d 项关键数值全部与独立复算一致，且落在各自小节内'
+            % len(cases))
+
+    # 口径自查盒与全篇约定（这些内容在节外，故对整个文件断言）
+    value_in(text, 2.180172e-25, 0.02, r'\mathrm{kg}', False)
+    has(text, r'\texttt{day}', 'src/%s（时间单位写成 day 而不是中文字，避免数学字体缺字）' % APP_FILES['O'])
+    has(text, '不需要再乘', 'src/%s（P_jet=I_bV_b 不需要 ½ 因子的提示）' % APP_FILES['O'])
+    has(text, r'\frac{T}{P_{\mathrm{in}}}=\frac{2\eta}{g_0I_{\mathrm{sp}}}',
+        'src/%s（T/P 与推力无关的关系式）' % APP_FILES['O'])
+    has(text, r'T\propto\frac{P_{\mathrm{in}}}{I_{\mathrm{sp}}}',
+        'src/%s（比冲调高、推力减半的交换关系）' % APP_FILES['O'])
+    has(found['为什么用电推进'], '电推进存在的理由',
+        'src/%s（电推进的存在理由与代价）' % APP_FILES['O'])
+    has(found['推力与功率账'], '用时间换速度增量',
+        'src/%s（只能做长期小推力的结论）' % APP_FILES['O'])
+    has(found['推力与功率账'], '日历秒',
+        'src/%s（推进剂按日历秒计、与附录 N 的等离子体秒区分）' % APP_FILES['O'])
+    has(found['静电加速'], '更大的束流面积',
+        'src/%s（"面积比电压更重要"的结论）' % APP_FILES['O'])
+    has(found['霍尔推力器'], '近三十倍',
+        'src/%s（霍尔电流远大于束流的结论）' % APP_FILES['O'])
+    has(found['霍尔推力器'], '电离越多越好',
+        'src/%s（电离与加速共用电压的警示）' % APP_FILES['O'])
+    has(found['磁喷嘴'], '比冲调高一倍，推力就减半',
+        'src/%s（可调比冲的取舍结论）' % APP_FILES['O'])
+    has(found['中和'], '损失清单',
+        'src/%s（效率天花板在损失清单而不在加速原理）' % APP_FILES['O'])
+    has(found['来源、分级与版权说明'], '不写无法核实的 DOI 与卷页',
+        'src/%s（离线环境下的来源交代方式）' % APP_FILES['O'])
+
+
 def check_P02_appendix_j_map():
     """附录 J 逐章对照表的完备性：覆盖 1--12 章、每行 5 列、章号不越界。
 
@@ -1726,6 +1964,7 @@ def main():
     check_P07_appendix_l_bank()
     check_P08_appendix_m_heating()
     check_P10_appendix_n_boundary()
+    check_P11_appendix_o_propulsion()
     check_P06_scattering_alpha()
     check_P09_tcbtheorem_arity()
 

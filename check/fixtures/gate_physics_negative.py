@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 """可证伪性夹具：故意在源码里植入本轮的典型回退，确认 check/physics_regression.py 会 FAIL。
 
-流程：备份 → 植入 16 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。
+流程：备份 → 植入 19 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。
 其中四处打在 v1.8.0/v1.8.1 新增的附录 I/J/K 上（K.5 的阻尼率符号、K.7 的鞘厚量级与单位、K.4 的磁冻结结论、J 的逐章对照表章号），
 三处打在 v1.10.0 新增的附录 M 上（束速量级、H 模阈值标度、欧姆/自加热倍数口径），
 一处是 v1.10.0 的结构性回退（语义盒退回裸 `\begin{tip}`，正文首字会被吞、标签可能重复），
-三处打在 v1.11.0 新增的附录 N 上（脱靶辐射功率量级、ELM 侵蚀倍数、表标签被改名）。
+三处打在 v1.11.0 新增的附录 N 上（脱靶辐射功率量级、ELM 侵蚀倍数、表标签被改名），
+三处打在 v1.12.0 新增的附录 O 上（电子磁化程度 ω_ceτ_e 的量级、可调比冲的取舍结论、损失清单表标签被改名）。
 用来证明 P 类新检查确实会失败——不是「从来没红过」的装饰：K.5 那条只翻符号，绝对值一字不变。
 恢复用 `newline=''` 写回，保证不把 LF 改写成 CRLF（否则整个文件变成「已修改」）。
 
@@ -27,6 +28,7 @@ APPJ = os.path.join(ROOT, 'src', 'appendix_j_textbook_map.tex')
 APPK = os.path.join(ROOT, 'src', 'appendix_k_problems.tex')
 APPM = os.path.join(ROOT, 'src', 'appendix_m_heating.tex')
 APPN = os.path.join(ROOT, 'src', 'appendix_n_boundary.tex')
+APPO = os.path.join(ROOT, 'src', 'appendix_o_propulsion.tex')
 SUITE = os.path.join(ROOT, 'check', 'physics_regression.py')
 
 PATCHES = [
@@ -51,13 +53,18 @@ PATCHES = [
     (APPN, r'\approx0.861', r'\approx0.761'),                              # 脱靶辐射份额量级回退
     (APPN, r'ELM 造成的侵蚀比稳态高约 $390$ 倍', r'ELM 造成的侵蚀比稳态高约 $39$ 倍'),
     (APPN, r'\label{tab:app-n-impurity}', r'\label{tab:app-n-impuritx}'),
+    # 附录 O（v1.12.0）：三处不同层面——磁化程度的量级、可调比冲的取舍结论、损失清单表标签被改名
+    (APPO, r'\omega_{ce}\tau_e\approx663', r'\omega_{ce}\tau_e\approx66.3'),
+    (APPO, '比冲调高一倍，推力就减半', '比冲调高一倍，推力就翻倍'),
+    (APPO, r'\label{tab:app-o-loss}', r'\label{tab:app-o-lost}'),
 ]
 
-MIN_FAIL = 16        # 实测值（16 处植入回退合并计入）：见下
-# 逐条实测（tmp/probe_neg_v1100.py 与 tmp/probe_neg_v1110.py）每处补丁单独植入都至少产生 1 个 FAIL，
-# 单独计共 19 个；合并植入时降为 16，因为 P01（附录 K 数值）、P08（附录 M 数值）与 P10（附录 N 数值）
-# 各自把同一附录内的多处不符汇总成一行。故 16 是「合并植入」的实测下界，
-# per-patch 可证伪性由上面的探针单独保证（v1.11.0 实测：16/16 全部命中，无落空）。
+MIN_FAIL = 19        # 实测值（19 处植入回退合并计入）：见下
+# 逐条实测（tmp/probe_neg_v1100.py、tmp/probe_neg_v1110.py 与 tmp/probe_neg_v1120.py）每处补丁单独植入
+# 都至少产生 1 个 FAIL，单独计共 22 个；合并植入时降为 19，因为 P01（附录 K 数值）、P08（附录 M 数值）、
+# P10（附录 N 数值）与 P11（附录 O 数值）各自把同一附录内的多处不符汇总成一行。
+# 故 19 是「合并植入」的实测下界，per-patch 可证伪性由上面的探针单独保证
+# （v1.12.0 实测：19/19 全部命中，无落空）。
 
 
 def run_suite():
