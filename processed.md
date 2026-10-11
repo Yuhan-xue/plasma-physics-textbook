@@ -1767,7 +1767,7 @@ Sweller 1988 *Cognitive Science* **12**(2) 257--285（认知负荷）、Tufte 19
    改用 Python 脚本 `tmp/count_anchors_v1150.py` 复核，10 个新锚点分别为 1/1/2/2/1/1/1/1/1/2 次——
    两处为 2 次正是「同值出现在两个小节」的设计，补丁只改第一处。
 
-### 20.6 验收结果（300 页版，冻结后复跑）
+### 20.6 验收结果（301 页版，冻结后复跑）
 
 | 项目 | 结果 |
 | --- | --- |
@@ -1811,5 +1811,13 @@ Sweller 1988 *Cognitive Science* **12**(2) 257--285（认知负荷）、Tufte 19
 
 ### 20.8 发布记录
 
-（待回填）
+| 项目 | 值 |
+| --- | --- |
+| 内容提交 | `4f8e034 feat(v1.15.0): appendix R dusty plasma (OML charging, coulomb crystals, Havnes, dust-acoustic waves, levitation, fusion/space dust); appendix I dual coding and action six; gates to 419 items / 41 fixture patches`（6 文件：`src/appendix_r_dusty.tex` 516 行新增、`src/appendix_i_learning.tex` +77 −3、`src/plasma_physics_textbook_v2.tex` +6 −3、`check/physics_regression.py` +323、`check/fixtures/gate_physics_negative.py` +41、`pdf/plasma_physics_textbook_v2.pdf` 2 145 599 → 2 207 347 B） |
+| 文档提交 | `3fb0f32 docs(v1.15.0): record section 20 in processed.md and refresh README numbers (301 pages / 18 appendices / 419 gate items / 41 fixture patches)`（README +50 −18、`processed.md` +153） |
+| 标签 | 标注标签 `v1.15.0` → 指向内容提交 `4f8e0340020000b1d2f38bf16fdd873a072c5746`；标签对象 `657f112b3f9aba101e8b5b9be88ce94e9abc8a26`；仓库第 **21** 个标签 |
+| 推送 | `git -c http.proxy= -c https.proxy= push origin main` → `1f3e861..3fb0f32  main -> main`；`push origin v1.15.0` → `* [new tag] v1.15.0 -> v1.15.0`；`git rev-list --count HEAD..origin/main` = 0、`origin/main..HEAD` = 0 |
+| Gitea 发布 | `POST status 201`、**release id=102**、`releases/tag/v1.15.0`、标题「v1.15.0 — 尘埃等离子体：从刻蚀腔到等离子体晶体（附录 R）+ 双编码与多媒体学习（附录 I）」、`assets=1`；资产 `plasma_physics_textbook_v2.pdf` 2 207 347 B（`attachments/a69c57b2-4824-4a50-b50a-0b9d5b1e2af6`）；仓库 release 总数 **21** |
+| 资产独立复核 | `curl.exe -sS -L --noproxy '*'`：HTTP **200**、download size 2 207 347 B、SHA256 `A9FBB3E47FA7C53DB5F843BDCEE73DA424CB085BA53996FEF41A760C296A88C4`（与本地 `src/`、`pdf/` 副本一致）、头 `%PDF-1.7`；PyMuPDF 读下载副本：**301 页 / 304 书签 / `pdftitle=等离子体物理自学教材 v1.15.0` / 末页含「尘埃」** |
+| 远程评审 | `git -c http.proxy= -c https.proxy= fetch origin` 后 `origin/main` = `3fb0f32`；`reviews/` 仍为 **66 个文件**（与 `v1.14.0` 时的清单逐条相同，本轮无新增）；最近触碰 `reviews/` 的提交仍是 `f5dbe82` |
 
