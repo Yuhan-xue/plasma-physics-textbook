@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """可证伪性夹具：故意在源码里植入本轮的典型回退，确认 check/physics_regression.py 会 FAIL。
 
-流程：备份 → 植入 111 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。其中四处打在 v1.8.0/v1.8.1 新增的附录 I/J/K 上（K.5 的阻尼率符号、K.7 的鞘厚量级与单位、K.4 的磁冻结结论、J 的逐章对照表章号），
+流程：备份 → 植入 130 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。其中四处打在 v1.8.0/v1.8.1 新增的附录 I/J/K 上（K.5 的阻尼率符号、K.7 的鞘厚量级与单位、K.4 的磁冻结结论、J 的逐章对照表章号），
 三处打在 v1.10.0 新增的附录 M 上（束速量级、H 模阈值标度、欧姆/自加热倍数口径），
 一处是 v1.10.0 的结构性回退（语义盒退回裸 `\begin{tip}`，正文首字会被吞、标签可能重复），
 三处打在 v1.11.0 新增的附录 N 上（脱靶辐射功率量级、ELM 侵蚀倍数、表标签被改名），
@@ -66,6 +66,7 @@ APPS = os.path.join(ROOT, 'src', 'appendix_s_confinement.tex')
 APPT = os.path.join(ROOT, 'src', 'appendix_t_topology.tex')
 APPU = os.path.join(ROOT, 'src', 'appendix_u_gain.tex')
 APPV = os.path.join(ROOT, 'src', 'appendix_v_disruption.tex')
+APPW = os.path.join(ROOT, 'src', 'appendix_w_fastparticle.tex')
 CH10 = os.path.join(ROOT, 'src', 'ch10_supplement.tex')
 SUITE = os.path.join(ROOT, 'check', 'physics_regression.py')
 
@@ -280,9 +281,76 @@ PATCHES = [
     # 111. 第 4 只语义盒（tip-app-v-runaway）的标签被改名——P26 原本只钉 3 只盒，
     #      本轮把 runaway 补进守卫后，这一处由新守卫抓出（补洞的可证伪性证据）
     (APPV, r'{tip-app-v-runaway}', r'{tip-app-v-runawayx}'),
+    # 112. 表 W.1 的 label 被改名
+    (APPW, r'\label{tab:app-w-life}',
+          r'\label{tab:app-w-lifex}'),
+    # 113. 第 6 只语义盒的标签被改名
+    (APPW, r'{tip-app-w-honest}',
+          r'{tip-app-w-honestx}'),
+    # 114. 公式 label eq:app-w-tauv 被改名
+    (APPW, r'\label{eq:app-w-tauv}',
+          r'\label{eq:app-w-tauvx}'),
+    # 115. 公式 label eq:app-w-ratios 被改名
+    (APPW, r'\label{eq:app-w-ratios}',
+          r'\label{eq:app-w-ratiosx}'),
+    # 116. alpha 出生能量 5.6076e-13 J 被改成 6.6076e-13 J
+    (APPW, r'5.6076\times10^{-13}',
+          r'6.6076\times10^{-13}'),
+    # 117. W.2 的 v_alpha0/v_Te 由 0.2284 改成 0.3284
+    (APPW, r'$0.2284$',
+          r'$0.3284$'),
+    # 118. 首轨损失份额由 0.4999% 退回 0.499%
+    (APPW, r'0.4999\%',
+          r'0.499\%'),
+    # 119. 快 alpha 密度由 2.1231e17 退回 2.13e17
+    (APPW, r'2.1231\times10^{17}',
+          r'2.13\times10^{17}'),
+    # 120. 能量 e 折时间由 0.1627 s 退回 ~0.16 s
+    (APPW, r'$0.1627\ \mathrm{s}$',
+          r'$\sim0.16\ \mathrm{s}$'),
+    # 121. TAE 频率由 47.09 kHz 改成 48.09 kHz
+    (APPW, r'47.09\ \mathrm{kHz}',
+          r'48.09\ \mathrm{kHz}'),
+    # 122. 临界能量由 295.0 keV 改成 295.1 keV
+    (APPW, r'295.0\ \mathrm{keV}',
+          r'295.1\ \mathrm{keV}'),
+    # 123. 出处标记被换成「来源」，出处计数跌破 6
+    (APPW, r'\textbf{出处：}',
+          r'\textbf{来源：}'),
+    # 124. W.2 的「两条完全不同的推导路径」被改弱
+    (APPW, r'两条完全不同的推导路径',
+          r'另一条推导路径'),
+    # 125. W.4 的尾巴结论句被改弱
+    (APPW, r'四成的粒子带着七成半的能量',
+          r'一部分粒子带着大部分能量'),
+    # 126. W.6 的结论句被改弱
+    (APPW, r'快粒子损失不是总能量问题，是分布问题',
+          r'快粒子损失是个很小的问题'),
+    # 127. 表 W.4 题注的阈值声明被改成给了阈值
+    (APPW, r'本表不给阈值',
+          r'本表列出各模式的阈值'),
+    # 128. W.5 出处段的「不给出任何阈值数字」声明被改成给了数字
+    (APPW, r'不给出任何阈值数字',
+          r'给出各模式的阈值数字'),
+    # 129. W.8 的第三条不复制约定被改
+    (APPW, r'不复制任何教材或论文的表格数值',
+          r'表格数值参照教材'),
+    # 130. tip W.6 的诚实口径声明被改
+    (APPW, r'把做不到的地方标出来',
+          r'把能算的都算出来'),
 ]
 
-MIN_FAIL = 121       # 实测值（111 处植入回退合并计入 135，留 14 的余量）：见下
+MIN_FAIL = 138       # 实测值（130 处植入回退合并计入 152，留 14 的余量）：见下
+# ## v1.20.0（附录 W）植入扩到 130 处，19 处新补丁分三层：
+# ① 结构层七处（表 W.1 与两个公式 label 改名、第 6 只语义盒标签改名、出处标记换成
+#    「来源」使计数跌破 6、W.2/W.4/W.6 三句结论被改弱）；
+# ② 口径声明层四处（表 W.4 题注「本表不给阈值」、W.5 出处段「不给出任何阈值数字」、
+#    W.8 第三条不复制约定、tip W.6「把做不到的地方标出来」）；
+# ③ 数据层八处（出生能量 5.6076→6.6076e-13 J、速度比 0.2284→0.3284、首轨损失
+#    0.4999%→0.499%、快 alpha 密度 2.1231e17→2.13e17、能量 e 折 0.1627 s→~0.16 s、
+#    TAE 47.09→48.09 kHz、临界能量 295.0→295.1 keV）。数据层差值多在 rel=1e-3 之外，
+#    由 58 个数值用例抓；同值多处的回归由整行字面绑定 + 12 条 lacks 守卫兜住。
+# 合并植入实测 **154**（= v1.19.0 的 135 + 19 处全部触发），MIN_FAIL 121 → 138（留 16 余量）。
 # ## v1.19.0（附录 V）植入扩到 110 处，16 处新补丁分三层：
 # ① 公式形式层四处（RWM 增长率 18.947→18.95 s^-1、壁时间 52.7788→52.78 ms、
 #    E_tor/E_D 0.01507→0.0151、雪崩放大 e^{92.12}/1.021e40→e^{92}/1.0e40）：前三处都是

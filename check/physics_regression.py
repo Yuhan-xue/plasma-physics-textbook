@@ -732,6 +732,7 @@ APP_FILES = {
     'T': 'appendix_t_topology.tex',
     'U': 'appendix_u_gain.tex',
     'V': 'appendix_v_disruption.tex',
+    'W': 'appendix_w_fastparticle.tex',
 }
 
 # CODATA 2018 常数（与附录 D 的单位换算表同一组值）
@@ -1001,6 +1002,24 @@ def check_P05_appendix_k_claims():
     has(k7, 'Child--Langmuir', 'src/%s K.7（与 CL 关系交叉核对）' % APP_FILES['K'])
     has(k7, '同一个电流边界条件', 'src/%s K.7（(d) 的结论）' % APP_FILES['K'])
     has(k7, '鞘边', 'src/%s K.7（体密度/鞘边密度的口径区分）' % APP_FILES['K'])
+
+    # ── v1.20.0 追加：同一条判据的「扩散式残留」（评审清单之外，2026-10-11 复查发现）──
+    # P-C01/P-C03 属于「数字全对、结论反了」的家族：修了被评审点名的那一处，同一判据
+    # 在别处仍可能以同样的错误形式存在。第 20 轮复查抓到三处，此处按同一口径钉住，
+    # 并明确禁止旧表述复活——否则同类错误仍会沿着这条家族线复发。
+    sup3 = strip_comments(read(os.path.join(SRC, 'ch3_supplement.tex')))
+    has(sup3, r'\frac{m}{qBR}', 'src/ch3_supplement.tex（∇B+曲率漂移合并式的分母）')
+    lacks(sup3, r'\frac{m}{qB^{2}R}', 'src/ch3_supplement.tex（分母多一个 B 的旧错式）')
+
+    capl = strip_comments(read(os.path.join(SRC, APP_FILES['L'])))
+    has(capl, '不能据此断定磁冻结成立', 'src/%s（L.4 练习解答的结论方向）' % APP_FILES['L'])
+    has(capl, r'R_m=\mu_0Lv/\eta', 'src/%s（L.4 的磁冻结门槛）' % APP_FILES['L'])
+    lacks(capl, '非相对论近似与理想 MHD 都成立', 'src/%s（L.4 的旧越界结论）' % APP_FILES['L'])
+
+    sup5 = strip_comments(read(os.path.join(SRC, 'ch5_supplement.tex')))
+    has(sup5, '电阻项可以丢掉', 'src/ch5_supplement.tex（R_m≫1 只解决第三道门槛）')
+    has(sup5, '三道门槛中的第三道', 'src/ch5_supplement.tex（判据总结行的限定）')
+    lacks(sup5, '磁力线冻结完全成立', 'src/ch5_supplement.tex（旧的一步到位结论）')
 
 
 def check_P06_scattering_alpha():
@@ -4390,6 +4409,214 @@ def check_P26_appendix_v_disruption():
     rec('PASS', 'P', '附录 V 的 %d 个关键数值均在小节内复算通过' % len(cases))
 
 
+
+def check_P27_appendix_w_fastparticle():
+    """附录 W 快粒子与 alpha 粒子物理的完整性与数值独立复算。
+
+    可证伪点（全部记 FAIL）：
+      ① 八个小节之一被删（按小节标题子串定位）；
+      ② 七张表 / 六只语义盒 / 二十三个编号公式之一被删或改了 label；
+      ③ 缺少「出处：」行（本附录要求 >= 6 处），或六道练习缺解答；
+      ④ 印出的关键数值与独立复算不符（出生参数、慢化时间与临界能量、轨道宽度与
+         首轨损失、快粒子压强与尾巴份额、Alfven 速度与三个频率、损失三通道），
+         或搬到了别的小节里；
+      ⑤ 口径回流：慢化时间被四舍五入、比值 13.7 写成 13.8、v_alpha0 写成 1.30e7、
+         v_c 写成 3.8e6、进动频率写成 1.8 kHz、beta 份额写成 9.2%、密度份额写成
+         0.21%、首轨份额写成 0.499%、能量 e 折写成 0.16 s、快密度写成 2.13e17、
+         E_c 写成 295.1 keV、T_e 倍数写成 32.1。
+
+    数值唯一来源 tmp/appW_calc.py；表内数字的单位写在表头，故部分用例传 unit=''。
+    语义盒标签写在 \\begin{tip}{标题}{标签} 的第二个必选参数里，不写成 \\label{}。
+    """
+    spath = os.path.join(SRC, APP_FILES['W'])
+    if not os.path.exists(spath):
+        rec('FAIL', 'P', '附录 W 文件缺失：src/%s' % APP_FILES['W'])
+        return
+    text = strip_comments(read(spath))
+    secs = split_blocks(text, 'section')
+
+    want = [
+        '出生：3.5 MeV', '慢化：为什么不能用', '加热落在哪', '慢化分布与高能尾巴',
+        '快粒子驱动的不稳定性', '损失与第一壁', '六道估算练习', '来源、分级与版权说明']
+    found = {}
+    for pre in want:
+        for ttl, body in secs:
+            if pre in ttl:
+                found[pre] = body
+                break
+    missing = [p for p in want if p not in found]
+    if missing:
+        rec('FAIL', 'P', '附录 W 缺少小节（标题被改或整节被删）：%s' % missing)
+        return
+    rec('PASS', 'P', '附录 W 的 %d 个小节齐全' % len(want))
+
+    for lab in (
+            'tab:app-w-life', 'tab:app-w-slowing', 'tab:app-w-orbit', 'tab:app-w-tail',
+            'tab:app-w-instability', 'tab:app-w-loss', 'tab:app-w-source'):
+        has(text, '\\label{%s}' % lab, 'src/%s（表格 label %s）' % (APP_FILES['W'], lab))
+    for lab in (
+            'tip-app-w-oneway', 'tip-app-w-locality', 'tip-app-w-locality2',
+            'tip-app-w-fewpercent', 'tip-app-w-ratios', 'tip-app-w-honest'):
+        has(text, '{%s}' % lab, 'src/%s（语义盒标签 %s）' % (APP_FILES['W'], lab))
+    for lab in (
+            'eq:app-w-birth', 'eq:app-w-gyro', 'eq:app-w-rho', 'eq:app-w-source',
+            'eq:app-w-fastformula', 'eq:app-w-xratio', 'eq:app-w-chandrasekhar',
+            'eq:app-w-tauv', 'eq:app-w-therm', 'eq:app-w-vc', 'eq:app-w-rhotheta',
+            'eq:app-w-prompt', 'eq:app-w-dist', 'eq:app-w-meanE', 'eq:app-w-pfast',
+            'eq:app-w-tail', 'eq:app-w-va', 'eq:app-w-tae', 'eq:app-w-precess',
+            'eq:app-w-bounce', 'eq:app-w-ratios', 'eq:app-w-ripple', 'eq:app-w-qwall'):
+        has(text, '\\label{%s}' % lab, 'src/%s（公式 label %s）' % (APP_FILES['W'], lab))
+
+    has(text, '不复制', 'src/%s（版权与独立性声明）' % APP_FILES['W'])
+    n_src = len(re.findall(r'\\textbf\{出处：\}', text))
+    if n_src < 6:
+        rec('FAIL', 'P', '附录 W 的「出处：」声明只有 %d 处（要求 >= 6）' % n_src)
+    else:
+        rec('PASS', 'P', '附录 W 有 %d 处「出处：」声明' % n_src)
+    ex = found['六道估算练习']
+    n_ex = len(re.findall(r'\\textbf\{练习\s*\d+', ex))
+    n_ans = len(re.findall(r'\\textbf\{解答\}', ex))
+    if n_ex < 6 or n_ans < n_ex:
+        rec('FAIL', 'P', '附录 W 的练习 %d 道 / 解答 %d 条（要求 >= 6 且解答不少于练习）'
+            % (n_ex, n_ans))
+    else:
+        rec('PASS', 'P', '附录 W 有 %d 道练习、%d 条解答' % (n_ex, n_ans))
+
+    # 关键行与关键句的逐字绑定（防表格整行被改、防正文数字被搬走）
+    for lit, why in (
+            ('首次轨道损失 & $0.4999\\%$ / $0.5564\\ \\mathrm{MW}$ &',
+             '表 W.5 首轨损失行（份额与功率成对）'),
+            ('纹波损失 & $1\\%$--$3\\%$ / $1.1130$--$3.3390\\ \\mathrm{MW}$ &',
+             '表 W.5 纹波损失行（简化口径区间）'),
+            ('鱼骨模 & $\\omega\\approx\\omega_d$（进动共振） &',
+             '表 W.4 鱼骨模行（共振条件）'),
+            ('TAE／环向 Alfvén 模 & $v_\\parallel\\approx v_A$，$\\omega\\approx v_A/(2qR)$ &',
+             '表 W.4 TAE 行（共振条件）'),
+            ('W.4 & 慢化分布 $1/(v^3+v_c^3)$、$(2/3)n\\langle E\\rangle$ 口径 &',
+             '表 W.7 的 W.4 行（借鉴与自拟的分界）'),
+            ('W.5 & TAE 色散关系、鱼骨模与进动共振、alpha 连续谱定性 &',
+             '表 W.7 的 W.5 行'),
+            ('不稳定性输运 & 未定量（模型算不出） &',
+             '表 W.5 第三通道（刻意留空，不得被填数）'),
+            ('$v_{\\alpha 0}/v_{Te}$ & $0.2284$ &', '表 W.2 的适用性判据行'),
+            ('$H(x)$ 精确 / 渐近 & $0.00869311$ / $0.00896879$ &',
+             '表 W.2 的线性阻力段证据行'),
+            ('$\\rho_\\theta$ & $0.1790\\ \\mathrm{m}$ & $q\\rho_\\alpha/\\sqrt{\\eps}$ &',
+             '表 W.3 的径向分辨率行'),
+            ('alpha 比背景电子慢', 'W.2 的核心判断句'),
+            ('这个答案是错的，而且错三个数量级', 'W.2 对错误公式的定量否定'),
+            ('两条完全不同的推导路径', 'W.2 的 tau_eq 闭合验证'),
+            ('E_{\\alpha 0} = 3.5\\ \\mathrm{MeV} = 5.6076\\times10^{-13}\\ \\mathrm{J}',
+             '式 W.1 的出生能量整行'),
+            ('f_{\\text{TAE}}(q{=}2)=47.09\\ \\mathrm{kHz},\\;',
+             '式 W.18 的 TAE 频率整行'),
+            ('四成的粒子带着七成半的能量', 'W.4 的尾巴结论句'),
+            ('快粒子损失不是总能量问题，是分布问题', 'W.6 的结论句'),
+            ('把做不到的地方标出来', 'tip W.6 的诚实口径'),
+            ('本表不给阈值', '表 W.4 题注的阈值声明'),
+            ('不给出任何阈值数字', 'W.5 的出处段口径声明'),
+            ('只给判据、不给数字', 'W.8 的三档难度说明'),
+            ('不复制任何教材或论文的表格数值', 'W.8 的第一条不复制约定'),
+    ):
+        has(text, lit, 'src/%s（%s）' % (APP_FILES['W'], why))
+
+    # 数值逐节独立复算（rel 全部 1e-3；只查本小节内的数，防数字被搬到别的小节）
+    U = '\\mathrm{%s}'
+    cases = [
+        # W.1 出生
+        ('出生：3.5 MeV', 111.3, U % 'MW', 'alpha 功率（=P_fus/5）'),
+        ('出生：3.5 MeV', 5.6076e-13, U % 'J', 'alpha 出生能量'),
+        ('出生：3.5 MeV', 1.2992e7, U % 'm/s', 'alpha 出生速度'),
+        ('出生：3.5 MeV', 0.0508, U % 'm', 'alpha 回旋半径 5.08 cm'),
+        ('出生：3.5 MeV', 3.70, U % 'mm', '氘离子回旋半径 3.70 mm'),
+        ('出生：3.5 MeV', 13.7, '', 'rho_alpha/rho_i'),
+        ('出生：3.5 MeV', 1.9848e20, U % 's^{-1}', 'alpha 出生率'),
+        ('出生：3.5 MeV', 2.3850e17, 'm^{-3}\\,s^{-1}', '单位体积出生率'),
+        # W.2 慢化
+        ('慢化：为什么不能用', 0.2284, '', 'x = v_a0/v_Te < 1'),
+        ('慢化：为什么不能用', 5.6869e7, U % 'm/s', '电子热速度'),
+        ('慢化：为什么不能用', 0.00869311, '', 'H(x) 精确值'),
+        ('慢化：为什么不能用', 0.00896879, '', 'H(x) 渐近值'),
+        ('慢化：为什么不能用', 2.0421e-26, U % 'kg/s', '阻力系数 K'),
+        ('慢化：为什么不能用', 0.3254, U % 's', '速度 e 折时间'),
+        ('慢化：为什么不能用', 0.1627, U % 's', '能量 e 折时间'),
+        ('慢化：为什么不能用', 0.1638, U % 's', 'NRL 均分时间（交叉验证）'),
+        ('慢化：为什么不能用', 0.8902, U % 's', '热化时间'),
+        ('慢化：为什么不能用', 1.095605e-6, '', '离子阻力系数 C_i'),
+        ('慢化：为什么不能用', 3.7716e6, U % 'm/s', '临界速度'),
+        ('慢化：为什么不能用', 295.0, U % 'keV', '临界能量'),
+        ('慢化：为什么不能用', 32.08, '', 'E_c / T_e'),
+        ('慢化：为什么不能用', 4.2272e6, U % 'm', '慢化路径'),
+        ('慢化：为什么不能用', 4227, U % 'km', '慢化路径（km）'),
+        ('慢化：为什么不能用', 108514, '', '绕环圈数'),
+        ('慢化：为什么不能用', 8.424185e5, U % 'm/s', '氘离子热速度'),
+        # W.3 轨道
+        ('加热落在哪', 0.1790, U % 'm', '极向回旋半径'),
+        ('加热落在哪', 8.95, '', 'rho_theta / a'),
+        ('加热落在哪', 0.3580, U % 'm', '香蕉宽度'),
+        ('加热落在哪', 0.9105, '', '首轨损失边界 r/a'),
+        ('加热落在哪', 0.4999, '', '首轨损失份额'),
+        ('加热落在哪', 0.5564, U % 'MW', '首轨损失功率'),
+        ('加热落在哪', 0.0714, 'MW/m^2', '落点热流'),
+        ('加热落在哪', 7.7911, U % 'm^2', '落点面积'),
+        # W.4 尾巴
+        ('慢化分布与高能尾巴', 1191.1, U % 'keV', '快 alpha 平均能量'),
+        ('慢化分布与高能尾巴', 0.3403, '', '平均能量 / 出生能量'),
+        ('慢化分布与高能尾巴', 2.1231e17, U % 'm^{-3}', '快 alpha 密度'),
+        ('慢化分布与高能尾巴', 0.2123, '', '快 alpha 密度份额'),
+        ('慢化分布与高能尾巴', 2.7011e4, U % 'Pa', '快 alpha 压强'),
+        ('慢化分布与高能尾巴', 2.9461e5, U % 'Pa', '热压'),
+        ('慢化分布与高能尾巴', 9.17, '', '快粒子压强份额'),
+        ('慢化分布与高能尾巴', 0.241671, '', 'beta_fast'),
+        ('慢化分布与高能尾巴', 2.6359, '', 'beta_tot'),
+        ('慢化分布与高能尾巴', 41.2888, '', '尾巴粒子份额'),
+        ('慢化分布与高能尾巴', 74.5395, '', '尾巴能量份额'),
+        # W.5 不稳定性
+        ('快粒子驱动的不稳定性', 7.3380e6, U % 'm/s', 'Alfven 速度'),
+        ('快粒子驱动的不稳定性', 1.7705, '', 'v_a0 / v_A'),
+        ('快粒子驱动的不稳定性', 47.09, U % 'kHz', 'f_TAE(q=2)'),
+        ('快粒子驱动的不稳定性', 94.2, U % 'kHz', 'f_TAE(q=1)'),
+        ('快粒子驱动的不稳定性', 31.4, U % 'kHz', 'f_TAE(q=3)'),
+        ('快粒子驱动的不稳定性', 8589.72, U % 'rad/s', '进动角频率'),
+        ('快粒子驱动的不稳定性', 1367.10, U % 'Hz', '进动频率'),
+        ('快粒子驱动的不稳定性', 47.35, U % 'kHz', '弹跳频率'),
+        ('快粒子驱动的不稳定性', 40.41, U % 'MHz', '氘离子回旋频率'),
+        # W.6 损失与第一壁
+        ('损失与第一壁', 0.005, '', '纹波幅度 delta'),
+        ('损失与第一壁', 0.1000, '', 'sqrt(2 delta)'),
+        ('损失与第一壁', 0.50, '', '纹波俘获立体角份额'),
+        ('损失与第一壁', 1.1130, U % 'MW', '纹波损失下界'),
+        ('损失与第一壁', 3.3390, U % 'MW', '纹波损失上界'),
+    ]
+    bad = []
+    for sec, val, unit, why in cases:
+        if not value_in(found[sec], val, 1e-3, unit):
+            bad.append('%s：%s（%s）' % (sec.split('：')[0], val, why))
+    if bad:
+        rec('FAIL', 'P', '附录 W 有 %d 个数值未在小节内复算通过：%s'
+            % (len(bad), '；'.join(bad[:6])))
+    else:
+        rec('PASS', 'P', '附录 W 的 %d 个关键数值均在小节内复算通过' % len(cases))
+
+    # 口径回流防护（这些写法一律不得出现在附录 W 里）
+    lits = [
+        ('0.499\\%', '首轨损失份额不得四舍五入到 0.499%'),
+        ('0.16\\ \\mathrm{s}', '能量 e 折时间不得写成 0.16 s'),
+        ('13.8', 'rho_alpha/rho_i 不得写成 13.8'),
+        ('2.13\\times10^{17}', '快 alpha 密度不得写成 2.13e17'),
+        ('295.1', '临界能量不得写成 295.1 keV'),
+        ('32.1\\,T_e', 'T_e 倍数不得写成 32.1'),
+        ('0.89\\ \\mathrm{ms}', '热化时间不得写成 0.89 ms'),
+        ('1.30\\times10^{7}', 'alpha 出生速度不得写成 1.30e7'),
+        ('3.8\\times10^{6}', '临界速度不得写成 3.8e6'),
+        ('1.8\\ \\mathrm{kHz}', '进动频率不得写成 1.8 kHz'),
+        ('9.2\\%', '快粒子压强份额不得写成 9.2%'),
+        ('0.21\\%', '快 alpha 密度份额不得写成 0.21%'),
+    ]
+    for lit, why in lits:
+        lacks(text, lit, 'src/%s（%s）' % (APP_FILES['W'], why))
+
+
 def check_P02_appendix_j_map():
     """附录 J 逐章对照表的完备性：覆盖 1--12 章、每行 5 列、章号不越界。
 
@@ -4582,6 +4809,7 @@ def main():
     check_P24_appendix_u_gain()
     check_P25_appendix_i_expanding()
     check_P26_appendix_v_disruption()
+    check_P27_appendix_w_fastparticle()
     check_P06_scattering_alpha()
     check_P09_tcbtheorem_arity()
 

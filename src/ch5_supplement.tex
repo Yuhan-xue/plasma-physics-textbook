@@ -112,7 +112,7 @@ Spitzer 电阻率近似公式：$\eta \approx 5\times 10^{-5} Z\ln\Lambda / T_e^
 \[
 R_m = \frac{\mu_0 v L}{\eta} = \frac{4\pi\times 10^{-7}\times 10^4\times 1}{5\times 10^{-10}} = \frac{1.257\times 10^{-2}}{5\times 10^{-10}} \approx 2.5\times 10^7
 \]
-$R_m \gg 1$，磁扩散时间 $\tau_\eta = \mu_0 L^2/\eta = R_m L/v \approx 2500\,\mathrm{s}$，远大于对流时间 $\tau_{\text{流}} = L/v = 10^{-4}\,\mathrm{s}$。磁力线冻结完全成立。
+$R_m \gg 1$，磁扩散时间 $\tau_\eta = \mu_0 L^2/\eta = R_m L/v \approx 2500\,\mathrm{s}$，远大于对流时间 $\tau_{\text{流}} = L/v = 10^{-4}\,\mathrm{s}$。这\emph{只}说明\textbf{电阻项可以丢掉}（理想 MHD 的第三道门槛）；要谈磁冻结还要过另外两道门槛——流体近似与单流体近似（正文第 5 章"MHD 适用条件：三道独立的门槛，别只看一道"）。本题没有给密度与频率，$d_i$ 与 $\omega/\omega_{ci}$ 无法核对，因此只能说：\textbf{在理想 MHD 模型内}磁力线冻结成立。
 
 \textbf{(2) 实验室放电：}
 \[
@@ -125,7 +125,7 @@ $R_m \sim 1$（略大于 1），磁扩散时间 $\tau_\eta = \mu_0 L^2/\eta \app
 
 \textbf{判据总结：}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
-\item $R_m \gg 1$：磁对流主导，磁通冻结（理想MHD，如天体等离子体、托卡马克）
+\item $R_m \gg 1$：磁对流主导，磁通冻结（理想MHD，如天体等离子体、托卡马克；三道门槛中的第三道）
 \item $R_m \ll 1$：磁扩散主导，磁力线可滑过流体（如实验室低参数等离子体、固态导体）
 \item $R_m \sim 1$：两者竞争，出现磁重联等有趣现象（如太阳耀斑电流片）
 \end{itemize}

@@ -128,7 +128,7 @@
 \tkans{忽略对流项，方程化为扩散方程，特征时间 $\tau_\eta=\mu_0L^2/\eta$；两项之比即 $R_m=\tau_\eta/\tau_{flow}=\mu_0Lv/\eta$。$R_m\gg1$ 时对流项主导，冻结成立；$R_m\ll1$ 时磁场自由扩散。}
 
 \item （推导）$n=10^{20}\ \mathrm{m^{-3}}$、$B=5\ \mathrm{T}$ 的氘等离子体：求 Alfvén 速度，并用 $v_A/c$ 说明非相对论性。
-\tkans{$v_A=B/\sqrt{\mu_0nm_i}=5/\sqrt{1.2566\times10^{-6}\times10^{20}\times3.344\times10^{-27}}=5/6.48\times10^{-7}=7.7\times10^{6}\ \mathrm{m/s}$；$v_A/c=2.6\%$。磁力线扰动以 2.6\% 光速传播，非相对论近似与理想 MHD 都成立（对聚变参数，$v_A$ 通常为 $10^{6}$--$10^{7}\ \mathrm{m/s}$）。}
+\tkans{$v_A=B/\sqrt{\mu_0nm_i}=5/\sqrt{1.2566\times10^{-6}\times10^{20}\times3.344\times10^{-27}}=5/6.48\times10^{-7}=7.7\times10^{6}\ \mathrm{m/s}$；$v_A/c=2.6\%$。$v_A/c\ll1$ 只说明\textbf{非相对论 Alfv\'en 公式适用}（位移电流可以忽略），\textbf{不能据此断定磁冻结成立}：磁冻结要求理想欧姆定律成立，至少要 $R_m=\mu_0Lv/\eta\gg1$，还要检查霍尔项与电子压强项（正文第 5 章"MHD 适用条件：三道独立的门槛，别只看一道"）。本题未给温度、电阻率与流动尺度，无法判断（对聚变参数，$v_A$ 通常为 $10^{6}$--$10^{7}\ \mathrm{m/s}$）。}
 
 \item （估算）$T_e=10\ \mathrm{eV}$、$\ln\Lambda=10$ 的氘等离子体：$\eta_\parallel\approx5.2\times10^{-5}\ln\Lambda\,T_e[\mathrm{eV}]^{-3/2}$，求 $\eta_\parallel$、$L=1\ \mathrm{m}$ 的 $\tau_\eta$，以及 $v=10^{4}\ \mathrm{m/s}$ 时的 $R_m$。磁冻结在这里成立吗？
 \tkans{$\eta=5.2\times10^{-5}\times10/10^{1.5}=1.6\times10^{-5}\ \Omega\cdot\mathrm{m}$；$\tau_\eta=\mu_0L^2/\eta=1.2566\times10^{-6}/1.64\times10^{-5}=0.076\ \mathrm{s}$；$R_m=\mu_0Lv/\eta=1.2566\times10^{-6}\times1\times10^{4}/1.64\times10^{-5}=7.6\times10^{2}$。$R_m\gg1$ 成立，但只有两个多量级——若把 $L$ 缩到 1 cm 或把速度降到 $10^{3}\ \mathrm{m/s}$，$R_m$ 就跌到 10 以下，"理想"随即失效。结论：磁冻结是\textbf{需要检验}的近似，不是自动成立的定理。}
