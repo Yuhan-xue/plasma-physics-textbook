@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 """可证伪性夹具：故意在源码里植入本轮的典型回退，确认 check/physics_regression.py 会 FAIL。
 
-流程：备份 → 植入 13 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。
+流程：备份 → 植入 16 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。
 其中四处打在 v1.8.0/v1.8.1 新增的附录 I/J/K 上（K.5 的阻尼率符号、K.7 的鞘厚量级与单位、K.4 的磁冻结结论、J 的逐章对照表章号），
 三处打在 v1.10.0 新增的附录 M 上（束速量级、H 模阈值标度、欧姆/自加热倍数口径），
 一处是 v1.10.0 的结构性回退（语义盒退回裸 `\begin{tip}`，正文首字会被吞、标签可能重复），
+三处打在 v1.11.0 新增的附录 N 上（脱靶辐射功率量级、ELM 侵蚀倍数、表标签被改名）。
 用来证明 P 类新检查确实会失败——不是「从来没红过」的装饰：K.5 那条只翻符号，绝对值一字不变。
 恢复用 `newline=''` 写回，保证不把 LF 改写成 CRLF（否则整个文件变成「已修改」）。
 
@@ -25,6 +26,7 @@ CH6 = os.path.join(ROOT, 'src', 'ch6_supplement.tex')
 APPJ = os.path.join(ROOT, 'src', 'appendix_j_textbook_map.tex')
 APPK = os.path.join(ROOT, 'src', 'appendix_k_problems.tex')
 APPM = os.path.join(ROOT, 'src', 'appendix_m_heating.tex')
+APPN = os.path.join(ROOT, 'src', 'appendix_n_boundary.tex')
 SUITE = os.path.join(ROOT, 'check', 'physics_regression.py')
 
 PATCHES = [
@@ -45,12 +47,17 @@ PATCHES = [
     (APPM, '差 22 倍', '差 220 倍'),
     # v1.10.0 结构性回退：两参数语义盒退回裸调用（会吞掉正文首字、并可能造成标签重复）
     (MAIN, r'\begin{tip}{磁应力记忆口诀}{tip-magstress-mnemonic}', r'\begin{tip}'),
+    # 附录 N（v1.11.0）：三处不同层面——数值量级、结论里的倍数、表标签被改名（结构性）
+    (APPN, r'\approx0.861', r'\approx0.761'),                              # 脱靶辐射份额量级回退
+    (APPN, r'ELM 造成的侵蚀比稳态高约 $390$ 倍', r'ELM 造成的侵蚀比稳态高约 $39$ 倍'),
+    (APPN, r'\label{tab:app-n-impurity}', r'\label{tab:app-n-impuritx}'),
 ]
 
-MIN_FAIL = 14        # 实测值（13 处植入回退合并计入）：见下
-# 逐条实测（tmp/probe_neg_v1100.py）每处补丁单独植入都至少产生 1 个 FAIL，单独计共 16 个；
-# 合并植入时降为 14，因为 P01（附录 K 数值）与 P08（附录 M 数值）各自把同一附录内的多处不符
-# 汇总成一行。故 14 是「合并植入」的实测下界，per-patch 可证伪性由上面的探针单独保证。
+MIN_FAIL = 16        # 实测值（16 处植入回退合并计入）：见下
+# 逐条实测（tmp/probe_neg_v1100.py 与 tmp/probe_neg_v1110.py）每处补丁单独植入都至少产生 1 个 FAIL，
+# 单独计共 19 个；合并植入时降为 16，因为 P01（附录 K 数值）、P08（附录 M 数值）与 P10（附录 N 数值）
+# 各自把同一附录内的多处不符汇总成一行。故 16 是「合并植入」的实测下界，
+# per-patch 可证伪性由上面的探针单独保证（v1.11.0 实测：16/16 全部命中，无落空）。
 
 
 def run_suite():

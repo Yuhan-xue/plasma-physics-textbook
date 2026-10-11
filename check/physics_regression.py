@@ -723,6 +723,7 @@ APP_FILES = {
     'K': 'appendix_k_problems.tex',
     'L': 'appendix_l_problems.tex',
     'M': 'appendix_m_heating.tex',
+    'N': 'appendix_n_boundary.tex',
 }
 
 # CODATA 2018 常数（与附录 D 的单位换算表同一组值）
@@ -1368,6 +1369,187 @@ def check_P08_appendix_m_heating():
         'src/%s（练习 2 的结论：提高束能不会线性提高穿透）' % APP_FILES['M'])
 
 
+def check_P10_appendix_n_boundary():
+    r"""附录 N（等离子体-壁相互作用与偏滤器物理）：结构完整 + 每个数值独立复算。
+
+    可证伪点（六种，全部 FAIL）：① 某节被删（节名按主题前缀匹配）；② 缺「出处」行；
+    ③ 四张表之一或版权声明被删；④ 六道练习缺答案；⑤ 印出来的关键数值与本函数独立
+    复算不符——数值必须落在**它自己那一节**里（把 35.9 MW/m² 改成 3.59、或把
+    0.33 nm/次 ELM 搬到别的节都会被抓到）；⑥ 旧口径回流：按"日历秒"而不是"等离子体
+    秒"折算的年侵蚀量 2680 μm/年。
+    """
+    npath = os.path.join(SRC, APP_FILES['N'])
+    if not os.path.exists(npath):
+        rec('FAIL', 'P', '附录 N 文件缺失：src/%s' % APP_FILES['N'])
+        return
+    text = strip_comments(read(npath))
+    secs = split_blocks(text, 'section')
+    want_prefix = ['从芯部到壁', '刮削层与两点模型', '脱靶', '溅射与侵蚀', '边缘局域模',
+                   '燃料滞留', '六道估算练习', '来源、分级与版权说明']
+    found = {}
+    for ttl, blk in secs:
+        for pre in want_prefix:
+            if ttl.startswith(pre):
+                found[pre] = blk
+    miss = [p for p in want_prefix if p not in found]
+    if miss:
+        rec('FAIL', 'P', '附录 N 缺少小节（或标题改得无法识别）：%s（实际 %d 节）' % (miss, len(secs)))
+        return
+    rec('PASS', 'P', '附录 N 的 %d 个小节齐全（%s）' % (len(want_prefix), '、'.join(want_prefix)))
+
+    for lab, what in (('tab:app-n-tilt', '倾角热流表'),
+                      ('tab:app-n-twopoint', '两点模型自洽解表'),
+                      ('tab:app-n-impurity', '杂质比例敏感性表'),
+                      ('tab:app-n-source', '来源与取材表')):
+        has(text, r'\label{%s}' % lab, 'src/%s（%s）' % (APP_FILES['N'], what))
+    has(text, '不复制', 'src/%s（版权与独立性声明）' % APP_FILES['N'])
+    n_src = len(re.findall(r'\\textbf\{出处：\}', text))
+    if n_src >= 6:
+        rec('PASS', 'P', '附录 N 有 %d 处「出处」行，逐节注明借鉴来源' % n_src)
+    else:
+        rec('FAIL', 'P', '附录 N 的「出处」行只有 %d 处（应 ≥6）：来源不可追溯' % n_src)
+    ex = found['六道估算练习']
+    n_item = len(re.findall(r'\\item\s*\\textbf\{（', ex))
+    n_ans = len(re.findall(r'\\textbf\{答案：\}', ex))
+    if n_item == 6 and n_ans == 6:
+        rec('PASS', 'P', '附录 N 的六道估算练习每题都有「答案」（6 题 / 6 答案）')
+    else:
+        rec('FAIL', 'P', '附录 N 练习数与答案数应为 6/6，实际 %d/%d' % (n_item, n_ans))
+    lacks(text, '2680', 'src/%s（按日历秒折算的旧年侵蚀量，不得回流）' % APP_FILES['N'])
+
+    # ---- 数值：全部由本函数从头算一遍（与 tmp/appN_calc2.py 同一套公式）
+    m_d = 2.013553212745 * M_P
+
+    def c_s(te_ev, m=m_d):
+        return math.sqrt(te_ev * E_CHG / m)
+
+    p_sol = 70e6
+    lam_q, f_x, r0 = 5e-3, 5.0, 6.2
+    a_wet = 2 * math.pi * r0 * lam_q * f_x
+    q_par = p_sol * 0.5 / a_wet
+    kappa0, l_conn, gamma_sh = 2000.0, 40.0, 7.0
+
+    def n_target(te_ev):
+        return q_par / (gamma_sh * te_ev * E_CHG * c_s(te_ev))
+
+    def t_up(tt_ev):
+        return (tt_ev ** 3.5 + 3.5 * q_par * l_conn / kappa0) ** (2 / 7.0)
+
+    n_t_15, t_u_15 = n_target(15.0), t_up(15.0)
+    n_u_15 = n_t_15 * 15.0 / t_u_15
+    q_low_rec = gamma_sh * 2e19 * 15 * E_CHG * c_s(15.0)
+    gamma_i = 2e19 * c_s(15.0)
+    q_allow = 5e6
+    f_rad = 1 - q_allow / q_par
+    p_rad = f_rad * 35e6
+    n_imp_32 = p_rad / (1e20 * 3e-32 * 20.0)
+    n_W = 6.3e28
+    d_steady = 1e-5 * gamma_i / n_W
+    plasma_s = 1e4 * 10.0
+    n_ion_elm = 1e6 / (300 * E_CHG)
+    d_elm = 1e-3 * n_ion_elm / n_W
+    w_th = 3 * 1e20 * (1e4 * E_CHG) * 840.0
+    q_elm = 0.1 * w_th * 0.5 / 20.0 / 0.3e-3
+    e_fus = 17.6e6 * E_CHG
+
+    def t_burn_gday(p_fus):
+        return p_fus / e_fus * 3.0160492 / 6.02214076e23 * 86400
+
+    cases = [
+        # (节, 说明, 期望值, 相对容差, 单位, 是否连符号)
+        ('从芯部到壁', 'P_SOL=70 MW', p_sol / 1e6, 0.02, r'\mathrm{MW}', False),
+        ('从芯部到壁', 'A_wet=0.974 m²', a_wet, 0.02, r'\mathrm{m^2}', False),
+        ('从芯部到壁', 'q_∥=35.9 MW/m²', q_par / 1e6, 0.02, r'\mathrm{MW/m^2}', False),
+        ('从芯部到壁', 'A_wall=979 m²', 4 * math.pi ** 2 * r0 * 2.0 * 2.0, 0.02, r'\mathrm{m^2}', False),
+        ('从芯部到壁', 'q_wall=71.5 kW/m²', p_sol / (4 * math.pi ** 2 * r0 * 2.0 * 2.0) / 1e3, 0.02,
+         r'\mathrm{kW/m^2}', False),
+        ('从芯部到壁', '几何杠杆 1/sin3°≈19', 1 / math.sin(math.radians(3)), 0.02, '', False),
+        # 表 tab:app-n-tilt 的数值：单位写在表头，故不校验单位
+        ('从芯部到壁', 'q_⊥(10°)=6.24 MW/m²', q_par * math.sin(math.radians(10)) / 1e6, 0.02, '', False),
+        ('从芯部到壁', 'q_⊥(5°)=3.13 MW/m²', q_par * math.sin(math.radians(5)) / 1e6, 0.02, '', False),
+        ('从芯部到壁', 'q_⊥(3°)=1.88 MW/m²', q_par * math.sin(math.radians(3)) / 1e6, 0.02, '', False),
+        ('从芯部到壁', 'q_⊥(1°)=0.627 MW/m²', q_par * math.sin(math.radians(1)) / 1e6, 0.02, '', False),
+        # 该值出现在表 tab:app-n-twopoint 中，单位写在表头，故不校验单位
+        ('刮削层与两点模型', 'c_s(15 eV)=2.68e4 m/s', c_s(15.0), 0.02, '', False),
+        ('刮削层与两点模型', 'Γ_i=5.36e23 m⁻²s⁻¹', gamma_i, 0.02,
+         r'\mathrm{m^{-2}\,s^{-1}}', False),
+        ('刮削层与两点模型', 'E_i≈75 eV', 75.0, 0.02, r'\mathrm{eV}', False),
+        ('刮削层与两点模型', '低再循环 q_∥=9.0 MW/m²', q_low_rec / 1e6, 0.02,
+         r'\mathrm{MW/m^2}', False),
+        ('刮削层与两点模型', 'n_t(15 eV)=7.97e19', n_t_15, 0.02, '', False),
+        ('刮削层与两点模型', 'T_u=67.5 eV', t_u_15, 0.02, '', False),
+        ('刮削层与两点模型', 'n_u=1.77e19', n_u_15, 0.02, '', False),
+        ('刮削层与两点模型', '表行 T_t=5 eV 的 n_t=4.14e20', n_target(5.0), 0.02, '', False),
+        ('刮削层与两点模型', '表行 T_t=10 eV 的 n_t=1.46e20', n_target(10.0), 0.02, '', False),
+        ('刮削层与两点模型', '表行 T_t=30 eV 的 T_u=68.5 eV', t_up(30.0), 0.02, '', False),
+        ('刮削层与两点模型', '表行 T_t=50 eV 的 n_u=8.91e18', n_target(50.0) * 50.0 / t_up(50.0), 0.02, '', False),
+        ('脱靶', '需辐射比例 0.861', f_rad, 0.02, '', False),
+        ('脱靶', 'P_rad=30.1 MW', p_rad / 1e6, 0.02, r'\mathrm{MW}', False),
+        ('脱靶', 'n_imp=5.02e17 (L_z=3e-32)', n_imp_32, 0.02, '', False),
+        ('脱靶', '杂质比例 0.50%', 100 * n_imp_32 / 1e20, 0.02, '', False),
+        ('脱靶', 'L_z 低十倍则 5.0%', 100 * n_imp_32 * 10 / 1e20, 0.02, '', False),
+        ('溅射与侵蚀', '稳态侵蚀 8.5 μm/年', d_steady * plasma_s * 1e6, 0.02, '', False),
+        ('溅射与侵蚀', '再沉积后 0.85 μm/年', d_steady * plasma_s * 1e6 * 0.1, 0.02, '', False),
+        ('溅射与侵蚀', '稳态寿命约 5900 年', 5e-3 / (d_steady * plasma_s * 0.1), 0.02, '', False),
+        ('溅射与侵蚀', '单次 ELM 离子通量 2.08e22', n_ion_elm, 0.02, r'\mathrm{m^{-2}}', False),
+        ('溅射与侵蚀', '单次 ELM 侵蚀 0.33 nm', d_elm * 1e9, 0.02, r'\mathrm{nm}', False),
+        ('溅射与侵蚀', 'ELM 年侵蚀 3.30 mm/年', d_elm * 1000 * 1e4 * 1e3, 0.02, '', False),
+        ('溅射与侵蚀', '再沉积后 0.330 mm/年', d_elm * 1000 * 1e4 * 1e3 * 0.1, 0.02, '', False),
+        ('溅射与侵蚀', 'ELM 主导寿命约 15 年', 5e-3 / (d_elm * 1000 * 1e4 * 0.1), 0.02, '', False),
+        ('溅射与侵蚀', 'ELM 比稳态高约 390 倍',
+         (d_elm * 1000 * 1e4) / (d_steady * plasma_s), 0.02, '', False),
+        ('边缘局域模', 'W_th=404 MJ', w_th / 1e6, 0.02, r'\mathrm{MJ}', False),
+        ('边缘局域模', 'ΔW_ELM=40.4 MJ', 0.1 * w_th / 1e6, 0.02, r'\mathrm{MJ}', False),
+        ('边缘局域模', 'q_ELM=3.4 GW/m²', q_elm / 1e9, 0.02, r'\mathrm{GW/m^2}', False),
+        ('边缘局域模', '相对稳态约 1.8e3 倍',
+         q_elm / (q_par * math.sin(math.radians(3))), 0.02, '', False),
+        ('燃料滞留', '氚消耗 1.77e20 /s', 500e6 / e_fus, 0.02, r'\mathrm{s^{-1}}', False),
+        ('燃料滞留', '76.7 g/天', t_burn_gday(500e6), 0.02, r'\mathrm{g/day}', False),
+        ('燃料滞留', '1 kg 触顶 3.6 年', 1000 / (t_burn_gday(500e6) * 0.01) / 365, 0.02, '', False),
+        ('燃料滞留', '滞留率上限 0.36%',
+         100 * 1000 / (10 * 365) / t_burn_gday(500e6), 0.02, '', False),
+        ('燃料滞留', '衰变 0.154 g/天',
+         1000 * math.log(2) / (12.32 * 365.25), 0.02, r'\mathrm{g/day}', False),
+        ('燃料滞留', '300 MW 时 46.0 g/天', t_burn_gday(300e6), 0.02, r'\mathrm{g/day}', False),
+        ('燃料滞留', '300 MW 时 6.0 年', 1000 / (t_burn_gday(300e6) * 0.01) / 365, 0.02, '', False),
+        ('燃料滞留', '300 MW 时上限 0.60%',
+         100 * 1000 / (10 * 365) / t_burn_gday(300e6), 0.02, '', False),
+        ('燃料滞留', 'TBR≥1.05', 1.05, 0.02, '', False),
+        ('六道估算练习', '[1] q_∥=35.9 MW/m²', q_par / 1e6, 0.02, r'\mathrm{MW/m^2}', False),
+        ('六道估算练习', '[1] q_⊥(3°)=1.88 MW/m²', q_par * math.sin(math.radians(3)) / 1e6, 0.02,
+         r'\mathrm{MW/m^2}', False),
+        ('六道估算练习', '[2] q_∥=9.0 MW/m²', q_low_rec / 1e6, 0.02, r'\mathrm{MW/m^2}', False),
+        ('六道估算练习', '[2] c_s=2.68e4 m/s', c_s(15.0), 0.02, r'\mathrm{m/s}', False),
+        ('六道估算练习', '[3] T_u=67.5 eV', t_u_15, 0.02, r'\mathrm{eV}', False),
+        ('六道估算练习', '[3] n_u=1.77e19 m⁻³', n_u_15, 0.02, r'\mathrm{m^{-3}}', False),
+        ('六道估算练习', '[4] n_imp=5.0e17 m⁻³', n_imp_32, 0.03, r'\mathrm{m^{-3}}', False),
+        ('六道估算练习', '[4] 比例 0.50%', 100 * n_imp_32 / 1e20, 0.02, '', False),
+        ('六道估算练习', '[5] W_th=404 MJ', w_th / 1e6, 0.02, r'\mathrm{MJ}', False),
+        ('六道估算练习', '[5] q_ELM=3.4 GW/m²', q_elm / 1e9, 0.02, r'\mathrm{GW/m^2}', False),
+        ('六道估算练习', '[6] 46.0 g/天', t_burn_gday(300e6), 0.02, r'\mathrm{g/day}', False),
+        ('六道估算练习', '[6] 上限 0.60%',
+         100 * 1000 / (3650 * t_burn_gday(300e6)), 0.02, '', False),
+    ]
+    bad = []
+    for topic, desc, want, rel, unit, signed in cases:
+        if not value_in(found[topic], want, rel, unit, signed):
+            bad.append((topic, desc))
+    if bad:
+        rec('FAIL', 'P', '附录 N 有 %d 项数值与独立复算不符（或不在它所属的那一节内）：%s'
+            % (len(bad), bad[:6]))
+    else:
+        rec('PASS', 'P', '附录 N 的 %d 项关键数值全部与独立复算一致，且落在各自小节内'
+            % len(cases))
+
+    has(found['从芯部到壁'], '几何杠杆', 'src/%s（倾角与磁通膨胀的几何杠杆结论）' % APP_FILES['N'])
+    has(found['刮削层与两点模型'], '高再循环', 'src/%s（靶板温度由上游决定 → 高再循环）' % APP_FILES['N'])
+    has(found['脱靶'], '运行窗口', 'src/%s（脱靶是运行窗口而不是开关）' % APP_FILES['N'])
+    has(found['溅射与侵蚀'], 'ELM 造成的侵蚀比稳态高约',
+        'src/%s（稳态不致命、ELM 才致命的结论）' % APP_FILES['N'])
+    has(found['边缘局域模'], 'ELM 缓解', 'src/%s（ELM 缓解是壁寿命设计的前提）' % APP_FILES['N'])
+    has(found['燃料滞留'], 'TBR', 'src/%s（氚自持的增殖比判据）' % APP_FILES['N'])
+
+
 def check_P02_appendix_j_map():
     """附录 J 逐章对照表的完备性：覆盖 1--12 章、每行 5 列、章号不越界。
 
@@ -1543,6 +1725,7 @@ def main():
     check_P05_appendix_k_claims()
     check_P07_appendix_l_bank()
     check_P08_appendix_m_heating()
+    check_P10_appendix_n_boundary()
     check_P06_scattering_alpha()
     check_P09_tcbtheorem_arity()
 

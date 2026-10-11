@@ -245,6 +245,73 @@
 
 三遍读法与前面两节是配套的：\textbf{三遍读法管"输入的组织"}，解题四步法管"卡住时怎么走"，概念图与检索练习管"输出的检验"。本书的版面结构（每章目标盒、章末小结、附录 F 易错点、附录 J 对照表、附录 L 题库）就是按这条链设计的，读者不必另找材料，按顺序用即可。
 
+\section{测量与不确定度：把误差写成物理结论}
+
+物理结论的最终形态不是"$T_e=2.9\ \mathrm{eV}$"，而是"$T_e=2.9\pm0.2\ \mathrm{eV}$"。Taylor 在《An Introduction to Error Analysis》里把这件事讲成一条纪律：\textbf{任何实验数字都必须带不确定度，并且要能说清它主要来自哪里}。本书第 12 章讲了诊断的原理，这一节补上"读数之后怎么变成结论"这一步——它是自学路上最容易被跳过、也最容易在实验课上吃亏的一环。
+
+\textbf{三条够用的传递规则}（各分量相互独立时）：
+\begin{enumerate}
+\item \textbf{和与差：}若 $q=x\pm y$，则 $\delta q=\sqrt{(\delta x)^2+(\delta y)^2}$——\textbf{绝对}不确定度按平方和相加；
+\item \textbf{积与商：}若 $q=xy$ 或 $q=x/y$，则 $\dfrac{\delta q}{|q|}=\sqrt{\left(\dfrac{\delta x}{x}\right)^2+\left(\dfrac{\delta y}{y}\right)^2}$——\textbf{相对}不确定度按平方和相加；
+\item \textbf{乘幂：}若 $q=x^n$，则 $\dfrac{\delta q}{|q|}=|n|\dfrac{\delta x}{|x|}$——指数把相对不确定度\textbf{放大 $|n|$ 倍}。
+\end{enumerate}
+
+\textbf{例 A（双探针求电子温度）。} 双探针的两点法公式为 $T_e=\dfrac{V_1-V_2}{2\ln(I_2/I_1)}$。测得 $V_1=10.0\ \mathrm{V}$、$V_2=6.0\ \mathrm{V}$（各 $\pm0.1\ \mathrm{V}$），$I_1=1.0\ \mathrm{mA}$、$I_2=2.0\ \mathrm{mA}$（各 $\pm2\%$）：
+\begin{align*}
+N&=V_1-V_2=4.00\ \mathrm{V}, & \delta N&=\sqrt{0.1^2+0.1^2}=0.141\ \mathrm{V}\ (3.54\%),\\
+r&=\ln(I_2/I_1)=0.693, & \delta r&=\sqrt{0.02^2+0.02^2}=0.0283\ (4.08\%),\\
+T_e&=\frac{4.00}{2\times0.693}=2.885\ \mathrm{eV}, & \frac{\delta T_e}{T_e}&=\sqrt{0.0354^2+0.0408^2}=5.4\%.
+\end{align*}
+结论写成 $T_e=2.9\pm0.2\ \mathrm{eV}$；注意两项贡献几乎相等（$3.5\%$ 与 $4.1\%$），\textbf{只改进电压表没有用}，必须同时提高电流测量精度。
+
+\textbf{例 B（140 GHz 干涉仪求密度）。} 相移与线积分密度的关系为 $\Delta\phi=r_e\lambda n_eL$（$r_e=2.818\times10^{-15}\ \mathrm{m}$）。取 $\lambda=2.141\times10^{-3}\ \mathrm{m}$、$L=0.50\ \mathrm{m}$、$\Delta\phi=30.17\ \mathrm{rad}$（$4.80$ 条纹）：
+\begin{equation}
+n_e=\frac{30.17}{(2.818\times10^{-15})(2.141\times10^{-3})(0.50)}
+=\frac{30.17}{3.017\times10^{-18}}\approx1.00\times10^{19}\ \mathrm{m^{-3}}.
+\end{equation}
+各分量：相移 $\pm0.05\ \mathrm{rad}$（$0.17\%$）、波长 $10^{-5}$（$0.001\%$）、$L$ 的 $\pm1\ \mathrm{mm}$（$0.20\%$）。按乘积规则合成得 $0.26\%$，即
+\begin{equation}
+n_e=(1.00\pm0.003)\times10^{19}\ \mathrm{m^{-3}}.
+\end{equation}
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{不确定度预算表模板（以例 A、例 B 为例）}
+\label{tab:app-i-budget}
+\begin{tabular}{@{}llrrr@{}}
+\toprule
+量 & 来源 & 分量大小 & 相对贡献 & 是否主导 \\
+\midrule
+$T_e$ & 电压差 $V_1-V_2$ & $\pm0.14\ \mathrm{V}$ & $3.5\%$ & 与下一项并列主导 \\
+$T_e$ & 电流比 $I_2/I_1$ & $\pm2\%$ 各 & $4.1\%$ & 与上一项并列主导 \\
+$n_e$ & 相移 $\Delta\phi$ & $\pm0.05\ \mathrm{rad}$ & $0.17\%$ & 否 \\
+$n_e$ & 光程 $L$ & $\pm1\ \mathrm{mm}$ & $0.20\%$ & \textbf{是}（被忽视的主导项） \\
+$n_e$ & 波长 $\lambda$ & $10^{-5}$ 相对 & $0.001\%$ & 否 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{再看一次乘幂规则的威力：}德拜长度 $\lambda_D\propto\sqrt{T_e/n_e}$，把上面两例的 $T_e$（$5.4\%$）与 $n_e$（$0.26\%$）代进去，
+\begin{equation}
+\frac{\delta\lambda_D}{\lambda_D}=\frac12\sqrt{0.054^2+0.0026^2}\approx2.7\% .
+\end{equation}
+$\lambda_D$ 的不确定度几乎完全由 $T_e$ 决定——所以讨论"德拜长度是否满足 $\lambda_D\ll L$"时，先问 $T_e$ 测得准不准。
+
+\begin{warning}{把系统误差当随机误差处理}{warn:i-syserr}
+\textbf{随机误差}可以靠多次测量压下去：$N$ 次独立测量的平均值的标准差是单次的 $1/\sqrt{N}$（$4$ 次减半、$25$ 次降到 $1/5$、$100$ 次降到 $1/10$）。\textbf{系统误差}（标定偏差、探针面积估错、几何因子、鞘层膨胀效应）不随测量次数下降——重复测量一万次也只会把同一个偏差报得更"精确"。所以：
+\begin{enumerate}[nosep,leftmargin=1.6em]
+  \item 先想清楚哪些是系统项；系统项只能靠\textbf{标定、换方法交叉验证、与已知量比对}来发现；
+  \item 报告结论时把主导项写出来，别人才能判断这个数可不可信；
+  \item 别写"$n_e=1.0000\times10^{19}$"这种有效数字——精度 $0.3\%$ 的数最多写到三位。
+\end{enumerate}
+\end{warning}
+
+\textbf{自学时的落地做法：}做附录 L 与附录 N 的估算题时，除了给出数字，再补一行"\textbf{主导误差}：……"。这一行会强迫你想清楚模型里哪个假设最不可靠（例如 $\lambda_q$ 的取值、再沉积份额、$\gamma\approx7$ 的近似），这比多算一道题有价值得多。
+
+\textbf{出处：}Taylor《An Introduction to Error Analysis》（第 2 版，University Science Books）第 1--3 章（不确定度、传递规则、随机与系统误差）；Bevington \& Robinson《Data Reduction and Error Analysis for the Physical Sciences》（第 3 版）关于误差分类与加权平均的章节；本书第 12 章（诊断原理与探针公式）。
+
+
 \section{出处与延伸阅读}
 
 本附录的主张来自学习科学文献与经典解题方法论，列在下面以便读者自行核对。物理教材的对照关系见附录 J，分级书单见附录 E。
@@ -278,6 +345,8 @@ Bjork (1994) & 载 \textit{Metacognition: Knowing about Knowing}, MIT Press, 185
 Novak \& Gowin (1984) & \textit{Learning How to Learn}, Cambridge University Press & 概念图的构造规则：节点、带连接词的连线、层级、交叉连接 \\
 Novak (1990) & \textit{Journal of Research in Science Teaching} 27(10), 937--949 & 概念图在科学教育中的用法与评分法（"概念图"一节） \\
 Adler \& Van Doren (1972) & \textit{How to Read a Book}, rev.\ ed., Simon \& Schuster & 检视 / 分析 / 主题阅读三遍读法（"教材精读三遍法"一节） \\
+Taylor (1997) & \textit{An Introduction to Error Analysis}, 2nd ed., University Science Books & 不确定度的三条传递规则与"数值 $\pm$ 不确定度"的报告纪律（"测量与不确定度"一节） \\
+Bevington \& Robinson (2003) & \textit{Data Reduction and Error Analysis for the Physical Sciences}, 3rd ed., McGraw-Hill & 随机误差与系统误差的区分、平均值的 $1/\sqrt{N}$ 律、加权平均 \\
 Polya (1945) & \textit{How to Solve It}, Princeton University Press & 解题四步法（"解题四步法"一节）与"元认知三问" \\
 \end{longtable}
 }
