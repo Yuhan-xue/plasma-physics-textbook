@@ -15,8 +15,8 @@
                    俯仰角、e-folding 比值、Druyvesteyn 往返
   N. 结论口径   —— 源码必须写出的正确表述，以及必须已被删除的错误表述
   O. 交叉一致性 —— 附录 F 条目编号/指针可解析、附录 G.2 的返回值语义
-  P. 新增附录   —— 附录 I/K 的物理量独立复算、附录 J 对照表完备性、
-                   附录 I 的 DOI 出处、附录 I/J/K 的挂载与字母连续性
+  P. 新增附录   —— 附录 I/K 的物理量独立复算（逐题绑定、含符号与单位）、附录 J 对照表完备性、
+                   附录 I 的 DOI 出处、附录 I/J/K 的挂载与字母连续性、附录 K 三道判断题的结论方向、α 散射判据的表格行方向
 
 用法：
     python check/physics_regression.py
@@ -192,6 +192,12 @@ def check_M01_two_stream():
               r'\gamma/\omega_{pe}\approx0.332',
               r'那是错的'):
         has(sup, s, 'src/ch9_supplement.tex（双流例题）')
+
+    # 正文第 12 章与补充材料必须给同一个复核例：只改一处（数值漂移）要被抓到
+    main = strip_comments(read(os.path.join(SRC, MAIN)))
+    for s in (r'w^2\approx-0.1101',
+              r'\gamma/\omega_{pe}=\sqrt{0.1101}\approx0.332'):
+        has(main, s, 'src/%s（双流复核例）' % MAIN)
 
 
 def check_M02_buneman():
@@ -452,11 +458,65 @@ def check_M07_eedf():
     (rec('PASS', 'M', '丢掉 √ε 后 ∫F dε=1/√π：%s（证明 √ε 不可吸收进常数）' % msg) if ok
      else rec('FAIL', 'M', '丢掉 √ε 的积分不是 1/√π：%s' % msg))
 
+    # (d) 三种记法的换算：p=F/n_e、g=p/√ε，以及 p/g=√ε 与 ∫√ε·g dε=1
+    pfun = lambda eps: 2 / math.sqrt(math.pi) * Te ** -1.5 * math.sqrt(eps) * math.exp(-eps / Te)
+    gfun = lambda eps: 2 / math.sqrt(math.pi) * Te ** -1.5 * math.exp(-eps / Te)
+    worst = 0.0
+    for eps in (0.25, 1.0, 4.0):
+        worst = max(worst, abs(pfun(eps) / gfun(eps) - math.sqrt(eps)))
+    ok, msg = near(worst, 0.0, 1e-12)
+    (rec('PASS', 'M', '归一化 EEDF p 与 EEPF g 之比 p/g=√ε（0.25/1/4 eV）：%s' % msg) if ok
+     else rec('FAIL', 'M', 'p/g 不等于 √ε：%s' % msg))
+
+    ng = 400001
+    hi_g = 60 * Te
+    hg = hi_g / (ng - 1)
+    sg = 0.5 * (0.0 + math.sqrt(hi_g) * gfun(hi_g))          # √ε·g 在 ε=0 处为 0
+    for i in range(1, ng - 1):
+        e = i * hg
+        sg += math.sqrt(e) * gfun(e)
+    ig = sg * hg
+    ok, msg = near(ig, 1.0, 1e-5)
+    (rec('PASS', 'M', 'EEPF 归一化 ∫√ε·g dε=1：%s' % msg) if ok
+     else rec('FAIL', 'M', 'EEPF 归一化 ∫√ε·g dε 不是 1：%s' % msg))
+
+    # (e) J↔eV 的雅可比：F_eV(ε_eV)=e·F_J(e·ε_eV) 使两个积分相等（差一个 e 就不等）
+    T_J = Te * E_CHG
+    F_J = lambda eJ: math.sqrt(eJ) * math.exp(-eJ / T_J)
+    F_eV = lambda ev: E_CHG * F_J(E_CHG * ev)
+    nj = 200001
+    hi_J, hi_eV = 60 * T_J, 60 * Te
+    h_J, h_eV = hi_J / (nj - 1), hi_eV / (nj - 1)
+    aJ = 0.5 * (F_J(0.0) + F_J(hi_J))
+    aV = 0.5 * (F_eV(0.0) + F_eV(hi_eV))
+    for i in range(1, nj - 1):
+        aJ += F_J(i * h_J)
+        aV += F_eV(i * h_eV)
+    i_J, i_eV = aJ * h_J, aV * h_eV
+    rel = abs(i_J - i_eV) / i_J
+    ok, msg = near(rel, 0.0, 1e-9)
+    (rec('PASS', 'M', 'J↔eV 雅可比 ∫F_eV dε_eV=∫F_J dε_J：相对差 %s' % msg) if ok
+     else rec('FAIL', 'M', 'J↔eV 换单位后两个积分不等：相对差 %s' % msg))
+
     main = strip_comments(read(os.path.join(SRC, MAIN)))
     has(main, r'F(\eps) = \frac{2\sqrt{2 m_e \eps}}{A e^3}', 'src/%s（Druyvesteyn 公式）' % MAIN)
-    has(main, r'\int_0^\infty F(\eps)\diff\eps=n_e', 'src/%s（EEDF 归一化）' % MAIN)
+    has(main, r'\int_0^\infty F\diff\eps=n_e', 'src/%s（EEDF 归一化）' % MAIN)
     has(main, '没有"固定偏差"这回事', 'src/%s（EEDF 警告框）' % MAIN)
     has(main, r'\diff v/\diff\eps=1/\sqrt{2m_e\eps}', 'src/%s（EEDF 雅可比）' % MAIN)
+    has(main, r'EEDF $F(\eps)$ & $\int_0^\infty F\diff\eps=n_e$ & $\mathrm{m^{-3}(eV)^{-1}}$',
+        'src/%s（三种记法表：EEDF）' % MAIN)
+    has(main, r'归一化 EEDF $p(\eps)=F(\eps)/n_e$ & $\int_0^\infty p\diff\eps=1$ & $\mathrm{(eV)^{-1}}$',
+        'src/%s（三种记法表：归一化 EEDF）' % MAIN)
+    has(main, r'EEPF $g(\eps)=p(\eps)/\sqrt{\eps}$ & $\int_0^\infty\sqrt{\eps}\,g\diff\eps=1$ & '
+              r'$\mathrm{(eV)^{-3/2}}$', 'src/%s（三种记法表：EEPF）' % MAIN)
+    has(main, 'EEPF 不是「归一化 EEDF」的同义词', 'src/%s（EEPF ≠ 归一化 EEDF）' % MAIN)
+    has(main, r'$F=n_e\sqrt{\eps}\,g$', 'src/%s（EEPF 反解回 F）' % MAIN)
+    has(main, r'F_{\mathrm{eV}}(\eps_{\mathrm{eV}})=e\,F_J(e\,\eps_{\mathrm{eV}})',
+        'src/%s（J→eV 的因子 e）' % MAIN)
+    has(main, r'$I \propto \int_{\eps > e(V_p - V)} F(\eps)\, v(\eps) \,\diff\eps$',
+        'src/%s（探针通量积分用 F 而不是别的记法）' % MAIN)
+    lacks(main, 'EEPF 通常就是', 'src/%s（旧的 EEPF 错误表述）' % MAIN)
+    lacks(main, 'f_\\eps(', 'src/%s（旧的 f_ε 记法）' % MAIN)
 
 
 def check_M08_timescale():
@@ -672,102 +732,333 @@ M_D = 2.013553212745 * M_P        # 氘核质量（含其电子）
 M_AR = 39.948 * M_P               # 氩原子质量（≈ Ar+）
 
 
-def values_in(text):
-    """抽出文本中出现的所有数值（普通小数、``1.3\\times10^{-4}``、``1.3e-4``）。
+# 数值抽取：三种写法（``1.3\times10^{-4}``／``1.3e-4``／``1.3``）
+NUM_PAT = re.compile(
+    r'(\d+(?:\.\d+)?)\s*\\times\s*10\s*\^\{?(-?\d+)\}?'
+    r'|(\d+(?:\.\d+)?)[eE]([-+]?\d+)'
+    r'|(?<![\d.])(\d+(?:\.\d+)?)(?![\d.])')
 
-    只做「这个数在不在文中」的存在性判断，不绑定排版写法——否则
-    ``\\times`` 前后有没有空格、单位写 μm 还是 m 都会让断言变脆。
+# 只有紧跟在这些符号之后的减号，才是数值本身的负号
+SIGN_HEADS = ('\\approx', '\\sim', '\\simeq', '\\pm')
+
+
+def _num_at(m):
+    if m.group(1) is not None:
+        return float(m.group(1)) * 10.0 ** int(m.group(2))
+    if m.group(3) is not None:
+        return float(m.group(3)) * 10.0 ** int(m.group(4))
+    return float(m.group(5))
+
+
+def _is_negative(text, pos):
+    r"""``text[pos]`` 是数值首位；判断它是否带负号。
+
+    ``10^{-2}`` 的指数负号、``\propto`` 前面的符号都不是答案的负号，所以只在减号
+    紧跟 ``= ( , : $ [ {`` 或 ``\approx \sim \simeq \pm`` 之后才算数。P-W01 的
+    最小复现（把 K.5 的 −2.00×10⁻² 翻成 +2.00×10⁻²）正是靠这一步才能抓到。
     """
+    w = text[max(0, pos - 12):pos].rstrip()
+    if not w.endswith('-'):
+        return False
+    head = w[:-1].rstrip()
+    if not head:
+        return True
+    return head[-1] in '=(,:$[{' or head.endswith(SIGN_HEADS)
+
+
+def numbers(text):
+    """返回 ``[(值, 起点, 终点, 是否带负号), ...]``。"""
+    return [(_num_at(m), m.start(), m.end(), _is_negative(text, m.start()))
+            for m in NUM_PAT.finditer(text)]
+
+
+def value_in(text, v, rel, unit='', signed=False):
+    """在**给定的文本块内**找与 v 相符的数，可选要求其后 80 字符内出现单位。
+
+    ``signed=False`` 按绝对值比对（正文常只印大小）；``signed=True`` 连符号一起比，
+    用于「答案必须是负的」这类断言。``unit`` 按 LaTeX 原样写（如 ``\\mathrm{mm}``），
+    并要求其后不是字母——这样 ``\\mathrm{m}`` 不会误配 ``\\mathrm{mm}``。
+    """
+    for x, _, end, neg in numbers(text):
+        got = -x if neg else x
+        diff = abs(got - v) if signed else abs(abs(got) - abs(v))
+        if diff > rel * abs(v):
+            continue
+        if unit and not re.search(re.escape(unit) + r'(?![A-Za-z])', text[end:end + 80]):
+            continue
+        return True
+    return False
+
+
+def _match_brace(text, i):
+    """``text[i]`` 是 ``{``，返回配对 ``}`` 的下标（找不到返回 len(text)）。"""
+    depth = 0
+    while i < len(text):
+        c = text[i]
+        if c == '\\':
+            i += 2
+            continue
+        if c == '{':
+            depth += 1
+        elif c == '}':
+            depth -= 1
+            if depth == 0:
+                return i
+        i += 1
+    return len(text)
+
+
+def split_blocks(text, kind):
+    """切块，返回 ``[(标题, 块文本), ...]``。
+
+    ``kind='example'`` 按 ``\\begin{example}{标题}{}`` 切出每道例题（块只含该环境）；
+    ``kind='section'`` 按 ``\\section{标题}`` 切出每节（块含该节到下一节之前的全部内容）。
+    这是「答案必须落在自己那道题/那一节里」这条断言的实现基础。
+    """
+    if kind == 'example':
+        out = []
+        for m in re.finditer(r'\\begin\{example\}\s*\{', text):
+            close = _match_brace(text, m.end() - 1)
+            end = text.find(r'\end{example}', close)
+            if end >= 0:
+                out.append((text[m.end():close], text[m.start():end + len(r'\end{example}')]))
+        return out
+    marks = [(m.start(), m.end() - 1) for m in re.finditer(r'\\section\s*\{', text)]
     out = []
-    for m in re.finditer(r'(\d+(?:\.\d+)?)\s*\\times\s*10\s*\^\{?(-?\d+)\}?', text):
-        out.append(float(m.group(1)) * 10.0 ** int(m.group(2)))
-    for m in re.finditer(r'(\d+(?:\.\d+)?)[eE]([-+]?\d+)', text):
-        out.append(float(m.group(1)) * 10.0 ** int(m.group(2)))
-    for m in re.finditer(r'(?<![\d.])(\d+(?:\.\d+)?)(?![\d.])', text):
-        out.append(float(m.group(1)))
+    for n, (pos, brace) in enumerate(marks):
+        close = _match_brace(text, brace)
+        end = marks[n + 1][0] if n + 1 < len(marks) else len(text)
+        out.append((text[brace + 1:close], text[pos:end]))
     return out
 
 
-def has_value(vec, v, rel):
-    """按**绝对值**比对：正文里的数常只印大小，符号写在文字里（如「阻尼率 2.00×10⁻²」）。"""
-    return any(abs(abs(x) - abs(v)) <= rel * abs(v) for x in vec)
-
-
 def check_P01_new_appendix_numbers():
-    """附录 I/K 引用的物理量必须与独立复算一致（逐值给容差，缺失即 FAIL）。
+    """附录 I/K 的每个答案必须出现在**它所属的那道例题/那一节**内，并带正确符号与单位。
 
-    这是「教材里的数不是抄来的」这一纪律在新增附录上的落地：
-    每个期望值都由本函数用常数从头算一遍，再到正文里找**印出来的那个数**。
-    只查存在性（不查出现次数与位置），所以容差取得比排版舍入略宽。
-    被证伪的方式很直接：把附录 K 里任何一个数改掉，本项立刻 FAIL。
+    这是「教材里的数不是抄来的」这一纪律在新增附录上的落地：每个期望值都由本函数
+    从头算一遍，再到该量所在的那道题里找印出来的那个数。v1.8.1 之前只在整份文件里
+    找绝对值，所以把 K.5 的答案由 −2.00×10⁻² 翻成 +2.00×10⁻²、或把某个值搬到别的
+    例题里，都能蒙混过关（P-W01）。现在被证伪的方式很直接：改数、改符号、把 mm 换成
+    cm、让某个量离开它所属的例题——四种都会 FAIL。
     """
-    vi = values_in(read(os.path.join(SRC, APP_FILES['I'])))
-    vk = values_in(read(os.path.join(SRC, APP_FILES['K'])))
+    text_k = strip_comments(read(os.path.join(SRC, APP_FILES['K'])))
+    text_i = strip_comments(read(os.path.join(SRC, APP_FILES['I'])))
+    ex = split_blocks(text_k, 'example')
+    sec = split_blocks(text_i, 'section')
+    if len(ex) != 8:
+        rec('FAIL', 'P', '附录 K 的 example 环境应为 8 个、实际 %d 个：答案无法绑定到题目' % len(ex))
+        return
+    if len(sec) < 4:
+        rec('FAIL', 'P', '附录 I 的 section 少于 4 个（实际 %d 个）：答案无法绑定到小节' % len(sec))
+        return
 
     def lam_d(te, n):
         return math.sqrt(EPS0 * te / (n * E_CHG))
 
-    ld10 = lam_d(10.0, 1e18)                       # 德拜长度 @10 eV, 1e18 m^-3
+    ld10 = lam_d(10.0, 1e18)                       # K.1 德拜长度 @10 eV, 1e18 m^-3
     n_d = (4.0 / 3.0) * math.pi * 1e18 * ld10 ** 3  # 德拜球内粒子数
-    rho_n = 1e20 * M_D
-    v_a = 5.0 / math.sqrt(MU0 * rho_n)             # Alfvén 速度 @5 T, 1e20 m^-3
-    r_loss = 1.0 - math.sqrt(1.0 - 1.0 / 10.0)     # 磁镜 R=10 损失锥内份额
-
-    def rho_l(te):                                 # 回旋半径（D+, B=5 T）
-        return math.sqrt(2.0 * M_D * te * E_CHG) / (E_CHG * 5.0)
-
-    kld = 0.3                                      # K.5 Landau 阻尼
+    v_a = 5.0 / math.sqrt(MU0 * 1e20 * M_D)         # K.4 Alfvén 速度 @5 T, 1e20 m^-3
+    r_loss = 1.0 - math.sqrt(0.9)                   # K.2 磁镜 R=10 损失锥内份额
+    theta_c = math.degrees(math.asin(1.0 / math.sqrt(10.0)))
+    t_cross = 1.0 / v_a
+    v_over_c = v_a / 2.99792458e8 * 100.0
+    kld = 0.3                                       # K.5 Landau 阻尼
     gam = -math.sqrt(math.pi / 8.0) * kld ** -3 * math.exp(-1.0 / (2 * kld ** 2) - 1.5)
     per_damp = (1.0 - math.exp(2 * math.pi * gam)) * 100.0
-    eta_kev = 5.2e-5 * 17 / 1000.0 ** 1.5          # K.6 Spitzer 电阻率
+    eta_kev = 5.2e-5 * 17 / 1000.0 ** 1.5           # K.6 Spitzer 电阻率
     eta_10ev = 5.2e-5 * 10 / 10.0 ** 1.5
     tau_eta = MU0 * 1.0 / eta_kev
-    c_s = math.sqrt(3.0 * E_CHG / M_AR)            # K.7 玻姆速度 @3 eV, Ar+
-    lam_s = lam_d(3.0, 1e16)
-    s_sh = math.sqrt(2.0) / 3.0 * lam_s * (2 * 100.0 / 3.0) ** 0.75
-    flux = 0.61 * 1e16 * c_s
-    eta_sp = 5.2e-5 * 20 / 86.0 ** 1.5             # K.8 Sweet-Parker
+    tau_eta_10 = MU0 / eta_10ev
+    rm_1m = MU0 * 1.0 * v_a / eta_10ev              # K.4 对照算例的磁雷诺数
+    c_s = math.sqrt(3.0 * E_CHG / M_AR)             # K.7 玻姆速度 @3 eV, Ar+
+    n0, ns = 1e16, 0.61e16
+    lam_n0, lam_ns = lam_d(3.0, n0), lam_d(3.0, ns)
+    s_sh = math.sqrt(2.0) / 3.0 * lam_ns * (2 * 100.0 / 3.0) ** 0.75
+    flux = ns * c_s
+    j_wall = E_CHG * flux
+    s_cl = math.sqrt((4.0 / 9.0) * EPS0 * math.sqrt(2 * E_CHG / M_AR) * 100.0 ** 1.5 / j_wall)
+    eta_sp = 5.2e-5 * 20 / 86.0 ** 1.5              # K.8 Sweet-Parker
     s_sp = MU0 * 1e5 * 1e5 / eta_sp
     v_in = 1e5 / math.sqrt(s_sp)
     tau_sp = 1e5 / v_in
+    omega_ci = E_CHG * 3.0 / M_D                    # I.4 估算练习（B=3 T 的 D+）
+
+    def rho_l(te):                                  # I.4 回旋半径（D+, B=5 T）
+        return math.sqrt(2.0 * M_D * te * E_CHG) / (E_CHG * 5.0)
 
     cases = [
-        ('K', vk, ld10, 0.01, 'K.1 λ_D=%.4e m' % ld10),
-        ('K', vk, n_d, 0.02, 'K.1 N_D=%.4e' % n_d),
-        ('I', vi, ld10 / 1e-6, 0.01, 'I.4 λ_D=%.2f μm' % (ld10 / 1e-6)),
-        ('I', vi, n_d, 0.02, 'I.4 N_D=%.3e' % n_d),
-        ('K', vk, math.degrees(math.asin(1.0 / math.sqrt(10.0))), 0.001,
-         'K.2 损失锥角=%.3f°' % math.degrees(math.asin(1.0 / math.sqrt(10.0)))),
-        ('K', vk, r_loss * 100.0, 0.01, 'K.2 损失份额=%.2f%%' % (r_loss * 100.0)),
-        ('I', vi, rho_l(10.0) / 1e-3, 0.01, 'I.4 ρ_L(10 eV)=%.3f mm' % (rho_l(10.0) / 1e-3)),
-        ('I', vi, rho_l(1000.0) / 1e-3, 0.01, 'I.4 ρ_L(1 keV)=%.3f mm' % (rho_l(1000.0) / 1e-3)),
-        ('I', vi, rho_l(10000.0) / 1e-3, 0.01, 'I.4 ρ_L(10 keV)=%.3f mm' % (rho_l(10000.0) / 1e-3)),
-        ('K', vk, v_a, 0.01, 'K.4 v_A=%.4e m/s' % v_a),
-        ('I', vi, v_a / 1e6, 0.01, 'I.4 v_A=%.2f Mm/s' % (v_a / 1e6)),
-        ('K', vk, gam, 0.01, 'K.5 γ/ω=%.4e' % gam),
-        ('K', vk, per_damp, 0.01, 'K.5 每周期衰减=%.2f%%' % per_damp),
-        ('K', vk, eta_kev, 0.01, 'K.6 η(1 keV)=%.3e Ω·m' % eta_kev),
-        ('K', vk, tau_eta, 0.01, 'K.6 τ_η=%.2f s' % tau_eta),
-        ('K', vk, eta_10ev, 0.01, 'K.6 η(10 eV)=%.3e Ω·m' % eta_10ev),
-        ('K', vk, MU0 / eta_10ev, 0.01, 'K.6 τ_η(10 eV)=%.4f s' % (MU0 / eta_10ev)),
-        ('K', vk, c_s, 0.01, 'K.7 c_s=%.1f m/s' % c_s),
-        ('K', vk, lam_s, 0.01, 'K.7 λ_D(1e16)=%.3e m' % lam_s),
-        ('K', vk, s_sh, 0.01, 'K.7 鞘厚=%.3e m' % s_sh),
-        ('K', vk, flux, 0.03, 'K.7 离子通量=%.3e m^-2s^-1' % flux),
-        ('K', vk, eta_sp, 0.01, 'K.8 η=%.3e Ω·m' % eta_sp),
-        ('K', vk, s_sp, 0.02, 'K.8 S=%.3e' % s_sp),
-        ('K', vk, v_in, 0.01, 'K.8 v_in=%.3f m/s' % v_in),
-        ('K', vk, tau_sp, 0.02, 'K.8 τ_SP=%.3e s' % tau_sp),
-        ('K', vk, tau_sp / 3600.0, 0.05, 'K.8 τ_SP=%.1f h' % (tau_sp / 3600.0)),
+        ('K', 1, ld10, 0.01, r'\mathrm{m}', False, 'K.1 λ_D=%.4e m' % ld10),
+        ('K', 1, ld10 / 1e-6, 0.01, r'\mathrm{\mu m}', False, 'K.1 λ_D=%.2f μm' % (ld10 / 1e-6)),
+        ('K', 1, n_d, 0.02, '', False, 'K.1 N_D=%.4e' % n_d),
+        ('K', 1, math.exp(-5.0) * 100, 0.02, r'\%', False, 'K.1 r=5λ_D 处屏蔽势剩 0.67%'),
+        ('K', 2, theta_c, 0.001, r'^\circ', False, 'K.2 损失锥角=%.3f°' % theta_c),
+        ('K', 2, r_loss * 100.0, 0.01, r'\%', False, 'K.2 损失份额=%.2f%%' % (r_loss * 100.0)),
+        ('K', 2, (1.0 - math.sqrt(0.99)) * 100.0, 0.02, r'\%', False, 'K.2 R=100 损失份额=0.50%'),
+        ('I', 4, ld10 / 1e-6, 0.01, r'\mathrm{\mu m}', False, 'I.4 λ_D=%.2f μm' % (ld10 / 1e-6)),
+        ('I', 4, n_d, 0.02, '', False, 'I.4 N_D=%.3e' % n_d),
+        ('I', 4, rho_l(10.0) / 1e-3, 0.01, r'\mathrm{mm}', False,
+         'I.4 ρ_L(10 eV)=%.3f mm' % (rho_l(10.0) / 1e-3)),
+        ('I', 4, rho_l(1000.0) / 1e-3, 0.01, r'\mathrm{mm}', False,
+         'I.4 ρ_L(1 keV)=%.3f mm' % (rho_l(1000.0) / 1e-3)),
+        ('I', 4, rho_l(10000.0) / 1e-3, 0.01, r'\mathrm{mm}', False,
+         'I.4 ρ_L(10 keV)=%.3f mm' % (rho_l(10000.0) / 1e-3)),
+        ('I', 4, v_a, 0.01, r'\mathrm{m/s}', False, 'I.4 v_A=%.4e m/s' % v_a),
+        ('I', 4, v_over_c, 0.03, r'\%', False, 'I.4 v_A/c=%.2f%%' % v_over_c),
+        ('I', 4, t_cross, 0.01, r'\mathrm{s}', False, 'I.4 t=%.3e s' % t_cross),
+        ('I', 4, omega_ci, 0.03, r'\mathrm{s^{-1}}', False, 'I.4 估算练习 ω_ci=%.3e 1/s' % omega_ci),
+        ('K', 4, v_a, 0.01, r'\mathrm{m\,s^{-1}}', False, 'K.4 v_A=%.4e m/s' % v_a),
+        ('K', 4, v_over_c, 0.03, r'\%', False, 'K.4 v_A/c=%.2f%%' % v_over_c),
+        ('K', 4, t_cross, 0.01, r'\mathrm{s}', False, 'K.4 t=%.3e s' % t_cross),
+        ('K', 4, rm_1m, 0.01, '', False, 'K.4 R_m=%.3e' % rm_1m),
+        ('K', 4, tau_eta_10, 0.01, r'\mathrm{s}', False, 'K.4 τ_η=%.4f s' % tau_eta_10),
+        ('K', 5, gam, 0.01, '', True, 'K.5 γ/ω=%.4e（负号必须在）' % gam),
+        ('K', 5, per_damp, 0.01, r'\%', False, 'K.5 每周期衰减=%.2f%%' % per_damp),
+        ('K', 6, eta_kev, 0.01, r'\Omega\cdot\mathrm{m}', False, 'K.6 η(1 keV)=%.3e Ω·m' % eta_kev),
+        ('K', 6, tau_eta, 0.01, r'\mathrm{s}', False, 'K.6 τ_η=%.2f s' % tau_eta),
+        ('K', 6, eta_10ev, 0.01, r'\Omega\cdot\mathrm{m}', False, 'K.6 η(10 eV)=%.3e Ω·m' % eta_10ev),
+        ('K', 6, tau_eta_10, 0.01, r'\mathrm{s}', False, 'K.6 τ_η(10 eV)=%.4f s' % tau_eta_10),
+        ('K', 6, eta_kev and eta_10ev / eta_kev, 0.05, '', False,
+         'K.6 η 之比=%.1f 倍' % (eta_10ev / eta_kev)),
+        ('K', 7, c_s, 0.01, r'\mathrm{m\,s^{-1}}', False, 'K.7 c_s=%.1f m/s' % c_s),
+        ('K', 7, lam_n0, 0.01, r'\mathrm{m}', False, 'K.7 λ_D(n_0)=%.3e m' % lam_n0),
+        ('K', 7, lam_n0 / 1e-3, 0.01, r'\mathrm{mm}', False, 'K.7 λ_D(n_0)=0.129 mm'),
+        ('K', 7, lam_ns, 0.01, r'\mathrm{m}', False, 'K.7 λ_D(n_s)=%.3e m' % lam_ns),
+        ('K', 7, s_sh, 0.01, r'\mathrm{m}', False, 'K.7 鞘厚=%.3e m' % s_sh),
+        ('K', 7, s_sh / 1e-3, 0.01, r'\mathrm{mm}', False, 'K.7 鞘厚=%.2f mm' % (s_sh / 1e-3)),
+        ('K', 7, ns, 0.01, r'\mathrm{m^{-3}}', False, 'K.7 n_s=%.3e m^-3' % ns),
+        ('K', 7, flux, 0.03, r'\mathrm{m^{-2}s^{-1}}', False, 'K.7 离子通量=%.3e m^-2s^-1' % flux),
+        ('K', 7, j_wall, 0.01, r'\mathrm{A\,m^{-2}}', False, 'K.7 j=%.3f A/m²' % j_wall),
+        ('K', 7, s_cl / 1e-3, 0.005, r'\mathrm{mm}', False,
+         'K.7 CL 反解鞘厚=%.3f mm' % (s_cl / 1e-3)),
+        ('K', 8, eta_sp, 0.01, r'\Omega\cdot\mathrm{m}', False, 'K.8 η=%.3e Ω·m' % eta_sp),
+        ('K', 8, s_sp, 0.02, '', False, 'K.8 S=%.3e' % s_sp),
+        ('K', 8, v_in, 0.01, r'\mathrm{m\,s^{-1}}', False, 'K.8 v_in=%.3f m/s' % v_in),
+        ('K', 8, tau_sp, 0.01, r'\mathrm{s}', False, 'K.8 τ_SP=%.3e s' % tau_sp),
+        ('K', 8, tau_sp / 3600.0, 0.05, r'\mathrm{h}', False, 'K.8 τ_SP=%.1f h' % (tau_sp / 3600.0)),
     ]
-    miss = [(tag, desc, val) for tag, vec, val, rel, desc in cases
-            if not has_value(vec, val, rel)]
+    miss = []
+    for tag, idx, val, rel, unit, signed, desc in cases:
+        blk = (ex[idx - 1][1] if 1 <= idx <= len(ex) else '') if tag == 'K' \
+            else (sec[idx - 1][1] if 1 <= idx <= len(sec) else '')
+        if not blk:
+            miss.append((desc, '块 %s%d 不存在' % (tag, idx)))
+        elif not value_in(blk, val, rel, unit=unit, signed=signed):
+            miss.append((desc, '期望 %.6g%s' % (val, '（带符号）' if signed else '')))
     if miss:
-        rec('FAIL', 'P', '附录 I/K 有 %d/%d 个独立复算值在正文中找不到（容差内）：%s'
-            % (len(miss), len(cases), ['%s→%.4g' % (m[1], m[2]) for m in miss[:4]]))
+        rec('FAIL', 'P', '附录 I/K 有 %d/%d 个答案不在其所属例题/小节内，或符号、单位不符：%s'
+            % (len(miss), len(cases), ['%s → %s' % (m[0], m[1]) for m in miss[:4]]))
     else:
-        rec('PASS', 'P', '附录 I/K 的 %d 个物理量全部与独立复算一致（逐值 1%%--5%% 容差）'
-            % len(cases))
+        rec('PASS', 'P', '附录 I/K 的 %d 个答案全部出现在所属例题/小节内（K.1--K.8 逐题绑定、I.4 单独绑定），'
+            '符号与单位同时核对' % len(cases))
+
+
+def check_P05_appendix_k_claims():
+    """附录 K 三道「判断型」题的结论方向必须写对（文字级，逐题绑定）。
+
+    数值对了不等于物理对了：P-C01（曲率漂移方向）、P-C03（v_A/c 与磁冻结的关系）
+    这两处当年的错误都是「数字全对、结论反了」。所以这里对结论句本身下断言，
+    并明确禁止旧表述复活。
+    """
+    text = strip_comments(read(os.path.join(SRC, APP_FILES['K'])))
+    ex = split_blocks(text, 'example')
+    if len(ex) != 8:
+        rec('FAIL', 'P', '附录 K 例题数不是 8（实际 %d 个），无法做文字级判据' % len(ex))
+        return
+    k3, k4, k5, k6, k7 = (ex[2][1], ex[3][1], ex[4][1], ex[5][1], ex[6][1])
+
+    has(k3, r'\unitvec{b}\times\kappa', 'src/%s K.3（漂移 ∝ b×κ）' % APP_FILES['K'])
+    has(k3, r'\textbf{不是}指向曲率中心', 'src/%s K.3（结论句）' % APP_FILES['K'])
+    lacks(k3, '曲率漂移沿磁力线的曲率中心方向', 'src/%s K.3（旧错误表述）' % APP_FILES['K'])
+
+    has(k4, '不能据此断定磁冻结成立', 'src/%s K.4（v_A/c 能说明什么）' % APP_FILES['K'])
+    has(k4, r'R_m=\mu_0Lv/\eta', 'src/%s K.4（磁冻结的门槛）' % APP_FILES['K'])
+    lacks(k4, '磁冻结图像在非相对论等离子体中非常好',
+         'src/%s K.4（旧错误表述）' % APP_FILES['K'])
+
+    lacks(k5, r'=+2.00\times10^{-2}', 'src/%s K.5（阻尼率不能是正的）' % APP_FILES['K'])
+
+    has(k6, 'R_m', 'src/%s K.6（结论里的磁雷诺数）' % APP_FILES['K'])
+
+    has(k7, r'\lambda_D(n_s)', 'src/%s K.7（鞘边德拜长度）' % APP_FILES['K'])
+    has(k7, r'\approx1.8\ \mathrm{mm}', 'src/%s K.7（鞘厚答案 1.8 mm，单位绑定）' % APP_FILES['K'])
+    has(k7, r'1.813\ \mathrm{mm}', 'src/%s K.7（CL 反解鞘厚 1.813 mm）' % APP_FILES['K'])
+    has(k7, 'Child--Langmuir', 'src/%s K.7（与 CL 关系交叉核对）' % APP_FILES['K'])
+    has(k7, '同一个电流边界条件', 'src/%s K.7（(d) 的结论）' % APP_FILES['K'])
+    has(k7, '鞘边', 'src/%s K.7（体密度/鞘边密度的口径区分）' % APP_FILES['K'])
+
+
+def check_P06_scattering_alpha():
+    """α=1/(kλ_D) 的判据方向：所有速查表行必须是「α≪1 非相干／α≳1 集体」。
+
+    PP-C06 的教训：12.4 正文一直是对的，但两处速查表（附录 H 符号表与术语表）
+    曾把 α≪1 标成集体散射——而速查表正是读者会背下来的地方。本项按**表格行**
+    逐行判定，并在子句级别检查搭配，避免「α≪1 为非集体（非相干）散射，α≳1 才需
+    集体散射理论」这种同一行里两种判据并存被误判。
+    """
+    main = strip_comments(read(os.path.join(SRC, MAIN)))
+    sup12 = strip_comments(read(os.path.join(SRC, 'ch12_supplement.tex')))
+
+    SMALL = (r'\alpha\ll1', r'\alpha \ll 1')
+    LARGE = (r'\alpha\gtrsim1', r'\alpha \gtrsim 1', r'\alpha\gg1', r'\alpha \gg 1')
+    INC = ('非相干', '非集体')
+    COL = ('集体', '相干散射')
+
+    bad, rows = [], 0
+    for ln, line in enumerate(main.split('\n'), 1):
+        if '&' not in line or '\\alpha' not in line:
+            continue
+        if not any(t in line for t in SMALL + LARGE):
+            continue
+        rows += 1
+        for clause in re.split(r'[，。；;,]', line):
+            if not clause.strip():
+                continue
+            if any(t in clause for t in SMALL):
+                stripped = clause
+                for w in INC:
+                    stripped = stripped.replace(w, '')
+                if not any(w in clause for w in INC):
+                    bad.append((ln, '「α≪1」子句没写非相干/非集体'))
+                elif any(w in stripped for w in COL):
+                    bad.append((ln, '「α≪1」子句被标成集体'))
+            if any(t in clause for t in LARGE):
+                stripped = clause
+                for w in INC:
+                    stripped = stripped.replace(w, '')
+                if not any(w in stripped for w in COL):
+                    bad.append((ln, '「α≳1」子句没写集体/相干'))
+    if bad:
+        rec('FAIL', 'P', 'α 散射判据方向有误（%d 处）：%s'
+            % (len(bad), ['第 %d 行 %s' % (b[0], b[1]) for b in bad[:4]]))
+    elif rows == 0:
+        rec('FAIL', 'P', '全书找不到任何含 α 判据的表格行（速查表被删或判据被搬走？）')
+    else:
+        rec('PASS', 'P', '全书 %d 行含 α 判据的表格行方向正确（α≪1 非相干／α≳1 集体）' % rows)
+
+    has(main, r'$\alpha\ll1$ 为\textbf{非集体（非相干）散射}',
+        'src/%s（附录 H 符号表 α 行）' % MAIN)
+    has(main, r'$\alpha \gtrsim 1$ 时的散射 regime', 'src/%s（术语表集体散射行）' % MAIN)
+    has(main, r'$\alpha\ll1$ 为\textbf{非相干散射}', 'src/%s（12.4 正文判据）' % MAIN)
+    has(sup12, r'非相干汤姆逊散射（$\alpha \ll 1$）与相干散射（$\alpha \gg 1$）',
+        'src/ch12_supplement.tex（自测清单）')
+
+    # 正文非表格行：只做 INFO（同一句里两种判据并存时跳过，避免脆性误报）
+    amb, info = 0, 0
+    for ln, line in enumerate(main.split('\n'), 1):
+        if '&' in line or '\\alpha' not in line:
+            continue
+        for t in SMALL + LARGE:
+            i = line.find(t)
+            if i < 0:
+                continue
+            seg = line[max(0, i - 40):i + 40]
+            if any(w in seg for w in INC) and any(w in seg for w in COL):
+                amb += 1
+            elif not any(w in seg for w in INC + COL):
+                info += 1
+                rec('INFO', 'P', '第 %d 行的 α 判据前后 40 字符内没有「非相干/集体」字样，人工确认即可' % ln)
+    if amb:
+        rec('INFO', 'P', '正文另有 %d 处 α 判据与「非相干/集体」并存于同句（表格行已逐行判定）' % amb)
 
 
 def check_P02_appendix_j_map():
@@ -907,6 +1198,8 @@ def main():
     check_P02_appendix_j_map()
     check_P03_appendix_i_refs()
     check_P04_new_appendix_wiring()
+    check_P05_appendix_k_claims()
+    check_P06_scattering_alpha()
 
     if args.json:
         print(json.dumps([{'level': a, 'cat': b, 'msg': c} for a, b, c in RESULTS],

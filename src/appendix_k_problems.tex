@@ -76,12 +76,19 @@ $\vect{B}\times\grad B=B_0\left(1-\dfrac{x}{L}\right)\unitvec{z}\times\left(-\df
 代入 $\vect{v}_{\grad B}=\dfrac{mv_\perp^2}{2qB}\dfrac{\vect{B}\times\grad B}{B^2}$：
 离子（$q>0$）沿 $-\unitvec{y}$ 漂移，电子（$q<0$）沿 $+\unitvec{y}$ 漂移。方向相反，与电荷符号有关。
 
-（b）在托卡马克中 $B\propto1/R$，$\grad B$ 指向内侧；曲率漂移沿磁力线的曲率中心方向。两者的\textbf{竖直分量同向}，且都因含 $1/q$ 而对电子、离子反向，于是等离子体上下两侧积累异号电荷，形成竖直电场；该电场与环向磁场产生 $\vect{E}\times\vect{B}$ 漂移，把粒子向外推。
-抑制机制是\textbf{旋转变换}（磁力线的环向扭曲）：粒子沿磁力线运动时上下交替，,短接了电荷分离；这也是托卡马克需要足够大的等离子体电流、以及"磁通管"图像中出现 Pfirsch--Schl\"uter 电流的原因。
+（b）在托卡马克中 $B\propto1/R$，$\grad B$ 指向内侧。这里最容易错的一步是\textbf{把曲率矢量与漂移方向混为一谈}：曲率矢量 $\kappa=(\unitvec{b}\cdot\grad)\unitvec{b}$ 确实指向曲率中心（环向场下 $\kappa=-\unitvec{R}/R_c$），但曲率漂移沿 $\unitvec{b}\times\kappa$，\emph{垂直于}曲率矢量：
+\[
+\vect{v}_R=\frac{mv_\parallel^2}{qB}\,(\unitvec{b}\times\kappa),
+\qquad
+\unitvec{b}\times\kappa=\unitvec{\varphi}\times\left(-\frac{\unitvec{R}}{R_c}\right)=+\frac{\unitvec{z}}{R_c}.
+\]
+漂移方向是竖直的（正离子向上、电子向下），\textbf{不是}指向曲率中心。
+它与 $\grad B$ 漂移的\textbf{竖直分量同向}（后者也沿 $\pm\unitvec{z}$），且都因含 $1/q$ 而对电子、离子反向，于是等离子体上下两侧积累异号电荷，形成竖直电场；该电场与环向磁场产生 $\vect{E}\times\vect{B}$ 漂移，把粒子向外推。
+抑制机制是\textbf{旋转变换}（磁力线的环向扭曲）：粒子沿磁力线运动时上下交替，短接了电荷分离；这也是托卡马克需要足够大的等离子体电流、以及"磁通管"图像中出现 Pfirsch--Schl\"uter 电流的原因。
 
 \textbf{出处：}Chen 第 2 章（单粒子运动，非均匀磁场中的漂移）；Fitzpatrick 第 2 版第 2 章 Magnetic Drifts；托卡马克部分见 Wesson《Tokamaks》（按主题）。
 
-\textbf{常见错误：}认为 $\grad B$ 漂移与电荷符号无关——$\vect{B}\times\grad B$ 确实与 $q$ 无关，但漂移速度中含 $1/q$，所以方向相反；把曲率漂移与 $\grad B$ 漂移在本例的几何下判成反向（它们同向）；误以为电荷分离无法消除。
+\textbf{常见错误：}认为 $\grad B$ 漂移与电荷符号无关——$\vect{B}\times\grad B$ 确实与 $q$ 无关，但漂移速度中含 $1/q$，所以方向相反；把曲率漂移的方向当作曲率矢量的方向（漂移 $\propto\unitvec{b}\times\kappa$，与 $\kappa$ 垂直，两者不可互换）；把曲率漂移与 $\grad B$ 漂移在本例的几何下判成反向（它们同向）；误以为电荷分离无法消除。
 \end{example}
 
 
@@ -98,7 +105,13 @@ $v_A=\dfrac{B}{\sqrt{\mu_0\rho}}
 =\dfrac{5}{\sqrt{1.2566\times10^{-6}\times3.368\times10^{-7}}}
 =7.69\times10^{6}\ \mathrm{m\,s^{-1}}$。
 
-（b）$v_A/c=7.69\times10^{6}/2.998\times10^{8}=2.6\%$。磁冻结图像在非相对论等离子体中非常好。
+（b）$v_A/c=7.69\times10^{6}/2.998\times10^{8}=2.6\%$。这里只能得出一个结论：\textbf{非相对论 Alfvén 速度公式适用}（位移电流可以忽略），\textbf{不能据此断定磁冻结成立}。磁冻结要求理想欧姆定律 $\vect{E}+\vect{v}\times\vect{B}=0$ 成立，至少要磁雷诺数 $R_m=\mu_0Lv/\eta\gg1$，还要检查霍尔项与电子压强项是否可丢（第 5 章「MHD 适用条件：三道独立的门槛」）。本题没有给温度、电阻率与流动尺度，用现有输入无法判断——\emph{同一个} $v_A/c$ 既可属于强碰撞的电阻性等离子体，也可属于理想 MHD 等离子体。作为对照：取 $L=1\ \mathrm{m}$、$\eta(10\ \mathrm{eV})=1.64\times10^{-5}\ \Omega\cdot\mathrm{m}$（K.6 已算），则
+\[
+R_m=\frac{\mu_0Lv_A}{\eta}
+=\frac{1.2566\times10^{-6}\times1\times7.69\times10^{6}}{1.64\times10^{-5}}
+\approx5.9\times10^{5}\gg1,
+\]
+此时才能谈磁冻结；而电阻扩散时标 $\tau_\eta=\mu_0L^2/\eta\approx0.076\ \mathrm{s}$ 给出了一个定量边界：在 $L\sim1\ \mathrm{m}$ 的尺度上，静止导电流体的磁场正是以这个时标扩散掉的（见 K.6）。
 
 （c）$t=L/v_A=1/7.69\times10^{6}=1.30\times10^{-7}\ \mathrm{s}$。
 
@@ -106,7 +119,7 @@ $v_A=\dfrac{B}{\sqrt{\mu_0\rho}}
 
 \textbf{出处：}Fitzpatrick 第 2 版第 8 章（MHD 流体：磁压、磁通冻结、MHD 波）；Chen 第 4 章（等离子体中的波）。
 
-\textbf{常见错误：}用电子质量计算 $\rho$（惯性由离子提供）；忘记 $\mu_0$ 的平方根；把 $v_A$ 与离子声速 $c_s$ 混用（后者由电子温度决定，与 $B$ 无关）。
+\textbf{常见错误：}用电子质量计算 $\rho$（惯性由离子提供）；忘记 $\mu_0$ 的平方根；把 $v_A$ 与离子声速 $c_s$ 混用（后者由电子温度决定，与 $B$ 无关）；把 $v_A/c\ll1$ 当成磁冻结的充分条件（它只保证非相对论公式适用，$R_m=\mu_0Lv/\eta\gg1$ 才是丢掉电阻项的条件）。
 \end{example}
 
 
@@ -153,7 +166,7 @@ $\eta=5.2\times10^{-5}\times17/3.16\times10^{4}=2.80\times10^{-8}\ \Omega\cdot\m
 （c）$10^{1.5}=31.6$，$\eta=5.2\times10^{-5}\times10/31.6=1.64\times10^{-5}\ \Omega\cdot\mathrm{m}$（约为原来的 $590$ 倍），
 $\tau_\eta=1.2566\times10^{-6}/1.64\times10^{-5}=7.6\times10^{-2}\ \mathrm{s}$。
 
-\textbf{结论：}温度提高两个数量级，磁场扩散时间延长近三个数量级。这解释了为什么"磁冻结"在高温聚变等离子体中是极好的近似，而在低温器件中磁场可以迅速扩散。
+\textbf{结论：}温度提高两个数量级，$\eta$ 下降约 $590$ 倍，磁场扩散时间相应延长近三个数量级。所以\textbf{在给定尺度与流速下}，磁雷诺数 $R_m=\mu_0Lv/\eta$ 随温度升高而增大：高温聚变等离子体是磁冻结的好近似，低温器件中磁场可以迅速扩散。（注意 $R_m$ 还含 $L$ 与 $v$——扩散时标本身只由 $\eta$ 与尺度决定。）
 
 \textbf{出处：}Chen 第 5 章（扩散与电阻率）；Fitzpatrick 第 2 版第 3、4 章（碰撞与输运）。
 
@@ -165,27 +178,36 @@ $\tau_\eta=1.2566\times10^{-6}/1.64\times10^{-5}=7.6\times10^{-2}\ \mathrm{s}$�
 
 \begin{example}{离子声速、鞘层厚度与壁面离子通量}{}
 \textbf{题目：}氩等离子体 $T_e=3\ \mathrm{eV}$、$n_0=10^{16}\ \mathrm{m^{-3}}$，器壁偏压 $V_w=100\ \mathrm{V}$。
-（a）求玻姆速度（离子声速）$c_s$；（b）求德拜长度；
-（c）用 $s\approx\dfrac{\sqrt2}{3}\lambda_D\left(\dfrac{2V_w}{T_e}\right)^{3/4}$ 估算 Child--Langmuir 鞘层厚度；
-（d）求壁面离子通量。
+（a）求玻姆速度（离子声速）$c_s$；（b）求\emph{体}等离子体的德拜长度；
+（c）用 $s\approx\dfrac{\sqrt2}{3}\lambda_D(n_s)\left(\dfrac{2V_w}{T_e}\right)^{3/4}$ 估算 Child--Langmuir 鞘层厚度（$\lambda_D(n_s)$ 为鞘边密度处的德拜长度）；
+（d）求壁面离子通量，并说明它与 (c) 的厚度是否守同一个电流边界条件。
 
 \textbf{解：}
 （a）$c_s=\sqrt{\dfrac{k_BT_e}{M_{\mathrm{Ar}}}}
 =\sqrt{\dfrac{3\times1.602\times10^{-19}}{6.68\times10^{-26}}}=2.68\times10^{3}\ \mathrm{m\,s^{-1}}$。
 
-（b）$\lambda_D=7430\sqrt{3/10^{16}}=1.29\times10^{-4}\ \mathrm{m}=0.129\ \mathrm{mm}$。
+（b）\emph{体}等离子体的德拜长度 $\lambda_D(n_0)=7430\sqrt{3/10^{16}}=1.29\times10^{-4}\ \mathrm{m}=0.129\ \mathrm{mm}$。
+注意鞘层计算要用\textbf{鞘边}密度 $n_s$ 对应的德拜长度，见 (c)。
 
-（c）$(2\times100/3)^{0.75}=66.7^{0.75}=23.3$，
-$s=0.471\times1.29\times10^{-4}\times23.3=1.42\times10^{-3}\ \mathrm{m}\approx1.4\ \mathrm{mm}$。
-注意 $s\gg\lambda_D$（约 11 倍）：偏压远大于电子温度时，鞘层远厚于德拜长度。
+（c）鞘层从鞘边密度 $n_s=0.61n_0$ 起步，所以厚度估算式里的 $\lambda_D$ 必须取 $n_s$ 处的值：
+$\lambda_D(n_s)=\lambda_D(n_0)/\sqrt{0.61}=1.29\times10^{-4}/0.781=1.65\times10^{-4}\ \mathrm{m}$。
+$(2\times100/3)^{0.75}=66.7^{0.75}=23.3$，
+$s=0.471\times1.65\times10^{-4}\times23.3=1.81\times10^{-3}\ \mathrm{m}\approx1.8\ \mathrm{mm}$。
+注意 $s\gg\lambda_D(n_s)$（约 11 倍）：偏压远大于电子温度时，鞘层远厚于德拜长度。
+若误用体密度算出的 $\lambda_D(n_0)$，厚度会被低估 $\sqrt{n_0/n_s}=1.28$ 倍（得到 1.4 mm），并使厚度与 (d) 的通量不守同一个电流边界条件。
 
 （d）鞘边密度 $n_s\approx0.61n_0=6.1\times10^{15}\ \mathrm{m^{-3}}$，
-$\Gamma=n_sc_s=6.1\times10^{15}\times2.68\times10^{3}=1.6\times10^{19}\ \mathrm{m^{-2}s^{-1}}$。
+$\Gamma=n_sc_s=6.1\times10^{15}\times2.68\times10^{3}=1.6\times10^{19}\ \mathrm{m^{-2}s^{-1}}$，
+即壁面离子电流密度 $j=e\Gamma\approx2.62\ \mathrm{A\,m^{-2}}$。用 (c) 的厚度反代平面无碰撞 Child--Langmuir 关系
+\[
+j=\frac49\eps_0\sqrt{\frac{2e}{M}}\frac{V_w^{3/2}}{s^2}
+\]
+得到 $j\approx2.62\ \mathrm{A\,m^{-2}}$（由该式反解鞘厚得 $1.813\ \mathrm{mm}$，与估算式相差 0.2\%）：厚度与通量守同一个电流边界条件。
 每个离子在鞘层中被加速获得约 $100\ \mathrm{eV}$ 能量——这正是离子轰击在刻蚀与溅射中起作用的原因。
 
 \textbf{出处：}Fitzpatrick 第 2 版第 4 章末 Langmuir Sheaths 与 Langmuir Probes；Lieberman \& Lichtenberg《Principles of Plasma Discharges and Materials Processing》（按主题：鞘层与玻姆判据）。
 
-\textbf{常见错误：}用离子温度计算 $c_s$（玻姆判据由电子温度决定）；把鞘层厚度当成 $\lambda_D$；忘记 $n_s\approx0.61n_0$ 这个鞘边密度。
+\textbf{常见错误：}用离子温度计算 $c_s$（玻姆判据由电子温度决定）；把鞘层厚度当成 $\lambda_D$；把\emph{体}密度 $n_0$ 的德拜长度用到鞘边（厚度被低估 $\sqrt{n_0/n_s}=1.28$ 倍）；让厚度与壁面通量使用不同的密度，以致两者不守同一个 Child--Langmuir 电流边界条件；忘记 $n_s\approx0.61n_0$ 这个鞘边密度。
 \end{example}
 
 

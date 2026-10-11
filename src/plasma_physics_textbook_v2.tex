@@ -82,7 +82,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{5pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.8.0},
+  pdftitle={等离子体物理自学教材 v1.8.1},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -370,7 +370,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.8.0}}
+  {\small\textcolor{white!45}{v1.8.1}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -4066,7 +4066,26 @@ n_e \approx \frac{I_{\mathrm{i,sat}}}{0.6\, e A u_B}
 
 \subsection{电子能量分布函数（EEDF）}
 
-如果等离子体中的电子分布偏离麦克斯韦分布，仅靠 $T_e$ 一个参数无法完整描述。朗缪尔探针的一个重要扩展功能是通过 $I$-$V$ 曲线求出完整的电子能量分布函数（EEDF）。\textbf{先分清三种互相冲突的记法}：\textbf{EEDF} $F(\eps)$ 是未归一的能量分布，$\int_0^\infty F(\eps)\diff\eps=n_e$，单位 $\mathrm{m^{-3}(eV)^{-1}}$；\textbf{归一变体} $\hat F(\eps)=F(\eps)/n_e$，$\int_0^\infty\hat F\diff\eps=1$，单位 $\mathrm{(eV)^{-1}}$；文献中的\textbf{EEPF}（电子能量概率函数）$f_\eps$ 通常就是 $\hat F$，但也有人把未归一的 $F$ 也称作 EEPF，所以\textbf{引用任何公式前先看它的归一化与单位}。本书使用 $F(\eps)$ 与 $f_\eps=F/n_e$ 两种。能量与速度之间、能量与探针电压之间各有一层\textbf{雅可比}：对 $v=\sqrt{2\eps/m_e}$ 有 $\diff v/\diff\eps=1/\sqrt{2m_e\eps}$，各向同性时 $F(\eps)=4\pi v^2f(v)\,(\diff v/\diff\eps)$；而 $\eps=e(V_p-V)$ 给出 $\diff\eps=e\,\diff V$，故 $\diff^2I_e/\diff V^2=e^2\,\diff^2I_e/\diff\eps^2$。下式中的 $e^3$ 与 $\sqrt{\eps}$ 正是把这两层雅可比与速度因子整理后的结果——\textbf{换记法必须先换算这两层，而不是只改符号}。
+如果等离子体中的电子分布偏离麦克斯韦分布，仅靠 $T_e$ 一个参数无法完整描述。朗缪尔探针的一个重要扩展功能是通过 $I$-$V$ 曲线求出完整的电子能量分布函数（EEDF）。\textbf{先分清三种互相冲突的记法}——它们相差\emph{两次不同的运算}：密度归一化、以及除去 $\sqrt{\eps}$。这两步不能合并，也不能靠「改单位」或乘一个常数互换：
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+名称（本书记号） & 归一化 & 单位 \\
+\hline
+EEDF $F(\eps)$ & $\int_0^\infty F\diff\eps=n_e$ & $\mathrm{m^{-3}(eV)^{-1}}$ \\
+归一化 EEDF $p(\eps)=F(\eps)/n_e$ & $\int_0^\infty p\diff\eps=1$ & $\mathrm{(eV)^{-1}}$ \\
+EEPF $g(\eps)=p(\eps)/\sqrt{\eps}$ & $\int_0^\infty\sqrt{\eps}\,g\diff\eps=1$ & $\mathrm{(eV)^{-3/2}}$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{EEPF 不是「归一化 EEDF」的同义词}：它比归一化 EEDF 又多除了一个 $\sqrt{\eps}$。这是低气压放电文献的标准用法（例如 Lieberman \& Lichtenberg 的 EEPF、Cantera 的 PlasmaPhase 实现都取 $g=F/(n_e\sqrt{\eps})$），所以\textbf{引用任何公式前先看清它给的是 $F$、$p$ 还是 $g$}，再核对归一化与单位。麦克斯韦分布是最好的试金石：$p\propto\sqrt{\eps}\,e^{-\eps/T_e}$ 而 $g\propto e^{-\eps/T_e}$（只有 $g$ 在半对数图上是直线），在 $\eps=0.25,1,4\ \mathrm{eV}$ 处 $p/g=\sqrt{\eps}=0.5,1,2$——差别随能量变化，无法用常数吸收。
+
+\textbf{「每焦耳」与「每 eV」之间还有一层换算}：以焦耳计时 $F_J$ 的单位是 $\mathrm{m^{-3}J^{-1}}$，换到「每 eV」分布要乘因子 $e$：
+$F_{\mathrm{eV}}(\eps_{\mathrm{eV}})=e\,F_J(e\,\eps_{\mathrm{eV}})$（因 $\diff\eps_J=e\,\diff\eps_{\mathrm{eV}}$），且 $\int F_{\mathrm{eV}}\diff\eps_{\mathrm{eV}}=\int F_J\diff\eps_J$。只改单位栏而不做这一步，整条曲线的数值会差 $e$ 倍。
+
+本书使用 $F(\eps)$ 与 $p(\eps)=F(\eps)/n_e$ 两种记法。能量与速度之间、能量与探针电压之间各有一层\textbf{雅可比}：对 $v=\sqrt{2\eps/m_e}$ 有 $\diff v/\diff\eps=1/\sqrt{2m_e\eps}$，各向同性时 $F(\eps)=4\pi v^2f(v)\,(\diff v/\diff\eps)$；而 $\eps=e(V_p-V)$ 给出 $\diff\eps=e\,\diff V$，故 $\diff^2I_e/\diff V^2=e^2\,\diff^2I_e/\diff\eps^2$。下式中的 $e^3$ 与 $\sqrt{\eps}$ 正是把这两层雅可比与速度因子整理后的结果——\textbf{换记法必须先换算这两层，而不是只改符号}。
 
 \begin{theorem}{Druyvesteyn公式}{}{}
 用上表记法，对定义为 $F(\eps)$ 的各向同性 EEDF，在无磁、无碰撞、薄鞘、探针接地的探针模型下，有
@@ -4078,7 +4097,7 @@ F(\eps) = \frac{2\sqrt{2 m_e \eps}}{A e^3}
 \end{equation}
 其中 $\eps = -e(V - V_p)$ 为电子\textbf{相对于等离子体电位} $V_p$ 的动能（不是相对于探针电位 $V$），$I_e$ 为\emph{电子电流}（必须先扣除离子电流 $I_e = I + I_{\mathrm{i,sat}}$）。
 
-若改用归一到 1 的 EEPF（即 $f_\eps=F/n_e$，单位 $\mathrm{(eV)^{-1}}$），需把上式整体除以 $n_e$，而\textbf{积分测度仍是 $\diff\eps$}；若已知 $f_\eps$ 想求密度，必须用 $\int_0^\infty f_\eps\diff\eps=1$ 检验归一并乘回 $n_e$。\textbf{不要顺手把 $\diff\eps$ 写成 $\diff V$}：两个测度相差因子 $e$，混用会让密度与温度的标定整体错掉。
+若改用归一到 1 的 $p=F/n_e$（单位 $\mathrm{(eV)^{-1}}$），需把上式整体除以 $n_e$，而\textbf{积分测度仍是 $\diff\eps$}；若已知 $p$ 想求密度，必须用 $\int_0^\infty p\diff\eps=1$ 检验归一并乘回 $n_e$。若文献给的是 EEPF $g=p/\sqrt{\eps}$（单位 $\mathrm{(eV)^{-3/2}}$），还要再除掉 $\sqrt{\eps}$ 才能回到 $F$：$F=n_e\sqrt{\eps}\,g$，其归一化检验是 $\int_0^\infty\sqrt{\eps}\,g\diff\eps=1$。\textbf{不要顺手把 $\diff\eps$ 写成 $\diff V$}：两个测度相差因子 $e$，混用会让密度与温度的标定整体错掉。
 \end{theorem}
 
 \begin{warning}{不可丢掉 $\sqrt{\eps}$ 因子}{}
@@ -4086,11 +4105,11 @@ F(\eps) = \frac{2\sqrt{2 m_e \eps}}{A e^3}
 \[
 F_{\mathrm{Maxwell}}(\eps) \propto \sqrt{\eps}\,\exp\!\left(-\frac{\eps}{k_BT_e}\right),
 \]
-而阻滞电子电流仅含指数因子 $\exp[-(V_p-V)/T_e] = \exp[-\eps/(k_BT_e)]$（因为 $v(\eps)\propto\sqrt{\eps}$ 的因子已被 $\diff^2 I/\diff V^2$ 中的微分精确抵消）。所以二阶导数本身是纯指数型，正需要乘上 $\sqrt{\eps}$ 才能还原 $\sqrt{\eps}\,e^{-\eps/k_BT_e}$ 的 Maxwell 形。\textbf{注意这里没有"固定偏差"这回事}：若丢掉 $\sqrt{\eps}$，对麦克斯韦分布来说二阶导数的 $\ln$ 斜率仍然给出\emph{正确的} $T_e$（因为纯指数），被破坏的是\textbf{谱形与绝对标定}——重建的"分布"缺少 $\eps\to0$ 端的 $\sqrt{\eps}$ 上升段、在半对数图上被人为压成直线（从而掩盖双麦克斯韦、Druyvesteyn 等非麦克斯韦特征），并且 $\int_0^\infty F\diff\eps=n_e$ 不再成立，由曲线反推的绝对密度会带一个随 $T_e$ 变化的错误因子。诊断时务必沿整条曲线核验谱形（尤其 $\eps\to0$ 端的 $\sqrt{\eps}$ 行为）与归一化积分，而不仅比对某一点的斜率。
+而阻滞电子电流仅含指数因子 $\exp[-(V_p-V)/T_e] = \exp[-\eps/(k_BT_e)]$（因为 $v(\eps)\propto\sqrt{\eps}$ 的因子已被 $\diff^2 I/\diff V^2$ 中的微分精确抵消）。所以二阶导数本身是纯指数型，正需要乘上 $\sqrt{\eps}$ 才能还原 $\sqrt{\eps}\,e^{-\eps/k_BT_e}$ 的 Maxwell 形。反过来说，\textbf{只有把 $\sqrt{\eps}$ 除掉的 EEPF $g=p/\sqrt{\eps}$ 才呈纯指数型}——这正是低气压放电文献偏爱 $g$ 的原因：在半对数图上一眼就能看出偏离麦克斯韦分布的程度。\textbf{注意这里没有"固定偏差"这回事}：若丢掉 $\sqrt{\eps}$，对麦克斯韦分布来说二阶导数的 $\ln$ 斜率仍然给出\emph{正确的} $T_e$（因为纯指数），被破坏的是\textbf{谱形与绝对标定}——重建的"分布"缺少 $\eps\to0$ 端的 $\sqrt{\eps}$ 上升段、在半对数图上被人为压成直线（从而掩盖双麦克斯韦、Druyvesteyn 等非麦克斯韦特征），并且 $\int_0^\infty F\diff\eps=n_e$ 不再成立，由曲线反推的绝对密度会带一个随 $T_e$ 变化的错误因子。诊断时务必沿整条曲线核验谱形（尤其 $\eps\to0$ 端的 $\sqrt{\eps}$ 行为）与归一化积分，而不仅比对某一点的斜率。
 \end{warning}
 
 \begin{insight}{为什么二阶导数给出分布函数？}{}
-探针收集电流是\emph{所有能量高于势垒}的电子的通量积分：$I \propto \int_{\eps > e(V_p - V)} f_\eps(\eps)\, v(\eps) \,\diff\eps$（势垒高度为 $e(V_p - V)$）。对 $V$ 求一阶导数消去了积分下限的被积函数（莱布尼茨法则），再求二阶导数就提取出了分布函数本身。这相当于在说：\emph{电流曲线在某处的"弯曲程度"，正比于具有该能量的电子数量}。这一结果最早由Druyvesteyn在1930年严格导出，是探针诊断从"测温度"到"测分布"的理论飞跃。
+探针收集电流是\emph{所有能量高于势垒}的电子的通量积分：$I \propto \int_{\eps > e(V_p - V)} F(\eps)\, v(\eps) \,\diff\eps$（势垒高度为 $e(V_p - V)$）。对 $V$ 求一阶导数消去了积分下限的被积函数（莱布尼茨法则），再求二阶导数就提取出了分布函数本身。这相当于在说：\emph{电流曲线在某处的"弯曲程度"，正比于具有该能量的电子数量}。这一结果最早由Druyvesteyn在1930年严格导出，是探针诊断从"测温度"到"测分布"的理论飞跃。
 \end{insight}
 
 \begin{example}{数值估算：实验室氩等离子体参数}{ch12-argon-est}
@@ -6025,7 +6044,7 @@ $f$ & 探测波频率 & Hz & \S 12.2，$f = \omega/2\pi$；与分布函数 $f$ �
 $\Delta\phi$ & 相位差 & rad & \S 12.3，干涉仪测量量 \\
 $\sigma_T$ & 汤姆逊散射截面 & $\mathrm{m^2}$ & \S 12.4，$\sigma_T = 8\pi r_e^2/3$ \\
 $r_e$ & 经典电子半径 & m & \S 12.4，$r_e = e^2/(4\pi\eps_0m_ec^2)$ \\
-$\alpha$（散射参数） & 散射参数 & 无量纲 & \S 12.4，$\alpha = 1/(k\lambda_D)$；$\alpha\ll1$ 为集体散射 \\
+$\alpha$（散射参数） & 散射参数 & 无量纲 & \S 12.4，$\alpha = 1/(k\lambda_D)$；$\alpha\ll1$ 为\textbf{非集体（非相干）散射}，$\alpha\gtrsim1$ 才需集体散射理论 \\
 $\Delta\lambda_N$ & 自然展宽 & m & \S 12.9，$\Delta\lambda_N \sim 10^{-5}\ \mathrm{nm}$ \\
 $\Delta\lambda_V$ & 范德瓦尔斯展宽 & m & \S 12.9，$\Delta\lambda_V \propto n_g$ \\
 $\mathcal{E}$ & 感应电动势 & V & \S 12.6，$\mathcal{E} = -N A\,\diff B/\diff t$ \\
@@ -6178,7 +6197,7 @@ Landau 阻尼 & Landau damping & 无碰撞相混导致的波阻尼 \\
 微波干涉仪 & microwave interferometer & 由相位差测线积分密度 \\
 截止密度 & cutoff density & 干涉仪可测的密度上限 \\
 汤姆逊散射 & Thomson scattering & 激光被电子散射测 $T_e$、$n_e$ \\
-集体散射 & collective scattering & $\alpha \ll 1$ 时的散射 regime \\
+集体散射 & collective scattering & $\alpha \gtrsim 1$ 时的散射 regime（探测尺度大于德拜长度） \\
 磁探针 & magnetic probe & 测量局部磁场的时间导数 \\
 罗戈夫斯基线圈 & Rogowski coil & 测量等离子体电流 \\
 光谱诊断 & spectroscopic diagnostics & 由谱线形状与强度推断参数 \\
