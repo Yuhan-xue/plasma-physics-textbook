@@ -11,7 +11,7 @@
       1) 填充节点框两两相交面积 > 1 pt²            → FAIL（节点交叠）
       2) 文字与某节点框相交 >5%，但落在框内 <95%    → FAIL（标签被框压住/裁切）
       3) 一块文字同时落进两个节点框（面积和 >60%）  → FAIL（文字跨框）
-      4) 节点框越出版心（A4，left 2.1 cm / right 2.6 cm）→ FAIL（超宽）
+      4) 节点框越出版心（A4，left 1.75 cm / right 1.95 cm）→ FAIL（超宽）
       5) 页面上找不到目标图形                      → FAIL（图形消失，不能静默通过）
 
   Q. 示意图几何（DIAGRAMS：没有节点框的图，如瑞利--泰勒）：
@@ -41,11 +41,11 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAULT_PDF = os.path.join(ROOT, 'pdf', 'plasma_physics_textbook_v2.pdf')
 
-# 版心：A4 宽 21 cm，geometry 设 left=2.1 cm、right=2.6 cm
+# 版心：A4 宽 21 cm，geometry 设 left=1.75 cm、right=1.95 cm（v1.9.0 版面密度规格）
 PT_CM = 72.0 / 2.54
 PAGE_W = 21.0 * PT_CM
-TEXT_L = 2.1 * PT_CM
-TEXT_R = PAGE_W - 2.6 * PT_CM
+TEXT_L = 1.75 * PT_CM
+TEXT_R = PAGE_W - 1.95 * PT_CM
 
 # 待守护的图形：题注中的特征词（PDF 文本层，必须足够独特）→ 说明
 FIGURES = [
@@ -169,7 +169,7 @@ def analyze(page, key, tag, ytop, ybot):
         rec('FAIL', 'P', '%s：%d 个节点框越出版心 [%.1f, %.1f] pt（最远 %.1f pt）'
             % (tag, len(over), TEXT_L, TEXT_R, max(TEXT_L - worst[0], worst[2] - TEXT_R)))
     else:
-        rec('PASS', 'P', '%s：全部节点框在版心内（%.1f–%.1f pt，即 2.1/2.6 cm 页边距）'
+        rec('PASS', 'P', '%s：全部节点框在版心内（%.1f–%.1f pt，即 1.75/1.95 cm 页边距）'
             % (tag, TEXT_L, TEXT_R))
 
     rec('INFO', 'P', '%s：本页第 %d 页，识别节点框 %d 个，图形纵向区间 %.0f–%.0f pt'

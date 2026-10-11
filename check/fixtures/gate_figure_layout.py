@@ -7,6 +7,7 @@
   cross    一块文字横跨两个节点框 + 一个字被框边裁掉            -> FAIL（跨框 / 裁切）
   gone     只有题注关键字、没有节点框（图形被删）                -> FAIL（图形消失）
   textcut  示意图区间里两块文字叠在一起 + 红色线条穿过文字        -> FAIL（规则 6/7）
+  edge     节点框右沿探出 v1.9.0 版心（1.75/1.95 cm）           -> FAIL（越出版心）
 
 版式约定（与 check/figure_layout.py 的区间算法对应）：
   图题注 y 越小，其纵向区间为 [10, 本题注+40]；后一张图的区间从「前一张题注+10」开始，
@@ -55,6 +56,9 @@ def build_pdf(path, kind):
         b1[1] = (205, 100, 345, 140)                       # 与 b1[0] 紧邻，留 5 pt 缝
     elif kind == 'gone':
         b1, b2 = [], []
+    elif kind == 'edge':
+        b1[0] = (430, 100, 575, 140)                       # 右沿 575 pt > 版心右界 540 pt
+        b1[1] = (150, 100, 290, 140)                       # 挪开，避免同时触发交叠判定
     for r in b1 + b2:
         page.draw_rect(pymupdf.Rect(*r), color=(0.2, 0.2, 0.2), fill=(0.9, 0.95, 1.0), width=0.8)
     for (x0, y0, x1, y1), txt in zip(b1, TXT1 * 2):
@@ -103,7 +107,8 @@ def main():
              ('overlap', 1, ['节点框交叠']),
              ('cross', 1, ['文字被节点框边裁切', '文字同时压住两个节点框']),
              ('gone', 1, ['在整本 PDF 中都没找到']),
-             ('textcut', 1, ['文字互相压住', '彩色线条/箭头压住文字'])]
+             ('textcut', 1, ['文字互相压住', '彩色线条/箭头压住文字']),
+             ('edge', 1, ['越出版心'])]
     ok = True
     try:
         for kind, want_rc, needles in cases:

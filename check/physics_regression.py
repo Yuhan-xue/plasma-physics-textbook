@@ -721,6 +721,7 @@ APP_FILES = {
     'I': 'appendix_i_learning.tex',
     'J': 'appendix_j_textbook_map.tex',
     'K': 'appendix_k_problems.tex',
+    'L': 'appendix_l_problems.tex',
 }
 
 # CODATA 2018 常数（与附录 D 的单位换算表同一组值）
@@ -1061,6 +1062,163 @@ def check_P06_scattering_alpha():
         rec('INFO', 'P', '正文另有 %d 处 α 判据与「非相干/集体」并存于同句（表格行已逐行判定）' % amb)
 
 
+def check_P07_appendix_l_bank():
+    """附录 L 自测题库：12 章 × 6 题（2 概念 / 2 推导 / 2 估算）、每题有答案、每节有出处。
+
+    可证伪点（五种，全部 FAIL）：① 某章被删或题数不等于 6；② 题型配比失衡（例如把一章
+    的两道概念题换成推导）；③ 只写题目不写「答案」；④ 节首「取材」行被删（来源不可
+    追溯）；⑤ 印出来的关键数值与本函数独立复算不符——数值必须落在**它自己那一节**里，
+    所以把某个答案搬到别章、或把 7.7×10⁶ 改成 7.7×10⁵，都会被抓到。
+    """
+    path = os.path.join(SRC, APP_FILES['L'])
+    if not os.path.exists(path):
+        rec('FAIL', 'P', '附录 L 文件缺失：src/%s' % APP_FILES['L'])
+        return
+    text = strip_comments(read(path))
+    secs = [b for ttl, b in split_blocks(text, 'section')
+            if re.match(r'第\s*\d+\s*章', ttl)]
+    if len(secs) != 12:
+        rec('FAIL', 'P', '附录 L 的分章小节应为 12 个、实际 %d 个（章被删或标题格式变了）'
+            % len(secs))
+        return
+
+    struct, mix, src = [], [], []
+    for i, blk in enumerate(secs, 1):
+        kinds = re.findall(r'\\item\s*（(概念|推导|估算)）', blk)
+        n_ans = len(re.findall(r'\\tkans\{', blk))
+        if len(kinds) != 6 or n_ans != 6:
+            struct.append((i, len(kinds), n_ans))
+        cnt = [kinds.count(k) for k in ('概念', '推导', '估算')]
+        if cnt != [2, 2, 2]:
+            mix.append((i, cnt))
+        if r'\tksrc{' not in blk:
+            src.append(i)
+    if struct:
+        rec('FAIL', 'P', '附录 L 有 %d 章不是「6 题且 6 个答案」：%s（章号, 题数, 答案数）'
+            % (len(struct), struct))
+    else:
+        rec('PASS', 'P', '附录 L 每章都是 6 题且每题都有「答案」（12 章 × 6 = 72 题）')
+    if mix:
+        rec('FAIL', 'P', '附录 L 题型配比失衡，应为每章 2 概念 + 2 推导 + 2 估算：%s' % mix)
+    else:
+        rec('PASS', 'P', '附录 L 题型配比正确：每章 2 概念 + 2 推导 + 2 估算')
+    if src:
+        rec('FAIL', 'P', '附录 L 有 %d 章缺少节首「取材」行（来源不可追溯）：%s' % (len(src), src))
+    else:
+        rec('PASS', 'P', '附录 L 每章节首都有「取材」行，逐章注明参照的教材与章节')
+
+    # ---- 关键数值：每个都由本函数独立算一遍，再去**它自己那一节**里找
+    m_e = 9.1093837015e-31
+    k_b = 1.380649e-23
+
+    def lam_d(te, n):
+        return math.sqrt(EPS0 * te / (n * E_CHG))
+
+    def v_th(te, m):
+        return math.sqrt(2.0 * te * E_CHG / m)
+
+    v_th10 = v_th(10.0, m_e)
+    wci = E_CHG * 5.0 / M_D
+    vi = v_th(1.0e4, M_D)
+    wcp = E_CHG * 5.0e-5 / M_P
+    v_dia = 100.0 * E_CHG / (E_CHG * 2.0 * 0.1)
+    v_a = 5.0 / math.sqrt(MU0 * 1e20 * M_D)
+    eta_10ev = 5.2e-5 * 10 / 10.0 ** 1.5
+    p_kev10 = 1e20 * 1e4 * E_CHG
+    eta_1kev = 5.2e-5 * 10 / 1000.0 ** 1.5
+    nu_ei = 2.9e-6 * 1e19 * 10 / 1000.0 ** 1.5
+    tau_ei = 1.0 / nu_ei
+
+    def gam_landau(kld):
+        return -math.sqrt(math.pi / 8.0) * kld ** -3 * math.exp(-1.0 / (2 * kld ** 2) - 1.5)
+
+    w_pe = math.sqrt(1e18 * E_CHG ** 2 / (EPS0 * m_e))
+    n_c_245 = EPS0 * m_e * (2 * math.pi * 2.45e9) ** 2 / E_CHG ** 2
+    n_c_140 = EPS0 * m_e * (2 * math.pi * 140e9) ** 2 / E_CHG ** 2
+    p_fus = 1e40 * 1.1e-22 * (17.6e6 * E_CHG)
+    e_th = 3 * 1e20 * 1e4 * E_CHG
+    v_b_ar = math.sqrt(3.0 * E_CHG / M_AR)
+    v_f_ar = 3.0 / 2.0 * math.log(M_AR / (2 * math.pi * m_e))
+    f_pe_16 = math.sqrt(1e16 * E_CHG ** 2 / (EPS0 * m_e)) / (2 * math.pi)
+
+    cases = [
+        # (章序号, 说明, 期望值, 相对容差, 单位, 是否连符号)
+        (1, 'v_th(10 eV 电子)', v_th10, 0.03, r'\mathrm{m/s}', False),
+        (1, 'v_avg(10 eV 电子)', v_th10 * math.sqrt(4 / math.pi), 0.03, r'\mathrm{m/s}', False),
+        (1, 'n(1 Pa, 300 K)', 1.0 / (k_b * 300.0), 0.03, r'\mathrm{m^{-3}}', False),
+        (1, '1 eV 对应的温度', E_CHG / k_b, 0.01, r'\mathrm{K}', False),
+        (1, 'λ_D(1 eV, 1e15)', lam_d(1.0, 1e15), 0.03, r'\mathrm{m}', False),
+        (2, 'λ_D(1 eV, 1e16)', lam_d(1.0, 1e16), 0.03, r'\mathrm{m}', False),
+        (2, 'N_D(1 eV, 1e16)', (4 / 3) * math.pi * 1e16 * lam_d(1.0, 1e16) ** 3, 0.05, '', False),
+        (2, 'λ_D(100 eV, 1e19)', lam_d(100.0, 1e19), 0.03, r'\mathrm{m}', False),
+        (3, 'ω_ci(D+, 5 T)', wci, 0.03, r'\mathrm{rad/s}', False),
+        (3, 'v_i(10 keV, D+)', vi, 0.03, r'\mathrm{m/s}', False),
+        (3, 'ρ_Li(10 keV, D+, 5 T)', vi / wci, 0.03, r'\mathrm{m}', False),
+        (3, 'ρ_Lp(1 keV, 0.5 G)', v_th(1.0e3, M_P) / wcp, 0.03, r'\mathrm{m}', False),
+        (3, 'f_ce(1 T)', E_CHG / (2 * math.pi * m_e) / 1e9, 0.03, r'\mathrm{GHz}', False),
+        (3, 'ρ_Le(100 eV, 1 T)', v_th(100.0, m_e) / (E_CHG / m_e), 0.03, r'\mathrm{m}', False),
+        (4, 'v_dia(100 eV, 2 T, L_n=0.1)', v_dia, 0.03, r'\mathrm{m/s}', False),
+        (4, 'j_dia(n=1e19)', 1e19 * E_CHG * 2 * v_dia, 0.03, r'\mathrm{A/m^2}', False),
+        (4, 'c_s(D+, 10 eV)', math.sqrt(10.0 * E_CHG / M_D), 0.03, r'\mathrm{m/s}', False),
+        (4, 'c_s(Ar+, 1 eV)', math.sqrt(1.0 * E_CHG / M_AR), 0.05, r'\mathrm{m/s}', False),
+        (5, 'v_A(5 T, 1e20, D+)', v_a, 0.03, r'\mathrm{m/s}', False),
+        (5, 'η(T_e=10 eV)', eta_10ev, 0.05, r'\Omega', False),
+        (5, 'τ_η(L=1 m)', MU0 / eta_10ev, 0.03, r'\mathrm{s}', False),
+        (5, 'R_m(v=1e4 m/s)', MU0 * 1e4 / eta_10ev, 0.03, '', False),
+        (5, 'β(1e20, 10 keV, 5.3 T) 的百分数', 2 * MU0 * p_kev10 / 5.3 ** 2 * 100, 0.05, r'\%', False),
+        (5, 'β=3% 所需 B', math.sqrt(2 * MU0 * p_kev10 / 0.03), 0.03, r'\mathrm{T}', False),
+        (6, 'n_c(2.45 GHz)', n_c_245, 0.03, r'\mathrm{m^{-3}}', False),
+        (6, 'f_pe(n=1e18)', w_pe / (2 * math.pi) / 1e9, 0.03, r'\mathrm{GHz}', False),
+        (6, 'Alfvén 波越 1 m 的用时', 1.0 / v_a, 0.03, r'\mathrm{s}', False),
+        (7, 'γ/ω(kλ_D=0.3)', gam_landau(0.3), 0.03, '', True),
+        (7, 'γ/ω(kλ_D=0.25)', gam_landau(0.25), 0.03, '', True),
+        (7, 'γ/ω(kλ_D=0.2)', gam_landau(0.2), 0.03, '', True),
+        (7, 'ω_pe(n=1e18)', w_pe, 0.03, r'\mathrm{rad/s}', False),
+        (7, '双流 γ_max', w_pe / math.sqrt(8.0), 0.03, r'\mathrm{s^{-1}}', False),
+        (8, 'η(T_e=1 keV)', eta_1kev, 0.05, r'\Omega', False),
+        (8, 'ν_ei(1e19, 1 keV)', nu_ei, 0.03, r'\mathrm{s^{-1}}', False),
+        (8, 'τ_ei(1e19, 1 keV)', tau_ei, 0.03, r'\mathrm{s}', False),
+        (8, 'λ_mfp(1 keV)', v_th(1000.0, m_e) * tau_ei, 0.05, r'\mathrm{m}', False),
+        (8, '中性粒子穿透深度(n=1e20)', 1.0 / (1e20 * 1e-19), 0.03, r'\mathrm{m}', False),
+        (9, 'RT γ(A=1, k=100)', math.sqrt(100 * 9.8), 0.03, r'\mathrm{s^{-1}}', False),
+        (9, 'RT e 折时间', 1.0 / math.sqrt(100 * 9.8) * 1000, 0.03, r'\mathrm{ms}', False),
+        (9, '交换模 γ(c_s=1e5, R=1 m)', 1e5, 0.03, r'\mathrm{s^{-1}}', False),
+        (10, 'P_fus(n=1e20, D-T)', p_fus, 0.03, r'\mathrm{W/m^3}', False),
+        (10, '3nkT(10 keV)', e_th, 0.03, r'\mathrm{J/m^3}', False),
+        (10, 'P_α = P_fus/5', p_fus / 5, 0.03, r'\mathrm{W/m^3}', False),
+        (10, '点火门槛 τ_E', e_th / (p_fus / 5), 0.03, r'\mathrm{s}', False),
+        (10, 'V=100 m³ 的总功率', p_fus * 100, 0.03, r'\mathrm{W}', False),
+        (10, '1 GW 所需体积', 1e9 / p_fus, 0.03, r'\mathrm{m^3}', False),
+        (11, 'V_f(Ar+, 3 eV)', v_f_ar, 0.03, r'\mathrm{V}', False),
+        (11, 'v_B(Ar+, 3 eV)', v_b_ar, 0.03, r'\mathrm{m/s}', False),
+        (11, 'Γ = n_s v_B', 1e16 * v_b_ar, 0.03, 'm^{-2}s^{-1}', False),
+        (11, 'λ_D(3 eV, 1e16)', lam_d(3.0, 1e16), 0.03, r'\mathrm{m}', False),
+        (11, 'f_pe(n=1e16)', f_pe_16, 0.03, r'\mathrm{Hz}', False),
+        (11, '趋肤深度 δ', 2.99792458e8 / (2 * math.pi * f_pe_16), 0.03, r'\mathrm{m}', False),
+        (12, 'T_e(双点法 50→200 μA)', 2.0 / math.log(4.0), 0.03, r'\mathrm{eV}', False),
+        (12, 'n_e(I_es=1 mA)', 3.5e16, 0.03, r'\mathrm{m^{-3}}', False),
+        (12, '140 GHz 干涉仪相移',
+         math.pi / (2.99792458e8 / 140e9) * (1e19 / n_c_140) * 0.5, 0.03, r'\mathrm{rad}', False),
+        (12, 'n_c(140 GHz)', n_c_140, 0.03, r'\mathrm{m^{-3}}', False),
+        (12, '磁探针感应电压', 10 * 1e-4 * 1e4, 0.03, r'\mathrm{V}', False),
+    ]
+    bad = []
+    for ch, desc, want, rel, unit, signed in cases:
+        if not value_in(secs[ch - 1], want, rel, unit, signed):
+            bad.append((ch, desc))
+    if bad:
+        rec('FAIL', 'P', '附录 L 有 %d 项数值与独立复算不符（或不在它所属的那一章内）：%s'
+            % (len(bad), bad[:6]))
+    else:
+        rec('PASS', 'P', '附录 L 的 %d 项关键数值全部与独立复算一致，且落在各自章节内'
+            % len(cases))
+
+    has(text, r'\tkans', 'src/%s（答案宏定义）' % APP_FILES['L'])
+    has(text, r'\tksrc', 'src/%s（取材宏定义）' % APP_FILES['L'])
+    has(text, '不复制', 'src/%s（版权与独立性声明）' % APP_FILES['L'])
+    has(text, r'\label{tab:app-l-source}', 'src/%s（来源表标签）' % APP_FILES['L'])
+
+
 def check_P02_appendix_j_map():
     """附录 J 逐章对照表的完备性：覆盖 1--12 章、每行 5 列、章号不越界。
 
@@ -1138,7 +1296,7 @@ def check_P03_appendix_i_refs():
 
 
 def check_P04_new_appendix_wiring():
-    """附录 I/J/K 必须真的挂进主文件，且章标题留在主文件里。
+    """附录 I/J/K/L 必须真的挂进主文件，且章标题留在主文件里。
 
     两个都容易出错且都不报错：① 内容写好了却忘了 ``\\input``——编译照样成功，
     读者看不到；② ``\\appchapter`` 写进被 ``\\input`` 的文件——LaTeX 没问题，
@@ -1152,7 +1310,7 @@ def check_P04_new_appendix_wiring():
         rec('FAIL', 'P', '主文件附录字母不是 A--%s 连续：%s（共 %d 个）'
             % (want[-1], ''.join(letters), len(letters)))
     else:
-        rec('PASS', 'P', '主文件附录字母连续 A--%s（共 %d 个，含新增 I/J/K）'
+        rec('PASS', 'P', '主文件附录字母连续 A--%s（共 %d 个，含 I/J/K/L）'
             % (want[-1], len(letters)))
 
     problems = []
@@ -1173,7 +1331,7 @@ def check_P04_new_appendix_wiring():
     if problems:
         rec('FAIL', 'P', '新增附录挂载有问题：%s' % problems)
     else:
-        rec('PASS', 'P', '附录 I/J/K 均已 \\input 挂载、章标题在主文件、各含 ≥4 小节')
+        rec('PASS', 'P', '附录 I/J/K/L 均已 \\input 挂载、章标题在主文件、各含 ≥4 小节')
 
 
 # ------------------------------------------------------------------ 主流程
@@ -1199,6 +1357,7 @@ def main():
     check_P03_appendix_i_refs()
     check_P04_new_appendix_wiring()
     check_P05_appendix_k_claims()
+    check_P07_appendix_l_bank()
     check_P06_scattering_alpha()
 
     if args.json:

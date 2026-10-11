@@ -4,11 +4,20 @@
 \documentclass[12pt,a4paper,openany,oneside]{book}
 \usepackage[UTF8]{ctex}
 \usepackage{geometry}
-% right 由 2.3cm 放宽到 2.6cm：给 marginparwidth 1.6cm + marginparsep 0.2cm 留出足量
-% 空间，使难度边注盒右边界(20.80cm)落在纸面 21.0cm 内且不贴近裁切边。
-% bottom 由 2.1cm 收到 1.8cm、footskip 收到 0.8cm，消除底部约 1cm 的空带。
-\geometry{left=2.1cm,right=2.6cm,top=2.1cm,bottom=1.8cm,
-          footskip=0.8cm,headsep=0.5cm}
+% ---- 版面密度规格 v1.9.0（2026-10-11）------------------------------------
+% 目标：不缩小字号（正文仍 12pt）的前提下，让每页承载更多内容，并重新规划
+% 页面元素的垂直间距。边距与间距的实测效果见 processed.md 的 v1.9.0 一节。
+% 边距：left 2.1->1.75cm、right 2.6->1.95cm、top 2.1->1.85cm、bottom 1.8->1.55cm。
+%   版心由 16.30cm x 25.80cm 增至 17.30cm x 26.30cm，可用面积 +8.1%。
+%   行宽 17.30cm 在 12pt 中文下约 41 字/行，仍在可读范围内（不超过 45 字）。
+% right 收到 1.95cm 的约束：难度边注盒（marginparwidth + marginparsep）右边界
+%   须落在纸面 21.0cm 内。现取 1.1 + 0.15 = 1.25cm，右边界
+%   1.75+17.30+0.15+1.10 = 20.30cm，距裁切边 0.70cm。边注内容实测最宽为
+%   「[基础]」「[提高]」「[应用]」等 2 字标签（footnotesize 约 0.81cm），
+%   在 1.10cm 的 marginparwidth 内不会被拆行或溢出。
+% headsep 0.5->0.4cm、footskip 0.8->0.7cm：页眉页脚同步贴近版心。
+\geometry{left=1.75cm,right=1.95cm,top=1.85cm,bottom=1.55cm,
+          footskip=0.7cm,headsep=0.4cm}
 \setlength{\headheight}{15pt}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{mathtools}
@@ -26,8 +35,8 @@
 \usepackage{graphicx}
 \usepackage{enumitem}
 % ---- 列表全局规范：替代全书零散的逐实例配置 ----
-\setlist{nosep,leftmargin=1.4em,topsep=3pt plus 1pt minus 1pt,
-         itemsep=1.2pt plus 0.6pt,parsep=0pt,partopsep=0pt}
+\setlist{nosep,leftmargin=1.25em,topsep=2pt plus 0.8pt minus 0.8pt,
+         itemsep=0.8pt plus 0.4pt,parsep=0pt,partopsep=0pt}
 \setlist[itemize,1]{label=\textbullet}
 \setlist[itemize,2]{label=$\circ$}
 \setlist[enumerate,1]{label=\arabic*.}
@@ -75,14 +84,14 @@
             middle color=transparent!25]
 % ---- 图表标题：表格与图注分区处理 ----
 \captionsetup{font=small,labelfont={bf,color=coverMid},labelsep=quad,
-              justification=centering,skip=4pt,belowskip=2pt}
-\captionsetup[table]{position=top,skip=3pt}
+              justification=centering,skip=3pt,belowskip=1pt}
+\captionsetup[table]{position=top,skip=2pt}
 \captionsetup[figure]{position=bottom}
 % ---- 表格字号与列距统一（不改 arraystretch，避免覆盖 4312 行的显式设置）----
-\AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{5pt}\small}
+\AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.8.1},
+  pdftitle={等离子体物理自学教材 v1.9.0},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -96,21 +105,33 @@
 \usepackage{epigraph}
 \usepackage{pifont}          % \ding：圈号 ①②③ 的可靠字形来源（lmroman 无 U+2460..U+2462）
 \usepackage{fvextra}         % verbatim 可断行，消除附录 G 代码越界
-\setlength{\marginparwidth}{1.6cm}
-\setlength{\marginparsep}{0.2cm}
+\setlength{\marginparwidth}{1.1cm}
+\setlength{\marginparsep}{0.15cm}
 % ---- 圈号 ①②③ 的安全写法 ----
 % 原实现直接在 lmroman 中排 U+2460..U+2462，该字体无此字形，PDF 中渲染为空白。
 % \ding{172..174} 对应 ①..③，pifont 的 dingbat 字体覆盖完整。
 \newcommand{\cnum}[1]{\ding{\numexpr171+#1\relax}}
-% ---- 段落与公式间距：回收造成大片留白的垂直空间 ----
-\setlength{\parskip}{2.6pt plus 1.2pt minus 0.6pt}
-\setlength{\jot}{2pt}
+% ---- 段落、公式与浮动体间距：回收造成大片留白的垂直空间 ----
+\setlength{\parskip}{1.8pt plus 0.8pt minus 0.4pt}
+\setlength{\jot}{1.6pt}
 \AtBeginDocument{%
-  \setlength{\abovedisplayskip}{5pt plus 2pt minus 2pt}%
-  \setlength{\belowdisplayskip}{5pt plus 2pt minus 2pt}%
-  \setlength{\abovedisplayshortskip}{3pt plus 1pt}%
-  \setlength{\belowdisplayshortskip}{3pt plus 1pt}%
+  \setlength{\abovedisplayskip}{3.6pt plus 1.5pt minus 1.5pt}%
+  \setlength{\belowdisplayskip}{3.6pt plus 1.5pt minus 1.5pt}%
+  \setlength{\abovedisplayshortskip}{2.4pt plus 0.8pt}%
+  \setlength{\belowdisplayshortskip}{2.4pt plus 0.8pt}%
 }
+% 浮动体上下间距（默认 book 类为 12pt 级，是页面上最显眼的空白来源）
+\setlength{\textfloatsep}{8pt plus 2pt minus 2pt}
+\setlength{\floatsep}{8pt plus 2pt minus 2pt}
+\setlength{\intextsep}{8pt plus 2pt minus 2pt}
+% 放宽浮动体在同一页的比例上限，减少"图表被挤到下一页"留下的整块空白
+\renewcommand{\topfraction}{0.92}
+\renewcommand{\bottomfraction}{0.75}
+\renewcommand{\textfraction}{0.06}
+\renewcommand{\floatpagefraction}{0.72}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
 \pagestyle{fancy}
 \fancyhf{}
 % 中文页眉不用 \itshape：SimSun 无真斜体，会触发合成倾斜，与正文正体断裂。
@@ -144,11 +165,11 @@
 }
 \titleformat{\chapter}[display]
   {\normalfont\huge\heiti\color{coverMid}}
-  {\filleft\fontsize{64}{64}\selectfont\color{coverMid!30}\thechapter}
+  {\filleft\fontsize{52}{52}\selectfont\color{coverMid!30}\thechapter}
   {-2.4ex}
   {\Huge\heiti\filright}
-  [\vspace{0.6ex}{\color{coverMid!45}\titlerule[1.2pt]}]
-\titlespacing*{\chapter}{0pt}{-24pt}{26pt}
+  [\vspace{0.35ex}{\color{coverMid!45}\titlerule[1.2pt]}]
+\titlespacing*{\chapter}{0pt}{-26pt}{18pt}
 % ---- 难度边注：就地排版，不用 \hfill 顶边 ----
 % 历史缺陷：
 %  (a) 旧宏内 \hfill 使 2pt \rule 紧贴边注盒右边界，墨迹到达 20.62cm，越出盒边界
@@ -166,10 +187,10 @@
 \newcommand{\difficultyhere}[1]{\marginnote{\raggedright\diffmarktext{#1}}}
 \titleformat{\section}
   {\normalfont\Large\heiti\color{coverMid}}{\thesection}{0.9em}{}
-\titlespacing*{\section}{0pt}{12pt plus 3pt minus 2pt}{6pt plus 2pt minus 1pt}
+\titlespacing*{\section}{0pt}{9pt plus 2pt minus 2pt}{4.5pt plus 1.5pt minus 1pt}
 \titleformat{\subsection}
   {\normalfont\large\heiti\color{coverMid!85}}{\thesubsection}{0.8em}{}
-\titlespacing*{\subsection}{0pt}{9pt plus 2pt minus 1pt}{4pt}
+\titlespacing*{\subsection}{0pt}{7pt plus 1.5pt minus 1pt}{3pt}
 % ---- 章前引语：楷体，与标题黑体形成字型区分（KaiTi 无斜体，不设 itshape）----
 \setlength{\epigraphwidth}{0.62\textwidth}
 \renewcommand{\epigraphsize}{\small\kaishu}
@@ -239,13 +260,14 @@
   phantomlabel={ckl:#2},
   left=4pt,right=4pt,top=4pt,bottom=4pt}
 % ---- 统一色块样式：必须在上面 15 个定义之后，否则被各自的 left=4pt 反压 ----
+% v1.9.0：内边距 5/3pt -> 4.5/2.5pt，块前后间距 5pt -> 3.5pt，标题上下 2pt -> 1.5pt。
 \tcbset{
   boxsep=0pt,
-  left=5pt,right=5pt,top=3pt,bottom=3pt,
-  before skip=5pt plus 2pt minus 1pt,
-  after skip=5pt plus 2pt minus 1pt,
+  left=4.5pt,right=4.5pt,top=2.5pt,bottom=2.5pt,
+  before skip=3.5pt plus 1.5pt minus 1pt,
+  after skip=3.5pt plus 1.5pt minus 1pt,
   fonttitle=\heiti\small,
-  toptitle=2pt,bottomtitle=2pt,
+  toptitle=1.5pt,bottomtitle=1.5pt,
   titlerule=0.4pt,
   sharp corners=southwest,
   enhanced
@@ -262,7 +284,7 @@
 \newcommand{\lap}{\nabla^2}
 \newcommand{\tens}[1]{\bm{#1}}
 \newenvironment{chapterintro}{%
-  \begin{quotation}\itshape\small%
+  \begin{quotation}\itshape\small\setlength{\topsep}{2pt}\setlength{\parskip}{1.2pt}%
 }{%
   \end{quotation}%
 }
@@ -370,7 +392,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.8.1}}
+  {\small\textcolor{white!45}{v1.9.0}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -378,7 +400,10 @@
 };
 \end{tikzpicture}
 \clearpage
-\tableofcontents
+% v1.9.0 版面密度：目录本身也按同一规格收紧——条目之间不再叠加 \parskip
+% （1.8pt × 236 条 ≈ 425pt），目录由 8 页（末页仅 1 行）收回 7 页。
+{\setlength{\parskip}{0pt}%
+\tableofcontents}
 % 符号说明与前言
 % =============================================================================
 
@@ -392,6 +417,7 @@
 
 % =============================================================================
 \section*{基础电磁与物理常数}
+\phantomsection
 \addcontentsline{toc}{section}{基础电磁与物理常数}
 % =============================================================================
 
@@ -428,6 +454,7 @@ $\nabla$ & 矢量微分算符 & 见下表 & \\
 
 % =============================================================================
 \section*{微分算符约定}
+\phantomsection
 \addcontentsline{toc}{section}{微分算符约定}
 % =============================================================================
 
@@ -450,6 +477,7 @@ $\lap f$ & $\nabla^2 f$ & 拉普拉斯 & $\frac{\partial^2 f}{\partial x^2}+\fra
 
 % =============================================================================
 \section*{等离子体特征参数}
+\phantomsection
 \addcontentsline{toc}{section}{等离子体特征参数}
 % =============================================================================
 
@@ -488,6 +516,7 @@ $k_\mathrm{B} T$ 才是能量，但为简洁起见，本书常写“$T_\ee=10\,\
 
 % =============================================================================
 \section*{等离子体无量纲参数}
+\phantomsection
 \addcontentsline{toc}{section}{等离子体无量纲参数}
 % =============================================================================
 
@@ -518,6 +547,7 @@ $q$ & $\displaystyle\frac{r B_\varphi}{R B_\theta}$ & 安全因子（tokamak 几
 
 % =============================================================================
 \section*{单位换算速查表}
+\phantomsection
 \addcontentsline{toc}{section}{单位换算速查表}
 % =============================================================================
 
@@ -563,6 +593,7 @@ $1\,\mathrm{bar}$ & $= 10^{5}\,\mathrm{Pa}$ & 工程常用 \\
 
 % =============================================================================
 \section*{高斯单位制与 SI 单位制对照}
+\phantomsection
 \addcontentsline{toc}{section}{高斯单位制与 SI 单位制对照}
 % =============================================================================
 
@@ -606,6 +637,7 @@ $1\,\mathrm{bar}$ & $= 10^{5}\,\mathrm{Pa}$ & 工程常用 \\
 
 % =============================================================================
 \section*{傅里叶变换约定}
+\phantomsection
 \addcontentsline{toc}{section}{傅里叶变换约定}
 % =============================================================================
 
@@ -633,6 +665,7 @@ $\ee^{+\ii(k\cdot r-\omega t)}$ 为物理相位。若从其他文献引用色散
 
 % =============================================================================
 \section*{阅读难度标识图例}
+\phantomsection
 \addcontentsline{toc}{section}{阅读难度标识图例}
 % =============================================================================
 
@@ -681,6 +714,7 @@ $\star\star\star$ & 挑战 & 涉及较深的数学技巧或前沿问题。供科
 
 % =============================================================================
 \section*{本书取舍说明}
+\phantomsection
 \addcontentsline{toc}{section}{本书取舍说明}
 % =============================================================================
 
@@ -719,6 +753,7 @@ $\star\star\star$ & 挑战 & 涉及较深的数学技巧或前沿问题。供科
 
 % =============================================================================
 \section*{前置知识自查清单}
+\phantomsection
 \addcontentsline{toc}{section}{前置知识自查清单}
 % =============================================================================
 
@@ -754,6 +789,7 @@ $\star\star\star$ & 挑战 & 涉及较深的数学技巧或前沿问题。供科
 
 % =============================================================================
 \section*{三类自学人群专属学习路线图}
+\phantomsection
 \addcontentsline{toc}{section}{三类自学人群专属学习路线图}
 % =============================================================================
 
@@ -845,6 +881,7 @@ $\star\star\star$ & 挑战 & 涉及较深的数学技巧或前沿问题。供科
 
 % =============================================================================
 \section*{每章前置依赖提示}
+\phantomsection
 \addcontentsline{toc}{section}{每章前置依赖提示}
 % =============================================================================
 
@@ -885,6 +922,7 @@ $\star\star\star$ & 挑战 & 涉及较深的数学技巧或前沿问题。供科
 
 % =============================================================================
 \section*{阅读建议与难度标识}
+\phantomsection
 \addcontentsline{toc}{section}{阅读建议与难度标识}
 % =============================================================================
 
@@ -925,6 +963,7 @@ $\star\star\star$ & 挑战 & 涉及较深的数学技巧或前沿问题。供科
 
 % =============================================================================
 \section*{电子配套资源说明}
+\phantomsection
 \addcontentsline{toc}{section}{电子配套资源说明}
 % =============================================================================
 
@@ -4499,6 +4538,7 @@ Rogowski 线圈的一个重要优点是：它只测量\emph{穿过环中心的�
 
 
 \section*{随堂自测}
+\phantomsection
 \addcontentsline{toc}{section}{随堂自测}
 
 \begin{miniquiz}
@@ -6235,7 +6275,8 @@ Landau 阻尼 & Landau damping & 无碰撞相混导致的波阻尼 \\
 \end{insight}
 
 %======================================================================
-% 附录I/J/K：学习策略、教材对照与跨教材例题（v1.8.0 新增）
+% 附录I/J/K/L：学习策略、教材对照、跨教材例题与分章自测题库
+% （I/J/K 为 v1.8.0 新增；L 为 v1.9.0 新增）
 % 文件分离以控制单文件体积；插入位置紧随附录 H，保证附录字母连续。
 % 章标题（\appchapter）留在主文件：检查套件按主文件的 \appchapter 判定
 % 附录字母连续性与 README 附录清单，写进 \input 文件里会被漏掉。
@@ -6246,6 +6287,8 @@ Landau 阻尼 & Landau damping & 无碰撞相混导致的波阻尼 \\
 \input{appendix_j_textbook_map}
 \appchapter{附录K：跨教材经典例题精选（注明出处）}
 \input{appendix_k_problems}
+\appchapter{附录L：分章自测题库（含答案与提示）}
+\input{appendix_l_problems}
 
 % 附录结束
 

@@ -188,6 +188,47 @@
 建议每章学完后，自己按四型各出一道题并交换给同伴（或自我隔周作答）。\textbf{能出题，才说明你看清了这一章的骨架。}
 
 
+\section{解题四步法：把通用流程装进物理题}
+
+解题卡住时，缺的往往不是知识，而是\textbf{一套稳定的搜索流程}。Polya 在《怎样解题》中把解题拆成四步；搬到物理题上，它长这样：
+
+\begin{enumerate}
+\item \textbf{理解问题}——把文字翻译成图与符号：画示意图、标出已知与未知、写下可用的守恒律与边界条件。常见失败是还没画图就开始套公式。
+\item \textbf{拟定计划}——先归类再动笔：这道题属于哪一类（平衡／本征值／初值演化／量级估算）？候选工具有哪些（对称性 $\to$ 高斯或安培回路；守恒律；量纲与变分）？把计划缩成一句话再执行。
+\item \textbf{执行计划}——每一步都写出\textbf{理由}（为什么可以这样近似、忽略了哪一项），不跳步；卡住时回到第二步换工具，而不是在原地硬算。
+\item \textbf{回顾}——做四项检查：量纲、极限（$B\to0$、$T\to0$、$m\to\infty$）、量级（与附录 K 的典型值比对），以及"这个结果还能解释什么"。这一步最容易被跳过，却贡献了最多的长期记忆。
+\end{enumerate}
+
+以第 5 章推导 Alfvén 速度为例，四步分别落在：
+
+\begin{enumerate}
+\item \textbf{理解}——理想 MHD、不可压缩，回复力只有磁张力；
+\item \textbf{计划}——对动量方程线性化，只保留 $\vect{B}\cdot\nabla\vect{B}/\mu_0$ 项；
+\item \textbf{执行}——得 $\partial^2\vect{v}/\partial t^2=v_A^2\,\partial^2\vect{v}/\partial z^2$，故 $v_A=B/\sqrt{\mu_0\rho_m}$；
+\item \textbf{回顾}——量纲是速度，$B\to0$ 时波消失，代入 $n=10^{20}\ \mathrm{m^{-3}}$、$B=5\ \mathrm{T}$ 得 $7.7\times10^{6}\ \mathrm{m/s}$，与附录 K 的 K.4 一致。
+\end{enumerate}
+
+\begin{miniquiz}
+\textbf{练习：}拿一道你做错的题，按四步各写一行（尤其不要跳过第四步），再与答案对照。若第二步写不出"这道题属于哪一类"，说明该章的\textbf{判据}还没记住——回第 1 节自测。"四步"与"元认知三问"是一件事的两种说法：三问管\textbf{什么时候}停下来检查，四步管\textbf{检查什么}。
+\end{miniquiz}
+
+
+\section{概念图：先搭骨架，再用检索压实}
+
+概念图（concept map）的做法是：把概念写成节点，用\textbf{带连接词的箭头}写出两个概念之间的关系（写"$\lambda_D$ 依赖 $T_e$ 与 $n_e$"，而不是只画一条线），再按抽象层级排布，最后补上跨分支的\textbf{交叉连接}。这套规则由 Novak 与 Gowin 在《Learning How to Learn》中系统化，此后被广泛用于科学教育中的概念诊断。
+
+以"德拜屏蔽"为根画一张图，大致得到四层结构：
+
+\begin{itemize}
+\item \textbf{根}：德拜屏蔽——等离子体对静电扰动的集体响应；
+\item \textbf{第一层}：屏蔽长度 $\lambda_D=\sqrt{\eps_0k_BT_e/(n_ee^2)}$ 与德拜球内粒子数 $N_D=n_e\lambda_D^3$；
+\item \textbf{第二层}：$T_e$ 升高使 $\lambda_D$ 变大，$n_e$ 升高使 $\lambda_D$ 变小；$N_D\gg1$ 时才谈得上集体行为；
+\item \textbf{交叉连接}：$N_D\gg1$ 与第 4 章的流体判据 $k\lambda_D\ll1$、第 7 章的动理学适用条件相连——同一条边界，三种说法。
+\end{itemize}
+
+\textbf{但要说清楚：}Karpicke 与 Blunt（2011）的实验表明，就\textbf{记忆保持}而言，检索练习优于画概念图。所以正确的用法是"图 + 检索"：先画图整理结构，然后\textbf{合上图，凭记忆重画或口述}，再对照补漏。把图当检索的靶子，而不是把画图当成复习本身。每章一张图、每节三句话，再配合附录 L 的分章题库自测，就构成"结构—检索—检验"的闭环。
+
+
 \section{出处与延伸阅读}
 
 本附录的主张来自学习科学文献与经典解题方法论，列在下面以便读者自行核对。物理教材的对照关系见附录 J，分级书单见附录 E。
@@ -218,7 +259,9 @@ Chi, Bassok, Lewis, Reimann \& Glaser (1989) & \textit{Cognitive Science} 13(2),
 Sweller \& Cooper (1985) & \textit{Cognition and Instruction} 2(1), 59--89；DOI: 10.1207/s1532690xci0201\_3 & 例题效应：先学例题再独立解题（动作五） \\
 Ericsson, Krampe \& Tesch-R\"omer (1993) & \textit{Psychological Review} 100(3), 363--406；DOI: 10.1037/0033-295x.100.3.363 & 刻意练习三要素：明确目标、即时反馈、超出舒适区 \\
 Bjork (1994) & 载 \textit{Metacognition: Knowing about Knowing}, MIT Press, 185--205 & "合意困难"：让练习变难反而学得更牢 \\
-Polya (1945) & \textit{How to Solve It}, Princeton University Press & 解题四步法与本附录"元认知三问" \\
+Novak \& Gowin (1984) & \textit{Learning How to Learn}, Cambridge University Press & 概念图的构造规则：节点、带连接词的连线、层级、交叉连接 \\
+Novak (1990) & \textit{Journal of Research in Science Teaching} 27(10), 937--949 & 概念图在科学教育中的用法与评分法（"概念图"一节） \\
+Polya (1945) & \textit{How to Solve It}, Princeton University Press & 解题四步法（"解题四步法"一节）与"元认知三问" \\
 \end{longtable}
 }
 \normalsize

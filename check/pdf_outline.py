@@ -20,15 +20,20 @@
   O5 链接计数自洽：印刷目录链接数 == 书签数；报告正文 § 链接数
 
 印刷目录的页跨度**动态探测**（`detect_toc_pages`）：从第 2 页起连续「链接数
-≥ MIN_TOC_LINKS」的页即为印刷目录页，探测失败（<2 页）才退回常量 TOC_PAGES。
-这样附录增删导致目录从 7 页涨到 8 页时，O3／O5 自动跟上，不会静默漏扫或误扫。
+≥ MIN_TOC_LINKS」的页即为印刷目录页；随后再吸收**紧随其后的短尾页**——目录
+正好跨页时，末页可能只有一两行（实测 v1.9.0 首轮曾出现第 9 页仅 1 行），
+判据是「该页至少有一个带右对齐页码的目录链接」。探测失败（<2 页）才退回
+常量 TOC_PAGES。这样附录增删导致目录从 7 页涨到 8 页时，O3／O5 自动跟上，
+不会静默漏扫或误扫。
 
 O3b 的口径：hyperref 的书签落点由锚点 whatsit 决定，而 `\\addcontentsline`
 写页码发生在 shipout，两者相差一页时会系统性偏移（见 CLOSURE「书签偏移」）。
-实测 17/187 条为 **书签页 = 印刷页 − 1**（点击落在标题所在页的**前一页**）。
-因此：印刷页码与书签页码 **完全一致** → PASS；偏差**全部为 −1** 且不超
-过 15% → WARN（已知结构性偏移，记录条数与页码）；出现 +1、±2 或比例过高
-→ FAIL（说明目录页码与导航确实对不上）。
+但 24 处 `\\section*` + `\\addcontentsline` 若**不**补 `\\phantomsection`，
+hyperref 会复用上一个锚点（前一节的表题、tcolorbox 计数器），落点跑到更早的
+页面，而印出页码仍是本节页 → 偏差可达 ±2。v1.9.0 已给全部 24 处补上
+`\\phantomsection`，故本项判据维持严格：印刷页码与书签页码 **完全一致** → PASS；
+偏差**全部为 −1** 且不超过 15% → WARN（已知结构性偏移）；出现 +1、±2、比例
+过高或（补锚点后）任何偏差 → FAIL。
 
 依赖 PyMuPDF；未安装时报 WARN 并跳过结构项（不会静默通过）。.aux 缺失时
 O4 的小节号比对降级为 WARN。
@@ -53,6 +58,7 @@ MAIN_TEX = os.path.join(ROOT, 'src', 'plasma_physics_textbook_v2.tex')
 
 TOC_PAGES = 7          # 印刷目录页数的退路常量（动态探测失败时使用）
 MIN_TOC_LINKS = 12     # 判定「这一页是印刷目录」所需的最少链接数
+TAIL_MAX = 2           # 目录短尾页最多吸收几页（末页只剩一两行时用）
 TOC_FIRST = 1          # 印刷目录从第 2 页（0-based 索引 1）开始，封面无链接
 OFFSET_MAX = 0.15      # +1 偏移条数占比容忍上限
 
@@ -71,6 +77,13 @@ def detect_toc_pages(doc, min_links=MIN_TOC_LINKS, start=TOC_FIRST):
     判据：目录页每页有几十个指向正文章节的 goto 链接，而封面无链接、正文页
     的交叉引用链接数远低于 min_links；目录页在文档中连续且紧接封面之后，
     故取「从 start 起连续满足阈值」的最长前缀。
+
+    再看**短尾页**：目录若正好在末页只排一两行（v1.9.0 首轮实测第 9 页仅
+    「L.13 来源、分级与版权说明」一行），链接数 1 < min_links，上面的前缀
+    判据会把它判成正文页，于是 O3 漏比一条、O5 少算一个链接。补一条判据：
+    紧随其后的页只要含「至少一个带右对齐页码的目录式链接」（链接矩形内文字
+    与某个书签同名，且右侧同行有 1--3 位页码数字），就并入目录页。上限
+    TAIL_MAX 页，避免把正文页误并进来。
     """
     n = 0
     for pno in range(start, doc.page_count):
@@ -78,6 +91,17 @@ def detect_toc_pages(doc, min_links=MIN_TOC_LINKS, start=TOC_FIRST):
             n += 1
         else:
             break
+    titles = {norm(t) for _lvl, t, _p in doc.get_toc()}
+    for pno in range(start + n, min(start + n + TAIL_MAX, doc.page_count)):
+        page = doc[pno]
+        words = page.get_text('words')
+        for lk in page.get_links():
+            rect = lk.get('from')
+            if rect is None:
+                continue
+            if norm(page.get_textbox(rect)) in titles and printed_page(page, rect, words):
+                n += 1
+                break
     return n
 
 
@@ -244,14 +268,22 @@ def analyze(doc, aux_path):
         else:
             labels = re.findall(r'\\S\\ref\{([^}]+)\}', m.group(0))
             f_pages = [i for i, (_lvl, t, _p) in enumerate(toc) if norm(t).startswith('附录F')]
+            g_pages = [i for i, (_lvl, t, _p) in enumerate(toc) if norm(t).startswith('附录G')]
             start = toc[f_pages[0]][2] if f_pages else None
+            # 附录 F 自己的页范围：F 首页 → G 首页 − 1（G 不存在时退化为 6 页窗口）。
+            # 早先按「start-1 起 6 页」扫，版面重排后窗口会溢出到附录 G，
+            # 把 G 内部的 \S\ref 也算进来（v1.9.0 实测 35 vs 36）。
+            end = (toc[g_pages[0]][2] - 1) if g_pages else None
             links = []
             if start is not None:
-                for pno in range(start - 1, min(start + 5, pages)):
+                last = end if end is not None else min(start + 5, pages)
+                for pno in range(start - 1, min(last, pages)):
                     for lk in doc[pno].get_links():
                         rect = lk.get('from')
                         txt = doc[pno].get_textbox(rect).strip() if rect else ''
-                        links.append((pno + 1, txt, lk.get('page')))
+                        # 只统计形如「§2.1」「3.2.1）」的小节引用，排除公式/图表/URL
+                        if re.match(r'^[§\s]*\d+(?:\.\d+)*', txt):
+                            links.append((pno + 1, txt, lk.get('page')))
             rec('INFO', 'O4', '附录 F 源文件 \\S\\ref %d 处；PDF 中该区段链接 %d 个'
                 % (len(labels), len(links)))
             if not aux:
