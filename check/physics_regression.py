@@ -726,6 +726,7 @@ APP_FILES = {
     'N': 'appendix_n_boundary.tex',
     'O': 'appendix_o_propulsion.tex',
     'P': 'appendix_p_lowtemp.tex',
+    'Q': 'appendix_q_diagnostics.tex',
 }
 
 # CODATA 2018 常数（与附录 D 的单位换算表同一组值）
@@ -2141,6 +2142,386 @@ def check_P13_appendix_i_calendar():
     lacks(blk, '遗忘曲线是单指数', 'src/%s（不得退回「单指数足够」的旧口径）' % APP_FILES['I'])
 
 
+def check_P14_appendix_q_diagnostics():
+    """附录 Q 等离子体诊断的结构完整性与数值独立复算。
+
+    可证伪点（全部记 FAIL）：
+      ① 十一个小节之一被删（按小节标题前缀定位）；
+      ② 缺少「出处：」行（本附录要求 >= 6 处）；
+      ③ 七张表 / 两只语义盒 / 编号公式之一被删或改了 label；
+      ④ 六道练习缺解答；
+      ⑤ 印出的关键数值与独立复算不符，或搬到了别的小节里；
+      ⑥ 旧口径回流：把微分写成 \\dd、把 OML 判据写成与 r_p/\\lambda_D 无关
+         （正文必须承认同一支探针在不同密度下换理论）。
+
+    约定与附录 M/N/O/P 相同：表内数值的单位写在表头，故这些用例传 unit=''。
+    语义盒的标签写在 \\begin{tip}{标题}{标签} 的第二个必选参数里，不写成 \\label{}。
+    """
+    qpath = os.path.join(SRC, APP_FILES['Q'])
+    if not os.path.exists(qpath):
+        rec('FAIL', 'P', '附录 Q 文件缺失：src/%s' % APP_FILES['Q'])
+        return
+    text = strip_comments(read(qpath))
+    secs = split_blocks(text, 'section')
+
+    want_prefix = ['诊断能测什么', '静电探针', '从 I--V 曲线读电子温度',
+                   '从离子饱和电流读密度', '悬浮电位与等离子体电位', '磁诊断',
+                   '光学诊断', '汤姆孙散射与微波干涉仪', '误差与自检',
+                   '六道估算练习', '来源、分级与版权说明']
+    found = {}
+    for pre in want_prefix:
+        for ttl, body in secs:
+            if ttl.startswith(pre):
+                found[pre] = body
+                break
+    missing = [p for p in want_prefix if p not in found]
+    if missing:
+        rec('FAIL', 'P', '附录 Q 缺少小节（标题被改或整节被删）：%s' % missing)
+        return
+    rec('PASS', 'P', '附录 Q 的 %d 个小节齐全' % len(want_prefix))
+
+    for lab in ('tab:app-q-map', 'tab:app-q-oml', 'tab:app-q-iv', 'tab:app-q-oes',
+                'tab:app-q-salpeter', 'tab:app-q-error', 'tab:app-q-source'):
+        has(text, r'\label{%s}' % lab, 'src/%s（表格 label %s）' % (APP_FILES['Q'], lab))
+
+    # 语义盒标签是 \begin{tip}{标题}{标签} 的第二参数，不是 \label{}
+    for lab in ('tip-appq-limit', 'tip-appq-next'):
+        has(text, '{%s}' % lab, 'src/%s（语义盒标签 %s）' % (APP_FILES['Q'], lab))
+
+    for lab in ('eq:app-q-debye', 'eq:app-q-oml', 'eq:app-q-iv', 'eq:app-q-slope',
+                'eq:app-q-iis', 'eq:app-q-ji', 'eq:app-q-ne', 'eq:app-q-err',
+                'eq:app-q-float', 'eq:app-q-floatdiff', 'eq:app-q-mutual', 'eq:app-q-rc',
+                'eq:app-q-doppler', 'eq:app-q-oes', 'eq:app-q-salpeter',
+                'eq:app-q-photons', 'eq:app-q-microwave'):
+        has(text, r'\label{%s}' % lab, 'src/%s（公式 label %s）' % (APP_FILES['Q'], lab))
+
+    has(text, '不复制', 'src/%s（版权与独立性声明）' % APP_FILES['Q'])
+    n_src = len(re.findall(r'\\textbf\{出处：\}', text))
+    if n_src < 6:
+        rec('FAIL', 'P', '附录 Q 的「出处：」行只有 %d 处，应 >= 6' % n_src)
+    else:
+        rec('PASS', 'P', '附录 Q 有 %d 处「出处：」交代' % n_src)
+
+    ex = found['六道估算练习']
+    n_ex = len(re.findall(r'\\textbf\{练习\s*\d+', ex))
+    n_sol = len(re.findall(r'\\textbf\{解答\}', ex))
+    if n_ex != 6 or n_sol < 6:
+        rec('FAIL', 'P', '附录 Q 练习数为 %d、解答数为 %d（应为 6 与 >= 6）' % (n_ex, n_sol))
+    else:
+        rec('PASS', 'P', '附录 Q 六道估算练习均有解答')
+
+    # ---- 独立复算：常数与公式与 tmp/appQ_calc.py 同一套 ----
+    U_Q = 1.66053906660e-27
+    m_ar = 39.948 * U_Q
+    e_k = 11604.518122          # 1 eV 对应的开尔文
+    sigma_t = 6.6524587321e-29
+    c_light = 2.99792458e8
+    h_pl = 6.62607015e-34
+
+    def debye_q(te, ne):
+        return math.sqrt(EPS0 * te * E_CHG / (ne * E_CHG ** 2))
+
+    def cs_q(te, m):
+        return math.sqrt(te * E_CHG / m)
+
+    def vbar_e(te):
+        return math.sqrt(8.0 * KB * te * e_k / (math.pi * M_E))
+
+    def doppler_pm(lam_nm, t_k):
+        return 7.16e-7 * lam_nm * math.sqrt(t_k / 39.948) * 1.0e3
+
+    def n_crit(f):
+        return EPS0 * M_E * (2 * math.pi * f) ** 2 / E_CHG ** 2
+
+    def f_pl(n):
+        return math.sqrt(n * E_CHG ** 2 / (EPS0 * M_E)) / (2 * math.pi)
+
+    a_p = 2.0 * math.pi * 5e-4 * 0.01        # r_p=0.5 mm, l_p=10 mm
+    cs_ar = cs_q(3.0, m_ar)
+    j_i = E_CHG * 1e17 * cs_ar               # A/m^2
+    lam_etch = debye_q(3.0, 1e17)
+    k_sc = 2.0 * (2.0 * math.pi / 532e-9) * math.sin(math.pi / 4)
+    n_ph_532 = 1.0 / (h_pl * c_light / 532e-9)
+    m_rog = MU0 * 1000 * 1e-4 / (2.0 * math.pi * 0.05)
+
+    cases = [
+        # --- §Q.1 手段与判据 ---
+        ('诊断能测什么', '德拜长度系数 7433.9', math.sqrt(EPS0 / E_CHG), 0.001, '', False),
+        ('诊断能测什么', '刻蚀 λ_D=40.72 μm', lam_etch * 1e6, 0.01, '', False),
+        ('诊断能测什么', '医学射流 λ_D=2.88 μm', debye_q(1.5, 1e19) * 1e6, 0.01, '', False),
+        ('诊断能测什么', '大气压 DBD λ_D=0.33 μm', debye_q(2.0, 1e21) * 1e6, 0.02, '', False),
+        # --- §Q.2 探针半径与德拜长度 ---
+        ('静电探针', 'r_p/λ_D=12.28（1e17）', 5e-4 / lam_etch, 0.01, '', False),
+        ('静电探针', 'λ_D=128.76 μm（1e16）', debye_q(3.0, 1e16) * 1e6, 0.01, '', False),
+        ('静电探针', 'r_p/λ_D=3.88（1e16）', 5e-4 / debye_q(3.0, 1e16), 0.01, '', False),
+        ('静电探针', 'λ_D=407.17 μm（1e15）', debye_q(3.0, 1e15) * 1e6, 0.01, '', False),
+        ('静电探针', 'r_p/λ_D=1.23（1e15）', 5e-4 / debye_q(3.0, 1e15), 0.01, '', False),
+        ('静电探针', 'OML 边界下最大 r_p=122.2 μm', 3.0 * lam_etch * 1e6, 0.01, '', False),
+        # --- §Q.3 I--V 曲线 ---
+        ('从 I--V 曲线读电子温度', 'I_e(-3 V)=3.6788 mA', 10.0 * math.exp(-1.0), 0.01, '', False),
+        ('从 I--V 曲线读电子温度', 'I_net(-3 V)=2.6788 mA',
+         10.0 * math.exp(-1.0) - 1.0, 0.01, '', False),
+        ('从 I--V 曲线读电子温度', 'I_e(-6 V)=1.3534 mA', 10.0 * math.exp(-2.0), 0.01, '', False),
+        ('从 I--V 曲线读电子温度', '正确斜率 0.333333 /V', 1.0 / 3.0, 0.01, '', False),
+        ('从 I--V 曲线读电子温度', '正确 T_e=3.0000 eV', 3.0, 0.01, '', False),
+        ('从 I--V 曲线读电子温度', '不减 I_is 的 T_e=1.4810 eV',
+         3.0 / math.log((10.0 * math.exp(-1.0) - 1.0) / (10.0 * math.exp(-2.0) - 1.0)),
+         0.01, '', False),
+        ('从 I--V 曲线读电子温度', '低估 50.63%',
+         (1.0 - 1.0 / math.log((10.0 * math.exp(-1.0) - 1.0)
+                               / (10.0 * math.exp(-2.0) - 1.0))) * 100.0, 0.01, '', False),
+        ('从 I--V 曲线读电子温度', '靠近 V_p 的 T_e=2.5022 eV',
+         1.0 / math.log(6.1653 / 4.1342), 0.01, '', False),
+        # --- §Q.4 离子饱和电流 ---
+        ('从离子饱和电流读密度', 'A_p=3.141593e-5 m^2', a_p, 0.001, r'\mathrm{m^2}', False),
+        ('从离子饱和电流读密度', 'c_s=2691.81 m/s', cs_ar, 0.01, r'\mathrm{m/s}', False),
+        ('从离子饱和电流读密度', 'j_i=43.1275 A/m^2', j_i, 0.01, r'\mathrm{A/m^2}', False),
+        ('从离子饱和电流读密度', 'j_i=4.3127 mA/cm^2（与附录 P 一致）',
+         j_i * 0.1, 0.01, r'\mathrm{mA/cm^2}', False),
+        ('从离子饱和电流读密度', '裸玻姆 1.354890 mA', j_i * a_p * 1e3, 0.01, r'\mathrm{mA}', False),
+        ('从离子饱和电流读密度', '含 0.6 因子 0.812934 mA',
+         0.6 * j_i * a_p * 1e3, 0.01, r'\mathrm{mA}', False),
+        ('从离子饱和电流读密度', '实测 1.000 mA → n_e=1.2301e17 m^-3',
+         1.0e-3 / (0.6 * E_CHG * cs_ar * a_p), 0.01, r'\mathrm{m^{-3}}', False),
+        ('从离子饱和电流读密度', '漏 0.6 因子低估 40.0%', (1.0 - 0.6) * 100.0, 0.01, '', False),
+        # --- §Q.5 悬浮电位 ---
+        ('悬浮电位与等离子体电位', 'v̄_e=1.1592e6 m/s', vbar_e(3.0), 0.01, r'\mathrm{m/s}', False),
+        ('悬浮电位与等离子体电位', '比值 107.6559', vbar_e(3.0) / (4.0 * cs_ar), 0.01, '', False),
+        ('悬浮电位与等离子体电位', '系数 4.6789',
+         math.log(vbar_e(3.0) / (4.0 * cs_ar)), 0.01, '', False),
+        ('悬浮电位与等离子体电位', 'V_p-V_f=14.0368 V',
+         3.0 * math.log(vbar_e(3.0) / (4.0 * cs_ar)), 0.01, r'\mathrm{V}', False),
+        ('悬浮电位与等离子体电位', '含 0.6 因子的系数 5.1898',
+         math.log(vbar_e(3.0) / (4.0 * 0.6 * cs_ar)), 0.01, '', False),
+        ('悬浮电位与等离子体电位', '两式之差 1.5325 V',
+         3.0 * math.log(1.0 / 0.6), 0.01, r'\mathrm{V}', False),
+        # --- §Q.6 磁诊断 ---
+        ('磁诊断', '互感 M=400.0 nH', m_rog * 1e9, 0.01, r'\mathrm{nH}', False),
+        ('磁诊断', 'V_coil=40.00 V', m_rog * 1e8, 0.01, r'\mathrm{V}', False),
+        ('磁诊断', 'RC=50.0 μs', 50.0 * 1e-6 * 1.0e6, 0.01, r'\mathrm{\mu s}', False),
+        ('磁诊断', 'V_out=0.8000 V', m_rog * 100.0 / (50.0 * 1e-6), 0.001, r'\mathrm{V}', False),
+        ('磁诊断', 'S=8.0000e-3 V/A', m_rog / (50.0 * 1e-6), 0.001, r'\mathrm{V/A}', False),
+        # --- §Q.7 光学 ---
+        ('光学诊断', 'Doppler 300 K=1.3666 pm', doppler_pm(696.5, 300.0), 0.01, r'\mathrm{pm}', False),
+        ('光学诊断', 'Doppler 0.5 eV=6.0101 pm',
+         doppler_pm(696.5, 0.5 * e_k), 0.01, r'\mathrm{pm}', False),
+        ('光学诊断', 'Doppler 3 eV=14.7218 pm',
+         doppler_pm(696.5, 3.0 * e_k), 0.01, r'\mathrm{pm}', False),
+        # 正文把 36.6 倍写成「约 37 倍」，容差放到 2%
+        ('光学诊断', '仪器宽度是室温宽度的 37 倍',
+         50.0 / doppler_pm(696.5, 300.0), 0.02, '', False),
+        # 表内数值的单位写在表头，故这六行传 unit=''
+        ('光学诊断', '双线比 0.950 → 7.7983 eV', 0.40 / math.log(1.0 / 0.950), 0.01,
+         '', False),
+        ('光学诊断', '双线比 0.900 → 3.7965 eV', 0.40 / math.log(1.0 / 0.900), 0.01,
+         '', False),
+        ('光学诊断', '双线比 0.875 → 2.9956 eV', 0.40 / math.log(1.0 / 0.875), 0.01,
+         '', False),
+        ('光学诊断', '双线比 0.850 → 2.4613 eV', 0.40 / math.log(1.0 / 0.850), 0.01,
+         '', False),
+        ('光学诊断', '双线比 0.750 → 1.3904 eV', 0.40 / math.log(1.0 / 0.750), 0.01,
+         '', False),
+        ('光学诊断', '双线比 0.500 → 0.5771 eV', 0.40 / math.log(2.0), 0.01, '', False),
+        ('光学诊断', '1 mW@750 nm 进 1% 通量=3.7756e13 光子/s',
+         1.0e-3 * 0.01 / (h_pl * c_light / 750e-9), 0.01, '', False),
+        # --- §Q.8 汤姆孙散射与微波 ---
+        ('汤姆孙散射与微波干涉仪', 'k=1.6703e7 1/m', k_sc, 0.01, r'\mathrm{m^{-1}}', False),
+        ('汤姆孙散射与微波干涉仪', '刻蚀 kλ_D=680.08', k_sc * lam_etch, 0.01, '', False),
+        ('汤姆孙散射与微波干涉仪', '刻蚀 α=1.4704e-3', 1.0 / (k_sc * lam_etch), 0.01, '', False),
+        ('汤姆孙散射与微波干涉仪', 'DBD kλ_D=5.55', k_sc * debye_q(2.0, 1e21), 0.01, '', False),
+        ('汤姆孙散射与微波干涉仪', '聚变边界 kλ_D=107.53',
+         k_sc * debye_q(15.0, 2e19), 0.01, '', False),
+        ('汤姆孙散射与微波干涉仪', 'DBD α=1.8009e-1',
+         1.0 / (k_sc * debye_q(2.0, 1e21)), 0.01, '', False),
+        ('汤姆孙散射与微波干涉仪', '聚变边界 α=9.2997e-3',
+         1.0 / (k_sc * debye_q(15.0, 2e19)), 0.01, '', False),
+        ('汤姆孙散射与微波干涉仪', '1 J@10 ns=2.6782e18 光子', n_ph_532, 0.01, '', False),
+        ('汤姆孙散射与微波干涉仪', 'N_s=1781.6 个散射光子',
+         1e17 * 0.01 * sigma_t * 0.01 * n_ph_532, 0.01, '', False),
+        ('汤姆孙散射与微波干涉仪', '统计误差 2.37%',
+         100.0 / math.sqrt(1e17 * 0.01 * sigma_t * 0.01 * n_ph_532), 0.01, '', False),
+        ('汤姆孙散射与微波干涉仪', 'n_c(10 GHz)=1.2404e18 m^-3', n_crit(1e10), 0.01,
+         r'\mathrm{m^{-3}}', False),
+        ('汤姆孙散射与微波干涉仪', 'n_e/n_c=0.080616', 1e17 / n_crit(1e10), 0.01, '', False),
+        ('汤姆孙散射与微波干涉仪', 'Δφ=2.5344 rad',
+         (2 * math.pi * 1e10 / c_light) * (1e17 / n_crit(1e10) / 2.0) * 0.3, 0.01,
+         r'\mathrm{rad}', False),
+        ('汤姆孙散射与微波干涉仪', '0.4034 条纹',
+         (2 * math.pi * 1e10 / c_light) * (1e17 / n_crit(1e10) / 2.0) * 0.3 / (2 * math.pi),
+         0.01, '', False),
+        ('汤姆孙散射与微波干涉仪', '测 1e19 需 f>28.39 GHz', f_pl(1e19) / 1e9, 0.01,
+         r'\mathrm{GHz}', False),
+        # --- §Q.10 练习答案 ---
+        ('六道估算练习', '[1] I_e=1.8394 mA', 5.0 * math.exp(-1.0), 0.01, r'\mathrm{mA}', False),
+        ('六道估算练习', '[1] I_e=0.6767 mA', 5.0 * math.exp(-2.0), 0.01, r'\mathrm{mA}', False),
+        ('六道估算练习', '[1] 正确 T_e=2.0000 eV', 2.0, 0.01, r'\mathrm{eV}', False),
+        ('六道估算练习', '[1] 净电流斜率 1.0127 /V',
+         math.log(1.3394 / 0.1767) / 2.0, 0.01, '', False),
+        ('六道估算练习', '[1] T_e=0.9873 eV（低估 50.6%）',
+         1.0 / (math.log(1.3394 / 0.1767) / 2.0), 0.01, r'\mathrm{eV}', False),
+        ('六道估算练习', '[2] A_p=2.010619e-5 m^2', 2.0 * math.pi * 4e-4 * 0.008, 0.001,
+         r'\mathrm{m^2}', False),
+        ('六道估算练习', '[2] c_s=2457.27 m/s', cs_q(2.5, m_ar), 0.01, r'\mathrm{m/s}', False),
+        ('六道估算练习', '[2] n_e=1.2633e17 m^-3',
+         0.6e-3 / (0.6 * E_CHG * cs_q(2.5, m_ar) * 2.0 * math.pi * 4e-4 * 0.008), 0.01,
+         r'\mathrm{m^{-3}}', False),
+        ('六道估算练习', '[3] λ_D=66.49 μm', debye_q(4.0, 5e16) * 1e6, 0.01, '', False),
+        ('六道估算练习', '[3] r_p/λ_D=15.04', 1e-3 / debye_q(4.0, 5e16), 0.01, '', False),
+        ('六道估算练习', '[3] 要 r_p <= 199.5 μm', 3.0 * debye_q(4.0, 5e16) * 1e6, 0.01, '', False),
+        ('六道估算练习', '[4] M=5.0000e-7 H',
+         MU0 * 500 * 2e-4 / (2.0 * math.pi * 0.04), 0.001, r'\mathrm{H}', False),
+        ('六道估算练习', '[4] V_coil=50.00 V',
+         MU0 * 500 * 2e-4 / (2.0 * math.pi * 0.04) * 200.0 / 2e-6, 0.01, r'\mathrm{V}', False),
+        ('六道估算练习', '[4] RC=100 μs', 100.0 * 1e-6 * 1e6, 0.01, r'\mathrm{\mu s}', False),
+        ('六道估算练习', '[4] V_out=1.0000 V',
+         MU0 * 500 * 2e-4 / (2.0 * math.pi * 0.04) * 200.0 / 1e-4, 0.01, r'\mathrm{V}', False),
+        ('六道估算练习', '[4] S=5.0000e-3 V/A',
+         MU0 * 500 * 2e-4 / (2.0 * math.pi * 0.04) / 1e-4, 0.01, r'\mathrm{V/A}', False),
+        ('六道估算练习', '[5] N_ph=1.33895e18', 0.5 / (h_pl * c_light / 532e-9), 0.01, '', False),
+        ('六道估算练习', '[5] N_s=89081 个光子',
+         5e18 * 0.01 * sigma_t * 0.02 * (0.5 / (h_pl * c_light / 532e-9)), 0.01, '', False),
+        ('六道估算练习', '[5] 统计误差 0.335%',
+         100.0 / math.sqrt(5e18 * 0.01 * sigma_t * 0.02 * (0.5 / (h_pl * c_light / 532e-9))),
+         0.01, '', False),
+        ('六道估算练习', '[6] 测 3e18 需 f>15.55 GHz', f_pl(3e18) / 1e9, 0.01, '',
+         False),
+        ('六道估算练习', '[6] 20 GHz 的 n_c=4.9618e18 m^-3', n_crit(2e10), 0.01,
+         r'\mathrm{m^{-3}}', False),
+        ('六道估算练习', '[6] n_e/n_c=0.6046', 3e18 / n_crit(2e10), 0.01, '', False),
+        ('六道估算练习', '[6] Δφ=25.3439 rad',
+         (2 * math.pi * 2e10 / c_light) * (3e18 / n_crit(2e10) / 2.0) * 0.2, 0.01,
+         r'\mathrm{rad}', False),
+        ('六道估算练习', '[6] 4.0336 条纹',
+         (2 * math.pi * 2e10 / c_light) * (3e18 / n_crit(2e10) / 2.0) * 0.2 / (2 * math.pi),
+         0.01, '', False),
+    ]
+    bad = []
+    for topic, desc, want, rel, unit, signed in cases:
+        if not value_in(found[topic], want, rel, unit, signed):
+            bad.append((topic, desc))
+    if bad:
+        rec('FAIL', 'P', '附录 Q 有 %d 项数值与独立复算不符（或不在它所属的那一节内）：%s'
+            % (len(bad), bad[:6]))
+    else:
+        rec('PASS', 'P', '附录 Q 的 %d 项关键数值全部与独立复算一致，且落在各自小节内'
+            % len(cases))
+
+    # 全篇口径与结论句（内容跨节，故对整个文件断言）
+    has(text, r'\texttt{appQ\_calc.py}',
+        'src/%s（数值由仓库脚本复算的交代）' % APP_FILES['Q'])
+    has(text, r'\eqref{eq:app-p-flux}',
+        'src/%s（与附录 P 的离子通量公式交叉引用）' % APP_FILES['Q'])
+    has(found['静电探针'], 'OML', 'src/%s（轨道运动限制的适用区间）' % APP_FILES['Q'])
+    has(found['静电探针'], 'ABR', 'src/%s（超出 OML 后要换的理论）' % APP_FILES['Q'])
+    has(found['从 I--V 曲线读电子温度'], '低估',
+        'src/%s（漏减离子电流会低估 T_e 的结论）' % APP_FILES['Q'])
+    has(found['从离子饱和电流读密度'], '有效收集面积',
+        'src/%s（密度误差的主要来源是面积而不是 T_e）' % APP_FILES['Q'])
+    has(found['悬浮电位与等离子体电位'], '收集模型',
+        'src/%s（两个悬浮电位系数之差来自收集模型）' % APP_FILES['Q'])
+    has(found['磁诊断'], '只能测',
+        'src/%s（磁探针只能测变化量的局限）' % APP_FILES['Q'])
+    # 数值用例的窗口匹配（80 字符内出现该单位）可能被邻座的同值数字满足：
+    # §Q.6 里 R=50 Ω 与 RC=50.0 µs 数值相同，故这里另加一条字面断言钉住时间常数本身。
+    has(found['磁诊断'], r'RC=50.0\ \mathrm{\mu s}',
+        'src/%s（RC 积分时间常数 50.0 µs 的字面写法）' % APP_FILES['Q'])
+    has(found['光学诊断'], '仪器宽度',
+        'src/%s（Doppler 宽度必须先与仪器宽度比较）' % APP_FILES['Q'])
+    has(found['汤姆孙散射与微波干涉仪'], '非相干',
+        'src/%s（Salpeter 参数的两种极限）' % APP_FILES['Q'])
+    has(found['误差与自检'], '系统误差',
+        'src/%s（系统误差不随平均次数下降）' % APP_FILES['Q'])
+    has(found['来源、分级与版权说明'], '不复制',
+        'src/%s（不复制任何题目、解答、图表与数据表的声明）' % APP_FILES['Q'])
+    lacks(text, '\\dd ', 'src/%s（微分必须写 \\diff，不得回流 \\dd ）' % APP_FILES['Q'])
+    lacks(text, 'r_p/\\lambda_D 与理论无关',
+          'src/%s（OML 判据不得写成与 r_p/\\lambda_D 无关）' % APP_FILES['Q'])
+
+
+def check_P15_appendix_i_dunlosky():
+    """附录 I「十种学习技术的评级」一节的完整性与三档计数。
+
+    可证伪点（全部记 FAIL）：
+      ① 该小节被删或标题被改；
+      ② 十种技术之一被删（逐项检查名称）；
+      ③ 三档数量被改（高效用 2 / 中等效用 3 / 低效用 5，按表格行首列计数）；
+      ④ 缺少「流畅性错觉」机制或「存储强度／提取强度」的口径；
+      ⑤ 缺少「出处：」交代。
+    """
+    p = os.path.join(SRC, APP_FILES['I'])
+    if not os.path.exists(p):
+        rec('FAIL', 'P', '附录 I 文件不存在：%s' % APP_FILES['I'])
+        return
+    text = strip_comments(read(p))
+    secs = split_blocks(text, 'section')
+    blk = None
+    for ttl, body in secs:
+        if ttl.startswith('十种学习技术的评级'):
+            blk = body
+            break
+    if blk is None:
+        rec('FAIL', 'P', '附录 I 缺少「十种学习技术的评级」一节（标题被改或整节被删）')
+        return
+    rec('PASS', 'P', '附录 I 有「十种学习技术的评级：把时间花在哪」一节')
+
+    has(blk, r'\label{tab:app-i-dunlosky}', 'src/%s（评级表 label）' % APP_FILES['I'])
+    for tech in ('检索练习', '分散练习', '精细提问', '自我解释', '交错练习',
+                 '重读', '划线', '抄摘要', '关键词记忆法', '文本想象'):
+        has(blk, tech, 'src/%s（评级表里的技术：%s）' % (APP_FILES['I'], tech))
+
+    n_high = len(re.findall(r'高效用 &', blk))
+    n_mid = len(re.findall(r'中等效用 &', blk))
+    n_low = len(re.findall(r'低效用 &', blk))
+    if (n_high, n_mid, n_low) != (2, 3, 5):
+        rec('FAIL', 'P', '附录 I 评级表的档次计数为 高%d/中%d/低%d，应为 高2/中3/低5'
+            % (n_high, n_mid, n_low))
+    else:
+        rec('PASS', 'P', '附录 I 评级表的档次计数为 高效用 2 / 中等效用 3 / 低效用 5')
+
+    has(blk, '流畅性错觉', 'src/%s（低效用技术仍然流行的机制）' % APP_FILES['I'])
+    has(blk, '存储强度', 'src/%s（Bjork 的存储强度与提取强度区分）' % APP_FILES['I'])
+    has(blk, '提取强度', 'src/%s（考试与解题需要的是提取强度）' % APP_FILES['I'])
+    has(blk, r'\textbf{出处：}', 'src/%s（评级一节必须交代借鉴来源）' % APP_FILES['I'])
+    lacks(blk, '高效用三项',
+          'src/%s（高效用只能是两项：检索练习与分散练习）' % APP_FILES['I'])
+    # 期刊名是两本刊的拼接（Perspectives on Psychological Science + Psychological Science in the
+    # Public Interest）；DOI 10.1177/1529100612453266 与卷期页 14(1), 4--58 都属于后者。
+    lacks(text, 'Perspectives on Psychological Science',
+          'src/%s（Dunlosky 2013 的出处期刊名不得拼接错，应为 Psychological Science in the '
+          'Public Interest）' % APP_FILES['I'])
+
+
+def check_P16_no_markdown_bold():
+    """全库不得残留 Markdown 粗体简写 **…**（逐字环境内的 Python 幂运算除外）。
+
+    背景：v1.13.0 的附录 P 有 19 行正文写成 **强调**，而本书没有把 ** 定义成粗体，
+    于是 PDF 里真的印出了星号。这里把「逐字环境之外出现 **」定为 FAIL。
+    """
+    verb_begin = re.compile(r'\\begin\{(lstlisting|verbatim|Verbatim|minted|'
+                            r'lstinputlisting|filecontents)\*?\}')
+    verb_end = re.compile(r'\\end\{(lstlisting|verbatim|Verbatim|minted|'
+                          r'lstinputlisting|filecontents)\*?\}')
+    files = [MAIN] + [os.path.join(SRC, f) for f in sorted(APP_FILES.values())]
+    stray = []
+    for p in files:
+        if not os.path.exists(p):
+            continue
+        inv = False
+        for i, ln in enumerate(strip_comments(read(p)).split('\n'), 1):
+            if verb_begin.search(ln):
+                inv = True
+            if not inv and '**' in ln:
+                stray.append('%s:%d' % (os.path.basename(p), i))
+            if verb_end.search(ln):
+                inv = False
+    if stray:
+        rec('FAIL', 'P', '有 %d 行正文残留 Markdown 粗体简写 **…**（会原样印出星号）：%s'
+            % (len(stray), stray[:8]))
+    else:
+        rec('PASS', 'P', '全库 %d 个 tex 文件在逐字环境之外没有 ** 粗体简写'
+            % len(files))
+
+
 def check_P02_appendix_j_map():
     """附录 J 逐章对照表的完备性：覆盖 1--12 章、每行 5 列、章号不越界。
 
@@ -2320,6 +2701,9 @@ def main():
     check_P11_appendix_o_propulsion()
     check_P12_appendix_p_lowtemp()
     check_P13_appendix_i_calendar()
+    check_P14_appendix_q_diagnostics()
+    check_P15_appendix_i_dunlosky()
+    check_P16_no_markdown_bold()
     check_P06_scattering_alpha()
     check_P09_tcbtheorem_arity()
 
