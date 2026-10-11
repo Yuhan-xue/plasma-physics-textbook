@@ -812,5 +812,64 @@ $T=4$ eV 可精确反演，被破坏的是 $\sqrt{\epsilon}$ 上升段与归一�
 ⑤ 借鉴他人的内容时，「注明来源」与「数值自算」是两件事——本轮两者都做：出处写到章，数值独立复算并固化成检查。
 
 
+## 13. 计划评审修复轮（v1.8.1，2026-10-11）
+
+### 13.1 动机
+
+远端定时评审 `reviews/2026-10-11-scheduled/`（基线 v1.8.0 文档提交 `b95117b`）提出 6 项，全部 P2：
+曲率漂移方向（P-C01）、Child–Langmuir 鞘厚与 Bohm 通量口径不一致（P-C02）、
+用「非相对论性」冒充「磁冻结成立」（P-C03）、门禁忽略答案符号且不绑定题目（P-W01）、
+EEPF 与归一化 EEDF 仍混淆（PP-C04）、附录 H 符号表的 α 判据反向（PP-C06）。
+其中 P-W01 最刺眼：它指的不是书里的物理，而是**上一轮刚加的门禁本身能被绕过**——
+`check/physics_regression.py` 当时用 `values_in()` 在全篇按**绝对值**查数字是否出现过，
+既不检查符号，也不要求答案出现在所属题目内。
+
+### 13.2 源码勘误（4 处内容 + 1 处文字）
+
+| 位置 | 改动 |
+| --- | --- |
+| `src/appendix_k_problems.tex:79-87` | 曲率漂移改为 $\unitvec{b}\times\kappa$ 并给柱坐标叉乘式；结论句「**不是**指向曲率中心」；常见错误补「与 $\kappa$ 垂直，两者不可互换」 |
+| `src/appendix_k_problems.tex:181-205` | K.7 三问分开体密度/鞘边密度自定义；改用 $\lambda_D(n_s)$ 得 $s=1.81$ mm，并用 CL 关系反解 $1.813$ mm 与 $j=e\Gamma$ 互相校验（相差 0.2%）；明写误用体密度会低估 $\sqrt{n_0/n_s}=1.28$ 倍 |
+| `src/appendix_k_problems.tex:108-122` | 把 $v_A/c\ll1$ 与磁冻结**拆开**：前者只说明非相对论公式适用，后者要 $R_m=\mu_0Lv/\eta\gg1$ 及霍尔/电子压强项，附 $R_m\approx5.9\times10^5$ 与 $\tau_\eta\approx0.076$ s 对照 |
+| 主文件 `:4069-4108` | 三行表分别列出 $F$、$p=F/n_e$、$g=p/\sqrt{\eps}$ 的归一化与单位；点明「EEPF 不是归一化 EEDF 的同义词」；补 J↔eV 雅可比 $F_{\mathrm{eV}}=eF_J$；警告框说明只有 $g$ 在半对数图上是直线 |
+| 主文件 `:6047`、`:6200` | 符号表与术语表的 α 判据同步为「$\alpha\ll1$ 非集体（非相干）、$\alpha\gtrsim1$ 才是集体」 |
+| `src/appendix_k_problems.tex:87` | 错字 `上下交替，,短接了电荷分离` → `上下交替，短接了电荷分离` |
+
+### 13.3 门禁加固（P-W01 的直接回答）
+
+- `check/physics_regression.py` 重写 P 类（`values_in/has_value` → `NUM_PAT`/`_is_negative`/`value_in`/`split_blocks`）：
+  **逐题绑定**（附录 K 按 `\begin{example}` 切 8 块、附录 I 按 `\section` 切）、**带符号**（K.5 的阻尼率必须带负号，
+  且 `10^{-2}` 的指数负号不会被误判成符号）、**带单位**（数值后 80 字符内必须出现指定单位，`\mathrm{m}` 不会错配 `\mathrm{mm}`）；
+  套件 122 → **156 项**。
+- 新增 `check_P05_appendix_k_claims()`：三道判断题的结论方向必须与物理一致（K.3 叉乘、K.4 磁冻结门槛、K.7 同一电流边界条件）。
+- 新增 `check_P06_scattering_alpha()`：扫描全篇「含 `&` 且含 α 判据」的表格行，按子句判定方向（实测 2 行全对），
+  并对符号表、术语表、12.4 正文、`ch12_supplement` 各加显式断言。
+- `check_M07_eedf()` 扩展：数值验证 $p/g=\sqrt{\eps}$ 与 $\int\sqrt{\eps}g\,\diff\eps=1$，验证 J↔eV 雅可比下积分不变。
+- 夹具 `gate_physics_negative.py` 6 → **9 处植入**（阈值 FAIL ≥ 11），新增「只翻符号」「K.7 量级」「K.7 单位」三类；
+  迭代中发现旧的「主文件 $w^2$」补丁**从未命中任何检查**（旧 P01 只查附录 I/K），补上主文件交叉对照后才从 FAIL 10 升到 11——
+  这是本轮最有价值的一条证据：**能悄悄通过的变异就是门禁的漏洞**。
+
+### 13.4 验收结果（重建后实测）
+
+- 六套件 FAIL 0：`full_check` 32 项（WARN 1：2 处基线 overfull）、`ui_readability` 35 项（WARN 17）、
+  `consistency_audit` 14 项、`physics_regression` **156 项**、`figure_layout` 13 项、`pdf_outline` 11 项
+  （WARN 2：`O3b` 18/220 条 −1 偏移、`O4` 同源 1 条）。
+- 五套夹具 PASS：`gate_compile_log` 7 例、`gate_physics_negative` 9 处（植入 FAIL 11 / 恢复 FAIL 0 / 原字节恢复）、
+  `gate_figure_layout` 5 例、`gate_pdf_outline`、`gate_g2_listing`。
+- 编译：`latexmk -xelatex` 两次 exit 0、`^! ` 错误 0、Overfull 仅 2 处基线。
+- PDF：**241 页**、1 816 654 B、SHA256 `7011AA9A9FDDA2192CA6A90695274D44A37654DB058049664A544C3DDDE9F08F`、
+  标题 `等离子体物理自学教材 v1.8.1`；`src/` 与 `pdf/` 副本逐字节一致。
+- 逐项页码（PyMuPDF 在最终 PDF 上实测）：P-C01 p.237、P-C02 p.239–240、P-C03 p.238、
+  PP-C04 p.164–165、PP-C06 p.221（符号表）/ p.223（术语表）。详见 `reviews/2026-10-11-scheduled/CLOSURE.md`。
+
+### 13.5 教训（给下一轮）
+
+① **门禁的价值取决于它能否被证伪**：把「答案出现过」当成「答案正确」是最隐蔽的假通过，
+   变异测试（只翻符号、换单位、幻章）才是门禁的验收方式；
+② **单位必须绑定**：`1.8 mm → 1.8 cm` 这类变异用「数值±容差」永远抓不到，必须断言印刷单位串；
+③ **行号会漂移**：PP-C04 的新增使同一轮内符号表行号由 6028 变为 6047，评审报告的旧行号只能作线索；
+④ 内容勘误与门禁加固应同轮交付——修好物理而不修检查，下一轮还会漂回去。
+
+
 
 
