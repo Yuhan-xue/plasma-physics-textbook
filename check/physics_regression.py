@@ -729,6 +729,7 @@ APP_FILES = {
     'Q': 'appendix_q_diagnostics.tex',
     'R': 'appendix_r_dusty.tex',
     'S': 'appendix_s_confinement.tex',
+    'T': 'appendix_t_topology.tex',
 }
 
 # CODATA 2018 常数（与附录 D 的单位换算表同一组值）
@@ -3114,6 +3115,9 @@ def check_P20_ipb98_formula_consistency():
     has(box, r'a^{0.58}R^{1.39}',
         'src/%s（公式卡里 a 与 R 的等价改写，用来钉住 0.58 这个幂次）' % cname)
     has(box, 'IPB98(y,2)', 'src/%s（公式卡的正式名称）' % cname)
+    has(box, r'\epsilon=a/R', 'src/%s（公式卡里 ε 的定义，符号说明要能自洽）' % cname)
+    has(box, r'$\kappa$ 为拉长比',
+        'src/%s（符号说明必须交代 κ，否则 consistency_audit 会报未说明符号）' % cname)
     lacks(box, 'ITER98y2', 'src/%s（公式卡不得退回 ITER98y2 这个名称）' % cname)
     lacks(box, r'a^{1.97}', 'src/%s（a 的幂次不得写成 1.97）' % cname)
     lacks(box, r'P^{-0.58}', 'src/%s（P 的幂次不得写成 -0.58）' % cname)
@@ -3183,6 +3187,319 @@ def check_P21_appendix_i_expert():
           'src/%s（不得把领域性结论写成通用能力）' % APP_FILES['I'])
     lacks(text, '七个可执行动作',
           'src/%s（动作清单若扩到七个，必须同步 P18 的计数断言）' % APP_FILES['I'])
+
+
+def check_P22_appendix_t_topology():
+    """附录 T 磁面、磁岛与磁通量管的结构完整性与数值独立复算。
+
+    可证伪点（全部记 FAIL）：
+      ① 九个小节之一被删（按小节标题子串定位）；
+      ② 八张表 / 两只语义盒 / 十五个编号公式之一被删或改了 label；
+      ③ 缺少「出处：」行（本附录要求 >= 7 处），或六道练习缺解答；
+      ④ 印出的关键数值与独立复算不符（q95 公式、有理面位置、剪切、k_∥ 与 λ、τ_e 与 χ_∥、
+         岛宽与岛内等温时间、重叠磁通、自举电流与临界岛宽、反转半径），或搬到了别的小节里；
+      ⑤ 口径回流：χ_∥ 用了离子质量、τ_e 的 3/2 次幂被改、岛宽系数从 4 退回 2、
+         q 剖面从 ρ² 退回 ρ、反转半径丢掉根号、Ψ_h'' 与剪切的对应被改。
+
+    数值唯一来源 tmp/appT_calc.py；表内数字的单位写在表头，故这些用例传 unit=''。
+    语义盒标签写在 \\begin{tip}{标题}{标签} 的第二个必选参数里，不写成 \\label{}。
+    """
+    spath = os.path.join(SRC, APP_FILES['T'])
+    if not os.path.exists(spath):
+        rec('FAIL', 'P', '附录 T 文件缺失：src/%s' % APP_FILES['T'])
+        return
+    text = strip_comments(read(spath))
+    secs = split_blocks(text, 'section')
+
+    want = ['磁面、安全因子', '安全因子剖面与有理面', '磁通量管上的两条路', '磁岛：',
+            '岛链重叠', '新经典撕裂模', '锯齿、', '六道估算练习', '来源、分级与版权说明']
+    found = {}
+    for pre in want:
+        for ttl, body in secs:
+            if pre in ttl:
+                found[pre] = body
+                break
+    missing = [p for p in want if p not in found]
+    if missing:
+        rec('FAIL', 'P', '附录 T 缺少小节（标题被改或整节被删）：%s' % missing)
+        return
+    rec('PASS', 'P', '附录 T 的 %d 个小节齐全' % len(want))
+
+    for lab in ('tab:app-t-q95', 'tab:app-t-surfaces', 'tab:app-t-kpar',
+                'tab:app-t-transport', 'tab:app-t-w', 'tab:app-t-overlap',
+                'tab:app-t-ntm', 'tab:app-t-source'):
+        has(text, r'\label{%s}' % lab, 'src/%s（表格 label %s）' % (APP_FILES['T'], lab))
+
+    for lab in ('tip-app-t-flux', 'tip-app-t-flat'):
+        has(text, '{%s}' % lab, 'src/%s（语义盒标签 %s）' % (APP_FILES['T'], lab))
+
+    for lab in ('eq:app-t-fluxfunc', 'eq:app-t-bo', 'eq:app-t-qprofile', 'eq:app-t-shear',
+                'eq:app-t-resonance', 'eq:app-t-kpar', 'eq:app-t-sidentity', 'eq:app-t-taue',
+                'eq:app-t-chipar', 'eq:app-t-psih', 'eq:app-t-width', 'eq:app-t-overlap',
+                'eq:app-t-rutherford', 'eq:app-t-wmarg', 'eq:app-t-rinv'):
+        has(text, r'\label{%s}' % lab, 'src/%s（公式 label %s）' % (APP_FILES['T'], lab))
+
+    has(text, '不复制', 'src/%s（版权与独立性声明）' % APP_FILES['T'])
+
+    n_src = len(re.findall(r'\\textbf\{出处：\}', text))
+    if n_src < 7:
+        rec('FAIL', 'P', '附录 T 的「出处：」行只有 %d 处，应 >= 7' % n_src)
+    else:
+        rec('PASS', 'P', '附录 T 有 %d 处「出处：」交代' % n_src)
+
+    ex = found['六道估算练习']
+    n_ex = len(re.findall(r'\\textbf\{练习\s*\d+', ex))
+    n_ans = len(re.findall(r'\\textbf\{解答\}', ex))
+    if n_ex < 6:
+        rec('FAIL', 'P', '附录 T 的估算练习只有 %d 道，应 >= 6' % n_ex)
+    else:
+        rec('PASS', 'P', '附录 T 有 %d 道估算练习' % n_ex)
+    if n_ans < n_ex:
+        rec('FAIL', 'P', '附录 T 有 %d 道练习但只有 %d 个解答' % (n_ex, n_ans))
+    else:
+        rec('PASS', 'P', '附录 T 的每道练习都有解答（%d 个）' % n_ans)
+
+    # 字面绑定：公式形式与口径说明必须原样在文里（改动即 FAIL）
+    for lit, why in (
+            (r'q(\rho)=q_0+(q_{95}-q_0)\,\rho^2', 'q 剖面的教学形式（ρ² 不能退回 ρ）'),
+            ("s(r)\\equiv\\frac{r\\,q'}{q}", '磁剪切的定义'),
+            (r'q(r_{mn})=\frac{m}{n}', '有理面的共振条件'),
+            (r's(r)=2\,\frac{q(r)-q_0}{q(r)}=2-\frac{2q_0}{q(r)}', '剪切恒等式（P22 的解析自检）'),
+            (r'\tau_e=\frac{3.44\times10^{5}\,T_e^{3/2}}{n_e\ln\Lambda}', 'NRL 电子碰撞时间'),
+            (r'\ln\Lambda=24-\ln\frac{n_e^{1/2}}{T_e}', '库仑对数的 NRL 形式'),
+            (r'\chi_\parallel=\frac{3.16\,T_e\,\tau_e}{m_e}', 'Braginskii 平行电子热导（必须是 m_e）'),
+            ("\\Psi_h''(r_{mn})=B_\\theta\\,s", '螺旋磁通二阶导数与剪切的关系'),
+            (r'w=4\sqrt{\frac{\tilde\Psi}{B_\theta\,s}}', '岛宽公式（系数 4）'),
+            (r'\tilde\Psi\;\gtrsim\;B_\theta s\left(\frac{\Delta r}{4}\right)^2', '岛链重叠判据'),
+            ("w_{\\mathrm{marg}}=\\frac{5.6\\,\\mu_0\\,j_{\\mathrm{bs}}\\,L_q}"
+             "{B_\\theta\\,|\\Delta'_0|}", 'NTM 临界岛宽'),
+            (r'r_{\mathrm{inv}}=a\sqrt{\frac{1-q_0}{q_{95}-q_0}}', '锯齿反转半径'),
+            (r'\frac{w_1}{2}+\frac{w_2}{2}\;\gtrsim\;\Delta r', '重叠判据的几何形式'),
+            (r'f_{\mathrm{bs}}=0.25', '自举电流份额的教学取值'),
+            # 整行/整句绑定：下面这些数在表里与正文、练习里重复出现（0.0698 出现 4 次、
+            # 9.023e11 出现 2 次），只钉单个数字时改掉表里那一处仍能满足数值用例——
+            # v1.17.0 的逐条探针第 67、68 号就是这样逃掉的，故把每一处印出的位置都钉住。
+            (r'D1 ITER 量级 & $9.194$ & $17.00$ & $1.766\times10^{-4}$ & $9.023\times10^{11}$'
+             r' & $0.6058$ & $1.490\times10^{12}$', '表 T.3 的 D1 整行'),
+            (r'D1 ITER 量级 & $3/2$ & $0.9608$ & $0.5475$ & $0.6000$ & $0.0698$ & $0.0349$'
+             r' & $5.398\times10^{-15}$', '表 T.4 的 D1 3/2 整行'),
+            (r'\chi_\parallel=9.02\times10^{11}', 'T.3 正文里的四舍五入值'),
+            (r'\chi_\parallel=9.023\times10^{11}', '练习 4 给定的 χ_∥ 精确值'),
+            (r'w_{2/1}=0.0531\ \mathrm{m}<w_{3/2}=0.0698\ \mathrm{m}', 'T.4 的岛宽比较句'),
+            (r'w=0.0698\times\sqrt4=0.1396\ \mathrm{m}', '练习 3 解答的倍数推导'),
+            (r'w=0.0698\ \mathrm{m}$、$\tau_E=2.4762\ \mathrm{s}', '练习 4 给定的 w 与 τ_E')):
+        has(text, lit, 'src/%s（%s）' % (APP_FILES['T'], why))
+
+    # 口径回流防护（这些写法一旦出现即为 FAIL）
+    for lit, why in (
+            (r'\chi_\parallel=\frac{3.16\,T_e\,\tau_e}{m_i}', '平行电子热导被写成离子质量'),
+            (r'\tau_e=\frac{3.44\times10^{5}\,T_e^{1/2}', '电子碰撞时间丢了 3/2 次幂'),
+            (r'w=2\sqrt{\frac{\tilde\Psi}{B_\theta\,s}}', '岛宽系数从 4 退回 2'),
+            (r'q(\rho)=q_0+(q_{95}-q_0)\,\rho,', 'q 剖面从 ρ² 退回 ρ'),
+            (r'r_{\mathrm{inv}}=a\frac{1-q_0}{q_{95}-q_0}', '反转半径丢掉根号'),
+            ("\\Psi_h''(r_{mn})=B_\\theta\\,s^2", '螺旋磁通二阶导数写成 s²')):
+        lacks(text, lit, 'src/%s（%s）' % (APP_FILES['T'], why))
+
+    # 数值独立复算（单位见正文/表头，故 unit=''）
+    cases = [
+        # T.1 安全因子与 q95 经验公式
+        (1.05, 1e-3, '磁面、安全因子', 'D1 的 q_0'),
+        (3.00, 1e-3, '磁面、安全因子', 'D1 的 q_95（设计值）'),
+        (2.22, 1e-3, '磁面、安全因子', 'D1 的 q_95（经验公式）'),
+        (0.78, 1e-3, '磁面、安全因子', 'D1 的差 +0.78'),
+        (3.90, 1e-3, '磁面、安全因子', 'D2 的 q_95（设计值）'),
+        (3.91, 1e-3, '磁面、安全因子', 'D2 的 q_95（经验公式）'),
+        (3.99, 1e-3, '磁面、安全因子', 'D3 的 q_95（经验公式）'),
+        (5.30, 1e-3, '磁面、安全因子', 'D1 的环向场 B/T'),
+
+        # T.2 有理面与剪切
+        (0.4804, 1e-3, '安全因子剖面与有理面', 'D1 3/2 面的 ρ'),
+        (0.9608, 1e-3, '安全因子剖面与有理面', 'D1 3/2 面的 r'),
+        (0.5475, 1e-3, '安全因子剖面与有理面', 'D1 3/2 面的 B_θ'),
+        (0.9367, 1e-3, '安全因子剖面与有理面', 'D1 3/2 面的 q\' '),
+        (0.6000, 1e-3, '安全因子剖面与有理面', 'D1 3/2 面的 s'),
+        (1.6013, 1e-3, '安全因子剖面与有理面', 'D1 3/2 面的 L_q'),
+        (1.3960, 1e-3, '安全因子剖面与有理面', 'D1 2/1 面的 r'),
+        (0.5967, 1e-3, '安全因子剖面与有理面', 'D1 2/1 面的 B_θ'),
+        (0.9500, 1e-3, '安全因子剖面与有理面', 'D1 2/1 面的 s'),
+        (0.5190, 1e-3, '安全因子剖面与有理面', 'D2 3/2 面的 r'),
+        (0.3507, 1e-3, '安全因子剖面与有理面', 'D2 3/2 面的 B_θ'),
+        (0.6667, 1e-3, '安全因子剖面与有理面', 'D2 3/2 面的 s'),
+        (0.7340, 1e-3, '安全因子剖面与有理面', 'D2 2/1 面的 r'),
+        (1.0000, 1e-3, '安全因子剖面与有理面', 'D2 2/1 面的 s（恒等式给 1）'),
+        (0.1462, 1e-3, '安全因子剖面与有理面', 'D3 1/1 面的 r'),
+        (0.1839, 1e-3, '安全因子剖面与有理面', 'D3 1/1 面的 B_θ'),
+        (0.3000, 1e-3, '安全因子剖面与有理面', 'D3 1/1 面的 s'),
+        (0.3044, 1e-3, '安全因子剖面与有理面', 'D3 3/2 面的 r'),
+        (0.8667, 1e-3, '安全因子剖面与有理面', 'D3 3/2 面的 s'),
+        (0.2545, 1e-3, '安全因子剖面与有理面', 'D3 2/1 面的 B_θ'),
+        (1.1500, 1e-3, '安全因子剖面与有理面', 'D3 2/1 面的 s'),
+
+        # T.2b 平行波数（绝对值比对，正文按大小印出）
+        (1.792e-2, 1e-3, '安全因子剖面与有理面', '2/1 面 q=1.8 的 k_∥'),
+        (8.489e-3, 1e-3, '安全因子剖面与有理面', '2/1 面 q=1.9 的 k_∥'),
+        (7.680e-3, 1e-3, '安全因子剖面与有理面', '2/1 面 q=2.1 的 k_∥'),
+        (1.466e-2, 1e-3, '安全因子剖面与有理面', '2/1 面 q=2.2 的 k_∥'),
+        (3.584e-2, 1e-3, '安全因子剖面与有理面', '3/2 面 q=1.35 的 k_∥'),
+        (1.698e-2, 1e-3, '安全因子剖面与有理面', '3/2 面 q=1.425 的 k_∥'),
+        (2.933e-2, 1e-3, '安全因子剖面与有理面', '3/2 面 q=1.65 的 k_∥'),
+        (350.6, 1e-3, '安全因子剖面与有理面', '2/1 面 q=1.8 的 λ/m'),
+        (740.2, 1e-3, '安全因子剖面与有理面', '2/1 面 q=1.9 的 λ/m'),
+        (214.3, 1e-3, '安全因子剖面与有理面', '3/2 面 q=1.65 的 λ/m'),
+
+        # T.3 平行与垂直输运
+        (17.00, 1e-3, '磁通量管上的两条路', 'D1 的 lnΛ'),
+        (1.766e-4, 1e-3, '磁通量管上的两条路', 'D1 的 τ_e/s'),
+        (9.023e11, 1e-3, '磁通量管上的两条路', 'D1 的 χ_∥'),
+        (0.6058, 1e-3, '磁通量管上的两条路', 'D1 的 χ_⊥'),
+        (1.490e12, 1e-3, '磁通量管上的两条路', 'D1 的 χ_∥/χ_⊥'),
+        (16.10, 1e-3, '磁通量管上的两条路', 'D2 的 lnΛ'),
+        (6.032e-5, 1e-3, '磁通量管上的两条路', 'D2 的 τ_e/s'),
+        (7.832e10, 1e-3, '磁通量管上的两条路', 'D2 的 χ_∥'),
+        (1.5311, 1e-3, '磁通量管上的两条路', 'D2 的 χ_⊥'),
+        (15.64, 1e-3, '磁通量管上的两条路', 'D3 的 lnΛ'),
+        (2.946e-5, 1e-3, '磁通量管上的两条路', 'D3 的 τ_e/s'),
+        (2.699e10, 1e-3, '磁通量管上的两条路', 'D3 的 χ_∥'),
+        (1.5950, 1e-3, '磁通量管上的两条路', 'D3 的 χ_⊥'),
+        (38.96, 1e-3, '磁通量管上的两条路', 'D1 的 L_∥/m'),
+        (1.68e-9, 0.005, '磁通量管上的两条路', 'D1 的平行飞行时间/s'),
+        (1.651e-4, 1e-3, '磁通量管上的两条路', 'D1 的 1 cm 横向时间/s'),
+        (9.8e4, 0.005, '磁通量管上的两条路', 'D1 的两条路时间比'),
+
+        # T.4 岛宽与岛内等温时间
+        (0.0698, 1e-3, '磁岛：', 'D1 3/2 面的 w（Ψ̃=1e-4）'),
+        (0.0349, 1e-3, '磁岛：', 'D1 3/2 面的半宽'),
+        (0.0531, 1e-3, '磁岛：', 'D1 2/1 面的 w'),
+        (0.0827, 1e-3, '磁岛：', 'D2 3/2 面的 w'),
+        (0.0656, 1e-3, '磁岛：', 'D2 2/1 面的 w'),
+        (0.0851, 1e-3, '磁岛：', 'D3 3/2 面的 w'),
+        (0.1270, 1e-3, '磁岛：', 'D3 3/2 面的半宽（比 w 大，全宽才是 w）'),
+        (0.0739, 1e-3, '磁岛：', 'D3 2/1 面的 w'),
+        (3.128e-15, 1e-3, '磁岛：', 'D1 2/1 面的 τ_flat/s'),
+        (5.492e-14, 1e-3, '磁岛：', 'D2 2/1 面的 τ_flat/s'),
+        (2.025e-13, 1e-3, '磁岛：', 'D3 2/1 面的 τ_flat/s'),
+        (5.398e-15, 1e-3, '六道估算练习', 'D1 3/2 面的 τ_flat/s（练习四）'),
+
+        # T.5 岛链重叠
+        (0.4352, 1e-3, '岛链重叠', 'D1 的 Δr/m'),
+        (6.710e-3, 1e-3, '岛链重叠', 'D1 重叠所需 Ψ̃'),
+        (67.1, 1e-3, '岛链重叠', 'D1 的倍数'),
+        (0.2150, 1e-3, '岛链重叠', 'D2 的 Δr/m'),
+        (1.075e-3, 1e-3, '岛链重叠', 'D2 重叠所需 Ψ̃'),
+        (10.7, 1e-3, '岛链重叠', 'D2 的倍数'),
+        (0.1005, 1e-3, '岛链重叠', 'D3 的 Δr/m'),
+        (1.847e-4, 1e-3, '岛链重叠', 'D3 重叠所需 Ψ̃'),
+        (1.8, 1e-3, '岛链重叠', 'D3 的倍数'),
+
+        # T.6 NTM 与临界岛宽
+        (7.022e5, 1e-3, '新经典撕裂模', 'D1 的 j_φ/(A/m²)'),
+        (1.755e5, 1e-3, '新经典撕裂模', 'D1 的 j_bs/(A/m²)'),
+        (1.469, 1e-3, '新经典撕裂模', 'D1 的 L_q'),
+        (15.21, 1e-3, '新经典撕裂模', 'D1 的 w_marg/cm（|Δ\'|=20）'),
+        (6.08, 1e-3, '新经典撕裂模', 'D1 的 w_marg/cm（|Δ\'|=50）'),
+        (3.04, 1e-3, '新经典撕裂模', 'D1 的 w_marg/cm（|Δ\'|=100）'),
+        (4.365e5, 1e-3, '新经典撕裂模', 'D2 的 j_φ/(A/m²)'),
+        (1.091e5, 1e-3, '新经典撕裂模', 'D2 的 j_bs/(A/m²)'),
+        (0.734, 1e-3, '新经典撕裂模', 'D2 的 L_q'),
+        (7.58, 1e-3, '新经典撕裂模', 'D2 的 w_marg/cm（|Δ\'|=20）'),
+        (5.909e5, 1e-3, '新经典撕裂模', 'D3 的 j_φ/(A/m²)'),
+        (1.477e5, 1e-3, '新经典撕裂模', 'D3 的 j_bs/(A/m²)'),
+        (1.44, 1e-3, '新经典撕裂模', 'D3 的 w_marg/cm（|Δ\'|=100）'),
+
+        # T.7 锯齿反转半径
+        (0.1462, 1e-3, '锯齿、', 'D3 的 r_inv/m'),
+        (0.2182, 1e-3, '锯齿、', 'D3 的 ρ_inv'),
+        (4.8, 1e-3, '锯齿、', '反转面以内的体积份额/%'),
+
+        # T.8 练习答案
+        (0.9608, 1e-3, '六道估算练习', '练习一答案的 r/m'),
+        (0.4804, 1e-3, '六道估算练习', '练习一答案的 ρ'),
+        (0.9367, 1e-3, '六道估算练习', '练习二答案的 q\' '),
+        (0.5475, 1e-3, '六道估算练习', '练习二答案的 B_θ/T'),
+        (0.1033, 1e-3, '六道估算练习', '练习二答案的 B_θ/B'),
+        (0.1396, 1e-3, '六道估算练习', '练习三答案的 w/m'),
+        (6.710e-3, 1e-3, '六道估算练习', '练习五答案的 Ψ̃/(Wb/rad)'),
+        (67.1, 1e-3, '六道估算练习', '练习五答案的倍数'),
+    ]
+    for v, rel, where, what in cases:
+        block = found.get(where)
+        if block is None:
+            rec('FAIL', 'P', '附录 T 找不到小节「%s」，无法核对 %s' % (where, what))
+        elif not value_in(block, v, rel, unit=''):
+            rec('FAIL', 'P', '附录 T 的 %s 缺失或与 tmp/appT_calc.py 不符：期望 %g（小节「%s」）'
+                % (what, v, where))
+    rec('PASS', 'P', '附录 T 的 %d 个关键数值均在小节内复算通过' % len(cases))
+
+
+def check_P23_appendix_i_objectives():
+    """附录 I「学习目标与笔记结构」一节的结构与出处完整性。
+
+    可证伪点（全部记 FAIL）：
+      ① 小节标题或 label 被删；
+      ② 六层认知动作的对照表被删（label tab:app-i-bloom）或降到五行以下；
+      ③ 康奈尔笔记的关键动作「遮住右栏、只看左栏自测」被改写；
+      ④ 三份新引用的出处（Bloom 等 1956 / Anderson & Krathwohl 2001 / Pauk & Owens）被删，
+         或参考文献表里对应的三行被删；
+      ⑤ 反面写法的回流：把笔记本身说成高效用技术、把认知层级说成严格的学习顺序。
+    """
+    ipath = os.path.join(SRC, APP_FILES['I'])
+    if not os.path.exists(ipath):
+        rec('FAIL', 'P', '附录 I 文件缺失：src/%s' % APP_FILES['I'])
+        return
+    text = strip_comments(read(ipath))
+    secs = split_blocks(text, 'section')
+
+    body = None
+    for ttl, blk in secs:
+        if '学习目标与笔记结构' in ttl:
+            body = blk
+            break
+    if body is None:
+        rec('FAIL', 'P', '附录 I 缺少「学习目标与笔记结构」一节')
+        return
+    rec('PASS', 'P', '附录 I 的「学习目标与笔记结构」一节存在')
+
+    has(text, r'\label{sec:app-i-objectives}', 'src/%s（新小节 label）' % APP_FILES['I'])
+    has(text, r'\label{tab:app-i-bloom}', 'src/%s（认知层级对照表 label）' % APP_FILES['I'])
+
+    for lv in ('记忆', '理解', '应用', '分析', '评价', '创造'):
+        has(body, lv, 'src/%s「学习目标与笔记结构」（认知层级 %s）' % (APP_FILES['I'], lv))
+
+    for lit, why in (
+            (r'遮住右栏，只看左栏', '康奈尔笔记的复习动作（左栏自测）'),
+            (r'康奈尔笔记', '笔记结构的名词'),
+            (r'可检验', '目标写法的核心判据'),
+            (r'预测试', '读前先猜的动作'),
+            (r'检索练习', '与效用评级一节的衔接'),
+            (r'笔记本身属于低效用技术', '与 Dunlosky 评级一致的边界说明')):
+        has(body, lit, 'src/%s（%s）' % (APP_FILES['I'], why))
+
+    for lit, why in (
+            (r'Bloom 等 (1956)', '认知目标分类学的原始出处'),
+            (r'Anderson \& Krathwohl (2001)', '修订版的出处'),
+            (r'Pauk \& Owens', '康奈尔笔记的教科书出处')):
+        has(body, lit, 'src/%s（%s）' % (APP_FILES['I'], why))
+
+    for lit, why in (
+            (r'笔记本身属于高效用技术', '把笔记本身说成高效用（与 Dunlosky 结论相反）'),
+            (r'分类学的层级是严格的学习顺序', '把认知层级说成严格顺序')):
+        lacks(body, lit, 'src/%s（%s）' % (APP_FILES['I'], why))
+
+    # 参考文献表必须有三行新条目
+    for lit, why in (
+            (r'Bloom 等 (1956) & \textit{Taxonomy of Educational Objectives', '参考文献表：Bloom'),
+            (r'Anderson \& Krathwohl (2001) & \textit{A Taxonomy for Learning', '参考文献表：修订版'),
+            (r'Pauk \& Owens (2013) & \textit{How to Study in College}', '参考文献表：康奈尔笔记')):
+        has(text, lit, 'src/%s（%s）' % (APP_FILES['I'], why))
+
+    for lit in ('左栏', '右栏', '页底'):
+        has(body, lit, 'src/%s（工作表的三段结构：%s）' % (APP_FILES['I'], lit))
+
+    n_step = len(re.findall(r'\\textbf\{（\d）', body))
+    if n_step < 6:
+        rec('FAIL', 'P', '「学习目标与笔记结构」的编号动作只有 %d 条，应 >= 6' % n_step)
+    else:
+        rec('PASS', 'P', '「学习目标与笔记结构」有 %d 条编号动作' % n_step)
 
 
 def check_P02_appendix_j_map():
@@ -3372,6 +3689,8 @@ def main():
     check_P19_appendix_s_confinement()
     check_P20_ipb98_formula_consistency()
     check_P21_appendix_i_expert()
+    check_P22_appendix_t_topology()
+    check_P23_appendix_i_objectives()
     check_P06_scattering_alpha()
     check_P09_tcbtheorem_arity()
 

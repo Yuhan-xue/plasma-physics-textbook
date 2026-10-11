@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 """可证伪性夹具：故意在源码里植入本轮的典型回退，确认 check/physics_regression.py 会 FAIL。
 
-流程：备份 → 植入 58 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。
-其中四处打在 v1.8.0/v1.8.1 新增的附录 I/J/K 上（K.5 的阻尼率符号、K.7 的鞘厚量级与单位、K.4 的磁冻结结论、J 的逐章对照表章号），
+流程：备份 → 植入 77 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。其中四处打在 v1.8.0/v1.8.1 新增的附录 I/J/K 上（K.5 的阻尼率符号、K.7 的鞘厚量级与单位、K.4 的磁冻结结论、J 的逐章对照表章号），
 三处打在 v1.10.0 新增的附录 M 上（束速量级、H 模阈值标度、欧姆/自加热倍数口径），
 一处是 v1.10.0 的结构性回退（语义盒退回裸 `\begin{tip}`，正文首字会被吞、标签可能重复），
 三处打在 v1.11.0 新增的附录 N 上（脱靶辐射功率量级、ELM 侵蚀倍数、表标签被改名），
@@ -26,6 +25,14 @@ Greenwald 极限、测地声模频率、四条对照表的一行）——其中 
 字面绑定与 `lacks` 守卫，各产生 2 个 FAIL；另一处打在第 10 章公式卡上（P 幂次退回 −0.58），
 它会同时打掉「公式卡含 P^{-0.69}」「公式卡不得含 P^{-0.58}」与「旧错式只许出现在附录 S」
 三条断言，是跨文件检查 P20 的可证伪性证据。
+十九处打在 v1.17.0 上：附录 T 的十五处（q 剖面幂次、剪切恒等式、平行电子热导的电子质量、
+电子碰撞时间的 3/2 次幂、岛宽系数 4、反转半径的根号、Ψ_h'' 与剪切的对应、表 T.2 的 L_q、
+表 T.3 的 χ_∥、表 T.4 的岛宽、表 T.6 的 j_bs、§T.7 的体积份额、一条「出处：」被改名、
+一道练习的解答被删、表 T.4 标签被改名）、主文件一处（附录 T 的 \appchapter 被改成 U，
+用来证明附录字母连续性检查会红）与附录 I 新节三处（认知层级表标签被改名、
+康奈尔笔记的复习动作被翻转、参考文献表里的 Bloom 条目被改写）。其中剪切恒等式、岛宽系数、
+反转半径、Ψ_h''、电子质量与 3/2 次幂这六处同时被字面绑定与 `lacks` 守卫覆盖，
+是 P22 双层防线的可证伪性证据。
 用来证明 P 类新检查确实会失败——不是「从来没红过」的装饰：K.5 那条只翻符号，绝对值一字不变。
 恢复用 `newline=''` 写回，保证不把 LF 改写成 CRLF（否则整个文件变成「已修改」）。
 
@@ -53,6 +60,7 @@ APPP = os.path.join(ROOT, 'src', 'appendix_p_lowtemp.tex')
 APPQ = os.path.join(ROOT, 'src', 'appendix_q_diagnostics.tex')
 APPR = os.path.join(ROOT, 'src', 'appendix_r_dusty.tex')
 APPS = os.path.join(ROOT, 'src', 'appendix_s_confinement.tex')
+APPT = os.path.join(ROOT, 'src', 'appendix_t_topology.tex')
 CH10 = os.path.join(ROOT, 'src', 'ch10_supplement.tex')
 SUITE = os.path.join(ROOT, 'check', 'physics_regression.py')
 
@@ -149,9 +157,41 @@ PATCHES = [
     (CH10, r'P^{-0.69}', r'P^{-0.58}'),                                    # 公式卡退回旧错式
     # v1.16.0：附录 I「专家与新手」一节
     (APPI, '表征习惯', '表示习惯'),                                         # 四条对照之一被改
+    # v1.17.0：附录 T（磁面、磁岛与磁通量管）
+    # ① 公式形式层：q 剖面的幂次、剪切恒等式、平行电子热导的质量、电子碰撞时间的 3/2 次幂、
+    #    岛宽系数、反转半径的根号、Ψ_h'' 与剪切的对应——七处都由 P22 的字面绑定 / lacks 守卫
+    (APPT, r'q(\rho)=q_0+(q_{95}-q_0)\,\rho^2', r'q(\rho)=q_0+(q_{95}-q_0)\,\rho'),
+    (APPT, r's(r)=2\,\frac{q(r)-q_0}{q(r)}=2-\frac{2q_0}{q(r)}', r's(r)=2-\frac{q_0}{q(r)}'),
+    (APPT, r'\chi_\parallel=\frac{3.16\,T_e\,\tau_e}{m_e}',
+     r'\chi_\parallel=\frac{3.16\,T_e\,\tau_e}{m_i}'),
+    (APPT, r'\tau_e=\frac{3.44\times10^{5}\,T_e^{3/2}}{n_e\ln\Lambda}',
+     r'\tau_e=\frac{3.44\times10^{5}\,T_e^{1/2}}{n_e\ln\Lambda}'),
+    (APPT, r'w=4\sqrt{\frac{\tilde\Psi}{B_\theta\,s}}',
+     r'w=2\sqrt{\frac{\tilde\Psi}{B_\theta\,s}}'),
+    (APPT, r'r_{\mathrm{inv}}=a\sqrt{\frac{1-q_0}{q_{95}-q_0}}',
+     r'r_{\mathrm{inv}}=a\frac{1-q_0}{q_{95}-q_0}'),
+    (APPT, "\\Psi_h''(r_{mn})=B_\\theta\\,s", "\\Psi_h''(r_{mn})=B_\\theta\\,s^2"),
+    # ② 数据层：表 T.2 的 L_q、表 T.3 的 χ_∥、表 T.4 的岛宽、表 T.6 的 j_bs、§T.7 的体积份额
+    (APPT, r'1.6013', r'1.6103'),
+    (APPT, r'9.023\times10^{11}', r'9.023\times10^{10}'),
+    (APPT, r'0.0698', r'0.0689'),
+    (APPT, r'1.755\times10^{5}', r'1.775\times10^{5}'),
+    (APPT, r'4.8\%', r'48\%'),
+    # ③ 结构层：一条「出处：」被改名（计数跌破 7）、一道练习的解答被删、表标签被改名
+    (APPT, r'\textbf{出处：}Spitzer', r'\textbf{来源：}Spitzer'),
+    (APPT, r'\textbf{解答}：$\rho=\sqrt{', r'解答：$\rho=\sqrt{'),
+    (APPT, r'\label{tab:app-t-w}', r'\label{tab:app-t-wx}'),
+    # ④ 主文件：附录字母连续性（\appchapter 的 T 被改成 U）
+    (MAIN, r'\appchapter{附录T：磁面、磁岛与磁通量管：拓扑如何决定约束（注明出处）}',
+     r'\appchapter{附录U：磁面、磁岛与磁通量管：拓扑如何决定约束（注明出处）}'),
+    # v1.17.0：附录 I「学习目标与笔记结构」——表标签、康奈尔笔记的复习动作、参考文献表条目
+    (APPI, r'\label{tab:app-i-bloom}', r'\label{tab:app-i-bloomx}'),
+    (APPI, r'遮住右栏，只看左栏', r'遮住左栏，只看右栏'),
+    (APPI, r'Bloom 等 (1956) & \textit{Taxonomy of Educational Objectives',
+     r'Bloom 等 (1956) & \textit{Taxonomies of Educational Objectives'),
 ]
 
-MIN_FAIL = 50        # 实测值（58 处植入回退合并计入 56，留 6 的余量）：见下
+MIN_FAIL = 73        # 实测值（77 处植入回退合并计入 81，留 8 的余量）：见下
 # 逐条实测（tmp/probe_neg_v1100.py … tmp/probe_neg_v1151.py、tmp/probe_neg_v1160.py）
 # 每处补丁单独植入都至少产生 1 个 FAIL，v1.16.0 单独计共 69 个；合并植入时降为 56，因为 P01（附录 K 数值）、
 # P08（附录 M 数值）、P10（附录 N 数值）、P11（附录 O 数值）与 P12/P13/P14/P17/P19 各自把同一附录/同一小节内的多处不符汇总成一行。
@@ -170,6 +210,14 @@ MIN_FAIL = 50        # 实测值（58 处植入回退合并计入 56，留 6 的
 # 并补同款字面绑定；④ 锚点 `$1.064\times10^{20}$` 在原稿里根本不存在（真串带 `\ \mathrm{m^{-3}}`）。
 # 另记一条流程教训：批量探针偶发漏报（第 54 号一度报 FAIL=0），凡 `[X]` 必须用
 # `tmp/probe_one_v1160.py <序号>` 单条复核后才可判定为洞。
+# v1.17.0（附录 T + 附录 I 学习目标节）植入扩到 77 处，逐条探针（`tmp/probe_neg_v1170.py`）
+# 抓出两个新洞：第 67 号（表 T.3 的 `9.023\times10^{11}`，全篇出现 2 次）与第 68 号
+# （表 T.4 的 `0.0698`，全篇出现 4 次）——数值用例只要求「这个数在文中某处出现」，
+# 补丁只改第一处（表里那一处）时用例仍由正文/练习里的同值满足。修法不是在夹具里改成全局替换，
+# 而是在 P22 里把**每一处印出的位置**都钉住：两个整行字面绑定（表 T.3 的 D1 行、表 T.4 的
+# D1 3/2 行）＋四处整句绑定（`\chi_\parallel=9.02\times10^{11}`、`\chi_\parallel=9.023\times10^{11}`、
+# `w_{2/1}=0.0531\ \mathrm{m}<w_{3/2}=0.0698\ \mathrm{m}`、`w=0.0698\times\sqrt4=0.1396\ \mathrm{m}`、
+# 练习 4 的给定值）。修后单条复核两处均为 `FAIL=1`，整轮 77/77 命中、单独计 94、合并计 81。
 
 
 def run_suite():
