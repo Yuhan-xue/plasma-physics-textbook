@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.18.0},
+  pdftitle={等离子体物理自学教材 v1.19.0},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -392,7 +392,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.18.0}}
+  {\small\textcolor{white!45}{v1.19.0}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -6287,6 +6287,9 @@ Landau 阻尼 & Landau damping & 无碰撞相混导致的波阻尼 \\
 %   补上 S 与 N 之间缺的一环：「磁面什么时候不再是磁面」；
 %   U 为 v1.18.0 新增：把 Lawson 判据那一环补完整（Q=P_fus/P_aux → α 加热份额 →
 %   自加热闭环不动点 → 点火三重积阈值 → 工程增益 Q_eng 与电功率账））
+%   V 为 v1.19.0 新增：破裂侧的专题（运行极限/误差场与锁模→电阻壁模与 beta 极限→
+%   力热电子三本账→Dreicer 场与逃逸电子雪崩→预测与缓解），把「运行空间什么时候被撞破」
+%   补上，串起 M 的运行极限、N 的边界热负荷、S 的约束与 T 的磁岛。）
 % 文件分离以控制单文件体积；插入位置紧随附录 H，保证附录字母连续。
 % 章标题（\appchapter）留在主文件：检查套件按主文件的 \appchapter 判定
 % 附录字母连续性与 README 附录清单，写进 \input 文件里会被漏掉。
@@ -6317,6 +6320,8 @@ Landau 阻尼 & Landau damping & 无碰撞相混导致的波阻尼 \\
 \input{appendix_t_topology}
 \appchapter{附录U：聚变增益与点火：从三重积到工程电功率（注明出处）}
 \input{appendix_u_gain}
+\appchapter{附录V：破裂、误差场与逃逸电子：运行空间什么时候被撞破（注明出处）}
+\input{appendix_v_disruption}
 
 % 附录结束
 
