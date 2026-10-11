@@ -53,3 +53,5 @@ Thumbs.db
 # GraphFlow 索引缓存（非交付物）
 .graphflow/
 graphflow-out/
+# GraphFlow 检索缓存（非交付物）
+.graphflow-cache/
