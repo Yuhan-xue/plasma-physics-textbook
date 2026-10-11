@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 """可证伪性夹具：故意在源码里植入本轮的典型回退，确认 check/physics_regression.py 会 FAIL。
 
-流程：备份 → 植入 9 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。
+流程：备份 → 植入 13 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。
 其中四处打在 v1.8.0/v1.8.1 新增的附录 I/J/K 上（K.5 的阻尼率符号、K.7 的鞘厚量级与单位、K.4 的磁冻结结论、J 的逐章对照表章号），
+三处打在 v1.10.0 新增的附录 M 上（束速量级、H 模阈值标度、欧姆/自加热倍数口径），
+一处是 v1.10.0 的结构性回退（语义盒退回裸 `\begin{tip}`，正文首字会被吞、标签可能重复），
 用来证明 P 类新检查确实会失败——不是「从来没红过」的装饰：K.5 那条只翻符号，绝对值一字不变。
 恢复用 `newline=''` 写回，保证不把 LF 改写成 CRLF（否则整个文件变成「已修改」）。
 
@@ -22,6 +24,7 @@ CH9 = os.path.join(ROOT, 'src', 'ch9_supplement.tex')
 CH6 = os.path.join(ROOT, 'src', 'ch6_supplement.tex')
 APPJ = os.path.join(ROOT, 'src', 'appendix_j_textbook_map.tex')
 APPK = os.path.join(ROOT, 'src', 'appendix_k_problems.tex')
+APPM = os.path.join(ROOT, 'src', 'appendix_m_heating.tex')
 SUITE = os.path.join(ROOT, 'check', 'physics_regression.py')
 
 PATCHES = [
@@ -36,9 +39,18 @@ PATCHES = [
     # 附录 K.4：把「v_A/c 小」重新当成磁冻结的充分条件（旧错误结论回归）
     (APPK, '不能据此断定磁冻结成立', '磁冻结图像在非相对论等离子体中非常好'),
     (APPJ, '第 10 章 & 约束与受控核聚变', '第 13 章 & 约束与受控核聚变'),   # 附录 J 幻章/漏行
+    # 附录 M（v1.10.0）：三个不同层面的回退——数值量级、经验标度、结论口径
+    (APPM, r'\approx3.10\times10^{6}\ \mathrm{m/s}', r'\approx3.10\times10^{5}\ \mathrm{m/s}'),
+    (APPM, r'P_{\mathrm{LH}}\approx86.5\ \mathrm{MW}', r'P_{\mathrm{LH}}\approx8.65\ \mathrm{MW}'),
+    (APPM, '差 22 倍', '差 220 倍'),
+    # v1.10.0 结构性回退：两参数语义盒退回裸调用（会吞掉正文首字、并可能造成标签重复）
+    (MAIN, r'\begin{tip}{磁应力记忆口诀}{tip-magstress-mnemonic}', r'\begin{tip}'),
 ]
 
-MIN_FAIL = 11        # 实测值：9 处植入回退分别命中 P01/P02/P05/P06 与 M 类检查
+MIN_FAIL = 14        # 实测值（13 处植入回退合并计入）：见下
+# 逐条实测（tmp/probe_neg_v1100.py）每处补丁单独植入都至少产生 1 个 FAIL，单独计共 16 个；
+# 合并植入时降为 14，因为 P01（附录 K 数值）与 P08（附录 M 数值）各自把同一附录内的多处不符
+# 汇总成一行。故 14 是「合并植入」的实测下界，per-patch 可证伪性由上面的探针单独保证。
 
 
 def run_suite():

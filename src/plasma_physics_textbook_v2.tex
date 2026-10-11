@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.9.0},
+  pdftitle={等离子体物理自学教材 v1.10.0},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -392,7 +392,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.9.0}}
+  {\small\textcolor{white!45}{v1.10.0}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -626,7 +626,7 @@ $1\,\mathrm{bar}$ & $= 10^{5}\,\mathrm{Pa}$ & 工程常用 \\
 \end{tabular}
 \end{table}
 
-\begin{tip}
+\begin{tip}{单位制快速切换}{tip-gauss-si}
 \textbf{单位制快速切换技巧：}
 从高斯制到 SI 制的记忆口诀：\\
 1. 凡出现 $e^2$ 的公式，高斯制中通常写 $4\pi e^2$（对应 SI 的 $e^2/\eps_0$）；\\
@@ -742,7 +742,7 @@ $\star\star\star$ & 挑战 & 涉及较深的数学技巧或前沿问题。供科
 \end{tabular}
 \end{table}
 
-\begin{tip}
+\begin{tip}{拓展阅读建议}{tip-further-reading}
 \textbf{拓展阅读建议：}
 若需深入了解相对论等离子体，推荐阅读 \textit{Plasma Physics for Astrophysics}
 (Princeton, 2004)；强耦合等离子体参考 \textit{Strongly Coupled Plasma Physics}
@@ -912,7 +912,7 @@ $\star\star\star$ & 挑战 & 涉及较深的数学技巧或前沿问题。供科
 \end{tabular}
 \end{table}
 
-\begin{tip}
+\begin{tip}{非线性阅读策略}{tip-nonlinear-route}
 \textbf{非线性阅读策略：}
 若你的目标是第 11 章（工业等离子体），而时间有限，可以按以下顺序：
 第 1 章 $\to$ 第 2 章 $\to$ 第 4 章（\S 4.1--\S 4.3：玻尔兹曼、矩方程、双流体）$\to$ 第 11 章。
@@ -3943,7 +3943,7 @@ P_{\text{abs}} \propto n_e \cdot E_{\text{loss}} \propto \frac{1}{3.75} \times \
 
 本章将介绍这四种方法中最基础、最经典的原理，为后续学习更高级的诊断技术（如汤姆逊散射成像、电荷交换复合光谱、偏振干涉仪等）奠定物理图像基础。
 
-\begin{tip}
+\begin{tip}{诊断学习的两把尺子}{tip-ch12-two-scales}
 \textbf{学习提示：}
 学习诊断学时，建议始终带着两个问题阅读：\textbf{(1)} 这种诊断手段依赖的是等离子体的哪一个特征尺度或特征频率？（如德拜长度 $\lambda_D$、等离子体频率 $\omega_{pe}$、回旋频率 $\omega_{ce}$）\textbf{(2)} 该测量是\emph{局域}的（点测量）还是\emph{积分}的（线测量）？这两个问题将帮助你判断不同诊断方法的适用场景和局限性。
 \end{tip}
@@ -4931,7 +4931,7 @@ A_zB_x & A_zB_y & A_zB_z
 \end{equation}
 \end{theorem}
 
-\begin{tip}
+\begin{tip}{磁应力记忆口诀}{tip-magstress-mnemonic}
 记忆口诀：磁应力张量可看作各向异性压力——沿磁场方向为张力 $B^2/\mu_0$，垂直方向为压力 $B^2/(2\mu_0)$。在 MHD 平衡分析中，这一直觉比分量公式更常用。
 \end{tip}
 
@@ -5196,7 +5196,7 @@ Landau 围道的物理本质是 \textbf{因果律}：取初始值问题要求把
 
 \textbf{步骤 3：} 给定 $p(\psi)$ 和 $F(\psi)$（两个自由剖面函数），在边界条件 $\psi=\psi_b$（导体壁）下求解椭圆方程，即得托卡马克平衡位形。
 
-\begin{tip}
+\begin{tip}{Grad--Shafranov 求解}{tip-gs-solver}
 Grad--Shafranov 方程是二维椭圆型偏微分方程，其解析解仅对特定的 $p(\psi)$ 和 $F(\psi)$ 选择才存在（如 Solov'ev 解）。数值上通常使用有限元或迭代法（如 Picard 迭代）求解。
 \end{tip}
 
@@ -5294,7 +5294,7 @@ SI 中 $\vect{B}$ 称为磁感应强度（特斯拉），$\vect{H}$ 为磁场强
 \end{tabular}
 \end{table}
 
-\begin{tip}
+\begin{tip}{温度换算经验公式}{tip-ev-k-conversion}
 在等离子体物理中，一个极其有用的经验公式是：当 $T_e$ 以 eV 为单位时，
 \begin{equation}
 v_{te} [\text{m/s}] \approx 4.19\times 10^5\sqrt{T_e [\text{eV}]}
@@ -5525,7 +5525,7 @@ m\frac{\diff\vect{v}}{\diff t} = q(\vect{E}+\vect{v}\times\vect{B}), \qquad \fra
 \end{equation}
 演示均匀磁场中的回旋运动、$\vect{E}\times\vect{B}$ 漂移和磁镜反射。
 
-\begin{tip}
+\begin{tip}{运行环境准备}{tip-python-setup}
 运行前请确保已安装：\texttt{pip install numpy scipy matplotlib}
 \end{tip}
 
@@ -5838,7 +5838,7 @@ plt.show()
 \end{tabular}
 \end{table}
 
-\begin{tip}
+\begin{tip}{推荐学习路线}{tip-g-route}
 \textbf{推荐学习路线：}
 \begin{enumerate}
 \item \textbf{阶段一（Python 练习）：} 先完成本书附录 G.1--G.3 的三个独立脚本（复制即可运行，依赖仅 \texttt{numpy}/\texttt{scipy}/\texttt{matplotlib}），并\textbf{核对期望输出}：G.1 应打印 $\vect{E}\times\vect{B}$ 漂移速度 $\approx1000\,\mathrm{m/s}$、磁镜往返 $z$ 区间与 $10^{-6}$ 量级的能量漂移；G.2 应打印 $\lambda_D\approx2.35\times10^{-5}\,\mathrm{m}$、\texttt{success=True}（\texttt{status=0}）与 $x=1$ 处 $\sim10^{-6}$ 的相对偏差，并把节点上限负例的 \texttt{success=False}、\texttt{status=1} 一并打出来；G.3 应打印 $\omega_{pe}\approx5.6\times10^{10}\,\mathrm{rad/s}$ 与 $k\lambda_D$ 取 $0.1/0.3/1.0$ 时的热修正量。这些数字对不上时先查参数单位，再进入下一阶段。
@@ -6276,7 +6276,7 @@ Landau 阻尼 & Landau damping & 无碰撞相混导致的波阻尼 \\
 
 %======================================================================
 % 附录I/J/K/L：学习策略、教材对照、跨教材例题与分章自测题库
-% （I/J/K 为 v1.8.0 新增；L 为 v1.9.0 新增）
+% （I/J/K 为 v1.8.0 新增；L 为 v1.9.0 新增；M 为 v1.10.0 新增）
 % 文件分离以控制单文件体积；插入位置紧随附录 H，保证附录字母连续。
 % 章标题（\appchapter）留在主文件：检查套件按主文件的 \appchapter 判定
 % 附录字母连续性与 README 附录清单，写进 \input 文件里会被漏掉。
@@ -6289,6 +6289,8 @@ Landau 阻尼 & Landau damping & 无碰撞相混导致的波阻尼 \\
 \input{appendix_k_problems}
 \appchapter{附录L：分章自测题库（含答案与提示）}
 \input{appendix_l_problems}
+\appchapter{附录M：聚变等离子体加热、电流驱动与运行极限（注明出处）}
+\input{appendix_m_heating}
 
 % 附录结束
 

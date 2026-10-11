@@ -7,7 +7,7 @@
 
 ## 项目简介
 
-本项目是《等离子体物理自学教材》的完整 LaTeX 源码仓库。教材共 **239 页**，涵盖 12 章正文 + 12 附录，系统介绍从单粒子运动到聚变约束、从低温工业等离子体到实验诊断的核心内容。
+本项目是《等离子体物理自学教材》的完整 LaTeX 源码仓库。教材共 **248 页**，涵盖 12 章正文 + 13 附录，系统介绍从单粒子运动到聚变约束、从低温工业等离子体到实验诊断的核心内容。
 
 教材定位：**让有微积分和电磁学基础的读者，无需导师即可系统入门等离子体物理。**
 
@@ -17,7 +17,7 @@
 
 | 格式 | 文件 | 说明 |
 |------|------|------|
-| PDF（最终版） | [`pdf/plasma_physics_textbook_v2.pdf`](pdf/plasma_physics_textbook_v2.pdf) | 239 页完整教材，可直接阅读 |
+| PDF（最终版） | [`pdf/plasma_physics_textbook_v2.pdf`](pdf/plasma_physics_textbook_v2.pdf) | 248 页完整教材，可直接阅读 |
 | 源代码 | [`src/`](src/) 目录 | 全部 LaTeX 源文件，可编译修改 |
 
 > 如需在线阅读，请访问 [Release 页面](http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases) 下载 PDF。
@@ -43,7 +43,7 @@
 | 第 11 章 | 低温工业等离子体 | 气体放电、鞘层、CCP/ICP、PECVD、刻蚀 | ~148 |
 | 第 12 章 | 等离子体基础诊断 | 朗缪尔探针、微波干涉、汤姆逊散射、光谱 | ~164 |
 
-### 附录（12 个）
+### 附录（13 个）
 
 - **附录 A**：矢量公式与坐标系变换
 - **附录 B**：等离子体特征参数速查表
@@ -53,10 +53,11 @@
 - **附录 F**：常见易错点速查
 - **附录 G**：Python 仿真代码
 - **附录 H**：符号与术语总表（37 条通用符号 + 128 条物理量 + 136 条术语中英对照）
-- **附录 I**：学习策略与刻意练习手册（检索练习、间隔重复、交错练习、自我解释、量级估算、解题四步法、概念图、12 周节奏模板）
+- **附录 I**：学习策略与刻意练习手册（检索练习、间隔重复、交错练习、自我解释、量级估算、解题四步法、概念图、教材精读三遍法、12 周节奏模板）
 - **附录 J**：经典教材逐章对照与延伸阅读（Chen 3rd ed. / Fitzpatrick 2nd ed. 章号级对照，逐条注明来源）
 - **附录 K**：跨教材经典例题精选（8 道，取自 Chen、Fitzpatrick 等经典教材的题型，逐题注明出处）
 - **附录 L**：分章自测题库（12 章 × 6 题 = 72 道，每章固定 2 概念 + 2 推导 + 2 估算，逐章注明题型来源）
+- **附录 M**：聚变等离子体加热、电流驱动与运行极限（欧姆/NBI/ICRH/ECRH/LHCD、Greenwald 与 Troyon 极限、Martin H 模定标、自举电流，6 道估算题，逐节注明出处）
 
 ### 配套资源
 
@@ -65,7 +66,7 @@
 - **22 张核心公式速查卡**：`formulabox` 环境（蓝色框，第 1–9 章各 1 张 + 第 10–12 章共 13 张），每张均附「符号说明」
 - **13 张自学检查清单**：`checklistbox` 环境（绿色框）
 - **23 个 TikZ 物理示意图**：摆线轨迹、损失锥、磁力线冻结、波分类树、辉光放电空间结构、漂移波正反馈回路、库仑碰撞角扩散等
-- **学习策略手册**：附录 I 把检索练习、间隔重复、交错练习等学习科学结论落成可执行动作（含 Polya 解题四步法与 Novak 概念图两节），出处见该附录的文献表（含 DOI）
+- **学习策略手册**：附录 I 把检索练习、间隔重复、交错练习等学习科学结论落成可执行动作（含 Polya 解题四步法、Novak 概念图与 Adler 三遍读法三节），出处见该附录的文献表（含 DOI）
 
 ---
 
@@ -107,23 +108,24 @@ plasma-physics-textbook/
 │   ├── full_check.py                  # 结构/内容/编译/PDF/一致性 五类共 32 项
 │   ├── ui_readability.py              # 可读性/版式 两类共 35 项
 │   ├── consistency_audit.py           # 术语/符号/附录/标签 一致性与规范 14 项
-│   ├── physics_regression.py          # 物理数值复核/表述断言/附录编号 共 164 项（纯标准库）
+│   ├── physics_regression.py          # 物理数值复核/表述断言/附录编号 共 179 项（纯标准库）
 │   ├── figure_layout.py               # 图形版式几何守卫 共 13 项（需 PyMuPDF）
 │   ├── pdf_outline.py                 # 目录/书签/附录 F 指针一致性 共 11 项（需 PyMuPDF）
 │   └── fixtures/                      # 可证伪夹具：故意植入缺陷，验证套件真的会 FAIL
 │       ├── gate_compile_log.py        #   合成编译日志 7 例（缺字 / 溢出 / TeX 错误）
-│       ├── gate_physics_negative.py   #   9 处回退（含 K.5 只翻符号、K.7 量级/单位、K.4 结论反转），并检查文件按原字节恢复
+│       ├── gate_physics_negative.py   #   13 处回退（含 K.5 只翻符号、K.7 量级/单位、K.4 结论反转、M 束速/H 模阈值/倍数口径、语义盒退回裸调用），并检查文件按原字节恢复
 │       ├── gate_figure_layout.py      #   6 张合成 PDF（节点交叠 / 裁切 / 跨框 / 图形消失 / 叠字 / 越出版心）
-│       ├── gate_pdf_outline.py        #   3 处书签篡改（改名 / 乱序 / 清空），验 pdf_outline 会报错
+│       ├── gate_pdf_outline.py        #   4 处书签篡改（改名 / 乱序 / 清空 / 目录短尾页），验 pdf_outline 会报错
 │       └── gate_g2_listing.py         #   实跑附录 G.2 清单，与印刷输出逐行比对（含篡改负例）
 ├── pdf/
-│   └── plasma_physics_textbook_v2.pdf # 最终 PDF（239 页，元数据含版本号）
+│   └── plasma_physics_textbook_v2.pdf # 最终 PDF（248 页，元数据含版本号）
 ├── src/                               # LaTeX 源码（唯一入口）
-│   ├── plasma_physics_textbook_v2.tex # 主文件（~6270 行，正文全内联，含封面/前言/附录 A--L 的章标题）
+│   ├── plasma_physics_textbook_v2.tex # 主文件（~6290 行，正文全内联，含封面/前言/附录 A--H 与 I--M 的章标题）
 │   ├── appendix_i_learning.tex        # 附录 I 学习策略与刻意练习手册（正文；章标题在主文件）
 │   ├── appendix_j_textbook_map.tex    # 附录 J 经典教材逐章对照（Chen/Fitzpatrick 章号级）
 │   ├── appendix_k_problems.tex        # 附录 K 跨教材经典例题 8 道（逐题注明出处）
 │   ├── appendix_l_problems.tex        # 附录 L 分章自测题库 72 道（逐章注明题型来源）
+│   ├── appendix_m_heating.tex         # 附录 M 加热/电流驱动/运行极限（逐节注明出处，6 道估算题）
 │   └── ch1_supplement.tex ~ ch12_supplement.tex  # 每章补充（例题+TikZ+速查+清单）
 └── LICENSE
 ```
@@ -139,7 +141,7 @@ plasma-physics-textbook/
 python check/full_check.py         # 五类 32 项：结构 / 内容 / 编译 / PDF / 文档一致性
 python check/ui_readability.py     # 两类 35 项：可读性 / 版式（UI）
 python check/consistency_audit.py  # 四类 14 项：术语 / 符号 / 附录 / 标签一致性
-python check/physics_regression.py # 四类 164 项：物理数值复核 / 结论口径 / 交叉一致性 / 新增附录（纯标准库）
+python check/physics_regression.py # 四类 179 项：物理数值复核 / 结论口径 / 交叉一致性 / 新增附录（纯标准库）
 python check/figure_layout.py      # 图形版式 13 项：节点交叠 / 裁切 / 跨框 / 版心 / 叠字（需 PyMuPDF）
 python check/pdf_outline.py        # 目录/书签 11 项：书签页码与印刷目录对齐 / 附录 F 指针（需 PyMuPDF）
 ```
@@ -161,10 +163,17 @@ python check/pdf_outline.py        # 目录/书签 11 项：书签页码与印�
   Alfvén 速度、Landau 阻尼率、Spitzer 电阻率、玻姆判据与鞘厚、Sweet–Parker 重联率）全部由常数独立复算后
   再回文找「印出来的那个数」；附录 J 的逐章对照表必须覆盖第 1–12 章、每行 5 列、
   Chen ≤10 章 / Fitzpatrick ≤9 章（防幻章）、每行至少一个外文定位；附录 I 的 8 条 DOI 必须格式合法且不重复；
-  四个新附录必须挂在主文件上、字母连续到 L、每个至少 4 小节。
+  四个新附录必须挂在主文件上、字母连续到 L、每个至少 4 小节；v1.10.0 起该期望延伸到 M
+  （`APP_FILES` 增一条即自动扩展，字母序列、`\appchapter` 与 `\input` 紧邻、被 input 文件内无 `\appchapter`、
+  小节数 ≥4 全部随之判定）。
   **v1.9.0 起新增附录 L 题库守卫**：12 章 × 6 题的结构（每题都有「答案」）、每章 2 概念 + 2 推导 + 2 估算的
   题型配比、每章节首的「取材」行，以及 **57 项答案数值**逐题绑定到它自己那一章（同名量在不同章
   ——如 $c_s$ 在第 4、6 章、$\lambda_D$ 在第 2、11 章——必须各自对上，不能靠在全书里随便找到一次就算过）。
+  **v1.10.0 起新增附录 M 守卫**：7 个小节按主题前缀齐全（加热手段全景 / 欧姆加热 / 中性束注入 / 射频加热三件套 /
+  运行极限 / 六道估算练习 / 来源、分级与版权说明）、三张表与「不复制」声明、5 处「出处」行、6 题 6 答案，
+  并把 **38 项关键数值**（Spitzer 电阻率与欧姆功率、$\tau_R$、束速与 $E_c$、$f_{ci}$/$f_{ce}$/$f_{LH}$、
+  共振磁场、$k_\parallel$、$n_G$、$\beta_N$、Martin H 模阈值、电流驱动功率、六道练习答案）绑定到**它自己那一节**；
+  另有一条 `lacks` 盯住旧的氘质量约定（$3.085\times10^6\to3.10\times10^6$ 回流即 FAIL）。
   **v1.8.1 起 P-W01 门禁收紧**（原实现只按绝对值在整篇里找数，符号错、单位错、数搬错题都抓不到）：
   ① 43 个答案**逐题/逐节绑定**——每个数必须出现在「拥有它的那道例题（K.1–K.8）或那一小节（I.1–I.7）」里；
   ② 带符号匹配——`10^{-2}` 的指数负号、`\propto` 前的符号不算答案的负号，K.5 的 $\gamma/\omega=-2.00\times10^{-2}$
@@ -178,19 +187,19 @@ python check/pdf_outline.py        # 目录/书签 11 项：书签页码与印�
   对没有节点框的示意图（图 9.3）改查**文字互相压盖**与**彩色箭头/连线穿过文字**
   （这两条规则正是目视第 114 页时发现问题后补上的）。
 - `pdf_outline.py` 查**导航是否真的对得上**：书签页码是否落在 `[1, 页数]` 且单调不减、
-  236 条印刷目录与 236 条书签是否按文档顺序一一对应（含重名条目，如 9 处「习题精选」）、
+  245 条印刷目录与 245 条书签是否按文档顺序一一对应（含重名条目，如 9 处「习题精选」）、
   目录链接目标页与书签页码是否一致、附录 F 的 35 个 `\S\ref` 指针显示的节号是否与
   `.aux` 里该 label 的真实节号一致、附录 F 区内链接数是否与正文引用数吻合。
   印刷目录的页跨度**动态探测**：自第 2 页起取连续「链接数 ≥12」的最长前缀，
   再吸收紧随其后的**短尾页**（目录正好跨页时末页可能只剩一两行——v1.9.0 首轮实测第 9 页
   仅「L.13 来源、分级与版权说明」一行，若不吸收就会漏比一条、并把「链接数 == 书签数」判成假 FAIL）。
   v1.9.0 起目录本身也按密度规格收紧（条目之间不再叠加 `\parskip`），已收回 7 页。
-  该套件保留两条**已知且有界**的 WARN（不隐藏、不手改）：12/236 条书签的落点比印刷页码少 1 页
+  该套件保留两条**已知且有界**的 WARN（不隐藏、不手改）：12/245 条书签的落点比印刷页码少 1 页
   （书签锚点 whatsit 与 `\addcontentsline` 写页码的 shipout 相差一页，点击落在标题对开页），
   以及附录 F 的 2/35 条链接页差 1（同一成因）。
   另注：24 处 `\section*` + `\addcontentsline` 若不补 `\phantomsection`，hyperref 会复用上一个
   锚点（前一节的表题或 tcolorbox 计数器），使目录条目的落点跑到更早的页面——v1.9.0 已全部补上，
-  O3b 因此从 17/235 条（含 +1、−2）收敛到 12/236 条纯 −1 偏移。
+  O3b 因此从 17/235 条（含 +1、−2）收敛到纯 −1 偏移（v1.10.0 为 12/245 条）。
 
 `full_check.py` 与 `ui_readability.py` 会先剥离 LaTeX 注释与行间公式再统计——否则公式会被误判成超长句子。
 `ui_readability.py` 另将「本章要点回顾」这类结构化小结**单独统计**：
@@ -198,15 +207,15 @@ python check/pdf_outline.py        # 目录/书签 11 项：书签页码与印�
 
 `check/fixtures/` 是各套判定的**可证伪夹具**：它们故意在源码、合成 PDF 或 PDF 书签里植入缺陷
 （假缺字 α、200 pt 溢出、例题数值回退、节点框交叠、图形消失、两块文字叠在一起、
-书签被改名/乱序/清空、附录 G.2 印刷输出被篡改……），
+书签被改名/乱序/清空/目录短尾页、附录 G.2 印刷输出被篡改……），
 确认对应套件确实报 FAIL、恢复后确实回到 FAIL 0——
 否则「检查通过」有可能只是检查失效：
 
 ```bash
 python check/fixtures/gate_compile_log.py       # 合成编译日志，验 full_check / ui_readability 的判定
-python check/fixtures/gate_physics_negative.py  # 植入 9 处回退（含 K.5 只翻符号、K.7 量级/单位、K.4 结论反转），验 physics_regression 会报错
-python check/fixtures/gate_figure_layout.py     # 合成 5 张 PDF，验 figure_layout 会报错（需 PyMuPDF）
-python check/fixtures/gate_pdf_outline.py       # 篡改书签（改名/乱序/清空），验 pdf_outline 会报错（需 PyMuPDF）
+python check/fixtures/gate_physics_negative.py  # 植入 13 处回退（含 K.5 只翻符号、K.7 量级/单位、K.4 结论反转、M 的束速/H 模阈值/倍数口径、语义盒退回裸调用），验 physics_regression 会报错
+python check/fixtures/gate_figure_layout.py     # 合成 6 张 PDF，验 figure_layout 会报错（需 PyMuPDF）
+python check/fixtures/gate_pdf_outline.py       # 篡改书签（改名/乱序/清空/短尾页），验 pdf_outline 会报错（需 PyMuPDF）
 python check/fixtures/gate_g2_listing.py        # 实跑附录 G.2 清单并逐行比对印刷输出（需 NumPy/SciPy/Matplotlib）
 ```
 
@@ -279,6 +288,7 @@ python check/fixtures/gate_g2_listing.py        # 实跑附录 G.2 清单并逐�
 | v1.8.0 | 2026-10-11 | 内容与学习策略扩充轮：主动从经典教材借鉴并逐条注明来源。**新增三个附录**——① **附录 I 学习策略与刻意练习手册**：把学习科学的结论落成可执行动作（合书复述＝检索练习、1/3/7/21 天间隔重复、交错练习、自我解释、例题读完空白重做），给出元认知三栏错题本、量级估算与量纲检验、**12 周节奏模板**、自测题四型，并附 8 条文献表（Dunlosky 等 2013 *PSPI* 14(1) 4--58、Roediger \& Karpicke 2006 *Psych. Sci.* 17(3) 249--255、Karpicke \& Blunt 2011 *Science* 331(6018) 772--775、Cepeda 等 2006 *Psych. Bull.* 132(3) 354--380、Rohrer \& Taylor 2007 *Instr. Sci.* 35(6) 481--498、Chi 等 1989 *Cog. Sci.* 13(2) 145--182、Sweller \& Cooper 1985 *Cog. Instr.* 2(1) 59--89、Ericsson 等 1993 *Psych. Rev.* 100(3) 363--406 等，均含 DOI）；② **附录 J 经典教材逐章对照与延伸阅读**：与附录 E「选书」分工，改答「第 N 章卡住时该读哪本书的哪一部分」——12 章逐章给出 Chen *Introduction to Plasma Physics and Controlled Fusion* 3rd ed.（Springer 2016）与 Fitzpatrick *Plasma Physics: An Introduction* 2nd ed.（CRC 2022，作者官方免费 HTML 版）的**章号级**对照，Goldston \& Rutherford 等按主题级定位并声明「章号以手头版本为准」，另附 7 本书性格速写、10 本进阶专著表、免费在线资源与核对日期；③ **附录 K 跨教材经典例题精选**：8 道题（德拜屏蔽与 $N_D$、磁镜损失锥、$\nabla B$ 与曲率漂移方向判别、Alfvén 速度与磁冻结、Landau 阻尼率、Spitzer 电阻率与磁场扩散时间、玻姆判据与 Child--Langmuir 鞘厚、Sweet--Parker 重联为何"太慢"），逐题注明出自哪本教材的哪一章，数值全部由常数独立复算。**检查套件同步**：`physics_regression.py` 113 → **122 项**（新增 P 类 9 项守新附录：26 个物理量复算后回文找「印出来的那个数」、附录 J 对照表必须覆盖 1--12 章且 Chen ≤10 / Fitzpatrick ≤9 防幻章、附录 I 的 DOI 格式与去重、三附录必须挂在主文件且字母连续到 K）；`gate_physics_negative.py` 由 4 处扩到 **6 处**植入（含附录 K 数值与附录 J 幻章）；`pdf_outline.py` 的印刷目录页跨度改为**动态探测**（附录增补使目录由 7 页涨到 8 页，写死常量会让「目录链接数 == 书签数」假 FAIL）。**修复**：附录 E 里 Fitzpatrick 免费版的旧链接（`teaching/plasma/plasmahtml/`，实测 404）改为作者官方书页 `https://farside.ph.utexas.edu/Books/Plasma2/Plasma2.html`；三处新增 Overfull 通过拆行与列宽调整消除。（239 页 / 220 书签 / 86 例题） |
 | v1.8.1 | 2026-10-11 | 定时独立评审（`reviews/2026-10-11-scheduled`）修复轮 + 门禁加固。**物理修复**：① **附录 K.3 曲率漂移方向写反**——原文说「漂移沿磁力线的曲率中心方向」，把曲率矢量 $\kappa$ 的方向当成了漂移方向；实际 $\vect{v}_R=\frac{mv_\parallel^2}{qB}(\unitvec{b}\times\kappa)$ 垂直于 $\kappa$，环形磁场下为 $+\unitvec{z}/R_c$（正离子向上、电子向下），并补上托卡马克上下电荷分离的判据；② **附录 K.7 鞘厚与壁面通量不守同一个电流边界**——(c)(d) 原先一个用**体**密度 $n_0$、一个用**鞘边**密度 $n_s\approx0.61n_0$，现统一用 $n_s$：$\lambda_D(n_s)=1.65\times10^{-4}$ m、$s\approx1.8$ mm，并用平面 Child--Langmuir 关系 $j=\frac49\eps_0\sqrt{2e/M}V_w^{3/2}/s^2$ 反解 $s=1.813$ mm、$j=2.62$ A m$^{-2}$ 交叉核对（差 0.2%），另注明误用体密度会把厚度低估 $\sqrt{n_0/n_s}=1.28$ 倍；③ **附录 K.4 不能由 $v_A/c\ll1$ 推磁冻结**——该条件只保证非相对论 Alfvén 公式适用，磁冻结要理想欧姆定律加 $R_m=\mu_0Lv/\eta\gg1$（算例 $5.9\times10^5$）；④ **主文件 EEDF 三种记法混用**——明确 $F$（$\int F\diff\eps=n_e$）、$p=F/n_e$（$\int p\diff\eps=1$）、EEPF $g=p/\sqrt{\eps}$（$\int\sqrt{\eps}g\diff\eps=1$）的定义与单位，给出每焦耳↔每电子伏的雅可比因子 $e$，并用麦克斯韦分布 $p/g=\sqrt{\eps}$（0.25/1/4 eV → 0.5/1/2）说明「EEPF 呈纯指数」的来历；⑤ **附录 H 符号表与术语表的 α 判据反向**——$\alpha\ll1$ 是非集体（非相干）散射、$\alpha\gtrsim1$ 才需集体散射理论，与 12.4 正文及第 12 章补充材料一致；⑥ 修附录 K 一处标点重复。**门禁加固（P-W01）**：`physics_regression.py` 122 → **156 项**，把「按绝对值在整篇里找数」改成**逐题/逐节绑定**——43 个答案必须出现在拥有它的那道例题（K.1--K.8）或那一小节（I.1--I.7）内，带符号匹配（K.5 的 $\gamma/\omega$ 翻成正号立刻 FAIL）、单位绑定（`\mathrm{m}` 不误配 `\mathrm{mm}`）；新增附录 K 三道判断题的结论方向断言、α 散射判据的表格行逐行方向判定、EEDF 三记法的数值自洽（$p/g=\sqrt{\eps}$、$\int\sqrt{\eps}g\diff\eps=1$、J↔eV 积分不变）。`gate_physics_negative.py` 由 6 处扩到 **9 处**植入回退，含最小复现「只把 K.5 的负号翻正、数字一字不改」，植入后 FAIL 11、按原字节恢复后 FAIL 0。（241 页 / 220 书签 / 431 标签 / 86 例题） |
 | v1.9.0 | 2026-10-11 | 版面密度重规划 + 内容与学习策略扩充轮。**版面（可按需复查）**：页边距 2.1/2.6/2.1/1.8 cm → **1.75/1.95/1.85/1.55 cm**（版心 16.30 $\times$ 25.80 → **17.30 $\times$ 26.30 cm**，面积 +8.1%），边注宽 1.6 → 1.1 cm、难度标签（基础/提高/应用）仍在纸面内（边注右沿 20.46 cm < 21.0 cm）；元素间距整体收紧——`parskip` 2.6 → 1.8 pt、display skip 5 → 3.6 pt、`jot` 2 → 1.6 pt、列表 `topsep` 3 → 2 pt / `itemsep` 1.2 → 0.8 pt、题注 skip 4 → 3 pt、`\textfloatsep`/`\floatsep`/`\intextsep` = 8 pt、章编号 64 → 52 pt、`titlespacing` 章 −24/26 → −26/18 pt、节 12/6 → 9/4.5 pt、语义盒 `left/right` 5 → 4.5 pt 与前后间距 5 → 3.5 pt；**纯版面改动使 241 页缩到 226 页（−6.2%）**。**内容扩充**：① **新增附录 L 分章自测题库**——12 章 $\times$ 6 题 = **72 题**（每章固定 2 概念 + 2 推导 + 2 估算），每题给答案要点与数值，逐章用「取材」行注明参照的教材与章节，并附「来源、分级与版权说明」表（只借鉴题型与难度分级，题目与数值自拟并独立复算，不复制原书题目）；② **附录 I 新增两节**——「解题四步法」（Polya *How to Solve It*，含把四步落到第 5 章 Alfvén 速度推导的实例）与「概念图」（Novak \& Gowin *Learning How to Learn*；并如实引用 Karpicke \& Blunt 2011 的结论：记忆保持上检索练习优于画概念图，故用法是「画图 → 合上图凭记忆重画」），文献表相应补 2 行。**最终 239 页**：内容净增约 13 页，而总页数比 v1.8.1 少 2 页。**门禁同步**：`physics_regression` 156 → **164 项**，新增 `check_P07_appendix_l_bank()`（12 章 $\times$ 6 题结构、2/2/2 题型配比、每章「取材」行、**57 项答案数值逐题绑定到它自己那一章**）并让主文件附录字母期望延伸到 L；`figure_layout.py` 版心常量随新几何更新（1.75/1.95 cm）并新增第 6 个夹具用例（节点越出版心）。**本轮被门禁抓出的真错**：附录 L 的 $R_m=\mu_0Lv/\eta$ 差 10 倍（$7.6\times10^{3}$ 应为 $7.6\times10^{2}$）、3 项频率量与单位不匹配、两处「朗道阻尼」术语变体、本工程未定义 `\dd`（应为 `\diff`，10 处编译错误）、①②③④ 四个缺字形（改为 (1)(2)(3)(4)）、以及由长不可断数学串与 `\texttt` 路径引起的 5 处 Overfull。**导航修整**：给全部 24 处 `\section*` + `\addcontentsline` 补 `\phantomsection`（此前 hyperref 复用上一节表题/tcolorbox 的锚点，目录条目落点偏差达 +1、−2 页；补后 O3b 只剩 12/236 条纯 −1 的结构性偏移），目录条目之间不再叠加 `\parskip`（原第 9 页仅剩「L.13 来源、分级与版权说明」一行），目录由 8 页收回 7 页，`pdf_outline` 的目录页探测同时补上「短尾页吸收」，O4 的附录 F 链接改为按**附录 F 自己的页范围**取样（原按「首页起 6 页」扫，版面重排后溢出到附录 G，把 G 的 `\S\ref` 也算进来 → 35 vs 36 假 FAIL）。（239 页 / 236 书签 / 12 附录 / 72 自测题 + 86 例题） |
+| v1.10.0 | 2026-10-11 | 内容与学习策略扩充轮（承接长期目标：主动从经典教材借鉴并注明来源）。**新增附录 M 聚变等离子体加热、电流驱动与运行极限**（7 节 / 3 张长表 / 6 道带答案估算题 / 逐节「出处」）：欧姆加热与 Spitzer 电阻率（$\eta_\parallel=2.795\times10^{-8}\ \Omega\cdot$m、$P_\Omega=27.95$ kW/m$^3$、$\tau_R\approx180$ s，并给出「欧姆加热只够启动与爬升」的定量理由 $P_\alpha/P_\Omega\approx22$）、中性束注入（$v_b=3.10\times10^{6}$ m/s、衰减长度、临界能量 $E_c=186.5$ keV、电流驱动效率与 21 MW 功率账）、射频三件套（ICRH 40.42 MHz / ECRH 148.36 GHz / LHCD 2.45 GHz 与共振磁场 5.245 T、$k_\parallel$ 与 $\lambda_\parallel$、每种手段的适用半径与耦合难点）、运行极限（Greenwald $n_G=1.19\times10^{20}$ m$^{-3}$、Troyon $\beta_N=1.77$、Martin H 模阈值定标、自举电流与先进运行模式），三处 `warning` 盒专打「把经验定标当物理定律」「把共振当成任意位置都能加热」这类误用；出处表只借鉴题型与难度分级、不复制原书题目与数据，离线环境无法核验的 DOI 一律不写。**附录 I 新增第 7 节「教材精读三遍法」**（Adler \& Van Doren *How to Read a Book* 的检视 / 分析 / 主题阅读，各配可检验产出物与时间预算，并用 $\lambda_D$ 的 $\sqrt2$、$\beta$ 的总压/分压、$\eta$ 系数 $5.2\times10^{-5}$ 说明「第三遍不是再读一遍」），文献表补 Adler 一行。**门禁同步**：`physics_regression` 164 → **179 项**，新增 `check_P08_appendix_m_heating()`（7 小节齐全 / 3 表 / 「不复制」声明 / 5 处出处 / 6 题 6 答案，**38 项数值逐节绑定**到它自己那一节，另加 `lacks('3.085')` 盯住旧氘质量约定）与 `check_P09_tcbtheorem_arity()`（9 种语义盒必须两参数显式调用），`APP_FILES` 增附录 M 后主文件附录字母期望自动延伸到 M；`gate_physics_negative.py` 9 → **13 处**植入回退（含附录 M 的束速量级、H 模阈值、自加热倍数口径，以及「语义盒退回裸调用」这一结构性回退），植入后 FAIL 14、按原字节恢复后 FAIL 0；`gate_physics_negative` 的 `MIN_FAIL` 按**实测**设为 14（逐条探针 `tmp/probe_neg_v1100.py` 证明 13 处每处单独植入都能被抓住，合并植入时因 P01/P08 各自按附录汇总而少于逐条之和）。**本轮被门禁抓出的真错**：① 全书 **16 处裸写 `\begin{tip}`**——`\newtcbtheorem` 造出的环境要求 `{标题}{标签}` 两个参数，裸调用会把紧随正文的头两个字符当标题与标签吞掉（附录 K 的「本附录所有数值…」因此变成标题「本」、正文从「录」字开始），新增第二个以「附」字开头的裸 tip 后还触发 `LaTeX Warning: Label 'tip:附' multiply defined`；已用幂等脚本给 16 处补上标题与唯一标签，并加 P09 守卫防止回流；② 附录 M 两处把「以 $10^{20}$ m$^{-3}$ 为单位的值」当绝对密度（门禁要求 `n_g * 1e20`）；③ 练习 6 的「100 MW 量级」与精确值差 4.2%，正文改为 $1.04\times10^{8}$ W 并把量级表述单列一条断言；④ 版权声明缺字面「不复制」。（248 页 / 245 书签 / 13 附录 / 78 自测题 + 86 例题） |
 
 ---
 

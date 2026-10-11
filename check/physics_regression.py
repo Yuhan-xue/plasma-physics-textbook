@@ -722,6 +722,7 @@ APP_FILES = {
     'J': 'appendix_j_textbook_map.tex',
     'K': 'appendix_k_problems.tex',
     'L': 'appendix_l_problems.tex',
+    'M': 'appendix_m_heating.tex',
 }
 
 # CODATA 2018 常数（与附录 D 的单位换算表同一组值）
@@ -1219,6 +1220,154 @@ def check_P07_appendix_l_bank():
     has(text, r'\label{tab:app-l-source}', 'src/%s（来源表标签）' % APP_FILES['L'])
 
 
+def check_P08_appendix_m_heating():
+    r"""附录 M（加热、电流驱动与运行极限）：结构完整 + 每个数值都由本函数独立复算。
+
+    可证伪点（五种，全部 FAIL）：① 某节被删（节名按主题前缀匹配）；② 缺「出处」行，
+    来源不可追溯；③ 三张表之一或版权声明被删；④ 印出来的关键数值与本函数独立复算
+    不符——数值必须落在**它自己那一节**里，所以把 86.5 MW 改成 8.65 MW、或把
+    \$3.10\\times10^{6}\$ m/s 搬到施工别的节，都会被抓到；⑤ 氘质量约定的旧偏差
+    （把 2.0136 u 当成 \$2m_p\$，使束速偏大 0.7\% 的 3.085e6 m/s）不得回流。
+    """
+    mpath = os.path.join(SRC, APP_FILES['M'])
+    if not os.path.exists(mpath):
+        rec('FAIL', 'P', '附录 M 文件缺失：src/%s' % APP_FILES['M'])
+        return
+    text = strip_comments(read(mpath))
+    secs = split_blocks(text, 'section')
+    want_prefix = ['加热手段全景', '欧姆加热', '中性束注入', '射频加热三件套', '运行极限',
+                   '六道估算练习', '来源、分级与版权说明']
+    found = {}
+    for ttl, blk in secs:
+        for pre in want_prefix:
+            if ttl.startswith(pre):
+                found[pre] = blk
+    miss = [p for p in want_prefix if p not in found]
+    if miss:
+        rec('FAIL', 'P', '附录 M 缺少小节（或标题改得无法识别）：%s（实际 %d 节）' % (miss, len(secs)))
+        return
+    rec('PASS', 'P', '附录 M 的 %d 个小节齐全（%s）' % (len(want_prefix), '、'.join(want_prefix)))
+
+    # ---- 结构：三张表、版权声明、6 道练习各带答案、至少 4 处「出处」
+    for lab, what in (('tab:app-m-heating', '加热手段全景表'),
+                      ('tab:app-m-rf', '射频三手段对照表'),
+                      ('tab:app-m-source', '来源与独立性表')):
+        has(text, r'\label{%s}' % lab, 'src/%s（%s）' % (APP_FILES['M'], what))
+    has(text, '不复制', 'src/%s（版权与独立性声明）' % APP_FILES['M'])
+    n_src = len(re.findall(r'\\textbf\{出处：\}', text))
+    if n_src >= 4:
+        rec('PASS', 'P', '附录 M 有 %d 处「出处」行，逐节注明借鉴来源' % n_src)
+    else:
+        rec('FAIL', 'P', '附录 M 的「出处」行只有 %d 处（应 ≥4）：来源不可追溯' % n_src)
+    ex = found['六道估算练习']
+    n_item = len(re.findall(r'\\item\s*\\textbf\{（', ex))
+    n_ans = len(re.findall(r'\\textbf\{答案：\}', ex))
+    if n_item == 6 and n_ans == 6:
+        rec('PASS', 'P', '附录 M 的六道估算练习每题都有「答案」（6 题 / 6 答案）')
+    else:
+        rec('FAIL', 'P', '附录 M 练习数与答案数应为 6/6，实际 %d/%d' % (n_item, n_ans))
+    lacks(text, '3.085', 'src/%s（旧氘质量约定下的束速，不得回流）' % APP_FILES['M'])
+
+    # ---- 数值：全部由本函数从头算一遍（CODATA 2018；氘取 2.013553212745 u）
+    m_e = 9.1093837015e-31
+    m_u = 1.66053906660e-27
+    m_p = M_P
+    m_d = 2.013553212745 * m_u
+
+    def eta_sp(te_ev, lnl=17.0):
+        return 5.2e-5 * lnl / te_ev ** 1.5
+
+    def v_of(energy_ev, m):
+        return math.sqrt(2.0 * energy_ev * E_CHG / m)
+
+    def f_cyc(B, m):
+        return E_CHG * B / (2 * math.pi * m)
+
+    def b_res(f, m):
+        return 2 * math.pi * f * m / E_CHG
+
+    p_fus_m = 3.10181e6                      # 附录 L 第 10 章的堆芯功率密度（已复核）
+    p_alpha_m = p_fus_m / 5.0
+    eta_1k = eta_sp(1.0e3)
+    v_te_10k = v_of(1.0e4, m_e)
+    f_lh = math.sqrt(f_cyc(5.3, m_d) * f_cyc(5.3, m_e))
+    eta_10k = eta_sp(1.0e4)
+    n_g = 15.0 / (math.pi * 2.0 ** 2)
+    f_pe_ng = math.sqrt(n_g * 1e20 * E_CHG ** 2 / (EPS0 * m_e)) / (2 * math.pi)
+
+    cases = [
+        # (节, 说明, 期望值, 相对容差, 单位, 是否连符号)
+        ('欧姆加热', 'η(1 keV, lnΛ=17)=2.80e-8 Ω·m', eta_1k, 0.02, r'\Omega', False),
+        ('欧姆加热', 'P_Ω(j=1 MA/m²)=2.8e4 W/m³', eta_1k * 1e12, 0.02, r'\mathrm{W/m^3}', False),
+        ('欧姆加热', 'P_Ω=28 kW/m³', eta_1k * 1e12 / 1e3, 0.02, r'\mathrm{kW/m^3}', False),
+        ('欧姆加热', 'τ_R(a=2 m)=180 s', MU0 * 4.0 / eta_1k, 0.02, r'\mathrm{s}', False),
+        ('欧姆加热', '10 keV 时的 P_Ω(884 W/m³)', eta_10k * 1e12, 0.03, r'\mathrm{W/m^3}', False),
+        ('中性束注入', 'v_b(100 keV D)=3.10e6 m/s', v_of(1.0e5, m_d), 0.02, r'\mathrm{m/s}', False),
+        ('中性束注入', 'v_b(1 MeV D)=9.79e6 m/s', v_of(1.0e6, m_d), 0.02, r'\mathrm{m/s}', False),
+        ('中性束注入', '衰减长度 λ=1 m', 1.0 / (1e20 * 1e-20), 0.02, r'\mathrm{m}', False),
+        ('中性束注入', 'E_c(10 keV)=186 keV', 14.8 * 10.0 * 2.0 * 0.5 ** (2 / 3.0), 0.02,
+         r'\mathrm{keV}', False),
+        ('中性束注入', 'E_c(1 keV)=18.6 keV', 14.8 * 1.0 * 2.0 * 0.5 ** (2 / 3.0), 0.02,
+         r'\mathrm{keV}', False),
+        ('中性束注入', '1 MA 需 P=21 MW(γ=0.3)', 1.0 * 1.0 * 6.2 / 0.3, 0.03, r'\mathrm{MW}', False),
+        ('射频加热三件套', 'f_ci(D, 5.3 T)=40 MHz', f_cyc(5.3, m_d) / 1e6, 0.03, r'\mathrm{MHz}', False),
+        ('射频加热三件套', 'B_res(40 MHz, D)=5.24 T', b_res(40e6, m_d), 0.02, r'\mathrm{T}', False),
+        ('射频加热三件套', 'B_res(40 MHz, H)=2.62 T', b_res(40e6, m_p), 0.02, r'\mathrm{T}', False),
+        ('射频加热三件套', 'f_ce/B=28.0 GHz/T', f_cyc(1.0, m_e) / 1e9, 0.02, r'\mathrm{GHz/T}', False),
+        ('射频加热三件套', 'f_ce(5.3 T)=148 GHz', f_cyc(5.3, m_e) / 1e9, 0.02, r'\mathrm{GHz}', False),
+        ('射频加热三件套', 'f_LH=2.45 GHz', f_lh / 1e9, 0.02, r'\mathrm{GHz}', False),
+        ('射频加热三件套', 'v_te(10 keV)=5.93e7 m/s', v_te_10k, 0.02, r'\mathrm{m/s}', False),
+        ('射频加热三件套', 'k_∥(2v_te)=130 m⁻¹', 2 * math.pi * f_lh / (2 * v_te_10k), 0.02,
+         r'\mathrm{m^{-1}}', False),
+        ('射频加热三件套', 'λ_∥(2v_te)=4.8 cm', 2 * v_te_10k / f_lh * 100.0, 0.02, r'\mathrm{cm}', False),
+        ('射频加热三件套', 'k_∥(3v_te)=87 m⁻¹', 2 * math.pi * f_lh / (3 * v_te_10k), 0.02,
+         r'\mathrm{m^{-1}}', False),
+        ('射频加热三件套', 'λ_∥(3v_te)=7.3 cm', 3 * v_te_10k / f_lh * 100.0, 0.02, r'\mathrm{cm}', False),
+        ('运行极限', 'n_G(15 MA, a=2 m)=1.19e20', n_g * 1e20, 0.02, r'\mathrm{m^{-3}}', False),
+        ('运行极限', 'β_N(2.5%, 2 m, 5.3 T, 15 MA)=1.77', 2.5 * 2.0 * 5.3 / 15.0, 0.02, '', False),
+        ('运行极限', 'P_LH(大装置)=86.5 MW', 0.0488 * 5.3 ** 0.803 * 683.0 ** 0.941, 0.02,
+         r'\mathrm{MW}', False),
+        ('运行极限', 'P_LH(小装置)=4.72 MW',
+         0.0488 * 0.5 ** 0.717 * 2.5 ** 0.803 * 100.0 ** 0.941, 0.02, r'\mathrm{MW}', False),
+        ('六道估算练习', '[1] η(10 keV)=8.84e-10 Ω·m', eta_10k, 0.02, r'\Omega', False),
+        ('六道估算练习', '[1] P_Ω(10 keV, 1 MA/m²)=884 W/m³', eta_10k * 1e12, 0.03,
+         r'\mathrm{W/m^3}', False),
+        ('六道估算练习', '[1] 与自加热差约 700 倍', p_alpha_m / (eta_10k * 1e12), 0.05, '', False),
+        ('六道估算练习', '[2] v_b(1 MeV D)=9.79e6 m/s', v_of(1.0e6, m_d), 0.02,
+         r'\mathrm{m/s}', False),
+        ('六道估算练习', '[3] B_res(170 GHz)=6.07 T', b_res(170e9, m_e), 0.02, r'\mathrm{T}', False),
+        ('六道估算练习', '[4] v_φ(3v_te)=1.78e8 m/s', 3 * v_te_10k, 0.02, r'\mathrm{m/s}', False),
+        ('六道估算练习', '[4] λ_∥=7.3 cm', 3 * v_te_10k / 2.45e9 * 100.0, 0.02,
+         r'\mathrm{cm}', False),
+        ('六道估算练习', '[5] n_G=1.19e20 m⁻³', n_g * 1e20, 0.02, r'\mathrm{m^{-3}}', False),
+        ('六道估算练习', '[5] f_pe(n_G)=98 GHz', f_pe_ng / 1e9, 0.02, r'\mathrm{GHz}', False),
+        ('六道估算练习', '[6] P_ext=1.24e5 W/m³', 0.2 * p_alpha_m, 0.03, r'\mathrm{W/m^3}', False),
+        ('六道估算练习', '[6] P_ext·V=1.04e8 W', 0.2 * p_alpha_m * 840.0, 0.02, r'\mathrm{W}', False),
+        # 正文按「量级」写作 100 MW（精确值 104 MW），故容差放宽到 6%
+        ('六道估算练习', '[6] 折合 100 MW 量级', 0.2 * p_alpha_m * 840.0 / 1e6, 0.06,
+         r'\mathrm{MW}', False),
+    ]
+    bad = []
+    for topic, desc, want, rel, unit, signed in cases:
+        if not value_in(found[topic], want, rel, unit, signed):
+            bad.append((topic, desc))
+    if bad:
+        rec('FAIL', 'P', '附录 M 有 %d 项数值与独立复算不符（或不在它所属的那一节内）：%s'
+            % (len(bad), bad[:6]))
+    else:
+        rec('PASS', 'P', '附录 M 的 %d 项关键数值全部与独立复算一致，且落在各自小节内'
+            % len(cases))
+
+    # 结论句（口径类断言，不依赖数值匹配）
+    has(found['欧姆加热'], '差 22 倍', 'src/%s（欧姆功率与 α 自加热的倍数）' % APP_FILES['M'])
+    has(found['欧姆加热'], '只适合启动与爬升阶段',
+        'src/%s（欧姆加热的适用区间结论）' % APP_FILES['M'])
+    has(found['运行极限'], '经验拟合', 'src/%s（三条运行极限标注为经验标度）' % APP_FILES['M'])
+    has(found['运行极限'], '仿星器', 'src/%s（与仿星器的稳态对比）' % APP_FILES['M'])
+    has(found['六道估算练习'], '射程不变',
+        'src/%s（练习 2 的结论：提高束能不会线性提高穿透）' % APP_FILES['M'])
+
+
 def check_P02_appendix_j_map():
     """附录 J 逐章对照表的完备性：覆盖 1--12 章、每行 5 列、章号不越界。
 
@@ -1296,7 +1445,7 @@ def check_P03_appendix_i_refs():
 
 
 def check_P04_new_appendix_wiring():
-    """附录 I/J/K/L 必须真的挂进主文件，且章标题留在主文件里。
+    """附录 I--M 必须真的挂进主文件，且章标题留在主文件里。
 
     两个都容易出错且都不报错：① 内容写好了却忘了 ``\\input``——编译照样成功，
     读者看不到；② ``\\appchapter`` 写进被 ``\\input`` 的文件——LaTeX 没问题，
@@ -1310,8 +1459,8 @@ def check_P04_new_appendix_wiring():
         rec('FAIL', 'P', '主文件附录字母不是 A--%s 连续：%s（共 %d 个）'
             % (want[-1], ''.join(letters), len(letters)))
     else:
-        rec('PASS', 'P', '主文件附录字母连续 A--%s（共 %d 个，含 I/J/K/L）'
-            % (want[-1], len(letters)))
+        rec('PASS', 'P', '主文件附录字母连续 A--%s（共 %d 个，含 %s）'
+            % (want[-1], len(letters), '/'.join(sorted(APP_FILES))))
 
     problems = []
     for letter, fname in sorted(APP_FILES.items()):
@@ -1331,7 +1480,42 @@ def check_P04_new_appendix_wiring():
     if problems:
         rec('FAIL', 'P', '新增附录挂载有问题：%s' % problems)
     else:
-        rec('PASS', 'P', '附录 I/J/K/L 均已 \\input 挂载、章标题在主文件、各含 ≥4 小节')
+        rec('PASS', 'P', '附录 %s 均已 \\input 挂载、章标题在主文件、各含 ≥4 小节'
+            % '/'.join(sorted(APP_FILES)))
+
+
+def check_P09_tcbtheorem_arity():
+    r"""两参数语义盒不得裸调用：``\begin{tip}`` 会**吃掉正文头两个字符**。
+
+    ``\newtcbtheorem`` 造出的环境签名是 ``\begin{env}{标题}{标签}``，两个都是必选参数。
+    裸写 ``\begin{tip}`` 时 TeX 会把紧随其后的两个记号当成标题与标签：
+    正文首字被吞（实测「本附录所有数值…」渲染成标题「本」、正文从「录…」开始），
+    两个附录若都以同两字开头，还会产生 ``Label `tip:附' multiply defined`` 警告。
+    v1.9.0 及以前全书有 16 处裸 tip，直到 v1.10.0 新增附录 M 触发重复标签才暴露。
+
+    只检查 ``\newtcbtheorem`` 系列；``miniquiz`` / ``chapterreview`` / ``formula`` /
+    ``checklist`` 是 ``\newtcolorbox``（可选参数），裸调用完全合法。
+    """
+    envs = ['theorem', 'definition', 'corollary', 'example', 'insight',
+            'warning', 'history', 'review', 'tip']
+    files = [MAIN] + sorted(APP_FILES.values()) + \
+            ['ch%d_supplement.tex' % i for i in range(1, 13)]
+    bad = []
+    total = 0
+    for fname in files:
+        path = os.path.join(SRC, fname)
+        if not os.path.exists(path):
+            continue
+        t = strip_comments(read(path))
+        for env in envs:
+            for m in re.finditer(r'\\begin\{%s\}(?!\s*\{)' % env, t):
+                total += 1
+                bad.append('%s:%d %s' % (fname, t[:m.start()].count('\n') + 1, env))
+            total += 0
+    if bad:
+        rec('FAIL', 'P', '语义盒裸调用（会吞掉正文首字并可能造成标签重复）：%s' % bad[:6])
+    else:
+        rec('PASS', 'P', '全部语义盒均为两参数显式调用（标题 + 唯一标签），无裸 \\begin{tip} 类调用')
 
 
 # ------------------------------------------------------------------ 主流程
@@ -1358,7 +1542,9 @@ def main():
     check_P04_new_appendix_wiring()
     check_P05_appendix_k_claims()
     check_P07_appendix_l_bank()
+    check_P08_appendix_m_heating()
     check_P06_scattering_alpha()
+    check_P09_tcbtheorem_arity()
 
     if args.json:
         print(json.dumps([{'level': a, 'cat': b, 'msg': c} for a, b, c in RESULTS],
