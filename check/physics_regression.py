@@ -728,6 +728,7 @@ APP_FILES = {
     'P': 'appendix_p_lowtemp.tex',
     'Q': 'appendix_q_diagnostics.tex',
     'R': 'appendix_r_dusty.tex',
+    'S': 'appendix_s_confinement.tex',
 }
 
 # CODATA 2018 常数（与附录 D 的单位换算表同一组值）
@@ -2874,6 +2875,316 @@ def check_P18_appendix_i_dualcode():
           'src/%s（两本期刊不得被拼成一个刊名）' % APP_FILES['I'])
 
 
+def check_P19_appendix_s_confinement():
+    """附录 S 能量约束与输运的结构完整性与数值独立复算。
+
+    可证伪点（全部记 FAIL）：
+      ① 十一个小节之一被删（按小节标题子串定位）；
+      ② 七张表 / 两只语义盒 / 十五个编号公式之一被删或改了 label；
+      ③ 缺少「出处：」行（本附录要求 >= 9 处），或六道练习缺解答；
+      ④ 印出的关键数值与独立复算不符（旧式偏差、τ_E、χ_eff、χ_B、χ_gB、ρ_i、ρ*、杠杆倍数、
+         W、ΔW、峰值热负荷、n_G 比值、f_GAM、三种外推），或搬到了别的小节里；
+      ⑤ 口径回流：ρ_i 丢掉 2T 约定、回旋玻姆写成 ρ*²、错式的幂次混进新式。
+
+    数值唯一来源 tmp/appS_calc.py；表内数字的单位写在表头，故这些用例传 unit=''。
+    语义盒标签写在 \\begin{tip}{标题}{标签} 的第二个必选参数里，不写成 \\label{}。
+    """
+    spath = os.path.join(SRC, APP_FILES['S'])
+    if not os.path.exists(spath):
+        rec('FAIL', 'P', '附录 S 文件缺失：src/%s' % APP_FILES['S'])
+        return
+    text = strip_comments(read(spath))
+    secs = split_blocks(text, 'section')
+
+    want = ['约束定标律是什么', '从功率平衡反推有效输运系数', '玻姆还是回旋玻姆',
+            'IPB98(y,2)', '因子与设计杠杆', '台基、', 'Greenwald 密度极限',
+            '带状流与测地声模', '三种外推', '六道估算练习', '来源、分级与版权说明']
+    found = {}
+    for pre in want:
+        for ttl, body in secs:
+            if pre in ttl:
+                found[pre] = body
+                break
+    missing = [p for p in want if p not in found]
+    if missing:
+        rec('FAIL', 'P', '附录 S 缺少小节（标题被改或整节被删）：%s' % missing)
+        return
+    rec('PASS', 'P', '附录 S 的 %d 个小节齐全' % len(want))
+
+    for lab in ('tab:app-s-map', 'tab:app-s-devices', 'tab:app-s-transport',
+                'tab:app-s-oldformula', 'tab:app-s-lever', 'tab:app-s-gam',
+                'tab:app-s-source'):
+        has(text, r'\label{%s}' % lab, 'src/%s（表格 label %s）' % (APP_FILES['S'], lab))
+
+    for lab in ('tip-apps-limit', 'tip-apps-next'):
+        has(text, '{%s}' % lab, 'src/%s（语义盒标签 %s）' % (APP_FILES['S'], lab))
+
+    for lab in ('eq:app-s-powerbalance', 'eq:app-s-chi', 'eq:app-s-chib',
+                'eq:app-s-chigb', 'eq:app-s-ipb98', 'eq:app-s-ipb98b', 'eq:app-s-old',
+                'eq:app-s-h', 'eq:app-s-ped', 'eq:app-s-elm', 'eq:app-s-elmfreq',
+                'eq:app-s-ng', 'eq:app-s-gam', 'eq:app-s-extrapb', 'eq:app-s-extrapgb'):
+        has(text, r'\label{%s}' % lab, 'src/%s（公式 label %s）' % (APP_FILES['S'], lab))
+
+    has(text, '不复制', 'src/%s（版权与独立性声明）' % APP_FILES['S'])
+
+    n_src = len(re.findall(r'\\textbf\{出处：\}', text))
+    if n_src < 9:
+        rec('FAIL', 'P', '附录 S 的「出处：」行只有 %d 处，应 >= 9' % n_src)
+    else:
+        rec('PASS', 'P', '附录 S 有 %d 处「出处：」交代' % n_src)
+
+    ex = found['六道估算练习']
+    n_ex = len(re.findall(r'\\textbf\{练习\s*\d+', ex))
+    n_ans = len(re.findall(r'\\textbf\{解答\}', ex))
+    if n_ex < 6:
+        rec('FAIL', 'P', '附录 S 的估算练习只有 %d 道，应 >= 6' % n_ex)
+    else:
+        rec('PASS', 'P', '附录 S 有 %d 道估算练习' % n_ex)
+    if n_ans < n_ex:
+        rec('FAIL', 'P', '附录 S 有 %d 道练习但只有 %d 个解答' % (n_ex, n_ans))
+    else:
+        rec('PASS', 'P', '附录 S 的每道练习都有解答（%d 个）' % n_ans)
+
+    # 字面绑定：公式形式与口径说明必须原样在文里（改动即 FAIL）
+    for lit, why in (
+            (r'\chi_{\mathrm{eff}}=\frac{3a^2}{8\tau_E}', 'τ_E→χ_eff 的柱位形关系'),
+            (r'\chi_B=\frac{T_e[\mathrm{eV}]}{16\,B[\mathrm{T}]}', '玻姆系数的 1/16 约定'),
+            (r'\rho_i=\frac{\sqrt{2m_iT_i}}{eB}', '回旋半径的 2T 约定'),
+            (r'\chi_{\mathrm{gB}}=\chi_B\,\rho_\ast', '回旋玻姆 = 玻姆 × ρ*'),
+            (r'n_{19}^{0.41}P^{-0.69}', 'IPB98(y,2) 的 P 幂次（必须钉在整条式子上，'
+                                        '因为 -0.69 在正文与练习里重复出现）'),
+            (r'\epsilon^{0.58}\kappa^{0.78}M^{0.19}', 'IPB98(y,2) 的 ε/κ/M 因子'),
+            (r'a^{0.58}R^{1.39}', 'a 与 R 的等价改写'),
+            (r'H\equiv\frac{\tau_{E,\mathrm{exp}}}{\tau_E^{\mathrm{IPB98}}}', 'H 因子的定义'),
+            (r'W_{\mathrm{ped}}=3nTV\times20\%', '台基储能的口径'),
+            (r'n_G=\frac{I_p[\mathrm{MA}]}{\pi a^2[\mathrm{m^2}]}\times10^{20}', 'Greenwald 公式'),
+            (r'f_{\mathrm{GAM}}\simeq\frac{c_s}{2\pi R}', '测地声模频率估计'),
+            (r'\tau_E\propto\frac{a^2B}{T}', '玻姆型外推标度'),
+            (r'\tau_E\propto\frac{a^3B^2}{T^{1.5}}', '回旋玻姆型外推标度'),
+            (r'\tau_E^{\mathrm{Bohm}}=0.426', '玻姆型外推结果'),
+            (r'\tau_E^{\mathrm{gB}}=1.358', '回旋玻姆型外推结果')):
+        has(text, lit, 'src/%s（%s）' % (APP_FILES['S'], why))
+
+    # 数值独立复算（单位见正文/表头，故 unit=''）
+    cases = [
+        # (值, 相对容差, 所在小节子串或 None, 说明)
+        (15.0, 0.01, '约束定标律是什么', 'D1 的 I_p'),
+        (5.3, 0.01, '约束定标律是什么', 'D1 的 B'),
+        (10.1, 0.01, '约束定标律是什么', 'D1 的 n_19'),
+        (150, 0.01, '约束定标律是什么', 'D1 的 P'),
+        (6.20, 0.01, '约束定标律是什么', 'D1 的 R'),
+        (2.00, 0.01, '约束定标律是什么', 'D1 的 a'),
+        (1.7, 0.01, '约束定标律是什么', 'D1 的 κ'),
+        (2.5, 0.01, '约束定标律是什么', 'D1 的 M'),
+
+        (0.606, 0.01, '玻姆还是回旋玻姆', 'D1 的 χ_eff'),
+        (1.531, 0.01, '玻姆还是回旋玻姆', 'D2 的 χ_eff'),
+        (1.595, 0.01, '玻姆还是回旋玻姆', 'D3 的 χ_eff'),
+        (108.4, 0.01, '玻姆还是回旋玻姆', 'D1 的 χ_B'),
+        (48.7, 0.01, '玻姆还是回旋玻姆', 'D2 的 χ_B'),
+        (0.2004, 0.01, '玻姆还是回旋玻姆', 'D1 的 χ_gB'),
+        (0.1281, 0.01, '玻姆还是回旋玻姆', 'D2 的 χ_gB'),
+        (0.2893, 0.01, '玻姆还是回旋玻姆', 'D3 的 χ_gB'),
+        (3.70, 0.01, '玻姆还是回旋玻姆', 'D1 的 ρ_i/mm'),
+        (3.29, 0.01, '玻姆还是回旋玻姆', 'D2 的 ρ_i/mm'),
+        (3.95, 0.01, '玻姆还是回旋玻姆', 'D3 的 ρ_i/mm'),
+        (1.85e-3, 0.01, '玻姆还是回旋玻姆', 'D1 的 ρ*'),
+        (2.63e-3, 0.01, '玻姆还是回旋玻姆', 'D2 的 ρ*'),
+        (5.90e-3, 0.01, '玻姆还是回旋玻姆', 'D3 的 ρ*'),
+        (0.0056, 0.02, '玻姆还是回旋玻姆', 'D1 的 χ_eff/χ_B'),
+        (3.0, 0.02, '玻姆还是回旋玻姆', 'D1 的 χ_eff/χ_gB'),
+        (541, 0.01, '玻姆还是回旋玻姆', 'D1 的 χ_B/χ_gB'),
+        (380, 0.01, '玻姆还是回旋玻姆', 'D2 的 χ_B/χ_gB'),
+        (170, 0.01, '玻姆还是回旋玻姆', 'D3 的 χ_B/χ_gB'),
+
+        (2.4762, 1e-4, 'IPB98(y,2)', 'D1 的 IPB98 τ_E'),
+        (7.4446, 1e-4, 'IPB98(y,2)', 'D1 的错式 τ_E'),
+        (3.01, 0.01, 'IPB98(y,2)', 'D1 的错式/IPB98 倍数'),
+        (0.3827, 1e-4, 'IPB98(y,2)', 'D2 的 IPB98 τ_E'),
+        (0.5407, 1e-4, 'IPB98(y,2)', 'D2 的错式 τ_E'),
+        (1.41, 0.01, 'IPB98(y,2)', 'D2 的倍数'),
+        (0.1055, 1e-4, 'IPB98(y,2)', 'D3 的 IPB98 τ_E'),
+        (0.0493, 1e-4, 'IPB98(y,2)', 'D3 的错式 τ_E'),
+        (0.47, 0.01, 'IPB98(y,2)', 'D3 的倍数'),
+
+        (1.14, 0.01, '因子与设计杠杆', 'R 的杠杆倍数'),
+        (1.33, 0.01, '因子与设计杠杆', 'I_p 的杠杆倍数'),
+        (1.90, 0.01, '因子与设计杠杆', 'n_19 的杠杆倍数'),
+        (1.57, 0.01, '因子与设计杠杆', 'a 的杠杆倍数'),
+        (1.40, 0.01, '因子与设计杠杆', 'κ 的杠杆倍数'),
+        (3.98, 0.01, '因子与设计杠杆', 'M 的杠杆倍数'),
+        (5.75, 0.01, '因子与设计杠杆', 'B 的杠杆倍数'),
+        (0.68, 0.01, '因子与设计杠杆', 'P 的杠杆倍数'),
+
+        (19.6, 0.01, '台基、', '台基储能 MJ'),
+        (371.4, 0.001, '台基、', 'D1 总储能 MJ'),
+        (37.1, 0.01, '台基、', '单次 ELM 能量 MJ'),
+        (7.43, 0.01, '台基、', '峰值热负荷 GW/m²'),
+        (495, 0.02, '台基、', '峰值/稳态倍数'),
+        (4.04, 0.02, '台基、', 'ELM 频率下界 Hz'),
+        (81, 0.01, '台基、', 'ΔW 压到 0.5% 时的频率'),
+        (15.0, 0.01, '台基、', '稳态热负荷 MW/m²'),
+
+        (0.846, 0.01, 'Greenwald 密度极限', 'D1 的 n/n_G'),
+        (1.194e20, 0.01, 'Greenwald 密度极限', 'D1 的 n_G'),
+        (0.611e20, 0.01, 'Greenwald 密度极限', 'D2 的 n_G'),
+        (0.654, 0.01, 'Greenwald 密度极限', 'D2 的 n/n_G'),
+        (0.470, 0.01, 'Greenwald 密度极限', 'D3 的 n/n_G'),
+        (1.064e20, 0.01, 'Greenwald 密度极限', 'D3 的 n_G'),
+
+        (17.0, 0.01, '带状流与测地声模', 'D1 芯部 GAM 频率 kHz'),
+        (5.6, 0.02, '带状流与测地声模', 'D1 边缘 GAM 频率 kHz'),
+        (18.0, 0.01, '带状流与测地声模', 'D2 芯部 GAM 频率 kHz'),
+        (11.8, 0.01, '带状流与测地声模', 'D2 边缘 GAM 频率 kHz'),
+        (26.8, 0.01, '带状流与测地声模', 'D3 芯部 GAM 频率 kHz'),
+        (20.9, 0.01, '带状流与测地声模', 'D3 边缘 GAM 频率 kHz'),
+        (6.64e5, 0.01, '带状流与测地声模', 'D1 芯部声速 m/s'),
+        (2.19e5, 0.01, '带状流与测地声模', 'D1 边缘声速 m/s'),
+
+        (0.426, 0.01, '三种外推', '玻姆型外推 τ_E'),
+        (1.358, 0.01, '三种外推', '回旋玻姆型外推 τ_E'),
+        (2.476, 0.01, '三种外推', 'IPB98 的 τ_E（对比基准）'),
+        (5.82, 0.02, '三种外推', '玻姆型与 IPB98 的比值'),
+        (1.82, 0.02, '三种外推', '回旋玻姆型与 IPB98 的比值'),
+
+        (3.606, 0.001, '六道估算练习', '练习一的 τ_E'),
+        (1.46, 0.02, '六道估算练习', '练习一的倍数'),
+        (0.0056, 0.02, '六道估算练习', '练习二的 χ_eff/χ_B'),
+        (1.064e20, 0.01, '六道估算练习', '练习四的 n_G'),
+        (0.470, 0.01, '六道估算练习', '练习四的 n/n_G'),
+        (1.33, 0.01, '六道估算练习', '练习五的 I_p 杠杆'),
+        (5.75, 0.01, '六道估算练习', '练习五的 B 杠杆'),
+        (1.14, 0.01, '六道估算练习', '练习五的 R 杠杆'),
+        (1.57, 0.01, '六道估算练习', '练习五的 a 杠杆'),
+        (17.0, 0.01, '六道估算练习', '练习六的芯部频率'),
+        (5.6, 0.02, '六道估算练习', '练习六的边缘频率'),
+    ]
+    bad = []
+    for v, rel, sect, why in cases:
+        blk = found[sect] if sect else text
+        if not value_in(blk, v, rel, ''):
+            bad.append('%s（期望 %.6g）' % (why, v))
+    if bad:
+        rec('FAIL', 'P', '附录 S 有 %d 处印出的数值与 tmp/appS_calc.py 不符或不在应有小节：%s'
+            % (len(bad), '；'.join(bad)))
+    else:
+        rec('PASS', 'P', '附录 S 的 %d 处关键数值与 tmp/appS_calc.py 逐一相符' % len(cases))
+
+    # 口径回流守卫
+    lacks(text, r'\rho_i=\frac{\sqrt{m_iT_i}}',
+          'src/%s（回旋半径不得丢掉 2T 约定）' % APP_FILES['S'])
+    lacks(text, r'\chi_{\mathrm{gB}}=\chi_B\,\rho_\ast^2',
+          'src/%s（回旋玻姆不得写成 ρ*²）' % APP_FILES['S'])
+    lacks(text, r'n_{19}^{0.41}P^{-0.58}',
+          'src/%s（错式的 P 幂次不得混进新式）' % APP_FILES['S'])
+    lacks(text, r'a^{1.97}\epsilon^{0.58}',
+          'src/%s（a^{1.97} 与 ε^{0.58} 不得混用）' % APP_FILES['S'])
+
+
+def check_P20_ipb98_formula_consistency():
+    """第 10 章公式卡 f:scaling 与附录 S 的 IPB98(y,2) 必须一致，且错式不得回流。
+
+    可证伪点（全部记 FAIL）：
+      ① 公式卡被删或改了标题/label；
+      ② 公式卡里 IPB98(y,2) 的任一因子（I_p/B/n_19/P/R/ε/κ/M）被改动或漏掉；
+      ③ 名称退回两处旧写法之一（ITER98y2、把 a 的幂次写成 1.97、P 的幂次写成 -0.58）；
+      ④ 附录 S 之外的任何 tex 文件里出现 a^{1.97} 或 P^{-0.58}——
+         即有人把错式当成正确公式又抄了一遍。
+
+    这条检查是跨文件的：第 10 章给出"用哪条式子"，附录 S 给出"式子从哪来、怎么用"，
+    两处只要不一致，读者就会在同一个符号上读到两个幂次。
+    """
+    cname = 'ch10_supplement.tex'
+    cpath = os.path.join(SRC, cname)
+    if not os.path.exists(cpath):
+        rec('FAIL', 'P', '第 10 章补充材料缺失：src/%s' % cname)
+        return
+    text = strip_comments(read(cpath))
+    m = re.search(r'\\begin\{formulabox\}\{磁约束约束时间经验定标律\}\{f:scaling\}'
+                  r'(.*?)\\end\{formulabox\}', text, re.S)
+    if not m:
+        rec('FAIL', 'P', '第 10 章找不到公式卡 f:scaling（标题或 label 被改）')
+        return
+    box = m.group(1)
+    rec('PASS', 'P', '第 10 章公式卡 f:scaling 存在（%d 字符）' % len(box))
+
+    for lit in (r'I_p^{0.93}', r'B^{0.15}', r'n_{19}^{0.41}', r'P^{-0.69}',
+                r'R^{1.97}', r'\epsilon^{0.58}', r'\kappa^{0.78}', r'M^{0.19}'):
+        has(box, lit, 'src/%s（公式卡 f:scaling 的 IPB98(y,2) 因子 %s）' % (cname, lit))
+    has(box, r'a^{0.58}R^{1.39}',
+        'src/%s（公式卡里 a 与 R 的等价改写，用来钉住 0.58 这个幂次）' % cname)
+    has(box, 'IPB98(y,2)', 'src/%s（公式卡的正式名称）' % cname)
+    lacks(box, 'ITER98y2', 'src/%s（公式卡不得退回 ITER98y2 这个名称）' % cname)
+    lacks(box, r'a^{1.97}', 'src/%s（a 的幂次不得写成 1.97）' % cname)
+    lacks(box, r'P^{-0.58}', 'src/%s（P 的幂次不得写成 -0.58）' % cname)
+
+    offenders = []
+    for fn in sorted(os.listdir(os.path.join(SRC))):
+        if not fn.endswith('.tex') or fn == APP_FILES['S']:
+            continue
+        body = strip_comments(read(os.path.join(SRC, fn)))
+        if r'a^{1.97}' in body or r'P^{-0.58}' in body:
+            offenders.append(fn)
+    if offenders:
+        rec('FAIL', 'P', '旧错式只允许出现在附录 S 的对照节，却出现在：%s' % offenders)
+    else:
+        rec('PASS', 'P', '旧错式（a^{1.97} / P^{-0.58}）只出现在附录 S 的对照节')
+
+
+def check_P21_appendix_i_expert():
+    """附录 I「专家与新手」一节的结构、出处与防回流。
+
+    可证伪点（全部记 FAIL）：
+      ① 该节被删或改了 label（sec:app-i-expert / tab:app-i-expert）；
+      ② 四条对照（记忆单位 / 分类依据 / 解题方向 / 表征习惯）缺任何一行；
+      ③ 六家经典出处缺一（de Groot、Chase & Simon、Chi 等 1981、Larkin 等 1980、
+         Miller、Cowan），或参考文献表缺对应行；
+      ④ 结论被写成"专家天生记性好"这类与实验证据相反的表述；
+      ⑤ 动作清单被悄悄改成"七个动作"却没同步 P18 的计数。
+
+    Miller 1956 与 Cowan 2001 必须同时在场：只写 7±2 会漏掉现代估计（约 4），
+    而这一节正是要说明"容量这么小，所以只能靠组块"。
+    """
+    p = os.path.join(SRC, APP_FILES['I'])
+    if not os.path.exists(p):
+        rec('FAIL', 'P', '附录 I 文件不存在：%s' % APP_FILES['I'])
+        return
+    text = strip_comments(read(p))
+    secs = split_blocks(text, 'section')
+    blk = None
+    for ttl, body in secs:
+        if '专家与新手' in ttl:
+            blk = body
+            break
+    if blk is None:
+        rec('FAIL', 'P', '附录 I 找不到「专家与新手」一节（标题被改或整节被删）')
+        return
+    rec('PASS', 'P', '附录 I 的专家与新手一节存在（%d 字符）' % len(blk))
+
+    has(text, r'\label{sec:app-i-expert}',
+        'src/%s（专家与新手一节的 label）' % APP_FILES['I'])
+    has(blk, r'\label{tab:app-i-expert}',
+        'src/%s（四条对照表 label）' % APP_FILES['I'])
+    for row in ('记忆单位', '分类依据', '解题方向', '表征习惯'):
+        has(blk, row, 'src/%s（四条对照之一：%s）' % (APP_FILES['I'], row))
+    for key in ('组块', '随机棋局', '深层原理', '表面特征', '向前推', '工作记忆'):
+        has(blk, key, 'src/%s（专家与新手一节的关键概念：%s）' % (APP_FILES['I'], key))
+    for src in ('de Groot', 'Chase \\& Simon', 'Chi, Feltovich \\& Glaser',
+                'Larkin', 'Miller', 'Cowan'):
+        has(blk, src, 'src/%s（专家与新手一节的出处之一：%s）' % (APP_FILES['I'], src))
+    for row in ('de Groot (1965) &', 'Chase \\& Simon (1973) &',
+                'Chi, Feltovich \\& Glaser (1981) &',
+                'Larkin, McDermott, Simon \\& Simon (1980) &',
+                'Miller (1956) &', 'Cowan (2001) &'):
+        has(text, row, 'src/%s（参考文献表补上：%s）' % (APP_FILES['I'], row))
+    lacks(blk, '因为专家记性好',
+          'src/%s（不得把专家优势说成天生记性好）' % APP_FILES['I'])
+    lacks(blk, '不需要做本领域的题',
+          'src/%s（不得把领域性结论写成通用能力）' % APP_FILES['I'])
+    lacks(text, '七个可执行动作',
+          'src/%s（动作清单若扩到七个，必须同步 P18 的计数断言）' % APP_FILES['I'])
+
+
 def check_P02_appendix_j_map():
     """附录 J 逐章对照表的完备性：覆盖 1--12 章、每行 5 列、章号不越界。
 
@@ -3058,6 +3369,9 @@ def main():
     check_P16_no_markdown_bold()
     check_P17_appendix_r_dusty()
     check_P18_appendix_i_dualcode()
+    check_P19_appendix_s_confinement()
+    check_P20_ipb98_formula_consistency()
+    check_P21_appendix_i_expert()
     check_P06_scattering_alpha()
     check_P09_tcbtheorem_arity()
 

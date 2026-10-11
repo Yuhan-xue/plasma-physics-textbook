@@ -1,0 +1,604 @@
+% 附录 S：能量约束与输运：从功率平衡到 IPB98(y,2)（v1.16.0 新增）
+% 数值唯一来源：tmp/appS_calc.py -> tmp/appS_calc.txt（正文与门禁的唯一来源）
+% 时间单位写成 yr/day，避免中文字符进入数学字体；全部数字可用仓库脚本复算。
+% 版权口径：只借鉴经典教材与文献的物理结论、公式形式与题型；文字、数值与表格自拟并独立复算。
+% 离线环境无法核验 DOI，故只给书名、作者、年份、卷期页。
+% v1.16.0 同时修正第 10 章公式卡 f:scaling 里 IPB98(y,2) 的三处抄写错。
+
+\section{约束定标律是什么：三个前提}
+\label{sec:app-s-scaling}
+
+前面各章建立了模型，附录 M 到 R 把它们用到加热、边界、推进、低温与尘埃上。到了聚变装置这一层，
+所有讨论最后都压到同一个问题上：\textbf{同样的加热功率，能把温度维持多久。}零维能量平衡把它写成一个
+导出量——能量约束时间 $\tau_E$：
+
+\begin{equation}
+P_{\mathrm{loss}}=\frac{W}{\tau_E}=\frac{3nk_BT\,V}{\tau_E},
+\qquad\text{即}\qquad
+\tau_E=\frac{W}{P_{\mathrm{loss}}},
+\label{eq:app-s-powerbalance}
+\end{equation}
+
+其中 $W=3nk_BTV$ 是等离子体总热能（电子加离子，体积平均温度 $T$），$P_{\mathrm{loss}}$ 是总损失功率
+（第 10 章式与符号表已给出同一约定）。注意式 \eqref{eq:app-s-powerbalance} 的读法：
+\textbf{$\tau_E$ 是"用储能除以损失功率"定义出来的，本身不是一条物理定律。}要知道它等于多少，
+需要另一套说法。定标律（scaling law）就是这套说法，而它站在三个前提上。
+
+\textbf{前提一：损失由输运与辐射决定，$\tau_E$ 只是结果。}能量从芯部跑到壁上，靠的是输运
+（见第 8 章）与辐射。把这两条写清楚是"第一性原理"路线；把实验数据拟合起来是"经验"路线。
+本书两条都给：本附录走后者。
+
+\textbf{前提二：相似律。}如果等离子体的行为只由少数无量纲参数决定，那么把不同装置的数据按这些参数
+归并，就能得到可外推的关系（Connor \& Taylor 1977）。聚变等离子体最常用的无量纲数是
+$\rho_\ast=\rho_i/a$、$\beta$、$\nu_\ast$（碰撞率）、$q$（安全因子）、$M$（离子质量数）、
+$\epsilon=a/R$、$\kappa$（拉长比）、$Z_{\mathrm{eff}}$。\textbf{外推的合法性来自相似律，
+不是来自"公式看起来普适"。}
+
+\textbf{前提三：拟合只在数据库区间内可信。}定标律是把几十台装置的几百个放电点做最小二乘得到的，
+覆盖的是"已建成的装置"这一段参数区间。超出区间（例如把 $\rho_\ast$ 外推到 ITER 的 1/3）时，
+误差不再是 $\pm20\%$ 量级，而可能是 2--3 倍——本附录 S.9 节用同一套数字把这个风险算出来。
+
+\begin{table}[htbp]
+  \centering
+  \caption{本附录的三段路线：先把 $\tau_E$ 化成输运系数，再判断输运属于哪一种标度，最后才谈外推。
+    每一段都可用仓库脚本 \texttt{tmp/appS\_calc.py} 复算。}
+  \label{tab:app-s-map}
+  \begin{tabular}{@{}p{1.2cm}p{4.4cm}p{5.4cm}p{4.6cm}@{}}
+    \toprule
+    节 & 问题 & 用到的量 & 结论形式 \\
+    \midrule
+    S.2 & 给定 $\tau_E$，对应的有效输运系数是多少 & $\chi_{\mathrm{eff}}=\dfrac{3a^2}{8\tau_E}$ & 一个数（$\mathrm{m^2/s}$）\\
+    S.3 & 这个数是玻姆的还是回旋玻姆的量级 & $\chi_B$、$\rho_\ast$、$\chi_{\mathrm{gB}}$ & 与两者的比值 \\
+    S.4 & 经验定标律怎么写、各项什么含义 & IPB98(y,2) 八个因子 & 代进工作点得 $\tau_E$ \\
+    S.5--S.8 & $H$ 因子、台基、密度极限、带状流 & $H$、$W_{\mathrm{ped}}$、$n_G$、$f_{\mathrm{GAM}}$ & 设计与运行判据 \\
+    S.9 & 能不能外推到下一台装置 & 玻姆型、回旋玻姆型、IPB98 & 外推偏差的倍数 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+本附录用三个装置量级贯穿全篇。它们不是真实装置的运行记录，而是取公开设计参数附近的圆整值，
+用来演示同一套公式在不同尺寸上的差别：
+
+\begin{table}[htbp]
+  \centering
+  \caption{本附录的三个装置量级。输入只有 $(I_p,B,n_{19},P,R,a,\kappa,M)$；$\tau_E$ 由
+    IPB98(y,2) 在 $H=1$ 给出，体积平均温度 $T$ 由功率平衡 $\tau_E=W/P$ 反解，
+    因此每个工作点自洽。$V=2\pi^2Ra^2\kappa$。}
+  \label{tab:app-s-devices}
+  \begin{tabular}{@{}p{2.5cm}p{0.9cm}p{0.9cm}p{1.0cm}p{1.0cm}p{0.9cm}p{0.9cm}p{0.9cm}p{0.9cm}p{1.2cm}p{1.1cm}p{1.3cm}@{}}
+    \toprule
+    装置 & $I_p$ & $B$ & $n_{19}$ & $P$ & $R$ & $a$ & $\kappa$ & $M$ & $\tau_E$ & $V$ & $T$ \\
+     & MA & T & $10^{19}$ & MW & m & m & & amu & s & $\mathrm{m^3}$ & keV \\
+    \midrule
+    D1 ITER 量级 & $15.0$ & $5.3$ & $10.1$ & $150$ & $6.20$ & $2.00$ & $1.7$ & $2.5$ & $2.4762$ & $832.2$ & $9.19$ \\
+    D2 JET 量级 & $3.0$ & $3.0$ & $4.0$ & $15$ & $2.96$ & $1.25$ & $1.4$ & $2.0$ & $0.3827$ & $127.8$ & $2.34$ \\
+    D3 DIII-D 量级 & $1.5$ & $2.1$ & $5.0$ & $10$ & $1.67$ & $0.67$ & $1.8$ & $2.0$ & $0.1055$ & $26.6$ & $1.65$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+三台装置的 $\tau_E$ 跨 $23$ 倍、体积跨 $31$ 倍、$\rho_\ast$ 跨 $3.2$ 倍（S.9 节）。
+\textbf{这张表是本附录全部数字的起点}：只要记住"$I_p$ 从 1.5 到 15 MA、$a$ 从 0.67 到 2 m"，
+后面每个结果都能自己估出来。
+
+\textbf{出处：}Connor \& Taylor，\textit{Nuclear Fusion} \textbf{17}，1047（1977，定标律与相似律的
+方法论）；Hazeltine \& Meiss《Plasma Confinement》（Addison-Wesley，1992）第 1、2 章
+（约束时间的定义与零维能量平衡）；Wesson《Tokamaks》第 4 版第 14 章（约束与输运综述）。
+本节只借鉴"用无量纲参数组织数据"的方法与分类，三个工作点与全部数值自拟并独立复算。
+
+
+\section{从功率平衡反推有效输运系数}
+\label{sec:app-s-chi}
+
+定标律给出 $\tau_E$ 之后，第一件该做的事是把它翻译成输运系数——因为 $\mathrm{s}$ 这个单位
+不告诉你"传输有多快"，而 $\mathrm{m^2/s}$ 会。做一次最朴素的推导就够了。取柱位形、稳态、
+无对流，能量通量写成 $q=-n\chi\,\diff T/\diff r$（$\chi$ 是热扩散系数，$n\chi$ 才是能量扩散系数），
+加热功率密度 $S_0$ 均匀：
+
+\begin{equation}
+\frac{1}{r}\frac{\diff}{\diff r}\!\left(r\,n\chi\frac{\diff T}{\diff r}\right)+S_0=0,
+\qquad T(a)=0 .
+\end{equation}
+
+$n$、$\chi$ 取常数，一次积分给出 $T(r)=S_0(a^2-r^2)/(4n\chi)$，抛物型剖面。
+体积平均是 $\langle T\rangle=S_0a^2/(8n\chi)$，于是总储能与总损失之比
+
+\begin{equation}
+\tau_E=\frac{W}{P_{\mathrm{loss}}}
+=\frac{3n\langle T\rangle V}{S_0V}
+=\frac{3a^2}{8\chi}
+\qquad\Longrightarrow\qquad
+\boxed{\ \chi_{\mathrm{eff}}=\frac{3a^2}{8\tau_E}\ }
+\label{eq:app-s-chi}
+\end{equation}
+
+把表 \ref{tab:app-s-devices} 的三个 $\tau_E$ 与 $a$ 代进去：D1 得
+$\chi_{\mathrm{eff}}=0.606\ \mathrm{m^2/s}$、D2 得 $1.531\ \mathrm{m^2/s}$、
+D3 得 $1.595\ \mathrm{m^2/s}$。三个数都在 $1\ \mathrm{m^2/s}$ 量级——
+\textbf{装置尺寸差了 3 倍、温度差了 5.6 倍，有效输运系数却几乎不动}，这本身就是一条线索。
+
+\begin{tip}{$\chi_{\mathrm{eff}}$ 不是"测出来的扩散系数"}{tip-apps-limit}
+式 \eqref{eq:app-s-chi} 里的三个假设都会改变系数：抛物线剖面换成带台基的剖面、均匀加热换成
+芯部加热、加上对流项，系数会变 $2$--$3$ 倍。\textbf{但 $\chi\propto a^2/\tau_E$ 的函数关系不变}，
+所以它适合做量级判断与跨装置比较，不适合当作"这个装置的扩散系数"引用。
+本附录所有 $\chi$ 都按式 \eqref{eq:app-s-chi} 计算，口径写在正文里。
+\end{tip}
+
+\textbf{出处：}Hazeltine \& Meiss《Plasma Confinement》第 2 章（柱位形扩散与约束时间的推导）；
+Wesson《Tokamaks》第 14 章（有效热扩散系数的定义与剖面依赖）。本节推导与三个数值自算，
+剖面假设与系数口径由本书选定并在正文中声明。
+
+
+\section{玻姆还是回旋玻姆：两个候选标度}
+\label{sec:app-s-bohm}
+
+输运系数有了，下一步问它属于哪一类。历史上被提出过无数种标度，真正需要记住的只有两个极端和一个
+中间者。玻姆扩散（Bohm 1949）是磁化放电里最早的经验式：
+
+\begin{equation}
+\chi_B=\frac{T_e[\mathrm{eV}]}{16\,B[\mathrm{T}]}\ \mathrm{m^2/s},
+\label{eq:app-s-chib}
+\end{equation}
+
+分子是温度、分母是磁场，$1/16$ 是历史约定（不同文献用 $1/16$、$1/4\pi$ 或干脆省掉系数，
+比较数值时必须核对）。回旋玻姆（gyro-Bohm）则把离子回旋半径放进归一化：
+
+\begin{equation}
+\rho_i=\frac{\sqrt{2m_iT_i}}{eB},
+\qquad
+\rho_\ast\equiv\frac{\rho_i}{a},
+\qquad
+\chi_{\mathrm{gB}}=\chi_B\,\rho_\ast .
+\label{eq:app-s-chigb}
+\end{equation}
+
+式 \eqref{eq:app-s-chigb} 的第一个式子是本书统一的回旋半径约定（$v_{th,i}=\sqrt{2T_i/m_i}$，
+即用 $2T$ 定义，见第 2 章；换成"声速回旋半径"$\rho_s=\sqrt{T_em_i}/(eB)$ 会差 $\sqrt2$）。
+中间的 $\rho_\ast$ 是聚变等离子体最重要的无量纲数之一，最后一行说明两者的关系：
+\textbf{回旋玻姆就是"玻姆乘上 $\rho_\ast$"}。三台装置的结果：
+
+\begin{table}[htbp]
+  \centering
+  \caption{有效输运系数与两种候选标度。$\chi$ 单位 $\mathrm{m^2/s}$，$\rho_i$ 单位 mm，
+    比值无量纲。$\chi_B$、$\chi_{\mathrm{gB}}$ 按式 \eqref{eq:app-s-chib}、
+    \eqref{eq:app-s-chigb} 计算；温度取体积平均值。}
+  \label{tab:app-s-transport}
+  \begin{tabular}{@{}p{2.6cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.3cm}p{1.5cm}p{1.5cm}p{1.9cm}@{}}
+    \toprule
+    装置 & 有效 $\chi$ & 玻姆 $\chi_B$ & 回旋 $\chi_{\mathrm{gB}}$ & $\rho_i$/mm & $\rho_\ast$ & 比玻姆 & 比回旋玻姆 \\
+    \midrule
+    D1 ITER 量级 & $0.606$ & $108.4$ & $0.2004$ & $3.70$ & $1.85\times10^{-3}$ & $0.0056$ & $3.0$ \\
+    D2 JET 量级 & $1.531$ & $48.7$ & $0.1281$ & $3.29$ & $2.63\times10^{-3}$ & $0.0315$ & $11.9$ \\
+    D3 DIII-D 量级 & $1.595$ & $49.1$ & $0.2893$ & $3.95$ & $5.90\times10^{-3}$ & $0.0325$ & $5.5$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+表 \ref{tab:app-s-transport} 可以读出三条结论。\textbf{第一，玻姆扩散错得很远}：$\chi_{\mathrm{eff}}$
+比 $\chi_B$ 小 $1.5$--$2.3$ 个量级（$1/180$--$1/31$）。如果按玻姆扩散估计损失，
+装置会显得比实际差得多。\textbf{第二，回旋玻姆是对的候选}：$\chi_{\mathrm{eff}}$ 是
+$\chi_{\mathrm{gB}}$ 的 $3$--$12$ 倍，跨装置只有半个量级的变化，而 $\rho_\ast$ 本身变了 $3.2$ 倍。
+\textbf{第三，比值对口径敏感}：换个剖面、把温度取芯部而不是平均值、把 $1/16$ 换成 $1/(4\pi)$，
+倍数能变 $3$--$5$ 倍。所以这张表的正确读法是"\textbf{与回旋玻姆同量级}$(3$--$12$ 倍$)$、
+比玻姆小近两个量级"，而不是"恰好是 3.0 倍"。
+
+顺带得到一个便于心算的关系：由式 \eqref{eq:app-s-chib}、\eqref{eq:app-s-chigb}，
+$\chi_B/\chi_{\mathrm{gB}}=1/\rho_\ast=a/\rho_i$，三台装置分别是 $541$、$380$、$170$。
+\textbf{$\rho_\ast$ 越小，两个候选标度差得越远}——这是大装置外推问题的全部要害。
+
+\textbf{出处：}Bohm 1949，见 Guthrie \& Wakerling 编《The Characteristics of Electrical Discharges
+in Magnetic Fields》（McGraw-Hill，1949）第 2 章（玻姆扩散经验式）；Connor \& Wilson，
+\textit{Plasma Physics and Controlled Fusion} \textbf{36}，719（1994，约束与输运理论的标度综述）；
+ITER Physics Basis，\textit{Nuclear Fusion} \textbf{39}，2175（1999）第 2 章
+（$\chi_B$ 与回旋玻姆的对比与实验散度）；第 2 章（回旋半径与 $\rho_\ast$ 的定义）。
+本节口径声明、三个数值与比值自算。
+
+
+\section{IPB98(y,2)：一条经验定标律的逐项解剖}
+\label{sec:app-s-ipb98}
+
+现在把经验路线写出来。H 模托卡马克最常用的是 IPB98(y,2)（ITER Physics Basis 1999 第 2 章，
+基于 ELMy H 模数据库）：
+
+\begin{equation}
+\tau_E=0.0562\,H\,I_p^{0.93}B^{0.15}n_{19}^{0.41}P^{-0.69}
+R^{1.97}\epsilon^{0.58}\kappa^{0.78}M^{0.19}\ \mathrm{s},
+\qquad \epsilon\equiv\frac{a}{R},
+\label{eq:app-s-ipb98}
+\end{equation}
+
+单位：$I_p$ 为 MA，$B$ 为 T，$n_{19}$ 为 $10^{19}\ \mathrm{m^{-3}}$，$P$ 为 MW，
+$R$、$a$ 为 m，$M$ 为离子质量数。因为 $\epsilon^{0.58}=(a/R)^{0.58}$，同一条式子也可以写成
+
+\begin{equation}
+R^{1.97}\epsilon^{0.58}=a^{0.58}R^{1.39}
+\qquad\Longrightarrow\qquad
+\tau_E\propto a^{0.58}R^{1.39},
+\label{eq:app-s-ipb98b}
+\end{equation}
+
+这一行是"改写"而不是"新物理"：\textbf{$a$ 的幂次是 $0.58$ 还是 $1.97$，取决于把几何写成
+$(R,\epsilon)$ 还是 $(R,a)$。}两种写法都常见，混用就会出错——第 10 章的公式卡正好在这里栽了跟头。
+
+\textbf{第 10 章公式卡的错与影响。}该公式卡曾把这一行抄成
+
+\begin{equation}
+\tau_E=0.0562\,H\,I_p^{0.93}B^{0.15}n_{19}^{0.41}a^{1.97}R^{1.39}M^{0.19}P^{-0.58},
+\label{eq:app-s-old}
+\end{equation}
+
+与式 \eqref{eq:app-s-ipb98}--\eqref{eq:app-s-ipb98b} 相比有三处问题：$a$ 的幂次写成了 $1.97$
+（应为 $0.58$，$1.97$ 属于 $R$）、$P$ 的幂次写成了 $-0.58$（应为 $-0.69$）、漏掉 $\kappa^{0.78}$。
+三处都是抄写错，但后果值得记下来：
+
+\begin{table}[htbp]
+  \centering
+  \caption{式 \eqref{eq:app-s-old} 与式 \eqref{eq:app-s-ipb98} 在同一工作点上的差别。
+    "倍数"$>1$ 表示错式给出更长的约束时间。}
+  \label{tab:app-s-oldformula}
+  \begin{tabular}{@{}p{3.0cm}p{2.6cm}p{2.6cm}p{2.4cm}p{5.0cm}@{}}
+    \toprule
+    装置 & IPB98(y,2) $\tau_E$ [s] & 错式 $\tau_E$ [s] & 倍数 & 主要来源 \\
+    \midrule
+    D1 ITER 量级 & $2.4762$ & $7.4446$ & $3.01$ & $a^{1.97}$ 与漏 $\kappa$ 双重放大 \\
+    D2 JET 量级 & $0.3827$ & $0.5407$ & $1.41$ & 同样两项，但 $a$、$\kappa$ 都更小 \\
+    D3 DIII-D 量级 & $0.1055$ & $0.0493$ & $0.47$ & $P^{-0.58}$ 比 $P^{-0.69}$ 更弱，方向反过来 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+表 \ref{tab:app-s-oldformula} 的教训比错本身重要：\textbf{同一个错式在不同装置上偏差 $3.0$、
+$1.4$、$0.47$ 倍，方向和大小都变。}只拿一台装置试算，很可能"看起来差不多"而放过它；
+正确的校验办法只有一个——\textbf{逐项对照幂次与量纲}。本附录把这条写进门禁：
+\texttt{check/physics\_regression.py} 里保存了式 \eqref{eq:app-s-ipb98} 的幂次表与
+表 \ref{tab:app-s-oldformula} 的三个数值，任何一个被改回去都会立刻红灯。
+
+\textbf{出处：}ITER Physics Basis，\textit{Nuclear Fusion} \textbf{39}，2175（1999）第 2 章
+（IPB98(y,2) 的形式、数据库范围与散度）；Yushmanov 等，\textit{Nuclear Fusion} \textbf{30}，1999
+（1990，ITER89-P 的早期形式）；Kaye 等，\textit{Nuclear Fusion} \textbf{37}，1303（1997，
+L 模定标与拟合方法）。本节只借鉴该式的形式与幂次，三个装置的代入值、错式对照表与偏差倍数自算。
+
+
+\section{$H$ 因子与设计杠杆}
+\label{sec:app-s-h}
+
+工程上很少直接用式 \eqref{eq:app-s-ipb98} 的绝对值，而是把它当作基准，用约束改善因子 $H$
+描述"这台装置比基准好多少"：
+
+\begin{equation}
+H\equiv\frac{\tau_{E,\mathrm{exp}}}{\tau_E^{\mathrm{IPB98}}},
+\qquad
+\tau_{E,\mathrm{req}}=\frac{W}{P_{\mathrm{loss}}} .
+\label{eq:app-s-h}
+\end{equation}
+
+式 \eqref{eq:app-s-h} 的用法是反过来的：给定设计储能 $W$ 与加热功率 $P_{\mathrm{loss}}$，
+需要 $\tau_{E,\mathrm{req}}=W/P_{\mathrm{loss}}$；再用式 \eqref{eq:app-s-ipb98} 算基准，
+两者之比就是装置必须达到的 $H$。表 \ref{tab:app-s-devices} 的三个工作点正是按 $H=1$ 反解出来的
+（$W=371.4$、$5.7$、$1.1\ \mathrm{MJ}$），所以它们的 $H$ 都等于 $1.000$。
+真实装置的 $H_{98(y,2)}$ 通常在 $1.0$ 附近、好的放电到 $1.2$--$1.5$；
+\textbf{聚变设计里最忌讳的就是"假定 $H=1.5$ 然后宣布成功"}，因为 $H$ 本身是从约束时间反推的，
+不是可以随意选的旋钮。
+
+\textbf{定标律的用处在于告诉你"哪个旋钮便宜"。}把式 \eqref{eq:app-s-ipb98} 取对数微分，
+令 $\tau_E$ 提高 $30\%$，每个参数需要乘的倍数如下表——\textbf{这张表就是设计哲学}：
+
+\begin{table}[htbp]
+  \centering
+  \caption{把 $\tau_E$ 提高 $30\%$ 时各参数需要的倍数（按式 \eqref{eq:app-s-ipb98} 的幂次）。
+    倍数小的参数是"便宜"的杠杆，倍数大的参数是"昂贵"的杠杆。}
+  \label{tab:app-s-lever}
+  \begin{tabular}{@{}p{1.6cm}p{1.6cm}p{3.0cm}p{8.0cm}@{}}
+    \toprule
+    参数 & 幂次 & 需要乘的倍数 & 工程含义 \\
+    \midrule
+    $I_p$ & $+0.93$ & $1.33$ & 最便宜的杠杆：电流提高 33\% 即可；受 $q_{95}$、破裂与电流驱动功率限制 \\
+    $n_{19}$ & $+0.41$ & $1.90$ & 便宜但很快撞上密度极限（S.7 节）\\
+    $R$ & $+1.97$ & $1.14$ & 几何杠杆：大半径提高 14\% 就够，代价是体积与造价 $\propto R^3$ \\
+    $a$ & $+0.58$ & $1.57$ & 小半径的收益比 $R$ 弱得多；$a$ 大还会压低 $B$ 的可用空间 \\
+    $\kappa$ & $+0.78$ & $1.40$ & 拉长比：形状杠杆，受垂直不稳定性与线圈限制 \\
+    $M$ & $+0.19$ & $3.98$ & 弱杠杆：D--T 的 $M=2.5$ 已是聚变最优 \\
+    $B$ & $+0.15$ & $5.75$ & 最贵的杠杆：磁场提高 5.75 倍才能换 30\% 约束时间（超导磁体成本）\\
+    $P$ & $-0.69$ & $0.68$ & 反向杠杆：\textbf{少加热反而约束时间长}——"功率扫描"现象的由来 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+表 \ref{tab:app-s-lever} 解释了托卡马克设计为什么长成现在这样：\textbf{大 $R$、高 $I_p$、
+中等 $a$、尽量高的 $\kappa$。}也解释了 $B$ 的角色——它对 $\tau_E$ 幂次最弱（$0.15$），
+但聚变功率密度 $\propto\beta^2B^4$（附录 M 式），所以提高 $B$ 是为了功率密度而不是为了约束时间。
+$P$ 的反向幂次则提醒一件事：\textbf{$\tau_E$ 不是"加热效果"的度量}，加热越猛，损失也越大。
+
+\textbf{出处：}ITER Physics Basis，\textit{Nuclear Fusion} \textbf{39}，2175（1999）第 2 章
+（$H$ 因子定义与 $H_{98(y,2)}$ 典型值）；Wesson《Tokamaks》第 4 版第 14 章（功率扫描与
+约束改善）；附录 M 第 M.5 节（$\beta_N$ 与运行极限）。倍数表由本书按幂次反解（$1.3^{1/a_i}$），
+数值与"工程含义"一列自拟。
+
+
+\section{台基、$H$ 模与 ELM：约束改善的代价}
+\label{sec:app-s-pedestal}
+
+式 \eqref{eq:app-s-ipb98} 里的 $H$ 不是凭空来的。L 模到 H 模的转变（Wagner 等 1982）
+在边缘形成一个\textbf{输运垒}：密度与温度剖面在最后几个厘米内陡然上升，这一段叫台基
+（pedestal）。台基把边界温度抬高，从而压低整体损失——这是 $H>1$ 的物理来源。
+台基自己能存多少能量是可以估的：取 $n=7.0\times10^{19}\ \mathrm{m^{-3}}$、
+$T=3.5\ \mathrm{keV}$、占体积 $20\%$：
+
+\begin{equation}
+W_{\mathrm{ped}}=3nTV\times20\%
+=19.6\ \mathrm{MJ}\quad(\text{占 }W=371.4\ \mathrm{MJ}\text{ 的 }5\%).
+\label{eq:app-s-ped}
+\end{equation}
+
+台基的代价是它\textbf{存不住}：压力梯度一旦超过临界值就触发边缘局域模（ELM），
+把台基储能的一部分瞬间抛到偏滤器上。取典型值 $\Delta W_{\mathrm{ELM}}/W=10\%$，
+则单次抛出 $37.1\ \mathrm{MJ}$。若它沉积在 $10\ \mathrm{m^2}$ 的湿面积上、历时 $0.5\ \mathrm{ms}$：
+
+\begin{equation}
+q_{\mathrm{ELM}}\approx\frac{37.1\ \mathrm{MJ}}{10\ \mathrm{m^2}\times0.5\ \mathrm{ms}}
+\approx7.4\ \mathrm{GW/m^2},
+\label{eq:app-s-elm}
+\end{equation}
+
+比稳态热负荷（$150\ \mathrm{MW}/10\ \mathrm{m^2}=15\ \mathrm{MW/m^2}$）高约 $495$ 倍。
+附录 N 用 $n=1\times10^{20}$、$T=10\ \mathrm{keV}$ 的取整工作点算过同一件事，得 $3.4\ \mathrm{GW/m^2}$
+（附录 N 式 \eqref{eq:app-n-qelm}）。两者差一倍多，差别全在口径：湿面积取 $10$ 还是 $20\ \mathrm{m^2}$、
+$50\%$ 是否在途中辐射掉。\textbf{这正是"热负荷数字必须连同口径引用"的实例}：量级一致（GW/m²），
+精度不值得争论。
+
+频率这一头是新的，而且它是一个\textbf{下界}：ELM 平均频率必须足够高，才能把持续输入的功率排掉，
+否则台基储能无界增长——
+
+\begin{equation}
+\langle f_{\mathrm{ELM}}\rangle\ \gtrsim\ \frac{P_{\mathrm{loss}}}{\Delta W_{\mathrm{ELM}}}
+=\frac{150\ \mathrm{MW}}{37.1\ \mathrm{MJ}}\approx4.0\ \mathrm{Hz}.
+\label{eq:app-s-elmfreq}
+\end{equation}
+
+反过来说，\textbf{想把单次抛出的能量压小，就必须把频率提高}：把 $\Delta W_{\mathrm{ELM}}$
+压到 $W$ 的 $0.5\%$（$1.9\ \mathrm{MJ}$），频率要升到 $81\ \mathrm{Hz}$ 以上。
+这就是共振磁扰动（RMP）、弹丸注入、垂直位移摇动等 ELM 缓解手段的工作点：
+\textbf{不是消灭 ELM，而是把它们变密、变浅。}（间距见附录 N：单次热负荷与侵蚀账。）
+
+\textbf{出处：}Wagner 等，\textit{Physical Review Letters} \textbf{49}，1408（1982，H 模的发现）；
+Zohm，\textit{Plasma Physics and Controlled Fusion} \textbf{38}，105（1996，ELM 分类与稳定性）；
+Leonard，\textit{Plasma Physics and Controlled Fusion} \textbf{56}，120001（2014，偏滤器与瞬态热负荷综述）；
+Snyder 等，\textit{Nuclear Fusion} \textbf{49}，085035（2009）与 \textbf{51}，103008（2011，
+EPED 台基模型）。台基储能、ELM 峰值热负荷与频率下界由本书按上述口径自算，
+并与附录 N 的独立口径对照。
+
+
+\section{Greenwald 密度极限与运行空间}
+\label{sec:app-s-greenwald}
+
+式 \eqref{eq:app-s-ipb98} 里密度是正幂次（$n_{19}^{0.41}$），看起来"提密度总是有利"。
+但密度有一个经验上限（附录 M 式 \eqref{eq:app-m-greenwald}），
+
+\begin{equation}
+n_G=\frac{I_p[\mathrm{MA}]}{\pi a^2[\mathrm{m^2}]}\times10^{20}\ \mathrm{m^{-3}},
+\label{eq:app-s-ng}
+\end{equation}
+
+三个装置的 $n_G$ 分别是 $1.194\times10^{20}$、$0.611\times10^{20}$、
+$1.064\times10^{20}\ \mathrm{m^{-3}}$，
+$n/n_G$ 分别是 $0.846$（D1）、$0.654$（D2）、$0.470$（D3）。
+把这两件事放在一起就得到一条重要结论：\textbf{密度这个杠杆的收益（$0.41$ 次幂）是用
+"$n_G$ 余量"买的，而 $n_G$ 又与 $I_p/a^2$ 绑在一起。}D1 已经用掉 $85\%$ 的密度余量，
+再想靠提密度换约束时间，空间很小。
+
+三条经验边界把运行空间围成一个三角形：密度极限 $n/n_G\lesssim1$、
+比压极限 $\beta_N\lesssim2.8$--$3.5$（附录 M 第 M.5 节）、
+以及 L--H 阈值 $P_{\mathrm{LH}}$（附录 M 式 \eqref{eq:app-m-martin}，低于它掉回 L 模、
+$H$ 因子掉到 $1$ 以下）。定标律只在三角形内部有效，而 \textbf{三角形的每一条边都是经验拟合}，
+散度 $\pm30\%$ 甚至更大——附录 M 已经把这条写成了"误区"。
+
+\textbf{出处：}Greenwald 等，\textit{Nuclear Fusion} \textbf{28}，2199（1988，密度极限）；
+Martin 等，\textit{Journal of Physics: Conference Series} \textbf{123}，012033（2008，
+L--H 阈值标度）；Wesson《Tokamaks》第 4 版第 14 章（运行空间综述）；
+附录 M 第 M.5 节（三条极限的用法与散度）。三个装置的 $n_G$ 与比值自算。
+
+
+\section{带状流与测地声模：约束为什么比朴素扩散好}
+\label{sec:app-s-zonal}
+
+表 \ref{tab:app-s-transport} 留下一个未回答的问题：既然 $\rho_\ast$ 这么小，
+为什么输运没有掉到"碰撞扩散"的水平，而是停在回旋玻姆量级？答案是\textbf{湍流}：
+漂移波不稳定性把能量从剖面搬到小尺度，再由非线性过程耗散。而湍流并不是无限增长的——
+它会被自己产生的\textbf{带状流}（zonal flow，$n=0$、$m=0$ 的 $\vect{E}\times\vect{B}$ 流）剪切掉。
+在环几何里，带状流与测地压缩耦合，形成\textbf{测地声模}（GAM），其频率由一个很简单的
+量纲关系决定：
+
+\begin{equation}
+f_{\mathrm{GAM}}\simeq\frac{c_s}{2\pi R},
+\qquad
+c_s=\sqrt{\frac{T_e}{m_i}} .
+\label{eq:app-s-gam}
+\end{equation}
+
+注意分母是\textbf{大半径 $R$}而不是小半径 $a$：$m=0$ 模式的平行波长由环的周长决定。
+代入三台装置（温度分别取体积平均的 $9.19$、$2.34$、$1.65\ \mathrm{keV}$，
+以及边缘的 $1\ \mathrm{keV}$）：
+
+\begin{table}[htbp]
+  \centering
+  \caption{测地声模频率（式 \eqref{eq:app-s-gam}）。芯部用表 \ref{tab:app-s-devices}
+    的体积平均温度，边缘统一取 $1\ \mathrm{keV}$。}
+  \label{tab:app-s-gam}
+  \begin{tabular}{@{}p{3.0cm}p{2.4cm}p{2.4cm}p{2.4cm}p{2.6cm}@{}}
+    \toprule
+    装置 & $T$ [keV] & $c_s$ [m/s] & $f_{\mathrm{GAM}}$ [kHz] & 位置 \\
+    \midrule
+    D1 ITER 量级 & $9.19$ & $6.64\times10^5$ & $17.0$ & 芯部 \\
+    D1 ITER 量级 & $1.00$ & $2.19\times10^5$ & $5.6$ & 边缘 \\
+    D2 JET 量级 & $2.34$ & $3.35\times10^5$ & $18.0$ & 芯部 \\
+    D2 JET 量级 & $1.00$ & $2.19\times10^5$ & $11.8$ & 边缘 \\
+    D3 DIII-D 量级 & $1.65$ & $2.81\times10^5$ & $26.8$ & 芯部 \\
+    D3 DIII-D 量级 & $1.00$ & $2.19\times10^5$ & $20.9$ & 边缘 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+表 \ref{tab:app-s-gam} 给出的是 $\mathrm{kHz}$ 到几十 $\mathrm{kHz}$ 的密度/电位振荡。
+这不是纸上的预言：探针阵列与多普勒反射计测到的正是这个频段的相干振荡
+（Fujisawa 等 2004 在 CHS 上直接看到 GAM）。\textbf{诊断与输运在这里接上了}：
+附录 Q 讲怎么测密度与电位涨落，本节给出该去看哪个频率。
+
+要强调的是\textbf{边界}：带状流与 GAM 是湍流饱和的调节器，不是一条可以直接代入
+式 \eqref{eq:app-s-ipb98} 的修正项。它们改变的是"湍流能把输运推到多高"，
+而这一点在定标律里已经被 $\rho_\ast$、$\beta$、$\nu_\ast$ 的依赖隐含掉了。
+这也是为什么"$\rho_\ast$ 扫描实验"（在同一台装置上改变 $\rho_\ast$）是检验外推假设的关键手段。
+
+\textbf{出处：}Winsor、Johnson \& Dawson，\textit{Physical Review Letters} \textbf{21}，1048
+（1968，测地声模的理论提出）；Diamond 等，\textit{Plasma Physics and Controlled Fusion}
+\textbf{47}，R35（2005，带状流与湍流饱和的综述）；Fujisawa 等，\textit{Physical Review Letters}
+\textbf{93}，165002（2004，GAM 的实验观测）；第 8 章（漂移波与湍流）。频率公式与六个数值自算，
+与诊断的联系由本书补上。
+
+
+\section{三种外推：为什么不能按玻姆外推}
+\label{sec:app-s-extrap}
+
+最后回到本附录开头的问题：定标律能不能用来外推？做一次"只有一个变量"的对照实验就够了。
+从 D3（$a=0.67\ \mathrm{m}$、$B=2.1\ \mathrm{T}$、$T=1.65\ \mathrm{keV}$、
+$\tau_E=0.1055\ \mathrm{s}$）出发外推到 D1（$a=2\ \mathrm{m}$、$B=5.3\ \mathrm{T}$、
+$T=9.19\ \mathrm{keV}$），假定 $\beta$、$\nu_\ast$、$q$ 不变，只用两种纯标度：
+
+\begin{equation}
+\text{玻姆型：}\ \tau_E\propto\frac{a^2B}{T}
+\quad\Longrightarrow\quad
+\tau_E^{\mathrm{Bohm}}=0.426\ \mathrm{s},
+\label{eq:app-s-extrapb}
+\end{equation}
+
+\begin{equation}
+\text{回旋玻姆型：}\ \tau_E\propto\frac{a^3B^2}{T^{1.5}}
+\quad\Longrightarrow\quad
+\tau_E^{\mathrm{gB}}=1.358\ \mathrm{s},
+\qquad
+\tau_E^{\mathrm{IPB98}}=2.476\ \mathrm{s}.
+\label{eq:app-s-extrapgb}
+\end{equation}
+
+三个数放在一起：\textbf{玻姆型外推给出 $0.426\ \mathrm{s}$，比经验定标低 $5.8$ 倍；
+回旋玻姆型给出 $1.358\ \mathrm{s}$，只低 $1.8$ 倍。}如果按玻姆型估计 ITER 量级，
+会得出"必须把装置再放大几倍"的错误结论——这正是历史上玻姆扩散支配的年代里
+聚变装置越造越大、却总也达不到预期的一部分原因。
+
+\textbf{但回旋玻姆型也不是答案。}它仍然差 $1.8$ 倍，因为从 D3 到 D1 变了的不只是 $\rho_\ast$：
+$I_p$ 变了 $10$ 倍、$n$ 变了 $2$ 倍、$P$ 变了 $15$ 倍，$\beta$ 与 $\nu_\ast$ 都不相同。
+纯相似律外推要求这些无量纲数一起守常，工程上做不到。经验定标律把 $I_p$、$n$、$P$ 这些
+"工程变量"留在公式里，等价于在 $(\rho_\ast,\beta,\nu_\ast)$ 空间里做插值——
+\textbf{它比单一标度律好用，代价是它只在数据库覆盖的区间内可信。}
+
+\begin{tip}{拿到任何一条定标律，先问四句话}{tip-apps-next}
+\textbf{(1) 是哪个模式？}L 模与 H 模的定标律不能混用（$H$ 因子的定义就依赖这一点）。
+\textbf{(2) 数据库覆盖到哪？}$\rho_\ast$、$\beta$、$\nu_\ast$、$q$ 的范围决定了外推距离。
+\textbf{(3) 变量口径是什么？}$n$ 是线平均还是芯部？$P$ 是总加热功率还是扣除辐射后的？
+$B$ 是真空磁场还是等离子体表面的？口径不同结果能差 $30\%$。
+\textbf{(4) 散度多大？}IPB98(y,2) 的散度约 $\pm20\%$，"$2.476\ \mathrm{s}$"应读成
+"$2$--$3\ \mathrm{s}$"。
+这四句话也适用于附录 M 的三条运行极限。下一步建议：附录 N（这些功率最终砸在哪里）、
+附录 Q（怎么测出 $\tau_E$ 所需的 $n$、$T$ 剖面）。
+\end{tip}
+
+\textbf{出处：}Connor \& Wilson，\textit{Plasma Physics and Controlled Fusion} \textbf{36}，719
+（1994，玻姆型与回旋玻姆型外推的讨论）；ITER Physics Basis，\textit{Nuclear Fusion} \textbf{39}，
+2175（1999）第 2 章（数据库范围与外推策略）；Hazeltine \& Meiss《Plasma Confinement》第 1 章
+（相似律与无量纲参数）。两个外推倍数与三句提醒由本书自算自拟。
+
+
+\section{六道估算练习}
+\label{sec:app-s-problems}
+
+这六道题按 S.2 到 S.9 的顺序排，答案都可以用仓库脚本 \texttt{tmp/appS\_calc.py} 复算。
+
+\textbf{练习 1（功率口径）}。D1 量级在 $P=150\ \mathrm{MW}$ 时 $\tau_E=2.476\ \mathrm{s}$；
+若同一装置只改加热功率到 $P=87\ \mathrm{MW}$，$\tau_E$ 变成多少？相差几倍？这说明什么？
+
+\textbf{解答}：由式 \eqref{eq:app-s-ipb98}，$\tau_E\propto P^{-0.69}$，
+$\tau_E(87)=\tau_E(150)\times(87/150)^{-0.69}=3.606\ \mathrm{s}$，相差 $1.46$ 倍。
+说明\textbf{加热功率本身是约束时间的自变量}：报 $\tau_E$ 必须同时报 $P$，
+否则"约束时间"这个数没有意义。
+
+\textbf{练习 2（反推输运系数）}。取 D1 的 $\tau_E=2.476\ \mathrm{s}$、$a=2\ \mathrm{m}$，
+求 $\chi_{\mathrm{eff}}$；再与 $\chi_B$、$\chi_{\mathrm{gB}}$ 比较，判断输运属于哪一类。
+
+\textbf{解答}：$\chi_{\mathrm{eff}}=3a^2/(8\tau_E)=3\times4/(8\times2.4762)=0.606\ \mathrm{m^2/s}$。
+由式 \eqref{eq:app-s-chib}，$\chi_B=9194/(16\times5.3)=108.4\ \mathrm{m^2/s}$；
+由式 \eqref{eq:app-s-chigb}，$\rho_i=3.70\ \mathrm{mm}$、$\rho_\ast=1.85\times10^{-3}$，
+$\chi_{\mathrm{gB}}=0.2004\ \mathrm{m^2/s}$。
+比值 $\chi_{\mathrm{eff}}/\chi_B=0.0056$（小近两个量级），
+$\chi_{\mathrm{eff}}/\chi_{\mathrm{gB}}=3.0$。结论：\textbf{回旋玻姆量级，不是玻姆量级。}
+
+\textbf{练习 3（ELM 的热与频率）}。D1 量级储能 $W=371.4\ \mathrm{MJ}$，单次 ELM 抛出 $10\%$。
+求抛出能量、若在 $10\ \mathrm{m^2}$ 上沉积 $0.5\ \mathrm{ms}$ 的峰值热负荷、
+以及功率平衡要求的 ELM 频率下界。
+
+\textbf{解答}：$\Delta W=37.1\ \mathrm{MJ}$；
+$q=37.1\ \mathrm{MJ}/(10\ \mathrm{m^2}\times0.5\ \mathrm{ms})=7.4\ \mathrm{GW/m^2}$
+（稳态 $15\ \mathrm{MW/m^2}$ 的 $495$ 倍）；
+频率下界 $\langle f\rangle\gtrsim P/\Delta W=150\ \mathrm{MJ/s}/37.1\ \mathrm{MJ}=4.0\ \mathrm{Hz}$。
+若把 $\Delta W$ 压到 $0.5\%W=1.9\ \mathrm{MJ}$，则频率要升到 $81\ \mathrm{Hz}$ 以上。
+
+\textbf{练习 4（密度余量）}。D3 量级取 $I_p=1.5\ \mathrm{MA}$、$a=0.67\ \mathrm{m}$，
+求 $n_G$；若运行密度 $n=5\times10^{19}\ \mathrm{m^{-3}}$，用掉了多少余量？
+
+\textbf{解答}：$n_G=1.5/(\pi\times0.67^2)\times10^{20}=1.064\times10^{20}\ \mathrm{m^{-3}}$；
+$5\times10^{19}/1.064\times10^{20}=0.470$，用掉 $47\%$。
+
+\textbf{练习 5（设计杠杆）}。用式 \eqref{eq:app-s-ipb98} 的幂次，求要让 $\tau_E$ 提高 $30\%$，
+$I_p$、$B$、$R$、$a$ 各需乘多少倍？哪一个最"便宜"、哪一个最"贵"？
+
+\textbf{解答}：需要该参数乘 $1.3^{1/\alpha}$：$I_p$ 乘 $1.33$、$B$ 乘 $5.75$、
+$R$ 乘 $1.14$、$a$ 乘 $1.57$。\textbf{$R$ 最便宜、$B$ 最贵}（幂次 $0.15$）。
+这就是托卡马克走"大 $R$、高 $I_p$、适中 $a$"路线的定量理由。
+
+\textbf{练习 6（GAM 频率）}。D1 量级 $R=6.2\ \mathrm{m}$，芯部 $T_e=9.19\ \mathrm{keV}$、
+边缘 $T_e=1\ \mathrm{keV}$（氘），求两处的 GAM 频率。
+
+\textbf{解答}：$c_s=\sqrt{T_e/m_D}$：芯部 $6.64\times10^5\ \mathrm{m/s}$、
+边缘 $2.19\times10^5\ \mathrm{m/s}$；
+$f=c_s/(2\pi R)$ 得芯部 $17.0\ \mathrm{kHz}$、边缘 $5.6\ \mathrm{kHz}$。
+两者都在探针与多普勒反射计能测的频段内。
+
+
+\section{来源、分级与版权说明}
+\label{sec:app-s-source}
+
+\begin{table}[htbp]
+  \centering
+  \caption{附录 S 各节的借鉴来源与独立性说明（与附录 J 的逐章对照表 \ref{tab:app-j-map}、
+    附录 Q、附录 R 的来源表配套使用）}
+  \label{tab:app-s-source}
+  \begin{tabular}{@{}p{1.2cm}p{6.4cm}p{4.6cm}p{4.2cm}@{}}
+    \toprule
+    节 & 借鉴来源 & 借鉴了什么 & 本书自拟的部分 \\
+    \midrule
+    S.1 & Connor \& Taylor（1977）；Hazeltine \& Meiss（1992） & 相似律的思路、无量纲参数清单 & 三前提的写法、三个工作点的选法 \\
+    S.2 & Hazeltine \& Meiss（1992）第 2 章 & 柱位形扩散与 $\tau_E$ 的推导框架 & 剖面假设、系数 $3/8$ 的口径声明 \\
+    S.3 & Bohm（1949）；Connor \& Wilson（1994）；ITER Physics Basis（1999） & $\chi_B$ 的形式、回旋玻姆概念 & $\rho_i$ 的 $2T$ 约定、三装置比值 \\
+    S.4 & ITER Physics Basis（1999）第 2 章；Yushmanov 等（1990）；Kaye 等（1997） & IPB98(y,2) 的形式与幂次、数据库背景 & 错式对照表、三个偏差倍数、门禁化 \\
+    S.5 & ITER Physics Basis（1999）；Wesson《Tokamaks》 & $H$ 因子定义、典型值 & 杠杆表与"工程含义"一列 \\
+    S.6 & Wagner 等（1982）；Zohm（1996）；Leonard（2014）；Snyder 等（2009，2011） & 台基、ELM 与热负荷的物理图像 & 储能、峰值、频率下界的算例（与附录 N 对照）\\
+    S.7 & Greenwald 等（1988）；Martin 等（2008）；附录 M & 密度极限与运行空间 & 三装置比值、与 $n^{0.41}$ 的对照 \\
+    S.8 & Winsor 等（1968）；Diamond 等（2005）；Fujisawa 等（2004） & GAM 理论、带状流饱和、实验观测 & 六个数、与附录 Q 诊断的连接 \\
+    S.9 & Connor \& Wilson（1994）；ITER Physics Basis（1999） & 两类外推的比较方法 & 两个外推倍数、四句检查清单 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\textbf{版权与独立性声明}（与附录 Q、附录 R 同一口径）：
+
+\begin{itemize}
+  \item 本附录\textbf{不复制}任何教材或论文的原文、图、表与题目。文献只被用来确认物理结论、
+        公式形式与题型分类（"这类问题经典文献是怎么问的"）。
+  \item 全部数值（表 \ref{tab:app-s-devices} 到表 \ref{tab:app-s-gam}、
+        练习 1--6 的答案）由本书自编脚本 \texttt{tmp/appS\_calc.py} 独立计算，
+        输入参数取公开设计参数附近的圆整值，\textbf{不是任何装置的运行记录}。
+        脚本输出保存在 \texttt{tmp/appS\_calc.txt}，正文与门禁都只引用它。
+  \item 三个装置名为"ITER 量级 / JET 量级 / DIII-D 量级"，表示"取该装置公开参数的量级"，
+        不表示对其真实性能的复现或评价。
+  \item 离线环境无法核验 DOI，故只给书名、期刊、卷、页与年份；引用中的卷期页取自公开书目信息。
+  \item 第 10 章公式卡的 IPB98(y,2) 抄写错在 v1.16.0 一并修正，并已写成门禁断言
+        （见 S.4 节与 \texttt{check/physics\_regression.py}）。
+\end{itemize}

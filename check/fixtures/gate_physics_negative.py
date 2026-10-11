@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """可证伪性夹具：故意在源码里植入本轮的典型回退，确认 check/physics_regression.py 会 FAIL。
 
-流程：备份 → 植入 46 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。
+流程：备份 → 植入 58 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。
 其中四处打在 v1.8.0/v1.8.1 新增的附录 I/J/K 上（K.5 的阻尼率符号、K.7 的鞘厚量级与单位、K.4 的磁冻结结论、J 的逐章对照表章号），
 三处打在 v1.10.0 新增的附录 M 上（束速量级、H 模阈值标度、欧姆/自加热倍数口径），
 一处是 v1.10.0 的结构性回退（语义盒退回裸 `\begin{tip}`，正文首字会被吞、标签可能重复），
@@ -20,6 +20,12 @@
 五处打在 v1.15.1 勘误的附录 R 量级口径上（表 R.2 的 C4 半径/德拜比十倍错、密度量级跨度写法、
 尘埃等离子体频率量级、尘埃与离子质量比区间、氚库存的克数与摩尔数——这五条取自 v1.15.0
 发出去的口径错（正文共修七处），回退它们用来证明新增的字面绑定与 `lacks` 守卫都能红）。
+十二处打在 v1.16.0 上：附录 S 的十一处（IPB98 的 P 幂次、κ 因子、回旋半径的 2T 约定、
+回旋玻姆写成 ρ*²、玻姆系数 1/16、表 S.4 的错式 τ_E、玻姆型外推 τ_E、回旋玻姆型标度、
+Greenwald 极限、测地声模频率、四条对照表的一行）——其中 2T 约定与 ρ*² 两处同时触发
+字面绑定与 `lacks` 守卫，各产生 2 个 FAIL；另一处打在第 10 章公式卡上（P 幂次退回 −0.58），
+它会同时打掉「公式卡含 P^{-0.69}」「公式卡不得含 P^{-0.58}」与「旧错式只许出现在附录 S」
+三条断言，是跨文件检查 P20 的可证伪性证据。
 用来证明 P 类新检查确实会失败——不是「从来没红过」的装饰：K.5 那条只翻符号，绝对值一字不变。
 恢复用 `newline=''` 写回，保证不把 LF 改写成 CRLF（否则整个文件变成「已修改」）。
 
@@ -46,6 +52,8 @@ APPO = os.path.join(ROOT, 'src', 'appendix_o_propulsion.tex')
 APPP = os.path.join(ROOT, 'src', 'appendix_p_lowtemp.tex')
 APPQ = os.path.join(ROOT, 'src', 'appendix_q_diagnostics.tex')
 APPR = os.path.join(ROOT, 'src', 'appendix_r_dusty.tex')
+APPS = os.path.join(ROOT, 'src', 'appendix_s_confinement.tex')
+CH10 = os.path.join(ROOT, 'src', 'ch10_supplement.tex')
 SUITE = os.path.join(ROOT, 'check', 'physics_regression.py')
 
 PATCHES = [
@@ -125,19 +133,43 @@ PATCHES = [
      r'$\omega_{pd}$ 也降到 $4.1\times10^{2}\ \mathrm{rad/s}$'),
     (APPR, r'$10^{5}$--$10^{14}$ 倍', r'$10^{5}$--$10^{13}$ 倍'),
     (APPR, r'$0.75\ \mathrm{g}$，', r'$0.075\ \mathrm{g}$，'),
+    # v1.16.0：附录 S（能量约束与输运）十处 + 第 10 章公式卡一处
+    (APPS, r'P^{-0.69}', r'P^{-0.68}'),                                    # IPB98 的 P 幂次
+    (APPS, r'\kappa^{0.78}', r'\kappa^{0.77}'),                            # 漏掉 κ 因子的等价写法
+    (APPS, r'\rho_i=\frac{\sqrt{2m_iT_i}}{eB}', r'\rho_i=\frac{\sqrt{m_iT_i}}{eB}'),
+    (APPS, r'\chi_{\mathrm{gB}}=\chi_B\,\rho_\ast', r'\chi_{\mathrm{gB}}=\chi_B\,\rho_\ast^2'),
+    (APPS, r'\chi_B=\frac{T_e[\mathrm{eV}]}{16\,B[\mathrm{T}]}',
+     r'\chi_B=\frac{T_e[\mathrm{eV}]}{8\,B[\mathrm{T}]}'),                 # 玻姆系数口径
+    (APPS, '$7.4446$', '$7.4464$'),                                        # 错式 τ_E（表 S.4）
+    (APPS, r'\tau_E^{\mathrm{Bohm}}=0.426', r'\tau_E^{\mathrm{Bohm}}=0.462'),
+    (APPS, r'\tau_E\propto\frac{a^3B^2}{T^{1.5}}', r'\tau_E\propto\frac{a^3B}{T^{1.5}}'),
+    (APPS, r'1.064\times10^{20}', r'1.64\times10^{20}'),                   # Greenwald 极限
+    (APPS, r'f_{\mathrm{GAM}}\simeq\frac{c_s}{2\pi R}',
+     r'f_{\mathrm{GAM}}\simeq\frac{c_s}{4\pi R}'),                         # 测地声模频率
+    (CH10, r'P^{-0.69}', r'P^{-0.58}'),                                    # 公式卡退回旧错式
+    # v1.16.0：附录 I「专家与新手」一节
+    (APPI, '表征习惯', '表示习惯'),                                         # 四条对照之一被改
 ]
 
-MIN_FAIL = 42        # 实测值（46 处植入回退合并计入）：见下
-# 逐条实测（tmp/probe_neg_v1100.py … tmp/probe_neg_v1150.py、tmp/probe_neg_v1151.py）
-# 每处补丁单独植入都至少产生 1 个 FAIL，v1.15.1 单独计共 54 个；合并植入时降为 42，因为 P01（附录 K 数值）、
-# P08（附录 M 数值）、P10（附录 N 数值）、P11（附录 O 数值）与 P12/P13/P14/P17 各自把同一附录/同一小节内的多处不符汇总成一行。
-# 故 42 是「合并植入」的实测下界，per-patch 可证伪性由上面的探针单独保证
-# （v1.15.1 实测：46/46 全部命中，无落空，未植入时 exit=0 FAIL=0）。
+MIN_FAIL = 50        # 实测值（58 处植入回退合并计入 56，留 6 的余量）：见下
+# 逐条实测（tmp/probe_neg_v1100.py … tmp/probe_neg_v1151.py、tmp/probe_neg_v1160.py）
+# 每处补丁单独植入都至少产生 1 个 FAIL，v1.16.0 单独计共 69 个；合并植入时降为 56，因为 P01（附录 K 数值）、
+# P08（附录 M 数值）、P10（附录 N 数值）、P11（附录 O 数值）与 P12/P13/P14/P17/P19 各自把同一附录/同一小节内的多处不符汇总成一行。
+# 故 56 是「合并植入」的实测值，MIN_FAIL 取 50 留余量，per-patch 可证伪性由上面的探针单独保证
+# （v1.16.0 实测：58/58 全部命中，无落空，未植入时 exit=0 FAIL=0）。
 # v1.15.0 的探针还抓出一个检查侧的洞：§R.6 的 1.5455 cm/s 改成 15.455 cm/s 后，
 # 同节 1.55 Hz 落在 0.5% 相对容差窗内，数值断言仍通过 → P17 因此补了 9 条小节内字面绑定。
 # v1.15.1 的探针又抓出第二个洞：P17 只对 C1 复算了 a/λ_D，于是表 R.2 里 C4 的十倍错
 # （1.3e-7 应为 1.3e-8）在 419 项全绿的情况下发出去 → 四个工况的 a/λ_D 与尘埃/离子
 # 等离子体频率全部逐行复算，量级口径另加 5 条字面绑定与 4 条 lacks 守卫。
+# v1.16.0 的探针一次抓出四个洞（附录 S 侧）：① `P^{-0.69}` 与 `\kappa^{0.78}` 在正文、
+# 表说明与练习解答里各出现 2–3 次，只改其中一处的补丁仍能让松散的字面绑定通过 → 字面绑定
+# 改成钉住整条式子 `n_{19}^{0.41}P^{-0.69}` 与 `\epsilon^{0.58}\kappa^{0.78}M^{0.19}`；
+# ② 表 S.4 的 4 位小数值用 0.1% 容差，把 7.4446 抄成 7.4464 的转写错落在容差内 → 六个数
+# 全部收紧到 1e-4；③ 夹具锚点 `$0.426` 先命中正文句而不是公式 → 锚点改为 `\tau_E^{\mathrm{Bohm}}=0.426`
+# 并补同款字面绑定；④ 锚点 `$1.064\times10^{20}$` 在原稿里根本不存在（真串带 `\ \mathrm{m^{-3}}`）。
+# 另记一条流程教训：批量探针偶发漏报（第 54 号一度报 FAIL=0），凡 `[X]` 必须用
+# `tmp/probe_one_v1160.py <序号>` 单条复核后才可判定为洞。
 
 
 def run_suite():
