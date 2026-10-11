@@ -4617,6 +4617,46 @@ def check_P27_appendix_w_fastparticle():
         lacks(text, lit, 'src/%s（%s）' % (APP_FILES['W'], why))
 
 
+def check_P28_signed_quantities():
+    """带符号物理量守卫：物理上为负的量必须**带符号**出现。
+
+    ``value_in()`` 默认按绝对值比对（正文常只印大小），全仓库一度 0 处使用
+    ``signed=True``，于是把「必须有负号的结论」翻成正号会**静默通过**：
+    实测 6 处候选里 4 处漏网（附录 S 的 IPB98 指数、附录 U 的同一指数、
+    附录 T 的 Δ′、正文的悬浮电位）。本函数对每条量做两件事——
+    ① 整串带符号绑定（连美元符号与 & 一起钉住，改动一个字符即 FAIL）；
+    ② 在同一文件内用 ``signed=True`` 要求真的存在一个负值。
+    """
+    bad = []
+    for fname, lit, val, rel, why in (
+        ('appendix_s_confinement.tex', '$P$ & $-0.69$ & $0.68$ &', -0.69, 0.001, 'IPB98(y,2) 里 P 的指数：负号就是结论（少加热反而约束时间长）'),
+        ('appendix_s_confinement.tex', '$-0.58$（应为 $-0.69$）', -0.58, 0.001, '附录 S 常见错误：把 P 的幂次写成 -0.58'),
+        ('appendix_u_gain.tex', '$P$ 的指数是 $-0.69$：', -0.69, 0.001, '附录 U 引用同一条定标律时的指数'),
+        ('appendix_t_topology.tex', '$-7.680\\times10^{-3}$', -0.00768, 0.001, '附录 T 的 Δ′（m/n = 2/1）：符号决定稳定性'),
+        ('appendix_t_topology.tex', '$-1.536\\times10^{-2}$', -0.01536, 0.001, '附录 T 的 Δ′（m/n = 3/2）'),
+        ('plasma_physics_textbook_v2.tex', '氩约为 $-4.7\\,T_e$', -4.7, 0.001, '悬浮电位：物理上必须为负'),
+        ('plasma_physics_textbook_v2.tex', '对数斜率约为 $-0.333$', -0.333, 0.001, '对数斜率：负号是结论本身'),
+        ('ch12_supplement.tex', '$-20$ & $-0.51$', -0.51, 0.001, 'Langmuir 探针 I-V 表：离子电流为负'),
+        ('appendix_q_diagnostics.tex', '$-1.0$ & 7.1653 & 6.1653', -1, 0.001, '探针曲线表：偏压列带负号'),
+        ('appendix_l_problems.tex', '$-6.5\\times10^{-5}$', -6.5e-05, 0.001, '附录 L 的屏蔽修正项：负号是结论本身'),
+        ('ch3_supplement.tex', '$-10\\%$', -10, 0.001, '单边近似与两端总数的偏差：带负号'),):
+        p = os.path.join(SRC, fname)
+        if not os.path.exists(p):
+            bad.append('%s：文件缺失' % fname)
+            continue
+        t = strip_comments(read(p))
+        if lit not in t:
+            bad.append('%s：缺带符号的整串 %s（%s）' % (fname, lit, why))
+            continue
+        if not value_in(t, val, rel, '', True):
+            bad.append('%s：文件内找不到带符号的 %g（%s）' % (fname, val, why))
+    if bad:
+        rec('FAIL', 'P', '带符号物理量守卫发现 %d 处问题：%s'
+            % (len(bad), '；'.join(bad[:5])))
+    else:
+        rec('PASS', 'P', '带符号物理量守卫：%d 条「必须带符号」的断言全部通过' % 11)
+
+
 def check_P02_appendix_j_map():
     """附录 J 逐章对照表的完备性：覆盖 1--12 章、每行 5 列、章号不越界。
 
@@ -4810,6 +4850,7 @@ def main():
     check_P25_appendix_i_expanding()
     check_P26_appendix_v_disruption()
     check_P27_appendix_w_fastparticle()
+    check_P28_signed_quantities()
     check_P06_scattering_alpha()
     check_P09_tcbtheorem_arity()
 
