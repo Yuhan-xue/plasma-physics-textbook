@@ -1885,4 +1885,12 @@ PDF 指纹与书签全部正常，错值照样付印。一句话：**门禁的�
 
 ### 20.10 发布记录（v1.15.1）
 
-（待回填：内容提交 / 文档提交 / 标签对象 / 推送 / Gitea release id 与资产 / 独立复核 / 远程评审）
+| 项目 | 值 |
+| --- | --- |
+| 内容提交 | `1d3fd6a fix(v1.15.1): corrigendum for appendix R - C4 a/lambda_D was off by 10x plus six magnitude/wording errors; P17 now recomputes all four conditions (57 numeric cases); gates to 428 items / 46 fixture patches`（5 文件 / +70 −17：`src/appendix_r_dusty.tex` 七处修正、`src/plasma_physics_textbook_v2.tex` 版本号与附录清单注释、`check/physics_regression.py` P17 加固、`check/fixtures/gate_physics_negative.py` 41 → 46 处、`pdf/plasma_physics_textbook_v2.pdf` 2 207 347 → 2 207 895 B） |
+| 文档提交 | `5bf0fce docs(v1.15.1): record section 20.9 corrigendum in processed.md and refresh README numbers (428 gate items / 46 fixture patches)`（README 版本行与门禁/夹具计数、`processed.md` §20.9；+77 −7） |
+| 标签 | 标注标签 `v1.15.1` → 指向内容提交 `1d3fd6a`（标签信息内含此次勘误的完整清单）；仓库第 **22** 个标签 |
+| 推送 | `git -c http.proxy= -c https.proxy= push origin main` → `2d5b6a2..5bf0fce  main -> main`；`push origin v1.15.1` → `* [new tag] v1.15.1 -> v1.15.1`；`git rev-list --count HEAD..origin/main` = 0、`origin/main..HEAD` = 0 |
+| Gitea 发布 | `POST status 201`、**release id=103**、`releases/tag/v1.15.1`、标题「v1.15.1 — 勘误：附录 R 表 R.2 的十倍错与六处量级措辞」（首次误写成「四处」，已用 `PATCH status 200` 改正）、`assets=1`；资产 `plasma_physics_textbook_v2.pdf` 2 207 895 B（`attachments/92b83880-69e3-4400-80b5-7d46babb63b5`）；仓库 release 总数 **22**（与 22 个标签一致） |
+| 资产独立复核 | `curl.exe -sS -L --noproxy '*'` 下载 `releases/download/v1.15.1/plasma_physics_textbook_v2.pdf`：HTTP **200**、2 207 895 B、SHA256 `EA305BE265B9F94C6D2617D1B30300774DEC0E298CED85FF5200586685913AA0`（与本地 `src/`、`pdf/` 副本一致）、头 `%PDF-1.7`；PyMuPDF 读下载副本：**301 页 / 304 书签 / `pdftitle=等离子体物理自学教材 v1.15.1` / 末页含「尘埃」** |
+| 远程评审 | `git -c http.proxy= -c https.proxy= fetch origin` 后 `origin/main` = `5bf0fce`；`reviews/` 仍为 **66 个受版本控制的文件**（6 个子目录，最近触碰仍是 `f5dbe82`，本轮无新增） |
