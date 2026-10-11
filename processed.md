@@ -1379,14 +1379,15 @@ v1.12.0 目录涨到 **8 页**、末页（印刷第 9 页）只剩 **9 个链接
    8 页后指向了错误的页；把 `detect_toc_pages` 直接 import 过来，篡改目标与断言才永远同步。
    这与 17.5③ 是同一条道理的两种形态：**判据/口径只能有一个实现**，否则守卫与它的负例各说各话。
 
-### 17.8 发布记录（本表在发布动作完成后回填）
+### 17.8 发布记录（已回填）
 
 | 项目 | 值 |
 | --- | --- |
-| 内容提交 | 待回填 |
-| 标注标签 | 待回填 |
-| 推送 | 待回填 |
-| Gitea release | 待回填 |
-| 资产独立复核 | 待回填 |
-| 仓库 release 总数 | 待回填 |
-| 远程 `reviews/` | 待回填 |
+| 内容提交 | `69d487cb9470d4f848bc87bc3ff7a80a1a8cf041` —— 7 文件 / +640 −21（新增 `src/appendix_o_propulsion.tex` 316 行，改 `src/appendix_i_learning.tex`、`src/plasma_physics_textbook_v2.tex`、`check/physics_regression.py`、两个夹具、`pdf/` 副本） |
+| 文档提交 | `576ad5f072799367598e89c871bf5a6dc1beef72`（`README.md`、`processed.md`） |
+| 标注标签 | `v1.12.0` → 内容提交 `69d487c`（标注标签对象 `90ec530`）；仓库第 **18** 个标签 |
+| 推送 | `git -c http.proxy= -c https.proxy= push origin main`：`1c22f79..576ad5f`；标签推送 `* [new tag] v1.12.0`；推送后 `git rev-list --count HEAD..origin/main` = 0 |
+| Gitea release | **id=93**，`releases/tag/v1.12.0`，标题「v1.12.0 — 电推进：把等离子体当发动机（附录 O）」（说明文件 `tmp/release_v1120.md`）；资产上传 `status=201`、2 029 685 B |
+| 资产独立复核 | 用 `curl.exe -sS -L --noproxy '*'` 重新下载：HTTP **200**、2 029 685 B、SHA256 `0DD2A2993E1E3CD69A5319A01938A2FA7F5494136748206EFDE087E2557CFDDB`（与本地逐字节一致）、头 `%PDF-1.7`、**267 页 / 265 书签**、`pdftitle=等离子体物理自学教材 v1.12.0` |
+| 仓库 release 总数 | **18**（v1.11.0 为 17） |
+| 远程 `reviews/` | **无新增**：仍为 `reviews/2026-10-10-independent/` 与 `reviews/2026-10-11-scheduled/`，最新评审提交仍是 `28ecdaa`（2026-10-11） |
