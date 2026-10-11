@@ -2049,4 +2049,17 @@ S.11 来源表的长单元格；与 v1.14.0/v1.15.0 同源，属设计内保留�
 
 ### 21.8 发布记录（v1.16.0）
 
-__RELEASE_RECORD__
+| 项目 | 值 |
+| --- | --- |
+| 内容提交 | `0286873` — `v1.16.0 内容：新增附录 S 能量约束与输运；修正第 10 章 IPB98(y,2) 公式卡三处抄写错` |
+| 文档提交 | `bad5099` — `docs: v1.16.0 README 与 processed.md 同步`（= 推送时的 `origin/main`） |
+| 标签 | `v1.16.0`（附注标签，annotated tag 对象 `6f6f754`）→ 指向内容提交 `0286873` |
+| 推送 | `git -c http.proxy= -c https.proxy= push origin main`：`6b2850a..bad5099`；`push origin v1.16.0`：`* [new tag] v1.16.0`（两条 exit 0） |
+| 远程复核 | `git ls-remote origin refs/heads/main refs/tags/v1.16.0` → `bad5099e43053a4c9e810ab1900ab3d7e9459ad8` / `6f6f754f7196b375ea3d8d2b90db7098fe13c31e`（fetch 前先清掉四个代理环境变量，否则 `git fetch` 会去连已死的 `127.0.0.1:7897`） |
+| Gitea 发布 | release **id=105**，`url=http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.16.0`（`POST status 201`） |
+| 资产 | `plasma_physics_textbook_v2.pdf`，`上传 status=201`，`size=2273753`，`url=http://zsyq.hxlab.tech:3000/attachments/ab6c197a-eddd-46d3-950f-b386857a2a87` |
+| 独立复核（不经 `tmp/gitea_release.py`） | `curl.exe -sS -L --noproxy '*'` 下载 `releases/download/v1.16.0/plasma_physics_textbook_v2.pdf` → **http=200**、**bytes=2273753**、magic **`%PDF-1.7`**、SHA256 **`B5D3FDDF739D92448F10D704662FDD76918FC7C765B577EB2317EF2F651E918F`**（与本地 `pdf/` 逐字节一致，`identical=True`）；`pdfinfo` → `Pages: 313`、`Title: 等离子体物理自学教材 v1.16.0`；PyMuPDF `get_toc()` → **317 条书签**（首条「符号说明」p11、末条「来源、分级与版权说明」p312） |
+| 远程 `reviews/` | `git ls-tree -r --name-only origin/main reviews` = **66** 个受版本控制文件（`2026-10-10-independent` 31 + `2026-10-11-scheduled` 35），与本轮基线一致，无人新增 |
+
+至此 v1.16.0 闭环：内容与文档均已推送、标签与 Gitea 发布齐备、下载链路独立复核通过、
+远程评审目录无变化。下一轮的起点即 `origin/main = bad5099`、`pdf/` 为 313 页版。
