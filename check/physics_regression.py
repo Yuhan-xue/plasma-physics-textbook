@@ -727,6 +727,7 @@ APP_FILES = {
     'O': 'appendix_o_propulsion.tex',
     'P': 'appendix_p_lowtemp.tex',
     'Q': 'appendix_q_diagnostics.tex',
+    'R': 'appendix_r_dusty.tex',
 }
 
 # CODATA 2018 常数（与附录 D 的单位换算表同一组值）
@@ -2522,6 +2523,326 @@ def check_P16_no_markdown_bold():
             % len(files))
 
 
+def check_P17_appendix_r_dusty():
+    """附录 R 尘埃等离子体的结构完整性与数值独立复算。
+
+    可证伪点（全部记 FAIL）：
+      ① 十一个小节之一被删（按小节标题前缀定位）；
+      ② 缺少「出处：」行（本附录要求 >= 9 处）；
+      ③ 五张表 / 两只语义盒 / 十个编号公式之一被删或改了 label；
+      ④ 六道练习缺解答；
+      ⑤ 印出的关键数值与独立复算不符（λ_D、z、Z_d、Q_d、t_charge、Γ、Havnes、
+         c_DA、E_need、β），或搬到了别的小节里；
+      ⑥ 旧口径回流：尘埃声速说成"密度比"问题、C3 说成晶体、微分写成 \\dd。
+
+    约定与附录 M/N/O/P/Q 相同：表内数值的单位写在表头，故这些用例传 unit=''。
+    语义盒的标签写在 \\begin{tip}{标题}{标签} 的第二个必选参数里，不写成 \\label{}。
+    """
+    rpath = os.path.join(SRC, APP_FILES['R'])
+    if not os.path.exists(rpath):
+        rec('FAIL', 'P', '附录 R 文件缺失：src/%s' % APP_FILES['R'])
+        return
+    text = strip_comments(read(rpath))
+    secs = split_blocks(text, 'section')
+
+    want_prefix = ['尘埃等离子体：多出来的第三个尺度', '尘埃怎么带电', '充电要多久',
+                   '强耦合与晶体', 'Havnes 参数', '尘埃声波', '鞘层中的悬浮',
+                   '从刻蚀腔到聚变堆', '空间与天体尘埃', '六道估算练习',
+                   '来源、分级与版权说明']
+    found = {}
+    for pre in want_prefix:
+        for ttl, body in secs:
+            if ttl.startswith(pre):
+                found[pre] = body
+                break
+    missing = [p for p in want_prefix if p not in found]
+    if missing:
+        rec('FAIL', 'P', '附录 R 缺少小节（标题被改或整节被删）：%s' % missing)
+        return
+    rec('PASS', 'P', '附录 R 的 %d 个小节齐全' % len(want_prefix))
+
+    for lab in ('tab:app-r-map', 'tab:app-r-charge', 'tab:app-r-gamma',
+                'tab:app-r-havnes', 'tab:app-r-source'):
+        has(text, r'\label{%s}' % lab, 'src/%s（表格 label %s）' % (APP_FILES['R'], lab))
+
+    # 语义盒标签是 \begin{tip}{标题}{标签} 的第二参数，不是 \label{}
+    for lab in ('tip-appr-limit', 'tip-appr-next'):
+        has(text, '{%s}' % lab, 'src/%s（语义盒标签 %s）' % (APP_FILES['R'], lab))
+
+    for lab in ('eq:app-r-oml', 'eq:app-r-z', 'eq:app-r-zd', 'eq:app-r-tcharge',
+                'eq:app-r-gamma', 'eq:app-r-yukawa', 'eq:app-r-havnes',
+                'eq:app-r-cda', 'eq:app-r-balance', 'eq:app-r-beta'):
+        has(text, r'\label{%s}' % lab, 'src/%s（公式 label %s）' % (APP_FILES['R'], lab))
+
+    has(text, '不复制', 'src/%s（版权与独立性声明）' % APP_FILES['R'])
+    n_src = len(re.findall(r'\\textbf\{出处：\}', text))
+    if n_src < 9:
+        rec('FAIL', 'P', '附录 R 的「出处：」行只有 %d 处，应 >= 9' % n_src)
+    else:
+        rec('PASS', 'P', '附录 R 有 %d 处「出处：」交代' % n_src)
+
+    ex = found['六道估算练习']
+    n_ex = len(re.findall(r'\\textbf\{练习\s*\d+', ex))
+    n_sol = len(re.findall(r'\\textbf\{解答\}', ex))
+    if n_ex != 6 or n_sol < 6:
+        rec('FAIL', 'P', '附录 R 练习数为 %d、解答数为 %d（应为 6 与 >= 6）' % (n_ex, n_sol))
+    else:
+        rec('PASS', 'P', '附录 R 六道估算练习均有解答')
+
+    # ---- 独立复算：常数与公式与 tmp/appR_calc.py 同一套 ----
+    U_R = 1.66053906660e-27
+    m_ar = 39.948 * U_R
+    m_dion = 2.013553212745 * U_R
+    m_h = 1.007825032 * U_R
+    g0 = 9.80665
+    ti_ar = 300.0 * KB / E_CHG
+
+    def debye_r(te, ne):
+        return math.sqrt(EPS0 * te * E_CHG / (ne * E_CHG ** 2))
+
+    def z_oml_r(te, ti_ev, m_i):
+        tau = ti_ev / te
+        lo, hi = 1e-6, 60.0
+        for _ in range(200):
+            mid = 0.5 * (lo + hi)
+            f = math.exp(mid) * (1.0 + mid / tau) - math.sqrt(m_i / (tau * M_E))
+            if f < 0:
+                lo = mid
+            else:
+                hi = mid
+        return 0.5 * (lo + hi)
+
+    def zd_r(a_m, te, z):
+        return 4.0 * math.pi * EPS0 * a_m * z * te / E_CHG
+
+    def md_r(a_m, rho):
+        return 4.0 / 3.0 * math.pi * a_m ** 3 * rho
+
+    def delta_r(n_d):
+        return (3.0 / (4.0 * math.pi * n_d)) ** (1.0 / 3.0)
+
+    coul_nm = E_CHG / (4.0 * math.pi * EPS0) * 1e9
+
+    def gam_r(zd, d_m, kt_ev):
+        return zd ** 2 * coul_nm / (d_m * 1e9 * kt_ev)
+
+    def yukawa_r(kappa):
+        return (1.0 + kappa + 0.5 * kappa ** 2) * math.exp(-kappa)
+
+    z_ar = z_oml_r(3.0, ti_ar, m_ar)
+    z_c4 = z_oml_r(1.0, 100.0 * KB / E_CHG, m_h)
+    z_c3 = z_oml_r(15.0, 15.0, m_dion)
+    lam_c1 = debye_r(3.0, 1e17)
+    lam_c2 = debye_r(3.0, 1e15)
+    lam_c3 = debye_r(15.0, 2e19)
+    lam_c4 = debye_r(1.0, 1e6)
+    zd_c1 = zd_r(0.5e-6, 3.0, z_ar)
+    zd_c2 = zd_r(4.8e-6, 3.0, z_ar)
+    zd_c3 = zd_r(1.0e-6, 15.0, z_c3)
+    qd_c1 = zd_c1 * E_CHG
+    md_c1 = md_r(0.5e-6, 2000.0)
+    md_c2 = md_r(4.8e-6, 1510.0)
+    qd_c2 = zd_c2 * E_CHG
+    del_c1 = delta_r(1e12)
+    del_c2 = delta_r(1e9)
+    del_c3 = delta_r(1e10)
+    kap_c1 = del_c1 / lam_c1
+    kap_c2 = del_c2 / lam_c2
+    kap_c3 = del_c3 / lam_c3
+    veth_e = math.sqrt(8.0 * 3.0 * E_CHG / (math.pi * M_E))
+    ie0_c1 = math.pi * (0.5e-6) ** 2 * E_CHG * 1e17 * veth_e
+    tch_c1 = qd_c1 / ie0_c1
+    cs_ar = math.sqrt(3.0 * E_CHG / m_ar)
+    cda_c1 = math.sqrt(zd_c1 ** 2 * 1e12 * ti_ar * E_CHG / (1e17 * md_c1))
+    a_beta = 3.0 * 3.828e26 / (16.0 * math.pi * 2.99792458e8 * 6.67430e-11 * 1.98847e30)
+
+    cases = [
+        # --- §R.1 第三个尺度 ---
+        ('尘埃等离子体：多出来的第三个尺度', 'C1 λ_D=40.72 μm', lam_c1 * 1e6, 0.01, '', False),
+        ('尘埃等离子体：多出来的第三个尺度', 'C2 λ_D=407.17 μm', lam_c2 * 1e6, 0.005, '', False),
+        ('尘埃等离子体：多出来的第三个尺度', 'C3 λ_D=6.44 μm', lam_c3 * 1e6, 0.01, '', False),
+        ('尘埃等离子体：多出来的第三个尺度', 'C4 λ_D=7.43 m', lam_c4, 0.005, '', False),
+        # --- §R.2 OML 充电 ---
+        ('尘埃怎么带电', 'C1 a/λ_D=0.0123', 0.5e-6 / lam_c1, 0.01, '', False),
+        ('尘埃怎么带电', 'z=2.359（与半径、密度无关）', z_ar, 0.005, '', False),
+        ('尘埃怎么带电', 'φ_d=7.077 V', z_ar * 3.0, 0.005, '', False),
+        ('尘埃怎么带电', 'C1 Z_d=2.46e3', zd_c1, 0.01, '', False),
+        ('尘埃怎么带电', 'C2 Z_d=2.36e4', zd_c2, 0.01, '', False),
+        ('尘埃怎么带电', 'C3 Z_d=2.89e4', zd_c3, 0.01, '', False),
+        ('尘埃怎么带电', 'C4 Z_d=83.0', zd_r(0.1e-6, 1.0, z_c4), 0.01, '', False),
+        ('尘埃怎么带电', 'C1 Q_d=3.94e-16 C', qd_c1, 0.02, '', False),
+        ('尘埃怎么带电', 'C3 φ_d=41.63 V', z_c3 * 15.0, 0.005, '', False),
+        ('尘埃怎么带电', 'Z_d 标度 1.638e3·(a/μm)(T_e/eV)', zd_r(1e-6, 3.0, z_ar) / 3.0,
+         0.01, '', False),
+        ('尘埃怎么带电', 'C1 t_charge=27.0 ns', tch_c1 * 1e9, 0.01, '', False),
+        ('尘埃怎么带电', 'C4 t_charge=3.95e3 s', (zd_r(0.1e-6, 1.0, z_c4) * E_CHG)
+         / (math.pi * (0.1e-6) ** 2 * E_CHG * 1e6
+            * math.sqrt(8.0 * 1.0 * E_CHG / (math.pi * M_E))), 0.02, '', False),
+        # --- §R.3 充电时间 vs 射频 ---
+        ('充电要多久', '13.56 MHz 周期 73.75 ns', 1e9 / 13.56e6, 0.005, '', False),
+        ('充电要多久', 't_charge/T=0.366', tch_c1 * 13.56e6, 0.02, '', False),
+        # --- §R.4 强耦合与 Γ ---
+        ('强耦合与晶体', 'Δ=62.04 μm', del_c1 * 1e6, 0.005, '', False),
+        ('强耦合与晶体', 'C2 Δ=620.35 μm', del_c2 * 1e6, 0.005, '', False),
+        ('强耦合与晶体', 'C1 Γ(Δ)=5.41e3', gam_r(zd_c1, del_c1, 0.0259), 0.01, '', False),
+        ('强耦合与晶体', 'C1 Γ(a)=6.71e5', gam_r(zd_c1, 0.5e-6, 0.0259), 0.01, '', False),
+        ('强耦合与晶体', 'C1 κ=1.524', kap_c1, 0.005, '', False),
+        ('强耦合与晶体', 'C3 κ=44.73', kap_c3, 0.005, '', False),
+        ('强耦合与晶体', 'Yukawa 因子 0.803', yukawa_r(kap_c1), 0.01, '', False),
+        ('强耦合与晶体', 'C1 Γ_eff=4.35e3',
+         gam_r(zd_c1, del_c1, 0.0259) * yukawa_r(kap_c1), 0.01, '', False),
+        ('强耦合与晶体', 'C2 Γ_eff=3.46e4',
+         gam_r(zd_c2, del_c2, 0.03) * yukawa_r(kap_c2), 0.01, '', False),
+        ('强耦合与晶体', 'C3 Γ_eff=1.6e-13',
+         gam_r(zd_c3, del_c3, 1.0) * yukawa_r(kap_c3), 0.15, '', False),
+        # --- §R.5 Havnes ---
+        ('Havnes 参数', 'P=0.0246', 1e12 * zd_c1 / 1e17, 0.01, '', False),
+        ('Havnes 参数', 'λ_eff=40.23 μm',
+         lam_c1 / math.sqrt(1.0 + 1e12 * zd_c1 / 1e17) * 1e6, 0.005, '', False),
+        ('Havnes 参数', 'n_d(P=1)=4.07e13', 1e17 / zd_c1, 0.01, '', False),
+        ('Havnes 参数', 'P=1 比现状高 40 倍', 1e17 / zd_c1 / 1e12, 0.01, '', False),
+        # --- §R.6 尘埃声波 ---
+        ('尘埃声波', 'c_DA=1.5455 cm/s', cda_c1 * 100.0, 0.005, '', False),
+        ('尘埃声波', 'c_s=2691.8 m/s', cs_ar, 0.005, '', False),
+        ('尘埃声波', 'f(1 mm)=15.45 Hz', cda_c1 / 1e-3, 0.01, '', False),
+        # --- §R.7 鞘层悬浮 ---
+        ('鞘层中的悬浮', 'E_need=26.08 V/m', md_c1 * g0 / qd_c1, 0.005, '', False),
+        ('鞘层中的悬浮', 'C2 F_coul/F_grav=0.0486',
+         (qd_c2 ** 2 / (4.0 * math.pi * EPS0)) / del_c2 ** 2 / (md_c2 * g0), 0.01, '', False),
+        # --- §R.8 从刻蚀腔到聚变堆 ---
+        ('从刻蚀腔到聚变堆', '比表面积 1500 m²/kg', 3.0 / (2000.0 * 1e-6), 0.005, '', False),
+        ('从刻蚀腔到聚变堆', '100 g 尘埃吸附 0.751 g 氚',
+         100.0 * 1e-3 * (3.0 / (2000.0 * 1e-6)) * 1e21 / 6.02214076e23 * 3.0160492,
+         0.01, '', False),
+        # --- §R.9 空间与天体尘埃 ---
+        ('空间与天体尘埃', 'β(1 μm,2000)=0.287', a_beta / (2000.0 * 1e-6), 0.01, '', False),
+        ('空间与天体尘埃', 'β(0.1 μm)=2.87', a_beta / (2000.0 * 0.1e-6), 0.01, '', False),
+        ('空间与天体尘埃', 'a_crit=0.287 μm', a_beta / 2000.0 * 1e6, 0.01, '', False),
+        # --- §R.10 练习答案必须落在练习一节里 ---
+        ('六道估算练习', '练习1 Z_d=2.359e4（a=4.8 μm）',
+         zd_r(4.8e-6, 3.0, z_ar), 0.01, '', False),
+        ('六道估算练习', '练习1 Q_d=3.780e-15 C', zd_r(4.8e-6, 3.0, z_ar) * E_CHG,
+         0.01, '', False),
+        ('六道估算练习', '练习1(2) Z_d=491.5（a=0.1 μm）',
+         zd_r(0.1e-6, 3.0, z_ar), 0.01, '', False),
+        ('六道估算练习', '练习2 v_th,e=1.159e6 m/s', veth_e, 0.005, '', False),
+        ('六道估算练习', '练习2 I_e0=1.459e-8 A', ie0_c1, 0.01, '', False),
+        ('六道估算练习', '练习3 比值 Γ(a)/Γ(Δ)=124.1',
+         gam_r(zd_c1, 0.5e-6, 0.0259) / gam_r(zd_c1, del_c1, 0.0259), 0.01, '', False),
+        ('六道估算练习', '练习4 P=2.457e-2（原文写法）',
+         1e12 * 2457.4 / 1e17, 0.01, '', False),
+        ('六道估算练习', '练习5 c_s/c_DA=1.74e5', cs_ar / cda_c1, 0.01, '', False),
+        ('六道估算练习', '练习6 E_need=26.08 V/m', md_c1 * g0 / qd_c1, 0.005, '', False),
+    ]
+    bad = []
+    for topic, desc, want, rel, unit, signed in cases:
+        if not value_in(found[topic], want, rel, unit, signed):
+            bad.append((topic, desc))
+    if bad:
+        rec('FAIL', 'P', '附录 R 有 %d 项数值与独立复算不符（或不在它所属的那一节内）：%s'
+            % (len(bad), bad[:6]))
+    else:
+        rec('PASS', 'P', '附录 R 的 %d 项关键数值全部与独立复算一致，且落在各自小节内'
+            % len(cases))
+
+    # 窗口只作补充，招牌数值还要有字面绑定。原因：值 + 相对容差会被「同节里另一个
+    # 恰好落在窗内的数」顶替满足——v1.15.0 的逐条探针抓到了这个洞：把 §R.6 的
+    # 1.5455 cm/s 改成 15.455 cm/s 后，同节的 1.55 Hz 仍落在 0.5% 窗内，套件照绿。
+    # 下面每一项都是该小节独有的字面串（值 + 单位或值 + 上下文一起断），
+    # 改数、改单位、或把某个量搬出这一节，都会直接 FAIL。
+    for topic, lit, note in (
+            ('尘埃等离子体：多出来的第三个尺度', r'$40.72$、$407.17$、$6.44\ \mathrm{\mu m}$',
+             '四个工况的德拜长度并列句'),
+            ('尘埃怎么带电', r'解得 $z=2.359$', 'OML 归一化电位的解'),
+            ('充电要多久', r'周期 $73.75\ \mathrm{ns}$', '13.56 MHz 射频周期'),
+            ('强耦合与晶体', r'$1.524$ & $0.803$', '表 R.3 的屏蔽因子与 κ'),
+            ('Havnes 参数', r'$0.0246$ & $40.72$ & $40.23$', '表 R.4 的 P、λ_D 与 λ_eff'),
+            ('尘埃声波', r'$c_{DA}=1.5455\ \mathrm{cm/s}$', 'C1 尘埃声速'),
+            ('鞘层中的悬浮', r'C1 的 $0.5\ \mathrm{\mu m}$ 尘：$E_{\mathrm{need}}=26.08\ \mathrm{V/m}$',
+             'C1 悬浮所需场强'),
+            ('从刻蚀腔到聚变堆', r'$0.751\ \mathrm{g}$ 氚', '尘埃吸附的氚量'),
+            ('空间与天体尘埃', r'临界半径 $a_{\mathrm{crit}}=0.287\ \mathrm{\mu m}$', '辐射压临界半径'),
+    ):
+        has(found[topic], lit, 'src/%s（%s）' % (APP_FILES['R'], note))
+
+    # 全篇口径与结论句（内容跨节，故对整个文件断言）
+    has(text, r'\texttt{appR\_calc.py}',
+        'src/%s（数值由仓库脚本复算的交代）' % APP_FILES['R'])
+    has(text, r'\eqref{eq:app-q-debye}',
+        'src/%s（德拜长度沿用附录 Q 的工程式）' % APP_FILES['R'])
+    has(found['尘埃怎么带电'], '与半径、与密度都无关',
+        'src/%s（ξ 与半径、密度无关的 OML 结论）' % APP_FILES['R'])
+    has(found['尘埃怎么带电'], 'OML', 'src/%s（轨道运动限制的适用区间）' % APP_FILES['R'])
+    has(found['强耦合与晶体'], 'C3 不是',
+        'src/%s（聚变边界不是晶体的反例结论）' % APP_FILES['R'])
+    has(found['强耦合与晶体'], '屏蔽切断',
+        'src/%s（κ≫1 把相互作用切断的结论）' % APP_FILES['R'])
+    has(found['Havnes 参数'], '警戒线',
+        'src/%s（Havnes 参数给出工程警戒线）' % APP_FILES['R'])
+    has(found['尘埃声波'], '慢', 'src/%s（尘埃声波远慢于离子声速的结论）' % APP_FILES['R'])
+    has(found['鞘层中的悬浮'], '紧贴鞘边',
+        'src/%s（悬浮平衡点紧贴鞘边的结论）' % APP_FILES['R'])
+    has(found['从刻蚀腔到聚变堆'], '库存',
+        'src/%s（尘埃的聚变代价是库存与缺陷）' % APP_FILES['R'])
+    has(found['空间与天体尘埃'], '辐射压',
+        'src/%s（天体尘埃的辐射压判据）' % APP_FILES['R'])
+    has(found['来源、分级与版权说明'], '不复制',
+        'src/%s（不复制任何题目、解答、图表与数据表的声明）' % APP_FILES['R'])
+    lacks(text, '\\dd ', 'src/%s（微分必须写 \\diff，不得回流 \\dd ）' % APP_FILES['R'])
+    lacks(text, '密度比小 100 倍',
+          'src/%s（尘埃声速不得退回到"密度比"这一错误解释）' % APP_FILES['R'])
+    lacks(text, 'C3 也是晶体',
+          'src/%s（聚变边界不得说成晶体）' % APP_FILES['R'])
+
+
+def check_P18_appendix_i_dualcode():
+    """附录 I「双编码与多媒体学习」一节与「动作六」的完整性。
+
+    可证伪点（全部记 FAIL）：
+      ① 双编码一节被删或改了 label（sec:app-i-dualcode / tab:app-i-dualcode）；
+      ② 七条规则缺任何一条（表格某行被删）；
+      ③ 六家出处缺一（Paivio / Clark & Paivio / Mayer & Moreno / Mayer 2009 / Sweller / Tufte）；
+      ④ 「动作六：把图讲成句子」被删，或小节标题退回「五个可执行动作」；
+      ⑤ 旧错误回流：两本期刊被拼成一个刊名。
+    """
+    p = os.path.join(SRC, APP_FILES['I'])
+    if not os.path.exists(p):
+        rec('FAIL', 'P', '附录 I 文件不存在：%s' % APP_FILES['I'])
+        return
+    text = strip_comments(read(p))
+    secs = split_blocks(text, 'section')
+    blk = None
+    for ttl, body in secs:
+        if ttl.startswith('双编码与多媒体学习'):
+            blk = body
+            break
+    if blk is None:
+        rec('FAIL', 'P', '附录 I 找不到「双编码与多媒体学习」一节（标题被改或整节被删）')
+        return
+    rec('PASS', 'P', '附录 I 的双编码一节存在（%d 字符）' % len(blk))
+
+    has(text, r'\label{sec:app-i-dualcode}',
+        'src/%s（双编码一节的 label）' % APP_FILES['I'])
+    has(blk, r'\label{tab:app-i-dualcode}',
+        'src/%s（七条规则表 label）' % APP_FILES['I'])
+    for rule in ('多媒体', '空间邻近', '时间邻近', '一致性', '冗余', '信号', '分段'):
+        has(blk, rule + ' &', 'src/%s（双编码规则表的一行：%s）' % (APP_FILES['I'], rule))
+    has(blk, '三句话读表法', 'src/%s（把动作六落成三步读表法）' % APP_FILES['I'])
+    has(blk, '双编码', 'src/%s（双编码假设本身）' % APP_FILES['I'])
+    has(blk, '认知负荷', 'src/%s（工作记忆与认知负荷那一半）' % APP_FILES['I'])
+    has(blk, '文本想象', 'src/%s（与 Dunlosky 低效用项的张力必须解释）' % APP_FILES['I'])
+    for src in ('Paivio', 'Clark \\& Paivio', 'Mayer \\& Moreno', 'Mayer (2009)',
+                'Sweller', 'Tufte'):
+        has(blk, src, 'src/%s（双编码一节的出处之一：%s）' % (APP_FILES['I'], src))
+    has(text, r'\subsection{动作六', 'src/%s（动作六小节）' % APP_FILES['I'])
+    has(text, '六个可执行动作', 'src/%s（动作清单扩到六个）' % APP_FILES['I'])
+    has(text, '动作一到动作六', 'src/%s（合计句同步到六个动作）' % APP_FILES['I'])
+    has(text, 'Paivio (1986) &', 'src/%s（参考文献表补上双编码一条）' % APP_FILES['I'])
+    lacks(text, '五个可执行动作', 'src/%s（不得退回"五个可执行动作"）' % APP_FILES['I'])
+    lacks(text, 'Perspectives on Psychological Science',
+          'src/%s（两本期刊不得被拼成一个刊名）' % APP_FILES['I'])
+
+
 def check_P02_appendix_j_map():
     """附录 J 逐章对照表的完备性：覆盖 1--12 章、每行 5 列、章号不越界。
 
@@ -2704,6 +3025,8 @@ def main():
     check_P14_appendix_q_diagnostics()
     check_P15_appendix_i_dunlosky()
     check_P16_no_markdown_bold()
+    check_P17_appendix_r_dusty()
+    check_P18_appendix_i_dualcode()
     check_P06_scattering_alpha()
     check_P09_tcbtheorem_arity()
 

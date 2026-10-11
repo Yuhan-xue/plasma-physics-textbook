@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """可证伪性夹具：故意在源码里植入本轮的典型回退，确认 check/physics_regression.py 会 FAIL。
 
-流程：备份 → 植入 31 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。
+流程：备份 → 植入 41 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。
 其中四处打在 v1.8.0/v1.8.1 新增的附录 I/J/K 上（K.5 的阻尼率符号、K.7 的鞘厚量级与单位、K.4 的磁冻结结论、J 的逐章对照表章号），
 三处打在 v1.10.0 新增的附录 M 上（束速量级、H 模阈值标度、欧姆/自加热倍数口径），
 一处是 v1.10.0 的结构性回退（语义盒退回裸 `\begin{tip}`，正文首字会被吞、标签可能重复），
@@ -12,7 +12,11 @@
 两处打在 v1.14.0 新增的附录 Q 上（探针判据表里的半径/德拜比、I--V 斜率结论里的低估比例、RC 积分输出电压、单发散射光子数、来源表标签被改名，
 共五处），
 一处打在 v1.14.0 新增的附录 I「十种学习技术的评级」一节上（把「分散练习」从高效用降档，档次计数 2/3/5 被打破），
-一处是 v1.14.0 修好的真排版缺陷回退（把 `\textbf{}` 改回 Markdown `**` 简写——v1.13.0 已发布 PDF 里确实印出了字面星号）。
+一处是 v1.14.0 修好的真排版缺陷回退（把 `\textbf{}` 改回 Markdown `**` 简写——v1.13.0 已发布 PDF 里确实印出了字面星号），
+七处打在 v1.15.0 新增的附录 R 上（表 R.2 的半径/德拜比、Z_d 量级、§R.4 表内 Γ_eff、Havnes 警戒线、
+尘埃声速量级、辐射压判据 β(0.1 μm)、来源表标签被改名），
+三处打在 v1.15.0 新增的附录 I「双编码与多媒体学习」一节与「动作六」上（规则表标签被改名、
+动作六小节被改名、两本期刊被拼成一个刊名的真错回退）。
 用来证明 P 类新检查确实会失败——不是「从来没红过」的装饰：K.5 那条只翻符号，绝对值一字不变。
 恢复用 `newline=''` 写回，保证不把 LF 改写成 CRLF（否则整个文件变成「已修改」）。
 
@@ -38,6 +42,7 @@ APPN = os.path.join(ROOT, 'src', 'appendix_n_boundary.tex')
 APPO = os.path.join(ROOT, 'src', 'appendix_o_propulsion.tex')
 APPP = os.path.join(ROOT, 'src', 'appendix_p_lowtemp.tex')
 APPQ = os.path.join(ROOT, 'src', 'appendix_q_diagnostics.tex')
+APPR = os.path.join(ROOT, 'src', 'appendix_r_dusty.tex')
 SUITE = os.path.join(ROOT, 'check', 'physics_regression.py')
 
 PATCHES = [
@@ -90,14 +95,34 @@ PATCHES = [
     # 这一处把 \textbf 改回 Markdown 简写，用来证明 check_P16_no_markdown_bold 真的会红
     (APPP, r'\textbf{不能把低压帕申公式外推到大气压}',
      r'**不能把低压帕申公式外推到大气压**'),
+    # 附录 R（v1.15.0）：七处不同层面——表 R.2 的 a/λ_D（数据层）、Z_d 量级、
+    # §R.4 表内 Γ_eff（结论层，同一数值在 §R.10 练习 3 里仍正确，用来验证
+    # 「数值必须落在自己那一节」这条断言）、Havnes 警戒线、尘埃声速量级、
+    # 辐射压判据 β(0.1 μm)、来源表标签被改名（结构性）
+    (APPR, r'$40.72$ & $0.0123$', r'$40.72$ & $0.123$'),
+    (APPR, r'$2.46\times10^{3}$', r'$2.46\times10^{4}$'),
+    (APPR, r'4.35\times10^{3}', r'4.35\times10^{2}'),
+    (APPR, r'4.07\times10^{13}', r'4.07\times10^{12}'),
+    (APPR, r'$c_{DA}=1.5455\ \mathrm{cm/s}$', r'$c_{DA}=15.455\ \mathrm{cm/s}$'),
+    (APPR, r'$\beta=2.87>1$', r'$\beta=0.287>1$'),
+    (APPR, r'\label{tab:app-r-source}', r'\label{tab:app-r-sourcx}'),
+    # 附录 I（v1.15.0）：三处——双编码规则表标签被改名（结构性）、
+    # 「动作六」小节被改名（动作清单退回五个）、
+    # 以及 v1.14.0 查出的真错回退（把两本期刊拼成一个刊名，DOI 反证）
+    (APPI, r'\label{tab:app-i-dualcode}', r'\label{tab:app-i-dualcodx}'),
+    (APPI, r'\subsection{动作六：把图讲成句子}', r'\subsection{动作五之二：把图讲成句子}'),
+    (APPI, r'\textit{Psychological Science in the Public Interest} 14(1), 4--58；DOI: 10.1177/1529100612453266',
+     r'\textit{Perspectives on Psychological Science in the Public Interest} 14(1), 4--58；DOI: 10.1177/1529100612453266'),
 ]
 
-MIN_FAIL = 28        # 实测值（31 处植入回退合并计入）：见下
-# 逐条实测（tmp/probe_neg_v1100.py … tmp/probe_neg_v1130.py、tmp/probe_neg_v1140.py）
-# 每处补丁单独植入都至少产生 1 个 FAIL，v1.14.0 单独计共 34 个；合并植入时降为 28，因为 P01（附录 K 数值）、
-# P08（附录 M 数值）、P10（附录 N 数值）、P11（附录 O 数值）与 P12/P13/P14 各自把同一附录/同一小节内的多处不符汇总成一行。
-# 故 28 是「合并植入」的实测下界，per-patch 可证伪性由上面的探针单独保证
-# （v1.14.0 实测：31/31 全部命中，无落空，未植入时 exit=0 FAIL=0）。
+MIN_FAIL = 35        # 实测值（41 处植入回退合并计入）：见下
+# 逐条实测（tmp/probe_neg_v1100.py … tmp/probe_neg_v1140.py、tmp/probe_neg_v1150.py）
+# 每处补丁单独植入都至少产生 1 个 FAIL，v1.15.0 单独计共 45 个；合并植入时降为 35，因为 P01（附录 K 数值）、
+# P08（附录 M 数值）、P10（附录 N 数值）、P11（附录 O 数值）与 P12/P13/P14/P17 各自把同一附录/同一小节内的多处不符汇总成一行。
+# 故 35 是「合并植入」的实测下界，per-patch 可证伪性由上面的探针单独保证
+# （v1.15.0 实测：41/41 全部命中，无落空，未植入时 exit=0 FAIL=0）。
+# v1.15.0 的探针还抓出一个检查侧的洞：§R.6 的 1.5455 cm/s 改成 15.455 cm/s 后，
+# 同节 1.55 Hz 落在 0.5% 相对容差窗内，数值断言仍通过 → P17 因此补了 9 条小节内字面绑定。
 
 
 def run_suite():

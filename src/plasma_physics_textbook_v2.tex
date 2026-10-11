@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.14.0},
+  pdftitle={等离子体物理自学教材 v1.15.0},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -392,7 +392,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.14.0}}
+  {\small\textcolor{white!45}{v1.15.0}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -6278,7 +6278,8 @@ Landau 阻尼 & Landau damping & 无碰撞相混导致的波阻尼 \\
 % 附录I/J/K/L/M/N/O：学习策略、教材对照、跨教材例题、分章自测题库与专题深挖
 % （I/J/K 为 v1.8.0 新增；L 为 v1.9.0 新增；M 为 v1.10.0 新增；N 为 v1.11.0 新增；
 %   O 为 v1.12.0 新增：应用侧的电推进专题；P 为 v1.13.0 新增：应用侧的低温等离子体；
-%   Q 为 v1.14.0 新增：测量侧的诊断专题，与 P 构成「应用 + 怎么测」一对）
+%   Q 为 v1.14.0 新增：测量侧的诊断专题，与 P 构成「应用 + 怎么测」一对；
+%   R 为 v1.15.0 新增：多组分侧的尘埃等离子体专题，接住 P 的颗粒污染与 N 的氚库存）
 % 文件分离以控制单文件体积；插入位置紧随附录 H，保证附录字母连续。
 % 章标题（\appchapter）留在主文件：检查套件按主文件的 \appchapter 判定
 % 附录字母连续性与 README 附录清单，写进 \input 文件里会被漏掉。
@@ -6301,6 +6302,8 @@ Landau 阻尼 & Landau damping & 无碰撞相混导致的波阻尼 \\
 \input{appendix_p_lowtemp}
 \appchapter{附录Q：等离子体诊断：从探针曲线到光谱（注明出处）}
 \input{appendix_q_diagnostics}
+\appchapter{附录R：尘埃等离子体：从刻蚀腔到等离子体晶体（注明出处）}
+\input{appendix_r_dusty}
 
 % 附录结束
 
