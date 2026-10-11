@@ -2689,4 +2689,20 @@ O4 附录 F 的 2/35 条链接页差 1（同一成因）。
 
 ### 26.6 发布记录（v1.20.0）
 
-（待回填）
+- 提交：内容 `ac460fc`（附录 W + 门禁 P27 + 夹具 130 处 + 三处磁冻结口径收回）、
+  文档 `834a476`（README / §26）；tag `v1.20.0` 指向文档提交 `834a476`。
+- 推送：`f2bc443..834a476  main -> main`、`* [new tag] v1.20.0`；清代理后
+  `ls-remote` 复核远端 `refs/heads/main` = `834a476e50c78017ab8b1b9da3a3f93d02d61f84`、
+  `refs/tags/v1.20.0` = 标签对象 `205829ffbc3a7d2e80932ff63e0ca7eaba4162f5`。
+- Gitea Release：**id=116**（仓库累计 28 个），
+  URL http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.20.0 ，
+  资产 `plasma_physics_textbook_v2.pdf`（2 505 778 B，
+  `http://zsyq.hxlab.tech:3000/attachments/3a6cbcf3-feaa-400f-9f31-7e4b520b1409`）。
+- 独立复核：清空 `HTTP_PROXY`/`HTTPS_PROXY`/`http_proxy`/`https_proxy` 后用
+  `curl.exe -sS -L --noproxy '*'` 重新下载资产，得 2 505 778 B、
+  SHA256 `662CBA0FCEC59EF59070EED175008EA4D8B0B353C531B0ABB55296ED87DA3207`，
+  与本地 `pdf/plasma_physics_textbook_v2.pdf` **逐字节一致**；
+  远程 `reviews/` 计数仍为 **66**（`2026-10-10-independent` 16 项 + `2026-10-11-scheduled` 14 项），
+  与 v1.19.0 基线持平。
+- 验收：六套件 35/56/14/949/13/11 全 FAIL 0；五夹具全 PASS（植入 130 处 → 合并 FAIL 154，
+  `MIN_FAIL` 138）；355 页 / 355 书签；Overfull 5 处最大 4.78427 pt。
