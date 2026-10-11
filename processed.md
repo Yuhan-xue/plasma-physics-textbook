@@ -2191,4 +2191,12 @@ Dunlosky 等 (2013) 对十种学习技术的评级（**笔记本身属于低效�
 
 ### 22.8 发布记录（v1.17.0）
 
-__RELEASE_RECORD__
+- **内容提交** `bac35df`（`feat(v1.17.0): 新增附录 T 磁面、磁岛与磁通量管；附录 I 补学习目标与康奈尔笔记一节；修正附录 I 表格列宽缺 cm 的编译期错误；门禁 520->607 项、夹具 58->77 处`）
+- **文档提交** `82243ea`（`docs(v1.17.0): README 与 processed 同步（325 页 / 328 书签 / 20 附录 / 门禁 607 项 / 夹具 77 处 / 新增 22 节）`）
+- **标签** `v1.17.0` = 附注标签对象 `c849346` → 指向内容提交 `bac35df`
+- **推送** `git -c http.proxy= -c https.proxy= push origin main` → `81ee4fe..82243ea  main -> main`（exit 0）；`push origin v1.17.0` → `* [new tag] v1.17.0 -> v1.17.0`（exit 0）
+- **远程复核** `git ls-remote`：`refs/heads/main` = `82243ea0bdc70afea51ba66ffac3db6d0b5f0511`、`refs/tags/v1.17.0` = `c849346972234d4135b1e68ec7e0e3d780e01314`
+- **Gitea release** `python tmp/gitea_release.py create v1.17.0 tmp/release_v1170.md` → `POST status 201`、**release id=106**、`http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.17.0`；资产 `asset v1.17.0 pdf/plasma_physics_textbook_v2.pdf` → `上传 status=201 size=2342896`、`http://zsyq.hxlab.tech:3000/attachments/b359b39d-0b3c-47d8-a339-5e75e25c6ec7`
+- **独立复核（不经自家脚本）**：清掉 `HTTP_PROXY/HTTPS_PROXY/http_proxy/https_proxy/ALL_PROXY/all_proxy` 后 `curl.exe -sS -L --noproxy '*'` 下载 `releases/download/v1.17.0/plasma_physics_textbook_v2.pdf` → **http=200 / bytes=2342896 / SHA256 `A0E8A0EF…` 与本地逐字节一致（identical=True）/ magic `%PDF-1.7`**；`pdfinfo` → `Pages: 325`、`Title: 等离子体物理自学教材 v1.17.0`、`File size: 2342896 bytes`；PyMuPDF `get_toc()` → **328 条书签**（首条「符号说明」p11、末条「来源、分级与版权说明」p324）
+- **远程 `reviews/` 复查**：`git ls-tree -r --name-only origin/main reviews` = **66** 个受版本控制文件（`2026-10-10-independent` 31 + `2026-10-11-scheduled` 35），与本轮基线一致，无人新增
+- **回填提交**：本次提交（`docs(v1.17.0): backfill section 22.8 release record`，工作树在此之后保持干净）
