@@ -2533,4 +2533,21 @@ FAIL=1。`tmp/prove_hole_111.py` 在改前/改后各跑一次，并在 `finally`
 
 ### 25.6 发布记录（v1.19.0）
 
-- （待回填）内容提交、文档提交、标签、推送、Gitea Release、独立复核、远程 `reviews/`、回填提交。
+- 内容提交：`e9c898e`（附录 V 577 行、门禁 P26 363 行、夹具 77 行、主文件挂载 7 行、PDF 二进制）
+- 文档提交：`26f89fa`（`README.md` 24+/14−、`processed.md` 第 25 节 103 行）
+- 标签：`git tag -a v1.19.0` → 附注标签对象 `d2668cdb38688cd4dc12bb2b407bcd176a5e18df`，指向提交 `26f89fa`
+- 推送：`main` `8a84764..26f89fa`、`v1.19.0` 新标签（两条都必须 `git -c http.proxy= -c https.proxy=`，
+  否则被死代理 `127.0.0.1:7897` 拦下；Gitea 脚本前需清空四个代理环境变量）
+- Gitea Release：`POST status 201 release id=112`（正文 `tmp/release_v1190.md`，6 节）；
+  资产 `status=201 name=plasma_physics_textbook_v2.pdf size=2443402`
+- 独立复核：清空四个代理变量后 `curl.exe -sS -L --noproxy '*'` 下载
+  `/releases/download/v1.19.0/plasma_physics_textbook_v2.pdf` → 2 443 402 B、
+  SHA256 `99188D4416855306C2679634E09EA76C669EAB6146197361FC430D8B73158800`，
+  与本地 `pdf/plasma_physics_textbook_v2.pdf` **逐字节一致**
+- 远程 `reviews/`：66 个版本控制文件（与 v1.18.0 基线一致）；本地标签数 26 → **27**
+- 终验（冻结版本）：`python tmp\battery_v1190.py` → 六套件全 exit=0
+  （`35/54/14/866/13/11`）、五套夹具全 PASS、`总结论：全部通过`；`git status --short` 干净
+- 勘误：**无**。本轮两处问题都在发布前修掉并留下可复核证据：① O3a 书签把
+  `$10^{-4}$` 退化成 ASCII 连字符（改为纯文本标题，未放松门禁）；② P26 语义盒守卫只钉 3 只盒，
+  漏掉 `tip-app-v-runaway`（补第 4 只 + 第 111 号夹具补丁，`tmp/prove_hole_111.py` 记录补洞前 FAIL=0、
+  补洞后 FAIL=1 并做了字节级恢复校验）
