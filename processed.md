@@ -1650,4 +1650,13 @@ Roediger \& Karpicke 2006、Cepeda 等 2006、Chi 等 1989、Rohrer \& Taylor 20
 
 ### 19.8 发布记录
 
-（待回填）
+| 项目 | 值 |
+| --- | --- |
+| 内容提交 | `99580e0 feat(v1.14.0): appendix Q plasma diagnostics; appendix I study-technique ratings; gates to 347 items / 31 fixture patches; fix literal ** markup`（8 文件，+1000 −30：`src/appendix_q_diagnostics.tex` 516 行新增、`src/appendix_i_learning.tex`、`src/appendix_p_lowtemp.tex`、`src/ch12_supplement.tex`、`src/plasma_physics_textbook_v2.tex`、`check/physics_regression.py` +384、`check/fixtures/gate_physics_negative.py`、`pdf/plasma_physics_textbook_v2.pdf` 2 097 730 → 2 145 599 B） |
+| 文档提交 | `5fc1263 docs(v1.14.0): record section 19 in processed.md and refresh README numbers (290 pages / 17 appendices)` |
+| 标签 | 标注标签 `v1.14.0` → 指向内容提交 `99580e014063a9b91893dc2984c883003f1b2a7d`；标签对象 `b282bdd3f309035d9b3a97bc36b1ba168f28084a`；仓库第 **20** 个标签 |
+| 推送 | `git -c http.proxy= -c https.proxy= push origin main` → `fc07228..5fc1263  main -> main`；`push origin v1.14.0` → `* [new tag] v1.14.0 -> v1.14.0`；`git rev-list --count HEAD..origin/main` = 0、`origin/main..HEAD` = 0 |
+| Gitea 发布 | `POST status 201`、**release id=100**、`releases/tag/v1.14.0`、标题「v1.14.0 — 等离子体诊断：从探针曲线到光谱（附录 Q）+ 十种学习技术评级（附录 I）」、`assets=1`；资产 `plasma_physics_textbook_v2.pdf` 2 145 599 B（`attachments/53ca203b-34f8-4eb9-af12-1ae04211eed2`）；仓库 release 总数 **20** |
+| 资产独立复核 | `curl.exe -sS -L --noproxy '*'`：HTTP **200**、download size 2 145 599 B、SHA256 `F4DEFF13EEB57FFFBDAA7B82CB2FD23ACB963B6B544440CBA278F42B54BADF79`（与本地 `src/`、`pdf/` 副本一致）、头 `%PDF-1.7`；PyMuPDF 读下载副本：**290 页 / 290 书签 / `pdftitle=等离子体物理自学教材 v1.14.0` / 末页含「诊断」** |
+| 远程评审 | `git -c http.proxy= -c https.proxy= fetch -q origin` 后 `origin/main` = `5fc1263`；`reviews/` 仍只有 `2026-10-10-independent` 与 `2026-10-11-scheduled`（无新增）；最近触碰 `reviews/` 的提交仍是 `f5dbe82`（本轮起点 HEAD `fc07228` 的祖先） |
+
