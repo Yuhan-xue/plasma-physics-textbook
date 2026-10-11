@@ -2416,12 +2416,12 @@ P24 由 721 项增到 724 项；修后第 85 号单条植入的 FAIL 由 0 变 1
 
 ### 24.7 发布记录（v1.18.0）
 
-- **内容提交**：（待回填）
-- **文档提交**：（待回填）
-- **标签**：（待回填）
-- **推送**：（待回填）
-- **远程状态**：（待回填）
-- **Gitea Release**：（待回填）
-- **独立复核**：（待回填）
-- **远程 `reviews/`**：（待回填）
-- **回填提交**：（待回填）
+- **内容提交**：`317b357` v1.18.0 新增附录 U（聚变增益 Q、自加热与点火，7 节 / 7 表 / 3 只语义盒 / 14 个公式标签 / 6 道估算题）+ 附录 I §I.17「扩张式还是均匀式」；门禁 P24+P25（609→758 项）、夹具 78→94 处（合并 106 / `MIN_FAIL` 95）；6 files changed, 1138 insertions(+), 5 deletions(-)。
+- **文档提交**：`ae684e8` docs(v1.18.0) README 同步（334 页 / 337 书签 / 21 附录 / 758 项 / 94 处回退）与 processed 第 24 节发布准备（2 files changed, 150 insertions(+), 17 deletions(-)）。
+- **标签**：`v1.18.0`（附注标签，标签对象 `2b2a8e8`，指向提交 `317b357`）。
+- **推送**：`git -c http.proxy= -c https.proxy= push origin main` → `20a2938..ae684e8`；`push origin v1.18.0` → `* [new tag] v1.18.0 -> v1.18.0`。两处都需清空 `http.proxy`/`https.proxy`（环境里的 `127.0.0.1:7897` 代理已失效）。
+- **远程状态**：`git ls-remote origin` → `refs/heads/main = ae684e8ca38ae8d63ef773b52c406229dcc5f6fe`、`refs/tags/v1.18.0 = 2b2a8e8e936c70f97dea2da497f7d1e196a7550b`（与本地一致）。
+- **Gitea Release**：`POST status 201`，**release id=110**，<http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.18.0>；资产上传 `status=201 name=plasma_physics_textbook_v2.pdf size=2391236`。`gitea_release.py list` 返回 `status 200 count 26`（26 个标签 ↔ 26 个 Release，最新一条即 v1.18.0、assets=1）。
+- **独立复核**：清空四个代理环境变量后 `curl.exe -sS -L --noproxy '*'` 下载 `/releases/download/v1.18.0/plasma_physics_textbook_v2.pdf` → 2 391 236 B、SHA256 `59EDBE17D8D9E893D131956B20BB730997880868BDA3123DBF6D83A449BBF4DC`，与本地 `pdf/plasma_physics_textbook_v2.pdf` **逐字节一致**。
+- **远程 `reviews/`**：`git ls-tree -r origin/main --name-only` 过滤 `^reviews/` 共 **66** 个文件，与 v1.17.1 基线一致（没有人删改独立复核留档）。
+- **回填提交**：本次提交（`docs(v1.18.0): backfill section 24.7 release record`）。
