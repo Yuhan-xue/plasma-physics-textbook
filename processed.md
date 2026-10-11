@@ -1514,15 +1514,15 @@ Dunlosky 等 2013 14(1) 4--58、Bjork & Bjork 2011（专著章节，无 DOI）�
 6. **夹具的口径副本要 import，不要自抄**：`gate_compile_log` 隐含依赖其它判定的 FAIL 0 状态，
    一条真错就能把它拖红；这类隐含依赖要在夹具里写清楚（本轮已确认该行为符合预期）。
 
-### 18.8 发布记录（本表在发布动作完成后回填）
+### 18.8 发布记录
 
 | 项目 | 值 |
 | --- | --- |
-| 内容提交 | 待回填 |
-| 文档提交 | 待回填 |
-| 标注标签 | 待回填 |
-| 推送 | 待回填 |
-| Gitea release | 待回填 |
-| 资产独立复核 | 待回填 |
-| 仓库 release 总数 | 待回填 |
-| 远程 `reviews/` | 待回填 |
+| 内容提交 | `c313dfffa197c1e7539137a765c85c59fa24f216` —— 6 文件 / +964 −10（新增 `src/appendix_p_lowtemp.tex` 517 行，改 `src/appendix_i_learning.tex` +66、`src/plasma_physics_textbook_v2.tex` 8 行、`check/physics_regression.py` +355、`check/fixtures/gate_physics_negative.py` 28 行、`pdf/` 副本 2 029 685 → 2 097 730 B） |
+| 文档提交 | `b83849f367968cc056ea5f38691fce1911daa441`（`README.md`、`processed.md`） |
+| 标注标签 | `v1.13.0` → 内容提交 `c313dff`（标注标签对象 `38329af`）；仓库第 **19** 个标签 |
+| 推送 | `git -c http.proxy= -c https.proxy= push origin main`：`e8fa6b9..b83849f`；标签推送 `* [new tag] v1.13.0`；推送后 `git rev-list --count HEAD..origin/main` = 0 |
+| Gitea release | **id=99**，`releases/tag/v1.13.0`，标题「v1.13.0 — 低温等离子体应用：从刻蚀到等离子体医学（附录 P）+ 复习排程（附录 I）」（说明文件 `tmp/release_v1130.md`）；资产上传 `status=201`、2 097 730 B |
+| 资产独立复核 | 用 `curl.exe -sS -L --noproxy '*'` 重新下载：HTTP **200**、2 097 730 B、SHA256 `23E6E98D43993B18EA8A3C09E45DF3532264CF9511311D55B1CC8DFAB0945611`（与本地逐字节一致）、头 `%PDF-1.7`、**280 页 / 277 书签**、`pdftitle=等离子体物理自学教材 v1.13.0`、未加密、末页文本含「低温等离子体应用」 |
+| 仓库 release 总数 | **19**（v1.12.0 为 18） |
+| 远程 `reviews/` | **无新增**：仍为 `reviews/2026-10-10-independent/` 与 `reviews/2026-10-11-scheduled/`（最后一个触及 `reviews/` 的提交 `f5dbe82` 已是本轮起点 `e8fa6b9` 的祖先；评审本体提交 `28ecdaa`，2026-10-11） |
