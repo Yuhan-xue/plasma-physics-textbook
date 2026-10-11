@@ -2300,4 +2300,12 @@ v1.17.1 是 v1.17.0 的**勘误**，不新增内容：附录 T 的节数、表�
 
 ### 23.7 发布记录（v1.17.1）
 
-__RELEASE_RECORD__
+- **内容提交**：`cc77f22`（`v1.17.1 勘误：附录 T 七张表列宽（消除 p{} 列的静默断行）+ 修正 §T.4 的 tau_flat 3.125->3.128e-15；门禁 607->609 项、夹具 77->78 处`）
+- **文档提交**：`aa86c33`（`docs(v1.17.1): README 同步（324 页 / 328 书签 / 609 项 / 78 处）与 processed 第 23 节勘误记录`）
+- **标签**：`v1.17.1`（附注标签对象 `22e99b8` → 指向内容提交 `cc77f22`）
+- **推送**：`3092dae..aa86c33  main -> main`、`* [new tag]  v1.17.1 -> v1.17.1`（两条均 exit 0；推送前清空 `HTTP_PROXY`/`HTTPS_PROXY`/`http_proxy`/`https_proxy`/`ALL_PROXY`/`all_proxy` 并用 `git -c http.proxy= -c https.proxy=` 覆盖，否则会撞上已失效的 `127.0.0.1:7897` 代理）
+- **远程状态**：`git ls-remote origin` → `refs/heads/main` = `aa86c33dfcffa110bcb93e0f74550e84e761a2ec`、`refs/tags/v1.17.1` = `22e99b86c86c34e5f1874922ef9db01f75f11d00`
+- **Gitea Release**：**id=107**（`POST status 201`），页面 `http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.17.1`，标题「v1.17.1 勘误：附录 T 的表内断行与一处正文数值」；资产上传 `status=201`、`size=2341932`、`url=http://zsyq.hxlab.tech:3000/attachments/e0bc86ce-4fc8-4d68-9bd2-13352b8d5ffd`
+- **独立复核（不经自家脚本，`curl.exe -sS -L --noproxy '*'` 直取 release 资产）**：`http=200`、`bytes=2341932`、`SHA256=A37343332EC1FAE010F6DD7A149F620B161D2C725A01AC176D6EC77D80EEC54F`（与本地 `pdf/plasma_physics_textbook_v2.pdf` 逐字节一致，`identical=True`）、magic `%PDF-1.7`；`pymupdf` → `pages=324`、`title=等离子体物理自学教材 v1.17.1`、`bookmarks=328`
+- **远程 `reviews/`**：`git ls-tree -r --name-only origin/main reviews` = **66** 个受版本控制文件（`2026-10-10-independent` 31 + `2026-10-11-scheduled` 35），与 v1.17.0 基线一致，无人新增
+- **回填提交**：本次提交（`docs(v1.17.1): backfill section 23.7 release record`）
