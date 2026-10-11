@@ -999,7 +999,23 @@ EEPF 与归一化 EEDF 仍混淆（PP-C04）、附录 H 符号表的 α 判据�
    这次正是靠这条口径把 24 处被 hyperref 复用锚点的目录条目揪出来（点击落点跑到更早的页面），
    修完再回到"12/236 条纯 −1"，说明容忍带没有掩盖真问题；
 ⑥ **检查器的取样窗口会随版式漂移**：O4 的"F 首页起 6 页"在旧版式下刚好只覆盖附录 F，
-   版式一变就溢进附录 G。凡按"页数窗口"取样的检查，都应改用**书签页范围**这类随文档结构走的锚点。
+   版式一变就溢进附录 G。凡按"页数窗口"取样的检查，都应改用**书签页范围**这类随文档结构走的锚点；
+⑦ **推送/发布失败先看代理环境变量**：本机 `HTTP_PROXY`／`HTTPS_PROXY`（及小写变体）指向
+   `127.0.0.1:7897`，而该代理未运行，`git push` 报 `Failed to connect to 127.0.0.1:7897 over proxy`。
+   内网 Gitea（`zsyq.hxlab.tech:3000`）**不该走代理**：`git -c http.proxy= -c https.proxy= push origin main`
+   即可；`tmp/gitea_release.py` 也要先把大小写四个代理变量都清空再跑（只清大写的 `list` 仍会失败）。
+
+### 14.9 发布记录
+
+| 项目 | 值 |
+| --- | --- |
+| 内容提交 | `a16189868af6528519481f71927cedf06277ccfc`（20 文件，+887/−70） |
+| 标注标签 | **v1.9.0** = `bccfb2ce2d2f2c308db9105e9e8f80f95d65839a`（→ `a161898`） |
+| 推送 | `f5dbe82..a161898`（main）与 `v1.9.0` 均已推送到 `origin`；`git fetch` 后 behind = 0 |
+| Gitea release | **id=88**，`releases/tag/v1.9.0`，资产 `plasma_physics_textbook_v2.pdf` 1 867 353 B（上传 HTTP 201） |
+| 资产独立复核 | `curl.exe -L --noproxy '*'` 下载 HTTP 200、1 867 353 B、SHA256 `5B71A72908D6968FC2179963A4E6B9176ADFAADDDC59C13AC1F49830F52418AF`（与本地一致）、头 `%PDF-1.7` |
+| 仓库 release 总数 | 15 |
+| 远程 `reviews/` | 仍只有 `2026-10-10-independent` 与 `2026-10-11-scheduled` 两轮，**无新评审**；远程只有 `main` 一个分支 |
 
 
 
