@@ -212,6 +212,32 @@
 \definecolor{historybrown}{RGB}{121, 85, 72}
 \definecolor{reviewblue}{RGB}{25, 118, 210}
 \definecolor{tipgreen}{RGB}{56, 142, 60}
+% ---- 插图统一视觉语言（2026-10-13 插图重画轮立下的规矩，新图与改图一律遵守）----
+% 色板取 Okabe--Ito 色盲安全八色；同一物理量在全书各图里用同一色：
+%   电子/快/束流 = figVerm（朱）；离子/慢/背景 = figBlue（蓝）；
+%   磁场/磁力线  = figGreen（绿）；区域填充 = 同色 !12 并配同色 0.8pt 边；
+%   判据/阈值    = figPurple（紫）；辅助线/包络 = figGray（灰）虚线。
+% 线宽：坐标轴 0.9pt、数据曲线 1.2pt、辅助虚线 0.6pt；箭头统一 Stealth。
+% 字号：图内主标签 \small、次标签与刻度 \footnotesize；内容标签全书禁用 \tiny。
+% 标签永不压线：必须靠近曲线时用 fill=white, inner sep=1.5pt 的光环；
+% 区域标签若放不进色块（留不出约 3mm 边）就移到块外，用 figlead 引线点指。
+% 图例一律放在绘图区外（下方或右侧），带线型样本。
+\definecolor{figInk}{HTML}{2B2B2B}
+\definecolor{figBlue}{HTML}{0072B2}
+\definecolor{figOrange}{HTML}{E69F00}
+\definecolor{figGreen}{HTML}{009E73}
+\definecolor{figVerm}{HTML}{D55E00}
+\definecolor{figPurple}{HTML}{CC79A7}
+\definecolor{figSky}{HTML}{56B4E9}
+\definecolor{figGray}{HTML}{8C8C8C}
+\tikzset{
+  figaxis/.style={draw=figInk, line width=0.9pt, ->, >=Stealth},
+  figcurve/.style={line width=1.2pt},
+  fighelp/.style={draw=figGray, line width=0.6pt, dashed},
+  fignode/.style={rounded corners=2pt, line width=0.8pt, inner sep=4pt},
+  figlead/.style={draw=figGray, line width=0.5pt, ->, >=Stealth, shorten >=1.5pt},
+  figtick/.style={font=\footnotesize, text=figInk},
+}
 \newtcbtheorem[number within=chapter]{theorem}{定理}{
   colback=thmblue!5,colframe=thmblue,fonttitle=\bfseries,breakable,
   left=4pt,right=4pt,top=4pt,bottom=4pt}{thm}
