@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """可证伪性夹具：故意在源码里植入本轮的典型回退，确认 check/physics_regression.py 会 FAIL。
 
-流程：备份 → 植入 197 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。其中四处打在 v1.8.0/v1.8.1 新增的附录 I/J/K 上（K.5 的阻尼率符号、K.7 的鞘厚量级与单位、K.4 的磁冻结结论、J 的逐章对照表章号），
+流程：备份 → 植入 215 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。其中四处打在 v1.8.0/v1.8.1 新增的附录 I/J/K 上（K.5 的阻尼率符号、K.7 的鞘厚量级与单位、K.4 的磁冻结结论、J 的逐章对照表章号），
 三处打在 v1.10.0 新增的附录 M 上（束速量级、H 模阈值标度、欧姆/自加热倍数口径），
 一处是 v1.10.0 的结构性回退（语义盒退回裸 `\begin{tip}`，正文首字会被吞、标签可能重复），
 三处打在 v1.11.0 新增的附录 N 上（脱靶辐射功率量级、ELM 侵蚀倍数、表标签被改名），
@@ -70,6 +70,7 @@ APPW = os.path.join(ROOT, 'src', 'appendix_w_fastparticle.tex')
 APPX = os.path.join(ROOT, 'src', 'appendix_x_radiation.tex')
 APPY = os.path.join(ROOT, 'src', 'appendix_y_strongfield.tex')
 APPZ = os.path.join(ROOT, 'src', 'appendix_z_reactor.tex')
+APPAA = os.path.join(ROOT, 'src', 'appendix_aa_alternates.tex')
 CH12 = os.path.join(ROOT, 'src', 'ch12_supplement.tex')
 CH10 = os.path.join(ROOT, 'src', 'ch10_supplement.tex')
 SUITE = os.path.join(ROOT, 'check', 'physics_regression.py')
@@ -530,9 +531,74 @@ PATCHES = [
     (APPZ, r'年发电量 & $1429.6\ \mathrm{GWh}$', r'年发电量 & $1429\ \mathrm{GWh}$'),
     # 197. 表 Z.6 折合标煤：0.48606 -> 0.49（容差外，且触发 lacks 守卫）
     (APPZ, r'折合标煤 & $0.48606$ 百万吨', r'折合标煤 & $0.49$ 百万吨'),
+    # ---- v1.25.0（附录 AA 替代位形）新增 18 处 ----
+    # 198. 表 AA.3 的 label 被改名
+    (APPAA, r'\label{tab:app-aa-transport}', r'\label{tab:app-aa-transport2}'),
+    # 199. tip AA.4 的语义盒标签被改名
+    (APPAA, r'{tip-app-aa-st}', r'{tip-app-aa-st2}'),
+    # 200. 式 AA.8 的 label 被改名
+    (APPAA, r'\label{eq:app-aa-eff32}', r'\label{eq:app-aa-eff32b}'),
+    # 201. 第一处「出处：」被写成「来源：」，出处计数跌破 6
+    (APPAA, r'\textbf{出处：}', r'\textbf{来源：}'),
+    # 202. 「解答 5」被写成「答案 5」，解答计数跌破 6
+    (APPAA, r'\textbf{解答 5}', r'\textbf{答案 5}'),
+    # 203. tip AA.1 的标题被改字（整行绑定抓）
+    (APPAA, r'\begin{tip}{先问「它拿什么换什么」}{tip-app-aa-map}',
+          r'\begin{tip}{先问「拿什么换什么」}{tip-app-aa-map}'),
+    # 204. tip AA.3 的标题被改字（整行绑定抓）
+    (APPAA, r'\begin{tip}{不同区间的数不能直接相除}{tip-app-aa-eps}',
+          r'\begin{tip}{不同区间的数不能相除}{tip-app-aa-eps}'),
+    # 205. 表 AA.1 D1 压强：1.473e5 -> 1.474e5（差值 6.8e-4，落在容差内）
+    (APPAA, r'压强 $p$ & $1.473\times10^{5}\ \mathrm{Pa}$',
+          r'压强 $p$ & $1.474\times10^{5}\ \mathrm{Pa}$'),
+    # 206. 表 AA.1 D1 逆环径比：0.32258 -> 0.3226（差值 6.2e-5）
+    (APPAA, r'逆环径比 $\varepsilon$ & $0.32258$ & $0.66667$ & $0.096364$ \\',
+          r'逆环径比 $\varepsilon$ & $0.3226$ & $0.66667$ & $0.096364$ \\'),
+    # 207. 表 AA.1 D1 归一化比压：1.5523 -> 1.5524（差值 6.4e-5）
+    (APPAA, r'归一化比压 $\beta_N$ & $1.5523$ & $1.2483$ & $1.3659$ \\',
+          r'归一化比压 $\beta_N$ & $1.5524$ & $1.2483$ & $1.3659$ \\'),
+    # 208. 表 AA.3 香蕉区因子：0.56796 -> 0.5680（差值 7.0e-5）
+    (APPAA, r'$\sqrt{\varepsilon_{D1}}$ & $0.56796$ & 托卡马克几何 & 香蕉区放大因子 \\',
+          r'$\sqrt{\varepsilon_{D1}}$ & $0.5680$ & 托卡马克几何 & 香蕉区放大因子 \\'),
+    # 209. 表 AA.3 优化品质：0.13491 -> 0.1349（差值 7.4e-5）
+    (APPAA, r'$\varepsilon_{\mathrm{eff}}/\varepsilon$ & $0.13491$ & 优化品质 & 只有几何值的 $13.5\%$ \\',
+          r'$\varepsilon_{\mathrm{eff}}/\varepsilon$ & $0.1349$ & 优化品质 & 只有几何值的 $13.5\%$ \\'),
+    # 210. 表 AA.4 边缘极向场：0.64516 -> 0.6452 T（差值 6.2e-5）
+    (APPAA, r'边缘极向场 $B_p$ & --- & $0.64516\ \mathrm{T}$ & $\mu_0I_p/(2\pi a)$ \\',
+          r'边缘极向场 $B_p$ & --- & $0.6452\ \mathrm{T}$ & $\mu_0I_p/(2\pi a)$ \\'),
+    # 211. 表 AA.4 自举份额：0.078989 -> 0.07899（差值 1.3e-5）
+    (APPAA, r'自举份额 $f_{bs}$ & 几个 $\%$ & $0.078989$ & $C_{bs}\sqrt{\varepsilon}\beta_p$ \\',
+          r'自举份额 $f_{bs}$ & 几个 $\%$ & $0.07899$ & $C_{bs}\sqrt{\varepsilon}\beta_p$ \\'),
+    # 212. 表 AA.4 D1 中心柱：4.2 -> 4.21 m（差值 2.4e-3，容差外，数值用例抓）
+    (APPAA, r'中心柱空间 $R-a$ & $4.2\ \mathrm{m}$ & $0.31\ \mathrm{m}$ & 屏蔽需要 $2.0723\ \mathrm{m}$ \\',
+          r'中心柱空间 $R-a$ & $4.21\ \mathrm{m}$ & $0.31\ \mathrm{m}$ & 屏蔽需要 $2.0723\ \mathrm{m}$ \\'),
+    # 213. 表 AA.6 ISS04 的 tau_E：0.142983 -> 0.14298 s（差值 2.1e-5）
+    (APPAA, r'$\tau_E^{\mathrm{ISS04}}$ & $0.142983\ \mathrm{s}$ & 式 \eqref{eq:app-aa-iss04} & 研究装置量级 \\',
+          r'$\tau_E^{\mathrm{ISS04}}$ & $0.14298\ \mathrm{s}$ & 式 \eqref{eq:app-aa-iss04} & 研究装置量级 \\'),
+    # 214. 表 AA.6 三重积：2.28774e19 -> 2.2877e19（差值 1.7e-5）
+    (APPAA, r'三重积 & $2.28774\times10^{19}$ & $nT\tau_E$ & 差 $135.51$ 倍 \\',
+          r'三重积 & $2.2877\times10^{19}$ & $nT\tau_E$ & 差 $135.51$ 倍 \\'),
+    # 215. 表 AA.3 有效纹波：0.013 -> 0.0132（差值 1.5e-2，容差外，数值用例抓）
+    (APPAA, r'$\varepsilon_{\mathrm{eff}}$ & $0.013$ & 位形优化 & 声明值（优化位形） \\',
+          r'$\varepsilon_{\mathrm{eff}}$ & $0.0132$ & 位形优化 & 声明值（优化位形） \\'),
 ]
 
-MIN_FAIL = 212       # 实测值（197 处植入回退合并计入 226，留 14 的余量）：见下
+MIN_FAIL = 231       # 实测值（215 处植入回退合并计入 245，留 14 的余量）：见下
+# ## v1.25.0（附录 AA 替代位形）植入扩到 215 处，18 处新补丁分两层：
+# 同时把附录字母方案从「单个 A--Z」升级为「A--Z, AA, AB…」——
+# physics_regression 的 P04 与 consistency_audit 的 K/L 三处正则改成 ([A-Z]{1,2})，
+# 期望序列改成 A..Z 之后接 AA、AB（原来第 27 个会算成 chr(ord('A')+26)='['）。
+# 结构层 7：表 AA.3 label、tip AA.4 语义盒标签、式 AA.8 label 改名，「出处：」写成「来源：」、
+#          「解答 5」写成「答案 5」、tip AA.1 与 tip AA.3 两只语义盒标题各改字；
+# 数据层 11（每条都锚在**整行**上，因为表格一行有三个数值单元格）：
+#          1.473e5->1.474e5、0.32258->0.3226、1.5523->1.5524、0.56796->0.5680、
+#          0.13491->0.1349、0.64516->0.6452、0.078989->0.07899、4.2->4.21 m、
+#          0.142983->0.14298、2.28774e19->2.2877e19、0.013->0.0132。
+#          前 9 条偏差落在 rel=1e-3 容差内（数字用例照过，只有整行字面绑定抓得住），
+#          后 2 条（4.2->4.21、0.013->0.0132）在容差外。
+# 逐条探针 `tmp/probe_neg_v1250.py`（默认 198--215）：18/18 全部可证伪、无落空，
+#          单条合计 FAIL=19（#199 为 2，其余各 1），每条恢复后与原始字节一致。
+# 合并植入实测 **245**（= v1.24.0 的 226 + 18 处新补丁的 19 个 FAIL），MIN_FAIL 212 -> 231。
 # ## v1.24.0（附录 Z 聚变堆工程）植入扩到 197 处，18 处新补丁分两层：
 # 结构层 7：表 Z.3 label、tip Z.6 语义盒标签、式 Z.12 label 改名，「出处：」写成「来源：」、
 #          「解答 3」写成「答案 3」、tip Z.1（工程账是乘法）与 tip Z.2（难受的不是热）改字；

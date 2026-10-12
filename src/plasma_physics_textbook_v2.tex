@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.24.0},
+  pdftitle={等离子体物理自学教材 v1.25.0},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -146,9 +146,17 @@
 }
 % 附录章：\chapter* 不更新 \leftmark，导致 186--210 页页眉恒为"第 12 章"。
 % \appchapter 显式维护页眉与书签，并让小节/定理编号继承附录章号（A/B/C...）。
+% v1.25.0：字母方案 A--Z, AA, AB…。\thechapter 必须在这里就 \xdef 成**纯文本**：
+% 若留成含 \ifnum / expl3 的宏，hyperref 生成书签（PDF 字符串）时会展开失败，
+% 书签会丢掉「AA.」前缀，pdf_outline 的 O3a 就会报「印刷目录与书签不同名」。
+\makeatletter
+\newcommand{\appendixAlph}[1]{%
+  \ifnum#1>26 A\@Alph{\numexpr#1-26\relax}\else\@Alph{#1}\fi}
+\makeatother
 \newcommand{\appchapter}[1]{%
   \cleardoublepage
   \refstepcounter{chapter}%
+  \xdef\thechapter{\appendixAlph{\arabic{chapter}}}%
   \chapter*{#1}%
   \addcontentsline{toc}{chapter}{#1}%
   \markboth{#1}{#1}%
@@ -392,7 +400,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.24.0}}
+  {\small\textcolor{white!45}{v1.25.0}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -4743,6 +4751,9 @@ OES发射光谱 & $10^{12}$--$10^{19}$ & $0.1$--$10$ & cm & ms & 工业/空间 \
 % 附录编号：\chapter* 不递增 chapter 计数器，若不显式处理，
 % \thechapter 为空 -> \section 显示 ".7"、tcolorbox 显示 "定义 .16"。
 % 此处把章号切到 Alph 并归零，使附录小节/定理得到 A.1 / 定义 A.1。
+% v1.25.0：字母方案升级到 A--Z, AA, AB…
+% 这里仍先用 \Alph（覆盖 \appendix 的默认设置、并保证 A--Z 正常）；
+% 第 27 个及以后由 \appchapter 里的 \xdef\thechapter 逐章算成纯文本（AA、AB…）。
 \renewcommand{\thechapter}{\Alph{chapter}}
 \setcounter{chapter}{0}
 
@@ -6330,6 +6341,8 @@ Landau 阻尼 & Landau damping & 无碰撞相混导致的波阻尼 \\
 \input{appendix_y_strongfield}
 \appchapter{附录Z：聚变堆工程：从等离子体到电网（注明出处）}
 \input{appendix_z_reactor}
+\appchapter{附录AA：替代位形：仿星器、球形托卡马克与场反位形（注明出处）}
+\input{appendix_aa_alternates}
 
 % 附录结束
 

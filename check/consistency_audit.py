@@ -481,8 +481,10 @@ def check_J_symbol_table(files, main_text):
 
 def check_K_structure(files, main_text):
     t = strip_comments(main_text)
-    letters = re.findall(r'\\appchapter\{附录([A-Z])[：:]', t)
-    expect = [chr(ord('A') + i) for i in range(len(letters))]
+    letters = re.findall(r'\\appchapter\{附录([A-Z]{1,2})[：:]', t)
+    # A--Z 用完后接 AA、AB…（与 physics_regression 的 P04 同一套字母方案）
+    expect = [(chr(ord('A') + i) if i < 26 else 'A' + chr(ord('A') + i - 26))
+              for i in range(len(letters))]
     if letters != expect:
         rec('FAIL', 'K', '附录章编号不连续或重复：%s（应为 %s）'
             % (''.join(letters), ''.join(expect)))
@@ -539,7 +541,7 @@ def check_L_readme(main_text):
         return
     rd = read(README)
     t = strip_comments(main_text)
-    letters = re.findall(r'\\appchapter\{附录([A-Z])[：:]', t)
+    letters = re.findall(r'\\appchapter\{附录([A-Z]{1,2})[：:]', t)
     n = len(letters)
 
     for pat, name in ((r'12\s*章正文\s*\+\s*(\d+)\s*附录', '「12 章正文 + N 附录」'),
@@ -553,7 +555,7 @@ def check_L_readme(main_text):
         else:
             rec('PASS', 'L', 'README %s 与正文一致：%d' % (name, n))
 
-    listed = re.findall(r'^\s*-\s*\*\*附录\s*([A-Z])\*\*', rd, re.M)
+    listed = re.findall(r'^\s*-\s*\*\*附录\s*([A-Z]{1,2})\*\*', rd, re.M)
     missing = [c for c in letters if c not in listed]
     extra = [c for c in listed if c not in letters]
     if missing or extra:

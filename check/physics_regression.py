@@ -736,6 +736,7 @@ APP_FILES = {
     'X': 'appendix_x_radiation.tex',
     'Y': 'appendix_y_strongfield.tex',
     'Z': 'appendix_z_reactor.tex',
+    'AA': 'appendix_aa_alternates.tex',
 }
 
 # CODATA 2018 常数（与附录 D 的单位换算表同一组值）
@@ -5511,6 +5512,268 @@ def check_P31_appendix_z_reactor():
         lacks(text, lit, 'src/%s（%s）' % (APP_FILES['Z'], why))
 
 
+# -*- coding: utf-8 -*-
+"""附录 AA（替代位形）的门禁体：P32。
+
+可证伪点
+  ① 八个小节、七张表、六只语义盒、二十一个公式的标签缺一即 FAIL；
+  ② 「出处：」不足 6 处、练习与解答不足 6 道即 FAIL；
+  ③ 四张数据表的关键数字按**所在小节**复算（rel=1e-3）；
+  ④ 整行字面绑定：表头、表行、语义盒标题、关键判断句被改写即 FAIL；
+  ⑤ 口径回流防护：四舍五入写法（3.06、0.0015、99470 等）回流即 FAIL。
+"""
+
+
+def check_P32_appendix_aa_alternates():
+    """附录 AA：替代位形的结构、出处、练习与数值核对。"""
+    spath = os.path.join(SRC, APP_FILES['AA'])
+    if not os.path.exists(spath):
+        rec('FAIL', 'P', '附录 AA 文件缺失：%s' % spath)
+        return
+
+    text = strip_comments(read(spath))
+    secs = split_blocks(text, 'section')
+
+    want = [
+        '三种位形的一张地图',
+        '旋转变换：仿星器',
+        '新经典输运',
+        '球形托卡马克',
+        '场反位形',
+        '定标与三重积',
+        '估算练习',
+        '来源、分级与版权说明',
+    ]
+    found = {}
+    for pre in want:
+        for ttl, blk in secs:
+            if pre in ttl:
+                found[pre] = blk
+                break
+    miss = [p for p in want if p not in found]
+    if miss:
+        rec('FAIL', 'P', '附录 AA 缺小节：%s' % '、'.join(miss))
+        return
+    rec('PASS', 'P', '附录 AA 的 %d 个小节齐全' % len(want))
+
+    for lab in ('tab:app-aa-map', 'tab:app-aa-iota', 'tab:app-aa-transport',
+                'tab:app-aa-st', 'tab:app-aa-frc', 'tab:app-aa-scaling',
+                'tab:app-aa-source'):
+        has(text, '\\label{%s}' % lab, 'src/%s（表 %s）' % (APP_FILES['AA'], lab))
+    for lab in ('tip-app-aa-map', 'tip-app-aa-iota', 'tip-app-aa-eps',
+                'tip-app-aa-st', 'tip-app-aa-frc', 'tip-app-aa-honest'):
+        has(text, '{%s}' % lab, 'src/%s（语义盒 %s）' % (APP_FILES['AA'], lab))
+    for lab in ('eq:app-aa-eps', 'eq:app-aa-epsnum', 'eq:app-aa-beta',
+                'eq:app-aa-betan', 'eq:app-aa-iota', 'eq:app-aa-shear',
+                'eq:app-aa-sqeps', 'eq:app-aa-eff32', 'eq:app-aa-effratio',
+                'eq:app-aa-1nu', 'eq:app-aa-bp', 'eq:app-aa-fbs',
+                'eq:app-aa-space', 'eq:app-aa-frcp', 'eq:app-aa-frcn',
+                'eq:app-aa-frci', 'eq:app-aa-frclimit', 'eq:app-aa-iss04',
+                'eq:app-aa-tauE', 'eq:app-aa-ratio', 'eq:app-aa-triple'):
+        has(text, '\\label{%s}' % lab, 'src/%s（公式 %s）' % (APP_FILES['AA'], lab))
+    has(text, '不复制', 'src/%s（版权与复现口径）' % APP_FILES['AA'])
+
+    n_src = len(re.findall(r'\\textbf\{出处：\}', text))
+    if n_src < 6:
+        rec('FAIL', 'P', '附录 AA 的「出处：」声明只有 %d 处（要求 >= 6）' % n_src)
+    else:
+        rec('PASS', 'P', '附录 AA 的「出处：」声明 %d 处' % n_src)
+
+    n_ex = len(re.findall(r'\\textbf\{练习\s*\d+', text))
+    n_ans = len(re.findall(r'\\textbf\{解答(\s*\d+)?\}', text))
+    if n_ex < 6 or n_ans < n_ex:
+        rec('FAIL', 'P', '附录 AA 的练习 %d 道 / 解答 %d 条（要求 >= 6 且解答不少于练习）'
+            % (n_ex, n_ans))
+    else:
+        rec('PASS', 'P', '附录 AA 的练习 %d 道、解答 %d 条' % (n_ex, n_ans))
+
+    lits = [
+        # 表 AA.1 三种位形的地图
+        ('量 & D1 托卡马克 & 球形托卡马克 & 仿星器 \\\\', '表 AA.1 表头'),
+        ('环径比 $A=R/a$ & $3.1$ & $1.5$ & $10.377$ \\\\', '表 AA.1 环径比行'),
+        ('逆环径比 $\\varepsilon$ & $0.32258$ & $0.66667$ & $0.096364$ \\\\',
+         '表 AA.1 逆环径比行'),
+        ('压强 $p$ & $1.473\\times10^{5}\\ \\mathrm{Pa}$ & $16022\\ \\mathrm{Pa}$ & $25635\\ \\mathrm{Pa}$ \\\\',
+         '表 AA.1 压强行'),
+        ('比压 $\\beta$ & $1.318\\%$ & $4.027\\%$ & $1.031\\%$ \\\\', '表 AA.1 比压行'),
+        ('归一化比压 $\\beta_N$ & $1.5523$ & $1.2483$ & $1.3659$ \\\\', '表 AA.1 归一化比压行'),
+        ('环向电流 & 有（$9\\ \\mathrm{MA}$） & 有（$2\\ \\mathrm{MA}$） & \\textbf{没有} \\\\',
+         '表 AA.1 环向电流行'),
+        # 表 AA.2 旋转变换
+        ('旋转变换 $\\iota/2\\pi$ & 由 $q$ 反推 & $0.85$ & 仿星器按设计取 \\\\',
+         '表 AA.2 旋转变换行'),
+        ('安全因子 $q$ & $q_{95} = 3.00$ & $1.1765$ & $q = 1/\\iota$ \\\\', '表 AA.2 安全因子行'),
+        ('起始 $q_0$ & $1.05$ & 可自由设计 & 托卡马克受锯齿限制 \\\\', '表 AA.2 起始 q0 行'),
+        ('磁剪切 $s$ & $1.3$ & 可设计到 $\\approx 0$ & 仿星器的独门手段 \\\\', '表 AA.2 磁剪切行'),
+        # 表 AA.3 新经典输运
+        ('$\\sqrt{\\varepsilon_{D1}}$ & $0.56796$ & 托卡马克几何 & 香蕉区放大因子 \\\\',
+         '表 AA.3 香蕉区因子行'),
+        ('$\\varepsilon_{\\mathrm{eff}}$ & $0.013$ & 位形优化 & 声明值（优化位形） \\\\',
+         '表 AA.3 有效纹波行'),
+        ('$\\varepsilon_{\\mathrm{eff}}/\\varepsilon$ & $0.13491$ & 优化品质 & 只有几何值的 $13.5\\%$ \\\\',
+         '表 AA.3 比值行'),
+        ('$\\varepsilon_{\\mathrm{eff}}^{3/2}$ & $0.00148223$ & $1/\\nu$ 区 & 仿星器的几何因子 \\\\',
+         '表 AA.3 二分之三次方行'),
+        ('两个因子的比 & $383.181$ & 不同区间 & \\textbf{不可直接比较} \\\\',
+         '表 AA.3 因子比行'),
+        # 表 AA.4 球形托卡马克
+        ('边缘极向场 $B_p$ & --- & $0.64516\\ \\mathrm{T}$ & $\\mu_0I_p/(2\\pi a)$ \\\\',
+         '表 AA.4 极向场行'),
+        ('极向比压 $\\beta_p$ & --- & $0.096742$ & 声明 $I_p = 2\\ \\mathrm{MA}$ \\\\',
+         '表 AA.4 极向比压行'),
+        ('自举份额 $f_{bs}$ & 几个 $\\%$ & $0.078989$ & $C_{bs}\\sqrt{\\varepsilon}\\beta_p$ \\\\',
+         '表 AA.4 自举份额行'),
+        ('中心柱空间 $R-a$ & $4.2\\ \\mathrm{m}$ & $0.31\\ \\mathrm{m}$ & 屏蔽需要 $2.0723\\ \\mathrm{m}$ \\\\',
+         '表 AA.4 中心柱行'),
+        ('与屏蔽需求之比 & 放得下 & 少 $6.6848$ 倍 & \\textbf{堆用不了} \\\\',
+         '表 AA.4 屏蔽比行'),
+        # 表 AA.5 场反位形
+        ('外部磁场 $B_{\\mathrm{ext}}$ & $0.5\\ \\mathrm{T}$ & 声明值 & 位形全靠它 \\\\',
+         '表 AA.5 外部磁场行'),
+        ('压力 $p$ & $99472\\ \\mathrm{Pa}$ & $B^2/(2\\mu_0)$ & $\\beta = 1$ \\\\',
+         '表 AA.5 压强行'),
+        ('密度（$1.0\\ \\mathrm{keV}$） & $6.2085\\times10^{20}\\ \\mathrm{m^{-3}}$ & $p/k_BT$ & 比 D1 高六倍 \\\\',
+         '表 AA.5 密度行'),
+        ('反平行电流 & $1\\ \\mathrm{MA}$ & $2\\pi r_sB/\\mu_0$ & 只维持位形 \\\\',
+         '表 AA.5 电流行'),
+        ('稳定性 & 靠动理学 & 无磁剪切 & \\textbf{不给阈值} \\\\', '表 AA.5 稳定性行'),
+        # 表 AA.6 定标
+        ('ISS04 系数 & $0.134$ & 声明值 & 仿星器定标 \\\\', '表 AA.6 系数行'),
+        ('$\\iota$ 的指数 & $+0.41$ & ISS04 & $\\iota\\uparrow$ 约束改善慢 \\\\',
+         '表 AA.6 iota 指数行'),
+        ('$B$ 的指数 & $+0.84$ & ISS04 & 磁场更有效 \\\\', '表 AA.6 B 指数行'),
+        ('$\\tau_E^{\\mathrm{ISS04}}$ & $0.142983\\ \\mathrm{s}$ & 式 \\eqref{eq:app-aa-iss04} & 研究装置量级 \\\\',
+         '表 AA.6 tau_E 行'),
+        ('三重积 & $2.28774\\times10^{19}$ & $nT\\tau_E$ & 差 $135.51$ 倍 \\\\', '表 AA.6 三重积行'),
+        # 表 AA.7 来源表表头
+        ('本附录内容 & 借鉴来源 & 在本书里的位置 \\\\', '表 AA.7 来源表表头'),
+        # 六只语义盒
+        ('\\begin{tip}{先问「它拿什么换什么」}{tip-app-aa-map}', '语义盒「先问它拿什么换什么」'),
+        ('\\begin{tip}{电流是「免费的旋转变换」，也是麻烦的来源}{tip-app-aa-iota}',
+         '语义盒「电流是免费的旋转变换」'),
+        ('\\begin{tip}{不同区间的数不能直接相除}{tip-app-aa-eps}', '语义盒「不同区间的数不能直接相除」'),
+        ('\\begin{tip}{物理的优化可能被几何一票否决}{tip-app-aa-st}',
+         '语义盒「物理的优化可能被几何一票否决」'),
+        ('\\begin{tip}{比压等于一不是「极限」，是「定义」}{tip-app-aa-frc}',
+         '语义盒「比压等于一不是极限是定义」'),
+        ('\\begin{tip}{定标律是「代理」，不是物理}{tip-app-aa-honest}',
+         '语义盒「定标律是代理不是物理」'),
+        # 正文关键判断
+        ('\\textbf{三个位形的 $\\varepsilon$ 相差近七倍}', 'AA.1 的「相差近七倍」判断句'),
+        ('$\\sqrt{\\varepsilon_{D1}}/\\varepsilon_{\\mathrm{eff}}^{3/2}\n= 383.181$',
+         'AA.3 的因子比（分段写法容错见下）'),
+        ('\\textbf{放得下}', 'AA.4 的「放得下」'),
+        ('\\textbf{放不下}', 'AA.4 的「放不下」'),
+    ]
+    for lit, why in lits:
+        has(text, lit, 'src/%s（%s）' % (APP_FILES['AA'], why))
+
+    UPA = r'\mathrm{Pa}'
+    UT = r'\mathrm{T}'
+    UMA = r'\mathrm{MA}'
+    UM3 = r'\mathrm{m^{-3}}'
+    UM = r'\mathrm{m}'
+    US = r'\mathrm{s}'
+    UKEV = r'\mathrm{keV}'
+    UA = r'\mathrm{A}'
+    UPCT = r'\%'
+
+    cases = [
+        # AA.1 地图
+        ('三种位形的一张地图', 3.1, '', 'D1 环径比'),
+        ('三种位形的一张地图', 1.5, '', '球形托卡马克环径比'),
+        ('三种位形的一张地图', 10.377, '', '仿星器环径比'),
+        ('三种位形的一张地图', 0.32258, '', 'D1 逆环径比'),
+        ('三种位形的一张地图', 0.66667, '', 'ST 逆环径比'),
+        ('三种位形的一张地图', 0.096364, '', '仿星器逆环径比'),
+        ('三种位形的一张地图', 1.473e5, UPA, 'D1 压强'),
+        ('三种位形的一张地图', 16022, UPA, 'ST 压强'),
+        ('三种位形的一张地图', 25635, UPA, '仿星器压强'),
+        ('三种位形的一张地图', 1.318, UPCT, 'D1 比压'),
+        ('三种位形的一张地图', 4.027, UPCT, 'ST 比压'),
+        ('三种位形的一张地图', 1.031, UPCT, '仿星器比压'),
+        ('三种位形的一张地图', 1.5523, '', 'D1 归一化比压'),
+        ('三种位形的一张地图', 1.2483, '', 'ST 归一化比压'),
+        ('三种位形的一张地图', 1.3659, '', '仿星器归一化比压'),
+        ('三种位形的一张地图', 9, UMA, 'D1 环向电流'),
+        ('三种位形的一张地图', 3.0553, '', 'ST 与 D1 的比压比'),
+        # AA.2 旋转变换
+        ('旋转变换：仿星器', 0.85, '', 'iota/2pi'),
+        ('旋转变换：仿星器', 1.1765, '', 'q = 1/iota'),
+        ('旋转变换：仿星器', 3.00, '', 'q95'),
+        ('旋转变换：仿星器', 1.05, '', 'q0'),
+        ('旋转变换：仿星器', 1.3, '', '磁剪切'),
+        # AA.3 新经典输运
+        ('新经典输运', 0.56796, '', 'sqrt(eps_D1)'),
+        ('新经典输运', 0.013, '', 'eps_eff'),
+        ('新经典输运', 0.13491, '', 'eps_eff/eps'),
+        ('新经典输运', 13.5, UPCT, 'eps_eff/eps 的百分数'),
+        ('新经典输运', 0.00148223, '', 'eps_eff^{3/2}'),
+        ('新经典输运', 383.181, '', '两个因子之比'),
+        # AA.4 球形托卡马克
+        ('球形托卡马克', 0.64516, UT, '边缘极向场'),
+        ('球形托卡马克', 0.096742, '', '极向比压'),
+        ('球形托卡马克', 0.078989, '', '自举份额'),
+        ('球形托卡马克', 7.9, UPCT, '自举份额的百分数'),
+        ('球形托卡马克', 4.2, UM, 'D1 中心柱空间'),
+        ('球形托卡马克', 0.31, UM, 'ST 中心柱空间'),
+        ('球形托卡马克', 2.0723, UM, '屏蔽需求（附录 Z）'),
+        ('球形托卡马克', 6.6848, '', '屏蔽需求与中心柱之比'),
+        # AA.5 场反位形
+        ('场反位形', 0.5, UT, '外部磁场'),
+        ('场反位形', 99472, UPA, 'beta=1 的压力'),
+        ('场反位形', 6.2085e20, UM3, '对应密度'),
+        ('场反位形', 1e6, UA, '反平行电流（A）'),
+        ('场反位形', 1, UMA, '反平行电流（MA）'),
+        ('场反位形', 10, '', '长细比'),
+        ('场反位形', 75.87, '', '1/beta(D1)'),
+        # AA.6 定标
+        ('定标与三重积', 0.134, '', 'ISS04 系数'),
+        ('定标与三重积', 0.41, '', 'iota 指数'),
+        ('定标与三重积', 0.84, '', 'B 指数'),
+        ('定标与三重积', 0.142983, US, 'ISS04 tau_E'),
+        ('定标与三重积', 2.4762, US, 'D1 的 IPB98 tau_E'),
+        ('定标与三重积', 0.057743, '', '两者的比'),
+        ('定标与三重积', 2.28774e19, '', '三重积'),
+        ('定标与三重积', 3.1e21, '', '点火阈值'),
+        ('定标与三重积', 135.51, '', '差距倍数'),
+        ('定标与三重积', 1.0689, '', 'iota 提高后的倍数'),
+        ('定标与三重积', 6.8903, UPCT, 'iota 提高后的涨幅'),
+        # AA.7 练习
+        ('估算练习', 3.9789e5, UPA, '练习 3 的压力'),
+        ('估算练习', 2.4834e21, UM3, '练习 3 的密度'),
+        ('估算练习', 1.79, UPCT, '练习 6 的比压'),
+        ('估算练习', 0.8322, '', '练习 6 的归一化比压'),
+        ('估算练习', 0.353553, '', '练习 5 的 3/2 次方倍数'),
+    ]
+    bad = []
+    for sec, val, unit, why in cases:
+        if not value_in(found[sec], val, 1e-3, unit):
+            bad.append('%s：%s（%s）' % (sec, val, why))
+    if bad:
+        rec('FAIL', 'P', '附录 AA 有 %d 个数值未在小节内复算通过：%s'
+            % (len(bad), '；'.join(bad[:6])))
+    else:
+        rec('PASS', 'P', '附录 AA 的 %d 个关键数值均在小节内复算通过' % len(cases))
+
+    lits = [
+        ('3.06', '比压比不得四舍五入到 3.06'),
+        ('0.568\\ ', 'sqrt(eps) 不得写成 0.568'),
+        ('0.00148\\ ', 'eps_eff^{3/2} 不得写成 0.00148'),
+        ('0.0015', 'eps_eff^{3/2} 不得写成 0.0015'),
+        ('6.68\\ ', '中心柱比值不得写成 6.68'),
+        ('0.645\\ ', '极向场不得写成 0.645 T'),
+        ('0.079\\ ', '自举份额不得写成 0.079'),
+        ('99470', 'FRC 压力不得写成 99470 Pa'),
+        ('6.21\\times10^{20}', 'FRC 密度不得写成 6.21e20'),
+        ('0.143\\ ', 'ISS04 的 tau_E 不得写成 0.143 s'),
+        ('0.058', 'tau_E 之比不得写成 0.058'),
+        ('136\\ ', '三重积差距不得写成 136 倍'),
+    ]
+    for lit, why in lits:
+        lacks(text, lit, 'src/%s（%s）' % (APP_FILES['AA'], why))
+
+
 def check_P02_appendix_j_map():
     """附录 J 逐章对照表的完备性：覆盖 1--12 章、每行 5 列、章号不越界。
 
@@ -5596,8 +5859,10 @@ def check_P04_new_appendix_wiring():
     本轮修正后加此项防回归）。
     """
     t = read(os.path.join(SRC, MAIN))
-    letters = re.findall(r'\\appchapter\{附录([A-Z])[：:]', t)
-    want = [chr(ord('A') + i) for i in range(len(APP_FILES) + 8)]
+    letters = re.findall(r'\\appchapter\{附录([A-Z]{1,2})[：:]', t)
+    # 附录字母方案：A--Z 用完后接 AA、AB…（第 27 个不再是 chr(ord('A')+26)='['）
+    want = [(chr(ord('A') + i) if i < 26 else 'A' + chr(ord('A') + i - 26))
+            for i in range(len(APP_FILES) + 8)]
     if letters != want:
         rec('FAIL', 'P', '主文件附录字母不是 A--%s 连续：%s（共 %d 个）'
             % (want[-1], ''.join(letters), len(letters)))
@@ -5707,6 +5972,7 @@ def main():
     check_P29_appendix_x_radiation()
     check_P30_appendix_y_strongfield()
     check_P31_appendix_z_reactor()
+    check_P32_appendix_aa_alternates()
     check_P28_signed_quantities()
     check_P06_scattering_alpha()
     check_P09_tcbtheorem_arity()
