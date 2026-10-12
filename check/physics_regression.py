@@ -735,6 +735,7 @@ APP_FILES = {
     'W': 'appendix_w_fastparticle.tex',
     'X': 'appendix_x_radiation.tex',
     'Y': 'appendix_y_strongfield.tex',
+    'Z': 'appendix_z_reactor.tex',
 }
 
 # CODATA 2018 常数（与附录 D 的单位换算表同一组值）
@@ -5205,6 +5206,311 @@ def check_P30_appendix_y_strongfield():
         lacks(text, lit, 'src/%s（%s）' % (APP_FILES['Y'], why))
 
 
+# -*- coding: utf-8 -*-
+"""附录 Z（聚变堆工程）的门禁体：P31。
+
+可证伪点
+  ① 八个小节、七张表、六只语义盒、二十一个公式的标签缺一即 FAIL；
+  ② 「出处：」不足 6 处、练习与解答不足 6 道即 FAIL；
+  ③ 表 Z.1–Z.6 的关键数字按**所在小节**复算（rel=1e-3）——把数字搬到别的小节即 FAIL；
+  ④ 整行字面绑定：表头、表行、语义盒标题、关键判断句被改写即 FAIL；
+  ⑤ 口径回流防护：已经纠正过的旧写法（二十个百分点、四舍五入后的 640 MW 等）回流即 FAIL。
+"""
+
+
+def check_P31_appendix_z_reactor():
+    """附录 Z：聚变堆工程的结构、出处、练习与数值核对。"""
+    spath = os.path.join(SRC, APP_FILES['Z'])
+    if not os.path.exists(spath):
+        rec('FAIL', 'P', '附录 Z 文件缺失：%s' % spath)
+        return
+
+    text = strip_comments(read(spath))
+    secs = split_blocks(text, 'section')
+
+    # ---------- ① 小节齐全 ----------
+    want = [
+        '三本账接起来',
+        '中子：壁负载',
+        '氚循环',
+        '屏蔽与超导磁体',
+        '热工与冷却剂',
+        '可用率与年发电量',
+        '估算练习',
+        '来源、分级与版权说明',
+    ]
+    found = {}
+    for pre in want:
+        for ttl, blk in secs:
+            if pre in ttl:
+                found[pre] = blk
+                break
+    miss = [p for p in want if p not in found]
+    if miss:
+        rec('FAIL', 'P', '附录 Z 缺小节：%s' % '、'.join(miss))
+        return
+    rec('PASS', 'P', '附录 Z 的 %d 个小节齐全' % len(want))
+
+    # ---------- ② 表 / 语义盒 / 公式标签 ----------
+    for lab in ('tab:app-z-chain', 'tab:app-z-neutron', 'tab:app-z-tritium',
+                'tab:app-z-shield', 'tab:app-z-thermal', 'tab:app-z-availability',
+                'tab:app-z-source'):
+        has(text, '\\label{%s}' % lab, 'src/%s（表 %s）' % (APP_FILES['Z'], lab))
+    for lab in ('tip-app-z-chain', 'tip-app-z-neutron', 'tip-app-z-tbr',
+                'tip-app-z-thermal', 'tip-app-z-availability', 'tip-app-z-honest'):
+        has(text, '{%s}' % lab, 'src/%s（语义盒 %s）' % (APP_FILES['Z'], lab))
+    for lab in ('eq:app-z-pn', 'eq:app-z-pth', 'eq:app-z-pgross', 'eq:app-z-pnet',
+                'eq:app-z-qeng', 'eq:app-z-qn', 'eq:app-z-dpa', 'eq:app-z-life',
+                'eq:app-z-burnj', 'eq:app-z-burnrate', 'eq:app-z-decay',
+                'eq:app-z-tbrbreak', 'eq:app-z-excess', 'eq:app-z-proc',
+                'eq:app-z-shield', 'eq:app-z-cryo', 'eq:app-z-mdot',
+                'eq:app-z-pump', 'eq:app-z-eyear', 'eq:app-z-eyearnum',
+                'eq:app-z-gain85'):
+        has(text, '\\label{%s}' % lab, 'src/%s（公式 %s）' % (APP_FILES['Z'], lab))
+    has(text, '不复制', 'src/%s（版权与复现口径）' % APP_FILES['Z'])
+
+    # ---------- ③ 出处与练习 ----------
+    n_src = len(re.findall(r'\\textbf\{出处：\}', text))
+    if n_src < 6:
+        rec('FAIL', 'P', '附录 Z 的「出处：」声明只有 %d 处（要求 >= 6）' % n_src)
+    else:
+        rec('PASS', 'P', '附录 Z 的「出处：」声明 %d 处' % n_src)
+
+    n_ex = len(re.findall(r'\\textbf\{练习\s*\d+', text))
+    n_ans = len(re.findall(r'\\textbf\{解答(\s*\d+)?\}', text))
+    if n_ex < 6 or n_ans < n_ex:
+        rec('FAIL', 'P', '附录 Z 的练习 %d 道 / 解答 %d 条（要求 >= 6 且解答不少于练习）'
+            % (n_ex, n_ans))
+    else:
+        rec('PASS', 'P', '附录 Z 的练习 %d 道、解答 %d 条' % (n_ex, n_ans))
+
+    # ---------- ④ 整行字面绑定 ----------
+    lits = [
+        # 表 Z.1 四步能量链
+        ('环节 & 数值 & 乘子 & 备注 \\\\', '表 Z.1 表头'),
+        ('聚变功率 & $556.5\\ \\mathrm{MW}$ & --- & D1 工作点 \\\\', '表 Z.1 聚变功率行'),
+        ('alpha / 中子分配 & $111.3$ / $445.2\\ \\mathrm{MW}$ & $1/5$ 与 $4/5$ & 本书统一口径 \\\\',
+         '表 Z.1 分配行'),
+        ('包层热功率 & $639.97\\ \\mathrm{MW}$ & $M = 1.15$ & 声明值 \\\\', '表 Z.1 包层行'),
+        ('毛电功率 & $255.99\\ \\mathrm{MW}$ & $\\eta_{\\mathrm{th}} = 0.40$ & 声明值 \\\\',
+         '表 Z.1 毛电行'),
+        ('净电功率 & $217.59\\ \\mathrm{MW}$ & $1-f_{\\mathrm{rec}} = 0.85$ & 再循环 15\\% \\\\',
+         '表 Z.1 净电行'),
+        ('工程增益 & $Q_{\\mathrm{eng}} = 4.3518$ & $P_{\\mathrm{net}}/P_{\\mathrm{aux}}$ & 对照 $Q = 11.13$ \\\\',
+         '表 Z.1 工程增益行'),
+        # 表 Z.2 中子
+        ('第一壁面积 & $489.532\\ \\mathrm{m^2}$ & 装置几何 & 与附录 X 同口径 \\\\',
+         '表 Z.2 壁面积行'),
+        ('中子壁负载 & $0.90944\\ \\mathrm{MW\\,m^{-2}}$ & $P_n/A_{\\mathrm{wall}}$ & 上限的 $0.45472$ \\\\',
+         '表 Z.2 壁负载行'),
+        ('壁负载余量 & $2.1992$ 倍 & 上限 $2\\ \\mathrm{MW\\,m^{-2}}$ & 声明上限 \\\\',
+         '表 Z.2 余量行'),
+        ('位移损伤率 & $4.5472\\ \\mathrm{dpa\\,year^{-1}}$ & $5\\,q_n$ & 声明系数 \\\\',
+         '表 Z.2 dpa 行'),
+        ('包层寿命 & $10.996$ 年 & $50/\\dot d$ & 必须可更换 \\\\', '表 Z.2 寿命行'),
+        ('年输运能量 & $1.4049\\times10^{7}\\ \\mathrm{GJ}$ & $P_n\\times1$ 年 & 必须被包层收下 \\\\',
+         '表 Z.2 年能量行'),
+        # 表 Z.3 氚
+        ('氚燃耗率 & $31.191\\ \\mathrm{kg\\,year^{-1}}$ & $P_{\\mathrm{fus}}N_Tm_T$ & $=85.397\\ \\mathrm{g/day}$ \\\\',
+         '表 Z.3 燃耗行'),
+        ('每 GW 聚变功率 & $56.049\\ \\mathrm{kg\\,year^{-1}}$ & 同上一行 & 记住这个数 \\\\',
+         '表 Z.3 每 GW 行'),
+        ('库存自衰变 & $0.11252\\ \\mathrm{kg\\,year^{-1}}$ & $\\lambda m_{\\mathrm{inv}}$ & 库存 $2\\ \\mathrm{kg}$ \\\\',
+         '表 Z.3 衰变行'),
+        ('自持 TBR 下限 & $1.0036$ & $1+\\dot m_{\\mathrm{decay}}/\\dot m_T$ & 只要千分之四 \\\\',
+         '表 Z.3 自持下限行'),
+        ('声明 TBR & $1.10$ & 工程余量 & 净增 $3.0066\\ \\mathrm{kg\\,year^{-1}}$ \\\\',
+         '表 Z.3 声明 TBR 行'),
+        ('处理流量 & $12\\ \\mathrm{kg/day}$ & $m_{\\mathrm{inv}}/\\tau_{\\mathrm{proc}}$ & $\\tau = 4\\ \\mathrm{h}$ \\\\',
+         '表 Z.3 处理流量行'),
+        # 表 Z.4 屏蔽
+        ('衰减长度 & $0.15\\ \\mathrm{m}$ & 声明值 & 钢/水/硼体系量级 \\\\', '表 Z.4 衰减长度行'),
+        ('屏蔽厚度（$10^{-6}$） & $2.0723\\ \\mathrm{m}$ & $\\lambda\\ln(1/\\varepsilon)$ & 两米厚 \\\\',
+         '表 Z.4 屏蔽厚度行'),
+        ('漏到磁体 & $445.2\\ \\mathrm{W}$ & $\\varepsilon P_n$ & 作为冷负荷 \\\\',
+         '表 Z.4 漏中子行'),
+        ('制冷电功 & $133.56\\ \\mathrm{kW}$ & $\\mathrm{COP}\\,\\varepsilon P_n$ & 占净电 $0.061381\\%$ \\\\',
+         '表 Z.4 制冷行'),
+        # 表 Z.5 热工
+        ('冷却剂比热 & $5.2\\ \\mathrm{kJ\\,kg^{-1}K^{-1}}$ & 声明值（氦） & 温升 $200\\ \\mathrm{K}$ \\\\',
+         '表 Z.5 比热行'),
+        ('质量流量 & $615.36\\ \\mathrm{kg\\,s^{-1}}$ & $P_{\\mathrm{th}}/(c_p\\Delta T)$ & 每秒六百多公斤 \\\\',
+         '表 Z.5 流量行'),
+        ('泵功率 & $6.3997\\ \\mathrm{MW}$ & $0.01P_{\\mathrm{th}}$ & 占毛电 $2.5\\%$ \\\\',
+         '表 Z.5 泵功率行'),
+        # 表 Z.6 可用率
+        ('可用率 & $0.75$ & 声明值 & 含换包层与检修 \\\\', '表 Z.6 可用率行'),
+        ('年发电量 & $1429.6\\ \\mathrm{GWh}$ & $P_{\\mathrm{net}}\\times8760\\,\\mathrm{h}\\times A$ & $5.14647\\times10^{15}\\ \\mathrm{J}$ \\\\',
+         '表 Z.6 年发电量行'),
+        ('年停机 & $2190\\ \\mathrm{h}$ & $8760\\times(1-A)$ & 一年四分之一停着 \\\\',
+         '表 Z.6 年停机行'),
+        ('可用率提到 $0.85$ & $1620.2\\ \\mathrm{GWh}$ & 同上 & 增幅 $13.333\\%$ \\\\',
+         '表 Z.6 可用率提升行'),
+        ('折合标煤 & $0.48606$ 百万吨 & $0.34\\ \\mathrm{kg/kWh}$ & 声明口径 \\\\',
+         '表 Z.6 标煤行'),
+        # 表 Z.7 来源表表头
+        ('本附录内容 & 借鉴来源 & 在本书里的位置 \\\\', '表 Z.7 来源表表头'),
+        # 六只语义盒：标题与标签一起锁定
+        ('\\begin{tip}{工程账是乘法，不是加法}{tip-app-z-chain}',
+         '语义盒「工程账是乘法，不是加法」'),
+        ('\\begin{tip}{难受的不是热，是 dpa}{tip-app-z-neutron}',
+         '语义盒「难受的不是热，是 dpa」'),
+        ('\\begin{tip}{自持只看两个数，余量留给不确定性}{tip-app-z-tbr}',
+         '语义盒「自持只看两个数」'),
+        ('\\begin{tip}{两本账要对得上：泵功率在哪一边}{tip-app-z-thermal}',
+         '语义盒「两本账要对得上」'),
+        ('\\begin{tip}{可用率是「另一半增益」}{tip-app-z-availability}',
+         '语义盒「可用率是另一半增益」'),
+        ('\\begin{tip}{把「声明值」列成一张清单}{tip-app-z-honest}',
+         '语义盒「把声明值列成一张清单」'),
+        # 正文关键判断
+        ('$1.15\\times0.40\\times0.85 = 0.391$', 'Z.1 的乘法链实例'),
+        ('每 $1\\ \\mathrm{MW}$ 聚变功率只能送出', 'Z.1 的「每兆瓦只送出」判断句'),
+        ('误差最大 $0.57143\\%$（alpha 侧）', 'Z.1 的口径误差声明'),
+        ('相当于一座千兆瓦级电站半年的发电量', 'Z.2 的能量量级对照句'),
+        ('十个百分点的可用率，换来 $13.333\\%$ 的年发电量', 'Z.6 的核心判断句（曾是二十个百分点）'),
+    ]
+    for lit, why in lits:
+        has(text, lit, 'src/%s（%s）' % (APP_FILES['Z'], why))
+
+    # ---------- ⑤ 单位常量 ----------
+    UMW = r'\mathrm{MW}'
+    UMWM2 = r'\mathrm{MW\,m^{-2}}'
+    UDBA = r'\mathrm{dpa\,year^{-1}}'
+    UGJ = r'\mathrm{GJ}'
+    UKGY = r'\mathrm{kg\,year^{-1}}'
+    UKGD = r'\mathrm{kg/day}'
+    UMG = r'\mathrm{m}'
+    UW = r'\mathrm{W}'
+    UKW = r'\mathrm{kW}'
+    UKJKG = r'\mathrm{kJ\,kg^{-1}K^{-1}}'
+    UK = r'\mathrm{K}'
+    UKGS = r'\mathrm{kg\,s^{-1}}'
+    UGWH = r'\mathrm{GWh}'
+    UH = r'\mathrm{h}'
+    UM2 = r'\mathrm{m^2}'
+    UJ = r'\mathrm{J}'
+    UGD = r'\mathrm{g/day}'
+    UKGH = r'\mathrm{kg\,h^{-1}}'
+    UYINV = r'\mathrm{year^{-1}}'
+    UJINV = r'\mathrm{J^{-1}}'
+    UKS = r'\mathrm{kg\,s^{-1}}'
+    UPCT = r'\%'
+
+    # ---------- ⑥ 逐节数值复算（rel=1e-3）----------
+    cases = [
+        # Z.1 四步能量链
+        ('三本账接起来', 556.5, UMW, '聚变功率'),
+        ('三本账接起来', 111.3, '', 'alpha 功率'),
+        ('三本账接起来', 445.2, UMW, '中子功率'),
+        ('三本账接起来', 0.1989, '', '精确 alpha 份额'),
+        ('三本账接起来', 0.8011, '', '精确中子份额'),
+        ('三本账接起来', 0.57143, UPCT, '1/5 口径的相对偏差'),
+        ('三本账接起来', 639.97, UMW, '包层热功率'),
+        ('三本账接起来', 255.99, UMW, '毛电功率'),
+        ('三本账接起来', 217.59, UMW, '净电功率'),
+        ('三本账接起来', 0.34, '', '整链净效率'),
+        ('三本账接起来', 11.13, '', 'Q'),
+        ('三本账接起来', 4.3518, '', 'Q_eng'),
+        ('三本账接起来', 2.5575, '', 'Q/Q_eng'),
+        ('三本账接起来', 0.391, '', '每兆瓦聚变对应的净电'),
+        # Z.2 中子
+        ('中子：壁负载', 489.532, UM2, '第一壁面积'),
+        ('中子：壁负载', 0.90944, UMWM2, '中子壁负载'),
+        ('中子：壁负载', 2.1992, '', '壁负载余量'),
+        ('中子：壁负载', 0.45472, '', '壁负载 / 上限'),
+        ('中子：壁负载', 4.5472, UDBA, '位移损伤率'),
+        ('中子：壁负载', 10.996, '', '包层寿命'),
+        ('中子：壁负载', 1.4049e7, UGJ, '年输运能量'),
+        # Z.3 氚
+        ('氚循环', 3.54631e11, UJINV, '每焦耳氚原子数'),
+        ('氚循环', 5.00827e-27, '', '氚原子质量'),
+        ('氚循环', 9.88393e-7, UKS, '燃耗率'),
+        ('氚循环', 85.397, UGD, '燃耗率（g/day）'),
+        ('氚循环', 31.191, UKGY, '燃耗率（kg/年）'),
+        ('氚循环', 56.049, UKGY, '每 GW 聚变功率'),
+        ('氚循环', 0.0562619, UYINV, '衰变常数'),
+        ('氚循环', 0.11252, UKGY, '库存自衰变'),
+        ('氚循环', 0.30807, UGD, '库存自衰变（g/day）'),
+        ('氚循环', 1.0036, '', '自持 TBR 下限'),
+        ('氚循环', 3.0066, UKGY, 'TBR=1.10 的净增'),
+        ('氚循环', 0.5, UKGH, '处理流量'),
+        ('氚循环', 12, UKGD, '处理流量（kg/day）'),
+        # Z.4 屏蔽
+        ('屏蔽与超导磁体', 0.15, UMG, '衰减长度'),
+        ('屏蔽与超导磁体', 2.0723, UMG, '屏蔽厚度'),
+        ('屏蔽与超导磁体', 445.2, UW, '漏到磁体的功率'),
+        ('屏蔽与超导磁体', 133.56, UKW, '制冷电功'),
+        ('屏蔽与超导磁体', 0.061381, UPCT, '制冷占净电份额'),
+        # Z.5 热工
+        ('热工与冷却剂', 5.2, UKJKG, '冷却剂比热'),
+        ('热工与冷却剂', 200, UK, '冷却剂温升'),
+        ('热工与冷却剂', 615.36, UKGS, '质量流量'),
+        ('热工与冷却剂', 6.3997, UMW, '泵功率'),
+        ('热工与冷却剂', 2.5, UPCT, '泵功率占毛电份额'),
+        ('热工与冷却剂', 0.01, '', '泵份额系数'),
+        # Z.6 可用率
+        ('可用率与年发电量', 0.75, '', '可用率'),
+        ('可用率与年发电量', 1429.6, UGWH, '年发电量'),
+        ('可用率与年发电量', 5.14647e15, UJ, '年发电量（J）'),
+        ('可用率与年发电量', 2190, UH, '年停机小时'),
+        ('可用率与年发电量', 0.85, '', '提高后的可用率'),
+        ('可用率与年发电量', 1620.2, UGWH, '提高后的年发电量'),
+        ('可用率与年发电量', 13.333, UPCT, '年发电量增幅'),
+        ('可用率与年发电量', 0.48606, '', '折合标煤'),
+        # Z.7 练习
+        ('估算练习', 723.45, UMW, '练习 1 的 P_th'),
+        ('估算练习', 289.38, UMW, '练习 1 的毛电'),
+        ('估算练习', 245.97, UMW, '练习 1 的净电'),
+        ('估算练习', 1.1304, '', '练习 1 的倍数'),
+        ('估算练习', 287.99, UMW, '练习 2 的毛电'),
+        ('估算练习', 244.79, UMW, '练习 2 的净电'),
+        ('估算练习', 12.5, UPCT, '练习 2 的涨幅'),
+        ('估算练习', 0.45472, UMWM2, '练习 3 的壁负载'),
+        ('估算练习', 4.3983, '', '练习 3 的余量'),
+        ('估算练习', 2.7631, UMG, '练习 4 的屏蔽厚度'),
+        ('估算练习', 0.69078, UMG, '练习 4 的增厚'),
+        ('估算练习', 0.05, '', '练习 5 的 TBR 增量'),
+        ('估算练习', 1.447, UKGY, '练习 5 的净增'),
+        ('估算练习', 0.55086, '', '练习 6 的折合标煤'),
+    ]
+    bad = []
+    for sec, val, unit, why in cases:
+        if not value_in(found[sec], val, 1e-3, unit):
+            bad.append('%s：%s（%s）' % (sec, val, why))
+    if bad:
+        rec('FAIL', 'P', '附录 Z 有 %d 个数值未在小节内复算通过：%s'
+            % (len(bad), '；'.join(bad[:6])))
+    else:
+        rec('PASS', 'P', '附录 Z 的 %d 个关键数值均在小节内复算通过' % len(cases))
+
+    # ---------- ⑦ 口径回流防护 ----------
+    lits = [
+        ('640\\ \\mathrm{MW}', '包层热功率不得四舍五入到 640 MW'),
+        ('256\\ \\mathrm{MW}', '毛电功率不得四舍五入到 256 MW'),
+        ('218\\ \\mathrm{MW}', '净电功率不得四舍五入到 218 MW'),
+        ('0.91\\ \\mathrm{MW', '中子壁负载不得四舍五入到 0.91 MW/m^2'),
+        ('4.55\\ \\mathrm{dpa', 'dpa 率不得四舍五入到 4.55'),
+        ('11.0\\ ', '包层寿命不得写成 11.0 年'),
+        ('31.2\\ \\mathrm{kg', '氚燃耗率不得四舍五入到 31.2 kg/年'),
+        ('56.0\\ \\mathrm{kg', '每 GW 燃耗不得写成 56.0 kg/年'),
+        ('0.11\\ \\mathrm{kg', '库存衰变不得四舍五入到 0.11 kg/年'),
+        ('3.0\\ \\mathrm{kg', 'TBR 净增不得四舍五入到 3.0 kg/年'),
+        ('2.07\\ \\mathrm{m}', '屏蔽厚度不得四舍五入到 2.07 m'),
+        ('133.6\\ ', '制冷电功不得四舍五入到 133.6 kW'),
+        ('0.061\\%', '制冷份额不得写成 0.061%'),
+        ('615\\ \\mathrm{kg', '质量流量不得四舍五入到 615 kg/s'),
+        ('6.4\\ \\mathrm{MW', '泵功率不得四舍五入到 6.4 MW'),
+        ('1430\\ ', '年发电量不得四舍五入到 1430 GWh'),
+        ('0.49\\ ', '折合标煤不得四舍五入到 0.49 百万吨'),
+        ('0.55\\ ', '提高后的标煤不得四舍五入到 0.55 百万吨'),
+        ('2.76\\ \\mathrm{m}', '练习 4 的厚度不得四舍五入到 2.76 m'),
+        ('二十个百分点', '可用率措辞不得写成「二十个百分点」'),
+    ]
+    for lit, why in lits:
+        lacks(text, lit, 'src/%s（%s）' % (APP_FILES['Z'], why))
+
+
 def check_P02_appendix_j_map():
     """附录 J 逐章对照表的完备性：覆盖 1--12 章、每行 5 列、章号不越界。
 
@@ -5400,6 +5706,7 @@ def main():
     check_P27_appendix_w_fastparticle()
     check_P29_appendix_x_radiation()
     check_P30_appendix_y_strongfield()
+    check_P31_appendix_z_reactor()
     check_P28_signed_quantities()
     check_P06_scattering_alpha()
     check_P09_tcbtheorem_arity()
