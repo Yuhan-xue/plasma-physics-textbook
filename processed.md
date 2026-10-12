@@ -4003,3 +4003,65 @@ PAT = r'(?<![A-Za-z!])(blue|red|green|…)(!\d+(?:![a-z]+)?)?'
 - 版本串 `pdftitle` 与封面可见串升 **v1.26.3**；三处版本一致性检查（pdftitle / 封面 / PDF Title 元数据）全部通过。
 - 六套件 `37/57/14/1352/15/11` 全 FAIL 0、五夹具全 PASS、391 页 / 392 书签、Overfull 5 处基线。
 - tag `v1.26.3`、远端 refs、Gitea release 与资产独立复核见 release 页面。
+
+## 37. 第 36–41 轮（v1.26.4）：把插图守卫做成「四层落地」
+
+### 37.1 四层是什么
+
+「插图配色规范」这条要求，最后是这样落地的：
+
+| 层 | 载体 | 作用 |
+|---|---|---|
+| ① 规范 | 主文件导言区（Okabe–Ito 八色 + 语义绑定 + 线宽/箭头约定） | 定义「什么是对的」 |
+| ② 检查 | `check/figure_layout.py` 的 `check_figure_palette()`（第 15 项） | 每次跑套件都扫一遍 src，违规即 FAIL |
+| ③ 夹具 | `gate_figure_layout.py` 第 7 个用例 `palette` | 证明「检查真的会红」，而不是永远 PASS |
+| ④ 文档 | README 的项数、验证方式与版本行 | 让后人知道去哪看、怎么复跑 |
+
+四层缺一不可：**只有②** 会让人怀疑检查是不是永远绿；**只有③** 则日常没有守卫；
+**没有④** 下一次改的人不知道有这条规矩。
+
+### 37.2 夹具为什么不能只造合成 PDF
+
+前 6 个用例都是 PyMuPDF 现场合成一张 PDF，再让套件去读；但**配色检查是静态扫 `src/*.tex` 的**，
+与 PDF 无关。所以第 7 个用例换了手法：
+
+```
+植入：把 src/ch3_supplement.tex 里第一处色板名 figGreen 改成内置色名 blue
+跑套件：期望 exit=1 且命中「用了写死颜色」
+复原：按原字节写回 + SHA256 比对（不一致即判 [X]）
+```
+
+实测输出：
+
+```
+[OK] palette  exit=1 want=1 needles=1/1 log=tmp/figlayout-fixture/logs/palette.txt
+fixture verdict: PASS
+```
+
+**「复原」这一步是夹具里最容易漏的部分**：夹具改了真实源码，一旦中途异常退出而没复原，
+下一次跑套件就会看到被污染的仓库。因此复原写在 `finally` 里，并额外做 SHA256 校验。
+
+### 37.3 本轮（第 41 轮）的验收
+
+`python tmp/battery_v1261.py` 在 `53b0147` 上一次性全绿：
+
+- 六套件：`full_check 37` / `ui_readability 57`（WARN 36）/ `consistency_audit 14` /
+  `physics_regression 1352` / **`figure_layout 15`** / `pdf_outline 11`（WARN 2）——FAIL 全 0；
+- 五夹具：`gate_compile_log` / `gate_physics_negative` / **`gate_figure_layout`（7 用例）** /
+  `gate_pdf_outline` / `gate_g2_listing`——全 PASS。
+
+### 37.4 教训
+
+1. **守卫要「四层落地」**：规范、检查、夹具、文档各一层，缺一层都会在下次改动时失效。
+2. **静态检查的夹具不能用合成 PDF 糊弄**：检查读什么，夹具就要造什么——
+   读源码就植入源码，并且**必须字节级复原**。
+3. **夹具自己也会缺依赖**：本轮夹具原本没有 `import re`，脚本的断言把它挡在落盘前，顺手补齐即可；
+   **断言的价值就在于让这种小缺口变成一次中止，而不是一次静默的错误。**
+4. **小改动也要跑全量电池**：这轮只动了检查与文档，电池仍全绿——这恰好**证明正文与 PDF 未被牵动**
+   （391 页 / 392 书签的产物没变），而不是「大概没事」。
+
+### 37.5 发布记录（v1.26.4）
+
+- 版本串 `pdftitle` 与封面可见串升 **v1.26.4**；三处版本一致性检查（pdftitle / 封面 / PDF 元数据）通过。
+- 六套件与五夹具全绿、391 页 / 392 书签、Overfull 5 处基线。
+- tag `v1.26.4`、远端 refs、Gitea release 与资产独立复核见 release 页面。
