@@ -3564,5 +3564,30 @@ README 127115 → **131556 字节**。
 
 ### 31.8 发布记录（v1.25.0）
 
-（待回填：内容/文档/回填三笔提交与改动行数、tag 对象与远端 refs、Gitea release id 与附件地址、
-独立复核的字节数与 SHA256、远端 `reviews/` 与 `todo/` 的结果、汇报图文件名。）
+- 内容提交 `098e33d`（`src/appendix_aa_alternates.tex` +513、`check/physics_regression.py` +270、
+  `check/fixtures/gate_physics_negative.py` +70/−、`check/consistency_audit.py` 10 行、
+  `check/pdf_outline.py` 4 行、`src/plasma_physics_textbook_v2.tex` 17 行（挂载 + 版本串 +
+  字母方案 \xdef）、PDF 2 643 088 → 2 686 164 B；7 文件 +873/−11），文档提交 `bde907d`
+  （`README.md` 389 页 / 27 附录 A–AA / 附录清单补 AA / 门禁 1319 项 / 夹具 215 处 /
+  新增 P32 守卫段（含字母方案升级的五处改动与 LaTeX 三个坑）/ 目录页数历史补 v1.25.0 /
+  O3a–O3b 分母 16/391 / v1.25.0 版本行 / src 目录树补 `appendix_aa_alternates.tex` 与 `I--AA`；
+  `processed.md` 第 31 节）。
+- tag `v1.25.0` = 标签对象 `1c69034db8bc88d4cb515b352a80cc632df41182` → 文档提交 `bde907d`；
+  双推 `8937179..bde907d main` 与 `* [new tag] v1.25.0`，之后远端
+  `refs/heads/main = bde907d48aca7fee7e7d918389cebb1793642fe0`、
+  `refs/tags/v1.25.0 = 1c69034db8bc88d4cb515b352a80cc632df41182`。
+- Gitea release **id=125**（上一轮 v1.24.0 为 124，仓库累计 release 数 **33**），
+  `http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.25.0`；
+  资产 `plasma_physics_textbook_v2.pdf` 2 686 164 B，
+  附件地址 `http://zsyq.hxlab.tech:3000/attachments/d391e1b7-d0a2-4cbb-83e7-3fec0ae9fda8`。
+- 独立复核（清四个代理变量 + `curl.exe -sS -L --noproxy '*'` 下载附件后比 SHA256）：
+  远程与本地均 2 686 164 B、
+  `F78D481465A4C976AA920767E5EA45043857F7156835F76F804B951AEF8ED7C7`，**逐字节一致**。
+- 远程 `reviews/` 仍为 `2026-10-10-independent`（31 项）与 `2026-10-11-scheduled`（35 项），
+  合计 66 项，本轮**没有新的评审**；远端仓库根目录仍无 `todo/`（API 返回 404）。
+- 汇报图：`tmp/png_v1250/` 下 `book_cover_v1250.png`（书名页，看版本串）、
+  `appAA_cover.png`（第 382 页首页，附录 AA 的第 1 页）、7 张表格裁剪（`appAA_tab1..7.png`）与
+  6 张语义盒裁剪（`appAA_tip_{map,iota,eps,st,frc,honest}.png`），
+  由 `tmp/render_v1250.py` 渲染；一页速览为 `tmp/png_v1250/v1250_summary.png`
+  （`tmp/mkimg_v1250.py`）。
+
