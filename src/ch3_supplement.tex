@@ -160,18 +160,20 @@ v_{\text{drift},D} = \frac{2\times 1.602\times 10^{-15}}{(1.602\times 10^{-19})\
 }
 \node[right] at (1.5,1.5) {$\vect{B}\parallel +\unitvec{z}$};
 
-% 电场向上
-\draw[->,red,thick] (0,1.5) -- (0,2.3) node[right] {$\vect{E}$};
+% 电场向上（E 标签沿箭头下移：旧版 node[right] 落在箭头顶端，与 y 轴标签叠印）
+\draw[->,red,thick] (0,1.5) -- (0,2.3) node[right,pos=0.35] {$\vect{E}$};
 
 % 正离子轨迹：顺时针回旋 + 向右漂移
 % （B 出纸面、初速向右时，F=qv×B 指向下方，故正离子顺时针）
 \draw[blue,thick,domain=0:720,samples=200,smooth] plot({0.7*cos(-\x)+0.08*\x/180},{0.7*sin(-\x)});
 \fill[blue] (0.7,0) circle (2pt);
-\node[blue,align=center] at (0.8,-1.2) {正离子\\$r_{ci}\sim 1\,\mathrm{mm}$};
+% 标签移到 ⊙ 点阵下方：旧版压在摆线下缘，且 r_ci 一行与 v_E 箭头首尾相接
+\node[blue] at (0.8,-1.35) {正离子};
+\node[blue] at (0.35,-1.75) {$r_{ci}\sim 1\,\mathrm{mm}$};
 \draw[->,blue,thick] (0.7,0) -- (0.72,-0.22);
 
 % 漂移方向
-\draw[->,blue!60!black,very thick] (1.5,-1.5) -- (2.3,-1.5) node[right] {$\vect{v}_E$};
+\draw[->,blue!60!black,very thick] (1.7,-1.5) -- (2.4,-1.5) node[right] {$\vect{v}_E$};
 \end{scope}
 
 % 右图：电子
@@ -187,18 +189,20 @@ v_{\text{drift},D} = \frac{2\times 1.602\times 10^{-15}}{(1.602\times 10^{-19})\
 }
 \node[right] at (1.5,1.5) {$\vect{B}\parallel +\unitvec{z}$};
 
-% 电场向上
-\draw[->,red,thick] (0,1.5) -- (0,2.3) node[right] {$\vect{E}$};
+% 电场向上（E 标签沿箭头下移：旧版与 y 轴标签叠印）
+\draw[->,red,thick] (0,1.5) -- (0,2.3) node[right,pos=0.35] {$\vect{E}$};
 
 % 电子轨迹：逆时针回旋 + 向右漂移
 % （负电荷受力方向与正离子相反，故逆时针）
 \draw[orange,thick,domain=0:720,samples=200,smooth] plot({0.2*cos(\x)+0.08*\x/180},{0.2*sin(\x)});
 \fill[orange] (0.2,0) circle (1.5pt);
-\node[orange,align=center] at (0.3,-0.6) {电子\\$r_{ce}\sim 70\,\mu\mathrm{m}$};
+% 标签移到 ⊙ 点阵下方：旧版压在摆线上，r_ce 一行横穿 ⊙ 点阵
+\node[orange] at (0.3,-1.35) {电子};
+\node[orange] at (0.35,-1.75) {$r_{ce}\sim 70\,\mu\mathrm{m}$};
 \draw[->,orange,thick] (0.2,0) -- (0.22,0.08);
 
 % 漂移方向
-\draw[->,orange!60!black,very thick] (1.5,-1.5) -- (2.3,-1.5) node[right] {$\vect{v}_E$};
+\draw[->,orange!60!black,very thick] (1.7,-1.5) -- (2.4,-1.5) node[right] {$\vect{v}_E$};
 \end{scope}
 \end{tikzpicture}
 \caption{$E\times B$ 漂移的摆线轨迹。磁场垂直纸面向外（$+\unitvec{z}$），电场沿 $+y$ 方向。取初速度方向向右：正电荷受力 $q\vect{v}\times\vect{B}$ 指向下方，故\textbf{正离子顺时针回旋}；电子受力反向，故\textbf{电子逆时针回旋}。两者回旋方向相反，但漂移方向相同（均沿 $+\unitvec{x}$，因 $\vect{v}_E=\vect{E}\times\vect{B}/B^2$ 与电荷符号无关）。}
@@ -216,9 +220,10 @@ v_{\text{drift},D} = \frac{2\times 1.602\times 10^{-15}}{(1.602\times 10^{-19})\
 \draw[thick,blue] (-0.5,0.5) -- (-0.5,-0.5);
 \draw[thick,blue] (0.5,0.5) -- (0.5,-0.5);
 
-% 磁场标注
-\node[blue,right] at (2,2.5) {$B_{\max}$};
-\node[blue] at (0,0) {$B_{\min}$};
+% 磁场标注（B_min 旧版放在 (0,0)——损失锥顶点、两条轨迹与两支角弧的交汇点，
+% 印出来是一团；改到镜体正下方空处）
+\node[blue,right] at (2.1,2.9) {$B_{\max}$};
+\node[blue] at (0,-3.4) {$B_{\min}$（喉部）};
 \draw[->,blue] (1.8,2.8) -- (1.2,2.2);
 \draw[->,blue] (-1.8,2.8) -- (-1.2,2.2);
 \draw[->,blue] (1.8,-2.8) -- (1.2,-2.2);
@@ -229,20 +234,19 @@ v_{\text{drift},D} = \frac{2\times 1.602\times 10^{-15}}{(1.602\times 10^{-19})\
 \draw[red,thick] (-1.5,-2.5) -- (0,0) -- (1.5,-2.5);
 \draw[red,->] (0,0.4) arc (90:55:0.4);
 \draw[red,->] (0,-0.4) arc (-90:-55:0.4);
-\node[red] at (0.25,1.5) {$\theta_m$};
-\node[red] at (0.25,-1.5) {$\theta_m$};
+% θ_m 标在锥线端点外侧：旧版放在 (±0.25,±1.5)，正落在轨迹与锥线之间
+\node[red,right] at (1.6,2.6) {$\theta_m$};
+\node[red,right] at (1.6,-2.6) {$\theta_m$};
 
-% 被反射粒子（大角度）
-\draw[green!60!black,thick,->] (0,-2.2) -- (0.2,-1.2) -- (0,-0.3);
-\draw[green!60!black,thick,->] (0,-0.3) -- (-0.2,0.8) -- (0,1.8);
-\node[green!60!black,right] at (0.4,-1.5) {被反射};
-\node[green!60!black] at (-0.6,1.0) {\small $\theta>\theta_m$};
+% 被反射粒子（θ>θ_m：轨迹全程在损失锥外，向镜点运动时被反射）
+\draw[green!60!black,thick,->] (-1.45,-2.2) -- (-1.0,-1.2) -- (-1.2,-0.4) -- (-1.3,0.8) -- (-1.35,1.95);
+\node[green!60!black,left] at (-1.4,1.35) {\small $\theta>\theta_m$};
+\node[green!60!black,left] at (-1.8,-2.2) {被反射};
 
-% 逃逸粒子（小角度）
-\draw[orange,thick,->] (0,-2.2) -- (0.1,-1.2) -- (0.2,-0.3);
-\draw[orange,thick,->] (0.2,-0.3) -- (0.5,0.8) -- (1.0,2.2);
-\node[orange,right] at (1.2,1.5) {逃逸};
-\node[orange] at (0.8,0.2) {\small $\theta<\theta_m$};
+% 逃逸粒子（θ<θ_m：轨迹全程在损失锥内，穿过镜点）
+\draw[orange,thick,->] (0.3,-2.2) -- (0.35,-1.2) -- (0.4,-0.4) -- (0.6,0.8) -- (0.95,2.2);
+\node[orange,right] at (1.15,1.6) {逃逸};
+\node[orange,right] at (1.0,-1.5) {\small $\theta<\theta_m$};
 \end{tikzpicture}
 \caption{磁镜损失锥示意图。粒子在强场区被反射的条件是 $\sin^2\theta\ge1/R_m$：投掷角 $\theta>\theta_m$ 的粒子垂直速度分量足够大，向镜点运动时 $v_\perp$ 随 $B$ 增大而增大，最终 $v_\parallel$ 降为零并被反射；而 $\theta<\theta_m$ 的粒子 $v_\perp$ 太小，磁矩不变性不足以在其抵达镜点前反转 $v_\parallel$，因而穿过磁镜逃逸。这些 $\theta<\theta_m$ 的方向构成损失锥。}
     \label{fig:mirror-loss-cone}

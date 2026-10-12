@@ -409,73 +409,54 @@ n_e = 10^{23}\times\left(\frac{\Delta\lambda_S}{0.549}\right)^{3/2}
 \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}[scale=1.0, >=Stealth]
-        % 微波源
-        \draw[thick, fill=orange!20] (-2,0) rectangle (0,1);
-        \node at (-1,0.5) {微波源};
-        \node at (-1,0.0) {\small $f=60\,\mathrm{GHz}$};
+        % 微波源（频率标注移到框外下方：旧版压在框的底边上，印出来像删除线）
+        \draw[thick, fill=orange!20] (-6,0) rectangle (-4,1);
+        \node at (-5,0.5) {微波源};
+        \node[below] at (-5,-0.15) {\small $f=60\,\mathrm{GHz}$};
         
         % 出射波
-        \draw[->, ultra thick, red] (0,0.5) -- (1.5,0.5);
-        \node[red] at (0.7,0.9) {$\omega$};
+        \draw[->, ultra thick, red] (-4,0.5) -- (-2.7,0.5);
+        \node[red] at (-3.35,0.85) {$\omega$};
         
-        % 喇叭天线
-        \draw[thick] (1.5,0.2) -- (2,0) -- (2,1) -- (1.5,0.8);
-        \node at (2.2,0.5) {\scriptsize 喇叭};
+        % 喇叭天线（标签移到上方空处：旧版落在波导框里，被两条竖边夹住）
+        \draw[thick] (-2.7,0.2) -- (-2.2,0) -- (-2.2,1) -- (-2.7,0.8);
+        \node[above] at (-2.45,1.1) {\scriptsize 喇叭};
         
-        % 波导
-        \draw[thick] (2,0.1) rectangle (2.5,0.9);
+        % 分束器（标签移到上方空处：旧版三字比菱形宽，压住左右两个顶点）
+        \draw[thick, fill=blue!20] (-1.3,0) -- (-0.8,0.5) -- (-1.3,1) -- (-1.8,0.5) -- cycle;
+        \node[blue, above] at (-1.3,1.1) {\scriptsize 分束器};
         
-        % 分束器（部分反射）
-        \draw[thick, fill=blue!20] (3,0) -- (3.5,0.5) -- (3,1) -- (2.5,0.5) -- cycle;
-        \node[blue] at (3,0.5) {\scriptsize 分束器};
+        % 参考臂：向右到反射镜再返回（去/回两条线上下错开，避免叠印）
+        \draw[->, thick, green!60!black] (-0.8,0.42) -- (2.1,0.42);
+        \draw[thick, fill=gray!40] (2.1,0.2) -- (2.3,0.2) -- (2.3,0.8) -- (2.1,0.8);
+        \draw[->, thick, green!60!black] (2.1,0.62) -- (-0.8,0.62);
+        \node[green!60!black] at (0.6,1.0) {参考臂};
         
-        % 参考臂（上）
-        \draw[->, thick, green!60!black] (3.5,0.5) -- (6,0.5);
-        \draw[thick, green!60!black] (6,0.5) -- (7,0.5);
-        % 反射镜
-        \draw[thick, fill=gray!40] (7,0.3) -- (7.2,0.3) -- (7.2,0.7) -- (7,0.7);
-        % 返回
-        \draw[->, thick, green!60!black] (7,0.5) -- (5,0.5);
-        \draw[thick, green!60!black] (5,0.5) -- (3.5,0.5);
-        \node[green!60!black] at (5.5,0.9) {参考臂};
+        % 测量臂：向下穿过等离子体到反射镜再返回（去/回左右错开；
+        % 旧版测量臂从分束器往左下走，穿过了波导框，光路读不出走向）
+        \draw[->, thick, purple] (-1.38,0) -- (-1.38,-3.1);
+        \draw[thick, fill=cyan!15] (-3.2,-2.6) rectangle (-0.2,-1.5);
+        \node[cyan!70!black] at (-2.3,-2.05) {等离子体};
+        \draw[thick, fill=gray!40] (-1.6,-3.1) -- (-0.8,-3.1) -- (-0.8,-3.3) -- (-1.6,-3.3);
+        \draw[->, thick, purple] (-0.98,-3.1) -- (-0.98,-0.15);
+        \node[purple] at (-2.3,-2.95) {测量臂};
         
-        % 测量臂（下）
-        \draw[->, thick, purple] (2.5,0.5) -- (2, -1);
-        \draw[thick, purple] (2,-1) -- (2,-2);
-        % 等离子体区域
-        \draw[thick, fill=cyan!15] (1,-2.5) rectangle (3,-1.5);
-        \node[cyan!70!black] at (2,-2) {等离子体};
-        \draw[->, thick, purple] (2,-2) -- (2,-3);
-        % 反射镜
-        \draw[thick, fill=gray!40] (1.8,-3) -- (2.2,-3) -- (2.2,-3.2) -- (1.8,-3.2);
-        % 返回
-        \draw[->, thick, purple] (2,-3) -- (2,-2);
-        \draw[thick, purple] (2,-1.5) -- (2,-1);
-        \draw[thick, purple] (2,-1) -- (3,-0.5);
-        \node[purple] at (1.2,-2.5) {测量臂};
+        % 合束后单支箭头进探测器（旧版画成两支方向相反的箭头叠在同一条竖廊里）
+        \draw[->, thick, red] (-0.95,0.15) -- (0.5,-1.3);
+        \draw[thick, fill=yellow!20] (0.3,-2.3) rectangle (1.9,-1.3);
+        \node at (1.1,-1.8) {探测器};
+        % 信号从探测器右侧水平引出：旧版向下引出，黑色箭头穿过 Δφ 公式
+        \draw[->, thick] (1.9,-1.8) -- (2.7,-1.8);
+        \node[right] at (2.8,-1.8) {干涉信号 $I(\phi)$};
         
-        % 合束/干涉
-        \draw[->, thick, green!60!black] (3.5,0.5) -- (3,-0.5);
-        \draw[->, thick, purple] (3,-0.5) -- (3.5,0.5);
-        % 重新到分束器或到探测器
-        \draw[->, thick, red] (3,0) -- (3,-1);
-        
-        % 探测器
-        \draw[thick, fill=yellow!20] (2.5,-1.5) rectangle (3.5,-2.5);
-        \node at (3,-2) {探测器};
-        
-        % 信号输出
-        \draw[->, thick] (3,-2.5) -- (3,-3.5);
-        \node at (3,-3.8) {干涉信号 $I(\phi)$};
-        
-        % 相位差标注
-        \draw[<->, thick, blue] (4.5,0.8) -- (4.5,-2.2);
-        \node[blue, right] at (4.5,-0.7) {$\Delta\phi = \frac{\omega}{c}(N-1)L$};
+        % 相位差标注（贴在测量臂右侧空处）
+        \draw[<->, thick, blue] (-0.3,-1.6) -- (-0.3,-2.6);
+        \node[blue, right] at (-0.15,-2.6) {$\Delta\phi = \frac{\omega}{c}(N-1)L$};
         
         % 图例
-        \node[anchor=west] at (8,0.5) {\color{green!60!black}\small 参考波};
-        \node[anchor=west] at (8,0) {\color{purple}\small 测量波};
-        \node[anchor=west] at (8,-0.5) {\color{red}\small 干涉信号};
+        \node[anchor=west] at (3.0,1.2) {\color{green!60!black}\small 参考波};
+        \node[anchor=west] at (3.0,0.75) {\color{purple}\small 测量波};
+        \node[anchor=west] at (3.0,0.3) {\color{red}\small 干涉信号};
     \end{tikzpicture}
     \caption{微波干涉仪光路示意图。微波源经分束器分为参考臂和测量臂，测量臂穿过等离子体后产生相位移动 $\Delta\phi$，两束波在分束器处重新汇合产生干涉，由探测器记录。}
     \label{fig:interferometer}

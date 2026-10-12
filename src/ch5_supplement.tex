@@ -231,9 +231,9 @@ $\vect{u}\cdot(\vect{j}\times\vect{B})$ 是磁能与动能之间的\textbf{转�
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[scale=1.0]
-% 左侧：流体元和磁力线
+% 左侧：流体元和磁力线（标签加同色底：旧版中间那条磁力线从字里穿过）
 \draw[thick,fill=orange!10] (-2,0) rectangle (0,1.5);
-\node at (-1,0.75) {\small 流体元};
+\node[fill=orange!10] at (-1,0.75) {\small 流体元};
 
 % 磁力线穿过流体元
 \foreach \y in {0.3,0.75,1.2} {
@@ -243,13 +243,13 @@ $\vect{u}\cdot(\vect{j}\times\vect{B})$ 是磁能与动能之间的\textbf{转�
 }
 \node[blue] at (1.4,0.75) {$\vect{B}$};
 
-% 速度箭头
-\draw[->,red,very thick] (-1,1.8) -- (1,1.8);
-\node[red,above] at (0,1.9) {$\vect{u}$};
+% 速度箭头（抬到虚线框上方：旧版箭头头部正好扎在虚线框的顶边上）
+\draw[->,red,very thick] (-1,2.2) -- (1,2.2);
+\node[red,above] at (0,2.3) {$\vect{u}$};
 
 % 右侧：移动后的流体元（虚线）
 \draw[thick,fill=orange!10,dashed] (0.5,0.3) rectangle (2.5,1.8);
-\node[orange!80!black] at (1.5,1.05) {\small 流体元};
+\node[fill=orange!10,orange!80!black] at (1.5,1.05) {\small 流体元};
 
 % 移动后的磁力线（虚线）
 \foreach \y in {0.6,1.05,1.5} {
@@ -284,16 +284,18 @@ $\vect{u}\cdot(\vect{j}\times\vect{B})$ 是磁能与动能之间的\textbf{转�
 \draw[dashed] (0,6) -- (-1,0.43);
 \draw[dashed] (0,6) -- (1,0.43);
 
-% 张力恢复力（指向曲率中心）
+% 张力恢复力（指向曲率中心；两个标签沿各自箭头外移：旧版并排挤在中间读成一团）
 \draw[->,red,very thick] (-1,0.43) -- (-0.8,1.5);
-\node[red] at (-0.5,1.8) {$\vect{F}_\text{张力}$};
+\node[red,left] at (-0.95,1.6) {$\vect{F}_\text{张力}$};
 \draw[->,red,very thick] (1,0.43) -- (0.8,1.5);
-\node[red] at (0.5,1.8) {$\vect{F}_\text{张力}$};
+\node[red,right] at (0.95,1.6) {$\vect{F}_\text{张力}$};
 
-% 磁压方向（向下，推向B弱区）
-\draw[->,green!60!black,very thick] (-1.5,2.5) -- (-1.5,1.5);
-\draw[->,green!60!black,very thick] (1.5,2.5) -- (1.5,1.5);
-\node[green!60!black] at (2.2,2) {$\grad(B^2/2\mu_0)$};
+% 磁压方向（向下，推向B弱区；箭头外移到 ±2.2，∇ 标签改右锚：
+% 旧版 ∇ 符号正好压在绿色箭头上，且左侧箭头没有标签）
+\draw[->,green!60!black,very thick] (-2.2,2.5) -- (-2.2,1.5);
+\draw[->,green!60!black,very thick] (2.2,2.5) -- (2.2,1.5);
+\node[green!60!black,left] at (-2.35,2) {磁压};
+\node[green!60!black,right] at (2.35,2) {$\grad(B^2/2\mu_0)$};
 
 % 等离子体区域
 \fill[orange!10] (-3,-1) rectangle (3,-0.2);

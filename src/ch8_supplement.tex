@@ -280,9 +280,10 @@ T_e & \nu_{ei} & \tau_{ei} \\ \hline
 \draw[->,thick,blue] (-4,-2) -- (-1.5,-0.5);
 \draw[->,thick,blue] (-1.5,-0.5) -- (3,1);
 
-% 靶粒子
+% 靶粒子（标签移到点正上方：旧版在点右侧，与两支角弧挤在一起，
+% 读起来像 q2 在量角度）
 \fill[red] (0,0) circle (4pt);
-\node[red,right] at (0.3,0) {$q_2$};
+\node[red,above] at (0,0.25) {$q_2$};
 
 % 入射粒子标注
 \node[blue,left] at (-4,2.2) {$q_1$, $v$};
@@ -292,17 +293,17 @@ T_e & \nu_{ei} & \tau_{ei} \\ \hline
 \draw[dashed,gray] (-1.5,0.5) -- (-1.5,-0.5);
 \node[gray,right] at (-1.3,0) {$b$};
 
-% 偏转角标注
+% 偏转角标注（角弧收小、标签沿各自出射支外移：旧版两个 θ 叠在角弧右侧）
 \draw[dashed] (0,0) -- (-1,0.67);
 \draw[dashed] (0,0) -- (2,-0.67);
-\draw[->,thick,red] (0.8,0) arc (0:-18:0.8);
-\node[red] at (1.2,-0.25) {$\theta$};
+\draw[->,thick,red] (0.6,0) arc (0:-14:0.6);
+\node[red] at (1.6,-0.5) {$\theta$};
 
 % 另一偏转角
 \draw[dashed] (0,0) -- (-1,-0.67);
 \draw[dashed] (0,0) -- (2,0.67);
-\draw[->,thick,red] (0.8,0) arc (0:18:0.8);
-\node[red] at (1.2,0.25) {$\theta$};
+\draw[->,thick,red] (0.6,0) arc (0:14:0.6);
+\node[red] at (1.6,0.5) {$\theta$};
 
 % 小角度示意
 \node[align=center] at (0,-2.5) {\footnotesize 单次散射偏转角很小：$\theta \ll 1$};
@@ -327,13 +328,13 @@ T_e & \nu_{ei} & \tau_{ei} \\ \hline
     \draw[dashed, gray] (-2.5,0) -- (4.2,-1.55);
     \node[gray, right] at (4.2,1.55) {展宽包络};
 
-    % 每段小偏折标注
+    % 每段小偏折标注（标签离包络线与折线各留一点余量）
     \draw[->, thick, orange] (-1.2,0.3) arc (0:25:0.9);
-    \node[orange, font=\footnotesize] at (-0.55,0.62) {$\delta\theta$};
+    \node[orange, font=\footnotesize] at (-0.5,0.55) {$\delta\theta$};
     \draw[->, thick, orange] (0.1,0.15) arc (0:28:0.9);
-    \node[orange, font=\footnotesize] at (0.75,0.5) {$\delta\theta$};
+    \node[orange, font=\footnotesize] at (0.8,0.42) {$\delta\theta$};
     \draw[->, thick, orange] (1.4,0.75) arc (0:22:0.9);
-    \node[orange, font=\footnotesize] at (2.05,1.05) {$\delta\theta$};
+    \node[orange, font=\footnotesize] at (2.15,0.95) {$\delta\theta$};
 
     % 方均根角扩散标注
     \draw[<->, thick, purple!80!black] (4.7,0) -- (4.7,1.2);

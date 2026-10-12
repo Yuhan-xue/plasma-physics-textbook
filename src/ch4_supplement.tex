@@ -214,9 +214,9 @@ v_{ti} = \sqrt{\frac{2\times 0.1\times 1.602\times 10^{-19}}{1.673\times 10^{-27
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[scale=1.0]
-% 等离子体区域
+% 等离子体区域（标签移到框顶外：旧版放在框心，被一支蓝色离子箭头穿过）
 \draw[thick,fill=blue!5] (-3,-2) rectangle (3,2);
-\node[blue!60] at (0,0) {\large 等离子体};
+\node[blue!60] at (0,2.35) {\large 等离子体};
 
 % 电子速度场（红色，较快，较密）
 \foreach \x in {-2,-1,0,1,2} {
@@ -224,7 +224,6 @@ v_{ti} = \sqrt{\frac{2\times 0.1\times 1.602\times 10^{-19}}{1.673\times 10^{-27
     \draw[->,red,thick] (\x,\y) -- ++(0.8,0.2);
   }
 }
-\node[red] at (2.5,1.8) {$\vect{u}_e$};
 
 % 离子速度场（蓝色，较慢，较疏）
 \foreach \x in {-2.5,-1.5,0.5,1.5} {
@@ -232,17 +231,16 @@ v_{ti} = \sqrt{\frac{2\times 0.1\times 1.602\times 10^{-19}}{1.673\times 10^{-27
     \draw[->,blue,thick] (\x,\y) -- ++(0.3,-0.1);
   }
 }
-\node[blue] at (-2.5,1.8) {$\vect{u}_i$};
 
 % 坐标轴
 \draw[->,thick] (-3.5,-2) -- (-3.5,2) node[above] {$y$};
 \draw[->,thick] (-3.5,-2) -- (3.5,-2) node[right] {$x$};
 
-% 标注说明
+% 标注说明（符号并进图例：旧版框内的 u_e/u_i 标签离异色箭头更近，指代是反的）
 \draw[red,->,very thick] (-4.5,-1) -- (-3.8,-1);
-\node[red,left] at (-4.5,-1) {电子速度快};
+\node[red,left] at (-4.5,-1) {电子速度快 $\vect{u}_e$};
 \draw[blue,->,very thick] (-4.5,-1.5) -- (-3.8,-1.5);
-\node[blue,left] at (-4.5,-1.5) {离子速度慢};
+\node[blue,left] at (-4.5,-1.5) {离子速度慢 $\vect{u}_i$};
 \end{tikzpicture}
 \caption{双流体模型示意图。电子和离子作为两种独立的流体，可以具有不同的宏观流速 $\vect{u}_e$ 和 $\vect{u}_i$。由于 $m_e\ll m_i$，电子的响应远快于离子。}
     \label{fig:two-fluid-model}

@@ -3990,20 +3990,23 @@ P_{\text{abs}} \propto n_e \cdot E_{\text{loss}} \propto \frac{1}{3.75} \times \
     % Plasma potential line
     \draw[dashed, gray] (1,-2) -- (1,2.5) node[above right, font=\small] {$V_p$};
     % Floating potential line (curve crosses I=0 here)
-    \draw[dashed, purple!70!black] (-0.5,-2) -- (-0.5,0) node[below, font=\small, purple!70!black] {$V_f$};
+    % V_f 标签移到虚线左下空处：旧版 node[below] 落在曲线过零点，字压在曲线上
+    \draw[dashed, purple!70!black] (-0.5,-2) -- (-0.5,0);
+    \node[font=\small, purple!70!black, left] at (-0.58,-1.2) {$V_f$};
 
     % I-V curve (safe domain to avoid exp overflow in PGF; zero crossing at V_f = -0.5 < V_p)
-    \draw[blue, very thick, domain=-2:2.5, samples=100, variable=\x]
+    \draw[blue, very thick, domain=-2.8:2.5, samples=100, variable=\x]
       plot({\x}, {2.0/(1 + exp(-2*(\x-0.118))) - 0.45});
 
     % Region labels
     \node[font=\small, red] at (-2.1, -0.85) {离子饱和区};
-    \node[font=\small, orange] at (0.35, 1.0) {过渡区};
+    % 过渡区标签上移离开曲线：旧版字身压在曲线最陡的一段上
+    \node[font=\small, orange] at (0.62, 1.62) {过渡区};
     \node[font=\small, green!50!black] at (2.05, 1.9) {电子饱和区};
 
     % Annotations
     \draw[->, thick, red] (-2.0,-0.65) -- (-2.0,-0.48);
-    \draw[->, thick, orange] (0.35,0.8) -- (0.3,0.55);
+    \draw[->, thick, orange] (0.6,1.42) -- (0.52,1.02);
     \draw[->, thick, green!50!black] (2.2,1.75) -- (2.25,1.58);
 \end{tikzpicture}
 \caption{朗缪尔探针典型 $I$-$V$ 特性曲线。横轴为探针电压 $V$，纵轴为收集电流 $I$。$V_p$ 为等离子体电位，$V_f$ 为悬浮电位（净电流 $I=0$ 处）。曲线分为三个主要区域：离子饱和区（$V \ll V_p$）、过渡区（$V_f \lesssim V \lesssim V_p$）和电子饱和区（$V \gg V_p$）。}
