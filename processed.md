@@ -3192,5 +3192,27 @@ README 同步（`tmp/readme_v1230.py`，16 个锚点各命中 1 次）：363 →
 
 ### 29.8 发布记录（v1.23.0）
 
-（待回填：内容/文档/回填三笔提交与改动行数、tag 对象与远端 refs、Gitea release id 与附件地址、
-独立复核的字节数与 SHA256、远端 `reviews/` 与 `todo/` 的结果、汇报图文件名。）
+- 内容提交 `b4f2001`（`src/appendix_y_strongfield.tex` +574、`check/physics_regression.py` +305、
+  `check/fixtures/gate_physics_negative.py` +67/−、`src/plasma_physics_textbook_v2.tex` 6 行改挂载与版本串、
+  PDF 2 549 468 → 2 600 104 B；5 文件 +948/−4），文档提交 `2c140d0`
+  （`README.md` 373 页 / 25 附录 / 附录清单补 Y / 门禁 1124 项 / 夹具 179 处 / P30 守卫段 /
+  目录页数历史补 11 页 / O3a–O3b 分母 15/373 / v1.23.0 版本行，并顺手把 src 目录树补齐 W–X–Y 三行与 `I--Y`；
+  `processed.md` 第 29 节）。
+- tag `v1.23.0` = 标签对象 `1f3d0e6c5ea78301ceda122b527ae8b7c2b8d25c` → 文档提交 `2c140d0`；
+  双推 `df745f7..2c140d0 main` 与 `* [new tag] v1.23.0`，之后远端
+  `refs/heads/main = 2c140d08c77baa2769b2d35632d7974ded596e5e`、
+  `refs/tags/v1.23.0 = 1f3d0e6c5ea78301ceda122b527ae8b7c2b8d25c`。
+- Gitea release **id=122**（上一轮 v1.22.0 为 120；121 未出现在本仓库，仓库累计 release 数 **31**），
+  `http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.23.0`；
+  资产 `plasma_physics_textbook_v2.pdf` 2 600 104 B，
+  附件地址 `http://zsyq.hxlab.tech:3000/attachments/a5a40a0e-9f9b-44fe-bf47-977721aff39c`。
+- 独立复核（清四个代理变量 + `curl.exe -sS -L --noproxy '*'` 下载附件后比 SHA256）：
+  远程与本地均 2 600 104 B、
+  `BAD3CEC226F3E469BC50F3964461B5FF444358F819A58FEF5DABF0D66E6FD3F6`，**逐字节一致**。
+- 远程 `reviews/` 仍为 `2026-10-10-independent`（31 项）与 `2026-10-11-scheduled`（35 项），
+  合计 66 项，本轮**没有新的评审**；远端仓库根目录仍无 `todo/`（API 返回 404）。
+- 汇报图：`tmp/png_v1230/` 下 `book_cover_v1230.png`（书名页，看版本串）、
+  `appY_cover.png`（第 365 页首页，1191×1684）、7 张表格裁剪（`appY_tab1..7.png`）与
+  6 张语义盒裁剪（`appY_tip_{field,dephasing,transparency,qed,pressure,honest}.png`），
+  由 `tmp/render_v1230.py` / `render_v1230b.py` / `render_v1230c.py` 三代脚本渲染。
+
