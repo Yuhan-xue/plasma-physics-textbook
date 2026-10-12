@@ -55,3 +55,4 @@ Thumbs.db
 graphflow-out/
 # GraphFlow 检索缓存（非交付物）
 .graphflow-cache/
+.dsh-progress/
