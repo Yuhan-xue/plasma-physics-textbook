@@ -36,6 +36,7 @@
 import argparse
 import json
 import os
+import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -265,6 +266,134 @@ def figure_bands(page, entries=None):
     return bands
 
 
+
+def _rect(bbox):
+    """把 bbox（4 元组）转成与绘图 rect 同型的矩形对象。"""
+    import pymupdf as _f
+    return _f.Rect(bbox)
+
+
+# ---------------------------------------------------------------- 图内文字
+
+MIN_FIG_FONT = 6.5          # pt：图内标注的最小可读字号
+OVERLAP_FRAC = 0.25         # 交叠面积 / 较小 span 面积 的告警阈值
+
+
+def figure_regions(page):
+    """本页的「图形区」矩形列表：排除页眉页脚带与整栏宽的盒子框。"""
+    W = page.rect.width
+    H = page.rect.height
+    rects = []
+    for d in page.get_drawings():
+        r = d['rect']
+        if r.y0 < 70.0 or r.y1 > H - 70.0:
+            continue
+        if r.width > 0.85 * W and r.height > 60.0:      # tcolorbox 之类的整栏框
+            continue
+        if r.width < 6.0 or r.height < 6.0:
+            continue
+        rects.append(r)
+    return rects
+
+
+def caption_bands(page):
+    """本页所有「图 X.Y」题注行给出的 figure 纵向区间。
+
+    不能直接用 `figure_bands()`：它只覆盖 ALL_FIGURES 登记过的图（9.1--9.3），
+    其余 17 张图会被整页跳过——真重叠也就漏掉了（负对照实测：限定到 ALL_FIGURES 后
+    旧 PDF 里图 2.1 的标签互压不再报出）。这里改为认页上**任何**一条图题注行，
+    区间取「上一条题注下方 10 pt → 本题注下方 40 pt」，与 figure_bands 同口径。
+    """
+    anchors = []
+    for blk in page.get_text('dict')['blocks']:
+        for ln in blk.get('lines', []):
+            txt = ''.join(sp['text'] for sp in ln['spans']).strip()
+            if re.match(r'^图\s*\d+\.\d+', txt):
+                anchors.append(ln['bbox'][1])
+    anchors.sort()
+    bands, prev = [], 0.0
+    for y in anchors:
+        bands.append((max(0.0, prev + 10.0), min(page.rect.height, y + 40.0)))
+        prev = y
+    return bands
+
+
+def check_figure_text_overlap(doc):
+    """扫描全书：figure float 内的文字块两两重叠、以及字号过小的标注。
+
+    检查范围限定在**真正的 figure** 里：纵向区间由题注锚点给出（见 `caption_bands()`）。
+    此前按「页上有 drawing 就算图区」扫描，会把显示公式也算进去——分式的横线是 drawing
+    元素，而分子/分母的 span 矩形上下叠置、天然交叠，于是 p87 的 Vlasov 方程
+    $\\partial f/\\partial x$ 被报成「图内文字重叠」。
+    """
+    over, small = [], []
+    n_span = 0
+    for pno, page in enumerate(doc, 1):
+        bands = caption_bands(page)
+        if not bands:
+            continue
+        regions = figure_regions(page)
+        spans = []
+        d = page.get_text('dict')
+        for bi, blk in enumerate(d['blocks']):
+            for ln in blk.get('lines', []):
+                for sp in ln['spans']:
+                    txt = sp['text'].strip()
+                    r = _rect(sp['bbox'])
+                    if len(txt) < 2:
+                        continue
+                    if r.y0 < 70.0 or r.y1 > page.rect.height - 70.0:
+                        continue
+                    if not any(yt <= r.y0 and r.y1 <= yb for yt, yb in bands):
+                        continue
+                    if not any(r.intersects(rg) for rg in regions):
+                        continue
+                    spans.append((r, txt, sp['size'], bi))
+                    if sp['size'] < MIN_FIG_FONT:
+                        small.append('p%d：%.1f pt「%s」' % (pno, sp['size'], txt[:16]))
+        n_span += len(spans)
+        for i in range(len(spans)):
+            for j in range(i + 1, len(spans)):
+                ra, ta, _, ba = spans[i]
+                rb, tb, _, bb = spans[j]
+                if ba == bb:
+                    continue                     # 同一文本块内不判（数学 span 常轻微重叠）
+                # 公式被拆成相邻 span：同基线水平紧邻，或分式的分子/分母（上下叠置、
+                # 水平居中对齐）。两者都是纯符号片段时才豁免——中文标签的真实碰撞
+                # 不会同时满足「纯符号」与「上下居中对齐」。
+                _syms = set('abcdefghijklmnopqrstuvwxyz'
+                            'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+                            '∂∇×·<>/=+-^_{}()[]|,.;:')
+                _cya = (ra.y0 + ra.y1) / 2.0
+                _cyb = (rb.y0 + rb.y1) / 2.0
+                _cxa = (ra.x0 + ra.x1) / 2.0
+                _cxb = (rb.x0 + rb.x1) / 2.0
+                _dy = abs(_cya - _cyb)
+                if set(ta) <= _syms and set(tb) <= _syms and (
+                        _dy < 2.0 or (_dy < 22.0 and abs(_cxa - _cxb) < 10.0)):
+                    continue      # 同一个公式的碎片，不是碰撞
+                a = inter_area(ra, rb)
+                if a <= 0:
+                    continue
+                m = min(area(ra), area(rb))
+                if m > 0 and a / m > OVERLAP_FRAC:
+                    over.append('p%d：交叠 %d%%「%s」×「%s」'
+                                % (pno, int(100 * a / m), ta[:14], tb[:14]))
+    if small:
+        for s in small[:6]:
+            rec('FAIL', 'P', '图内标注字号过小（< %.1f pt）：%s' % (MIN_FIG_FONT, s))
+        if len(small) > 6:
+            rec('FAIL', 'P', '图内标注字号过小：另有 %d 处' % (len(small) - 6))
+    if over:
+        for s in over[:6]:
+            rec('FAIL', 'P', '图内文字重叠：%s' % s)
+        if len(over) > 6:
+            rec('FAIL', 'P', '图内文字重叠：另有 %d 处' % (len(over) - 6))
+    if not small and not over:
+        rec('PASS', 'P', '插图内文字：%d 个 span 无重叠、最小字号 ≥ %.1f pt'
+            % (n_span, MIN_FIG_FONT))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--pdf', default=DEFAULT_PDF)
@@ -294,6 +423,7 @@ def main():
                         ok = analyze_diagram(page, key, tag, ytop, ybot)
                     if ok:
                         seen.add(tag)
+            check_figure_text_overlap(doc)
             doc.close()
             for _, tag in ALL_FIGURES:
                 if tag not in seen:
