@@ -129,7 +129,7 @@ plasma-physics-textbook/
 │   └── fixtures/                      # 可证伪夹具：故意植入缺陷，验证套件真的会 FAIL
 │       ├── gate_compile_log.py        #   合成编译日志 7 例（缺字 / 溢出 / TeX 错误）
 │       ├── gate_physics_negative.py   #   215 处回退（含附录 AA 十八处：结构 7 / 数据 11；附录 Z 十八处：结构 7 / 数据 11；附录 Y 十八处：结构 7 / 数据 11；附录 X 二十五处：结构 7 / 数据 17 / 容差 1；以及带符号量六处：S 与 U 的 IPB98 $P$ 指数、T 的 $\Delta'$、主文件悬浮电位、第 12 章 I--V 表离子电流、附录 Q 偏压列；以及 V 的 RWM 增长率退回 3 位有效数字／壁时间 $52.7788\to52.78$ ms／$E_{\mathrm{tor}}/E_D$ $0.01507\to0.0151$／雪崩放大 $e^{92.12}\to e^{92}$／表 V.1--V.9 九处数字转写（含两处少一个零、一处小数点错位、一处年份）／V.1 出处词与练习 1 解答词／表 V.7 标签改名、 K.5 只翻符号、K.7 量级/单位、K.4 结论反转、M 束速/H 模阈值/倍数口径、N 辐射份额/ELM 倍数/表标签、O 磁化程度/比冲取舍结论/损失清单表标签、P 帕申外推倍数/刻蚀速率量级/来源表标签、I 幂律指数/排程日/评级降档/双编码表标签/动作六标题/出处期刊名拼接、Q 探针判据比/低估比例/RC 时间常数/散射光子数/来源表标签、R 半径-德拜比/电荷数/尘埃声速/Havnes 临界密度/来源表标签/量级口径回退（C4 十倍错等五处）、S 的 P 幂次/κ 幂次/ρ_i 丢 2T/χ_gB 写成 ρ*²/χ_B 的 1/16/表 S.4 转写错/玻姆外推结果/回旋玻姆标度/Greenwald 极限/GAM 频率、第 10 章公式卡退回旧式、I 的表征习惯、Markdown `**` 排版回退、语义盒退回裸调用、T 的 q 剖面幂次/剪切恒等式/χ_∥ 分母 m_e/τ_e 的 T_e 幂次/岛宽系数 4/反转半径丢根号/Ψ_h'' 的 s 幂次/表 T.2 与 T.4 的数字转写/来源表标题词、主文件附录 T 挂载字母、I 的学习目标表标签与遮栏方向、§T.4 的 τ_flat 退回 3.125e-15、U 的 α 份额分母 $5\to4$／份额式分母 $Q+5\to Q+4$／幂次 $0.62\to1.62$ 与 $-0.38\to+0.38$／工程增益式退回 $\eta Q+1$／盈亏平衡 $5.250\to6.250$／阈值指数 $21\to20$／表 U.1、U.2、U.3、U.5、U.6 的数字转写／正文「2.299e21 是阈值的 74.2%」整句／出处词与解答词／表 U.6 标签改名），并检查文件按原字节恢复
-│       ├── gate_figure_layout.py      #   6 张合成 PDF（节点交叠 / 裁切 / 跨框 / 图形消失 / 叠字 / 越出版心）
+│       ├── gate_figure_layout.py      #   7 个用例（节点交叠 / 裁切 / 跨框 / 图形消失 / 叠字 / 越出版心 / 配色规范，后两者分别是「合成页叠字」与「植入写死颜色再字节级复原」）
 │       ├── gate_pdf_outline.py        #   4 处书签篡改（改名 / 乱序 / 清空 / 目录短尾页），验 pdf_outline 会报错
 │       ├── gate_version_string.py     #   封面/pdftitle/PDF Title 版本串退回旧版 4 例 + 正对照，验 full_check 的版本判定会报错
 │       └── gate_g2_listing.py         #   实跑附录 G.2 清单，与印刷输出逐行比对（含篡改负例）
@@ -344,7 +344,7 @@ python check/pdf_outline.py        # 目录/书签 11 项：书签页码与印�
 ```bash
 python check/fixtures/gate_compile_log.py       # 合成编译日志，验 full_check / ui_readability 的判定
 python check/fixtures/gate_physics_negative.py  # 植入 245 处回退（含 P32 附录 AA 十八处（结构 7 / 数据 11）、P31 附录 Z 十八处（结构 7 / 数据 11）、P30 附录 Y 十八处（结构 7 / 数据 11）、P29 附录 X 二十五处、P28 带符号量六处、K.5 只翻符号、K.7 量级/单位、K.4 结论反转、M 的束速/H 模阈值/倍数口径、N 的辐射份额/ELM 倍数/表标签、O 的磁化程度/比冲取舍结论/损失清单表标签、P 的帕申外推倍数/刻蚀速率量级/来源表标签、I 的幂律指数/排程日/评级降档/双编码表标签/动作六标题/出处期刊名拼接、Q 的探针判据比/低估比例/RC 时间常数/散射光子数/来源表标签、R 的半径-德拜比/电荷数/尘埃声速/Havnes 临界密度/来源表标签/量级口径回退（C4 十倍错等五处）、S 的 P 幂次/κ 幂次/ρ_i 丢 2T/χ_gB 写成 ρ*²/χ_B 的 1/16/表 S.4 转写错/玻姆外推结果/回旋玻姆标度/Greenwald 极限/GAM 频率、第 10 章公式卡退回旧式、I 的表征习惯、Markdown `**` 排版回退、语义盒退回裸调用、T 的 q 剖面幂次/剪切恒等式/χ_∥ 分母 m_e/τ_e 的 T_e 幂次/岛宽系数 4/反转半径丢根号/Ψ_h'' 的 s 幂次/表 T.2 与 T.4 的数字转写/来源表标题词、主文件附录 T 挂载字母、I 的学习目标表标签与遮栏方向、§T.4 的 τ_flat 退回 3.125e-15、V 的 RWM 增长率退回 3 位有效数字／壁时间 52.7788→52.78 ms／$E_{\mathrm{tor}}/E_D$ 0.01507→0.0151／雪崩放大 $e^{92.12}$→$e^{92}$／表 V.1--V.9 九处数字转写（含两处少一个零、一处小数点错位、一处年份）／V.1 出处词与练习 1 解答词／表 V.7 标签改名、U 的 α 份额分母与份额式分母／两个幂次符号／工程增益括号／盈亏平衡阈值／阈值指数 21→20／五张表的数字转写／「74.2%」整句／出处词与解答词／表 U.6 标签改名），验 physics_regression 会报错
-python check/fixtures/gate_figure_layout.py     # 合成 6 张 PDF，验 figure_layout 会报错（需 PyMuPDF）
+python check/fixtures/gate_figure_layout.py     # 7 个用例（6 张合成 PDF + 1 次源码植入/复原），验 figure_layout 会报错（需 PyMuPDF）
 python check/fixtures/gate_pdf_outline.py       # 篡改书签（改名/乱序/清空/短尾页），验 pdf_outline 会报错（需 PyMuPDF）
 python check/fixtures/gate_version_string.py    # 封面/pdftitle/PDF Title 版本串退回旧版（4 负例 + 正对照），验 full_check 会报错
 python check/fixtures/gate_g2_listing.py        # 实跑附录 G.2 清单并逐行比对印刷输出（需 NumPy/SciPy/Matplotlib）
