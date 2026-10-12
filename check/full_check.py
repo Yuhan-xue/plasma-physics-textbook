@@ -585,9 +585,11 @@ def check_E_consistency():
     pdf = os.path.join(SRC, MAIN.replace('.tex', '.pdf'))
 
     pages = None
+    info = ''
     if os.path.exists(pdf):
         r = subprocess.run(['pdfinfo', pdf], capture_output=True)
-        m = re.search(r'Pages:\s*(\d+)', r.stdout.decode('utf-8', errors='replace'))
+        info = r.stdout.decode('utf-8', errors='replace')
+        m = re.search(r'Pages:\s*(\d+)', info)
         pages = int(m.group(1)) if m else None
 
     # README 里声称的页数
@@ -605,17 +607,39 @@ def check_E_consistency():
     for m in re.finditer(r'（(\d+)\s*页\s*/\s*(\d+)\s*标签）', readme):
         pass  # 历史版本记录，允许与当前不同
 
-    # 版本号一致性
+    # 版本号一致性：pdftitle、封面可见串、已编译 PDF 的 Title 元数据三处，
+    # 都必须等于 README 版本历史表最新一行的版本号。
+    #
+    # 旧写法是「版本号在主文件里**任意位置**出现过就算一致」且只判 WARN，于是 v1.26.0 漏了过去：
+    # 主文件注释里留着一堆历史版本号（v1.8.0…v1.19.0、v1.25.0），封面与 pdftitle 却还停在
+    # v1.25.0，六套件全绿、只飘一条没人当回事的 WARN，已发布的 PDF 封面上就印着上一版的号。
+    # 现在三处分别精确取值、分别判定，且一律 FAIL。
     main = read(os.path.join(SRC, MAIN))
-    vers = set(re.findall(r'v(\d+\.\d+\.\d+)', main))
     mreadme = re.findall(r'\|\s*v(\d+\.\d+\.\d+)\s*\|', readme)
-    if mreadme:
-        latest = max(mreadme, key=lambda s: [int(x) for x in s.split('.')])
-        if latest not in vers:
-            rec('WARN', 'E', 'README 最新版本 v%s 未出现在源码封面/元数据中（源码含 %s）'
-                % (latest, sorted(vers)))
+    if not mreadme:
+        rec('WARN', 'E', 'README 版本历史表里没读到版本号，跳过版本串一致性检查')
+        return
+    latest = max(mreadme, key=lambda s: [int(x) for x in s.split('.')])
+
+    spots = [
+        ('pdftitle', r'pdftitle=\{[^}]*?v(\d+\.\d+\.\d+)\}', main),
+        ('封面版本串', r'\\textcolor\{white!45\}\{v(\d+\.\d+\.\d+)\}', main),
+    ]
+    m = re.search(r'^Title:\s*(.*)$', info, re.M) if info else None
+    spots.append(('PDF 元数据 Title', r'v(\d+\.\d+\.\d+)', m.group(1) if m else ''))
+
+    for name, pat, hay in spots:
+        m = re.search(pat, hay)
+        if not hay:
+            rec('WARN', 'E', '%s 取不到（PDF 未编译？），跳过与 README v%s 的比对'
+                % (name, latest))
+        elif m is None:
+            rec('FAIL', 'E', '%s 里读不到版本号，README 版本历史表最新为 v%s' % (name, latest))
+        elif m.group(1) != latest:
+            rec('FAIL', 'E', '%s 是 v%s，落后于 README 版本历史表最新的 v%s'
+                % (name, m.group(1), latest))
         else:
-            rec('PASS', 'E', '版本号一致：v%s' % latest)
+            rec('PASS', 'E', '%s 与 README 版本历史表一致：v%s' % (name, latest))
 
 
 # ---------------------------------------------------------------- 主流程
