@@ -1,0 +1,30 @@
+{
+  "repository": "plasma-physics-textbook",
+  "review_date": "2026-10-12",
+  "base_commit": "69605fdd6e77e1cf702ccefd1a9992bc2dadee77",
+  "new_findings": [],
+  "carryover": [
+    {
+      "id": "P-CARRY-01",
+      "severity": "P2",
+      "status": "known-open",
+      "title": "目录页与书签目标有一页偏移",
+      "location": "check/pdf_outline.py O3b; current PDF",
+      "evidence": "Current check reports 17 of 392 entries where bookmark_page - printed_contents_page = -1.",
+      "impact": "The PDF bookmark lands on the facing page rather than the printed contents page for affected entries; the content itself remains in order.",
+      "recommendation": "Keep the documented convention or align the PDF bookmark anchors with printed contents, then update the checker expectation with a concrete page-level fixture.",
+      "acceptance": "All 392 entries match the declared page convention and the fixture fails if a bookmark is moved to the wrong page."
+    },
+    {
+      "id": "P-CARRY-02",
+      "severity": "P2",
+      "status": "known-open",
+      "title": "附录 F 内部链接目标页与 aux 记录页不一致",
+      "location": "check/pdf_outline.py O4; appendix F",
+      "evidence": "Current check reports 31 of 35 links whose PDF target page differs from the corresponding aux page; examples include sec:ch2-debye (target 31, aux 34) and sec:ch2-criteria (target 34, aux 37).",
+      "impact": "Readers following the source-map links can land several pages away from the section recorded by the build metadata.",
+      "recommendation": "Trace how appendix F constructs those links and compare the actual destination against the named section in the current PDF; correct anchors or the audit's interpretation only after a rendered-page spot check.",
+      "acceptance": "Each of the 35 links resolves to its named section heading, and the check distinguishes intentional anchor offsets from wrong destinations."
+    }
+  ]
+}
