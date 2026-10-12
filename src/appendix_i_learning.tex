@@ -704,6 +704,138 @@ Objectives》（Longman）：动词化的修订版与"理解"层的六个子动�
 自测这一步，见 Dunlosky 等 (2013)（与效用评级一节同一来源）。本节只借用这些框架的结论与
 命名，表 \ref{tab:app-i-bloom} 的六行、五条页内问句与第 (6) 条限制均由本书自拟。
 
+\section{读一篇论文：三遍法、提问清单与复现实验}
+\label{sec:app-i-paper}
+
+教材和论文是两种不同的读物：教材\textbf{为教学而写}——它把结论摊开、把推导补全、
+把前提讲明；论文\textbf{为同行而写}——它把结论压缩、把推导交给参考文献、把前提藏在
+「众所周知」里。所以「读教材的方法」直接搬到论文上会失效：逐字读会卡在细节里，
+跳着读又会把\textbf{结论当成了了解}。本节给出一套可执行的读法，它的判据只有一条：
+\textbf{你能不能用本书的脚本，把论文里的一个数复现出来。}
+
+\subsection*{一、三遍法：每一遍都有「通过判据」}
+
+三遍法（three-pass approach）把一篇论文读三遍，每一遍的时间、读什么、产出什么都不一样，
+\textbf{关键是每一遍都有一个可以自检的通过判据}。表 \ref{tab:app-i-paperpass} 是完整对照。
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{p{1.5cm}p{4.6cm}p{4.6cm}p{4.5cm}}
+\toprule
+遍次 & 读什么 & 产出什么 & 通过判据（自检） \\
+\midrule
+第一遍 & 标题、摘要、引言、小节标题、结论、扫一遍参考文献 & 五个 C：类别、背景、正确性、贡献、清晰度 & 能用三句话向别人说清「它做了什么」 \\
+第二遍 & 图、表、坐标轴、误差棒、关键公式的\textbf{结构}（不追推导） & 三到五个关键量级 + 一份「没看懂的术语」清单 & 能说出每个图的横纵轴是什么、结论靠哪张图支撑 \\
+第三遍 & 逐步重做：假设自己是作者，逐行验证推导与数据 & 一份「虚拟重做」记录：哪一步我自己也能推出来，哪一步不能 & \textbf{能复现其中一个数}（见第三节） \\
+\bottomrule
+\end{tabular}
+\caption{三遍法的对照表。第三列的判据是本节的骨架：
+\textbf{读没读懂不由「感觉」判断，而由「能不能产出这张表里的东西」判断}。}
+\label{tab:app-i-paperpass}
+\end{table}
+
+三遍法最重要的性质是\textbf{可以随时停止}：
+第一遍读完发现与自己无关，就停——这不叫半途而废，这叫\textbf{正确地使用了十分钟}。
+本书附录 J（经典教材逐章对照）与附录 K（跨教材经典例题）解决的是「教材从哪读起」，
+本节解决的是「原始文献怎么读」。
+
+\subsection*{二、第二遍的核心动作：把图当成「主文」}
+
+论文里信息密度最高的地方不是正文，而是图。第二遍的动作可以固定成四问：
+
+(1) \textbf{横纵轴是什么量、什么单位}？如果轴上是归一化量，归一化到谁？
+(2) \textbf{数据点与曲线的差别是什么}？曲线是拟合、模拟还是解析式？
+(3) \textbf{误差棒画了吗}？画的是统计误差还是系统误差？没画误差棒的差异不要解读。
+(4) \textbf{这张图能不能和本书的某一节对上}？例如「$\tau_E$ 随 $B$ 的标度」对应附录 S
+的 IPB98(y,2)，「快离子慢化时间」对应附录 W。
+
+做完这四问，你手里就有了三到五个\textbf{量级}。这也是本书反复强调的习惯：
+\textbf{先抓量级，再谈细节}（附录 I 的「量级估算与量纲检验」一节）。
+
+\subsection*{三、第四遍其实是「算一遍」：复现实验}
+
+第三遍的判据是本节的核心：\textbf{能否复现论文里的一个数}。做法是把它代进本书的脚本，例如：
+
+\begin{itemize}
+\item 论文给了一条约束定标律 $\Rightarrow$ 用附录 S 的 \texttt{tmp/appS\_calc.py}，
+代入三装置工作点，看 $\tau_E$ 是否落在 20\% 以内；
+\item 论文给了快离子的慢化时间 $\Rightarrow$ 用附录 W 的 \texttt{tmp/appW\_calc.py}，
+核对 $\tau_v$ 与 $v_{\alpha 0}/v_{Te}$ 的区间判断；
+\item 论文给了辐射功率 $\Rightarrow$ 用附录 X 的 \texttt{tmp/appX\_calc.py}，
+核对轫致辐射的 $Z_{\mathrm{eff}}$ 与 $\sqrt{T_e}$ 依赖；
+\item 论文给了中子壁负载或氚燃耗 $\Rightarrow$ 用附录 Z 的 \texttt{tmp/appZ\_calc.py}。
+\end{itemize}
+
+\textbf{复现不上怎么办？记录差异，而不是忽略差异。} 差异通常只有四种来源：口径不同
+（体积平均还是中心值）、单位不同（$\mathrm{MW\,m^{-3}}$ 还是 $\mathrm{W\,cm^{-3}}$）、
+定义不同（$T_e$ 用 keV 还是 eV 进公式）、或者\textbf{论文印错了}。
+前三种写进笔记，第四种就是一次真正的收获——本书自己的勘误（v1.15.1 的附录 R 十倍错）
+正是「用脚本复算论文/教材里的数」抓出来的。
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{p{4.6cm}p{5.2cm}p{5.0cm}}
+\toprule
+提问 & 为什么问 & 在本书哪里能找到对应工具 \\
+\midrule
+它解决什么问题？ & 判断与自己的目标是否相关 & 附录 J 的逐章对照表 \\
+前提假设是什么？ & 决定结论的适用范围 & 附录 S 的「定标律的三个前提」 \\
+结论在什么范围内成立？ & 防止把局部结果当普遍规律 & 附录 V 的三条运行极限 \\
+关键量级是多少？ & 建立自己的量级感 & 附录 B 特征参数速查表 \\
+我能算出同一个数吗？ & \textbf{读懂的判据} & 附录 M--AA 的 \texttt{calc} 脚本 \\
+我不同意哪一点？ & 从「读者」变成「同行」 & 附录 K 的例题与解答对照 \\
+\bottomrule
+\end{tabular}
+\caption{文献六问与本书的接口。最后一问是刻意加的：
+\textbf{读完一篇论文必须能说出一条不同意见}——哪怕只是「这个误差棒没画」。}
+\label{tab:app-i-paperquestions}
+\end{table}
+
+\subsection*{四、文献笔记：一行问题、三个数、一个步骤、一句反对}
+
+把上面的动作压成一条可复制的笔记模板（十分钟能写完）：
+
+\begin{quote}
+\textbf{问题：}它要解决的是\underline{\hspace{3cm}}。\\
+\textbf{前提：}假设了\underline{\hspace{1.6cm}}与\underline{\hspace{1.6cm}}。\\
+\textbf{三个数：}$\underline{\hspace{2.2cm}}$、$\underline{\hspace{2.2cm}}$、$\underline{\hspace{2.2cm}}$
+（附单位与来源图号）。\\
+\textbf{可复现步骤：}用 \texttt{tmp/app\_\_calc.py} 代入\underline{\hspace{2.6cm}}，
+得到\underline{\hspace{2.0cm}}，与论文相差\underline{\hspace{1.2cm}}\%。\\
+\textbf{一句反对：}\underline{\hspace{6cm}}。
+\end{quote}
+
+四条一行的好处是\textbf{可以横向比较}：一个月后把十条笔记摊开，一眼能看出哪些论文
+真的改变了你的判断，哪些只是「读过」。
+
+\begin{tip}{「读懂」的可操作定义}{tip-app-i-paper}
+本节把「读懂」定义成一个可检验的动作：\textbf{能用本书的脚本复现出论文里的一个数，
+误差在你自己声明的范围内}（比如 20\%），并且能说出一条不同意见。
+这个定义有三个好处：它\textbf{可检查}（不是主观感受）、\textbf{可积累}（笔记直接就是证据）、
+\textbf{可复习}（下次读同方向论文时，先看自己的复现记录）。
+本书自己的每一轮「借鉴经典教材」都是按这个定义做的：借结论、借结构，
+但\textbf{每个数字都在声明的参数上用仓库脚本现算}——这也是附录 X 起固定下来的口径。
+\end{tip}
+
+\subsection*{五、三条常见错误}
+
+(1) \textbf{把摘要当结论}。摘要省略的正是假设与范围；跳过假设直接引用结论，
+是文献阅读里最贵的错误。\\
+(2) \textbf{只看结论、不看量级}。同一句话「$B$ 越大约束越好」在 $B$ 的指数是 $0.84$
+（ISS04，附录 AA）与 $2$（简单回旋玻姆直觉）之间差着完全不同的工程结论。\\
+(3) \textbf{把引用次数当正确性}。引用多说明它\textbf{被讨论得多}，
+不说明它的数在\textbf{你的工作点上}成立——这一点只有自己复算过才知道。
+
+\textbf{出处：}三遍法与五个 C 的框架参照 Keshav（2007）
+\emph{How to Read a Paper}（ACM SIGCOMM Computer Communication Review \textbf{37}(3), 83--84）；
+把研究问题写成可检验句子的做法参照 Booth、Colomb 与 Williams
+\emph{The Craft of Research}（第 3 版，2008）第 1--3 章；
+可复现性原则参照 Wilson 等（2014）\emph{Best Practices for Scientific Computing}
+（PLOS Biology \textbf{12}(1)）；与本书脚本的接口见附录 M--AA 的数值脚本说明。
+离线环境无法核验 DOI，故只给书名、作者、年份、卷期页。
+
 \section{出处与延伸阅读}
 \label{sec:app-i-refs}
 

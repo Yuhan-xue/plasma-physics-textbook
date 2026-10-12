@@ -5774,6 +5774,72 @@ def check_P32_appendix_aa_alternates():
         lacks(text, lit, 'src/%s（%s）' % (APP_FILES['AA'], why))
 
 
+# -*- coding: utf-8 -*-
+"""附录 I 新增节「读一篇论文：三遍法、提问清单与复现实验」的门禁体：P33。
+
+可证伪点
+  ① 小节标题或 sec label 被删/改名；
+  ② 两张表 label、语义盒标签被改名；
+  ③ 三遍法判据、六问表、「读懂」定义句、出处句被改写（整行/整句字面绑定）；
+  ④ 口径回流：把「五个 C」写成「三个 C」、把判据弱化成「感觉懂了」「复现不上就算了」、
+     把第三遍判据从「能复现其中一个数」弱化成「结论」等。
+"""
+
+
+def check_P33_appendix_i_paper():
+    """附录 I 新增节：读论文三遍法的结构与口径核对。"""
+    path = os.path.join(SRC, APP_FILES['I'])
+    if not os.path.exists(path):
+        rec('FAIL', 'P', '附录 I 文件缺失：%s' % path)
+        return
+    text = strip_comments(read(path))
+
+    has(text, '\\section{读一篇论文：三遍法、提问清单与复现实验}',
+        'src/%s（新节标题）' % APP_FILES['I'])
+    has(text, '\\label{sec:app-i-paper}', 'src/%s（新节 label）' % APP_FILES['I'])
+    has(text, '\\label{tab:app-i-paperpass}', 'src/%s（三遍法表 label）' % APP_FILES['I'])
+    has(text, '\\label{tab:app-i-paperquestions}', 'src/%s（六问表 label）' % APP_FILES['I'])
+    has(text, '{tip-app-i-paper}', 'src/%s（语义盒 tip-app-i-paper）' % APP_FILES['I'])
+
+    lits = [
+        ('\\subsection*{一、三遍法：每一遍都有「通过判据」}', '第一小节标题'),
+        ('\\subsection*{二、第二遍的核心动作：把图当成「主文」}', '第二小节标题'),
+        ('\\subsection*{三、第四遍其实是「算一遍」：复现实验}', '第三小节标题'),
+        ('\\subsection*{四、文献笔记：一行问题、三个数、一个步骤、一句反对}', '第四小节标题'),
+        ('\\subsection*{五、三条常见错误}', '第五小节标题'),
+        ('第一遍 & 标题、摘要、引言、小节标题、结论、扫一遍参考文献 & 五个 C：类别、背景、正确性、贡献、清晰度 & 能用三句话向别人说清「它做了什么」 \\\\',
+         '表 1 第一遍行（五个 C）'),
+        ('第三遍 & 逐步重做：假设自己是作者，逐行验证推导与数据 & 一份「虚拟重做」记录：哪一步我自己也能推出来，哪一步不能 & \\textbf{能复现其中一个数}（见第三节） \\\\',
+         '表 1 第三遍行（能复现其中一个数）'),
+        ('我能算出同一个数吗？ & \\textbf{读懂的判据} & 附录 M--AA 的 \\texttt{calc} 脚本 \\\\',
+         '表 2 「我能算出同一个数吗」行'),
+        ('我不同意哪一点？ & 从「读者」变成「同行」 & 附录 K 的例题与解答对照 \\\\',
+         '表 2 最后一行'),
+        ('\\textbf{能用本书的脚本复现出论文里的一个数，', '「读懂」的可操作定义句'),
+        ('用 \\texttt{tmp/app\\_\\_calc.py} 代入', '文献笔记模板的可复现步骤'),
+        ('Keshav（2007）', '出处段的 Keshav 年份'),
+        ('ACM SIGCOMM Computer Communication Review \\textbf{37}(3), 83--84',
+         '出处段的卷期页'),
+        ('\\emph{The Craft of Research}（第 3 版，2008）', '出处段的 Booth 等'),
+        ('\\emph{Best Practices for Scientific Computing}', '出处段的 Wilson 等'),
+        ('\\textbf{把摘要当结论}', '常见错误之一'),
+        ('一次真正的收获——本书自己的勘误', '复现不上时的口径句'),
+    ]
+    for lit, why in lits:
+        has(text, lit, 'src/%s（%s）' % (APP_FILES['I'], why))
+
+    lits_lack = [
+        ('三个 C', '五个 C 不得写成「三个 C」'),
+        ('感觉懂了', '「读懂」不得被弱化成「感觉懂了」'),
+        ('复现不上就算了', '不得把复现失败一笔带过'),
+        ('引用次数越多越正确', '不得把引用次数当正确性'),
+        ('第二遍读完就算读懂', '不得把第二遍当成终点'),
+        ('附录 M--X 的', '六问表的脚本接口不得退回旧字母范围'),
+    ]
+    for lit, why in lits_lack:
+        lacks(text, lit, 'src/%s（%s）' % (APP_FILES['I'], why))
+
+
 def check_P02_appendix_j_map():
     """附录 J 逐章对照表的完备性：覆盖 1--12 章、每行 5 列、章号不越界。
 
@@ -5973,6 +6039,7 @@ def main():
     check_P30_appendix_y_strongfield()
     check_P31_appendix_z_reactor()
     check_P32_appendix_aa_alternates()
+    check_P33_appendix_i_paper()
     check_P28_signed_quantities()
     check_P06_scattering_alpha()
     check_P09_tcbtheorem_arity()

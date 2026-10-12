@@ -278,26 +278,36 @@ $f = 20\,\mathrm{MHz} \ll f_{pe}$，远低于截止频率，\textbf{不能传播
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[scale=1.0,
-  level 1/.style={sibling distance=5.5cm,level distance=1.8cm},
-  level 2/.style={sibling distance=2.5cm,level distance=1.8cm}]
-\node[draw,thick,fill=blue!15,rounded corners] {等离子体中的波}
-  child {node[draw,thick,fill=green!15,rounded corners] {无磁场 $B_0=0$}
-    child {node[draw,thick,fill=yellow!15,rounded corners] {静电波（纵波）}
+% v1.26.0：原版是自顶向下的树，level 2 的 sibling distance=2.5cm 装不下三个叶片，
+% 结果「静电波（纵波）」与「电磁波（横波）」相压、底层六个叶片标签压成一团（看图发现）。
+% 改为自左向右生长：每个叶片独占一行，标签不再互相碰撞，整图仍在版心宽度内。
+\begin{tikzpicture}[
+  scale=1.0,
+  every node/.style={font=\small},
+  root/.style={draw,thick,fill=blue!15,rounded corners,inner sep=3pt},
+  lv1/.style={draw,thick,fill=green!15,rounded corners,inner sep=3pt},
+  lv2/.style={draw,thick,fill=yellow!15,rounded corners,inner sep=3pt},
+  level 1/.style={sibling distance=3.2cm, level distance=1.7cm},
+  level 2/.style={sibling distance=1.6cm, level distance=2.0cm},
+  level 3/.style={sibling distance=0.72cm, level distance=3.1cm},
+  grow'=right]
+\node[root] {等离子体中的波}
+  child {node[lv1] {无磁场 $B_0=0$}
+    child {node[lv2] {静电波（纵波）}
       child {node {Langmuir 波}}
       child {node {离子声波}}
     }
-    child {node[draw,thick,fill=yellow!15,rounded corners] {电磁波（横波）}
-      child {node {O波}}
+    child {node[lv2] {电磁波（横波）}
+      child {node {O 波}}
     }
   }
-  child {node[draw,thick,fill=green!15,rounded corners] {有磁场 $B_0\neq 0$}
-    child {node[draw,thick,fill=yellow!15,rounded corners] {$\vect{k}\parallel\vect{B}_0$}
+  child {node[lv1] {有磁场 $B_0\neq 0$}
+    child {node[lv2] {$\vect{k}\parallel\vect{B}_0$}
       child {node {哨声波}}
       child {node {阿尔芬波}}
       child {node {离子回旋波}}
     }
-    child {node[draw,thick,fill=yellow!15,rounded corners] {$\vect{k}\perp\vect{B}_0$}
+    child {node[lv2] {$\vect{k}\perp\vect{B}_0$}
       child {node {低混杂波}}
       child {node {高混杂波}}
     }

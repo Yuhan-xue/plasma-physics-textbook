@@ -414,17 +414,15 @@ E_{\text{laser}} = \frac{0.35\,\mathrm{MJ}}{0.1} \approx 3.5\,\mathrm{MJ}
     \label{fig:tokamak}
 \end{figure}
 
-% ------------------------------------------------------------------------
-% 图2：Lawson 参数空间图
-% ------------------------------------------------------------------------
 \begin{figure}[htbp]
     \centering
+    % v1.26.0：原图把灰色区域标签、D-T/D-D 曲线标签、四个装置标签全挤在图中央，
+    % 文字互相咬（看图发现）。重排：判据三点移到左侧并左置标签；装置标签统一置上；
+    % 曲线标签贴线端；去掉与图题重复的阴影框。
     \begin{tikzpicture}[scale=1.0,>=Stealth]
         % 坐标轴
         \draw[->] (0,0) -- (10,0) node[right] {$T\,\mathrm{(keV)}$};
         \draw[->] (0,0) -- (0,6) node[above] {$\log_{10}(n\tau)\;\mathrm{(m^{-3}\cdot s)}$};
-        
-        % 刻度
         \foreach \x in {1,2,3,4,5,6,7,8,9} {
             \draw (\x,0.1) -- (\x,-0.1) node[below] {\x};
         }
@@ -432,55 +430,41 @@ E_{\text{laser}} = \frac{0.35\,\mathrm{MJ}}{0.1} \approx 3.5\,\mathrm{MJ}
             \pgfmathsetmacro{\yp}{\y-18}
             \draw (0.1,\yp) -- (-0.1,\yp) node[left] {\y};
         }
-        
-        % D-T 点火线（示意曲线）
-        \draw[thick, red, domain=1.5:9, samples=50] plot (\x, {1+4/(\x^0.5)});
-        \node[red] at (7.5,2.6) {D-T 点火线};
-        \node[red] at (7.5,2.2) {\small $n\tau \sim T^{1/2}$};
 
         % D-D 点火线（更高要求）
         \draw[thick, blue, dashed, domain=2:9, samples=50] plot (\x, {2+4/(\x^0.5)});
-        \node[blue] at (8.4,3.3) {D-D 点火线};
+        \node[blue, anchor=west] at (4.2,4.55) {D-D 点火线};
 
-        % 装置标注
-        % TFTR
-        \filldraw[black] (3.5,2.5) circle (3pt);
-        \node[below] at (3.5,2.35) {TFTR};
+        % D-T 点火线
+        \draw[thick, red, domain=1.5:9, samples=50] plot (\x, {1+4/(\x^0.5)});
+        \node[red, anchor=west] at (6.6,1.98) {D-T 点火线};
+        \node[red, anchor=west] at (6.6,1.60) {$n\tau \sim T^{1/2}$};
 
-        % JET
-        \filldraw[black] (5,3.2) circle (3pt);
-        \node[above right] at (5,3.2) {JET};
+        % 判据三点（固定 T，比较 n tau 与阈值）：点移到左侧，标签放左边
+        \filldraw[red] (2.2,2.10) circle (2.5pt);
+        \node[red,left,font=\footnotesize] at (2.10,2.10) {\cnum{1}不满足};
+        \filldraw[orange] (2.2,2.80) circle (2.5pt);
+        \node[orange,left,font=\footnotesize] at (2.10,2.80) {\cnum{2}临界};
+        \filldraw[green!50!black] (2.2,3.50) circle (2.5pt);
+        \node[green!50!black,left,font=\footnotesize] at (2.10,3.50) {\cnum{3}满足};
 
-        % DIII-D
-        \filldraw[black] (4,2.8) circle (3pt);
-        \node[below right] at (4,2.8) {DIII-D};
+        % 现有磁约束装置区域（虚线框 + 框下方标注）
+        \draw[dotted, gray, thick] (3.0,2.0) -- (6.5,2.4) -- (7.0,3.4) -- (3.0,3.0) -- cycle;
+        \node[gray, align=center] at (4.1,1.32) {\small 现有磁约束\\ 装置区域};
 
-        % ITER（设计目标）
-        \filldraw[red] (8,4.35) circle (4pt);
-        \node[above right, red] at (8,4.35) {ITER（设计目标）};
-
-        % NIF（惯性约束，不同的n-tau区域，这里大致标出）
-        \filldraw[blue] (2.5,3.8) circle (3pt);
-        \node[above left, blue] at (2.5,3.8) {NIF};
-
-        % 现有装置区域
-        \draw[dotted, gray, thick] (2,2) -- (6,2.5) -- (6.5,3.5) -- (2,3) -- cycle;
-        \node[gray] at (2.9,2.6) {\small 现有磁约束};
-        \node[gray] at (2.9,2.3) {\small 装置区域};
-
-        % 点火区域标注：在点火线【上方】（相同 T 下 n tau 更高才满足）
-        \draw[red, fill=red!10, opacity=0.3] (5,3.5) -- (9,3.5) -- (9,4.5) -- (5,4.5) -- cycle;
-        \node[red, opacity=0.7] at (6.3,4.0) {点火区（阈值线\emph{上方}）};
-
-        % 三个判据状态点（固定 T，看 n tau 是否越过门槛）
-        \filldraw[red] (3.0,1.9) circle (2.5pt);
-        \node[red,right,font=\footnotesize] at (3.05,1.75) {\cnum{1}不满足};
-        \filldraw[orange] (3.0,2.55) circle (2.5pt);
-        \node[orange,right,font=\footnotesize] at (3.05,2.4) {\cnum{2}临界};
-        \filldraw[green!50!black] (3.0,3.2) circle (2.5pt);
-        \node[green!50!black,right,font=\footnotesize] at (3.05,3.05) {\cnum{3}满足};
+        % 装置工作点（标签统一置上，横向间距 >= 1.6）
+        \filldraw[black] (3.6,2.30) circle (3pt);
+        \node[above, font=\footnotesize] at (3.6,2.42) {TFTR};
+        \filldraw[black] (5.2,2.95) circle (3pt);
+        \node[above, font=\footnotesize] at (5.2,3.07) {JET};
+        \filldraw[black] (6.4,2.55) circle (3pt);
+        \node[above, font=\footnotesize] at (6.4,2.67) {DIII-D};
+        \filldraw[blue] (2.9,4.30) circle (3pt);
+        \node[above, blue, font=\footnotesize] at (2.9,4.42) {NIF};
+        \filldraw[red] (8.4,4.60) circle (4pt);
+        \node[above, red, font=\footnotesize] at (8.4,4.74) {ITER（设计目标）};
     \end{tikzpicture}
-    \caption{Lawson 参数空间图：$n\tau$ 对温度 $T$ 的依赖关系。图中标注了若干代表性装置（TFTR、JET、DIII-D、NIF）以及ITER的设计目标。\textbf{判据方向：固定温度时，必须 $n\tau$ 高于点火线才满足点火条件，所以能量自持区在点火线\emph{上方}（图中红色阴影区）；线下方为不满足区。}三点示意：\cnum{1}在阈值线下（不满足）、\cnum{2}恰在线上（临界）、\cnum{3}在线上方（满足）。}
+    \caption{Lawson 参数空间图：$n\tau$ 对温度 $T$ 的依赖关系。图中标注了若干代表性装置（TFTR、JET、DIII-D、NIF）以及 ITER 的设计目标。\textbf{判据方向：固定温度时，必须 $n\tau$ 高于点火线才满足点火条件，所以能量自持区在点火线\emph{上方}；线下方为不满足区。}三点示意：\cnum{1}在阈值线下（不满足）、\cnum{2}恰在线上（临界）、\cnum{3}在线上方（满足）。}
     \label{fig:lawson}
 \end{figure}
 
