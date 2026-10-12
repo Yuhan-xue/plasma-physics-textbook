@@ -20,8 +20,10 @@
 用法：python check/fixtures/gate_figure_layout.py
 依赖：PyMuPDF（pip install PyMuPDF）
 """
+import hashlib
 import io
 import os
+import re
 import subprocess
 import sys
 
@@ -94,6 +96,35 @@ def run(pdf, logpath):
     return out, p.returncode
 
 
+# ---- 配色检查用例：静态扫源码，用「植入 + 复原」而不是合成 PDF ----
+
+PAL_TARGET = os.path.join(ROOT, 'src', 'ch3_supplement.tex')
+PAL_PAT = re.compile(r'(?<![A-Za-z!])fig(?:Blue|Verm|Green|Orange|Purple|Sky|Gray|Ink)')
+
+
+def implant_palette():
+    """把源码里第一处色板名改成内置色名（blue），返回 (path, 原始字节, sha256)。"""
+    raw = io.open(PAL_TARGET, 'rb').read()
+    text = raw.decode('utf-8')
+    crlf = '\r\n' in text
+    if crlf:
+        text = text.replace('\r\n', '\n')
+    m = PAL_PAT.search(text)
+    if not m:
+        raise RuntimeError('源码里找不到色板名 figXxx，无法植入')
+    out = text[:m.start()] + 'blue' + text[m.end():]
+    io.open(PAL_TARGET, 'w', encoding='utf-8', newline='').write(
+        out.replace('\n', '\r\n') if crlf else out)
+    return PAL_TARGET, raw, hashlib.sha256(raw).hexdigest()
+
+
+def restore_palette(backup):
+    path, raw, want = backup
+    io.open(path, 'wb').write(raw)
+    got = hashlib.sha256(io.open(path, 'rb').read()).hexdigest()
+    return got == want
+
+
 def main():
     try:
         import pymupdf  # noqa: F401
@@ -108,13 +139,25 @@ def main():
              ('cross', 1, ['文字被节点框边裁切', '文字同时压住两个节点框']),
              ('gone', 1, ['在整本 PDF 中都没找到']),
              ('textcut', 1, ['文字互相压住', '彩色线条/箭头压住文字']),
-             ('edge', 1, ['越出版心'])]
+             ('edge', 1, ['越出版心']),
+             # v1.26.3 新增：插图配色规范（静态扫源码）——把色板名改成内置色名即应报警
+             ('palette', 1, ['用了写死颜色'])]
     ok = True
     try:
         for kind, want_rc, needles in cases:
             pdf = os.path.join(FIXDIR, kind + '.pdf')
             build_pdf(pdf, kind)
-            out, rc = run(pdf, os.path.join(logs, kind + '.txt'))
+            backup, restored = None, True
+            if kind == 'palette':
+                backup = implant_palette()
+            try:
+                out, rc = run(pdf, os.path.join(logs, kind + '.txt'))
+            finally:
+                if backup is not None:
+                    restored = restore_palette(backup)
+            if not restored:
+                print('[X ] palette 源码未按原字节恢复')
+                ok = False
             hits = [n for n in needles if n in out]
             good = (rc == want_rc) and len(hits) == len(needles)
             ok = ok and good
