@@ -2990,6 +2990,27 @@ P29 检查：8 个小节名、7 张表 label、6 只语义盒标签、19 个公�
 8. **重编脚本自己也会藏 bug**：`build_v1220.py` 里书签层级统计写的是 `for _, _, l in toc`，
    取到的其实是**页码**，输出一长串数字；改成 `for lvl, title, pg in toc` 才对。**打印出来的统计也要看一眼像不像统计。**
 
-### 28.8 发布记录
+### 28.8 发布记录（v1.22.0）
 
-（待回填）
+- 内容提交 `a3a9d4d`（`src/appendix_x_radiation.tex` +536、`check/physics_regression.py` +245、
+  `check/fixtures/gate_physics_negative.py` +95/−、`src/plasma_physics_textbook_v2.tex` 6 行改挂载与版本串、
+  PDF 2 505 779 → 2 549 468 B；5 文件 +879/−3），文档提交 `2b78429`
+  （`README.md` 363 页 / 24 附录 / 门禁 1030 项 / 夹具 161 处 / P29 守卫段 / v1.22.0 版本行，
+  并把「辐射输运命中数第二少（20 处）」改成可复算口径 15 处；`processed.md` 第 28 节）。
+- tag `v1.22.0` = 标签对象 `4a4eba1fbbcba457765d9240c6bfe2ad14e043d0` → 文档提交 `2b78429`；
+  双推 `13a32bf..2b78429 main` 与 `* [new tag] v1.22.0`，之后远端
+  `refs/heads/main = 2b784292d9e56b13a85323ca006a5a98db0b7b90`、
+  `refs/tags/v1.22.0 = 4a4eba1fbbcba457765d9240c6bfe2ad14e043d0`。
+- Gitea release **id=120**（上一轮 v1.21.0 为 117；Gitea 的 release id 全局自增，
+  118/119 未出现在本仓库，仓库累计 release 数为 **30**），
+  `http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.22.0`；
+  资产 `plasma_physics_textbook_v2.pdf` 2 549 468 B，
+  附件地址 `http://zsyq.hxlab.tech:3000/attachments/3e97db2f-aeb1-4e31-b0f7-442313bfe38b`。
+- 独立复核（清四个代理变量 + `curl.exe -sS -L --noproxy '*'` 下载附件后比 SHA256）：
+  远程与本地均 2 549 468 B、
+  `C090AE0C289785A6D8DC09AE447DCCE2ADAD76FA012B078176E809D9499F38BC`，**逐字节一致**。
+- 远程 `reviews/` 仍为 `2026-10-10-independent`（31 项）与 `2026-10-11-scheduled`（35 项），
+  合计 66 项，本轮**没有新的评审**；远端仓库根目录仍无 `todo/`。
+- 汇报图：`tmp/png_v1220/` 下 `appX_cover.png`（第 356 页首页，1191×1684）、
+  7 张表格裁剪（`appX_tab1..7.png`）与 6 张语义盒裁剪（`appX_tip_*.png`），
+  由 `tmp/render_v1220.py` / `tmp/render_v1220b.py` / `tmp/render_v1220c.py` 三代脚本渲染。
