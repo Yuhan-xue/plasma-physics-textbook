@@ -394,6 +394,36 @@ def check_figure_text_overlap(doc):
             % (n_span, MIN_FIG_FONT))
 
 
+# ---------------------------------------------------------------- 插图配色规范（静态）
+
+# 与 tmp/palette_fix_all.py 使用**同一个正则**：三种写法（fill=blue!20 / [blue!20] / \color{blue}）
+# 一次覆盖；`!black` 这类混色目标由前置否定 (?<![A-Za-z!]) 放行。
+PALETTE_COLORS = ('figBlue', 'figVerm', 'figOrange', 'figGreen', 'figPurple', 'figSky', 'figGray', 'figGray', 'figInk', 'figOrange', 'figPurple', 'figGray', 'figPurple', 'figGreen', 'figGreen', 'figPurple')
+PALETTE_PAT = re.compile('(?<![A-Za-z!])(magenta|orange|purple|yellow|violet|green|black|brown|olive|blue|cyan|gray|grey|teal|pink|red)(!\\d+(?:![a-z]+)?)?')
+FIG_ENV = re.compile(r'\\begin\{figure\}(?:.|\n)*?\\end\{figure\}')
+
+
+def check_figure_palette():
+    """静态扫描：插图里不得再出现写死颜色（一律用统一色板 figXxx）。"""
+    import glob as _glob
+    src = os.path.join(ROOT, 'src')
+    bad = []
+    for path in sorted(_glob.glob(os.path.join(src, '*.tex'))):
+        raw = open(path, encoding='utf-8').read()
+        raw = re.sub(r'(?<!\\)%.*', '', raw)
+        for m in FIG_ENV.finditer(raw):
+            for wm in PALETTE_PAT.finditer(m.group(0)):
+                line = raw[:m.start() + wm.start()].count('\n') + 1
+                bad.append('%s:%d 用了写死颜色 %s' % (os.path.basename(path), line, wm.group(0)))
+    if bad:
+        for b in bad[:6]:
+            rec('FAIL', 'P', '插图配色规范：%s（应改用统一色板 figBlue/figVerm/…）' % b)
+        if len(bad) > 6:
+            rec('FAIL', 'P', '插图配色规范：另有 %d 处' % (len(bad) - 6))
+    else:
+        rec('PASS', 'P', '插图配色规范：无写死颜色（全部走统一色板）')
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--pdf', default=DEFAULT_PDF)
@@ -412,6 +442,7 @@ def main():
                 rec('WARN', 'P', '未安装 PyMuPDF，跳过图形几何检查（install: pip install PyMuPDF）')
                 fitz = None
         if fitz is not None:
+            check_figure_palette()
             doc = fitz.open(args.pdf)
             seen = set()
             box_keys = set(k for k, _ in FIGURES)

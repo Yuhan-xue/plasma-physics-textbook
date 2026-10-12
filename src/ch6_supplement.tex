@@ -322,41 +322,41 @@ $f = 20\,\mathrm{MHz} \ll f_{pe}$，远低于截止频率，\textbf{不能传播
 \begin{tikzpicture}[scale=1.0]
 % 地球（旧版白字压浅蓝底，对比度不够几乎看不见）
 \draw[thick,fill=figBlue!20] (0,0) circle (1.5);
-\node[blue!50!black] at (0,0) {\small 地球};
+\node[figBlue!50!black] at (0,0) {\small 地球};
 
 % 电离层（D/E/F 标签旧版三个灰字悬在圆外一排、指不清各自是哪层；
 % 现在各自贴到对应虚线圆外侧并沿角度错开）
-\draw[dashed,gray] (0,0) circle (2.0);
-\draw[dashed,gray] (0,0) circle (2.5);
-\draw[dashed,gray] (0,0) circle (3.2);
-\node[gray!70!black,right] at (1.95,-0.75) {\small D};
-\node[gray!70!black,right] at (2.42,-0.92) {\small E};
-\node[gray!70!black,right] at (3.08,-1.16) {\small F};
+\draw[dashed,figGray] (0,0) circle (2.0);
+\draw[dashed,figGray] (0,0) circle (2.5);
+\draw[dashed,figGray] (0,0) circle (3.2);
+\node[figGray!70!black,right] at (1.95,-0.75) {\small D};
+\node[figGray!70!black,right] at (2.42,-0.92) {\small E};
+\node[figGray!70!black,right] at (3.08,-1.16) {\small F};
 
 % 磁力线（从南半球到北半球）
-\draw[red,thick] (-1.06,-1.06) .. controls (-2.5,0) and (-2.5,2) .. (0,3.5) .. controls (2.5,2) and (2.5,0) .. (1.06,-1.06);
-\node[red] at (0,4) {磁力线};
+\draw[figVerm,thick] (-1.06,-1.06) .. controls (-2.5,0) and (-2.5,2) .. (0,3.5) .. controls (2.5,2) and (2.5,0) .. (1.06,-1.06);
+\node[figVerm] at (0,4) {磁力线};
 
 % 闪电源（南半球；旧版黄字压白底，对比度不够）
-\fill[yellow] (-1.06,-1.06) circle (3pt);
-\node[yellow!50!black] at (-1.4,-1.4) {闪电};
+\fill[figOrange] (-1.06,-1.06) circle (3pt);
+\node[figOrange!50!black] at (-1.4,-1.4) {闪电};
 
 % 波传播箭头
-\draw[->,orange,very thick] (-1.5,-0.5) -- (-1.3,0.5);
-\draw[->,orange,very thick] (-1.2,1.5) -- (-0.8,2.2);
-\draw[->,orange,very thick] (-0.3,2.9) -- (0.3,2.9);
-\draw[->,orange,very thick] (0.8,2.2) -- (1.2,1.5);
-\draw[->,orange,very thick] (1.3,0.5) -- (1.5,-0.5);
+\draw[->,figOrange,very thick] (-1.5,-0.5) -- (-1.3,0.5);
+\draw[->,figOrange,very thick] (-1.2,1.5) -- (-0.8,2.2);
+\draw[->,figOrange,very thick] (-0.3,2.9) -- (0.3,2.9);
+\draw[->,figOrange,very thick] (0.8,2.2) -- (1.2,1.5);
+\draw[->,figOrange,very thick] (1.3,0.5) -- (1.5,-0.5);
 % 哨声波标签移进磁力线环内的空处：旧版压在第二支传播箭头的起点上
-\node[orange] at (-0.35,1.75) {哨声波};
+\node[figOrange] at (-0.35,1.75) {哨声波};
 
 % 地面站（北半球）
-\fill[black] (1.06,-1.06) circle (3pt);
+\fill[figInk] (1.06,-1.06) circle (3pt);
 \node at (1.4,-1.4) {地面站};
 
 % 卫星
-\fill[green] (0,2.5) circle (3pt);
-\node[green] at (0.6,2.7) {卫星};
+\fill[figGreen] (0,2.5) circle (3pt);
+\node[figGreen] at (0.6,2.7) {卫星};
 
 \node at (0,-2.2) {\small 闪电产生的宽频脉冲沿磁力线传播，高频先到、低频后到};
 \end{tikzpicture}

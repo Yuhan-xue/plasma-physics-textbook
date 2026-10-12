@@ -237,30 +237,30 @@ $\vect{u}\cdot(\vect{j}\times\vect{B})$ 是磁能与动能之间的\textbf{转�
 
 % 磁力线穿过流体元
 \foreach \y in {0.3,0.75,1.2} {
-  \draw[->,blue,thick] (-3,\y) -- (-2,\y);
-  \draw[blue,thick] (-2,\y) -- (0,\y);
-  \draw[->,blue,thick] (0,\y) -- (1,\y);
+  \draw[->,figBlue,thick] (-3,\y) -- (-2,\y);
+  \draw[figBlue,thick] (-2,\y) -- (0,\y);
+  \draw[->,figBlue,thick] (0,\y) -- (1,\y);
 }
-\node[blue] at (1.4,0.75) {$\vect{B}$};
+\node[figBlue] at (1.4,0.75) {$\vect{B}$};
 
 % 速度箭头（抬到虚线框上方：旧版箭头头部正好扎在虚线框的顶边上）
-\draw[->,red,very thick] (-1,2.2) -- (1,2.2);
-\node[red,above] at (0,2.3) {$\vect{u}$};
+\draw[->,figVerm,very thick] (-1,2.2) -- (1,2.2);
+\node[figVerm,above] at (0,2.3) {$\vect{u}$};
 
 % 右侧：移动后的流体元（虚线）
 \draw[thick,fill=figOrange!10,dashed] (0.5,0.3) rectangle (2.5,1.8);
-\node[fill=figOrange!10,orange!80!black] at (1.5,1.05) {\small 流体元};
+\node[fill=figOrange!10,figOrange!80!black] at (1.5,1.05) {\small 流体元};
 
 % 移动后的磁力线（虚线）
 \foreach \y in {0.6,1.05,1.5} {
-  \draw[->,blue,thick,dashed] (0.5,\y) -- (2.5,\y);
-  \draw[->,blue,thick] (2.5,\y) -- (3.5,\y);
+  \draw[->,figBlue,thick,dashed] (0.5,\y) -- (2.5,\y);
+  \draw[->,figBlue,thick] (2.5,\y) -- (3.5,\y);
 }
-\node[blue,dashed] at (3.9,1.05) {$\vect{B}$};
+\node[figBlue,dashed] at (3.9,1.05) {$\vect{B}$};
 
 % 标注
-\draw[<->,gray] (-2,-0.3) -- (0.5,-0.3);
-\node[gray] at (-0.75,-0.6) {$\vect{u}\,\diff t$};
+\draw[<->,figGray] (-2,-0.3) -- (0.5,-0.3);
+\node[figGray] at (-0.75,-0.6) {$\vect{u}\,\diff t$};
 
 \node at (0,-1.2) {\small 理想MHD：流体元带着磁力线一起运动，穿过任意回路的磁通量不变};
 \end{tikzpicture}
@@ -272,33 +272,33 @@ $\vect{u}\cdot(\vect{j}\times\vect{B})$ 是磁能与动能之间的\textbf{转�
 \centering
 \begin{tikzpicture}[scale=1.0]
 % 弯曲磁力线（向上凸起）
-\draw[blue,very thick,domain=-3:3,samples=100] plot(\x,{0.5*cos(30*\x)});
-\draw[blue,->,very thick] (-2,0.43) -- (-1.9,0.42);
-\draw[blue,->,very thick] (0,0.5) -- (0.1,0.49);
-\draw[blue,->,very thick] (2,0.43) -- (2.1,0.42);
-\node[blue] at (3.2,0.5) {$\vect{B}$};
+\draw[figBlue,very thick,domain=-3:3,samples=100] plot(\x,{0.5*cos(30*\x)});
+\draw[figBlue,->,very thick] (-2,0.43) -- (-1.9,0.42);
+\draw[figBlue,->,very thick] (0,0.5) -- (0.1,0.49);
+\draw[figBlue,->,very thick] (2,0.43) -- (2.1,0.42);
+\node[figBlue] at (3.2,0.5) {$\vect{B}$};
 
 % 曲率中心
-\fill[black] (0,6) circle (2pt);
+\fill[figInk] (0,6) circle (2pt);
 \node at (0,6.5) {曲率中心};
 \draw[dashed] (0,6) -- (-1,0.43);
 \draw[dashed] (0,6) -- (1,0.43);
 
 % 张力恢复力（指向曲率中心；两个标签沿各自箭头外移：旧版并排挤在中间读成一团）
-\draw[->,red,very thick] (-1,0.43) -- (-0.8,1.5);
-\node[red,left] at (-0.95,1.6) {$\vect{F}_\text{张力}$};
-\draw[->,red,very thick] (1,0.43) -- (0.8,1.5);
-\node[red,right] at (0.95,1.6) {$\vect{F}_\text{张力}$};
+\draw[->,figVerm,very thick] (-1,0.43) -- (-0.8,1.5);
+\node[figVerm,left] at (-0.95,1.6) {$\vect{F}_\text{张力}$};
+\draw[->,figVerm,very thick] (1,0.43) -- (0.8,1.5);
+\node[figVerm,right] at (0.95,1.6) {$\vect{F}_\text{张力}$};
 
 % 磁压方向（向下，推向B弱区；箭头外移到 ±2.2，∇ 标签改右锚：
 % 旧版 ∇ 符号正好压在绿色箭头上，且左侧箭头没有标签）
-\draw[->,green!60!black,very thick] (-2.2,2.5) -- (-2.2,1.5);
-\draw[->,green!60!black,very thick] (2.2,2.5) -- (2.2,1.5);
-\node[green!60!black,left] at (-2.35,2) {磁压};
-\node[green!60!black,right] at (2.35,2) {$\grad(B^2/2\mu_0)$};
+\draw[->,figGreen!60!black,very thick] (-2.2,2.5) -- (-2.2,1.5);
+\draw[->,figGreen!60!black,very thick] (2.2,2.5) -- (2.2,1.5);
+\node[figGreen!60!black,left] at (-2.35,2) {磁压};
+\node[figGreen!60!black,right] at (2.35,2) {$\grad(B^2/2\mu_0)$};
 
 % 等离子体区域
-\fill[orange!10] (-3,-1) rectangle (3,-0.2);
+\fill[figOrange!10] (-3,-1) rectangle (3,-0.2);
 \node at (0,-0.6) {等离子体};
 
 \node at (0,-1.8) {\small 磁张力像拉紧的橡皮筋，将弯曲磁力线拉直；磁压将等离子体推离高场区};

@@ -235,31 +235,31 @@ bump-on-tail不稳定性的核心是：在相速度 $v_\phi = \omega/k$ 处，�
 \draw[->,thick] (0,-0.3) -- (0,4.5) node[above] {$f(v)$};
 
 % 麦克斯韦分布曲线
-\draw[domain=-0.5:5.5,samples=100,thick,blue] plot({\x+0.5},{3.8*exp(-(\x-2)^2/1.5)});
+\draw[domain=-0.5:5.5,samples=100,thick,figBlue] plot({\x+0.5},{3.8*exp(-(\x-2)^2/1.5)});
 
 % 相速度标注
-\draw[dashed,red] (3.5,0) -- (3.5,3.2);
-\node[red,below] at (3.5,-0.2) {$v_\phi$};
+\draw[dashed,figVerm] (3.5,0) -- (3.5,3.2);
+\node[figVerm,below] at (3.5,-0.2) {$v_\phi$};
 
 % 共振区间
-\draw[decorate,decoration={brace,amplitude=5pt},thick,red!70] (3.1,3.4) -- (3.9,3.4);
-\node[red!70,above] at (3.5,3.6) {\footnotesize 共振区};
+\draw[decorate,decoration={brace,amplitude=5pt},thick,figVerm!70] (3.1,3.4) -- (3.9,3.4);
+\node[figVerm!70,above] at (3.5,3.6) {\footnotesize 共振区};
 
 % 慢粒子区标注（标签移到共振带左上的白处：旧版一半压在蓝色带里）
-\fill[blue!20] (2.5,0) rectangle (3.5,2.8);
-\node[blue!60!black,align=center] at (1.9,2.45) {\footnotesize 慢粒子多\\\footnotesize $v<v_\phi$};
+\fill[figBlue!20] (2.5,0) rectangle (3.5,2.8);
+\node[figBlue!60!black,align=center] at (1.9,2.45) {\footnotesize 慢粒子多\\\footnotesize $v<v_\phi$};
 
 % 快粒子区标注（标签移到橙带右侧白处：旧版左半压在橙带里）
-\fill[orange!20] (3.5,0) rectangle (4.5,1.5);
-\node[orange!60!black,align=center] at (5.1,0.9) {\footnotesize 快粒子少\\\footnotesize $v>v_\phi$};
+\fill[figOrange!20] (3.5,0) rectangle (4.5,1.5);
+\node[figOrange!60!black,align=center] at (5.1,0.9) {\footnotesize 快粒子少\\\footnotesize $v>v_\phi$};
 
 % 斜率示意
-\draw[->,thick,green!50!black] (3.5,2.2) -- (2.8,2.6);
-\node[green!50!black,right] at (3.6,2.3) {\footnotesize $\partial f/\partial v < 0$};
+\draw[->,thick,figGreen!50!black] (3.5,2.2) -- (2.8,2.6);
+\node[figGreen!50!black,right] at (3.6,2.3) {\footnotesize $\partial f/\partial v < 0$};
 
 % 能量流向
-\draw[->,very thick,red!70] (3.5,-1) -- (2.5,-1);
-\node[red!70,below] at (3,-1.3) {\footnotesize 净能量流向粒子};
+\draw[->,very thick,figVerm!70] (3.5,-1) -- (2.5,-1);
+\node[figVerm!70,below] at (3,-1.3) {\footnotesize 净能量流向粒子};
 \end{tikzpicture}
 \caption{Landau 阻尼的共振粒子示意图。在相速度 $v_\phi$ 附近，速度略小于 $v_\phi$ 的粒子比速度略大于 $v_\phi$ 的粒子多（$\partial f_0/\partial v < 0$），导致净能量从波流向粒子，波被阻尼。}
     \label{fig:landau-resonance}
@@ -273,31 +273,31 @@ bump-on-tail不稳定性的核心是：在相速度 $v_\phi = \omega/k$ 处，�
 \draw[->,thick] (0,-0.3) -- (0,4.5) node[above] {$f(v)$};
 
 % 背景麦克斯韦分布（大宽峰）
-\draw[domain=-0.5:5,samples=100,thick,blue] plot({\x+0.5},{3.5*exp(-(\x-1.5)^2/1.8)});
+\draw[domain=-0.5:5,samples=100,thick,figBlue] plot({\x+0.5},{3.5*exp(-(\x-1.5)^2/1.8)});
 
 % 束流峰（小窄峰）
-\draw[domain=4.5:7,samples=50,thick,red] plot({\x},{1.8*exp(-(\x-5.8)^2/0.3)});
+\draw[domain=4.5:7,samples=50,thick,figVerm] plot({\x},{1.8*exp(-(\x-5.8)^2/0.3)});
 
 % 合成分布（示意）
-\draw[domain=-0.5:5,samples=100,thick,dashed,gray] plot({\x+0.5},{3.5*exp(-(\x-1.5)^2/1.8)+0.1});
-\draw[domain=4.5:7,samples=50,thick,dashed,gray] plot({\x},{1.8*exp(-(\x-5.8)^2/0.3)+0.1});
+\draw[domain=-0.5:5,samples=100,thick,dashed,figGray] plot({\x+0.5},{3.5*exp(-(\x-1.5)^2/1.8)+0.1});
+\draw[domain=4.5:7,samples=50,thick,dashed,figGray] plot({\x},{1.8*exp(-(\x-5.8)^2/0.3)+0.1});
 
 % 标注（两组标签移到峰外侧的白处：旧版 n_b,T_b 压在蓝峰峰顶、
 % n_s,u,T_s 压在红峰左肩）
-\node[blue,align=center] at (1.0,4.05) {\footnotesize 背景等离子体};
-\node[blue,align=center] at (1.0,3.7) {\footnotesize $n_b$, $T_b$};
+\node[figBlue,align=center] at (1.0,4.05) {\footnotesize 背景等离子体};
+\node[figBlue,align=center] at (1.0,3.7) {\footnotesize $n_b$, $T_b$};
 
-\node[red,align=center] at (6.9,2.6) {\footnotesize 电子束流};
-\node[red,align=center] at (6.9,2.25) {\footnotesize $n_s$, $u$, $T_s$};
+\node[figVerm,align=center] at (6.9,2.6) {\footnotesize 电子束流};
+\node[figVerm,align=center] at (6.9,2.25) {\footnotesize $n_s$, $u$, $T_s$};
 
 % 凸起区域标注（标签上移离开蓝尾；指引箭头改从束流左肩起笔）
-\draw[->,thick,green!50!black] (5.0,1.2) -- (5.6,2.0);
-\node[green!50!black,align=center] at (4.2,1.6) {\footnotesize bump（凸起）};
-\node[green!50!black,align=center] at (4.2,1.25) {\footnotesize $\partial f/\partial v > 0$};
+\draw[->,thick,figGreen!50!black] (5.0,1.2) -- (5.6,2.0);
+\node[figGreen!50!black,align=center] at (4.2,1.6) {\footnotesize bump（凸起）};
+\node[figGreen!50!black,align=center] at (4.2,1.25) {\footnotesize $\partial f/\partial v > 0$};
 
 % 不稳定性区域
 \fill[pattern=north east lines,pattern color=figGreen!50] (4.2,0) rectangle (5.5,0.5);
-\node[green!50!black] at (4.85,-0.4) {\footnotesize 不稳定区};
+\node[figGreen!50!black] at (4.85,-0.4) {\footnotesize 不稳定区};
 \end{tikzpicture}
 \caption{bump-on-tail速度分布函数示意图。蓝色宽峰为背景热电子，红色窄峰为漂移电子束流。在两峰之间的"尾部"区域形成凸起（bump），对应 $\partial f/\partial v > 0$，驱动Langmuir 波不稳定性增长。}
     \label{fig:bump-on-tail}

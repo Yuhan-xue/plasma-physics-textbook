@@ -273,8 +273,8 @@ f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
     % 相位差（驱动增长的必需条件）：放在回路正中，用 text width 限制宽度，避免溢出压住两侧标签
     \node[box, fill=figOrange!25, text width=5.2cm, font=\footnotesize] (ph) at (4.1,0.85)
       {驱动增长必需：$\delta n$ 与 $\delta\phi$\\之间的\textbf{相位差} $\delta\neq0$\\（非绝热电子响应：碰撞或有限 $k_\parallel$）};
-    \draw[->, dashed, thick, orange!80!black] (ph.west) -- (amp.east);
-    \draw[->, dashed, thick, orange!80!black] (ph.east) -- (exb.west);
+    \draw[->, dashed, thick, figOrange!80!black] (ph.west) -- (amp.east);
+    \draw[->, dashed, thick, figOrange!80!black] (ph.east) -- (exb.west);
 
     % 背景说明（放在回路外侧上方，不与连线重叠）
     \node[font=\small, align=center] at (4.1,3.5) {背景：$\nabla n$ 沿 $-x$ 方向，$\vect{B}$ 垂直纸面向外};
@@ -327,12 +327,12 @@ f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
 \centering
 \begin{tikzpicture}[scale=1.1,font=\small]
 % 背景盒子：重流体在上
-\fill[blue!30] (-4,2) rectangle (4,4);
-\node[blue!50!black] at (0,3) {\large 重流体 ($\rho_2$)};
+\fill[figBlue!30] (-4,2) rectangle (4,4);
+\node[figBlue!50!black] at (0,3) {\large 重流体 ($\rho_2$)};
 
 % 背景盒子：轻流体在下
-\fill[orange!30] (-4,-2) rectangle (4,2);
-\node[orange!50!black] at (0,0) {\large 轻流体 ($\rho_1$)};
+\fill[figOrange!30] (-4,-2) rectangle (4,2);
+\node[figOrange!50!black] at (0,0) {\large 轻流体 ($\rho_1$)};
 
 % 界面
 \draw[thick] (-4,2) -- (-2.5,2);
@@ -340,13 +340,13 @@ f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
 \draw[thick] (2.5,2) -- (4,2);
 
 % 重力（放在左侧空白处：原先画在 x=0 会与“重流体 ($\rho_2$)”区域标签叠字）
-\draw[->,very thick,red] (-3.0,3.5) -- (-3.0,2.5);
-\node[red,right] at (-2.85,3) {$\vect{g}$};
+\draw[->,very thick,figVerm] (-3.0,3.5) -- (-3.0,2.5);
+\node[figVerm,right] at (-2.85,3) {$\vect{g}$};
 
 % 扰动增长箭头
-\draw[->,thick,green!50!black] (-1.5,2.5) -- (-1.5,3.2);
-\draw[->,thick,green!50!black] (1.5,1.5) -- (1.5,0.8);
-\node[green!50!black,right] at (1.7,1.2) {\footnotesize 扰动增长};
+\draw[->,thick,figGreen!50!black] (-1.5,2.5) -- (-1.5,3.2);
+\draw[->,thick,figGreen!50!black] (1.5,1.5) -- (1.5,0.8);
+\node[figGreen!50!black,right] at (1.7,1.2) {\footnotesize 扰动增长};
 
 % 尖峰处标注
 \node[align=center] at (-1.5,1.5) {\footnotesize 尖峰处重流体\\\footnotesize 下沉};

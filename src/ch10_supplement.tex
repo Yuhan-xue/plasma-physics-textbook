@@ -373,40 +373,40 @@ E_{\text{laser}} = \frac{0.35\,\mathrm{MJ}}{0.1} \approx 3.5\,\mathrm{MJ}
         \draw[->] (0,-3.5) -- (0,3.5) node[above] {$Z$};
         
         % 环向轴（中心轴）
-        \draw[dashed, gray] (2,0) -- (2,3);
-        \draw[dashed, gray] (2,0) -- (2,-3);
-        \node[gray] at (2,-3.3) {环向轴};
+        \draw[dashed, figGray] (2,0) -- (2,3);
+        \draw[dashed, figGray] (2,0) -- (2,-3);
+        \node[figGray] at (2,-3.3) {环向轴};
         
         % 等离子体截面（拉长椭圆）
-        \draw[thick, blue, fill=figBlue!10] (4.5,0) ellipse (1.5 and 2.5);
-        \node[blue] at (4.2,-1.9) {\small 等离子体};
+        \draw[thick, figBlue, fill=figBlue!10] (4.5,0) ellipse (1.5 and 2.5);
+        \node[figBlue] at (4.2,-1.9) {\small 等离子体};
 
         % 大半径 R
-        \draw[<->, thick, red] (2,2.8) -- (4.5,2.8);
-        \node[red, above] at (3.25,2.9) {$R$};
+        \draw[<->, thick, figVerm] (2,2.8) -- (4.5,2.8);
+        \node[figVerm, above] at (3.25,2.9) {$R$};
 
         % 小半径 a（竖直半高；旧版与 I_p 箭头挤在同一条竖线上、两个标签叠在一起）
-        \draw[<->, thick, red] (4.5,0) -- (4.5,2.5);
-        \node[red, right] at (4.6,1.2) {$a$};
+        \draw[<->, thick, figVerm] (4.5,0) -- (4.5,2.5);
+        \node[figVerm, right] at (4.6,1.2) {$a$};
 
         % 极向磁场 B_theta：贴着截面内侧的环行箭头（旧版的面内小弧与图例区重叠，
         % 第一版改到等离子体外侧又离得太远、读不出绕截面环行）
-        \draw[->, thick, orange] (3.37,-0.68) .. controls (3.05,-0.3) and (3.05,0.3) .. (3.37,0.68);
-        \node[orange] at (3.62,0.35) {$B_{\theta}$};
+        \draw[->, thick, figOrange] (3.37,-0.68) .. controls (3.05,-0.3) and (3.05,0.3) .. (3.37,0.68);
+        \node[figOrange] at (3.62,0.35) {$B_{\theta}$};
 
         % 环向磁场与等离子体电流：在极向截面（R--Z 面）里两者都垂直纸面，
         % 用圆点符号表示。旧版用面内弯曲箭头表示环向场，方向是错的。
-        \node[green!60!black] at (5.15,1.75) {$\odot\ B_{\phi}$};
-        \node[purple] at (5.15,-1.35) {$\odot\ I_p$};
+        \node[figGreen!60!black] at (5.15,1.75) {$\odot\ B_{\phi}$};
+        \node[figPurple] at (5.15,-1.35) {$\odot\ I_p$};
         
         % 图例说明（整体右移下移，避开 R 轴标签）
-        \node[anchor=west] at (6.6,1.6) {\color{green!60!black}\small 环向磁场 $B_{\phi}$：};
-        \node[anchor=west] at (6.6,1.1) {\color{green!60!black}\small 外部线圈产生（垂直纸面）};
+        \node[anchor=west] at (6.6,1.6) {\color{figGreen!60!black}\small 环向磁场 $B_{\phi}$：};
+        \node[anchor=west] at (6.6,1.1) {\color{figGreen!60!black}\small 外部线圈产生（垂直纸面）};
         
-        \node[anchor=west] at (6.6,0.4) {\color{orange}\small 极向磁场 $B_{\theta}$：};
-        \node[anchor=west] at (6.6,-0.1) {\color{orange}\small 等离子体电流产生（截面内）};
+        \node[anchor=west] at (6.6,0.4) {\color{figOrange}\small 极向磁场 $B_{\theta}$：};
+        \node[anchor=west] at (6.6,-0.1) {\color{figOrange}\small 等离子体电流产生（截面内）};
         
-        \node[anchor=west] at (6.6,-0.9) {\color{purple}\small $I_p$：等离子体电流（垂直纸面）};
+        \node[anchor=west] at (6.6,-0.9) {\color{figPurple}\small $I_p$：等离子体电流（垂直纸面）};
     \end{tikzpicture}
     \caption{托卡马克位形示意图（$R$为大半径，$a$为小半径，$B_{\phi}$为环向磁场，$B_{\theta}$为极向磁场，$I_p$为等离子体电流）。}
     \label{fig:tokamak}
@@ -430,37 +430,37 @@ E_{\text{laser}} = \frac{0.35\,\mathrm{MJ}}{0.1} \approx 3.5\,\mathrm{MJ}
         }
 
         % D-D 点火线（更高要求）
-        \draw[thick, blue, dashed, domain=2:9, samples=50] plot (\x, {2+4/(\x^0.5)});
-        \node[blue, anchor=west] at (4.2,4.55) {D-D 点火线};
+        \draw[thick, figBlue, dashed, domain=2:9, samples=50] plot (\x, {2+4/(\x^0.5)});
+        \node[figBlue, anchor=west] at (4.2,4.55) {D-D 点火线};
 
         % D-T 点火线
-        \draw[thick, red, domain=1.5:9, samples=50] plot (\x, {1+4/(\x^0.5)});
-        \node[red, anchor=west] at (6.6,1.98) {D-T 点火线};
-        \node[red, anchor=west] at (6.6,1.60) {$n\tau \sim T^{1/2}$};
+        \draw[thick, figVerm, domain=1.5:9, samples=50] plot (\x, {1+4/(\x^0.5)});
+        \node[figVerm, anchor=west] at (6.6,1.98) {D-T 点火线};
+        \node[figVerm, anchor=west] at (6.6,1.60) {$n\tau \sim T^{1/2}$};
 
         % 判据三点（固定 T，比较 n tau 与阈值）：点移到左侧，标签放左边
-        \filldraw[red] (2.2,2.10) circle (2.5pt);
-        \node[red,left,font=\footnotesize] at (2.10,2.10) {\cnum{1}不满足};
-        \filldraw[orange] (2.2,2.80) circle (2.5pt);
-        \node[orange,left,font=\footnotesize] at (2.10,2.80) {\cnum{2}临界};
-        \filldraw[green!50!black] (2.2,3.50) circle (2.5pt);
-        \node[green!50!black,left,font=\footnotesize] at (2.10,3.50) {\cnum{3}满足};
+        \filldraw[figVerm] (2.2,2.10) circle (2.5pt);
+        \node[figVerm,left,font=\footnotesize] at (2.10,2.10) {\cnum{1}不满足};
+        \filldraw[figOrange] (2.2,2.80) circle (2.5pt);
+        \node[figOrange,left,font=\footnotesize] at (2.10,2.80) {\cnum{2}临界};
+        \filldraw[figGreen!50!black] (2.2,3.50) circle (2.5pt);
+        \node[figGreen!50!black,left,font=\footnotesize] at (2.10,3.50) {\cnum{3}满足};
 
         % 现有磁约束装置区域（虚线框 + 框下方标注）
-        \draw[dotted, gray, thick] (3.0,2.0) -- (6.5,2.4) -- (7.0,3.4) -- (3.0,3.0) -- cycle;
-        \node[gray, align=center] at (4.1,1.32) {\small 现有磁约束\\ 装置区域};
+        \draw[dotted, figGray, thick] (3.0,2.0) -- (6.5,2.4) -- (7.0,3.4) -- (3.0,3.0) -- cycle;
+        \node[figGray, align=center] at (4.1,1.32) {\small 现有磁约束\\ 装置区域};
 
         % 装置工作点（标签统一置上，横向间距 >= 1.6）
-        \filldraw[black] (3.6,2.30) circle (3pt);
+        \filldraw[figInk] (3.6,2.30) circle (3pt);
         \node[above, font=\footnotesize] at (3.6,2.42) {TFTR};
-        \filldraw[black] (5.2,2.95) circle (3pt);
+        \filldraw[figInk] (5.2,2.95) circle (3pt);
         \node[above, font=\footnotesize] at (5.2,3.07) {JET};
-        \filldraw[black] (6.4,2.55) circle (3pt);
+        \filldraw[figInk] (6.4,2.55) circle (3pt);
         \node[above, font=\footnotesize] at (6.4,2.67) {DIII-D};
-        \filldraw[blue] (2.9,4.30) circle (3pt);
-        \node[above, blue, font=\footnotesize] at (2.9,4.42) {NIF};
-        \filldraw[red] (8.4,4.60) circle (4pt);
-        \node[above, red, font=\footnotesize] at (8.4,4.74) {ITER（设计目标）};
+        \filldraw[figBlue] (2.9,4.30) circle (3pt);
+        \node[above, figBlue, font=\footnotesize] at (2.9,4.42) {NIF};
+        \filldraw[figVerm] (8.4,4.60) circle (4pt);
+        \node[above, figVerm, font=\footnotesize] at (8.4,4.74) {ITER（设计目标）};
     \end{tikzpicture}
     \caption{Lawson 参数空间图：$n\tau$ 对温度 $T$ 的依赖关系。图中标注了若干代表性装置（TFTR、JET、DIII-D、NIF）以及 ITER 的设计目标。\textbf{判据方向：固定温度时，必须 $n\tau$ 高于点火线才满足点火条件，所以能量自持区在点火线\emph{上方}；线下方为不满足区。}三点示意：\cnum{1}在阈值线下（不满足）、\cnum{2}恰在线上（临界）、\cnum{3}在线上方（满足）。}
     \label{fig:lawson}

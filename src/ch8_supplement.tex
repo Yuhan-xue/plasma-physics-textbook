@@ -275,35 +275,35 @@ T_e & \nu_{ei} & \tau_{ei} \\ \hline
 \centering
 \begin{tikzpicture}[scale=1.1,font=\small]
 % 入射粒子轨迹
-\draw[->,thick,blue] (-4,2) -- (-1.5,0.5);
-\draw[->,thick,blue] (-1.5,0.5) -- (3,-1);
-\draw[->,thick,blue] (-4,-2) -- (-1.5,-0.5);
-\draw[->,thick,blue] (-1.5,-0.5) -- (3,1);
+\draw[->,thick,figBlue] (-4,2) -- (-1.5,0.5);
+\draw[->,thick,figBlue] (-1.5,0.5) -- (3,-1);
+\draw[->,thick,figBlue] (-4,-2) -- (-1.5,-0.5);
+\draw[->,thick,figBlue] (-1.5,-0.5) -- (3,1);
 
 % 靶粒子（标签移到点正上方：旧版在点右侧，与两支角弧挤在一起，
 % 读起来像 q2 在量角度）
-\fill[red] (0,0) circle (4pt);
-\node[red,above] at (0,0.25) {$q_2$};
+\fill[figVerm] (0,0) circle (4pt);
+\node[figVerm,above] at (0,0.25) {$q_2$};
 
 % 入射粒子标注
-\node[blue,left] at (-4,2.2) {$q_1$, $v$};
-\node[blue,left] at (-4,-2.2) {$q_1$, $v$};
+\node[figBlue,left] at (-4,2.2) {$q_1$, $v$};
+\node[figBlue,left] at (-4,-2.2) {$q_1$, $v$};
 
 % 碰撞参数
-\draw[dashed,gray] (-1.5,0.5) -- (-1.5,-0.5);
-\node[gray,right] at (-1.3,0) {$b$};
+\draw[dashed,figGray] (-1.5,0.5) -- (-1.5,-0.5);
+\node[figGray,right] at (-1.3,0) {$b$};
 
 % 偏转角标注（角弧收小、标签沿各自出射支外移：旧版两个 θ 叠在角弧右侧）
 \draw[dashed] (0,0) -- (-1,0.67);
 \draw[dashed] (0,0) -- (2,-0.67);
-\draw[->,thick,red] (0.6,0) arc (0:-14:0.6);
-\node[red] at (1.6,-0.5) {$\theta$};
+\draw[->,thick,figVerm] (0.6,0) arc (0:-14:0.6);
+\node[figVerm] at (1.6,-0.5) {$\theta$};
 
 % 另一偏转角
 \draw[dashed] (0,0) -- (-1,-0.67);
 \draw[dashed] (0,0) -- (2,0.67);
-\draw[->,thick,red] (0.6,0) arc (0:14:0.6);
-\node[red] at (1.6,0.5) {$\theta$};
+\draw[->,thick,figVerm] (0.6,0) arc (0:14:0.6);
+\node[figVerm] at (1.6,0.5) {$\theta$};
 
 % 小角度示意
 \node[align=center] at (0,-2.5) {\footnotesize 单次散射偏转角很小：$\theta \ll 1$};
@@ -318,27 +318,27 @@ T_e & \nu_{ei} & \tau_{ei} \\ \hline
 \begin{tikzpicture}[scale=1.0, >=Stealth, font=\small]
     % 角扩散随机游走：入射束经多次小角散射逐渐展宽
     % 初始准直束
-    \draw[->, very thick, blue] (-4.5,0) -- (-2.5,0);
-    \node[blue, above] at (-3.5,0.15) {入射束 $\theta=0$};
+    \draw[->, very thick, figBlue] (-4.5,0) -- (-2.5,0);
+    \node[figBlue, above] at (-3.5,0.15) {入射束 $\theta=0$};
 
     % 多次小角偏折的轨迹（随机游走）
-    \draw[->, thick, red] (-2.5,0) -- (-1.2,0.3) -- (0.1,0.15) -- (1.4,0.75) -- (2.7,0.5) -- (4.2,1.2);
+    \draw[->, thick, figVerm] (-2.5,0) -- (-1.2,0.3) -- (0.1,0.15) -- (1.4,0.75) -- (2.7,0.5) -- (4.2,1.2);
     % 展宽包络
-    \draw[dashed, gray] (-2.5,0) -- (4.2,1.55);
-    \draw[dashed, gray] (-2.5,0) -- (4.2,-1.55);
-    \node[gray, right] at (4.2,1.55) {展宽包络};
+    \draw[dashed, figGray] (-2.5,0) -- (4.2,1.55);
+    \draw[dashed, figGray] (-2.5,0) -- (4.2,-1.55);
+    \node[figGray, right] at (4.2,1.55) {展宽包络};
 
     % 每段小偏折标注（标签离包络线与折线各留一点余量）
-    \draw[->, thick, orange] (-1.2,0.3) arc (0:25:0.9);
-    \node[orange, font=\footnotesize] at (-0.5,0.55) {$\delta\theta$};
-    \draw[->, thick, orange] (0.1,0.15) arc (0:28:0.9);
-    \node[orange, font=\footnotesize] at (0.8,0.42) {$\delta\theta$};
-    \draw[->, thick, orange] (1.4,0.75) arc (0:22:0.9);
-    \node[orange, font=\footnotesize] at (2.15,0.95) {$\delta\theta$};
+    \draw[->, thick, figOrange] (-1.2,0.3) arc (0:25:0.9);
+    \node[figOrange, font=\footnotesize] at (-0.5,0.55) {$\delta\theta$};
+    \draw[->, thick, figOrange] (0.1,0.15) arc (0:28:0.9);
+    \node[figOrange, font=\footnotesize] at (0.8,0.42) {$\delta\theta$};
+    \draw[->, thick, figOrange] (1.4,0.75) arc (0:22:0.9);
+    \node[figOrange, font=\footnotesize] at (2.15,0.95) {$\delta\theta$};
 
     % 方均根角扩散标注
-    \draw[<->, thick, purple!80!black] (4.7,0) -- (4.7,1.2);
-    \node[purple!80!black, right, font=\footnotesize, align=left] at (4.75,0.6) {方均根偏转角\\ $\theta_{\mathrm{rms}}\approx\sqrt{N}\,\delta\theta$};
+    \draw[<->, thick, figPurple!80!black] (4.7,0) -- (4.7,1.2);
+    \node[figPurple!80!black, right, font=\footnotesize, align=left] at (4.75,0.6) {方均根偏转角\\ $\theta_{\mathrm{rms}}\approx\sqrt{N}\,\delta\theta$};
 
     % 说明
     \node[align=center, font=\footnotesize] at (0,-2.3) {单次偏折 $\delta\theta\ll1$（随机方向），$N$ 次累积后方均根偏转角 $\theta_{\mathrm{rms}}=\sqrt{N}\,\delta\theta$\\
