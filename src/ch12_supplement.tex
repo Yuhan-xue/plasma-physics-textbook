@@ -410,7 +410,7 @@ n_e = 10^{23}\times\left(\frac{\Delta\lambda_S}{0.549}\right)^{3/2}
     \centering
     \begin{tikzpicture}[scale=1.0, >=Stealth]
         % 微波源（频率标注移到框外下方：旧版压在框的底边上，印出来像删除线）
-        \draw[thick, fill=orange!20] (-6,0) rectangle (-4,1);
+        \draw[thick, fill=figOrange!20] (-6,0) rectangle (-4,1);
         \node at (-5,0.5) {微波源};
         \node[below] at (-5,-0.15) {\small $f=60\,\mathrm{GHz}$};
         
@@ -423,27 +423,27 @@ n_e = 10^{23}\times\left(\frac{\Delta\lambda_S}{0.549}\right)^{3/2}
         \node[above] at (-2.45,1.1) {\scriptsize 喇叭};
         
         % 分束器（标签移到上方空处：旧版三字比菱形宽，压住左右两个顶点）
-        \draw[thick, fill=blue!20] (-1.3,0) -- (-0.8,0.5) -- (-1.3,1) -- (-1.8,0.5) -- cycle;
+        \draw[thick, fill=figBlue!20] (-1.3,0) -- (-0.8,0.5) -- (-1.3,1) -- (-1.8,0.5) -- cycle;
         \node[blue, above] at (-1.3,1.1) {\scriptsize 分束器};
         
         % 参考臂：向右到反射镜再返回（去/回两条线上下错开，避免叠印）
         \draw[->, thick, green!60!black] (-0.8,0.42) -- (2.1,0.42);
-        \draw[thick, fill=gray!40] (2.1,0.2) -- (2.3,0.2) -- (2.3,0.8) -- (2.1,0.8);
+        \draw[thick, fill=figGray!40] (2.1,0.2) -- (2.3,0.2) -- (2.3,0.8) -- (2.1,0.8);
         \draw[->, thick, green!60!black] (2.1,0.62) -- (-0.8,0.62);
         \node[green!60!black] at (0.6,1.0) {参考臂};
         
         % 测量臂：向下穿过等离子体到反射镜再返回（去/回左右错开；
         % 旧版测量臂从分束器往左下走，穿过了波导框，光路读不出走向）
         \draw[->, thick, purple] (-1.38,0) -- (-1.38,-3.1);
-        \draw[thick, fill=cyan!15] (-3.2,-2.6) rectangle (-0.2,-1.5);
+        \draw[thick, fill=figSky!15] (-3.2,-2.6) rectangle (-0.2,-1.5);
         \node[cyan!70!black] at (-2.3,-2.05) {等离子体};
-        \draw[thick, fill=gray!40] (-1.6,-3.1) -- (-0.8,-3.1) -- (-0.8,-3.3) -- (-1.6,-3.3);
+        \draw[thick, fill=figGray!40] (-1.6,-3.1) -- (-0.8,-3.1) -- (-0.8,-3.3) -- (-1.6,-3.3);
         \draw[->, thick, purple] (-0.98,-3.1) -- (-0.98,-0.15);
         \node[purple] at (-2.3,-2.95) {测量臂};
         
         % 合束后单支箭头进探测器（旧版画成两支方向相反的箭头叠在同一条竖廊里）
         \draw[->, thick, red] (-0.95,0.15) -- (0.5,-1.3);
-        \draw[thick, fill=yellow!20] (0.3,-2.3) rectangle (1.9,-1.3);
+        \draw[thick, fill=figOrange!20] (0.3,-2.3) rectangle (1.9,-1.3);
         \node at (1.1,-1.8) {探测器};
         % 信号从探测器右侧水平引出：旧版向下引出，黑色箭头穿过 Δφ 公式
         \draw[->, thick] (1.9,-1.8) -- (2.7,-1.8);

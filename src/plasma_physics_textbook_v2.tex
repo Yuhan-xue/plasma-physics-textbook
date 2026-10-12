@@ -1389,15 +1389,35 @@ v_p = \frac{\omega}{k} = \frac{\sqrt{\omega_p^2 + c^2k^2}}{k} = c\sqrt{1 + \frac
 德拜屏蔽的物理意义是：等离子体中的电荷涨落被屏蔽的特征尺度为德拜长度 $\lambda_D$，大于此尺度的粒子感受不到裸库仑势。
 
 \begin{center}
-\begin{tikzpicture}[scale=0.9]
-\fill[red] (0,0) circle (4pt);
-\node[red, font=\small] at (0,0.5) {$+Q$};
-\shade[inner color=blue!30, outer color=white] (0,0) circle (2);
-\draw[dashed, blue, thick] (0,0) circle (2);
-\node[blue, font=\small] at (1.4,1.4) {$n_e > n_i$};
-\node[font=\small] at (3,0) {$\vect{E}\approx 0$};
-\draw[<->, thick] (0,-2.3) -- (2,-2.3);
-\node[font=\small] at (1,-2.7) {$\lambda_D$};
+\begin{tikzpicture}[scale=0.95,font=\small]
+% 双面板：(a) 屏蔽云的几何图像，(b) 同一件事的定量图像（屏蔽势 vs 裸势）。
+% 旧版只有一团径向渐变色 + 三个悬空标签，既无比例感也无信息量。
+% ---- (a) 试探电荷与屏蔽云 ----
+\begin{scope}[xshift=-4.6cm]
+\shade[inner color=figBlue!30, outer color=figBlue!2] (0,0) circle (2.0);
+\draw[figBlue,figcurve,dashed] (0,0) circle (2.0);
+\fill[figVerm] (0,0) circle (3pt);
+\node[figVerm!50!black,fill=white,inner sep=1.5pt] at (0,0.42) {$+Q$};
+\node[figBlue!40!black,fill=white,inner sep=1.5pt,font=\footnotesize] at (0,-1.15) {电子云：$n_e>n_i$};
+\draw[figlead] (3.0,1.75) -- (2.2,1.2);
+\node[figInk,fill=white,inner sep=1.5pt,font=\footnotesize] at (3.55,1.95) {$\vect{E}\approx 0$};
+% λ_D 尺寸线（带端刻度，旧版是一支裸双箭头）
+\draw[figInk,line width=0.8pt] (0,-2.5) -- (2.0,-2.5);
+\draw[figInk,line width=0.8pt] (0,-2.35) -- (0,-2.65);
+\draw[figInk,line width=0.8pt] (2.0,-2.35) -- (2.0,-2.65);
+\node[figInk,fill=white,inner sep=1.5pt,font=\footnotesize] at (1.0,-2.5) {$\lambda_D$};
+\node[figInk,anchor=north,font=\footnotesize] at (0.6,-3.1) {(a) 试探电荷与屏蔽云};
+\end{scope}
+% ---- (b) 屏蔽势与裸库仑势 ----
+\begin{scope}[xshift=3.4cm]
+\draw[figaxis] (0,0) -- (5.2,0) node[right] {$r/\lambda_D$};
+\draw[figaxis] (0,-0.3) -- (0,3.4) node[above] {$\phi/\phi_0$};
+\draw[figGray,fighelp,domain=0.8:5,samples=80] plot (\x,{2.6/\x});
+\draw[figBlue,figcurve,domain=0.5:5,samples=140] plot (\x,{2.6*exp(-\x)/\x});
+\node[figGray,fill=white,inner sep=1.5pt,font=\footnotesize] at (3.6,1.15) {裸库仑 $1/r$};
+\node[figBlue!50!black,fill=white,inner sep=1.5pt,font=\footnotesize] at (2.6,0.34) {屏蔽势 $\mathrm{e}^{-r/\lambda_D}/r$};
+\node[figInk,anchor=north,font=\footnotesize] at (2.4,-0.7) {(b) 屏蔽把势压到裸势之下};
+\end{scope}
 \end{tikzpicture}
 \end{center}
 
@@ -1693,19 +1713,23 @@ v_y &= -\frac{q}{|q|} v_\perp \sin(\omega_c t + \phi_0)
 \end{insight}
 
 \begin{center}
-\begin{tikzpicture}[scale=0.85]
-\foreach \x in {-2,-1,0,1,2} {
-  \foreach \y in {-2,-1,0,1,2} {
-    \draw[->, green!50!black, line width=0.6pt] (\x,\y,-2) -- (\x,\y,2);
-  }
-}
-\node[green!50!black, font=\small] at (3,0,0) {$\vect{B}$};
-\draw[red, thick, domain=0:720, samples=100, variable=\t]
-  plot({1.2*cos(-\t+90)}, {1.2*sin(-\t+90)}, {\t/180});
-\node[red, font=\small] at (1.5,1.5,2) {电子};
-\draw[blue, thick, domain=0:720, samples=100, variable=\t]
-  plot({1.5*cos(\t)}, {1.5*sin(\t)}, {\t/180});
-\node[blue, font=\small] at (-1.5,-1.5,2) {离子};
+\begin{tikzpicture}[scale=0.95,font=\small]
+% 侧视：引导中心沿 B 滑行，回旋在侧视下就是绕轴的正弦线圈。
+% 旧版用 3D 投影画成两堆互相叠压的圆、背景再铺 25 支绿箭头，完全读不出螺旋。
+% 引导中心轴与磁场方向（轴右端留一段裸尾，放「引导中心」标签，不压线圈）
+\draw[fighelp] (0,0) -- (11.8,0);
+\draw[figGreen,figcurve,->] (0.2,-1.95) -- (2.2,-1.95) node[right,fill=white,inner sep=1.5pt] {$\vect{B}$（沿轴）};
+% 离子线圈：半径大、频率低
+\draw[figBlue,figcurve,domain=0:10.4,samples=300,smooth] plot (\x,{0.95*sin(200*\x)});
+% 电子线圈：半径小、频率高
+\draw[figVerm,figcurve,domain=0:10.4,samples=700,smooth] plot (\x,{0.3*sin(900*\x)});
+% 标签：引线点指 + 白光环
+\draw[figlead] (3.2,1.5) -- (3.35,0.9);
+\node[figBlue!50!black,fill=white,inner sep=1.5pt] at (3.0,1.7) {离子：$\rho_{L}$ 大、$\omega_{c}$ 小};
+\draw[figlead] (7.4,-1.2) -- (7.5,-0.32);
+\node[figVerm!50!black,fill=white,inner sep=1.5pt] at (7.2,-1.45) {电子：$\rho_{L}$ 小、$\omega_{c}$ 大};
+\node[figGray,anchor=north east,fill=white,inner sep=1.5pt,font=\footnotesize] at (11.8,0.34) {引导中心沿 $\vect{B}$ 滑行};
+\node[figInk,font=\footnotesize] at (5.5,-2.5) {（侧视示意；半径与频率比不按真实比例，真实 $\rho_{Li}/\rho_{Le}\sim 60$、$\omega_{ce}/\omega_{ci}\sim 10^3$--$10^5$）};
 \end{tikzpicture}
 \end{center}
 

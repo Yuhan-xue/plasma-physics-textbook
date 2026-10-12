@@ -258,12 +258,12 @@ f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[scale=1.0, >=Stealth, font=\small,
-  box/.style={draw, rounded corners, fill=blue!10, minimum width=3.2cm, minimum height=0.9cm, align=center}]
+  box/.style={draw, rounded corners, fill=figBlue!10, minimum width=3.2cm, minimum height=0.9cm, align=center}]
     % 四个环节的正反馈回路（横向加宽到 8.2cm，给回路内部的相位框和标签留出净空）
-    \node[box, fill=orange!15] (dn) at (0,2.6) {密度涨落 $\delta n$};
-    \node[box, fill=blue!15] (dp) at (8.2,2.6) {电势涨落 $\delta\phi$};
-    \node[box, fill=green!15] (exb) at (8.2,-0.9) {$\vect{E}\times\vect{B}$ 漂移\\（扰动对流）};
-    \node[box, fill=red!15] (amp) at (0,-0.9) {密度涨落被放大};
+    \node[box, fill=figOrange!15] (dn) at (0,2.6) {密度涨落 $\delta n$};
+    \node[box, fill=figBlue!15] (dp) at (8.2,2.6) {电势涨落 $\delta\phi$};
+    \node[box, fill=figGreen!15] (exb) at (8.2,-0.9) {$\vect{E}\times\vect{B}$ 漂移\\（扰动对流）};
+    \node[box, fill=figVerm!15] (amp) at (0,-0.9) {密度涨落被放大};
 
     \draw[->, very thick] (dn) -- node[above] {沿 $y$ 方向} (dp);
     \draw[->, very thick] (dp) -- node[right] {$\delta\vect{E}\perp\vect{B}$} (exb);
@@ -271,7 +271,7 @@ f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
     \draw[->, very thick, dashed] (amp) -- node[left] {正反馈} (dn);
 
     % 相位差（驱动增长的必需条件）：放在回路正中，用 text width 限制宽度，避免溢出压住两侧标签
-    \node[box, fill=yellow!25, text width=5.2cm, font=\footnotesize] (ph) at (4.1,0.85)
+    \node[box, fill=figOrange!25, text width=5.2cm, font=\footnotesize] (ph) at (4.1,0.85)
       {驱动增长必需：$\delta n$ 与 $\delta\phi$\\之间的\textbf{相位差} $\delta\neq0$\\（非绝热电子响应：碰撞或有限 $k_\parallel$）};
     \draw[->, dashed, thick, orange!80!black] (ph.west) -- (amp.east);
     \draw[->, dashed, thick, orange!80!black] (ph.east) -- (exb.west);
@@ -290,32 +290,32 @@ f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
   level 1/.style={sibling distance=6.4cm, level distance=3.4cm},
   level 2/.style={sibling distance=3.4cm, level distance=2.6cm},
   level 3/.style={sibling distance=1.5cm, level distance=2.2cm, font=\footnotesize},
-  every node/.style={align=center, draw, rounded corners, fill=blue!10,
+  every node/.style={align=center, draw, rounded corners, fill=figBlue!10,
                      inner sep=3pt, minimum height=0.75cm}
 ]
 % 向右生长：每一层占用一条独立的纵向通道，兄弟间距按子树宽度给定，
 % 保证 10 个叶节点标签互不遮挡（向下生长时 16.3cm 版心放不下）。
-\node[fill=blue!20] {等离子体不稳定性}
-  child { node[fill=red!15] {宏观 MHD\\不稳定性}
-    child { node[fill=red!10] {理想 MHD}
-      child { node[fill=red!5] {sausage\\模} }
-      child { node[fill=red!5] {kink\\扭曲模} }
-      child { node[fill=red!5] {气球模} }
+\node[fill=figBlue!20] {等离子体不稳定性}
+  child { node[fill=figVerm!15] {宏观 MHD\\不稳定性}
+    child { node[fill=figVerm!10] {理想 MHD}
+      child { node[fill=figVerm!5] {sausage\\模} }
+      child { node[fill=figVerm!5] {kink\\扭曲模} }
+      child { node[fill=figVerm!5] {气球模} }
     }
-    child { node[fill=orange!10] {电阻\\不稳定性}
-      child { node[fill=orange!5] {撕裂模} }
-      child { node[fill=orange!5] {磁重联} }
+    child { node[fill=figOrange!10] {电阻\\不稳定性}
+      child { node[fill=figOrange!5] {撕裂模} }
+      child { node[fill=figOrange!5] {磁重联} }
     }
   }
-  child { node[fill=green!15] {微观\\动理学不稳定性}
-    child { node[fill=green!10] {速度空间}
-      child { node[fill=green!5] {bump-on-tail} }
-      child { node[fill=green!5] {loss-cone} }
+  child { node[fill=figGreen!15] {微观\\动理学不稳定性}
+    child { node[fill=figGreen!10] {速度空间}
+      child { node[fill=figGreen!5] {bump-on-tail} }
+      child { node[fill=figGreen!5] {loss-cone} }
     }
-    child { node[fill=teal!10] {漂移波}
-      child { node[fill=teal!5] {ITG} }
-      child { node[fill=teal!5] {ETG} }
-      child { node[fill=teal!5] {TEM} }
+    child { node[fill=figGreen!10] {漂移波}
+      child { node[fill=figGreen!5] {ITG} }
+      child { node[fill=figGreen!5] {ETG} }
+      child { node[fill=figGreen!5] {TEM} }
     }
   };
 \end{tikzpicture}
