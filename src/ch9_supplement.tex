@@ -265,7 +265,7 @@ f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
     \node[box, fill=figGreen!15] (exb) at (8.2,-0.9) {$\vect{E}\times\vect{B}$ 漂移\\（扰动对流）};
     \node[box, fill=figVerm!15] (amp) at (0,-0.9) {密度涨落被放大};
 
-    \draw[->, very thick] (dn) -- node[above] {沿 $y$ 方向} (dp);
+    \draw[->, very thick] (dn) -- (dp);
     \draw[->, very thick] (dp) -- node[right] {$\delta\vect{E}\perp\vect{B}$} (exb);
     \draw[->, very thick] (exb) -- node[above=0.18cm, align=center, font=\footnotesize] {把高密度区输运到低密度区} (amp);
     \draw[->, very thick, dashed] (amp) -- node[left] {正反馈} (dn);
@@ -277,7 +277,7 @@ f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
     \draw[->, dashed, thick, figOrange!80!black] (ph.east) -- (exb.west);
 
     % 背景说明（放在回路外侧上方，不与连线重叠）
-    \node[font=\small, align=center] at (4.1,3.5) {背景：$\nabla n$ 沿 $-x$ 方向，$\vect{B}$ 垂直纸面向外};
+    \node[font=\small, align=center] at (4.1,3.5) {背景：$\nabla n$ 沿 $-x$ 方向，$\vect{B}$ 垂直纸面向外，涨落波矢沿 $y$ 方向};
 \end{tikzpicture}
 \caption{漂移波（可能）不稳定性的正反馈回路。密度梯度（沿 $-x$ 方向）中的密度涨落产生电势涨落，电势涨落的 $\vect{E}\times\vect{B}$ 漂移把高密度等离子体输运到低密度区，进一步放大密度涨落。\textbf{但回路闭合还差一环}：只有 $\delta n$ 与 $\delta\phi$ 之间存在相位差 $\delta\neq0$（即电子响应非绝热，由碰撞或有限 $k_\parallel$ 提供）时，输运才与密度涨落同相、才能把能量喂给波；若相位差为零，$\vect{E}\times\vect{B}$ 漂移只来回搬运、净输运为零，是中性振荡而非增长。磁场 $\vect{B}$ 垂直纸面向外。}
 \label{fig:drift-wave-feedback}
@@ -343,14 +343,16 @@ f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
 \draw[->,very thick,figVerm] (-3.0,3.5) -- (-3.0,2.5);
 \node[figVerm,right] at (-2.85,3) {$\vect{g}$};
 
-% 扰动增长箭头
-\draw[->,thick,figGreen!50!black] (-1.5,2.5) -- (-1.5,3.2);
-\draw[->,thick,figGreen!50!black] (1.5,1.5) -- (1.5,0.8);
-\node[figGreen!50!black,right] at (1.7,1.2) {\footnotesize 扰动增长};
+% 扰动增长箭头（尖峰=界面谷处重流体下沉、谷=界面峰处轻流体上升：
+% 旧版两支箭头画在斜坡上，方向与位置都对不上尖峰/谷）
+\draw[->,thick,figGreen!50!black] (-0.785,2.1) -- (-0.785,1.0);
+\draw[->,thick,figGreen!50!black] (0.785,1.5) -- (0.785,2.55);
+\draw[->,thick,figGreen!50!black] (2.356,1.9) -- (2.356,0.9);
+\node[figGreen!50!black,right] at (2.55,1.4) {\footnotesize 扰动增长};
 
 % 尖峰处标注
-\node[align=center] at (-1.5,1.5) {\footnotesize 尖峰处重流体\\\footnotesize 下沉};
-\node[align=center] at (2.2,2.5) {\footnotesize 谷处轻流体\\\footnotesize 上升};
+\node[align=center] at (-1.85,1.3) {\footnotesize 尖峰处重流体\\\footnotesize 下沉};
+\node[align=center] at (2.1,2.6) {\footnotesize 谷处轻流体\\\footnotesize 上升};
 
 % 波数标注
 \draw[<->,thick] (-1.57,4.3) -- (1.57,4.3);

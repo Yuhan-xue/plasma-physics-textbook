@@ -433,18 +433,19 @@ E_{\text{laser}} = \frac{0.35\,\mathrm{MJ}}{0.1} \approx 3.5\,\mathrm{MJ}
         \draw[thick, figBlue, dashed, domain=2:9, samples=50] plot (\x, {2+4/(\x^0.5)});
         \node[figBlue, anchor=west] at (4.2,4.55) {D-D 点火线};
 
-        % D-T 点火线
-        \draw[thick, figVerm, domain=1.5:9, samples=50] plot (\x, {1+4/(\x^0.5)});
+        % D-T 点火线（左端从②临界点起笔：旧版 domain 从 1.5 起，线头穿过③满足标签）
+        \draw[thick, figVerm, domain=2.2:9, samples=50] plot (\x, {1+4/(\x^0.5)});
         \node[figVerm, anchor=west] at (6.6,1.98) {D-T 点火线};
         \node[figVerm, anchor=west] at (6.6,1.60) {$n\tau \sim T^{1/2}$};
 
-        % 判据三点（固定 T，比较 n tau 与阈值）：点移到左侧，标签放左边
-        \filldraw[figVerm] (2.2,2.10) circle (2.5pt);
-        \node[figVerm,left,font=\footnotesize] at (2.10,2.10) {\cnum{1}不满足};
-        \filldraw[figOrange] (2.2,2.80) circle (2.5pt);
-        \node[figOrange,left,font=\footnotesize] at (2.10,2.80) {\cnum{2}临界};
-        \filldraw[figGreen!50!black] (2.2,3.50) circle (2.5pt);
-        \node[figGreen!50!black,left,font=\footnotesize] at (2.10,3.50) {\cnum{3}满足};
+        % 判据三点（固定 T，比较 n tau 与阈值）：D-T 线在 T=2.2 处 y=1+4/sqrt(2.2)=3.70，
+        % ②必须恰落在线上（旧版三点全在线下，与图注「②恰在线上」矛盾）
+        \filldraw[figVerm] (2.2,2.30) circle (2.5pt);
+        \node[figVerm,left,font=\footnotesize] at (2.10,2.30) {\cnum{1}不满足};
+        \filldraw[figOrange] (2.2,3.70) circle (2.5pt);
+        \node[figOrange,left,font=\footnotesize] at (2.10,3.70) {\cnum{2}临界};
+        \filldraw[figGreen!50!black] (2.2,4.35) circle (2.5pt);
+        \node[figGreen!50!black,left,font=\footnotesize] at (2.10,4.35) {\cnum{3}满足};
 
         % 现有磁约束装置区域（虚线框 + 框下方标注）
         \draw[dotted, figGray, thick] (3.0,2.0) -- (6.5,2.4) -- (7.0,3.4) -- (3.0,3.0) -- cycle;

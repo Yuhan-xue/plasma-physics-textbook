@@ -163,19 +163,19 @@ v_{\text{drift},D} = \frac{2\times 1.602\times 10^{-15}}{(1.602\times 10^{-19})\
 % 电场（画在左侧空列，避免与 y 轴标签挤在一起）
 \draw[figPurple,figcurve,->] (-0.35,-2.0) -- (-0.35,2.3) node[above,fill=white,inner sep=1.5pt] {$\vect{E}$};
 
-% 正离子摆线：顺时针回旋 + 向右漂移（半径大、一圈多）
+% 正离子摆线：顺时针回旋 + 向右漂移（半径大、画满两圈；引导中心在 x 轴上方）
 % （B 出纸面、初速向右时，F=qv×B 指向下方，故正离子顺时针）
-\draw[figBlue,figcurve,domain=0:400,samples=240,smooth]
-  plot({0.8*cos(-\x)+0.85*\x/180+1.4},{0.8*sin(-\x)+0.45});
-% 电子摆线：逆时针回旋 + 同速漂移（半径小、圈数多；负电荷受力反向）
+\draw[figBlue,figcurve,domain=0:720,samples=320,smooth]
+  plot({0.8*cos(-\x)+0.85*\x/180+1.2},{0.8*sin(-\x)+1.1});
+% 电子摆线：逆时针回旋 + 同速漂移（半径小、圈数多；引导中心在 x 轴下方）
 \draw[figVerm,figcurve,domain=0:1440,samples=700,smooth]
-  plot({0.26*cos(\x)+0.85*\x/180+1.4},{0.26*sin(\x)+0.45});
+  plot({0.26*cos(\x)+0.85*\x/180+1.4},{0.26*sin(\x)-0.7});
 
 % 标签：引线点指 + 白光环，绝不压线
-\draw[figlead] (2.75,1.75) -- (2.35,1.22);
-\node[figBlue!50!black,fill=white,inner sep=1.5pt] at (3.9,1.95) {正离子：顺时针、$\rho_{Li}$ 大};
-\draw[figlead] (8.05,1.2) -- (8.3,0.62);
-\node[figVerm!50!black,fill=white,inner sep=1.5pt] at (7.2,1.4) {电子：逆时针、$\rho_{Le}$ 小};
+\draw[figlead] (5.3,2.32) -- (4.5,1.95);
+\node[figBlue!50!black,fill=white,inner sep=1.5pt] at (6.5,2.45) {正离子：顺时针、$\rho_{Li}$ 大};
+\draw[figlead] (7.0,-1.45) -- (7.2,-0.98);
+\node[figVerm!50!black,fill=white,inner sep=1.5pt] at (6.2,-1.65) {电子：逆时针、$\rho_{Le}$ 小};
 
 % 漂移（两者同向，与电荷符号无关）
 \draw[figInk,line width=1.4pt,->] (8.6,-1.9) -- (9.9,-1.9)
@@ -211,8 +211,8 @@ v_{\text{drift},D} = \frac{2\times 1.602\times 10^{-15}}{(1.602\times 10^{-19})\
 \node[figGreen!40!black,fill=white,inner sep=1.5pt] at (0,-1.45) {$B_{\min}$（喉部）};
 \draw[figlead] (-3.1,1.15) -- (-1.7,0.36);
 \node[figBlue!50!black,anchor=east,fill=white,inner sep=1.5pt] at (-3.15,1.25) {$\theta>\theta_m$：被反射};
-\draw[figlead] (3.85,-0.8) -- (2.9,0.05);
-\node[figVerm!50!black,anchor=west,fill=white,inner sep=1.5pt] at (3.9,-0.9) {$\theta<\theta_m$：逃逸};
+\draw[figlead] (2.7,-1.35) -- (3.0,0.06);
+\node[figVerm!50!black,anchor=west,fill=white,inner sep=1.5pt] at (2.75,-1.5) {$\theta<\theta_m$：逃逸};
 \node[figInk,anchor=north,font=\footnotesize] at (0,-2.0) {(a) 实空间：磁瓶与两类轨道};
 \end{scope}
 % ---- (b) 速度空间：损失锥 ----

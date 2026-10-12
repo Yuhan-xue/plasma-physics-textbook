@@ -245,17 +245,17 @@ bump-on-tail不稳定性的核心是：在相速度 $v_\phi = \omega/k$ 处，�
 \draw[decorate,decoration={brace,amplitude=5pt},thick,figVerm!70] (3.1,3.4) -- (3.9,3.4);
 \node[figVerm!70,above] at (3.5,3.6) {\footnotesize 共振区};
 
-% 慢粒子区标注（标签移到共振带左上的白处：旧版一半压在蓝色带里）
+% 慢粒子区标注（标签放进蓝带内左上白处：带外左侧会被上升段曲线穿字）
 \fill[figBlue!20] (2.5,0) rectangle (3.5,2.8);
-\node[figBlue!60!black,align=center] at (1.9,2.45) {\footnotesize 慢粒子多\\\footnotesize $v<v_\phi$};
+\node[figBlue!50!black,align=center] at (2.85,2.2) {\footnotesize 慢粒子多\\\footnotesize $v<v_\phi$};
 
 % 快粒子区标注（标签移到橙带右侧白处：旧版左半压在橙带里）
 \fill[figOrange!20] (3.5,0) rectangle (4.5,1.5);
 \node[figOrange!60!black,align=center] at (5.1,0.9) {\footnotesize 快粒子少\\\footnotesize $v>v_\phi$};
 
-% 斜率示意
-\draw[->,thick,figGreen!50!black] (3.5,2.2) -- (2.8,2.6);
-\node[figGreen!50!black,right] at (3.6,2.3) {\footnotesize $\partial f/\partial v < 0$};
+% 斜率示意（箭头贴在下降段曲线上方：旧版从带里起笔会横穿曲线）
+\draw[->,thick,figGreen!50!black] (3.6,2.3) -- (4.0,1.6);
+\node[figGreen!50!black,right] at (4.05,2.0) {\footnotesize $\partial f/\partial v < 0$};
 
 % 能量流向
 \draw[->,very thick,figVerm!70] (3.5,-1) -- (2.5,-1);

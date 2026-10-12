@@ -458,14 +458,14 @@ s \approx \frac{\sqrt2}{3}\times0.13\,\mathrm{mm}\times39
         \draw[thick, figVerm] (0,5.5) -- (0.3,5.3) -- (1.5,4.0) -- (2.5,3.8) -- (8.5,3.2) -- (9.2,3.1) -- (10,3.0);
         \node[figVerm] at (5,5.5) {空间电位分布};
         
-        % 电位标注
-        \draw[<->, figVerm] (-1,5.5) -- (-1,3.0);
-        \node[figVerm, left] at (-1,4.25) {$V_{\mathrm{cathode}}$};
-        \node[figVerm, below] at (-1,3.0) {$V_{\mathrm{anode}}$};
+        % 电位标注（标签改为跨度箭头的两端：旧版悬在箭头中段，读不出量的是哪两点）
+        \draw[<->, figVerm] (-1.4,5.5) -- (-1.4,3.0);
+        \node[figVerm, above] at (-1.4,5.55) {$V_{\mathrm{cathode}}$};
+        \node[figVerm, below] at (-1.4,2.95) {$V_{\mathrm{anode}}$};
 
-        % 阴极位降标注
-        \draw[<->, figPurple, dashed] (0.15,5.0) -- (1.5,5.0);
-        \node[figPurple, above] at (0.8,5.0) {\small 阴极位降};
+        % 阴极位降标注（宽度箭抬到电位曲线起点之上：旧版与曲线斜段互穿）
+        \draw[<->, figPurple, dashed] (0,5.9) -- (1.5,5.9);
+        \node[figPurple, above] at (0.75,5.95) {\small 阴极位降};
 
         % 各区域发光强度示意（下方柱状图）
         \draw[->] (-0.5,0) -- (10.5,0) node[right] {$x$};
