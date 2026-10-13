@@ -97,6 +97,7 @@ APPAG = os.path.join(ROOT, 'src', 'appendix_ag_equilibrium.tex')
 APPAH = os.path.join(ROOT, 'src', 'appendix_ah_atomic.tex')
 APPAI = os.path.join(ROOT, 'src', 'appendix_ai_icf.tex')
 APPAJ = os.path.join(ROOT, 'src', 'appendix_aj_fuelling.tex')
+APPAK = os.path.join(ROOT, 'src', 'appendix_ak_safety.tex')
 CH12 = os.path.join(ROOT, 'src', 'ch12_supplement.tex')
 CH10 = os.path.join(ROOT, 'src', 'ch10_supplement.tex')
 SUITE = os.path.join(ROOT, 'check', 'physics_regression.py')
@@ -1174,9 +1175,74 @@ PATCHES = [
     # 407. 数据：练习 3 停留时间末位（练习 3 停留时间末位）
     (APPAJ, r'12.6505\ \mathrm{s}',
            r'12.6506\ \mathrm{s}'),
+    # 408. 结构：表 AK.5 label 被改名
+    (APPAK, r'\label{tab:app-ak-waste}',
+           r'\label{tab:app-ak-waste2}'),
+    # 409. 结构：语义盒标签被改名（活化）
+    (APPAK, r'{tip-app-ak-activation}',
+           r'{tip-app-ak-activ}'),
+    # 410. 结构：公式 label 被改名（纵深防御余量）
+    (APPAK, r'\label{eq:app-ak-margin}',
+           r'\label{eq:app-ak-margin2}'),
+    # 411. 结构：首处「出处：」改成「来源：」
+    (APPAK, r'\textbf{出处：}本附录的安全量化框架参照',
+           r'\textbf{来源：}本附录的安全量化框架参照'),
+    # 412. 结构：练习 4 的「解答 4」被改成「答案 4」
+    (APPAK, r'\textbf{解答 4}',
+           r'\textbf{答案 4}'),
+    # 413. 结构：语义盒标题改字（数字 -> 数目）
+    (APPAK, r'{安全不是感觉，是数字}',
+           r'{安全不是感觉，是数目}'),
+    # 414. 结构：语义盒标题改字（活度定的 -> 活度决定）
+    (APPAK, r'{废物的等级不是材料定的，是活度定的}',
+           r'{废物的等级不是材料定的，是活度决定}'),
+    # 415. 数据：位移截面末位（3.57928e-25 -> 3.57929e-25）
+    (APPAK, r'3.57928\times10^{-25}\ \mathrm{m^{2}}',
+           r'3.57929\times10^{-25}\ \mathrm{m^{2}}'),
+    # 416. 数据：氚比活度末位（355.978 -> 355.979 TBq/g）
+    (APPAK, r'355.978\ \mathrm{TBq\,g^{-1}}',
+           r'355.979\ \mathrm{TBq\,g^{-1}}'),
+    # 417. 数据：1 mg 吸入剂量末位（6.40761 -> 6.40762 Sv）
+    (APPAK, r'6.40761\ \mathrm{Sv}',
+           r'6.40762\ \mathrm{Sv}'),
+    # 418. 数据：0.1 g 吸入剂量末位（640.761 -> 640.762 Sv）
+    (APPAK, r'640.761\ \mathrm{Sv}',
+           r'640.762\ \mathrm{Sv}'),
+    # 419. 数据：2 kg 吸入剂量末位（1.28152e7 -> 1.28153e7 Sv）
+    (APPAK, r'1.28152\times10^{7}\ \mathrm{Sv}',
+           r'1.28153\times10^{7}\ \mathrm{Sv}'),
+    # 420. 数据：年燃耗剂量末位（1.9986e8 -> 1.9987e8 Sv）
+    (APPAK, r'1.9986\times10^{8}\ \mathrm{Sv}',
+           r'1.9987\times10^{8}\ \mathrm{Sv}'),
+    # 421. 数据：全壁渗透率末位（4.89532e9 -> 4.89533e9 Bq）
+    (APPAK, r'4.89532\times10^{9}$ Bq',
+           r'4.89533\times10^{9}$ Bq'),
+    # 422. 数据：日渗透克数末位（1.18815 -> 1.18816 g）
+    (APPAK, r'1.18815$ g',
+           r'1.18816$ g'),
+    # 423. 数据：手套箱净化时间末位（6.90776 -> 6.90777 h）
+    (APPAK, r'6.90776\ \mathrm{h}',
+           r'6.90777\ \mathrm{h}'),
+    # 424. 数据：场址剂量因子末位（5.61832e-20 -> 5.61833e-20）
+    (APPAK, r'5.61832\times10^{-20}\ \mathrm{Sv\,Bq^{-1}}',
+           r'5.61833\times10^{-20}\ \mathrm{Sv\,Bq^{-1}}'),
+    # 425. 数据：练习 3 年渗透量末位（0.0433972 -> 0.0433973 kg）
+    (APPAK, r'0.0433972$ kg',
+           r'0.0433973$ kg'),
 ]
 
-MIN_FAIL = 442       # 实测值（407 处植入回退合并计入 456，留 14 的余量）：见下
+MIN_FAIL = 465       # 实测值（425 处植入回退合并计入 479，留 14 的余量）：见下
+# ## v1.26.15 轮（附录 AK 聚变安全与环境 / 门禁 P43）植入扩到 425 处，18 处新补丁分两层
+# （编号 408--425）：
+#   结构层 7 条：表 AK.5 label 改名、语义盒标签改名、公式 label 改名、首处「出处：」→「来源：」、
+#              「解答 4」→「答案 4」、两只语义盒标题改字（数目 / 活度决定）。
+#   数据层 11 条：位移截面 3.57928e-25 m^2、氚比活度 355.978 TBq/g、1 mg 剂量 6.40761 Sv、
+#              0.1 g 剂量 640.761 Sv、2 kg 剂量 1.28152e7 Sv、年燃耗剂量 1.9986e8 Sv、
+#              全壁渗透率 4.89532e9 Bq、日渗透量 1.18815 g、手套箱净化 6.90776 h、
+#              场址剂量因子 5.61832e-20 Sv/Bq、练习 3 年渗透量 0.0433972 kg（各改末位）。
+# 首轮逐条探针（tmp/probe_neg_v1250.py 408--425）：**18/18 可证伪、无落空、无洞**，
+# 单条合计 FAIL=23（#409/#417/#418/#419/#420 各命中两处断言）。
+# 合并植入实测 **479**（= v1.26.14 轮的 456 + 23），MIN_FAIL 442 -> 465（留 14 余量）。
 # ## v1.26.14 轮（附录 AJ 加料与排灰 / 门禁 P42）植入扩到 407 处，18 处新补丁分两层
 # （编号 390--407）：
 #   结构层 7 条：表 AJ.5 label 改名、语义盒标签改名、公式 label 改名、首处「出处：」→「来源：」、
