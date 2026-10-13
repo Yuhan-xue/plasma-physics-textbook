@@ -1,0 +1,512 @@
+% 附录 AH：原子过程与谱线（v1.26.12 新增）
+% 数值唯一来源：tmp/appAH_calc.py -> tmp/appAH_calc.txt（98 行）。正文引用的每个数都能在那里找到。
+% 单位写法：数字与单位一律写进数学模式（\mathrm{nm}、\mathrm{eV}、\mathrm{m^{-3}}），避免中文字符进入数学字体。
+% 三种约定：温度用 eV；波长用 nm；线宽一律指 FWHM（半高全宽），不是标准差。
+% 版权口径：只借鉴结论、公式形式与题型；文字、数值、表格自拟并独立复算。离线环境无法核验 DOI，故只给书名/作者/年份/卷期页。
+% 与其他附录的分工：附录 Q 讲诊断的原理与装置，附录 X 讲辐射输运与能量损失，附录 P 讲低温等离子体应用；
+% 本附录只补它们共同缺的一层——「谱线是怎么来的、为什么是这个强度与这个宽度」。
+
+\section{能级与跃迁：谱线为什么是离散的}
+\label{sec:app-ah-levels}
+
+前面所有附录里出现的「谱线」，都是从某两个能级之间的跃迁发出来的。
+这件事听起来像常识，但它决定了整个诊断学的形状：\textbf{只要谱线是两能级之差，它就同时携带了
+「这是什么离子」（波长）与「这个离子在什么环境里」（强度与宽度）两组信息}。
+本节先把波长这一半算清楚。
+
+类氢离子的能级是教科书里唯一可以精确写出的能级：
+
+\begin{equation}
+E_n = -\frac{Z^2\,\mathrm{Ry}}{n^2},
+\qquad \mathrm{Ry} = 13.605693122994\ \mathrm{eV},
+\label{eq:app-ah-rydberg}
+\end{equation}
+
+其中 $Z$ 是核电荷数，$n$ 是主量子数。氢（$Z=1$）的基态是 $-13.6057$ eV，
+碳的裸核（C VI，$Z=6$）是 $-489.805$ eV。
+Lyman-$\alpha$（$n=2\to1$）与 Balmer-$\alpha$（$n=3\to2$）的能量
+以及对应的波长列在表~\ref{tab:app-ah-levels} 里。
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{p{2.3cm}p{2.2cm}p{2.4cm}p{5.2cm}}
+\toprule
+跃迁 & 能量 / eV & 波长 / nm & 它在哪里重要 \\
+\midrule
+C VI Ly-$\alpha$（$2\to1$） & $367.354$ & $3.37506$ & 芯部杂质辐射：软 X 射线，只能靠晶体谱仪 \\
+C VI Ly-$\beta$（$3\to1$） & $435.382$ & $2.84771$ & 与 Ly-$\alpha$ 组成强度比（第 3 节） \\
+C VI Balmer-$\alpha$（$3\to2$） & $68.0285$ & $18.2253$ & 极紫外，电荷交换复合光谱的窗口 \\
+D-$\alpha$（$3\to2$，声明） & $1.88920$ & $656.28$ & 边缘中性氢：可见光，最常被观测的一条线 \\
+\bottomrule
+\end{tabular}
+\caption{类氢能级给出的四条代表谱线。D-$\alpha$ 的波长是文献声明值，其余由式~\eqref{eq:app-ah-rydberg} 现算。}
+\label{tab:app-ah-levels}
+\end{table}
+
+\begin{tip}{谱线是能级差，不是「颜色」}{tip-app-ah-levels}
+谱线的波长只由离子的能级结构决定，与温度、密度都无关——这是诊断能成立的第一块基石。
+温度改变的是「哪个电荷态存在、哪个能级被占据」，不是「这条线在哪里」。
+所以看到 $3.37506$ nm 就知道是类氢碳，看到 $656.28$ nm 就知道是中性氢；
+至于它们各有多少、有多宽，才是环境告诉你的信息。
+\end{tip}
+
+还差一个尺度：电子在这些能级之间跑得多快。类氢离子的基态电子速度是
+
+\begin{equation}
+v_1 = Z\alpha c = 6\times7.29735\times10^{-3}\times2.99792\times10^{8}
+    = 1.31261\times10^{7}\ \mathrm{m\,s^{-1}} = 0.0437841\,c,
+\label{eq:app-ah-bohr}
+\end{equation}
+
+相对论修正的量级只有 $(v/c)^2/2 = 9.58524\times10^{-4}$。
+这解释了为什么附录 X 里对轫致辐射要写相对论修正、而这里的能级可以安心用非相对论公式：
+碳的类氢离子还远没有跑到需要认真对待相对论的速度。
+
+最后一句话留给「哪些离子会出现」。C VI Ly-$\alpha$ 的能量是 $367.354$ eV，
+而边缘等离子体的电子温度只有 $100$ eV 量级：\textbf{两者之比 $3.67354$ 说明边缘里根本不会有类氢碳}。
+边缘的碳以 C III、C IV 这类低电荷态存在，它们的谱线在极紫外；
+而芯部的碳虽然被剥到 C VI，中性份额却低到 $1.88172\times10^{-14}$，只有杂质辐射没有中性氢谱线。
+一条谱线能不能被看到，先要问这个离子在不在。
+
+\textbf{出处：}本节关于类氢能级、玻尔速度与跃迁波长的写法，参照 Griem \emph{Principles of Plasma Spectroscopy}（1997，第 2--3 章）、
+Salzmann \emph{Atomic Physics in Hot Plasmas}（1998，第 2 章）与 Hutchinson \emph{Principles of Plasma Diagnostics}（第 2 版，2002，第 6 章）；
+D-$\alpha$ 波长与自发辐射系数为文献声明值。本节凡标出数字的量都由 \texttt{tmp/appAH\_calc.py} 复算。
+
+\section{Saha 方程：电离度对温度有多敏感}
+\label{sec:app-ah-saha}
+
+能级解决「哪条线」，下一个问题是「这个电荷态有多少」。答案是 Saha 方程：
+电离与复合的细致平衡。对纯氢样近似（配分函数之比取 1），它写成
+
+\begin{equation}
+\frac{n_{z+1}\,n_e}{n_z} = S(T)\,\exp\!\left(-\frac{\chi}{T}\right),
+\qquad
+S(T) = 2\left(\frac{2\pi m_e kT}{h^2}\right)^{3/2}
+     = 6.03713\times10^{27}\,T^{3/2}\ \mathrm{m^{-3}},
+\label{eq:app-ah-saha}
+\end{equation}
+
+这里 $\chi$ 是电离能、$T$ 用 eV、$S(T)$ 中的 $T^{3/2}$ 也按 eV$^{3/2}$ 计。
+式~\eqref{eq:app-ah-saha} 最容易被误读的地方是：\textbf{电离度既不是温度的函数，也不是密度的函数，
+而是两者的函数}。表~\ref{tab:app-ah-saha} 把两件事分开算了一遍。
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{p{2.6cm}p{2.2cm}p{2.3cm}p{5.0cm}}
+\toprule
+扫描量 & 固定量 & 电离度 & 读数 \\
+\midrule
+$T=0.30$ eV & $n=10^{20}$ m$^{-3}$ & $4.46814\times10^{-5}$\,\% & 几乎完全中性 \\
+$T=0.50$ eV & $n=10^{20}$ m$^{-3}$ & $0.568235$\,\% & 中性为主 \\
+$T=0.60$ eV & $n=10^{20}$ m$^{-3}$ & $6.11317$\,\% & 过渡区：0.1 eV 变一个量级 \\
+$T=0.70$ eV & $n=10^{20}$ m$^{-3}$ & $29.9454$\,\% & 已经接近一半 \\
+$T=1.00$ eV & $n=10^{20}$ m$^{-3}$ & $98.692$\,\% & 基本全电离 \\
+\midrule
+$n=10^{18}$ m$^{-3}$ & $T=0.5$ eV & $5.53851$\,\% & 密度低十倍，电离度涨十倍 \\
+$n=10^{19}$ m$^{-3}$ & $T=0.5$ eV & $1.78588$\,\% & 同上趋势 \\
+$n=10^{20}$ m$^{-3}$ & $T=0.5$ eV & $0.568235$\,\% & 基准点 \\
+$n=10^{21}$ m$^{-3}$ & $T=0.5$ eV & $0.180042$\,\% & 密度高十倍，电离度降三倍 \\
+\bottomrule
+\end{tabular}
+\caption{Saha 方程的两个扫描：温度（上半）与密度（下半）。氢的电离能是 $13.6057$ eV，
+但过渡却发生在 $0.5$--$1$ eV——因为电离的代价要用自由电子的熵来付。}
+\label{tab:app-ah-saha}
+\end{table}
+
+\begin{tip}{「全电离」是个不等式，不是一句话}{tip-app-ah-saha}
+教材里常说「芯部等离子体完全电离」。这句话的正确读法是
+$1-n_0/n \approx 1$：在主工作点（$n_e=10^{20}$ m$^{-3}$、$T_e=9.194$ keV），
+式~\eqref{eq:app-ah-saha} 给出的中性份额是 $1.88172\times10^{-14}$——
+不是零，但任何谱线诊断都拿它没办法。
+反过来，边缘的 $0.5$ eV 处中性份额是 $99.4318\%$：同一条 Saha 方程，两个极端。
+数值本身不新鲜，新鲜的是把它们写在同一个工作点上做对照。
+\end{tip}
+
+杂质的行为值得单独看一眼，因为它决定了「谁的谱线能当诊断」。
+碳的一次电离能是 $11.260$ eV，比氢的 $13.6057$ eV 低，所以在同一温度下碳比氢更电离：
+$T=0.5$ eV 时碳的电离度是 $5.77523\%$（氢只有 $0.568235\%$）。
+氦正相反，一次电离能 $24.587$ eV 比氢高，$T=1$ eV 时只有 $3.49693\%$ 电离，
+要到 $2$ eV 才涨到 $99.8725\%$。
+把这三条曲线放在一起，就得到边缘等离子体里「谁能发光」的次序：
+低温时是氢与碳的中性/低价线，温度上来以后是氦与碳的高价线。
+
+\begin{equation}
+\frac{n_0}{n} = \frac{1}{1+S(T)\exp(-\chi/T)/n_e},
+\label{eq:app-ah-neutral}
+\end{equation}
+
+式~\eqref{eq:app-ah-neutral} 是本节所有百分数的来源；把它写成这个形式，
+就能一眼看出「密度越高越难电离」的原因：分母里的 $n_e$ 把电离的收益（自由电子数）摊薄了。
+
+\textbf{出处：}Saha 方程及其在恒星与实验室等离子体中的应用，参照 Saha（1920，\emph{Philosophical Magazine} \textbf{40}, 472）、
+Unsöld \emph{Physik der Sternatmosphären}（1955，第 3 章）、Mihalas \emph{Stellar Atmospheres}（第 2 版，1978，第 5 章）
+与 Salzmann（1998，第 3 章）；电离能取文献值。本节凡标出数字的量都由 \texttt{tmp/appAH\_calc.py} 复算。
+
+\section{强度比：为什么日冕平衡能当温度计}
+\label{sec:app-ah-corona}
+
+有了能级（哪条线）与电离度（这个离子有多少），第三个问题是「这条线有多亮」。
+谱线强度正比于上能级的布居数，而布居数由碰撞激发与辐射衰变的竞争决定。
+如果辐射衰变比碰撞退激发快得多，上能级的布居就只由碰撞激发决定，
+两条线的强度比就退化成激发的指数因子之比：
+
+\begin{equation}
+R \equiv \frac{I_{\beta}}{I_{\alpha}}
+  \approx \exp\!\left(-\frac{\Delta E}{T}\right),
+\qquad \Delta E = E_{3} - E_{2} = 68.0285\ \mathrm{eV},
+\label{eq:app-ah-corona}
+\end{equation}
+
+其中 $\Delta E$ 是两条线上能级的激发能之差。表~\ref{tab:app-ah-intensity} 列出三个温度下的比值。
+$R$ 从 $300$ eV 的 $0.797111$ 变到 $1000$ eV 的 $0.934234$：
+温度从 $300$ eV 涨到 $1000$ eV，比值只涨到 $1.17203$ 倍。\textbf{这就是强度比测温的代价与好处}——
+它对绝对强度不敏感（两条线共用同一套光学系统），但对温度也不敏感。
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{p{2.4cm}p{2.6cm}p{2.9cm}p{4.3cm}p{0.1cm}}
+\toprule
+$T$ / eV & $R=I_{\beta}/I_{\alpha}$ & 与 $500$ eV 之比 & 读数 & \\
+\midrule
+$300$ & $0.797111$ & $0.913287$ & 低温端：比值变化最快 & \\
+$500$ & $0.872793$ & $1$ & 基准点：$T$ 变 $20\%$，$R$ 变 $2.72114\%$ & \\
+$1000$ & $0.934234$ & $1.07040$ & 高温端：比值趋于饱和 & \\
+\bottomrule
+\end{tabular}
+\caption{强度比随温度的变化（$\Delta E=68.0285$ eV）。第三列是相对 $500$ eV 的比值，
+用来读「灵敏度」：$T$ 从 $500$ 降到 $300$ eV（$-40\%$）时 $R$ 只降 $8.67126\%$。}
+\label{tab:app-ah-intensity}
+\end{table}
+
+把灵敏度写成对数导数更清楚：
+
+\begin{equation}
+\frac{\mathrm{d}\ln R}{\mathrm{d}\ln T} = \frac{\Delta E}{T}
+  = \frac{68.0285}{500} = 0.136057,
+\label{eq:app-ah-sens}
+\end{equation}
+
+即在 $500$ eV 附近，温度变化 $20\%$ 只带来 $2.72114\%$ 的比值变化。
+要把它当温度计用，光谱仪的强度定标精度必须好于百分之一——
+这比大多数人第一眼估计的要苛刻得多。
+
+\begin{tip}{强度比是「相对」的温度计}{tip-app-ah-corona}
+强度比之所以在实验上受欢迎，是因为它抵消了绝对定标、窗口透过率、立体角这些共同的系统误差。
+但它同时把温度信息压缩了：$\mathrm{d}\ln R/\mathrm{d}\ln T = \Delta E/T$，
+温度越高、能级差越小，压缩得越狠。
+在 $9.194$ keV 的芯部，$\Delta E/T = 7.39922\times10^{-3}$——
+两条软 X 射线谱线的强度比几乎不随温度变，这时候要换方法（比如轫致辐射的斜率，见附录 X）。
+\end{tip}
+
+式~\eqref{eq:app-ah-corona} 成立的前提是「辐射衰变快于碰撞退激发」，也就是日冕平衡。
+它的定量判据是把辐射衰变率 $A_{21}$ 与碰撞退激发率比较，
+得到「电子密度低于某个值时」的界线（本附录按 $n_e<10^{20}$ m$^{-3}$ 的声明口径使用）。
+D-$\alpha$ 的自发辐射系数是 $A_{21}=4.41\times10^{7}$ s$^{-1}$（声明值）：
+它比典型的碰撞退激发率大得多，所以边缘的 D-$\alpha$ 处在日冕极限附近，
+而芯部的软 X 射线谱线必须用碰撞辐射模型（collisional-radiative）算，不能套式~\eqref{eq:app-ah-corona}。
+
+\textbf{出处：}日冕平衡与强度比测温的推导与适用条件，参照 Griem \emph{Plasma Spectroscopy}（1964，第 6 章）、
+Griem（1997，第 4--5 章）、Fujimoto \emph{Plasma Spectroscopy}（2004，第 4 章）
+与 Salzmann（1998，第 5 章）；$A_{21}$ 与日冕极限判据为文献声明值。
+本节凡标出数字的量都由 \texttt{tmp/appAH\_calc.py} 复算。
+
+\section{多普勒展宽：线宽测离子温度}
+\label{sec:app-ah-doppler}
+
+谱线的位置由能级决定，谱线的形状由离子的运动决定。
+热运动带来的多普勒展宽是
+
+\begin{equation}
+\frac{\Delta\lambda_{\mathrm{D}}}{\lambda}
+  = \sqrt{\frac{8\ln 2\,T_i}{m_i c^2}},
+\label{eq:app-ah-doppler}
+\end{equation}
+
+注意两个细节：分子里的 $T_i$ 是\textbf{离子}温度（不是电子温度），
+分母里的 $m_i$ 是\textbf{发光离子}的质量。
+这两个细节共同决定了一条谱线到底能测什么——表~\ref{tab:app-ah-doppler} 把同温不同离子的线宽并排放在一起。
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{p{2.6cm}p{2.0cm}p{2.6cm}p{4.9cm}}
+\toprule
+谱线 & $T_i$ / eV & $\Delta\lambda_{\mathrm{D}}$ / nm & 读数 \\
+\midrule
+C VI Ly-$\alpha$（$3.37506$ nm） & $50$ & $5.31306\times10^{-4}$ & 高电荷态：线宽最窄 \\
+C VI Ly-$\alpha$ & $100$ & $7.51381\times10^{-4}$ & 需要分辨率 $\lesssim10^{-3}$ nm 的谱仪 \\
+C VI Ly-$\alpha$ & $200$ & $1.06261\times10^{-3}$ & 线宽 $\propto\sqrt{T_i}$ \\
+D-$\alpha$（$656.28$ nm） & $50$ & $0.252297$ & 波长长、质量小：线宽大近五百倍 \\
+D-$\alpha$ & $100$ & $0.356802$ & 可见光波段就能分辨 \\
+He II（$468.57$ nm） & $200$ & $0.255556$ & 氦的肩上：与 D-$\alpha$ 同量级 \\
+\bottomrule
+\end{tabular}
+\caption{多普勒线宽：离子质量与波长共同决定线宽。$T_i=100$ eV 时
+D-$\alpha$ 的线宽是 C VI 的 $474.862$ 倍：波长长、质量小，两个因子乘起来就是近五百倍。}
+\label{tab:app-ah-doppler}
+\end{table}
+
+\begin{tip}{线宽是「温度计」，但先要问「谁在发光」}{tip-app-ah-doppler}
+式~\eqref{eq:app-ah-doppler} 里的 $m_i$ 让同一个 $T_i$ 在不同谱线上给出完全不同的线宽。
+更麻烦的是：一条谱线往往由多个电荷态、多个位置共同贡献，
+测到的线宽是这些贡献的叠加——可能是「不同温度」的叠加，也可能是「不同流速」的叠加。
+所以线宽测温的完整版本是：先确定发光的是哪个离子、在哪个位置，
+再谈线宽里有多少是热运动。
+\end{tip}
+
+线宽还给出了对仪器的硬要求。工程上常用的相对线宽（FWHM 与波长之比）
+在 D-$\alpha$、$T_i=100$ eV 时是
+
+\begin{equation}
+\frac{\Delta\lambda_{\mathrm{D}}}{\lambda}
+  = \frac{0.356802}{656.28} = 5.43673\times10^{-4},
+\label{eq:app-ah-dopwidth}
+\end{equation}
+
+对应的速度展宽是 $1.62989\times10^{5}$ m\,s$^{-1}$——约为光速的万分之五。
+仪器本身的展宽 $0.02$ nm 是 C VI 在 $100$ eV 时线宽的 $26.6177$ 倍：
+这意味着\textbf{在软 X 射线波段用普通谱仪测 C VI 线宽，测到的基本上是仪器函数}。
+要么把分辨率提上去，要么换到波长更长的谱线（代价是发光区域不同）。
+
+\textbf{出处：}多普勒展宽公式与线宽测温的实践，参照 Hutchinson（2002，第 6--7 章）、
+Griem（1997，第 4 章）、Lochte-Holtgreven \emph{Plasma Diagnostics}（1968，第 4 章）
+与 Wesson \emph{Tokamaks}（第 4 版，2011，第 12 章）；仪器展宽为声明值。
+本节凡标出数字的量都由 \texttt{tmp/appAH\_calc.py} 复算。
+
+\section{塞曼分裂与斯塔克展宽：谱线里的场与密度}
+\label{sec:app-ah-fields}
+
+热运动使谱线变宽，外加磁场使谱线分裂。正常塞曼效应的分裂间隔是
+
+\begin{equation}
+\Delta\nu_Z = \frac{eB}{4\pi m_e} = 13.996\ \mathrm{GHz\,T^{-1}}\times B,
+\label{eq:app-ah-zeeman}
+\end{equation}
+
+在 $B=5.3$ T 时给出 $\Delta\nu_Z = 7.41788\times10^{10}$ Hz $=74.1788$ GHz。
+换算成波长：D-$\alpha$ 处是 $0.106571$ nm，而 C VI Ly-$\alpha$ 处只有 $2.81853\times10^{-6}$ nm。
+表~\ref{tab:app-ah-fields} 把塞曼与多普勒放在一起比，结论是清醒的。
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{p{2.9cm}p{2.4cm}p{2.5cm}p{4.3cm}}
+\toprule
+量 & 数值 & 参考 & 读数 \\
+\midrule
+塞曼分裂（$B=5.3$ T） & $74.1788$ GHz & D-$\alpha$ & $\Delta\lambda_Z=0.106571$ nm \\
+塞曼/多普勒 & $0.298683$ & D-$\alpha$，$T_i=100$ eV & 同量级：可见光波段塞曼可分辨 \\
+塞曼/多普勒 & $0.00375114$ & C VI，$T_i=100$ eV & 小 $79.6246$ 倍：软 X 射线测磁场极难 \\
+斯塔克 FWHM & $0.053$ nm & D-$\alpha$，$n_e=10^{20}$ m$^{-3}$ & 声明系数，按 $n_e^{2/3}$ 外推 \\
+斯塔克 FWHM & $0.246004$ nm & D-$\alpha$，$n_e=10^{21}$ m$^{-3}$ & 密度涨十倍，线宽涨 $4.64$ 倍 \\
+斯塔克/塞曼 & $0.497323$ & D-$\alpha$，$10^{20}$ m$^{-3}$ & 同量级：必须靠模型分离 \\
+\bottomrule
+\end{tabular}
+\caption{磁场与密度都在这条线的宽度里。塞曼分裂不随温度变、只随磁场变；
+斯塔克展宽随密度按 $n_e^{2/3}$ 变（声明系数）。两者在 D-$\alpha$ 上同量级。}
+\label{tab:app-ah-fields}
+\end{table}
+
+斯塔克展宽来自带电粒子对发射原子的微场扰动。对氢样离子，
+线宽近似正比于电子密度的 $2/3$ 次方：
+
+\begin{equation}
+\Delta\lambda_{\mathrm{Stark}} \propto n_e^{2/3},
+\label{eq:app-ah-stark}
+\end{equation}
+
+所以密度涨十倍、线宽只涨 $10^{2/3}=4.64159$ 倍——
+式~\eqref{eq:app-ah-stark} 里的指数就是「为什么斯塔克展宽测密度不够灵敏」的全部原因。
+
+\begin{tip}{磁场与密度不是从线宽「直接读」出来的，是模型反演出来的}{tip-app-ah-fields}
+表~\ref{tab:app-ah-fields} 里每一行都只有一个数，但真实谱线是塞曼多重态、
+斯塔克轮廓、多普勒轮廓、仪器函数的卷积。
+把它拆成「多少磁场、多少密度、多少温度」，用的是拟合而非除法：
+先给定一组参数算出合成谱，再与观测比。
+这也是为什么诊断结果要同时给出误差棒与模型假设——
+换一个斯塔克系数，密度可能差两成。
+\end{tip}
+
+\textbf{出处：}塞曼效应与斯塔克展宽的公式形式、以及氢样离子线宽的密度定标，
+参照 Griem（1964，第 4 章）、Griem（1997，第 3--4 章）、Hutchinson（2002，第 6 章）
+与 Salzmann（1998，第 6 章）；斯塔克系数为按 $n_e^{2/3}$ 外推的声明值。
+本节凡标出数字的量都由 \texttt{tmp/appAH\_calc.py} 复算。
+
+\section{光学薄还是光学厚：谱线诊断的自检}
+\label{sec:app-ah-opacity}
+
+前面五节都在算「谱线发出多少」，没有问「它能不能逃出来」。
+这个问题在芯部是致命的：附录 X 里算过，轫致辐射的光学深度只有 $5.85642\times10^{-6}$，
+所以轫致辐射是光学薄的；但\textbf{共振线的吸收截面比轫致吸收大了十个量级}，
+谱线自己完全可能被再吸收。
+
+线心处的吸收截面由自发辐射系数与线宽决定：
+
+\begin{equation}
+\sigma_{12} = \frac{\lambda^2}{8\pi}\,\frac{A_{21}}{\Delta\nu_{\mathrm{D}}}
+  = 3.04304\times10^{-18}\ \mathrm{m^2} = 4.57431\times10^{10}\,\sigma_T,
+\label{eq:app-ah-sigma}
+\end{equation}
+
+其中 $\Delta\nu_{\mathrm{D}}=2.48353\times10^{11}$ Hz 是 D-$\alpha$ 在 $T_i=100$ eV 的多普勒宽度（以频率计）。
+式~\eqref{eq:app-ah-sigma} 里出现 $\sigma_T$ 只是为了给量级：线心截面是汤姆孙截面的 $4.57431\times10^{10}$ 倍。
+把截面乘上中性密度与路径长度，就得到光学深度：
+
+\begin{equation}
+\tau = n_1\,\sigma_{12}\,L,
+\label{eq:app-ah-tau}
+\end{equation}
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{p{2.5cm}p{1.9cm}p{2.5cm}p{4.8cm}}
+\toprule
+$n_1$ / m$^{-3}$ & $L$ / m & $\tau$（D-$\alpha$ 线心） & 读数 \\
+\midrule
+$10^{16}$ & $0.01$ & $3.04304\times10^{-4}$ & 光学薄：诊断可以放心用 \\
+$10^{16}$ & $1$ & $0.0304304$ & 仍薄，但已不是「忽略不计」 \\
+$10^{16}$ & $10$ & $0.304304$ & 边缘的典型情形：$\tau$ 接近 $1/3$ \\
+\midrule
+（对照）轫致吸收 & $1$ & $1.46411\times10^{-6}$ & 同路径下线吸收是它的 $20784.2$ 倍 \\
+\bottomrule
+\end{tabular}
+\caption{光学深度自检。线心截面 $3.04304\times10^{-18}$ m$^2$，
+在 $n_1=10^{16}$ m$^{-3}$、$L=1$ m 时给出 $\tau=0.0304304$：
+这正是「边缘 D-$\alpha$ 还能当诊断、但不能再假设完全光学薄」的量级。}
+\label{tab:app-ah-opacity}
+\end{table}
+
+\begin{tip}{光学薄是假设，不是事实——每次都要验算}{tip-app-ah-opacity}
+线心截面 $3.04304\times10^{-18}$ m$^2$ 比轫致吸收截面大十个量级，
+所以「轫致辐射光学薄」与「谱线光学薄」是两件互不推出的事。
+判据很简单：算出 $\tau$ 再决定用不用式~\eqref{eq:app-ah-corona}。
+$\tau\ll1$ 时强度比是温度计；$\tau\gtrsim1$ 时它变成了密度计（自吸收把线心压平），
+再往上走会翻转成吸收线——同一套数据、完全不同的物理解释。
+\end{tip}
+
+\begin{equation}
+\tau \ll 1 \quad\Longrightarrow\quad
+I \propto \int n_z\,A_{21}\,\mathrm{d}L \quad(\text{强度可加，诊断线性});
+\label{eq:app-ah-optthin}
+\end{equation}
+
+式~\eqref{eq:app-ah-optthin} 是「光学薄」在实际使用中的含义：沿视线的贡献可以直接相加。
+一旦 $\tau$ 不小，辐射输运把强度与密度的关系变成非线性的，必须求解输运方程（附录 X 的方法）。
+
+\textbf{出处：}光学深度与自吸收对谱线诊断的限制，参照 Griem（1964，第 3 章）、
+Griem（1997，第 4 章）、Lochte-Holtgreven（1968，第 3 章）与 Mihalas（1978，第 10 章）；
+轫致吸收系数沿用附录 X 的口径。本节凡标出数字的量都由 \texttt{tmp/appAH\_calc.py} 复算。
+
+\section{估算练习}
+\label{sec:app-ah-problems}
+
+\textbf{练习 1}：He II 的 $468.57$ nm 谱线在 $T_i=200$ eV 时的多普勒线宽是多少？
+它与同温度下 C VI Ly-$\alpha$ 的线宽之比是多少？
+
+\textbf{练习 2}：若边缘密度升到 $10^{21}$ m$^{-3}$、电子温度仍是 $0.7$ eV，
+氢的电离度变成多少？与 $10^{20}$ m$^{-3}$ 时的 $29.9454\%$ 相比说明什么？
+
+\textbf{练习 3}：C VI Ly-$\alpha$（$3.37506$ nm）在 $B=5.3$ T 下的塞曼分裂波长是多少？
+它与 $T_i=1$ keV 的多普勒线宽之比是多少？这个比值对「用软 X 射线谱线测磁场」意味着什么？
+
+\textbf{练习 4}：已知 Ly-$\beta$/Ly-$\alpha$ 的激发能差 $68.0285$ eV，
+若测得强度比 $R=0.5$，由之反推的温度是多少？
+
+\textbf{练习 5}：中性氢密度 $n_1=10^{18}$ m$^{-3}$ 时，要让 D-$\alpha$ 线心的光学深度达到 $\tau=1$，
+视线长度需要多长？这个长度与装置尺度（$a=2$ m）相比说明了什么？
+
+\textbf{练习 6}：钨（$183.84$ u）有一条 $5$ nm 的谱线。
+在主工作点 $T_i=9.194$ keV 下它的多普勒线宽是多少？
+与 C VI Ly-$\alpha$ 在同温度下的线宽相比，为什么杂质谱线在高 $Z$ 时反而更窄？
+
+\textbf{解答 1}：$\Delta\lambda = 0.255556$ nm；与 C VI 同温线宽（$1.06261\times10^{-3}$ nm）之比是 $240.498$——
+氦比碳重、波长又长，所以线宽大两个多量级。
+
+\textbf{解答 2}：$10.692\%$，比 $10^{20}$ m$^{-3}$ 时的 $29.9454\%$ 低了 $2.80074$ 倍。
+密度越高、电离越难，这条趋势在边缘的再结合区尤其明显。
+
+\textbf{解答 3}：$\Delta\lambda_Z = 2.81853\times10^{-6}$ nm；
+$T_i=1$ keV 的多普勒线宽是 $0.00237607$ nm，两者之比 $0.00118621$。
+塞曼分裂比多普勒宽度小近千倍，所以在软 X 射线波段用塞曼效应测磁场需要极高分辨率，
+常规做法是改用可见光波段的中性氢或氦线。
+
+\textbf{解答 4}：$T = \Delta E/\ln(1/R) = 68.0285/\ln 2 = 98.1443$ eV。
+注意 $R=0.5$ 已经超出了本附录表格覆盖的范围（那里 $R$ 都在 $0.79$ 以上）：
+式~\eqref{eq:app-ah-corona} 只是近似，低到 $0.5$ 意味着已经不能忽略碰撞退激发。
+
+\textbf{解答 5}：$L = \tau/(n_1\sigma_{12}) = 0.328619$ m。
+比装置小半径（$2$ m）小 $6.08608$ 倍：\textbf{只要中性氢柱密度稍高，边缘的 D-$\alpha$ 就会自吸收}。
+
+\textbf{解答 6}：$\Delta\lambda = 0.00272816$ nm。
+钨的质量是碳的 $15.306$ 倍，热速度低 $\sqrt{15.306}=3.91228$ 倍；
+虽然 $5$ nm 的波长比 C VI Ly-$\alpha$ 长 $1.48145$ 倍，
+但质量效应占优，所以高 $Z$ 杂质的谱线更窄、更适合做高分辨测量。
+
+\section{来源、分级与版权说明}
+\label{sec:app-ah-source}
+
+\subsection*{数值的三个等级}
+
+本附录出现的每一个数字都属于以下三级之一：
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{p{2.2cm}p{4.6cm}p{6.0cm}}
+\toprule
+等级 & 含义 & 本附录中的例子 \\
+\midrule
+现算级 & 由 \texttt{tmp/appAH\_calc.py} 从常数与输入现算 & Saha 常数、各电离度、跃迁波长、多普勒线宽、塞曼分裂、$\sigma_{12}$、$\tau$、练习解答 \\
+声明级 & 脚本顶部写入的输入或文献值，不参与推导 & D-$\alpha$ 波长 $656.28$ nm、He II $468.57$ nm、$A_{21}=4.41\times10^{7}$ s$^{-1}$、仪器展宽 $0.02$ nm、Stark FWHM $0.053$ nm、日冕极限 $10^{20}$ m$^{-3}$ \\
+文献级 & 只作定性对照或公式出处，不进入任何数值断言 & Griem 的谱线展宽理论、Saha 方程的原始文献、NIST 波长表的量级 \\
+\bottomrule
+\end{tabular}
+\caption{数值分级。门禁 P40 只对「现算级」做数值断言，「声明级」做字面绑定，「文献级」不做断言。}
+\label{tab:app-ah-source}
+\end{table}
+
+\subsection*{借鉴来源}
+
+本附录的写法参照以下经典教材与原始文献（离线环境无法核验 DOI，故只给书名/作者/年份/卷期页）：
+
+\begin{itemize}
+\item Saha, M. N. (1920), \emph{Philosophical Magazine} \textbf{40}, 472——Saha 方程原始文献；
+\item Griem, H. R., \emph{Plasma Spectroscopy}（McGraw-Hill, 1964）第 3、4、6 章——展宽与强度比；
+\item Griem, H. R., \emph{Principles of Plasma Spectroscopy}（Cambridge, 1997）第 2--5 章；
+\item Unsöld, A., \emph{Physik der Sternatmosphären}（Springer, 1955）第 3 章；
+\item Mihalas, D., \emph{Stellar Atmospheres}（第 2 版, Freeman, 1978）第 5、10 章；
+\item Lochte-Holtgreven, W., \emph{Plasma Diagnostics}（North-Holland, 1968）第 3、4 章；
+\item Salzmann, D., \emph{Atomic Physics in Hot Plasmas}（Oxford, 1998）第 2、3、5、6 章；
+\item Fujimoto, T., \emph{Plasma Spectroscopy}（Oxford, 2004）第 4 章——碰撞辐射模型；
+\item Hutchinson, I. H., \emph{Principles of Plasma Diagnostics}（第 2 版, Cambridge, 2002）第 6--7 章；
+\item Wesson, J., \emph{Tokamaks}（第 4 版, Oxford, 2011）第 12 章——托卡马克上的谱线诊断；
+\item ITER Physics Basis (1999), \emph{Nuclear Fusion} \textbf{39}, 2137——芯部谱线诊断的需求口径。
+\end{itemize}
+
+\subsection*{版权口径}
+
+本附录严格遵守「只借鉴、不复制」：
+
+\begin{enumerate}
+\item 不复制任何教材的文字、编号体系、插图与数据表；正文表述、表格与全部数值均为自拟并独立复算。
+\item 不复制文献中的谱线与斯塔克展宽系数表。离线环境无法核验其数值与适用条件，
+故本附录只用「声明级」的量级值（如 $0.053$ nm），并在正文中标明它是声明值。
+\item 不复制 NIST 原子光谱数据库的波长表；本附录只给类氢公式能算出的波长，
+其余（D-$\alpha$、He II）明确标为声明值。
+\item 不复制任何实验装置的标定数据与诊断结果。
+\end{enumerate}
+
+\begin{tip}{本附录不给什么}{tip-app-ah-honest}
+本附录给的是「谱线从哪里来、为什么是这个强度与宽度、什么时候不能这么做」，
+不给的是：真实的碰撞辐射模型、非麦克斯韦分布的修正、以及任何一条真实装置的标定曲线。
+把这三件事都做齐，是一本专门的光谱学教材的篇幅；
+本附录的目标是让你在读到「由谱线拟合得到 $T_i$ 与 $n_e$」时，
+知道这句话背后有哪些假设、以及这些假设在该实验条件下是否成立。
+\end{tip}
+
+\textbf{出处：}本节的分级与版权口径沿用全书统一约定；
+数值分级的三级划分与附录 Q、X、AC 保持一致。本节不含现算数值。
