@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """可证伪性夹具：故意在源码里植入本轮的典型回退，确认 check/physics_regression.py 会 FAIL。
 
-流程：备份 → 植入 299 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。其中四处打在 v1.8.0/v1.8.1 新增的附录 I/J/K 上（K.5 的阻尼率符号、K.7 的鞘厚量级与单位、K.4 的磁冻结结论、J 的逐章对照表章号），
+流程：备份 → 植入 317 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。其中四处打在 v1.8.0/v1.8.1 新增的附录 I/J/K 上（K.5 的阻尼率符号、K.7 的鞘厚量级与单位、K.4 的磁冻结结论、J 的逐章对照表章号），
 三处打在 v1.10.0 新增的附录 M 上（束速量级、H 模阈值标度、欧姆/自加热倍数口径），
 一处是 v1.10.0 的结构性回退（语义盒退回裸 `\begin{tip}`，正文首字会被吞、标签可能重复），
 三处打在 v1.11.0 新增的附录 N 上（脱靶辐射功率量级、ELM 侵蚀倍数、表标签被改名），
@@ -91,6 +91,7 @@ APPAA = os.path.join(ROOT, 'src', 'appendix_aa_alternates.tex')
 APPAB = os.path.join(ROOT, 'src', 'appendix_ab_space_astro.tex')
 APPAC = os.path.join(ROOT, 'src', 'appendix_ac_numerics.tex')
 APPAD = os.path.join(ROOT, 'src', 'appendix_ad_pedestal.tex')
+APPAE = os.path.join(ROOT, 'src', 'appendix_ae_kinetics.tex')
 CH12 = os.path.join(ROOT, 'src', 'ch12_supplement.tex')
 CH10 = os.path.join(ROOT, 'src', 'ch10_supplement.tex')
 SUITE = os.path.join(ROOT, 'check', 'physics_regression.py')
@@ -844,9 +845,71 @@ PATCHES = [
     # 299. 数据：台基压强 297.525 kPa -> 297.526 kPa
     (APPAD, r'297.525\ \mathrm{kPa}',
            r'297.526\ \mathrm{kPa}'),
+    # 300. 结构：表 2 的 label 改名（tab:app-ae-collisionless -> coll），P37 的表标签检查应报缺
+    (APPAE, r'\label{tab:app-ae-collisionless}',
+           r'\label{tab:app-ae-coll}'),
+    # 301. 结构：第 4 只语义盒的标签改名（tip-app-ae-orbit -> banana）
+    (APPAE, r'{tip-app-ae-orbit}',
+           r'{tip-app-ae-banana}'),
+    # 302. 结构：式 (AE.20) 的 label 改名（eq:app-ae-gyro2 -> gyro3）
+    (APPAE, r'\label{eq:app-ae-gyro2}',
+           r'\label{eq:app-ae-gyro3}'),
+    # 303. 结构：小节 AE.5 的 sec label 改名（sec:app-ae-gyro -> gyrokinetics）
+    (APPAE, r'\label{sec:app-ae-gyro}',
+           r'\label{sec:app-ae-gyrokinetics}'),
+    # 304. 结构：第一处「出处：」声明被改成「来源：」
+    (APPAE, r'\textbf{出处：}动理学描述与德拜屏蔽的框架参照',
+           r'\textbf{来源：}动理学描述与德拜屏蔽的框架参照'),
+    # 305. 结构：练习解答 4 的编号词被改（解答 -> 答案），解答计数应跌破练习数
+    (APPAE, r'\textbf{解答 4}',
+           r'\textbf{答案 4}'),
+    # 306. 结构：第 1 只语义盒标题改字（更精确 -> 更精准）
+    (APPAE, r'分布函数不是「更精确的密度」',
+           r'分布函数不是「更精准的密度」'),
+    # 307. 数据：电子平均自由程 3.58755 km -> 3.58756 km（P37 精确绑定应报 FAIL）
+    (APPAE, r'3.58755\ \mathrm{km}',
+           r'3.58756\ \mathrm{km}'),
+    # 308. 数据：朗道阻尼率 6.3576e11 rad/s -> 6.3577e11 rad/s
+    (APPAE, r'6.3576\times10^{11}\ \mathrm{rad\,s^{-1}}',
+           r'6.3577\times10^{11}\ \mathrm{rad\,s^{-1}}'),
+    # 309. 数据：朗道共振波数 4208.72 m^-1 -> 4208.73 m^-1
+    (APPAE, r'4208.72\ \mathrm{m^{-1}}',
+           r'4208.73\ \mathrm{m^{-1}}'),
+    # 310. 数据：相速度 1.51058e8 m/s -> 1.51059e8 m/s
+    (APPAE, r'1.51058\times10^{8}\ \mathrm{m\,s^{-1}}',
+           r'1.51059\times10^{8}\ \mathrm{m\,s^{-1}}'),
+    # 311. 数据：离子声波角频率 8.32659e8 rad/s -> 8.32660e8 rad/s
+    (APPAE, r'8.32659\times10^{8}\ \mathrm{rad\,s^{-1}}',
+           r'8.32660\times10^{8}\ \mathrm{rad\,s^{-1}}'),
+    # 312. 数据：离子声波频率 132.522 MHz -> 132.523 MHz
+    (APPAE, r'132.522\ \mathrm{MHz}',
+           r'132.523\ \mathrm{MHz}'),
+    # 313. 数据：反弹频率 21969.1 s^-1 -> 21969.2 s^-1
+    (APPAE, r'21969.1\ \mathrm{s^{-1}}',
+           r'21969.2\ \mathrm{s^{-1}}'),
+    # 314. 数据：反弹周期 286.001 us -> 286.002 us
+    (APPAE, r'286.001\ \mathrm{\mu s}',
+           r'286.002\ \mathrm{\mu s}'),
+    # 315. 数据：回旋动理学垂直波数 72.5799 m^-1 -> 72.5800 m^-1
+    (APPAE, r'72.5799\ \mathrm{m^{-1}}',
+           r'72.5800\ \mathrm{m^{-1}}'),
+    # 316. 数据：回旋玻姆扩散系数 5.07013 m^2/s -> 5.07014 m^2/s
+    (APPAE, r'5.07013\ \mathrm{m^2\,s^{-1}}',
+           r'5.07014\ \mathrm{m^2\,s^{-1}}'),
+    # 317. 数据：有效扩散系数 0.540541 m^2/s -> 0.540542 m^2/s
+    (APPAE, r'0.540541\ \mathrm{m^2\,s^{-1}}',
+           r'0.540542\ \mathrm{m^2\,s^{-1}}'),
 ]
 
-MIN_FAIL = 322       # 实测值（299 处植入回退合并计入 336，留 14 的余量）：见下
+MIN_FAIL = 341       # 实测值（317 处植入回退合并计入 355，留 14 的余量）：见下
+# ## v1.26.9 轮（附录 AE 动理学与回旋动理学 / 门禁 P37）植入扩到 317 处，18 处新补丁分两层：
+# 结构层 7：表 2 label 改名、第 4 只语义盒标签改名、式 (AE.20) label 改名、小节 AE.5 的 sec label 改名、
+#          首处「出处：」改成「来源：」、解答 4 的编号词改成「答案」、第 1 只语义盒标题改字（更精确 -> 更精准）；
+# 数据层 11：电子平均自由程、朗道阻尼率、共振波数、相速度、离子声波角频率与频率、反弹频率与周期、
+#          回旋动理学垂直波数、回旋玻姆扩散系数、有效扩散系数，各改末位。
+# 车 P37 沿用 P36 的「数字 + 单位」精确子串绑定（tmp/gen_p37_data.py 生成 52 条 STRICT），
+# 数据层 11 条预期第一轮探针即全部可证伪。合并植入实测 **355**（= v1.26.8 的 336 + 19），
+# MIN_FAIL 322 -> 341（留 14 余量）。
 # ## v1.26.8 轮（附录 AD 边界台基与 L-H 模 / 门禁 P36）植入扩到 299 处，18 处新补丁分两层：
 # 结构层 7：表 2 label 改名、第 3 只语义盒标签改名、式 (AD.22) label 改名、小节 AD.6 的 sec label 改名、
 #          首处「出处：」改成「来源：」、解答 4 的编号词改成「答案」、第 2 只语义盒标题改字（自由参数 -> 固定参数）；
