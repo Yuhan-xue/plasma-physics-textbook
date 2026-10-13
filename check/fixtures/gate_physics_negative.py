@@ -102,6 +102,7 @@ APPAL = os.path.join(ROOT, 'src', 'appendix_al_nonlinear.tex')
 APPAM = os.path.join(ROOT, 'src', 'appendix_am_magnets.tex')
 APPAN = os.path.join(ROOT, 'src', 'appendix_an_polarimetry.tex')
 APPAO = os.path.join(ROOT, 'src', 'appendix_ao_vacuum.tex')
+APPAP = os.path.join(ROOT, 'src', 'appendix_ap_maintenance.tex')
 CH12 = os.path.join(ROOT, 'src', 'ch12_supplement.tex')
 CH10 = os.path.join(ROOT, 'src', 'ch10_supplement.tex')
 SUITE = os.path.join(ROOT, 'check', 'physics_regression.py')
@@ -1449,10 +1450,72 @@ PATCHES = [
            r'0.603648（$60.3647\%$）'),
     # 497. 数据：硼质量
     (APPAO, r'得 114.55 g 硼',
-           r'得 114.56 g 硼'),
+           r'得 114.56 g 硼'),    # 498. 表 AP.5 label 改名
+    (APPAP, r'\label{tab:app-ap-hotcell}',
+           r'\label{tab:app-ap-hotcel}'),
+    # 499. 语义盒标签改名
+    (APPAP, r'{tip-app-ap-avail}',
+           r'{tip-app-ap-availab}'),
+    # 500. 公式 label 改名
+    (APPAP, r'\label{eq:app-ap-capmargin}',
+           r'\label{eq:app-ap-capmarg}'),
+    # 501. 首处「出处：」改成「来源：」
+    (APPAP, r'\textbf{出处：}遥操作与机器人学的工程口径参照',
+           r'\textbf{来源：}遥操作与机器人学的工程口径参照'),
+    # 502. 「解答 3」改成「答案 3」
+    (APPAP, r'\textbf{解答 3}',
+           r'\textbf{答案 3}'),
+    # 503. 语义盒标题改字（仓库→库房）
+    (APPAP, r'{热室不是仓库，是工位}',
+           r'{热室不是库房，是工位}'),
+    # 504. 语义盒标题改字（乘出来→算出来）
+    (APPAP, r'{剂量预算是乘出来的}',
+           r'{剂量预算是算出来的}'),
+    # 505. 数据：年可用因子
+    (APPAP, r'$A = 0.780822$',
+           r'$A = 0.780823$'),
+    # 506. 数据：cask 年转运能力
+    (APPAP, r'= 24.3333\ \text{段}/\text{年}',
+           r'= 24.3334\ \text{段}/\text{年}'),
+    # 507. 数据：热室能力余量
+    (APPAP, r'= 7.60417.',
+           r'= 7.60418.'),
+    # 508. 数据：单工位年周转能力
+    (APPAP, r'单工位年周转 $12.1667$ 段',
+           r'单工位年周转 $12.1668$ 段'),
+    # 509. 数据：同时占用工位数
+    (APPAP, r'$0.263014$ 个',
+           r'$0.263015$ 个'),
+    # 510. 数据：能力余量百分数
+    (APPAP, r'$760.417\%$',
+           r'$760.418\%$'),
+    # 511. 数据：单段质量吨位
+    (APPAP, r'= 62.5\ \mathrm{t}.',
+           r'= 62.6\ \mathrm{t}.'),
+    # 512. 数据：单段质量 kg
+    (APPAP, r'$62500\ \mathrm{kg}$',
+           r'$62501\ \mathrm{kg}$'),
+    # 513. 数据：练习 3 冷却时间
+    (APPAP, r'= 13.3022\ \mathrm{d}$',
+           r'= 13.3023\ \mathrm{d}$'),
+    # 514. 数据：练习 6 cask 能力
+    (APPAP, r'= 48.6667$ 段',
+           r'= 48.6668$ 段'),
+    # 515. 数据：练习 6 能力余量
+    (APPAP, r'= 15.2083$',
+           r'= 15.2084$'),
 ]
 
-MIN_FAIL = 557       # 实测值（497 处植入回退合并计入 571，留 14 的余量）：见下
+MIN_FAIL = 579       # 实测值（515 处植入回退合并计入 593，留 14 的余量）：见下
+# ## v1.26.20 轮（附录 AP 维护与遥操作 / 门禁 P48）植入扩到 515 处，18 处新补丁分两层
+#    （结构 7 / 数据 11，编号 498--515）。注意本轮第一轮探针 #508（把「单工位年周转
+#    $12.1667$ 段」改成 12.1668）报 FAIL=0：门禁里该值的精确绑定只写到 `$12.1667$ 段`，
+#    而同小节的表格行里还有一处复述满足它——把绑定改成整句「单工位年周转 $12.1667$ 段」后
+#    重新安装门禁，复查 #508 得 FAIL=1。这是「同一数值多处印出时，字面绑定必须钉到整句」
+#    这一类缺陷在本轮的重演。
+#    逐条探针 `tmp/probe_neg_v1250.py 498 ... 515`：18/18 全部可证伪，单条合计 FAIL=22
+#    （#499/#501/#510/#513 各 2，其余各 1），无落空。合并植入实测 **593**
+#    （= v1.26.19 的 571 + 22），MIN_FAIL 557 -> 579（留 14 余量）。
 # ## v1.26.19 轮（附录 AO 真空与壁处理 / 门禁 P47）植入扩到 497 处，18 处新补丁分两层
 #    结构 7：表 AO.4 label 改名、语义盒标签改名、公式 label 改名、首处「出处：」改成「来源：」、
 #            「解答 4」改成「答案 4」、语义盒标题改字（泵的抽速 / 抽功）
