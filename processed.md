@@ -5713,4 +5713,30 @@ Underfull 347、文本层字符 683680。
 
 ### 48.8 发布记录（v1.26.15）
 
-（待回填）
+- **内容提交** `f3bdd25`：5 文件——`src/appendix_ak_safety.tex`（538 行新建）、
+  `check/physics_regression.py`（+462）、`check/fixtures/gate_physics_negative.py`（+68/−3）、
+  `src/plasma_physics_textbook_v2.tex`（+6/−2）、`pdf/plasma_physics_textbook_v2.pdf`
+  （3170533 → **3215558** B）。
+- **文档提交** `6095526`：`README.md`（188528 → 192640 B / 535 行）、
+  `processed.md`（507691 → 517916 B / 5716 行）。
+- **标签** `v1.26.15` = 注释对象 `49ef963feb3a512499462d57575f78f4e6d0454b`
+  → 提交 `609552607be3435ce67efa4353ee9b5943210431`。
+- **双推**：`7ba37bc..6095526  main -> main` 与 `* [new tag] v1.26.15`；
+  远端 refs（`git ls-remote`）：`refs/heads/main` = `6095526…`、`refs/tags/v1.26.15` = `49ef963f…`。
+- **Gitea release**：id = **169**（上一版 v1.26.14 = 166），
+  URL `http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.15`；
+  附件 `http://zsyq.hxlab.tech:3000/attachments/9a71b4c6-a684-4d6c-a23f-0fa24647a0a3`。
+- **独立复核**（`tmp/verify_asset12615.py`，`curl.exe -sS -L --noproxy '*'`）：
+  远端与本地均 **3215558 B**、SHA256 均
+  `D93FCACE60407427878DB1D2D5F651D9AC2E8CC439FE7F4652A3B3AB200E47D4`、逐字节一致 True。
+- **远端 reviews** 仍 70 项（`2026-10-10-independent` 31 + `2026-10-11-scheduled` 35 +
+  `2026-10-12-scheduled` 4）无新增；远端根目录无 `todo/`。
+- **汇报图**（`tmp/png_ak/`）：9 张单页（PDF 第 479--487 页：AK 首页 + 表 AK.1、盒 1、
+  表 AK.2 + 盒 2、表 AK.3 + 盒 3/盒 4、表 AK.4、表 AK.5 + 盒 5、表 AK.6 + 盒 6、
+  表 AK.7 + 盒 7、来源末页）；两张拼版 `ak_spread_6pages.png`（p479--484，3×2）与
+  `ak_spread_tail.png`（p485--487，3×1）；一页速览 `ak_summary.png`（1500×717）。
+  渲染脚本 `tmp/render_ak.py`、`tmp/mkimg_ak.py`；页位探针 `tmp/probe_ak_pages.py`
+  （附录 AK = PDF 第 479--487 页，附录 AH/AD/AI/AJ 的「本附录不给什么」是假命中）。
+- **六套件复跑**：full_check 37（FAIL 0/WARN 0）、ui_readability 58（WARN 37）、
+  consistency_audit 14、physics_regression **3381**、figure_layout 15、
+  pdf_outline 11（WARN 2）；五套夹具全 PASS。
