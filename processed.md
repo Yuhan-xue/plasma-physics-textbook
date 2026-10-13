@@ -5864,4 +5864,79 @@ $2.60280\to2.60$；本轮真正抓到的是正文里 $v_{osc}/v_{the}$ 的写法
 5. **重编首轮失败要立刻读日志定位**（`! Missing $ inserted` + `l.` 行号 + 当前处理文件名），不要靠猜；
    `tmp/diag_overfull_ad.py` 仍负责 Overfull 的「文件 + 行号 + 幅度」定位。
 
-### 49.8 发布记录（待回填）
+### 49.8 发布记录（v1.26.16）
+
+### 49.8 发布记录（v1.26.16）
+
+- **内容提交** `6551215`：`src/appendix_al_nonlinear.tex`（583 行新建）、
+  `src/plasma_physics_textbook_v2.tex`（+6/−2，挂载附录 AL 并升版 v1.26.16）、
+  `check/physics_regression.py`（+451，门禁 P44）、
+  `check/fixtures/gate_physics_negative.py`（+68/−3，补丁 #426–443）、
+  `pdf/plasma_physics_textbook_v2.pdf`（Bin 3215558 → 3267916）；共 +1104/−5。
+- **文档提交** `e355ec8`：`README.md` 192640 → 197164 B、`processed.md` 492832 → 529477 B
+  （§49 正文，49.8 留「（待回填）」）。
+- **导航修复提交** `ef5fdab`（本轮新增，见下）：`pdf/plasma_physics_textbook_v2.pdf`
+  3267916 → **3269387 B**（增量保存，页数 496 不变）、`README.md` 197164 → **198284 B**
+  （O3b 口径由「已知 WARN 19/491」改为「v1.26.16 由构建后处理归零」）。
+- **tag** `v1.26.16` = 注释对象 `9a26aff18802da54f4cb20e4203844deab97ee34` → 提交
+  `ef5fdab7b64089994bc276539d94879c621772ec`；tagger `DeepSeek Review <deepseek@local>`。
+- **推送**：`9a354cb..ef5fdab  main -> main`（首次 push 被远端新提交 `9a354cb`
+  docs(review): scheduled review 2026-10-13 挡住 → `git rebase origin/main` 后重推，
+  main = e355ec8（docs）→ 6551215（content）→ 9a354cb → 3926bfc）；
+  tag 因远端已有指向被 rebase 掉的旧对象，用 `push --force refs/tags/v1.26.16`
+  从 `35a8a38` 更新到 `9a26aff`（pwsh 报 NativeCommandError 属已知假失败）。
+- **远端引用**（`git ls-remote`）：`refs/heads/main = ef5fdab7b64089994bc276539d94879c621772ec`、
+  `refs/tags/v1.26.16 = 9a26aff18802da54f4cb20e4203844deab97ee34`。
+- **Gitea release**：`id=171`（上一版 v1.26.15 = 169），POST 201，
+  <http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.16>；
+  资产上传 201、`size=3269387`，
+  附件 <http://zsyq.hxlab.tech:3000/attachments/c30e2a58-aa30-4133-9222-9f959bbd574a>。
+- **独立复核**（`tmp/verify_asset12616.py`，`curl.exe -sS -L --noproxy '*'` 下载远端资产）：
+  远端与本地均 **3269387 B**、SHA256 均
+  **DD21AD85B01EA69818D7D3AFB3C7E13ECB616F043F10C1CCF2BC870C201B8867**、逐字节一致 `True`。
+- **远端评审**：`git ls-tree -r --name-only origin/main reviews/` 共 **74** 项
+  （2026-10-10-independent 31 + 2026-10-11-scheduled 35 + 2026-10-12-scheduled 4 +
+  本轮新增 **2026-10-13-scheduled 4**）；`todo/` 为空。
+  新评审基线 3926bfc（v1.26.15），new_findings 为空，两条 carryover：
+  - **P-CARRY-01**（`pdf_outline` O3b：印刷目录页码与书签页码 19/491 条相差一页）——
+    本轮修复，见 49.9；修后 O3b 为 PASS 0/491，该项 WARN 消失。
+  - **P-CARRY-02**（称附录 F 有 29/35 个链接目标页与 `.aux` 记录不一致）——按同一规则在本仓库
+    不可复现：实测 2/35（`sec:ch8-diffusion`、`sec:ch5-magpressure`），且复核后确认**不是缺陷**：
+    这两个 `\S\ref` 的 label 写在小节标题之后一页，`.aux` 记的是 label 所在页（98 / 68），
+    而链接指向小节锚点，实测标题就在该锚点页（8.2 在 p.97、5.2 在 p.67）；
+    O4 的语义部分（显示小节号与 `.aux` 一致）为 35/35 通过。故 O4 的 2/35 保留为
+    「已知且有界」WARN，并在 README 里写清它为何不是缺陷。
+
+### 49.9 附：修掉 P-CARRY-01（书签落点比印刷页码少一页）
+
+- **现象**：`pdf_outline` O3b 报 19/491 条书签落点比印刷目录页码少 1 页（v1.26.15 为 19/482），
+  全部为 −1、无其它方向。复现工具 `tmp/verify_toc_offset.py`（复刻套件的配对逻辑）。
+- **根因**：hyperref 在垂直模式（节标题）里直接抛出 `\pdfdest` whatsit、不加 penalty；
+  标题恰好排在页首时，分页点落在 whatsit 与标题盒之间，锚点被留在上一页底部。
+  书签与正文交叉引用**共用同一个命名目标数组**（`/Dests` 名字树里的间接数组对象），
+  因此两处一起偏；`.aux` 的 `\newlabel` 页号记在 label 所在页，所以「印刷目录页码」是对的。
+- **LaTeX 侧两种补法实测都不可用**（记录在此以免重走）：
+  1. 在 `\Hy@raisedlink` 里置空锚点 → 编译通过，但 19 条一条没变；
+  2. 把锚点装进零宽零高盒子（`\setbox\z@\hbox{#1}` 后置零）→ 锚点确实跟着标题走，
+     但整章提前换页，**页数从 496 涨到 550**，版面回归，弃用（备份 `.bakhref`/`.bakhref2` 已删）。
+- **最终方案**：构建后处理 `tmp/fix_pdf_dests.py` —— 只改被截断的命名目标数组的页对象与 y 坐标。
+  判据不依赖源码：锚点落在本页页脚区、**本页该位置没有标题级大字**（用页内字号中位数排除正文
+  与语义盒里的同名提及）、而**下一页顶部有标题级大字**。命中 19 条，与 O3b 的条目集合一致。
+  脚本幂等（再跑判定 0 条）；`doc.update_object(xref, …)` 整对象替换（数组无键可设），
+  增量保存；页数与版面逐字节不变，仅 PDF 从 3267916 → 3269387 B。
+- **复核**：`tmp/outline_v12616_fixed.txt` → `[O3b] 印刷目录页码与书签页码逐条一致（491 条）`
+  **PASS**；`pdf_outline` 11 项 FAIL 0 / **WARN 1**（只剩附录 F 的 O4 2/35）。
+- **教训**：① 「已知且有界」的 WARN 只要能被复现、且根因清楚，就可以用构建后处理消掉——
+  但必须先证明修正**不动版面**（页数、Overfull、缺字逐项复核），否则宁可不修；
+  ② 后处理必须内置可判定的判据与幂等性检查，不能靠人工挑条目（字号中位数这一条把 24 条候选
+  收敛到与套件一致的 19 条，剔掉的全是「定理/物理洞见」盒标题与交叉引用里的同名提及）；
+  ③ 评审报的计数与自家套件不一致时，先按评审的规则在自己仓库复现，再判断是缺陷还是口径差异
+  （P-CARRY-02 即属后者）。
+- **汇报图**：`tmp/png_al/` 12 个文件 —— 9 张单页（PDF 第 488–496 页，1429×2021：
+  436037 / 414880 / 453305 / 467598 / 470969 / 455008 / 444396 / 457702 / 535159 B）、
+  `al_spread_6pages.png`（488–493，3×2，2859×2696 / 1726105 B）、
+  `al_spread_tail.png`（494–496，3×1，2859×1348 / 912016 B）、
+  `al_summary.png`（一页速览，1500×960 / 293137 B）；三张整图均目视确认无重叠、无裁切。
+- **修后电池复跑**（`tmp/battery_v12616.py`）：full_check 37（FAIL 0/WARN 0）、
+  ui_readability 59（WARN 38）、consistency_audit 14、physics_regression 3628、
+  figure_layout 15、pdf_outline 11（WARN 1）；五夹具全 PASS；总结论「全部通过」。
