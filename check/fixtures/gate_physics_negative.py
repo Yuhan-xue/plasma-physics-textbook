@@ -99,6 +99,7 @@ APPAI = os.path.join(ROOT, 'src', 'appendix_ai_icf.tex')
 APPAJ = os.path.join(ROOT, 'src', 'appendix_aj_fuelling.tex')
 APPAK = os.path.join(ROOT, 'src', 'appendix_ak_safety.tex')
 APPAL = os.path.join(ROOT, 'src', 'appendix_al_nonlinear.tex')
+APPAM = os.path.join(ROOT, 'src', 'appendix_am_magnets.tex')
 CH12 = os.path.join(ROOT, 'src', 'ch12_supplement.tex')
 CH10 = os.path.join(ROOT, 'src', 'ch10_supplement.tex')
 SUITE = os.path.join(ROOT, 'check', 'physics_regression.py')
@@ -1282,11 +1283,76 @@ PATCHES = [
     (APPAL, r'112.569$ ps',
            r'112.570$ ps'),
     # 443. 数据：练习 1 抖动速度末位（218954 -> 218955 m/s）
+    # 444. 结构：表 AM.5 label 改名（失超）
+    (APPAM, r'\label{tab:app-am-quench}',
+           r'\label{tab:app-am-quench2}'),
+    # 445. 结构：语义盒标签改名（裕度）
+    (APPAM, r'{tip-app-am-margin}',
+           r'{tip-app-am-marg}'),
+    # 446. 结构：公式 label 改名（MIITs）
+    (APPAM, r'\label{eq:app-am-miits}',
+           r'\label{eq:app-am-miit}'),
+    # 447. 结构：首处「出处：」改成「来源：」
+    (APPAM, r'\textbf{出处：}磁体设计方程与超导磁体的工程口径参照',
+           r'\textbf{来源：}磁体设计方程与超导磁体的工程口径参照'),
+    # 448. 结构：「解答 4」改成「答案 4」
+    (APPAM, r'\textbf{解答 4}',
+           r'\textbf{答案 4}'),
+    # 449. 结构：语义盒标题改字（不烧电 -> 不烧钱）
+    (APPAM, r'{超导不是为了「更强」，是为了「不烧电」}',
+           r'{超导不是为了「更强」，是为了「不烧钱」}'),
+    # 450. 结构：语义盒标题改字（电 -> 账单）
+    (APPAM, r'{冷量是最贵的电}{tip-app-am-cryo}',
+           r'{冷量是最贵的账单}{tip-app-am-cryo}'),
+    # 451. 数据：铜方案电阻末位（0.151813 -> 0.151814 Ohm）
+    (APPAM, r'0.151813\ \Omega',
+           r'0.151814\ \Omega'),
+    # 452. 数据：铜方案功率末位（7.01983e8 -> 7.01984e8 W）
+    (APPAM, r'7.01983\times10^{8}\ \mathrm{W}',
+           r'7.01984\times10^{8}\ \mathrm{W}'),
+    # 453. 数据：5.3 T 临界电流密度末位（4.26233e9 -> 4.26234e9）
+    (APPAM, r'4.26233\times10^{9}\ \mathrm{A\,m^{-2}}',
+           r'4.26234\times10^{9}\ \mathrm{A\,m^{-2}}'),
+    # 454. 数据：电缆临界电流末位（2.89838e6 -> 2.89839e6 A）
+    (APPAM, r'2.89838\times10^{6}\ \mathrm{A}',
+           r'2.89839\times10^{6}\ \mathrm{A}'),
+    # 455. 数据：5.3 T 临界温度末位（16.0609 -> 16.0610 K）
+    (APPAM, r'16.0609\ \mathrm{K}',
+           r'16.0610\ \mathrm{K}'),
+    # 456. 数据：分流温度末位（15.7897 -> 15.7898 K）
+    (APPAM, r'15.7897\ \mathrm{K}',
+           r'15.7898\ \mathrm{K}'),
+    # 457. 数据：12 T 电缆临界电流末位（1.6121 -> 1.6122 MA）
+    (APPAM, r'1.6121\ \mathrm{MA}',
+           r'1.6122\ \mathrm{MA}'),
+    # 458. 数据：Stekly 电流末位（14282.9 -> 14282.8 A）
+    (APPAM, r'14282.9\ \mathrm{A}',
+           r'14282.8\ \mathrm{A}'),
+    # 459. 数据：铜电阻率每米末位（9.80392e-7 -> 9.80393e-7）
+    (APPAM, r'9.80392\times10^{-7}\ \Omega\,\mathrm{m^{-1}}',
+           r'9.80393\times10^{-7}\ \Omega\,\mathrm{m^{-1}}'),
+    # 460. 数据：磁储能末位（1.6756e10 -> 1.6757e10 J）
+    (APPAM, r'1.6756\times10^{10}\ \mathrm{J}',
+           r'1.6757\times10^{10}\ \mathrm{J}'),
+    # 461. 数据：泄能电阻末位（0.724739 -> 0.724740 Ohm）
+    (APPAM, r'0.724739\ \Omega',
+           r'0.724740\ \Omega'),
     (APPAL, r'218954$ m s$^{-1}$',
            r'218955$ m s$^{-1}$'),
 ]
 
-MIN_FAIL = 488       # 实测值（443 处植入回退合并计入 502，留 14 的余量）：见下
+MIN_FAIL = 510       # 实测值（461 处植入回退合并计入 524，留 14 的余量）：见下
+# ## v1.26.17 轮（附录 AM 磁体与超导 / 门禁 P45）植入扩到 461 处，18 处新补丁分两层
+# （编号 444--461）：
+#   结构层 7 条：表 AM.5 label 改名（失超）、语义盒标签改名（裕度）、公式 label 改名（MIITs）、
+#     首处「出处：」改「来源：」、「解答 4」改「答案 4」、两只语义盒标题改字
+#     （不烧电 -> 不烧钱、冷量是最贵的电 -> 冷量是最贵的账单）；
+#   数据层 11 条（各改末位）：铜方案电阻 0.151813 -> 0.151814 Ohm、铜方案功率 7.01983e8、
+#     Jc(5.3 T) 4.26233e9、电缆临界电流 2.89838e6 A、Tc(5.3 T) 16.0609 K、分流温度 15.7897 K、
+#     Ic(12 T) 1.6121 MA、Stekly 电流 14282.9 A、铜电阻率每米 9.80392e-7、磁储能 1.6756e10 J、
+#     泄能电阻 0.724739 Ohm。
+#   空缺探针：18/18 全部可证伪、无落空；单条合计 FAIL=22（#444/#446/#456/#458 各 2 处）。
+#   合并植入实测 524（= v1.26.16 的 502 + 22），MIN_FAIL 由 488 上调到 510（留 14 余量）。
 # ## v1.26.16 轮（附录 AL 非线性等离子体物理 / 门禁 P44）植入扩到 443 处，18 处新补丁分两层
 # （编号 426--443）：
 #   结构层 7 条：表 AL.5 label 改名（俘获）、语义盒标签改名（崩塌）、公式 label 改名（俘获频率）、
