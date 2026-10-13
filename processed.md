@@ -5209,4 +5209,39 @@ L-H 转换把边缘湍流压住、台基把剖面撑陡、ELM 又周期性地把
 
 ### 45.8 发布记录（v1.26.12）
 
-（待回填）
+- **内容提交** `9c28e7b`（5 文件，+982/−3）：`src/appendix_ah_atomic.tex`（新建 512 行）、
+  `check/physics_regression.py`（+398）、`check/fixtures/gate_physics_negative.py`（+69/−3）、
+  `src/plasma_physics_textbook_v2.tex`（+6/−2）、`pdf/plasma_physics_textbook_v2.pdf`
+  （Bin 3032418 → 3074915 字节）。
+- **文档提交** `ecd4a96`（2 文件）：`README.md`（174465 → 179055 字节）与
+  `processed.md`（461623 → 471683 字节 / 5212 行）。
+- **标签**：`v1.26.12` 注释标签对象 `392bc684e5117ccfc54f1d6d2574b0f32f5bc3ff`，
+  指向文档提交 `ecd4a96dc28719f206b1021312615a2f2e6213d8`。
+- **双推**：`0309932..ecd4a96  main -> main`、`* [new tag] v1.26.12 -> v1.26.12`
+  （PowerShell 把 git 的进度输出当 NativeCommandError 属已知假失败）。
+- **远端引用核对**（`git ls-remote`）：`refs/heads/main =
+  ecd4a96dc28719f206b1021312615a2f2e6213d8`、`refs/tags/v1.26.12 =
+  392bc684e5117ccfc54f1d6d2574b0f32f5bc3ff`。
+- **Gitea release**：`id=162`（上一版 v1.26.11 为 157；API 返回 release 累计 46 条），
+  <http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.12>；
+  附件 <http://zsyq.hxlab.tech:3000/attachments/0b600827-fb95-40e4-a80c-7bac864de588>。
+- **资产独立复核**（`tmp/verify_asset12612.py`，`curl.exe -sS -L --noproxy '*'` 下载后比对）：
+  远端与本地均 **3074915 字节**、SHA256 均
+  `76AC8B9561019557189E443F48159ABF8731490D2475B7D7BB03025D0B66598A`、逐字节一致 True。
+- **远端 reviews**：仍 **70 项**（`2026-10-10-independent` 31 + `2026-10-11-scheduled` 35 +
+  `2026-10-12-scheduled` 4），本轮无新增；远端根目录无 `todo/`。
+  教训：Gitea 的 `contents` API 在子目录条目多时会**截断计数**（本轮两次分别报 16 / 14），
+  计数必须以 `git ls-tree -r --name-only origin/main reviews/` 为准。
+- **汇报图**（`tmp/probe_ah_pages.py` / `tmp/probe_ah_tips.py` 探页位 → 附录 AH = PDF 第 450--458 页；
+  表题注 表 AH.1 p450 y=367.5、表 AH.2 p451 y=401.1、表 AH.3 p452 y=583.0、表 AH.4 p453 y=557.0、
+  表 AH.5 p454 y=552.4、表 AH.6 p456 y=185.4、表 AH.7 p457 y=442.9；七只语义盒分别在
+  p450 / p452 / p453（两只）/ p454 / p455 / p458）：
+  `tmp/png_ah/` 共 12 个文件——9 张单页（`ah_p450_AH首页_表AH1_盒1.png` 325534 B、
+  `ah_p451_表AH2.png` 310320、`ah_p452_表AH3_盒2.png` 397512、`ah_p453_表AH4_盒3盒4.png` 422375、
+  `ah_p454_表AH5_盒5.png` 334068、`ah_p455_盒6.png` 337670、`ah_p456_表AH6.png` 394003、
+  `ah_p457_表AH7.png` 329421、`ah_p458_来源页_盒7.png` 193315，均为 1191×1684）、
+  两张拼版（`ah_spread_6pages.png` 1516×1071 / 442392 B、`ah_spread_source.png` 1516×740 / 284662 B）、
+  一页速览（`ah_summary.png` 1500×945 / 273514 B，`tmp/mkimg_ah.py` 生成，剩余空间 17.8 pt 无裁切）。
+- **同步后复跑**：六套件 full_check 37 / ui_readability 57（WARN 36）/ consistency_audit 14 /
+  physics_regression 2582 / figure_layout 15 / pdf_outline 11（WARN 2）全 FAIL 0；
+  五夹具全 PASS；总结论「全部通过」。
