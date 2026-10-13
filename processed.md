@@ -6454,7 +6454,7 @@ NIF/ICF 之外的聚变工程教材（如 Dolan 的 *Fusion Research*、Wesson �
 | AP.1 | 年停机 1920 h → 可用因子 $0.780822$；停机发电量损失 $3.84\times10^{5}$ MWh（占全年 $21.9178\%$） |
 | AP.2 | 单段 62.5 t；全寿期 8 次 = 128 段；平均 $3.2$ 段/年（$200$ t/年）；每段 600 h |
 | AP.3 | 降到远程阈值 $33.2555$ d、降到 $0.1$ Sv/h $41.9041$ d、降到人工阈值 $52.5306$ **年**；30 d 未屏蔽累积 $10.7698$ Sv、屏蔽 $10^{-5}$ 后 $0.00107698$ Sv |
-| AP.4 | 定位误差 $0.001$ m 对 $0.5$ m 间隙 = $0.2\%$；力反馈分辨率 $0.001$；延迟把速度限在 $0.1$ m/s |
+| AP.4 | 定位误差 $0.001$ m（$1$ mm）对 $0.5$ mm 间隙只余 $0.5$ 倍（必须二次对中）；力反馈分辨率 $0.001$（$100$ N 上 $0.1$ N）；延迟把速度限在 $0.1$ m/s |
 | AP.5 | cask 年转运 $24.3333$ 段/年 vs 需求 $3.2$ → 余量 $7.60417$（$760.417\%$）；单工位 $12.1667$；工位占用 $0.263014$ |
 | AP.6 | 按单次剂量允许 40 次/年，在役检查 5 次 = $2.5$ mSv = 限值 $12.5\%$；远程检修相对人工 $19$ 倍 |
 | AP.7 | 练习 6 答：$0.821918$（$+4.10959$ 个百分点）/$5.33333$ 段每年、$1.66667$ 倍 / $13.3022$ d / $0.000107698$ Sv / 20 次 / $48.6667$ 段每年、$15.2083$ |
@@ -6505,4 +6505,39 @@ NIF/ICF 之外的聚变工程教材（如 Dolan 的 *Fusion Research*、Wesson �
 
 ### 53.8 发布记录（v1.26.20）
 
-（待回填）
+- 内容提交 `4c449ce`（5 文件 +928/−4：`src/appendix_ap_maintenance.tex` 507 行新建、
+  `check/physics_regression.py`、`check/fixtures/gate_physics_negative.py`、
+  `src/plasma_physics_textbook_v2.tex`、`pdf/plasma_physics_textbook_v2.pdf` Bin 3403707 → 3440212）；
+  文档提交 `c131198`（README 214045 → 219000 字节 / 569 行、processed.md 577042 → 585351 字节 / 6509 行），
+  其后追加勘误提交（见下）使 README 219096 字节、processed.md 585418 字节。
+- tag `v1.26.20` = 注释对象 `b0dc4795ac110a2bfd9747bdaaa8e79870a2c6ff` → 提交
+  `c131198ef03e4f9df6923d04f573f4dd8639e2c6`；推送 `0a16835..c131198  main -> main`
+  与 `* [new tag] v1.26.20`；远端 `refs/heads/main = c131198`、`refs/tags/v1.26.20 = b0dc4795`。
+- Gitea release **id=184**（POST 201）：
+  `http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.20`；
+  资产上传 201、**3440212 B**、附件
+  `http://zsyq.hxlab.tech:3000/attachments/512b949e-bbd9-4ef8-8c48-a180f979c0ae`。
+- 独立复核（`tmp/verify_asset12620.py`，`curl.exe -sS -L --noproxy '*'` 下载远端资产）：
+  远端与本地均 3440212 B、SHA256
+  `E2E566677BD7DF5F746D45B7844C905EC3CFEDB6E437A9AFF4E7E612D72F8568`、逐字节一致 True；
+  并对**发布版** PDF 复跑 `check/pdf_outline.py`（`tmp/outline_v12620_shipped.txt`）：
+  `[O1] 页数 530；书签 528 条（层级 1:57 / 2:410 / 3:61）；带链接页 176，链接 929；印刷目录 15 页（第 2--16 页）`、
+  `[O3b] 印刷目录页码与书签页码逐条一致（528 条）`、汇总 FAIL 0 / WARN 1。
+- **一处口径订正**：README 附录 AP 条目、§53.3 表格与发布说明把 AP.4 写成
+  「0.001 m 定位误差对 0.5 m 装配间隙 = 0.2 %」——表 AP.4 的装配间隙是 **0.5 mm**，
+  余量 0.5 的含义是误差是间隙的 2 倍（必须二次对中）；力反馈分辨率同样是 100 N 上 0.1 N。
+  修正脚本 `tmp/fix_ap_margin_claim.py`（四处 all-or-nothing：README / processed.md /
+  `tmp/section53.md` / `tmp/release_v12620.md`），Gitea release 正文改用 `create`
+  走 PATCH 200 更新（正文 6397 字节，复查旧口径残留 False）。
+  教训：**换算类断言要回到 canon 与表格核对单位**，不能从「余量 0.5」倒推间隙是 0.5 m；
+  夹具与门禁都盯数值字面，盯不住「同一数值配错单位」的散文口径。
+- 远端同步与评审：`git ls-remote` 后远端 `main = c131198` 与本地 HEAD 一致（无新提交）；
+  `reviews/` 仍 **74 项**（`2026-10-10-independent` 31 + `2026-10-11-scheduled` 35 +
+  `2026-10-12-scheduled` 4 + `2026-10-13-scheduled` 4）、无 `todo/`。
+- 修后复跑六套件：`full_check` 37（FAIL 0 / WARN 0）、`ui_readability` 59（WARN 38）、
+  `consistency_audit` 14、`physics_regression` 4538、`figure_layout` 15、
+  `pdf_outline` 11（WARN 1）；五夹具全 PASS。
+- 汇报图：`tmp/png_ap/` 10 个文件——7 张单页 1191×1684（`ap_p524` … `ap_p530`，
+  256787–360106 B）、`ap_spread_6pages.png` 2679×2526 / 1347933 B（p524–529，3×2）、
+  `ap_spread_tail.png` 2679×1263 / 295538 B（p530，3×1）、`ap_summary.png`
+  1500×1000 / 207662 B；整图目视确认无重叠无裁切；`present()` 交付 PDF + 速览 + 两张拼版。
