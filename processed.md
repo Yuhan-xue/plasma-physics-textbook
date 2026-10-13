@@ -6086,6 +6086,15 @@ DECLARED 输入：`R0=6.2 m`、`a=2 m`、`B_TF=5.3 T`、`I_p=11.0844 MA`、`I_op
 5. **跨附录同名字段要标口径**：本轮 `Jc(B,T)` 用参数化模型（`Jc0=6000 A/mm²`、`B_c2=26 T`、`beta=1.5`），
    与附录 AG 的 `B(R)` 剖面各自独立，正文与 DECLARED 都写明，避免读者误当同一模型。
 
-### 50.8 发布记录
+### 50.8 发布记录（v1.26.17）
 
-（待回填）
+- **内容提交**：`ac3a6dd`（5 文件 +1182/−3：`src/appendix_am_magnets.tex` 600 行新建、`check/physics_regression.py` +506、`check/fixtures/gate_physics_negative.py` +68/−3、`src/plasma_physics_textbook_v2.tex` +11/−3、`pdf/plasma_physics_textbook_v2.pdf` 3269387 → 3317484 B）。
+- **文档提交**：`54ddea2`（`README.md` 197734 → 203145 B、`processed.md` 530392 → 547332 B / 6092 行）。
+- **标签**：`v1.26.17` = 注释对象 `f62910903d7064a255af4dfe4e7bb6e771f534f0` → 提交 `54ddea2ccf3267771973de07892fac4691632bf9`。
+- **推送**：`ad2c048..54ddea2  main -> main` + `* [new tag] v1.26.17`（pwsh 把 git 进度写 stderr 报 NativeCommandError 属已知假失败）。
+- **远端引用**：`refs/heads/main = 54ddea2ccf3267771973de07892fac4691632bf9`、`refs/tags/v1.26.17 = f62910903d7064a255af4dfe4e7bb6e771f534f0`。
+- **Gitea release**：**id=175**（POST 201），`http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.17`；附件 `http://zsyq.hxlab.tech:3000/attachments/6c6ff6e9-1bde-45ee-b2c2-7984c7b295f0`（上传 201、3317484 B）。
+- **独立复核**：`curl.exe -sS -L --noproxy '*'` 下载远端附件，远端与本地均 **3317484 B**、SHA256 均 **D0CAD2F46011F6BB32734219E2B838EF99140A403B029FE4848DA0B92B0F550F**、逐字节一致。
+- **远端 reviews**：仍 **74 项**（2026-10-10-independent 31 + 2026-10-11-scheduled 35 + 2026-10-12-scheduled 4 + 2026-10-13-scheduled 4），无新增、无 `todo/`。
+- **汇报图**：`tmp/png_am/` 12 个文件（9 张单页 1191×1684：`am_p497_AM首页_盒1.png` 337419 B、`am_p498_表AM1.png` 326795 B、`am_p499_表AM2_盒2.png` 370041 B、`am_p500_表AM3_盒3.png` 348186 B、`am_p501_表AM4_盒4.png` 371761 B、`am_p502_表AM5_盒5.png` 324740 B、`am_p503_表AM6_盒6.png` 348912 B、`am_p504_盒7.png` 438852 B、`am_p505_表AM7_来源页.png` 270067 B；`am_spread_6pages.png` 3573×3368 / 2193806 B；`am_spread_tail.png` 3573×1684 / 1115821 B；`am_summary.png` 1500×1000 / 207950 B），三张整图 `read_image` 目视确认无重叠无裁切。
+- **修后电池**：`full_check` 37（FAIL 0 / WARN 0）、`ui_readability` 59（WARN 38）、`consistency_audit` 14、`physics_regression` **3916**、`figure_layout` 15、`pdf_outline` 11（WARN 1，只剩 O4 附录 F 2/35）；五夹具全 PASS。
