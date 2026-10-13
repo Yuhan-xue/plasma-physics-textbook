@@ -6189,6 +6189,17 @@ DECLARED 输入：`R0=6.2 m`、`a=2 m`、`B_TF=5.3 T`、`I_p=11.0844 MA`、`I_op
 6. **重建后必须重跑 PDF 后处理**：`tmp/fix_pdf_dests.py` 已成为固定步骤（O3b 19/510 → 0/510），否则书签页码又会偏一页。
 7. **行尾会变**：`git rebase` 把 `check/*.py` 与夹具从 LF 改成 CRLF，所有写文件的脚本都要探测行尾。
 
-### 51.8 发布记录
+### 51.8 发布记录（v1.26.18）
 
-（待回填）
+| 项目 | 值 |
+| --- | --- |
+| 内容提交 | `3d7713a`（5 文件，+1000 / −3：`src/appendix_an_polarimetry.tex` 560 行新建、`check/physics_regression.py`、`check/fixtures/gate_physics_negative.py`、`src/plasma_physics_textbook_v2.tex`、`pdf/plasma_physics_textbook_v2.pdf` Bin 3317484 → 3361634） |
+| 文档提交 | `1fd6276`（README.md 203145 → 208703 字节 / 559 行；processed.md 549693 → 561636 字节 / 6194 行） |
+| tag | `v1.26.18` = 注释对象 `421f36361d758d61f4e5f33f90ce0e8b5e672cb9` → `1fd62762c01b4e5bd39561024c53c41c761738d3` |
+| 推送 | `7dee643..1fd6276  main -> main` + `* [new tag] v1.26.18`（pwsh 的 NativeCommandError 属已知假失败，push exit=0） |
+| 远端 refs | `refs/heads/main = 1fd62762c01b4e5bd39561024c53c41c761738d3`、`refs/tags/v1.26.18 = 421f36361d758d61f4e5f33f90ce0e8b5e672cb9` |
+| Gitea release | id=**178**（上一版 v1.26.17 = 175），POST 201，url http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.18 |
+| 附件 | http://zsyq.hxlab.tech:3000/attachments/49d73273-7805-46ca-a755-87b0a871f2a2（上传 201，size=3361634） |
+| 独立复核 | `tmp/verify_asset12618.py`（`curl.exe -sS -L --noproxy '*'`）：远端与本地均 **3361634 字节**、SHA256 均 **2C9DD08B19338E2D96B7E3A9640DC01F4E32BEA845843706455951163339F3C1**、逐字节一致 True |
+| 远端 reviews | 仍 **74 项**（`git ls-tree -r --name-only origin/main reviews/`：2026-10-10-independent 31 + 2026-10-11-scheduled 35 + 2026-10-12-scheduled 4 + 2026-10-13-scheduled 4），无新增、无 `todo/` |
+| 电池复跑 | `full_check` 37（FAIL 0 / WARN 0）、`ui_readability` 59（WARN 38）、`consistency_audit` 14、`physics_regression` 4121、`figure_layout` 15、`pdf_outline` 11（WARN 1）；五夹具全 PASS |
