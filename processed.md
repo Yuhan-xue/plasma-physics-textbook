@@ -4568,4 +4568,27 @@ L-H 转换把边缘湍流压住、台基把剖面撑陡、ELM 又周期性地把
 
 ### 41.8 发布记录（v1.26.8）
 
-（待回填）
+- 版本串三处一致（`pdftitle` / 封面可见串 / PDF Title 元数据）= **v1.26.8**；第 30 个附录 AD 挂载完成
+  （主文件 `\appchapter{附录` 29 → 30，A–AD 齐全），主文件 425814 → 425938 字节。
+- 提交：内容 **`7fc4143`**（5 文件 +1210/−4：新增 `src/appendix_ad_pedestal.tex` 721 行、
+  `check/physics_regression.py` +418、`check/fixtures/gate_physics_negative.py` +69/−4、
+  主文件 +6/−2、PDF 2838404 → 2898499 B）、文档 **`d131f65`**（README 同步 + processed §41）。
+- tag 对象 **`b71da3aba6655005b682d17b8cba7dbbc6c32367`**（annotated，指向 `d131f65`）；
+  双推后 `git ls-remote` 核对：`refs/heads/main` = `d131f658671c63abdd5c10a2b561a6e7e7467ade`、
+  `refs/tags/v1.26.8` = `b71da3ab…`。推送前远端 main 仍是 `9c1bf9d`（v1.26.7 回填），直接 fast-forward。
+- Gitea release **id=149**：<http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.8>；
+  asset `plasma_physics_textbook_v2.pdf` 上传 status 201，**2898499 B**，
+  附件地址 <http://zsyq.hxlab.tech:3000/attachments/7d287e55-866e-448d-8831-2e1993867f7b>。
+  （release id 由 Gitea 全局自增：145 → 149，146–148 不在本仓库；`gitea_release.py list` 是单页查询，
+  不用它声称累计 release 数。）
+- asset 独立复验：清掉四个代理环境变量后 `curl.exe -sS -L --noproxy '*'` 下载附件，
+  **2898499 B**、SHA256 `E2BD01DFE853D1860D3EA4C992D48177DCCB16E4F12B763AB9657511A3803A23`，
+  与本地 `pdf/plasma_physics_textbook_v2.pdf` **逐字节一致**（`tmp/verify_asset1268.py`）。
+- 远端 `reviews/` 共 **70** 项（`2026-10-10-independent` 31 + `2026-10-11-scheduled` 35 +
+  `2026-10-12-scheduled` 4），**本轮无新增**；远端根目录无 `todo/`。
+- 汇报图：附录 AD 的 11 页正文（第 411–421 页）由 `tmp/render_ad.py` 渲染到 `tmp/png_ad/`，
+  六页拼版 `ad_spread_6pages.png`、来源页拼版 `ad_spread_source.png`，
+  一页速览由 `tmp/mkimg_ad.py` 渲染为 `tmp/png_ad/ad_summary.png`。
+- 行尾说明：`processed.md`、`README.md` 的工作副本是 CRLF（`core.autocrlf=true`），
+  `src/appendix_*.tex`、`check/*.py`、`check/fixtures/*.py` 是 LF；追加 / 替换 / 回填脚本一律
+  「读时探测行尾、写时按原行尾还写」，主文件 `src/plasma_physics_textbook_v2.tex` 为 CRLF-only。
