@@ -96,6 +96,7 @@ APPAF = os.path.join(ROOT, 'src', 'appendix_af_turbulence.tex')
 APPAG = os.path.join(ROOT, 'src', 'appendix_ag_equilibrium.tex')
 APPAH = os.path.join(ROOT, 'src', 'appendix_ah_atomic.tex')
 APPAI = os.path.join(ROOT, 'src', 'appendix_ai_icf.tex')
+APPAJ = os.path.join(ROOT, 'src', 'appendix_aj_fuelling.tex')
 CH12 = os.path.join(ROOT, 'src', 'ch12_supplement.tex')
 CH10 = os.path.join(ROOT, 'src', 'ch10_supplement.tex')
 SUITE = os.path.join(ROOT, 'check', 'physics_regression.py')
@@ -1119,9 +1120,75 @@ PATCHES = [
     # 389. 数据：练习 6 燃耗份额末位（练习 6 燃耗份额末位）
     (APPAI, r'20.8291\%',
            r'20.8292\%'),
+    # 390. 结构：表 AJ.5 的 label 改名（表 AJ.5 的 label 改名）
+    (APPAJ, r'\label{tab:app-aj-pumping}',
+           r'\label{tab:app-aj-pump}'),
+    # 391. 结构：语义盒标签改名（语义盒标签改名）
+    (APPAJ, r'{tip-app-aj-ngs}',
+           r'{tip-app-aj-ng}'),
+    # 392. 结构：公式标签改名（公式标签改名）
+    (APPAJ, r'\label{eq:app-aj-pumpq}',
+           r'\label{eq:app-aj-pump}'),
+    # 393. 结构：首处出处声明被改写（首处出处声明被改写）
+    (APPAJ, r'\textbf{出处：}粒子平衡与再循环的处理参照',
+           r'\textbf{来源：}粒子平衡与再循环的处理参照'),
+    # 394. 结构：解答标题被改写（解答标题被改写）
+    (APPAJ, r'\textbf{解答 4}',
+           r'\textbf{答案 4}'),
+    # 395. 结构：语义盒标题改字（语义盒标题改字）
+    (APPAJ, r'{灰不是杂质，是产物}',
+           r'{灰不是杂质，是副产物}'),
+    # 396. 结构：语义盒标题改字（语义盒标题改字）
+    (APPAJ, r'{弹丸是被自己的气体盾牌挡住的}',
+           r'{弹丸是被自己的气体盾牌挡着的}'),
+    # 397. 数据：总损失末位（总损失末位）
+    (APPAJ, r'3.36827\times10^{22}\ \mathrm{s^{-1}}',
+           r'3.36828\times10^{22}\ \mathrm{s^{-1}}'),
+    # 398. 数据：弹丸质量流率末位（弹丸质量流率末位）
+    (APPAJ, r'7.12338\times10^{-6}\ \mathrm{kg\,s^{-1}}',
+           r'7.12339\times10^{-6}\ \mathrm{kg\,s^{-1}}'),
+    # 399. 数据：年耗氚末位（年耗氚末位）
+    (APPAJ, r'224.797\ \text{kg/年}',
+           r'224.798\ \text{kg/年}'),
+    # 400. 数据：弹丸质量末位（弹丸质量末位）
+    (APPAJ, r'3.60498\times10^{-6}\ \mathrm{kg}',
+           r'3.60499\times10^{-6}\ \mathrm{kg}'),
+    # 401. 数据：弹丸含氚质量末位（弹丸含氚质量末位）
+    (APPAJ, r'2.16299\ \mathrm{mg}',
+           r'2.16300\ \mathrm{mg}'),
+    # 402. 数据：弹丸频率末位（弹丸频率末位）
+    (APPAJ, r'1.97599\ \mathrm{Hz}',
+           r'1.97600\ \mathrm{Hz}'),
+    # 403. 数据：r=3 mm 穿透深度末位（r=3 mm 穿透深度末位）
+    (APPAJ, r'0.380976\ \mathrm{m}',
+           r'0.380977\ \mathrm{m}'),
+    # 404. 数据：r=3 mm 所需速度末位（r=3 mm 所需速度末位）
+    (APPAJ, r'787.451\ \mathrm{m\,s^{-1}}',
+           r'787.452\ \mathrm{m\,s^{-1}}'),
+    # 405. 数据：加料氚流末位（加料氚流末位）
+    (APPAJ, r'5.15627\times10^{-6}\ \mathrm{kg\,s^{-1}}',
+           r'5.15628\times10^{-6}\ \mathrm{kg\,s^{-1}}'),
+    # 406. 数据：练习 5 排出率末位（练习 5 排出率末位）
+    (APPAJ, r'2.41432\times10^{23}\ \mathrm{s^{-1}}',
+           r'2.41433\times10^{23}\ \mathrm{s^{-1}}'),
+    # 407. 数据：练习 3 停留时间末位（练习 3 停留时间末位）
+    (APPAJ, r'12.6505\ \mathrm{s}',
+           r'12.6506\ \mathrm{s}'),
 ]
 
-MIN_FAIL = 423       # 实测值（389 处植入回退合并计入 437，留 14 的余量）：见下
+MIN_FAIL = 442       # 实测值（407 处植入回退合并计入 456，留 14 的余量）：见下
+# ## v1.26.14 轮（附录 AJ 加料与排灰 / 门禁 P42）植入扩到 407 处，18 处新补丁分两层
+# （编号 390--407）：
+#   结构层 7 条：表 AJ.5 label 改名、语义盒标签改名、公式 label 改名、首处「出处：」→「来源：」、
+#              「解答 4」→「答案 4」、两只语义盒标题改字（副产物 / 气体盾牌挡着的）。
+#   数据层 11 条：总损失 3.36827e22 s^-1、弹丸质量流率 7.12338e-6 kg/s、年耗氚 224.797 kg/年、
+#              弹丸质量 3.60498e-6 kg、含氚质量 2.16299 mg、弹丸频率 1.97599 Hz、
+#              r=3 mm 穿透深度 0.380976 m、r=3 mm 所需速度 787.451 m/s、
+#              加料氚流 5.15627e-6 kg/s、练习 5 排出率 2.41432e23 s^-1、练习 3 停留时间 12.6505 s
+#              （各改末位）。
+# 首轮逐条探针：**18/18 可证伪、无落空、无洞**，单条合计 FAIL=20（#391 同时命中语义盒标签与整行
+# 标题；#403 命中精确绑定与数值用例两处）。
+# 合并植入实测 **456**（= v1.26.12 轮的 437 + 20 − 1 处与既有断言的合并），MIN_FAIL 423 -> 442。
 # ## v1.26.13 轮（附录 AI 惯性约束内爆与点火 / 门禁 P41）植入扩到 389 处，18 处新补丁分两层
 # （编号 372--389）：
 #   结构层 7 条：表 AI.5 label 改名、语义盒标签改名、公式 label 改名、首处「出处：」→「来源：」、
