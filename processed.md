@@ -5082,4 +5082,37 @@ L-H 转换把边缘湍流压住、台基把剖面撑陡、ELM 又周期性地把
 
 ### 44.8 发布记录（v1.26.11）
 
-（待回填）
+- **内容提交** `5f02971`（5 文件，+1034/−3）：`src/appendix_ag_equilibrium.tex`（新建 537 行）、
+  `check/physics_regression.py`（+427）、`check/fixtures/gate_physics_negative.py`（+67/−3）、
+  `src/plasma_physics_textbook_v2.tex`（+6/−2）、`pdf/plasma_physics_textbook_v2.pdf`
+  （Bin 2986315 → 3032418 字节）。
+- **文档提交** `f0989fb`（2 文件，+165/−13）：`README.md`（170280 → 174465 字节）与
+  `processed.md`（447979 → 458719 字节）。
+- **标签**：`v1.26.11` 注释标签对象 `557804a47389fefe060078fb8e916d000e87305d`，
+  指向文档提交 `f0989fbbd6cccb4bcc191d8cbed58357851139ec`。
+- **双推**：`72519a0..f0989fb  main -> main`、`* [new tag] v1.26.11 -> v1.26.11`
+  （PowerShell 把 git 的进度输出当 NativeCommandError 属已知假失败）。
+- **远端引用核对**（`git ls-remote`）：`refs/heads/main =
+  f0989fbbd6cccb4bcc191d8cbed58357851139ec`、`refs/tags/v1.26.11 =
+  557804a47389fefe060078fb8e916d000e87305d`。
+- **Gitea release**：`id=157`（上一版 v1.26.10 为 154），
+  <http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.11>；
+  附件 <http://zsyq.hxlab.tech:3000/attachments/3b6b29df-a1ae-4289-a97a-c845190c5f62>。
+- **资产独立复核**（`tmp/verify_asset12611.py`，`curl.exe -sS -L --noproxy '*'` 下载后比对）：
+  远端与本地均 **3032418 字节**、SHA256 均
+  `05E20A672DA8DB87EEAD498A1420A734200721CB5BBF761FDD8F6E27E060B038`、逐字节一致 True。
+- **远端 reviews**：仍 **70 项**（`2026-10-10-independent` 31 + `2026-10-11-scheduled` 35 +
+  `2026-10-12-scheduled` 4），本轮无新增；远端根目录无 `todo/`。
+- **汇报图**（`tmp/probe_ag_pages.py` 探页位 → 附录 AG = PDF 第 441--449 页；
+  表题注 表 AG.1 p442 y=197.0、表 AG.2 p443 y=273.9、表 AG.3 p444 y=219.4、表 AG.4 p445 y=179.4、
+  表 AG.5 p446 y=214.6、表 AG.6 p447 y=179.4、表 AG.7 p448 y=764.5；七只语义盒分别在
+  p442 / p443 / p444（两只）/ p446 / p447 / p449）：
+  `tmp/png_ag/` 共 11 个文件——9 张单页（`ag_p441_AG首页_安全因子.png` 342413 B、
+  `ag_p442_表AG1_盒1.png` 348776、`ag_p443_表AG2_盒2.png` 379277、`ag_p444_表AG3_盒3盒4.png` 388851、
+  `ag_p445_表AG4.png` 351224、`ag_p446_表AG5_盒5.png` 391677、`ag_p447_表AG6_盒6.png` 362507、
+  `ag_p448_表AG7.png` 402178、`ag_p449_来源页_盒7.png` 147308，均为 1191×1684）、
+  两张拼版（`ag_spread_6pages.png` 1516×1071 / 661027 B、`ag_spread_source.png` 1348×952 / 624782 B）、
+  一页速览（`ag_summary.png` 1500×948 / 258128 B）。
+- **同步后复跑**：六套件 full_check 37 / ui_readability 57（WARN 36）/ consistency_audit 14 /
+  physics_regression 2364 / figure_layout 15 / pdf_outline 11（WARN 2）全 FAIL 0；
+  五夹具全 PASS；总结论「全部通过」。
