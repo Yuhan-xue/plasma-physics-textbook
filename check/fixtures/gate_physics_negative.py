@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """可证伪性夹具：故意在源码里植入本轮的典型回退，确认 check/physics_regression.py 会 FAIL。
 
-流程：备份 → 植入 281 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。其中四处打在 v1.8.0/v1.8.1 新增的附录 I/J/K 上（K.5 的阻尼率符号、K.7 的鞘厚量级与单位、K.4 的磁冻结结论、J 的逐章对照表章号），
+流程：备份 → 植入 299 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。其中四处打在 v1.8.0/v1.8.1 新增的附录 I/J/K 上（K.5 的阻尼率符号、K.7 的鞘厚量级与单位、K.4 的磁冻结结论、J 的逐章对照表章号），
 三处打在 v1.10.0 新增的附录 M 上（束速量级、H 模阈值标度、欧姆/自加热倍数口径），
 一处是 v1.10.0 的结构性回退（语义盒退回裸 `\begin{tip}`，正文首字会被吞、标签可能重复），
 三处打在 v1.11.0 新增的附录 N 上（脱靶辐射功率量级、ELM 侵蚀倍数、表标签被改名），
@@ -90,6 +90,7 @@ APPZ = os.path.join(ROOT, 'src', 'appendix_z_reactor.tex')
 APPAA = os.path.join(ROOT, 'src', 'appendix_aa_alternates.tex')
 APPAB = os.path.join(ROOT, 'src', 'appendix_ab_space_astro.tex')
 APPAC = os.path.join(ROOT, 'src', 'appendix_ac_numerics.tex')
+APPAD = os.path.join(ROOT, 'src', 'appendix_ad_pedestal.tex')
 CH12 = os.path.join(ROOT, 'src', 'ch12_supplement.tex')
 CH10 = os.path.join(ROOT, 'src', 'ch10_supplement.tex')
 SUITE = os.path.join(ROOT, 'check', 'physics_regression.py')
@@ -789,9 +790,73 @@ PATCHES = [
     # 281. 数据：练习 1 的德拜长度 7.43394e-5 -> 7.43395e-5
     (APPAC, r'7.43394\times10^{-5}',
            r'7.43395\times10^{-5}'),
+    # 282. 结构：表 2 的 label 改名（tab:app-ad-pedestal -> ped），P36 的表标签检查应报缺
+    (APPAD, r'\label{tab:app-ad-pedestal}',
+           r'\label{tab:app-ad-ped}'),
+    # 283. 结构：第 3 只语义盒的标签改名（tip-app-ad-two-branches -> branches）
+    (APPAD, r'{tip-app-ad-two-branches}',
+           r'{tip-app-ad-branches}'),
+    # 284. 结构：式 (AD.22) 的 label 改名（eq:app-ad-detach -> det）
+    (APPAD, r'\label{eq:app-ad-detach}',
+           r'\label{eq:app-ad-det}'),
+    # 285. 结构：小节 AD.6 的 sec label 改名（sec:app-ad-sol -> scrapeoff）
+    (APPAD, r'\label{sec:app-ad-sol}',
+           r'\label{sec:app-ad-scrapeoff}'),
+    # 286. 结构：第一处「出处：」声明被改成「来源：」
+    (APPAD, r'\textbf{出处：}L-H 转换的实验发现参照',
+           r'\textbf{来源：}L-H 转换的实验发现参照'),
+    # 287. 结构：练习解答 4 的编号词被改（解答 -> 答案），解答计数应跌破练习数
+    (APPAD, r'\textbf{解答 4}',
+           r'\textbf{答案 4}'),
+    # 288. 结构：第 2 只语义盒标题改字（自由参数 -> 固定参数）
+    (APPAD, r'台基宽度不是自由参数',
+           r'台基宽度不是固定参数'),
+    # 289. 数据：台基壳层面积 489.532 m^2 -> 489.533 m^2（P36 精确绑定应报 FAIL）
+    (APPAD, r'489.532\ \mathrm{m^2}',
+           r'489.533\ \mathrm{m^2}'),
+    # 290. 数据：密度减半时的阈值 38.4821 MW -> 38.4822 MW
+    (APPAD, r'38.4821\ \mathrm{MW}',
+           r'38.4822\ \mathrm{MW}'),
+    # 291. 数据：单次 ELM 损失 2.59980e7 J -> 2.59981e7 J
+    (APPAD, r'2.59980\times10^{7}\ \mathrm{J}',
+           r'2.59981\times10^{7}\ \mathrm{J}'),
+    # 292. 数据：ELM 能量密度 6.67373e5 J/m^2 -> 6.67374e5 J/m^2
+    (APPAD, r'6.67373\times10^{5}\ \mathrm{J\,m^{-2}}',
+           r'6.67374\times10^{5}\ \mathrm{J\,m^{-2}}'),
+    # 293. 数据：弹丸密度扰动 1.70796e19 m^-3 -> 1.70797e19 m^-3
+    (APPAD, r'1.70796\times10^{19}\ \mathrm{m^{-3}}',
+           r'1.70797\times10^{19}\ \mathrm{m^{-3}}'),
+    # 294. 数据：弹丸质量 4.18155e-6 kg -> 4.18156e-6 kg
+    (APPAD, r'4.18155\times10^{-6}\ \mathrm{kg}',
+           r'4.18156\times10^{-6}\ \mathrm{kg}'),
+    # 295. 数据：台基恢复功率 0.684532 MW -> 0.684533 MW
+    (APPAD, r'0.684532\ \mathrm{MW}',
+           r'0.684533\ \mathrm{MW}'),
+    # 296. 数据：离子声速 5.93524e5 m/s -> 5.93525e5 m/s
+    (APPAD, r'5.93524\times10^{5}\ \mathrm{m\,s^{-1}}',
+           r'5.93525\times10^{5}\ \mathrm{m\,s^{-1}}'),
+    # 297. 数据：径向电场下限 53.2405 kV/m -> 53.2406 kV/m
+    (APPAD, r'53.2405\ \mathrm{kV\,m^{-1}}',
+           r'53.2406\ \mathrm{kV\,m^{-1}}'),
+    # 298. 数据：边缘自举电流密度 1.19366e6 A/m^2 -> 1.19367e6 A/m^2
+    (APPAD, r'1.19366\times10^{6}\ \mathrm{A\,m^{-2}}',
+           r'1.19367\times10^{6}\ \mathrm{A\,m^{-2}}'),
+    # 299. 数据：台基压强 297.525 kPa -> 297.526 kPa
+    (APPAD, r'297.525\ \mathrm{kPa}',
+           r'297.526\ \mathrm{kPa}'),
 ]
 
-MIN_FAIL = 303       # 实测值（281 处植入回退合并计入 317，留 14 的余量）：见下
+MIN_FAIL = 322       # 实测值（299 处植入回退合并计入 336，留 14 的余量）：见下
+# ## v1.26.8 轮（附录 AD 边界台基与 L-H 模 / 门禁 P36）植入扩到 299 处，18 处新补丁分两层：
+# 结构层 7：表 2 label 改名、第 3 只语义盒标签改名、式 (AD.22) label 改名、小节 AD.6 的 sec label 改名、
+#          首处「出处：」改成「来源：」、解答 4 的编号词改成「答案」、第 2 只语义盒标题改字（自由参数 -> 固定参数）；
+# 数据层 11：台基壳层面积、密度减半阈值、单次 ELM 损失、ELM 能量密度、弹丸密度扰动与质量、
+#          台基恢复功率、离子声速、径向电场下限、边缘自举电流密度、台基压强，各改末位。
+# 本轮与 P35 轮的方法差异：P36 增加了「数字 + 单位」的精确子串绑定（tmp/gen_p36_data.py 生成 92 条），
+# 因此这 11 条数据补丁在第一轮探针就应当全部可证伪，不需要像 P35 轮那样事后补 10 条整行绑定
+# （P35 轮 10 条只改末位的补丁落在 rel=1e-3 容差内，第一轮 FAIL=0，洞=[271..277,279..281]）。
+# 合并植入实测 **336**（= v1.26.7 的 317 + 18 + 1：其中 #285「小节 AD.6 的 sec label 改名」第一轮探针
+# 落空，补上 P36 的 8 条小节标签绑定后才可证伪），MIN_FAIL 303 -> 322（留 14 余量）。
 # ## v1.26.7 轮（附录 AC 等离子体数值方法 / 门禁 P35）植入扩到 281 处，18 处新补丁分两层：
 # 结构层 7：表 1 label 改名（tab:app-ac-resolution -> grid）、第 2 只语义盒标签改名（conserve -> energy）、
 #           式 (AC.17) label 改名（trunc -> cut）、首处「出处：」改成「来源：」、解答 4 改成答案 4、
