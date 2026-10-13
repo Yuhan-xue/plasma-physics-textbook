@@ -6333,7 +6333,7 @@ canon 全量 + DECLARED 白名单，rel ≤ 1e-3）：正文 **54 处科学计�
 | 夹具补丁 / MIN_FAIL | 479 / 535 | **497 / 557** |
 | 合并夹具 FAIL | 524 | **571** |
 | PDF 字节 | 3361634 | **3403707** |
-| PDF SHA256 | 2C9DD08B…（前 8 位） | **0F7F4C78…（前 8 位）** |
+| PDF SHA256 | 2C9DD08B…（前 8 位） | **BEC7C973…（前 8 位）** |
 | O3b | 0/510（后处理归零） | **0/519（后处理归零）** |
 | Overfull | 5 处基线 | **5 处基线（零新增）** |
 
@@ -6354,6 +6354,37 @@ canon 全量 + DECLARED 白名单，rel ≤ 1e-3）：正文 **54 处科学计�
 5. **真空这一环的价值在「可算」**：把 5 Pa 换算成密度/吞吐量、把本底压强写成放气除以抽速、
    把壁上那层膜的氚量算成克数，三处都是初中算术，却决定了运行窗口与库存管理。
 
-### 52.8 发布记录
+### 52.8 发布记录（v1.26.19）
 
-（待回填）
+- 内容提交 `6ef7399`（5 文件 +920/−4：`src/appendix_ao_vacuum.tex` 590 行新建、
+  `check/physics_regression.py`、`check/fixtures/gate_physics_negative.py`、
+  `src/plasma_physics_textbook_v2.tex`、`pdf/plasma_physics_textbook_v2.pdf` Bin 3361634 → 3403707）；
+  文档提交 `d06ce37`（README 208703 → 214045 字节 / 565 行、processed.md 563424 → 574124 字节 / 6360 行）。
+- tag `v1.26.19` = 注释对象 `ce105594bde7591988f380f92815c5ede91fb6df` → 提交
+  `d06ce37aec5484324f506566dd7707ce6d8fa1f9`；推送 `8162941..d06ce37  main -> main`
+  与 `* [new tag] v1.26.19`；远端 `refs/heads/main = d06ce37`、`refs/tags/v1.26.19 = ce105594`。
+- Gitea release **id=182**（POST 201）：
+  `http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.19`；
+  资产上传 201、**3403707 B**、附件
+  `http://zsyq.hxlab.tech:3000/attachments/da1346a2-4320-4eb4-99ca-36459d534b82`。
+- 独立复核（`tmp/verify_asset12619.py`，`curl.exe -sS -L --noproxy '*'` 下载远端资产）：
+  远端与本地均 3403707 B、SHA256
+  `BEC7C973B76EC651C0B30CC748DBE145DBD1F724CCE2FAFCF4D764AB55B475D1`、逐字节一致 True；
+  并对**发布版** PDF 复跑 `check/pdf_outline.py`（`tmp/outline_v12619_shipped.txt`），
+  确认 `[O3b] 印刷目录页码与书签页码逐条一致（519 条）`、汇总 FAIL 0 / WARN 1。
+- **一处记录订正**：发布前 §52.6 把后处理后的 PDF 哈希抄成 `0F7F4C78…`；
+  独立复核时发现应为 `BEC7C973…`（`tmp/fix_s52_sha.py` 修正，§52.6 与本记录以后者为准）。
+  教训：哈希要在提交之后从工作区文件重新计算，不要凭构建日志手抄。
+- 远端同步与评审：`git fetch` 后远端与本地一致（本轮无新提交）；`reviews/` 仍 **74 项**
+  （`2026-10-10-independent` 31 + `2026-10-11-scheduled` 35 + `2026-10-12-scheduled` 4 +
+  `2026-10-13-scheduled` 4）、无 `todo/`。2026-10-13 那轮的两条 carryover 处置：
+  P-CARRY-01（19 条书签落点）已在 v1.26.16 用构建后处理归零，本轮重建后重跑仍 **0/519**；
+  P-CARRY-02（评审称附录 F 29/35）在我们口径下复现为 **2/35**，已复核为两条 `\S\ref`
+  的 label 页差，非缺陷。
+- 修后复跑六套件：`full_check` 37（FAIL 0 / WARN 0）、`ui_readability` 59（WARN 38）、
+  `consistency_audit` 14、`physics_regression` 4357、`figure_layout` 15、
+  `pdf_outline` 11（WARN 1）；五夹具全 PASS。
+- 汇报图：`tmp/png_ao/` 12 个文件——9 张单页 1191×1684（`ao_p515` … `ao_p523`，
+  156074–391001 B）、`ao_spread_6pages.png` 2679×2526 / 1303484 B（p515–520，3×2）、
+  `ao_spread_tail.png` 2679×1263 / 644817 B（p521–523，3×1）、`ao_summary.png`
+  1500×1000 / 202086 B；三张整图目视确认无重叠无裁切；`present()` 交付 PDF + 速览 + 两张拼版。
