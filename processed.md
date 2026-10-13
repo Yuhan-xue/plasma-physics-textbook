@@ -6687,4 +6687,21 @@ $n_c=1.2404\times10^{18}\ \mathrm{m^{-3}}$、$1.064$、$0.532$、$118.8$）。
 
 ### 54.8 发布记录（v1.26.21）
 
-（待回填）
+- **内容提交** `cebd182`（5 文件 +1214/−5：`src/appendix_aq_interferometry.tex` 690 行新建、
+  `check/physics_regression.py` +447、`check/fixtures/gate_physics_negative.py` +76/−、主文件 +6/−2、
+  PDF Bin 3440212 → 3493601 字节）；**文档提交** `da1a943`（README + processed.md）。
+- **标签**：注释 tag `v1.26.21` = tag 对象 `2645e087e5a720d801be41108d5553c42c6702d1` → `da1a943808db471e5594395b842393be72e52c5f`。
+- **推送**：`f68c7bb..da1a943 main -> main`、`* [new tag] v1.26.21 -> v1.26.21`（pwsh 报 NativeCommandError 属已知假失败）。
+- **远端 refs**：`refs/heads/main = da1a943808db471e5594395b842393be72e52c5f`、`refs/tags/v1.26.21 = 2645e087e5a720d801be41108d5553c42c6702d1`。
+- **Gitea release**：`POST status 201`、**id=188**（上一版 v1.26.20 = 184），
+  url `http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.21`，
+  名称「v1.26.21 — 附录 AQ 干涉与相位诊断：从条纹到密度剖面」。
+- **附件**：`上传 status=201`、`size=3493601`、
+  `http://zsyq.hxlab.tech:3000/attachments/26bbe5ad-bcca-4002-ba23-818856dfcabe`。
+- **独立复核**（`tmp/verify_asset12621.py`，`curl.exe -sS -L --noproxy '*'` 从头发下载）：
+  本地与远端同为 **3493601 B**、SHA256 同为
+  **7C257F7CEBAAF43C9F3A5E76E3C62D881DF8BD0D93996F06BF54C020302B1D16**、逐字节一致 `True`。
+- **远端协作面**：`git ls-tree -r --name-only origin/main reviews/` = **74 项**
+  （2026-10-10-independent 31 / 2026-10-11-scheduled 35 / 2026-10-12-scheduled 4 / 2026-10-13-scheduled 4），
+  **无新增 reviews**、无 `todo/`；两份 carryover（P-CARRY-01 已归零、P-CARRY-02 附录 F 2/35 属已知非缺陷）状态不变。
+- **仓库卫生**：本轮 12 个 `.bak*` 全部删除，提交前 `git status` 无遗留。
