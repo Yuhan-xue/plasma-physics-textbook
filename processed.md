@@ -4908,4 +4908,31 @@ L-H 转换把边缘湍流压住、台基把剖面撑陡、ELM 又周期性地把
 
 ### 43.8 发布记录（v1.26.10）
 
-（待回填）
+- 版本串三处一致（`pdftitle` / 封面可见串 / PDF Title 元数据）= **v1.26.10**；第 32 个附录 AF 挂载完成
+  （主文件行首 `\appchapter{附录` 31 → 32，A–AF 齐全），主文件 426069 → 426213 字节。
+- 提交：内容 **`dcd2edd`**（5 文件 +861/−3：新增 `src/appendix_af_turbulence.tex` 470 行、
+  `check/physics_regression.py` +316、`check/fixtures/gate_physics_negative.py` +71/−1、
+  主文件 +4/−2、PDF 2950676 → 2986315 B）、文档 **`c1b89a2`**（README.md +19/−14、
+  processed.md +141）。
+- tag 对象 **`72b7ab3a3ac45b98aafa78926dc275a8f68da93d`**（annotated，指向
+  `c1b89a28c6242cd00d355bcc704814c93a965170`）；双推后 `git ls-remote` 核对：
+  `refs/heads/main` = `c1b89a28c6242cd00d355bcc704814c93a965170`、`refs/tags/v1.26.10` = `72b7ab3a…`。
+  推送前远端 main 仍是 `3bf21a7`（v1.26.9 回填），本地 2 ahead / 0 behind，直接 fast-forward。
+- Gitea release **id=154**：<http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.10>；
+  asset `plasma_physics_textbook_v2.pdf` 上传 status 201，**2986315 B**，
+  附件地址 <http://zsyq.hxlab.tech:3000/attachments/5c216ef6-4992-438b-914f-9de6e3968f3f>。
+  （release id 由 Gitea 全局自增：151 → 154；`gitea_release.py list` 是单页查询，不用它声称累计 release 数。）
+- asset 独立复验：清掉四个代理环境变量后 `curl.exe -sS -L --noproxy '*'` 下载附件，
+  **2986315 B**、SHA256 `E0D7EDD7974FA43D4AEBFFCA7A69844D2C715B7B5484C8E83C5627C2217B4A8C`，
+  与本地 `pdf/plasma_physics_textbook_v2.pdf` **逐字节一致**（`tmp/verify_asset12610.py`，输出 `[OK]`）。
+- 远端 `reviews/` 共 **70** 项（`2026-10-10-independent` 31 + `2026-10-11-scheduled` 35 +
+  `2026-10-12-scheduled` 4），**本轮无新增**；远端根目录无 `todo/`。
+- 汇报图：附录 AF 的 7 页正文（第 433–439 页，每页恰好一张表 + 一只语义盒）由 `tmp/probe_af_pages.py`
+  定位、`tmp/render_af.py` 渲染到 `tmp/png_af/`——7 张单页（1191×1684：p433 首页 + 表 AF.1 + 盒 1、
+  p434 表 AF.2 + 盒 2、p435 表 AF.3 + 盒 3、p436 表 AF.4 + 盒 4、p437 表 AF.5 + 盒 5、
+  p438 表 AF.6 + 盒 6、p439 表 AF.7 + 盒 7），六页拼版 `af_spread_6pages.png`
+  （1516×1071，449460 B）与来源页拼版 `af_spread_source.png`（1348×952，166325 B）；
+  一页速览由 `tmp/mkimg_af.py` 渲染为 `tmp/png_af/af_summary.png`（1500×803，215908 B）。
+- 行尾说明：`processed.md`、`README.md` 的工作副本是 CRLF（`core.autocrlf=true`），
+  `src/appendix_*.tex`、`check/*.py`、`check/fixtures/*.py` 是 LF；追加 / 替换 / 回填脚本一律
+  「读时探测行尾、写时按原行尾还写」，主文件 `src/plasma_physics_textbook_v2.tex` 为 CRLF-only。
