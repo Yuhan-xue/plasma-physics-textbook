@@ -6144,7 +6144,7 @@ DECLARED 输入：`R0=6.2 m`、`a=2 m`、`B_TF=5.3 T`、`I_p=11.0844 MA`、`I_op
 
 - 生成器：`tmp/gen_p46_data.py`（自 `gen_p45_data.py` 改写，UNIT_TOK 增加 `rad`、`deg`、`T m^{-2}`、`MV/m`、`nm`、`kHz`、`\\mu s` 等）→ `tmp/p46_cases.py`：**CASES 57 / STRICT 58 / LITS 66 / WANT 8**。
 - 函数体 `tmp/p46_body.py`（`check_P46_appendix_an_polarimetry()`，181 行）→ `tmp/add_p46.py` 三锚点落盘：8 个小节前缀 / 7 张表 label / 8 个小节 label / 7 只语义盒标签 / 18 个公式 label / 出处 $\ge 6$ / 练习 $\ge 6$ 且**编号解答数 = 练习数** / 57 项数值逐节绑定 / 58 条「数字+单位」精确字面绑定 / 66 条整行绑定 / **36 条 `lacks` 口径回流守卫**。
-- 空跑先行：首轮 PASS 292 / FAIL 1（`value_in` 传了非数值串 `m$^{-2}$` → 改成纯数字）→ 二轮 **FAIL 0**。落盘后 `check/physics_regression.py` 690833 → **705981 字节**，`APP_FILES['AN'] = 'appendix_an_polarimetry.tex'`；`python tmp\run_check.py check\physics_regression.py tmp\phys_v12618.txt` → exit 0，**FAIL 0 / WARN 0 / 合计 4121 项**（3916 → 4121，P46 增 205…见下）。
+- 空跑先行：首轮 PASS 292 / FAIL 1（`value_in` 传了非数值串 `m$^{-2}$` → 改成纯数字）→ 二轮 **FAIL 0**。落盘后 `check/physics_regression.py` 690833 → **705981 字节**，`APP_FILES['AN'] = 'appendix_an_polarimetry.tex'`；`python tmp\run_check.py check\physics_regression.py tmp\phys_v12618.txt` → exit 0，**FAIL 0 / WARN 0 / 合计 4121 项**（3916 → 4121）。
 - **本轮收紧的一条计数规则**：原先练习/解答计数用 `\\textbf\{解答(\s*\d+)?\}`，裸 `\textbf{解答}` 小标题也能计入，于是「删掉一条编号解答」不会报错（夹具补丁 #466 首轮探针即落空）；改为**编号解答数必须等于练习数**后，该补丁由 FAIL 0 变为 FAIL 1。
 - P46 函数体 367 行；套件通过行含「附录 AN 的 8 个小节齐全」「附录 AN 的「出处：」共 6 处」「附录 AN 的 6 道练习均有编号解答」「附录 AN 的 57 个关键数值均在小节内复算通过」。
 
