@@ -4226,4 +4226,25 @@ $P_{\mathrm{sw}}=F A_{\mathrm{eff}}=34.126$ GW。
 
 ### 39.8 发布记录（v1.26.6）
 
-（待回填）
+- 版本串三处一致（`pdftitle` / 封面可见串 / PDF Title 元数据）= **v1.26.6**；第 28 个附录 AB 挂载完成
+  （主文件 `\appchapter` 27 → 28）。
+- 提交：内容 **`e936f35`**（5 文件 +796/−4：新增 `src/appendix_ab_space_astro.tex` 518 行、
+  `check/physics_regression.py` +210、`check/fixtures/gate_physics_negative.py` +66/−4、
+  主文件 +6/−2、PDF 2750185 → 2789873 B）、文档 **`9ebc894`**（README 同步 + processed §39）。
+- tag 对象 **`15be1eaea27fe9b1bca8d8f558df8eec8cd51abd`**（annotated，指向 `9ebc894`）；
+  双推后 `git ls-remote` 核对：`refs/heads/main` = `9ebc894a690aed222a7fa41debe7d176c434326d`、
+  `refs/tags/v1.26.6` = `15be1eae…`。推送前远端 main 仍是 `0f615fd`（v1.26.5 回填），无新增提交。
+- Gitea release **id=142**：<http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.6>；
+  asset `plasma_physics_textbook_v2.pdf` 上传 status 201，2789873 B。
+  注：`gitea_release.py list` 是单页查询（默认分页上限 30 条，本轮返回 v1.26.6 → v1.5.0），
+  因此不再用该数字声称「累计 release 数」；release id 由 Gitea 全局自增，跨仓库不连续。
+- asset 独立复验：清掉四个代理环境变量后 `curl.exe -sS -L --noproxy '*'` 下载附件，
+  **2789873 B**、SHA256 `DB79943B1A289A73A111F4B1C73F2880FD2FE22098BF288AAD160085E386BE67`，
+  与本地 `pdf/plasma_physics_textbook_v2.pdf` **逐字节一致**。
+- 远端 `reviews/` 共 **70** 项（`2026-10-10-independent` 31 + `2026-10-11-scheduled` 35 +
+  `2026-10-12-scheduled` 4），**本轮无新增**；远端根目录无 `todo/`。
+  （其中 4 项是 v1.26.5 收尾时远端新增、本地已 rebase 到其上的定时评审提交。）
+- 汇报图：附录 AB 的封面页与六张关键表 / 六只语义盒由 `tmp/render_ab.py` 渲染到 `tmp/png_ab/`，
+  一页速览由 `tmp/mkimg_ab.py` 渲染为 `tmp/png_ab/ab_summary.png`。
+- 行尾说明：本轮发现 `processed.md`、`README.md` 的工作副本已被 `core.autocrlf=true` 转成 CRLF，
+  追加 / 替换脚本一律「读时探测行尾、写时按原行尾还写」，避免整文件 EOL 噪声。
