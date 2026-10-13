@@ -93,6 +93,7 @@ APPAC = os.path.join(ROOT, 'src', 'appendix_ac_numerics.tex')
 APPAD = os.path.join(ROOT, 'src', 'appendix_ad_pedestal.tex')
 APPAE = os.path.join(ROOT, 'src', 'appendix_ae_kinetics.tex')
 APPAF = os.path.join(ROOT, 'src', 'appendix_af_turbulence.tex')
+APPAG = os.path.join(ROOT, 'src', 'appendix_ag_equilibrium.tex')
 CH12 = os.path.join(ROOT, 'src', 'ch12_supplement.tex')
 CH10 = os.path.join(ROOT, 'src', 'ch10_supplement.tex')
 SUITE = os.path.join(ROOT, 'check', 'physics_regression.py')
@@ -954,9 +955,73 @@ PATCHES = [
     # 335. 数据：练习 1 两定标之比 80.6945 -> 80.6946（补充精确绑定应报 FAIL）
     (APPAF, r'80.6945',
            r'80.6946'),
+    # 336. 结构：表 AG.4 的 label 改名（表 AG.4 的 label 改名）
+    (APPAG, r'\label{tab:app-ag-shaping}',
+           r'\label{tab:app-ag-shape}'),
+    # 337. 结构：语义盒标签改名（语义盒标签改名）
+    (APPAG, r'{tip-app-ag-stability}',
+           r'{tip-app-ag-stab}'),
+    # 338. 结构：公式标签改名（公式标签改名）
+    (APPAG, r'\label{eq:app-ag-mercier}',
+           r'\label{eq:app-ag-merc}'),
+    # 339. 结构：首处出处声明被改写（首处出处声明被改写）
+    (APPAG, r'\textbf{出处：}磁面几何与安全因子的记法参照 Freidberg',
+           r'\textbf{来源：}磁面几何与安全因子的记法参照 Freidberg'),
+    # 340. 结构：解答标题被改写（解答标题被改写）
+    (APPAG, r'\textbf{解答 4}',
+           r'\textbf{答案 4}'),
+    # 341. 结构：语义盒标题改字（语义盒标题改字）
+    (APPAG, r'{磁面不是画出来的，是平衡方程的解}',
+           r'{磁面不是画出来的，是平衡的解}'),
+    # 342. 结构：语义盒标题改字（语义盒标题改字）
+    (APPAG, r'{伸长比不是造型，是买电流}',
+           r'{伸长比不是造形，是买电流}'),
+    # 343. 数据：环向磁通末位（环向磁通末位）
+    (APPAG, r'113.223\ \mathrm{Wb}',
+           r'113.224\ \mathrm{Wb}'),
+    # 344. 数据：极向磁通末位（极向磁通末位）
+    (APPAG, r'51.0731\ \mathrm{Wb}',
+           r'51.0732\ \mathrm{Wb}'),
+    # 345. 数据：内侧环向场末位（内侧环向场末位）
+    (APPAG, r'7.82381\ \mathrm{T}',
+           r'7.82382\ \mathrm{T}'),
+    # 346. 数据：内侧间隙末位（内侧间隙末位）
+    (APPAG, r'1.73255\ \mathrm{m}',
+           r'1.73256\ \mathrm{m}'),
+    # 347. 数据：练习 1 极向场末位（练习 1 极向场末位）
+    (APPAG, r'1.06667\ \mathrm{T}',
+           r'1.06668\ \mathrm{T}'),
+    # 348. 数据：练习 1 位移末位（练习 1 位移末位）
+    (APPAG, r'0.194933\ \mathrm{m}',
+           r'0.194934\ \mathrm{m}'),
+    # 349. 数据：环向比压小数末位（环向比压小数末位）
+    (APPAG, r'0.0263592',
+           r'0.0263593'),
+    # 350. 数据：场比平方末位（场比平方末位）
+    (APPAG, r'12.4844',
+           r'12.4845'),
+    # 351. 数据：位移占小半径末位（位移占小半径末位）
+    (APPAG, r'0.133723',
+           r'0.133724'),
+    # 352. 数据：Suydam 系数末位（Suydam 系数末位）
+    (APPAG, r'0.602617',
+           r'0.602618'),
+    # 353. 数据：练习 1 安全因子末位（练习 1 安全因子末位）
+    (APPAG, r'2.4121',
+           r'2.4122'),
 ]
 
-MIN_FAIL = 360       # 实测值（335 处植入回退合并计入 374，留 14 的余量）：见下
+MIN_FAIL = 379       # 实测值（353 处植入回退合并计入 393，留 14 的余量）：见下
+# ## v1.26.11 轮（附录 AG 磁流体平衡与位形 / 门禁 P39）植入扩到 353 处，18 处新补丁分两层
+# （编号 336--353）：
+#   结构层 7 条：表 AG.4 label 改名、语义盒标签改名、公式 label 改名、首处「出处：」→「来源：」、
+#              「解答 4」→「答案 4」、两只语义盒标题改字（平衡方程的解 / 造型→造形）。
+#   数据层 11 条：环向磁通 113.223、极向磁通 51.0731、内侧环向场 7.82381、内侧间隙 1.73255、
+#              练习 1 极向场 1.06667 与位移 0.194933、环向比压小数 0.0263592、场比平方 12.4844、
+#              位移占比 0.133723、Suydam 系数 0.602617、练习 1 安全因子 2.4121（各改末位）。
+# 逐条探针 `python tmp/probe_neg_v1250.py 336 ... 353`：18/18 可证伪、无落空、恢复逐字节一致；
+# 单条合计 FAIL=19（#337 同时命中标签绑定与整行标题两处）。
+# 合并植入实测 **393**（= v1.26.10 的 374 + 19），MIN_FAIL 360 -> 379（留 14 余量）。
 # ## v1.26.10 轮（附录 AF 等离子体湍流与反常输运 / 门禁 P38）植入扩到 335 处，
 # 18 处新补丁分两层（编号 318--335）：
 # 结构层 7：表 4 label 改名、第 6 只语义盒标签改名、式 (AF.13) label 改名、
