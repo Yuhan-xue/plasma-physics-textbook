@@ -5343,4 +5343,42 @@ L-H 转换把边缘湍流压住、台基把剖面撑陡、ELM 又周期性地把
 
 ### 46.8 发布记录（v1.26.13）
 
-（待回填）
+- **内容提交** `cf0b04d`（5 文件，+1231/−3）：`src/appendix_ai_icf.tex`（新建 657 行）、
+  `check/physics_regression.py`（+503）、`check/fixtures/gate_physics_negative.py`（+68/−3）、
+  `src/plasma_physics_textbook_v2.tex`（+6/−2）、`pdf/plasma_physics_textbook_v2.pdf`
+  （Bin 3074915 → 3128463 字节）。
+- **文档提交** `b118555`（2 文件）：`README.md`（179055 → 183917 字节 / 525 行）与
+  `processed.md`（474884 → 489397 字节 / 5346 行）。
+- **标签**：`v1.26.13` 注释标签对象 `f752ab52f1c41f328a18dad6793c5e67441337a4`，
+  指向文档提交 `b118555d0a0e350e6125210e314c9fc1ab0724e9`。
+- **双推**：`3d325e0..b118555  main -> main`、`* [new tag] v1.26.13 -> v1.26.13`
+  （PowerShell 把 git 的进度输出当 NativeCommandError 属已知假失败）。
+- **远端引用核对**（`git ls-remote`）：`refs/heads/main =
+  b118555d0a0e350e6125210e314c9fc1ab0724e9`、`refs/tags/v1.26.13 =
+  f752ab52f1c41f328a18dad6793c5e67441337a4`。
+- **Gitea release**：`id=164`（上一版 v1.26.12 为 162），
+  <http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.13>；
+  附件 <http://zsyq.hxlab.tech:3000/attachments/44ae5825-774f-4d1f-8863-5b1f9a3c9b94>。
+- **资产独立复核**（`tmp/verify_asset12613.py`，`curl.exe -sS -L --noproxy '*'` 下载后比对）：
+  远端与本地均 **3128463 字节**、SHA256 均
+  `9578FA45D68806F6DC0149403C2C5F640C2172D40B4F02F5A926996610858F8E`、逐字节一致 True。
+- **远端 reviews**：仍 **70 项**（`2026-10-10-independent` 31 + `2026-10-11-scheduled` 35 +
+  `2026-10-12-scheduled` 4），本轮无新增；远端根目录无 `todo/`。计数口径继续以
+  `git ls-tree -r --name-only origin/main reviews/` 为准（Gitea `contents` API 在子目录条目多时
+  会截断计数）。
+- **汇报图**（`tmp/probe_ai_pages.py` 探页位 → 附录 AI = PDF 第 459--468 页；
+  表题注 表 AI.1 p460 y=285.1、表 AI.2 p461 y=302.7、表 AI.3 p462 y=249.9、表 AI.4 p463 y=500.5、
+  表 AI.5 p465 y=390.8、表 AI.6 p466 y=420.7、表 AI.7 p468 y=337.9；七只语义盒分别在
+  p459（黑腔不是炉子）、p460（质量比决定内爆速度）、p462（熵才是）、p463（倍增长数管理）、
+  p464（自加热跑赢损失）、p466（增益不是效率）、p467（本附录不给））：
+  `tmp/png_ai/` 共 13 个文件——10 张单页（`ai_p459_AI首页_盒1.png` 341755 B、
+  `ai_p460_表AI1_盒2.png` 333021、`ai_p461_表AI2.png` 291419、`ai_p462_表AI3_盒3.png` 337614、
+  `ai_p463_表AI4_盒4.png` 346702、`ai_p464_盒5.png` 343056、`ai_p465_表AI5.png` 245563、
+  `ai_p466_表AI6_盒6.png` 387992、`ai_p467_来源页_盒7.png` 443460、`ai_p468_表AI7.png` 258199，
+  均为 1191×1684）、两张拼版（`ai_spread_6pages.png` 1516×1071 / 410791 B、
+  `ai_spread_source.png` 1516×990 / 250292 B）、一页速览（`ai_summary.png` 1500×923 / 275475 B，
+  `tmp/mkimg_ai.py` 生成，剩余竖直空间 16.7 pt 无裁切，rc 由 650 pt 版面收敛到 615 pt）。
+  三张整图（速览 + 两张拼版）均逐张目视确认无重叠、无裁切。
+- **同步后复跑**：六套件 full_check 37 / ui_readability 58（WARN 37）/ consistency_audit 14 /
+  physics_regression 2872 / figure_layout 15 / pdf_outline 11（WARN 2）全 FAIL 0；
+  五夹具全 PASS；总结论「全部通过」。
