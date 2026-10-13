@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """可证伪性夹具：故意在源码里植入本轮的典型回退，确认 check/physics_regression.py 会 FAIL。
 
-流程：备份 → 植入 263 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。其中四处打在 v1.8.0/v1.8.1 新增的附录 I/J/K 上（K.5 的阻尼率符号、K.7 的鞘厚量级与单位、K.4 的磁冻结结论、J 的逐章对照表章号），
+流程：备份 → 植入 281 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。其中四处打在 v1.8.0/v1.8.1 新增的附录 I/J/K 上（K.5 的阻尼率符号、K.7 的鞘厚量级与单位、K.4 的磁冻结结论、J 的逐章对照表章号），
 三处打在 v1.10.0 新增的附录 M 上（束速量级、H 模阈值标度、欧姆/自加热倍数口径），
 一处是 v1.10.0 的结构性回退（语义盒退回裸 `\begin{tip}`，正文首字会被吞、标签可能重复），
 三处打在 v1.11.0 新增的附录 N 上（脱靶辐射功率量级、ELM 侵蚀倍数、表标签被改名），
@@ -89,6 +89,7 @@ APPY = os.path.join(ROOT, 'src', 'appendix_y_strongfield.tex')
 APPZ = os.path.join(ROOT, 'src', 'appendix_z_reactor.tex')
 APPAA = os.path.join(ROOT, 'src', 'appendix_aa_alternates.tex')
 APPAB = os.path.join(ROOT, 'src', 'appendix_ab_space_astro.tex')
+APPAC = os.path.join(ROOT, 'src', 'appendix_ac_numerics.tex')
 CH12 = os.path.join(ROOT, 'src', 'ch12_supplement.tex')
 CH10 = os.path.join(ROOT, 'src', 'ch10_supplement.tex')
 SUITE = os.path.join(ROOT, 'check', 'physics_regression.py')
@@ -734,9 +735,73 @@ PATCHES = [
     # 263. 数据：表 6 外辐射带电子回旋半径 47.432 -> 47.433 km
     (APPAB, r'$r_g=47.432\ \mathrm{km}$',
            r'$r_g=47.433\ \mathrm{km}$'),
+    # 264. 结构：表 1 的 label 改名（tab:app-ac-resolution -> grid），P35 的表标签检查应报缺
+    (APPAC, r'\label{tab:app-ac-resolution}',
+           r'\label{tab:app-ac-grid}'),
+    # 265. 结构：第 2 只语义盒的标签改名（tip-app-ac-conserve -> energy）
+    (APPAC, r'{tip-app-ac-conserve}',
+           r'{tip-app-ac-energy}'),
+    # 266. 结构：式 (AC.17) 的 label 改名（eq:app-ac-trunc -> cut）
+    (APPAC, r'\label{eq:app-ac-trunc}',
+           r'\label{eq:app-ac-cut}'),
+    # 267. 结构：第一处「出处：」声明被改成「来源：」
+    (APPAC, r'\textbf{出处：}本节的分辨率判据',
+           r'\textbf{来源：}本节的分辨率判据'),
+    # 268. 结构：练习解答 4 的编号词被改（解答 -> 答案），解答计数应跌破练习数
+    (APPAC, r'\textbf{解答 4}',
+           r'\textbf{答案 4}'),
+    # 269. 结构：第 1 只语义盒标题改字（分辨率 -> 精度）
+    (APPAC, r'先算分辨率，再谈算法',
+           r'先算精度，再谈算法'),
+    # 270. 结构：第 2 只语义盒标题改字（算得好 -> 算得准）
+    (APPAC, r'守恒量不是「算得好」，是格式的性质',
+           r'守恒量不是「算得准」，是格式的性质'),
+    # 271. 数据：式 (AC.1) 德拜长度 7.12806e-5 -> 7.12807e-5
+    (APPAC, r'=7.12806\times10^{-5}\ \mathrm{m}=71.28',
+           r'=7.12807\times10^{-5}\ \mathrm{m}=71.28'),
+    # 272. 数据：式 (AC.2) 等离子体频率 5.64146e11 -> 5.64147e11
+    (APPAC, r'5.64146\times10^{11}',
+           r'5.64147\times10^{11}'),
+    # 273. 数据：式 (AC.2) 回旋频率 9.32175e11 -> 9.32176e11
+    (APPAC, r'9.32175\times10^{11}',
+           r'9.32176\times10^{11}'),
+    # 274. 数据：式 (AC.4) 德拜球内粒子数 3.62171e7 -> 3.62172e7
+    (APPAC, r'3.62171\times10^{7}',
+           r'3.62172\times10^{7}'),
+    # 275. 数据：式 (AC.5) 碰撞时间 8.92144e-5 -> 8.92145e-5
+    (APPAC, r'8.92144\times10^{-5}',
+           r'8.92145\times10^{-5}'),
+    # 276. 数据：式 (AC.9) 每步相位误差 0.00166667 -> 0.00166668
+    (APPAC, r'=0.00166667\ \mathrm{rad},',
+           r'=0.00166668\ \mathrm{rad},'),
+    # 277. 数据：式 (AC.14) 粒子步总数 1.65236e11 -> 1.65237e11
+    (APPAC, r'\times8261.82=1.65236\times10^{11}',
+           r'\times8261.82=1.65237\times10^{11}'),
+    # 278. 数据：表 4 每格 20 粒子的相对噪声 22.361% -> 22.362%（同时触发 lacks 守卫）
+    (APPAC, r'$20$ & $22.361\%$ & $2.2361\%$',
+           r'$20$ & $22.362\%$ & $2.2361\%$'),
+    # 279. 数据：式 (AC.16) FFT 加速比 50171.7 -> 50171.8（同时触发 lacks 守卫）
+    (APPAC, r'50171.7',
+           r'50171.8'),
+    # 280. 数据：式 (AC.21) 256^3 网格内存 1.07374e9 -> 1.07375e9
+    (APPAC, r'1.07374\times10^{9}',
+           r'1.07375\times10^{9}'),
+    # 281. 数据：练习 1 的德拜长度 7.43394e-5 -> 7.43395e-5
+    (APPAC, r'7.43394\times10^{-5}',
+           r'7.43395\times10^{-5}'),
 ]
 
-MIN_FAIL = 285       # 实测值（263 处植入回退合并计入 299，留 14 的余量）：见下
+MIN_FAIL = 303       # 实测值（281 处植入回退合并计入 317，留 14 的余量）：见下
+# ## v1.26.7 轮（附录 AC 等离子体数值方法 / 门禁 P35）植入扩到 281 处，18 处新补丁分两层：
+# 结构层 7：表 1 label 改名（tab:app-ac-resolution -> grid）、第 2 只语义盒标签改名（conserve -> energy）、
+#           式 (AC.17) label 改名（trunc -> cut）、首处「出处：」改成「来源：」、解答 4 改成答案 4、
+#           两只语义盒标题改字（分辨率->精度、算得好->算得准）；
+# 数据层 11：德拜长度、等离子体频率、回旋频率、德拜球内粒子数、碰撞时间、每步相位误差、粒子步总数、
+#           单格噪声 22.361%（同时撞 lacks 守卫）、FFT 加速比 50171.7（同时撞 lacks 守卫）、
+#           256^3 网格内存、练习 1 的德拜长度。
+# 其中 10 条只改末位（7.12806 -> 7.12807 这类），落在门禁数值用例的 rel=1e-3 容差内，第一轮探针
+# FAIL=0（洞=[271,272,273,274,275,276,277,279,280,281]）；补 10 条整行字面绑定（tmp/p35_line_pats.py
+# -> tmp/add_p35_lits.py）后 18/18 可证伪，单条合计 FAIL=19，合并实测 FAIL=317，MIN_FAIL 取 303。
 # ## v1.26.6 轮（附录 AB 空间与天体等离子体 / 门禁 P34）植入扩到 263 处，18 处新补丁分两层：
 # 结构层 7：表 2 label 改名、第 3 只语义盒标签改名、式 (AB.17) label 改名、首处「出处：」改成「来源：」、
 #          解答 4 的编号词改成「答案」、第 1 与第 6 只语义盒标题各改字；
