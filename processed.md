@@ -5527,4 +5527,46 @@ split_blocks / has / lacks / value_in` 与真实 `APP_FILES`，**空跑 FAIL 0 /
 
 ### 47.8 发布记录（v1.26.14）
 
-（待回填）
+- **内容提交** `18275e6`（5 文件，+1100/−3）：`src/appendix_aj_fuelling.tex`（新建 574 行）、
+  `check/physics_regression.py`（+451 行函数体）、`check/fixtures/gate_physics_negative.py`（+68/−3）、
+  `src/plasma_physics_textbook_v2.tex`（+6/−2）、`pdf/plasma_physics_textbook_v2.pdf`
+  （Bin 3128463 → 3170533 字节）。
+- **文档提交** `f1abe50`（2 文件）：`README.md`（183917 → 188528 字节 / 530 行）与
+  `processed.md`（492832 → 503834 字节 / 5530 行）。
+- **标签**：`v1.26.14` 注释标签对象 `9640b9ed3291d8fbdc72e81f83d73871ad50574e`，
+  指向文档提交 `f1abe5080406ed7ae331a54d14037ccc0b76063a`。
+- **双推**：`57513a7..f1abe50  main -> main`、`* [new tag] v1.26.14 -> v1.26.14`
+  （PowerShell 把 git 的进度输出当 NativeCommandError 属已知假失败，push-exit=0）。
+- **远端引用核对**（`git ls-remote`）：`refs/heads/main =
+  f1abe5080406ed7ae331a54d14037ccc0b76063a`、`refs/tags/v1.26.14 =
+  9640b9ed3291d8fbdc72e81f83d73871ad50574e`。
+- **Gitea release**：`id=166`（上一版 v1.26.13 为 164），
+  <http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.14>；
+  附件 <http://zsyq.hxlab.tech:3000/attachments/a89df561-04b8-4c7f-86a2-f5c5356cfbdf>
+  （上传 status=201 / size=3170533）。
+- **资产独立复核**（`tmp/verify_asset12614.py`，`curl.exe -sS -L --noproxy '*'` 下载后比对）：
+  远端与本地均 **3170533 字节**、SHA256 均
+  `CF93A85BAD1877D80E467EA652F99EDEAE720E69B1325CCC831875B7CA464009`、逐字节一致 True。
+- **远端 reviews**：仍 **70 项**（`2026-10-10-independent` 31 + `2026-10-11-scheduled` 35 +
+  `2026-10-12-scheduled` 4），本轮无新增；远端根目录无 `todo/`。计数口径继续以
+  `git ls-tree -r --name-only origin/main reviews/` 为准（Gitea `contents` API 在子目录条目多时
+  会截断计数）。
+- **汇报图**（`tmp/probe_aj_pages.py` 探页位 → 附录 AJ = PDF 第 469--477 页；
+  表题注 表 AJ.1 p470 y=232.2、表 AJ.2 p471 y=214.6、表 AJ.3 p472 y=197.0、表 AJ.4 p473 y=307.4、
+  表 AJ.5 p474 y=507.6、表 AJ.6 p475 y=414.1、表 AJ.7 p476 y=554.9；七只语义盒分别在
+  p469（加料量不是燃烧量）、p470（效率低不是浪费，是物理）、p472（弹丸是被自己的气体盾牌挡住的）、
+  p473（灰不是杂质，是产物）、p475（瓶颈不在泵上）、p476（密度控制是慢回路）、p476（本附录不给什么））：
+  `tmp/png_aj/` 共 12 个文件——9 张单页（`aj_p469_AJ首页_盒1.png` 294123 B、
+  `aj_p470_表AJ1_盒2.png` 338280、`aj_p471_表AJ2.png` 335331、`aj_p472_表AJ3_盒3.png` 322888、
+  `aj_p473_表AJ4_盒4.png` 331295、`aj_p474_表AJ5.png` 318057、`aj_p475_表AJ6_盒5.png` 357330、
+  `aj_p476_表AJ7_盒6盒7.png` 410939、`aj_p477_末页.png` 53923，均为 1191×1684）、
+  两张拼版（`aj_spread_6pages.png` 1516×1071 / 399446 B = p469--474、
+  `aj_spread_tail.png` 1516×540 / 170333 B = p475--477，`tmp/render_aj.py` 生成）、
+  一页速览（`aj_summary.png` 1500×1140 / 318357 B，`tmp/mkimg_aj.py` 生成；版面 1000×760 pt，
+  剩余竖直空间 8.4 pt 无裁切，首版 700 pt 时 rc=−51.6 溢出后加高）。三张整图
+  （速览 + 两张拼版）均逐张目视确认无重叠、无裁切。
+- **同步后复跑**：六套件 full_check 37 / ui_readability 58（WARN 37）/ consistency_audit 14 /
+  physics_regression 3127 / figure_layout 15 / pdf_outline 11（WARN 2）全 FAIL 0；
+  五夹具全 PASS；总结论「全部通过」。pdf_outline 实测：477 页 / 473 书签（1:51、2:362、3:60）、
+  带链接页 154、链接总数 836、印刷目录 13 页（第 2--14 页）、O3b 19/473、O5 正文交叉引用 363、
+  目录链接 473 == 书签 473。
