@@ -4739,4 +4739,32 @@ L-H 转换把边缘湍流压住、台基把剖面撑陡、ELM 又周期性地把
 
 ### 42.8 发布记录（v1.26.9）
 
-（待回填）
+- 版本串三处一致（`pdftitle` / 封面可见串 / PDF Title 元数据）= **v1.26.9**；第 31 个附录 AE 挂载完成
+  （主文件行首 `\appchapter{附录` 30 → 31，A–AE 齐全），主文件 425938 → 426069 字节。
+- 提交：内容 **`5c4d75f`**（5 文件 +1078/−4：新增 `src/appendix_ae_kinetics.tex` 658 行、
+  `check/physics_regression.py` +351、`check/fixtures/gate_physics_negative.py` +67/−4、
+  主文件 +6/−2、PDF 2898499 → 2950676 B）、文档 **`2da4bab`**（README 同步 + processed §42，
+  +167/−14）。
+- tag 对象 **`30926e1da9ba8d414a6b8933061a54330b98eaad`**（annotated，指向
+  `2da4bab67fd3d947b9577f6a9f7997e1232c3dec`）；双推后 `git ls-remote` 核对：
+  `refs/heads/main` = `2da4bab67fd3d947b9577f6a9f7997e1232c3dec`、`refs/tags/v1.26.9` = `30926e1d…`。
+  推送前远端 main 仍是 `947483d`（v1.26.8 回填），直接 fast-forward。
+- Gitea release **id=151**：<http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.9>；
+  asset `plasma_physics_textbook_v2.pdf` 上传 status 201，**2950676 B**，
+  附件地址 <http://zsyq.hxlab.tech:3000/attachments/85e8c247-322a-4750-b8c3-c3d49996c8f4>。
+  （release id 由 Gitea 全局自增：149 → 151，150 不在本仓库；`gitea_release.py list` 是单页查询，
+  不用它声称累计 release 数。）
+- asset 独立复验：清掉四个代理环境变量后 `curl.exe -sS -L --noproxy '*'` 下载附件，
+  **2950676 B**、SHA256 `1CB7E149C5EEFBC3456D137984E8A7CD7F02EAB294A1EE25AA68AC053D940F43`，
+  与本地 `pdf/plasma_physics_textbook_v2.pdf` **逐字节一致**（`tmp/verify_asset1269.py`，输出 `[OK]`）。
+- 远端 `reviews/` 共 **70** 项（`2026-10-10-independent` 31 + `2026-10-11-scheduled` 35 +
+  `2026-10-12-scheduled` 4），**本轮无新增**；远端根目录无 `todo/`。
+- 汇报图：附录 AE 的 11 页正文（第 422–432 页）由 `tmp/render_ae.py` 渲染到 `tmp/png_ae/`——
+  9 张单页（1191×1684：p422 首页与表 AE.1、p423 盒 1、p424 表 AE.2 + 盒 2、p425 表 AE.3 + 盒 3、
+  p426 表 AE.4 + 盒 4、p427 表 AE.5、p428 盒 5、p431 表 AE.7 + 盒 7、p432 末页），
+  六页拼版 `ae_spread_6pages.png`（1516×1071，410670 B）与来源页拼版 `ae_spread_source.png`
+  （1348×952，191082 B）；一页速览由 `tmp/mkimg_ae.py` 渲染为 `tmp/png_ae/ae_summary.png`
+  （1500×1056，286582 B）。
+- 行尾说明：`processed.md`、`README.md` 的工作副本是 CRLF（`core.autocrlf=true`），
+  `src/appendix_*.tex`、`check/*.py`、`check/fixtures/*.py` 是 LF；追加 / 替换 / 回填脚本一律
+  「读时探测行尾、写时按原行尾还写」，主文件 `src/plasma_physics_textbook_v2.tex` 为 CRLF-only。
