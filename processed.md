@@ -4109,4 +4109,13 @@ fixture verdict: PASS
 
 - 版本串 `pdftitle` 与封面可见串升 **v1.26.5**；三处版本一致性检查（pdftitle / 封面 / PDF 元数据）通过。
 - 六套件与六夹具全绿、391 页 / 392 书签、Overfull 5 处基线。
-- tag / 双推 / Gitea release：待用户确认后执行（写本节时未执行）。
+- 提交：内容 `5c8df0d`、docs `6123072`、本回填提交见 git log。
+  推送前发现远端多出定时评审提交 `bf90cd3`（只加 `reviews/2026-10-12-scheduled/` 四个文件，
+  与本轮改动零重叠），遂把本地两提交 **rebase** 到其上后再推，历史保持线性。
+- tag 对象 `29395149a65b61e8d26b2f653a02ceb5c750cc96`（annotated，指向 `6123072`）；
+  双推后 `git ls-remote` 核对：`refs/heads/main`=`6123072…`、`refs/tags/v1.26.5`=`2939514…`。
+- Gitea release **id=137**：<http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.5>；
+  asset `plasma_physics_textbook_v2.pdf` 上传 status 201。
+- asset 独立复验：清掉代理环境变量后 `curl.exe -sS -L --noproxy '*'` 下载附件，
+  **2750185 B**、SHA256 `c8aeec340608f5c71299072b23fd3984ccd3533ef2e4db078548cdba60a2e6cd`，
+  与本地 `pdf/plasma_physics_textbook_v2.pdf` 逐字节一致。
