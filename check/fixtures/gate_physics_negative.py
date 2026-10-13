@@ -100,6 +100,7 @@ APPAJ = os.path.join(ROOT, 'src', 'appendix_aj_fuelling.tex')
 APPAK = os.path.join(ROOT, 'src', 'appendix_ak_safety.tex')
 APPAL = os.path.join(ROOT, 'src', 'appendix_al_nonlinear.tex')
 APPAM = os.path.join(ROOT, 'src', 'appendix_am_magnets.tex')
+APPAN = os.path.join(ROOT, 'src', 'appendix_an_polarimetry.tex')
 CH12 = os.path.join(ROOT, 'src', 'ch12_supplement.tex')
 CH10 = os.path.join(ROOT, 'src', 'ch10_supplement.tex')
 SUITE = os.path.join(ROOT, 'check', 'physics_regression.py')
@@ -1339,9 +1340,74 @@ PATCHES = [
            r'0.724740\ \Omega'),
     (APPAL, r'218954$ m s$^{-1}$',
            r'218955$ m s$^{-1}$'),
+
+    # ## v1.26.18 轮（附录 AN 偏振与磁光诊断 / 门禁 P46）新增 18 处：结构 7 / 数据 11
+    # 462. 结构：表 AN.3 label 改名（科顿--穆顿）
+    (APPAN, r'\label{tab:app-an-cotton}',
+           r'\label{tab:app-an-cotton2}'),
+    # 463. 结构：语义盒标签改名（反演分辨率）
+    (APPAN, r'{tip-app-an-inversion}',
+           r'{tip-app-an-invert}'),
+    # 464. 结构：公式 label 改名（CM 常系数）
+    (APPAN, r'\label{eq:app-an-cmcoef}',
+           r'\label{eq:app-an-cmcoef2}'),
+    # 465. 结构：首处「出处：」改成「来源：」
+    (APPAN, r'\textbf{出处：}法拉第旋转的推导',
+           r'\textbf{来源：}法拉第旋转的推导'),
+    # 466. 结构：「解答 4」改成「答案 4」
+    (APPAN, r'\textbf{解答 4}',
+           r'\textbf{答案 4}'),
+    # 467. 结构：语义盒标题改字（传播路径）
+    (APPAN, r'{偏振不是光的属性，是传播路径的记忆}',
+           r'{偏振不是光的属性，是路径的记忆}'),
+    # 468. 结构：语义盒标题改字（磁场强度）
+    (APPAN, r'{MSE 测的是投掷角，不是磁场大小}',
+           r'{MSE 测的是投掷角，不是磁场强度}'),
+    # 469. 数据：芯部电子等离子体频率末位
+    (APPAN, r'5.64146\times10^{11}\ \mathrm{rad\,s^{-1}}',
+           r'5.64147\times10^{11}\ \mathrm{rad\,s^{-1}}'),
+    # 470. 数据：电子回旋频率末位
+    (APPAN, r'9.32175\times10^{11}\ \mathrm{rad\,s^{-1}}',
+           r'9.32176\times10^{11}\ \mathrm{rad\,s^{-1}}'),
+    # 471. 数据：斯塔克分裂能末位
+    (APPAN, r'1.25197\times10^{-21}\ \mathrm{J}',
+           r'1.25198\times10^{-21}\ \mathrm{J}'),
+    # 472. 数据：束速度末位
+    (APPAN, r'3.09574\times10^{6}\ \mathrm{m\,s^{-1}}',
+           r'3.09575\times10^{6}\ \mathrm{m\,s^{-1}}'),
+    # 473. 数据：运动电场末位
+    (APPAN, r'16.4074\ \mathrm{MV\,m^{-1}}',
+           r'16.4075\ \mathrm{MV\,m^{-1}}'),
+    # 474. 数据：1 度对应的极向场份额末位
+    (APPAN, r'18.6978\%',
+           r'18.6979\%'),
+    # 475. 数据：相位分辨率弧度末位
+    (APPAN, r'1.74533\times10^{-4}\ \mathrm{rad}',
+           r'1.74534\times10^{-4}\ \mathrm{rad}'),
+    # 476. 数据：平均磁场分辨率末位
+    (APPAN, r'22.1383\ \mathrm{mT}',
+           r'22.1384\ \mathrm{mT}'),
+    # 477. 数据：q=3 所需极向场末位
+    (APPAN, r'0.569892\ \mathrm{T}',
+           r'0.569893\ \mathrm{T}'),
+    # 478. 数据：FIR 解析旋转角末位
+    (APPAN, r'5.24844\ \mathrm{rad}',
+           r'5.24845\ \mathrm{rad}'),
+    # 479. 数据：分辨率百分比末位
+    (APPAN, r'0.208852\%',
+           r'0.208853\%'),
 ]
 
-MIN_FAIL = 510       # 实测值（461 处植入回退合并计入 524，留 14 的余量）：见下
+MIN_FAIL = 535       # 实测值（479 处植入回退合并计入 549，留 14 的余量）：见下
+# ## v1.26.18 轮（附录 AN 偏振与磁光诊断 / 门禁 P46）植入扩到 479 处，18 处新补丁分两层
+#    结构 7：表 AN.3 label 改名、语义盒标签改名、公式 label 改名、首处「出处：」改成「来源：」、
+#            「解答 4」改成「答案 4」、两只语义盒标题改字（传播路径 / 磁场强度）
+#    数据 11：芯部电子等离子体频率、电子回旋频率、斯塔克分裂能、束速度、运动电场、
+#            1 度对应的极向场份额、相位分辨率弧度、平均磁场分辨率、q=3 所需极向场、
+#            FIR 解析旋转角、分辨率百分比（各改末位）
+#    单条探针 18/18 可证伪、无落空、无洞，单条合计 FAIL=25；合并植入实测 549。
+#    本轮同时收紧门禁：编号解答数必须与练习数相等（原先裸 \textbf{解答} 小标题被算进解答数，
+#    删掉一条编号解答仍能通过——补丁 #466 首轮探针就是这样落空的）。
 # ## v1.26.17 轮（附录 AM 磁体与超导 / 门禁 P45）植入扩到 461 处，18 处新补丁分两层
 # （编号 444--461）：
 #   结构层 7 条：表 AM.5 label 改名（失超）、语义盒标签改名（裕度）、公式 label 改名（MIITs）、
