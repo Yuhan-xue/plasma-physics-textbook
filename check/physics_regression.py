@@ -737,6 +737,7 @@ APP_FILES = {
     'Y': 'appendix_y_strongfield.tex',
     'Z': 'appendix_z_reactor.tex',
     'AA': 'appendix_aa_alternates.tex',
+    'AB': 'appendix_ab_space_astro.tex',
 }
 
 # CODATA 2018 常数（与附录 D 的单位换算表同一组值）
@@ -5850,6 +5851,214 @@ def check_P33_appendix_i_paper():
         lacks(text, lit, 'src/%s（%s）' % (APP_FILES['I'], why))
 
 
+# -*- coding: utf-8 -*-
+"""附录 AB（空间与天体等离子体）的门禁体：P34。
+
+可证伪点
+  ① 八个小节、七张表、六只语义盒、二十一个公式的标签缺一即 FAIL；
+  ② 「出处：」不足 6 处、练习与解答不足 6 道即 FAIL；
+  ③ 关键数值按**所在小节**复算（rel=1e-3）——把数字搬到别的小节即 FAIL；
+  ④ 整行字面绑定：表行、出处整行、语义盒标题被改写即 FAIL；
+  ⑤ 口径回流防护：已纠正过的四舍五入写法回流即 FAIL。
+"""
+
+
+def check_P34_appendix_ab_space_astro():
+    """附录 AB：空间与天体等离子体的结构、出处、练习与数值核对。"""
+    spath = os.path.join(SRC, APP_FILES['AB'])
+    if not os.path.exists(spath):
+        rec('FAIL', 'P', '附录 AB 文件缺失：%s' % spath)
+        return
+
+    text = strip_comments(read(spath))
+    secs = split_blocks(text, 'section')
+
+    # ---------- ① 小节齐全 ----------
+    want = [
+        '四个尺度',
+        '太阳风：为什么',
+        '弓激波与磁鞘',
+        '磁层对流与发电机',
+        '磁重联：Sweet',
+        '辐射带与空间天气',
+        '估算练习',
+        '来源、分级与版权说明',
+    ]
+    found = {}
+    for pre in want:
+        for ttl, blk in secs:
+            if pre in ttl:
+                found[pre] = blk
+                break
+    miss = [p for p in want if p not in found]
+    if miss:
+        rec('FAIL', 'P', '附录 AB 缺小节：%s' % '、'.join(miss))
+        return
+    rec('PASS', 'P', '附录 AB 的 %d 个小节齐全' % len(want))
+
+    # ---------- ② 表 / 语义盒 / 公式标签 ----------
+    for lab in (
+        'tab:app-ab-scales',
+        'tab:app-ab-solarwind',
+        'tab:app-ab-bowshock',
+        'tab:app-ab-convection',
+        'tab:app-ab-reconnection',
+        'tab:app-ab-radbelt',
+        'tab:app-ab-source',
+    ):
+        has(text, '\\label{%s}' % lab, 'src/%s（表标签）' % APP_FILES['AB'])
+
+    for lab in (
+        'tip-app-ab-scales',
+        'tip-app-ab-sonic',
+        'tip-app-ab-collisionless',
+        'tip-app-ab-dynamo',
+        'tip-app-ab-anomalous',
+        'tip-app-ab-radbelt',
+    ):
+        has(text, '{%s}' % lab, 'src/%s（语义盒标签）' % APP_FILES['AB'])
+
+    for lab in (
+        'eq:app-ab-scales',
+        'eq:app-ab-omegape',
+        'eq:app-ab-cs',
+        'eq:app-ab-va',
+        'eq:app-ab-ms',
+        'eq:app-ab-beta',
+        'eq:app-ab-ram',
+        'eq:app-ab-magp',
+        'eq:app-ab-rmp',
+        'eq:app-ab-powersw',
+        'eq:app-ab-emf',
+        'eq:app-ab-sigma',
+        'eq:app-ab-lundquist',
+        'eq:app-ab-eta',
+        'eq:app-ab-sp',
+        'eq:app-ab-sptime',
+        'eq:app-ab-petschek',
+        'eq:app-ab-larmor',
+        'eq:app-ab-rg',
+        'eq:app-ab-tce',
+        'eq:app-ab-losscone',
+    ):
+        has(text, '\\label{%s}' % lab, 'src/%s（公式标签）' % APP_FILES['AB'])
+
+    # ---------- ③ 版权口径 / 出处 / 练习与解答 ----------
+    has(text, '不复制', 'src/%s（版权口径）' % APP_FILES['AB'])
+
+    n_src = len(re.findall(r'\\textbf\{出处：\}', text))
+    if n_src < 6:
+        rec('FAIL', 'P', '附录 AB 的「出处：」声明只有 %d 处（要求 >= 6）' % n_src)
+    else:
+        rec('PASS', 'P', '附录 AB 的「出处：」声明 %d 处' % n_src)
+
+    n_ex = len(re.findall(r'\\textbf\{练习\s*\d+', text))
+    n_ans = len(re.findall(r'\\textbf\{解答(\s*\d+)?\}', text))
+    if n_ex < 6 or n_ans < n_ex:
+        rec('FAIL', 'P', '附录 AB 的练习 %d 道 / 解答 %d 条（要求 >= 6 且解答不少于练习）'
+            % (n_ex, n_ans))
+    else:
+        rec('PASS', 'P', '附录 AB 的练习 %d 道、解答 %d 条' % (n_ex, n_ans))
+
+    # ---------- ④ 整行字面绑定 ----------
+    for lit, why in (
+        ('电子等离子体频率 & $1.26147\\times10^{5}$ & $\\mathrm{rad\\,s^{-1}}$ & $20.08\\ \\mathrm{kHz}$ \\\\', '表行'),
+        ('离子等离子体频率 & $2943.89$ & $\\mathrm{rad\\,s^{-1}}$ & $468.5\\ \\mathrm{Hz}$ \\\\', '表行'),
+        ('声速 & $43.769$ & $\\mathrm{km\\,s^{-1}}$ & $\\gamma=1$，质子质量 \\\\', '表行'),
+        ('阿尔芬速 & $48.773$ & $\\mathrm{km\\,s^{-1}}$ & 用 $n$ 算出的质量密度 \\\\', '表行'),
+        ('声速马赫数 & $9.1388$ & --- & 超声速 \\\\', '表行'),
+        ('阿尔芬马赫数 & $8.2012$ & --- & 超阿尔芬速 \\\\', '表行'),
+        ('等离子体 $\\beta$ & $0.80534$ & --- & 磁压与热压同量级 \\\\', '表行'),
+        ('太阳风动压 $\\rho v^2$ & $1.3381\\times10^{-9}$ & $\\mathrm{Pa}$ & 不带 $1/2$ \\\\', '表行'),
+        ('赤道磁压 & $3.8237\\times10^{-4}$ & $\\mathrm{Pa}$ & $B_0=3.12\\times10^{-5}\\ \\mathrm{T}$ \\\\', '表行'),
+        ('磁压/动压 & $2.86\\times10^{5}$ & --- & 近地磁场主导 \\\\', '表行'),
+        ('磁层顶距离 & $8.1158$ & $R_E$ & 观测约 $10\\ R_E$ \\\\', '表行'),
+        ('迎风面积 & $1.27516\\times10^{14}$ & $\\mathrm{m^2}$ & $\\pi R_E^2$ \\\\', '表行'),
+        ('太阳风输入功率 & $34.126$ & $\\mathrm{GW}$ & $\\frac12\\rho v^3\\pi R_E^2$ \\\\', '表行'),
+        ('对流电场 & $E=vB$ & 几十 $\\mathrm{kV}$ / $10\\ R_E$ & 太阳风拖磁力线 \\\\', '表行'),
+        ('阿尔芬电导 & $1/(\\mu_0v_A)$ & $16.316\\ \\mathrm{S}$ & 磁冻结成立 \\\\', '表行'),
+        ('电离层电导 & 佩德森电导 & $1$--$10\\ \\mathrm{S}$ 量级 & 电流闭合 \\\\', '表行'),
+        ('斯皮策电阻率 $\\eta$ & $3.28877\\times10^{-5}$ & $\\Omega\\,\\mathrm{m}$ & $T=10\\ \\mathrm{eV}$，$\\ln\\Lambda=20$ \\\\', '表行'),
+        ('伦德奎斯特数 $S$ & $1.86362\\times10^{10}$ & --- & $L=10^6\\ \\mathrm{m}$ \\\\', '表行'),
+        ('Sweet--Parker 率 & $7.32523\\times10^{-6}$ & --- & $S^{-1/2}$ \\\\', '表行'),
+        ('Petschek 率 & $0.0166058$ & --- & $\\pi/(8\\ln S)$ \\\\', '表行'),
+        ('两者之比 & $2266.9$ & --- & 快重联的全部理由 \\\\', '表行'),
+        ('Sweet--Parker 时间 & $2.79897\\times10^{7}$ & $\\mathrm{s}$ & $323.95$ 天 \\\\', '表行'),
+        ('Petschek 时间 & $12347$ & $\\mathrm{s}$ & 约 $3.4$ 小时 \\\\', '表行'),
+        ('内辐射带 & 质子与高能电子 & $r_g$ 小、寿命长 & 磁矩守恒、CRAND 源 \\\\', '表行'),
+        ('外辐射带 & $1\\ \\mathrm{MeV}$ 电子 & $r_g=47.432\\ \\mathrm{km}$ & 波粒相互作用、加速 \\\\', '表行'),
+        ('磁尾瓣 & 等离子体片 & $B=1.0\\times10^{-7}\\ \\mathrm{T}$ & 重联储能与释放 \\\\', '表行'),
+        ('\\textbf{出处：}本节的分区口径与尺度取值参照 Kivelson \\& Russell \\emph{Introduction to Space Physics}', '表行'),
+        ('\\textbf{出处：}本节公式与讲解顺序参照 Baumjohann \\& Treumann \\emph{Basic Space Plasma Physics}', '表行'),
+        ('\\textbf{出处：}磁层顶力学平衡与弓激波几何参照 Kivelson \\& Russell \\emph{Introduction to Space Physics}', '表行'),
+        ('\\textbf{出处：}对流循环与电离层发电机的讲解参照 Kivelson \\& Russell \\emph{Introduction to Space Physics}', '表行'),
+        ('\\textbf{出处：}本节公式与两模型对比参照 Priest \\& Forbes \\emph{Magnetic Reconnection}', '表行'),
+        ('\\textbf{出处：}三层运动与损失锥的讲解参照 Kivelson \\& Russell \\emph{Introduction to Space Physics}', '表行'),
+        ('\\begin{tip}{四个尺度不是四个数量级，是四种物理}{tip-app-ab-scales}', '语义盒标题'),
+        ('\\begin{tip}{太阳风超声速，靠的不是加热，是边界条件}{tip-app-ab-sonic}', '语义盒标题'),
+        ('\\begin{tip}{无碰撞激波：耗散靠波和粒子，不靠碰撞}{tip-app-ab-collisionless}', '语义盒标题'),
+        ('\\begin{tip}{发电机不是机器，是欧姆定律的一个极限}{tip-app-ab-dynamo}', '语义盒标题'),
+        ('\\begin{tip}{电阻不够，重联靠的是「反常电阻」}{tip-app-ab-anomalous}', '语义盒标题'),
+        ('\\begin{tip}{辐射带不是「带」，是磁矩守恒的必然结果}{tip-app-ab-radbelt}', '语义盒标题'),
+    ):
+        has(text, lit, 'src/%s（%s）' % (APP_FILES['AB'], why))
+
+    # ---------- ⑤ 关键数值按小节复算 ----------
+    cases = [
+        ('四个尺度', 1, r'\mathrm{AU}', '太阳风 & $1\\ \\mathrm{AU}=1.496\\times10^{11}\\ \\mathrm{m}$ & 输运 $'),
+        ('四个尺度', 10, r'\mathrm{min}', '磁层 & $10\\ R_E\\approx6.4\\times10^{7}\\ \\mathrm{m}$ & 对流 $10\\ \\'),
+        ('太阳风：为什么', 5, r'\mathrm{nT}', '关键数值'),
+        ('太阳风：为什么', 10, r'\mathrm{eV}', '关键数值'),
+        ('太阳风：为什么', 20.08, r'\mathrm{kHz}', '关键数值'),
+        ('太阳风：为什么', 43.769, r'\mathrm{km\,s^{-1}}', '关键数值'),
+        ('太阳风：为什么', 48.773, r'\mathrm{km\,s^{-1}}', '关键数值'),
+        ('太阳风：为什么', 400, r'\mathrm{km\,s^{-1}}', '关键数值'),
+        ('太阳风：为什么', 468.5, r'\mathrm{Hz}', '关键数值'),
+        ('太阳风：为什么', 2943.89, r'\mathrm{rad\,s^{-1}}', '关键数值'),
+        ('弓激波与磁鞘', 34.126, r'\mathrm{GW}', '关键数值'),
+        ('磁层对流与发电机', 1, r'\mathrm{nT}', '代入 $v=400\\ \\mathrm{km\\,s^{-1}}$、$B=5\\ \\mathrm{nT}$（垂直分量取 $1\\'),
+        ('磁层对流与发电机', 5, r'\mathrm{nT}', '代入 $v=400\\ \\mathrm{km\\,s^{-1}}$、$B=5\\ \\mathrm{nT}$（垂直分量取 $1\\'),
+        ('磁层对流与发电机', 10, r'\mathrm{S}', '电离层的佩德森电导只有 $1$--$10\\ \\mathrm{S}$ 量级，'),
+        ('磁层对流与发电机', 16.316, r'\mathrm{S}', '\\Sigma_A=\\frac{1}{\\mu_0 v_A}=16.316\\ \\mathrm{S},'),
+        ('磁重联：Sweet', 6, r'\mathrm{m}', '关键数值'),
+        ('磁重联：Sweet', 10, r'\mathrm{eV}', '关键数值'),
+        ('磁重联：Sweet', 12347, r'\mathrm{s}', '关键数值'),
+        ('辐射带与空间天气', 0.00714477, r'\mathrm{s}', '关键数值'),
+        ('辐射带与空间天气', 1, r'\mathrm{MeV}', '关键数值'),
+        ('辐射带与空间天气', 5, r'\mathrm{nT}', '关键数值'),
+        ('辐射带与空间天气', 47, r'\mathrm{km}', '关键数值'),
+        ('辐射带与空间天气', 47.432, r'\mathrm{km}', '关键数值'),
+        ('辐射带与空间天气', 140, r'\mathrm{Hz}', '关键数值'),
+        ('辐射带与空间天气', 47431.8, r'\mathrm{m}', '关键数值'),
+        ('估算练习', 5, r'\mathrm{cm^{-3}}', '\\textbf{练习 1}（密度）：把太阳风密度从 $5\\ \\mathrm{cm^{-3}}$ 加倍到 $10\\ \\ma'),
+        ('估算练习', 10, r'\mathrm{cm^{-3}}', '\\textbf{练习 1}（密度）：把太阳风密度从 $5\\ \\mathrm{cm^{-3}}$ 加倍到 $10\\ \\ma'),
+        ('估算练习', 47.432, r'\mathrm{km}', '求动量与回旋半径，并与电子的 $47.432\\ \\mathrm{km}$ 比较。'),
+        ('来源、分级与版权说明', 5, r'\mathrm{nT}', '关键数值'),
+        ('来源、分级与版权说明', 10, r'\mathrm{S}', '关键数值'),
+        ('来源、分级与版权说明', 400, r'\mathrm{km\,s^{-1}}', '关键数值'),
+    ]
+    bad = []
+    for sec, val, unit, why in cases:
+        if not value_in(found[sec], val, 1e-3, unit):
+            bad.append('%s 的 %.6g%s' % (sec, val, unit))
+    if bad:
+        rec('FAIL', 'P', '附录 AB 有 %d 个数值未在小节内复算通过：%s'
+            % (len(bad), '；'.join(bad[:6])))
+    else:
+        rec('PASS', 'P', '附录 AB 的 %d 个关键数值均在小节内复算通过' % len(cases))
+
+    # ---------- ⑥ 口径回流防护 ----------
+    for lit, why in (
+        ('43.8\\ \\mathrm{km', '太阳风速度四舍五入'),
+        ('48.8\\ \\mathrm{km', '阿尔芬速度四舍五入'),
+        ('1.34\\times10^{-9}', '太阳风动压四舍五入'),
+        ('0.0166\\ \\mathrm', 'Petschek 重联率四舍五入'),
+        ('2267', '两模型比值四舍五入'),
+        ('136500', 'Lundquist 数平方根四舍五入'),
+    ):
+        lacks(text, lit, 'src/%s（%s）' % (APP_FILES['AB'], why))
+
+
 def check_P02_appendix_j_map():
     """附录 J 逐章对照表的完备性：覆盖 1--12 章、每行 5 列、章号不越界。
 
@@ -6050,6 +6259,7 @@ def main():
     check_P31_appendix_z_reactor()
     check_P32_appendix_aa_alternates()
     check_P33_appendix_i_paper()
+    check_P34_appendix_ab_space_astro()
     check_P28_signed_quantities()
     check_P06_scattering_alpha()
     check_P09_tcbtheorem_arity()
