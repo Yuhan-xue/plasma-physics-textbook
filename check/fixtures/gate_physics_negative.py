@@ -101,6 +101,7 @@ APPAK = os.path.join(ROOT, 'src', 'appendix_ak_safety.tex')
 APPAL = os.path.join(ROOT, 'src', 'appendix_al_nonlinear.tex')
 APPAM = os.path.join(ROOT, 'src', 'appendix_am_magnets.tex')
 APPAN = os.path.join(ROOT, 'src', 'appendix_an_polarimetry.tex')
+APPAO = os.path.join(ROOT, 'src', 'appendix_ao_vacuum.tex')
 CH12 = os.path.join(ROOT, 'src', 'ch12_supplement.tex')
 CH10 = os.path.join(ROOT, 'src', 'ch10_supplement.tex')
 SUITE = os.path.join(ROOT, 'check', 'physics_regression.py')
@@ -1395,10 +1396,72 @@ PATCHES = [
            r'5.24845\ \mathrm{rad}'),
     # 479. 数据：分辨率百分比末位
     (APPAN, r'0.208852\%',
-           r'0.208853\%'),
+           r'0.208853\%'),    # 480. 表 AO.4 label 改名
+    (APPAO, r'\label{tab:app-ao-conditioning}',
+           r'\label{tab:app-ao-condition}'),
+    # 481. 语义盒标签改名
+    (APPAO, r'{tip-app-ao-recycling}',
+           r'{tip-app-ao-recyc}'),
+    # 482. 公式 label 改名
+    (APPAO, r'\label{eq:app-ao-inventory}',
+           r'\label{eq:app-ao-invent}'),
+    # 483. 首处「出处：」改成「来源：」
+    (APPAO, r'\textbf{出处：}真空系统的量与工程口径参照',
+           r'\textbf{来源：}真空系统的量与工程口径参照'),
+    # 484. 「解答 4」改成「答案 4」
+    (APPAO, r'\textbf{解答 4}$m_B=A_{\rm wall}t_B\rho_B',
+           r'\textbf{答案 4}$m_B=A_{\rm wall}t_B\rho_B'),
+    # 485. 两只语义盒标题改字（抽速 / 抽功）
+    (APPAO, r'{泵的抽速不是系统的抽速}',
+           r'{泵的抽速不等于系统的抽速}'),
+    # 486. 语义盒标题改字（泵的抽速）
+    (APPAO, r'{本底压强是除法，不是抽功}',
+           r'{本底压强是除法，不是抽速}'),
+    # 487. 数据：共沉积碳原子数
+    (APPAO, r'碳原子数 $4.51247\times10^{26}$',
+           r'碳原子数 $4.51248\times10^{26}$'),
+    # 488. 数据：练习 1 压强
+    (APPAO, r'$2.44766\times10^{-8}$ Pa',
+           r'$2.44767\times10^{-8}$ Pa'),
+    # 489. 数据：练习 1 余量
+    (APPAO, r'从 20.4277 倍提到 40.8553 倍',
+           r'从 20.4277 倍提到 40.8554 倍'),
+    # 490. 数据：练习 2 有效抽速
+    (APPAO, r'=1.48996$ m$^3$/s',
+           r'=1.48997$ m$^3$/s'),
+    # 491. 数据：练习 2 倍数
+    (APPAO, r'差 7.24442 倍',
+           r'差 7.24443 倍'),
+    # 492. 数据：练习 5 比值
+    (APPAO, r'之比降到 0.618571',
+           r'之比降到 0.618572'),
+    # 493. 数据：练习 4 面密度
+    (APPAO, r'面密度 $2.60694\times10^{22}$ m$^{-2}$',
+           r'面密度 $2.60695\times10^{22}$ m$^{-2}$'),
+    # 494. 数据：练习 4 层数
+    (APPAO, r'相当于 2606.94',
+           r'相当于 2606.95'),
+    # 495. 数据：练习 6 质量
+    (APPAO, r'$603.647\times2=1207.29$ g',
+           r'$603.647\times2=1207.30$ g'),
+    # 496. 数据：练习 6 份额
+    (APPAO, r'0.603647（$60.3647\%$）',
+           r'0.603648（$60.3647\%$）'),
+    # 497. 数据：硼质量
+    (APPAO, r'得 114.55 g 硼',
+           r'得 114.56 g 硼'),
 ]
 
-MIN_FAIL = 535       # 实测值（479 处植入回退合并计入 549，留 14 的余量）：见下
+MIN_FAIL = 557       # 实测值（497 处植入回退合并计入 571，留 14 的余量）：见下
+# ## v1.26.19 轮（附录 AO 真空与壁处理 / 门禁 P47）植入扩到 497 处，18 处新补丁分两层
+#    结构 7：表 AO.4 label 改名、语义盒标签改名、公式 label 改名、首处「出处：」改成「来源：」、
+#            「解答 4」改成「答案 4」、语义盒标题改字（泵的抽速 / 抽功）
+#    数据 11：共沉积碳原子数、练习 1 压强、练习 1 余量、练习 2 有效抽速、练习 2 倍数、
+#            练习 5 比值、练习 4 面密度、练习 4 层数、练习 6 质量、练习 6 份额、硼质量（各改末位）
+#    首轮探针 12/18：8 处落在 1e-3 容差内（487/489/491/492/493/494/496/497），
+#    按历轮口径不改容差，改为给门禁补整串字面绑定（第 1 批 8 条 + 第 2 批 2 条），
+#    复探 18/18 可证伪、无落空、无洞，单条合计 FAIL=22；合并植入实测 571。
+
 # ## v1.26.18 轮（附录 AN 偏振与磁光诊断 / 门禁 P46）植入扩到 479 处，18 处新补丁分两层
 #    结构 7：表 AN.3 label 改名、语义盒标签改名、公式 label 改名、首处「出处：」改成「来源：」、
 #            「解答 4」改成「答案 4」、两只语义盒标题改字（传播路径 / 磁场强度）
