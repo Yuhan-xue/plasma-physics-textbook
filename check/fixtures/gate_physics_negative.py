@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """可证伪性夹具：故意在源码里植入本轮的典型回退，确认 check/physics_regression.py 会 FAIL。
 
-流程：备份 → 植入 551 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。其中四处打在 v1.8.0/v1.8.1 新增的附录 I/J/K 上（K.5 的阻尼率符号、K.7 的鞘厚量级与单位、K.4 的磁冻结结论、J 的逐章对照表章号），
+流程：备份 → 植入 569 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。其中四处打在 v1.8.0/v1.8.1 新增的附录 I/J/K 上（K.5 的阻尼率符号、K.7 的鞘厚量级与单位、K.4 的磁冻结结论、J 的逐章对照表章号），
 三处打在 v1.10.0 新增的附录 M 上（束速量级、H 模阈值标度、欧姆/自加热倍数口径），
 一处是 v1.10.0 的结构性回退（语义盒退回裸 `\begin{tip}`，正文首字会被吞、标签可能重复），
 三处打在 v1.11.0 新增的附录 N 上（脱靶辐射功率量级、ELM 侵蚀倍数、表标签被改名），
@@ -105,6 +105,7 @@ APPAO = os.path.join(ROOT, 'src', 'appendix_ao_vacuum.tex')
 APPAP = os.path.join(ROOT, 'src', 'appendix_ap_maintenance.tex')
 APPAAQ = os.path.join(ROOT, 'src', 'appendix_aq_interferometry.tex')
 APPAR = os.path.join(ROOT, 'src', 'appendix_ar_power.tex')
+APPAS = os.path.join(ROOT, 'src', 'appendix_as_rays.tex')
 CH12 = os.path.join(ROOT, 'src', 'ch12_supplement.tex')
 CH10 = os.path.join(ROOT, 'src', 'ch10_supplement.tex')
 SUITE = os.path.join(ROOT, 'check', 'physics_regression.py')
@@ -1611,10 +1612,80 @@ PATCHES = [
            r'0.548312$ MWh'),
     # 551. 练习 6 补偿容量末位 +1
     (APPAR, r'45.2009$ MVAr',
-           r'45.201$ MVAr'),
+           r'45.201$ MVAr'),    # 552. 表 AS.6 label 改名
+    (APPAS, r'\label{tab:app-as-deposition}',
+           r'\label{tab:app-as-deposit}'),
+    # 553. 语义盒标签改名
+    (APPAS, r'{tip-app-as-reflect}',
+           r'{tip-app-as-reflected}'),
+    # 554. 公式 label 改名
+    (APPAS, r'\label{eq:app-as-powerdens}',
+           r'\label{eq:app-as-powerdensity}'),
+    # 555. 「出处：」改成「来源：」
+    (APPAS, r'\textbf{出处：}几何光学极限与色散关系见 Ginzburg',
+           r'\textbf{来源：}几何光学极限与色散关系见 Ginzburg'),
+    # 556. 「解答 3」改成「答案 3」
+    (APPAS, r'\textbf{解答 3}',
+           r'\textbf{答案 3}'),
+    # 557. 语义盒标题改字（真理→万能）
+    (APPAS, r'\begin{tip}{射线是短波极限，不是真理}{tip-app-as-wkb}',
+           r'\begin{tip}{射线是短波极限，不是万能}{tip-app-as-wkb}'),
+    # 558. 语义盒标题改字（反射量→反射计测）
+    (APPAS, r'反射计量的是时间，不是位置',
+           r'反射计测的是时间，不是位置'),
+    # 559. 等离子体波长末位 +1
+    (APPAS, r'2\pi/k_\mathrm{p}=2.79093$ mm',
+           r'2\pi/k_\mathrm{p}=2.79094$ mm'),
+    # 560. 单程相位积分末位 +1
+    (APPAS, r'7858.75',
+           r'7858.76'),
+    # 561. 斜射光程末位 +1
+    (APPAS, r'那一束是 $2.94982$ m',
+           r'那一束是 $2.94983$ m'),
+    # 562. 直线距离末位 +1
+    (APPAS, r'只有 $0.747509$ m',
+           r'只有 $0.747510$ m'),
+    # 563. 转折点密度比末位 +1
+    (APPAS, r'0.970573',
+           r'0.970574'),
+    # 564. 反射计频率分辨末位 +1
+    (APPAS, r'118.547',
+           r'118.548'),
+    # 565. 反射计空间分辨末位 +1
+    (APPAS, r'2.66324',
+           r'2.66325'),
+    # 566. 轴上回旋频率末位 +1
+    (APPAS, r'f_\mathrm{ce}=148.360$ GHz',
+           r'f_\mathrm{ce}=148.361$ GHz'),
+    # 567. 多普勒展宽末位 +1
+    (APPAS, r'\frac{v_\parallel^\mathrm{th}}{c}=0.136769',
+           r'\frac{v_\parallel^\mathrm{th}}{c}=0.136770'),
+    # 568. 折射率偏差百分数末位 +1
+    (APPAS, r'1/(kL_n)=1.70247\%',
+           r'1/(kL_n)=1.70248\%'),
+    # 569. 练习 6 聚焦增益末位 +1
+    (APPAS, r'0.538089',
+           r'0.538090'),
 ]
 
-MIN_FAIL = 616       # 实测值（551 处植入回退合并计入 630，留 14 的余量）：见下
+MIN_FAIL = 634       # 实测值（569 处植入回退合并计入 648，留 14 的余量）：见下
+# ## v1.26.23 轮（附录 AS 射线追踪与波束光学 / 门禁 P51）植入扩到 569 处，18 处新补丁分两层
+#    （结构 7 / 数据 11，编号 552--569）。本轮逐条探针首轮 **12/18**：7 处洞
+#    （#559/561/562/566/567/568/569），全部是同一个成因——被改的数值在正文句与表格行里
+#    各印一份，只改其中一处时，逐节 `value_in` 与「整行表格绑定」仍被另一处满足；其中 #569
+#    （练习 6 的 0.538089）全文只印一次，且与 canon 的 0.5380894 几乎重合，
+#    既进不了精确字面绑定、又落在 1e-3 逐节容差内，属于「无绑定可打」的裸值。
+#    修法沿用 v1.22.0 轮的口径：**不收紧容差**，而是在门禁 P51 里补 7 条整句字面绑定
+#    （`tmp/add_p51_lits.py`，插在 ④b 之后，标注 ④c），把「正文句 + 表格行」两处同时钉住；
+#    补后复测 7/7 全部可证伪，整批 18/18、单条合计 FAIL=19（#553 为 2，其余各 1）、无落空、洞清零。
+#    另一条教训：#558（语义盒标题改字）原本整行锚点里含标签 `{tip-app-as-reflect}`，而
+#    #553 正是改这个标签——单条探针各跑各的都能过，**合并植入按顺序执行**时 #558 失配
+#    （实测报「夹具锚点未找到」）。修法是把 #558 的锚点缩成标题子串
+#    `反射计量的是时间，不是位置`（见 `tmp/fix_fixture_as558.py`），与标签改名不再重叠。
+#    合并植入实测 **648**（= v1.26.22 的 630 + 18 处新增触发），MIN_FAIL 616 -> 634（留 14 余量）。
+#    工具：`tmp/probe_as_anchors.py` 先逐条核对锚点唯一性（18/18 各恰 1 次），
+#    再 `tmp/fixture_v12623.py --write` 落盘（夹具此刻是 CRLF，脚本按检出 nl 写入）。
+#    另同步文件头沿用了八个版本的计数（551 -> 569）。
 # ## v1.26.22 轮（附录 AR 电源与储能 / 门禁 P50）植入扩到 551 处，18 处新补丁分两层
 #    （结构 7 / 数据 11，编号 534--551）。本轮逐条探针**一次通过**：18/18 全部可证伪、
 #    无落空、无洞，单条合计 FAIL=19（#535 为 2，其余各 1），合并植入实测 **630**
