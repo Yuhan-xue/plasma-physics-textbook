@@ -7100,4 +7100,30 @@ $\sqrt{k_\mathrm{B}T_\mathrm{e}/m_\mathrm{e}}$。处理方式是另起符号 $v_
 
 ### 57.8 发布记录（v1.26.24）
 
-（待回填）
+- **内容提交**：`7f357159b82dca937bb023c8709e0d3e1bcdbf65`（5 文件 +1108/−5：新建 `src/appendix_at_waves.tex`
+  552 行；`check/physics_regression.py` +264 项；`check/fixtures/gate_physics_negative.py` 18 处补丁；
+  主文件挂载 +6/−2；PDF Bin 3579935 → 3623132）。
+- **文档提交**：`ff1756b36fbfd4a6b15293eb4efcec299561ed97`（README 230938 → 234127 字节 /
+  processed.md 631285 → 642930 字节）。
+- **tag**：`v1.26.24` = 注释 tag 对象 `707ed8ee85aad76aec38d70d351da8bc0a78a99b`
+  → `ff1756b36fbfd4a6b15293eb4efcec299561ed97`。
+- **推送**：`d7947e0..ff1756b main`、`* [new tag] v1.26.24`（pwsh 报 NativeCommandError 属假失败）；
+  远端 `refs/heads/main = ff1756b36fbfd4a6b15293eb4efcec299561ed97`、
+  `refs/tags/v1.26.24 = 707ed8ee85aad76aec38d70d351da8bc0a78a99b`。
+- **Gitea release**：`POST status 201`、**id=211**（上一版 v1.26.23 = 202），
+  url `http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.24`，
+  名称「v1.26.24 — 附录 AT 波的传播：截止、共振与模式转换」；随后用 `create` 二次 PATCH（status 200）
+  把正文里的 PDF 指纹改成发布版实测值（3623132 B / `0FE64252…`）。
+- **附件**：`上传 status=201`、`size=3623132`、
+  `http://zsyq.hxlab.tech:3000/attachments/b4402a3a-35ed-41bc-a8a2-86981da874d8`。
+- **独立复核**（`tmp/verify_asset12624.py`，`curl.exe -sS -L --noproxy '*'` 从头发下载）：
+  本地与远端同为 **3623132 B**、SHA256 同为
+  **0FE642523833578D671AC09AD5F0D1879A04B21AC9EBD01215E272723EB02C5A**、逐字节一致 `True`。
+- **远端协作面**：`git ls-tree -r --name-only origin/main reviews/` = **74 项**
+  （2026-10-10-independent 31 / 2026-10-11-scheduled 35 / 2026-10-12-scheduled 4 /
+  2026-10-13-scheduled 4），**无新增 reviews**、无 `todo/`；两份 carryover 状态不变
+  （P-CARRY-01 已由 PDF 后处理归零、P-CARRY-02 附录 F 2/35 属已知非缺陷）。
+- **仓库卫生**：本轮 9 个 `.bak*` 全部删除，提交前 `git status` 只剩预期改动。
+- **验收口径**：六套件 FAIL 全 0（full_check 37 / ui_readability 59 含 WARN 38 / consistency_audit 14 /
+  physics_regression 5549 / figure_layout 15 / pdf_outline 11 含 WARN 1）、五夹具全 PASS；
+  569 页 / 564 书签、印刷目录 16 页（第 2--17 页）、O3b 0/564。
