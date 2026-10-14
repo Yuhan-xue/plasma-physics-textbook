@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """可证伪性夹具：故意在源码里植入本轮的典型回退，确认 check/physics_regression.py 会 FAIL。
 
-流程：备份 → 植入 533 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。其中四处打在 v1.8.0/v1.8.1 新增的附录 I/J/K 上（K.5 的阻尼率符号、K.7 的鞘厚量级与单位、K.4 的磁冻结结论、J 的逐章对照表章号），
+流程：备份 → 植入 551 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。其中四处打在 v1.8.0/v1.8.1 新增的附录 I/J/K 上（K.5 的阻尼率符号、K.7 的鞘厚量级与单位、K.4 的磁冻结结论、J 的逐章对照表章号），
 三处打在 v1.10.0 新增的附录 M 上（束速量级、H 模阈值标度、欧姆/自加热倍数口径），
 一处是 v1.10.0 的结构性回退（语义盒退回裸 `\begin{tip}`，正文首字会被吞、标签可能重复），
 三处打在 v1.11.0 新增的附录 N 上（脱靶辐射功率量级、ELM 侵蚀倍数、表标签被改名），
@@ -104,6 +104,7 @@ APPAN = os.path.join(ROOT, 'src', 'appendix_an_polarimetry.tex')
 APPAO = os.path.join(ROOT, 'src', 'appendix_ao_vacuum.tex')
 APPAP = os.path.join(ROOT, 'src', 'appendix_ap_maintenance.tex')
 APPAAQ = os.path.join(ROOT, 'src', 'appendix_aq_interferometry.tex')
+APPAR = os.path.join(ROOT, 'src', 'appendix_ar_power.tex')
 CH12 = os.path.join(ROOT, 'src', 'ch12_supplement.tex')
 CH10 = os.path.join(ROOT, 'src', 'ch10_supplement.tex')
 SUITE = os.path.join(ROOT, 'check', 'physics_regression.py')
@@ -1557,10 +1558,77 @@ PATCHES = [
            r'2.34904\%'),
     # 533. 数据：振动压低倍数
     (APPAAQ, r'压低倍数 $16336.2$',
-           r'压低倍数 $16336.3$'),
+           r'压低倍数 $16336.3$'),    # 534. 表 AR.4 label 改名
+    (APPAR, r'\label{tab:app-ar-recirc}',
+           r'\label{tab:app-ar-recirculating}'),
+    # 535. 语义盒标签改名
+    (APPAR, r'{tip-app-ar-grid}',
+           r'{tip-app-ar-gridtie}'),
+    # 536. 公式 label 改名
+    (APPAR, r'\label{eq:app-ar-discharge}',
+           r'\label{eq:app-ar-discharging}'),
+    # 537. 「出处：」改成「来源：」
+    (APPAR, r'\textbf{出处：}电厂能量账与再循环功率',
+           r'\textbf{来源：}电厂能量账与再循环功率'),
+    # 538. 「解答 3」改成「答案 3」
+    (APPAR, r'\textbf{解答 3}',
+           r'\textbf{答案 3}'),
+    # 539. 语义盒标题改字（要分开算→要分开核对）
+    (APPAR, r'{三本账要分开算}',
+           r'{三本账要分开核对}'),
+    # 540. 语义盒标题改字（理想电压源→理想源）
+    (APPAR, r'{电网不是无限大的理想电压源}',
+           r'{电网不是无限大的理想源}'),
+    # 541. 13 次谐波滤波器电感末位 +1
+    (APPAR, r'0.599534$ mH',
+           r'0.599535$ mH'),
+    # 542. 练习 2 钢内应力末位 +1
+    (APPAR, r'5.50943$ GPa',
+           r'5.50944$ GPa'),
+    # 543. 每 1 MW 净电对应聚变功率末位 +1
+    (APPAR, r'3.73551$ MW',
+           r'3.73552$ MW'),
+    # 544. 爬升速率末位 +1
+    (APPAR, r'8000\ \mathrm{A/s}',
+           r'8001\ \mathrm{A/s}'),
+    # 545. 直流功率末位 +1
+    (APPAR, r'9.27289\times10^{8}\ \mathrm{W}',
+           r'9.2729\times10^{8}\ \mathrm{W}'),
+    # 546. 直流功率 MW 口径末位 +1
+    (APPAR, r'927.289\ \mathrm{MW}',
+           r'927.29\ \mathrm{MW}'),
+    # 547. 11 次谐波滤波器电感末位 +1
+    (APPAR, r'0.837365$ mH',
+           r'0.837366$ mH'),
+    # 548. 飞轮储能 GJ 口径末位 +1
+    (APPAR, r'1.97392\ \mathrm{GJ}',
+           r'1.97393\ \mathrm{GJ}'),
+    # 549. 飞轮应力 GPa 口径末位 +1
+    (APPAR, r'3.09906$ GPa',
+           r'3.09907$ GPa'),
+    # 550. 飞轮等效兆瓦时末位 +1
+    (APPAR, r'0.548311$ MWh',
+           r'0.548312$ MWh'),
+    # 551. 练习 6 补偿容量末位 +1
+    (APPAR, r'45.2009$ MVAr',
+           r'45.201$ MVAr'),
 ]
 
-MIN_FAIL = 598       # 实测值（533 处植入回退合并计入 612，留 14 的余量）：见下
+MIN_FAIL = 616       # 实测值（551 处植入回退合并计入 630，留 14 的余量）：见下
+# ## v1.26.22 轮（附录 AR 电源与储能 / 门禁 P50）植入扩到 551 处，18 处新补丁分两层
+#    （结构 7 / 数据 11，编号 534--551）。本轮逐条探针**一次通过**：18/18 全部可证伪、
+#    无落空、无洞，单条合计 FAIL=19（#535 为 2，其余各 1），合并植入实测 **630**
+#    （= v1.26.21 的 612 + 18 处新增触发），MIN_FAIL 598 -> 616（留 14 余量）。
+#    选锚点时的两条经验：
+#      ① 数据锚点必须在正文里**恰出现一次**。首轮候选里 `33.0748\%` 出现 3 次、
+#         `18.2218\%` / `2.20873\ \mathrm{MW}` 各 2 次（正文句 + 表格行各一份），
+#         这种锚点即使能命中，改动也会被另一处的逐节/整行绑定遮住，所以换成
+#         `0.599534$ mH`、`5.50943$ GPa` 这些只印一次的值。
+#      ② 结构锚点同理：`{tip-app-ar-grid}`、`\label{eq:app-ar-discharge}` 这类标签在
+#         文件里唯一，改标签能同时打到「标签存在性」与「整行绑定」两条断言。
+#    工具：`tmp/probe_ar_anchors.py` 先逐条核对锚点唯一性（18/18 各恰 1 次），
+#    再 `tmp/fixture_v12622.py --write` 落盘（夹具此刻是 CRLF，脚本按检出 nl 写入）。
+#    另同步文件头沿用了七个版本的计数（533 -> 551）。
 # ## v1.26.21 轮（附录 AQ 干涉与相位诊断 / 门禁 P49）植入扩到 533 处，18 处新补丁分两层
 #    （结构 7 / 数据 11，编号 516--533）。本轮逐条探针第一轮又抓到**两处洞**，都是
 #    「同一数值在正文印两次」这一类：
