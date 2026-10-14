@@ -7004,4 +7004,28 @@ $\sqrt{k_\mathrm{B}T_\mathrm{e}/m_\mathrm{e}}$。处理方式是另起符号 $v_
 
 ### 56.8 发布记录（v1.26.23）
 
-（待回填）
+- **内容提交** `87fc994`（5 文件 +1139/−5：`src/appendix_as_rays.tex` 582 行新建、
+  `check/physics_regression.py` +479、`check/fixtures/gate_physics_negative.py` +77/−、
+  主文件 +6/−2、PDF Bin 3537959 → 3579935 字节）；**文档提交** `0de548b`（README + processed.md）。
+- **标签**：注释 tag `v1.26.23` = tag 对象 `fa1c543bfb6ea3482b0b8255f86d6433442c62c1` →
+  `0de548bb02fb5550e11e1e4b8a34aa2b86c11d04`（指向文档提交）。
+- **推送**：`a58d8a3..0de548b main -> main`、`* [new tag] v1.26.23 -> v1.26.23`
+  （pwsh 报 NativeCommandError 属已知假失败）。
+- **远端 refs**：`refs/heads/main = 0de548bb02fb5550e11e1e4b8a34aa2b86c11d04`、
+  `refs/tags/v1.26.23 = fa1c543bfb6ea3482b0b8255f86d6433442c62c1`。
+- **Gitea release**：`POST status 201`、**id=202**（上一版 v1.26.22 = 195），
+  url `http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.23`，
+  名称「v1.26.23 — 附录 AS 射线追踪与波束光学：把波画成一条线」。
+- **附件**：`上传 status=201`、`size=3579935`、
+  `http://zsyq.hxlab.tech:3000/attachments/38c73f32-931e-41aa-b230-3b9638a71476`。
+- **独立复核**（`tmp/verify_asset12623.py`，`curl.exe -sS -L --noproxy '*'` 从头发下载）：
+  本地与远端同为 **3579935 B**、SHA256 同为
+  **FEEF1DC43D4D6E9A8361EFCDE25800B5BD9D83BBDF129B5D3CFF9495ADEE26DB**、逐字节一致 `True`。
+- **远端协作面**：`git ls-tree -r --name-only origin/main reviews/` = **74 项**
+  （2026-10-10-independent 31 / 2026-10-11-scheduled 35 / 2026-10-12-scheduled 4 /
+  2026-10-13-scheduled 4），**无新增 reviews**、无 `todo/`；两份 carryover 状态不变
+  （P-CARRY-01 已由 PDF 后处理归零、P-CARRY-02 附录 F 2/35 属已知非缺陷）。
+- **仓库卫生**：本轮 11 个 `.bak*` 全部删除，提交前 `git status` 无遗留。
+- **验收口径**：六套件 FAIL 全 0（full_check 37 / ui_readability 59 含 WARN 38 / consistency_audit 14 /
+  physics_regression 5285 / figure_layout 15 / pdf_outline 11 含 WARN 1）、五夹具全 PASS；
+  560 页 / 555 书签、印刷目录 16 页、O3b 0/555。
