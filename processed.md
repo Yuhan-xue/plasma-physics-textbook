@@ -6851,4 +6851,25 @@ $P_\mathrm{cryo}=13.4157$ MW（= 附录 AM 的 $1.31333+12.1024$ MW）、$P_\mat
 
 ### 55.8 发布记录（v1.26.22）
 
-（待回填）
+- **内容提交** `37da5c9`（5 文件 +1198/−5：`src/appendix_ar_power.tex` 607 行新建、
+  `check/physics_regression.py` +516、`check/fixtures/gate_physics_negative.py` +74/−、
+  主文件 +6/−2、PDF Bin 3493601 → 3537959 字节）；**文档提交** `0744c6f`（README + processed.md）。
+- **标签**：注释 tag `v1.26.22` = tag 对象 `f536cd628b4ea7c32e81c1d915982f3f1a7855b4` →
+  `0744c6fd3b860fb6a02bd57e58dbaf6f7cd1e316`（指向文档提交）。
+- **推送**：`6082c32..0744c6f main -> main`、`* [new tag] v1.26.22 -> v1.26.22`
+  （pwsh 报 NativeCommandError 属已知假失败）。
+- **远端 refs**：`refs/heads/main = 0744c6fd3b860fb6a02bd57e58dbaf6f7cd1e316`、
+  `refs/tags/v1.26.22 = f536cd628b4ea7c32e81c1d915982f3f1a7855b4`。
+- **Gitea release**：`POST status 201`、**id=195**（上一版 v1.26.21 = 188），
+  url `http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.22`，
+  名称「v1.26.22 — 附录 AR 电源与储能：从脉冲电源到电网接口」。
+- **附件**：`上传 status=201`、`size=3537959`、
+  `http://zsyq.hxlab.tech:3000/attachments/33163ffa-63bc-417e-90be-55c40d735abb`。
+- **独立复核**（`tmp/verify_asset12622.py`，`curl.exe -sS -L --noproxy '*'` 从头发下载）：
+  本地与远端同为 **3537959 B**、SHA256 同为
+  **B51A75817A788E10CC828B145BE9EBA59950A7BBBD4DB7642D996C9F25644287**、逐字节一致 `True`。
+- **远端协作面**：`git ls-tree -r --name-only origin/main reviews/` = **74 项**
+  （2026-10-10-independent 31 / 2026-10-11-scheduled 35 / 2026-10-12-scheduled 4 /
+  2026-10-13-scheduled 4），**无新增 reviews**、无 `todo/`；两份 carryover 状态不变
+  （P-CARRY-01 已由 PDF 后处理归零、P-CARRY-02 附录 F 2/35 属已知非缺陷）。
+- **仓库卫生**：本轮 10 个 `.bak*` 全部删除，提交前 `git status` 无遗留。
