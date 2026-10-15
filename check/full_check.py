@@ -706,6 +706,22 @@ def check_J_predicts():
         rec('PASS', 'J', u'例题「先猜再看」齐备：%d 个例题各一条' % n_pre)
 
 
+def check_K_roadmap():
+    """全书学习路径图（v1.26.39 起）：12 个节点、16 条直接依赖边、样式齐全。"""
+    text = strip_comments(read(os.path.join(SRC, MAIN)))
+    n_node = sum(text.count('\\node[%s]' % s) for s in ('rmABC', 'rmAB', 'rmBC'))
+    n_edge = text.count('\\draw[rmedge]')
+    if '\\label{fig:roadmap}' not in text:
+        rec('FAIL', 'K', u'缺少学习路径图（fig:roadmap）')
+    elif 'rmnode/.style' not in text:
+        rec('FAIL', 'K', u'学习路径图样式定义缺失（rmnode/.style）')
+    elif n_node != 12 or n_edge != 16:
+        rec('FAIL', 'K', u'学习路径图应为 12 个节点 / 16 条直接依赖边，实际 %d / %d'
+                         % (n_node, n_edge))
+    else:
+        rec('PASS', 'K', u'全书学习路径图齐备：12 章节点 + 16 条直接依赖边')
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--no-compile', action='store_true', help='跳过重新编译')
@@ -723,6 +739,7 @@ def main():
     check_H_conceptmaps()
     check_I_unitchecks()
     check_J_predicts()
+    check_K_roadmap()
 
     # ---------------------------------------------------------- 报告
     order = {'FAIL': 0, 'WARN': 1, 'INFO': 2, 'PASS': 3}

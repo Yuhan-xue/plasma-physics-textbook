@@ -397,9 +397,10 @@ def check_figure_text_overlap(doc):
 # ---------------------------------------------------------------- 插图配色规范（静态）
 
 # 与 tmp/palette_fix_all.py 使用**同一个正则**：三种写法（fill=blue!20 / [blue!20] / \color{blue}）
-# 一次覆盖；`!black` 这类混色目标由前置否定 (?<![A-Za-z!]) 放行。
+# 一次覆盖；`!black` 这类混色目标由前置否定 (?<![A-Za-z!]) 放行；
+# 前置再加 `\\`：`\blacksquare` 这类命令名里出现的 black 不是颜色（v1.26.39 修）。
 PALETTE_COLORS = ('figBlue', 'figVerm', 'figOrange', 'figGreen', 'figPurple', 'figSky', 'figGray', 'figGray', 'figInk', 'figOrange', 'figPurple', 'figGray', 'figPurple', 'figGreen', 'figGreen', 'figPurple')
-PALETTE_PAT = re.compile('(?<![A-Za-z!])(magenta|orange|purple|yellow|violet|green|black|brown|olive|blue|cyan|gray|grey|teal|pink|red)(!\\d+(?:![a-z]+)?)?')
+PALETTE_PAT = re.compile('(?<![A-Za-z!\\\\])(magenta|orange|purple|yellow|violet|green|black|brown|olive|blue|cyan|gray|grey|teal|pink|red)(!\\d+(?:![a-z]+)?)?')
 FIG_ENV = re.compile(r'\\begin\{figure\}(?:.|\n)*?\\end\{figure\}')
 
 

@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.26.38},
+  pdftitle={等离子体物理自学教材 v1.26.39},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -288,6 +288,11 @@
   cmC/.style={cmnode,draw=figGreen,fill=figGreen!10},
   cmD/.style={cmnode,draw=figVerm,fill=figVerm!8},
   cmE/.style={cmnode,draw=figGray,fill=figGray!8},
+  rmnode/.style={cmnode,fill=white,minimum width=25mm},
+  rmedge/.style={-{Latex[length=1.6mm]},draw=figGray,line width=0.7pt},
+  rmABC/.style={rmnode,draw=figGreen,very thick},
+  rmAB/.style={rmnode,draw=figBlue,very thick},
+  rmBC/.style={rmnode,draw=figOrange,very thick},
 }
 \newtcolorbox{chapterreview}[1][]{
   colback=tipgreen!5,colframe=tipgreen,fonttitle=\bfseries,
@@ -451,7 +456,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.26.38}}
+  {\small\textcolor{white!45}{v1.26.39}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -930,6 +935,43 @@ $\star\star\star$ & 挑战 & 涉及较深的数学技巧或前沿问题。供科
 \bottomrule
 \end{tabular}
 \end{table}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.9,every node/.style={transform shape}]
+\node[rmABC] (c1) at (0.0,0.0) {第 1 章\\\scriptsize 数学预备};
+\node[rmABC] (c2) at (3.3,2.2) {第 2 章\\\scriptsize 等离子体判据};
+\node[rmABC] (c3) at (3.3,0.8) {第 3 章\\\scriptsize 单粒子运动};
+\node[rmABC] (c4) at (3.3,-0.8) {第 4 章\\\scriptsize 流体描述};
+\node[rmBC] (c7) at (3.3,-2.2) {第 7 章\\\scriptsize 动理学};
+\node[rmBC] (c5) at (6.6,1.4) {第 5 章\\\scriptsize MHD};
+\node[rmBC] (c6) at (6.6,0.0) {第 6 章\\\scriptsize 等离子体波};
+\node[rmABC] (c8) at (6.6,-1.4) {第 8 章\\\scriptsize 碰撞与输运};
+\node[rmAB] (c11) at (6.6,-2.8) {第 11 章\\\scriptsize 工业等离子体};
+\node[rmBC] (c9) at (9.9,0.7) {第 9 章\\\scriptsize 不稳定性};
+\node[rmAB] (c12) at (9.9,-2.1) {第 12 章\\\scriptsize 诊断};
+\node[rmBC] (c10) at (13.2,0.7) {第 10 章\\\scriptsize 聚变约束};
+\draw[rmedge] (c1) -- (c2);
+\draw[rmedge] (c1) -- (c3);
+\draw[rmedge] (c1) -- (c4);
+\draw[rmedge] (c1) -- (c7);
+\draw[rmedge] (c4) -- (c5);
+\draw[rmedge] (c1) -- (c6);
+\draw[rmedge] (c4) -- (c6);
+\draw[rmedge] (c4) -- (c8);
+\draw[rmedge] (c2) -- (c11);
+\draw[rmedge] (c4) -- (c11);
+\draw[rmedge] (c5) -- (c9);
+\draw[rmedge] (c6) -- (c9);
+\draw[rmedge] (c2) -- (c12);
+\draw[rmedge] (c6) -- (c12);
+\draw[rmedge] (c5) -- (c10);
+\draw[rmedge] (c9) -- (c10);
+\node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (-0.3,-3.05) {边框颜色：\\ \textcolor{figGreen}{$\blacksquare$} 三条路线都读\\ \textcolor{figBlue}{$\blacksquare$} 路线 A、B\\ \textcolor{figOrange}{$\blacksquare$} 路线 B、C};
+\end{tikzpicture}
+\caption{全书学习路径图：12 章的依赖关系与三条路线的覆盖面。箭头是\textbf{直接依赖}（与下一节「各章前置依赖关系」表逐条一致），边框颜色表示哪几条路线需要读到这一章。拿到这张图就不必背「先读哪章」：顺着箭头走，缺哪块补哪块。}
+\label{fig:roadmap}
+\end{figure}
 
 \begin{insight}{路线选择不是终身的}{}
 很多科研工作者会在不同阶段切换路线。例如，从微电子工艺转向聚变研究时，
