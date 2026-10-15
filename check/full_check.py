@@ -661,6 +661,18 @@ def check_G_selfstudy():
         rec('PASS', 'G', u'随堂自测答案闭环：18 只盒 = 16 只带参考要点 + 2 只导读盒')
 
 
+def check_H_conceptmaps():
+    """章末概念图（v1.26.34 起）：12 章各一张，label 为 fig:cm-chN。"""
+    text = strip_comments(read(os.path.join(SRC, MAIN)))
+    found = [n for n in range(1, 13) if ('\\label{fig:cm-ch%d}' % n) in text]
+    if len(found) != 12:
+        rec('FAIL', 'H', u'章末概念图应为 12 张（fig:cm-ch1..12），实际 %d 张' % len(found))
+    elif 'cmnode/.style' not in text:
+        rec('FAIL', 'H', u'概念图样式定义缺失（cmnode/.style）')
+    else:
+        rec('PASS', 'H', u'章末概念图齐备：12 章各一张（fig:cm-ch1..12）')
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--no-compile', action='store_true', help='跳过重新编译')
@@ -675,6 +687,7 @@ def main():
     check_D_pdf()
     check_E_consistency()
     check_G_selfstudy()
+    check_H_conceptmaps()
 
     # ---------------------------------------------------------- 报告
     order = {'FAIL': 0, 'WARN': 1, 'INFO': 2, 'PASS': 3}
