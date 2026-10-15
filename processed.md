@@ -7538,7 +7538,7 @@ canon：`tmp/appAW_calc.py`（只 print）→ `tmp/appAW_calc.txt`（**151 个�
 | --- | --- |
 | 构建 | `^!` 0；Overfull **5 处基线**（4.78427 / 4.0831 / 2.46873 / 1.93942 / 1.23474 pt）；Missing character 0；重复 label 0 |
 | 页面 | **608 页 / 604 书签**（层级 1:65、2:478、3:61）；标题与 `pdftitle` 均为 v1.26.28 |
-| PDF | 构建 **3803095 B** → 后处理 **3804573 B**；SHA256 `64AC7CF5BA5F09A5B87DBE5FFFA042BE730A77268EE6B1896665BAB6EE2FE49` |
+| PDF | 构建 **3803095 B** → 后处理 **3804573 B**；SHA256 `B64AC7CF5BA5F09A5B87DBE5FFFA042BE730A77268EE6B1896665BAB6EE2FE49` |
 | 套件 | full_check 37 / ui_readability 59（WARN 38）/ consistency_audit 14 / physics_regression **6692** / figure_layout 15 / pdf_outline 11（WARN 1：附录 F 2/35 属已知非缺陷），全部 FAIL 0 |
 | 夹具 | 五夹具全部 PASS；合并植入 748 ≥ MIN_FAIL 734 |
 | 其它指标 | 印刷目录 17 页（第 2--18 页）、O3a 604/604、O3b 604 条一致、O3c 604/604、带链接页 196、链接总数 1041、正文交叉引用链接 437 |
@@ -7554,4 +7554,15 @@ canon：`tmp/appAW_calc.py`（只 print）→ `tmp/appAW_calc.txt`（**151 个�
 
 ### 61.8 发布记录
 
-（待回填）
+本轮（v1.26.28，附录 AX 束流物理与束流品质）已完成提交、推送、Gitea 发布与独立复核，全部数字如下。
+
+- **提交**：内容 `4bb174e`（`src/appendix_ax_beams.tex` 661 行新建、`check/physics_regression.py` +35264 字节（P56 装入 + ④c 4 条 + 术语绑定同步）、`check/fixtures/gate_physics_negative.py` 18 条补丁（641 → 659 处）、主文件 +128 字节（附录 49 → 50、v1.26.27 → v1.26.28）、PDF Bin 3754810 → 3804573）；文档 `68f663d`（README 245427 → 248524 字节与题记 §61）。
+- **tag**：`v1.26.28` = 注释 tag 对象 `06b11597d4a41f4e4f22625b058f9eb4d3a4ffa1` → 提交 `68f663d`（`git cat-file -p v1.26.28` 确认 object 为 docs 提交，与前几轮一致）。
+- **推送**：`fefe542..68f663d main` + `* [new tag] v1.26.28`（pwsh 把 stderr 报成 NativeCommandError 属已知假失败）。
+- **Gitea release**：`POST status 201`，**id=252**（上一版 v1.26.27 = 247），<http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.28>。
+- **附件**：上传 `status=201`、`size=3804573`、<http://zsyq.hxlab.tech:3000/attachments/ebbad356-f64c-4e58-8afd-6838725bb1d9>。
+- **独立复核**：`tmp/verify_asset12628.py` 用 `curl.exe -sS -L --noproxy '*'` 下载附件到 `tmp/dl_v12628.pdf`，本地与远端同为 **3804573 B**、SHA256 同为 **B64AC7CF5BA5F09A5B87DBE5FFFA042BE730A77268EE6B1896665BAB6EE2FE49**、逐字节一致 `True` → `[PASS]`。
+- **勘误（本轮自查）**：§61.6 初稿把 SHA256 的首位 `B` 漏掉（写成 `64AC7CF5…`，`tmp/fix_hash12628.py` 已改正 processed.md 与 section61.md），Gitea 发布说明同步 `PATCH status 200` 更新；tag 所指提交不改写，错误以「修正后提交」的方式留在历史里。
+- **远端面**：`refs/heads/main = 68f663d`（回填提交前）、`refs/tags/v1.26.28 = 06b11597`；`reviews/` **74 项**（`2026-10-10-independent` 31 + `2026-10-11-scheduled` 35 + `2026-10-12-scheduled` 4 + `2026-10-13-scheduled` 4）**无新增**；`todo/` 为空。
+- **仓库卫生**：提交前 13 个 `.bak*` 全部删除（`README.md.bakr12628`、`processed.md.baks61`、`gate_physics_negative.py.bak48/.bak49/.bak651`、`physics_regression.py.bakp56/.bakp56b/.baktermp56`、`appendix_ax_beams.tex.bakai1/.bakawo/.baksp/.bakterm`、`plasma_physics_textbook_v2.tex.bakax`），复查计数 0；`.cindy-worktrees/` 为未跟踪目录（不在本轮提交范围内）。
+- **下一轮起点**：长期目标继续，候选域升序为 AV12 聚变堆系统与核工程 10（零 8/10）、AX8 经济性与系统集成 19（零 8/10）、AX6 推进与空间应用 22（零 7/10）、AX2 聚变材料与辐照损伤 41（零 7/10），均由 `tmp/recon_ax.py` / `tmp/recon_ax_before.py` 复算。
