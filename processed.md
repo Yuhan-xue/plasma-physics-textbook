@@ -7646,4 +7646,14 @@ canon：`tmp/appAW_calc.py`（只 print）→ `tmp/appAW_calc.txt`（**151 个�
 
 ### 62.8 发布记录
 
-（待回填）
+本轮（v1.26.29，附录 AY 聚变材料与辐照损伤）已完成提交、推送、Gitea 发布与独立复核，全部数字如下。
+
+- **提交**：内容 `404b8aa`（`src/appendix_ay_materials.tex` 706 行新建、`check/physics_regression.py` 1051975 字节（P57 装入 + ④c 5 条）、`check/fixtures/gate_physics_negative.py` 18 条补丁（659 → 677 处、162830 字节）、主文件 +131 字节（附录 50 → 51、v1.26.28 → v1.26.29）、PDF Bin 3804573 → 3853992）；文档 `7c66f0c`（README 248524 → 251474 字节与题记 §62）。
+- **tag**：`v1.26.29` = 注释 tag 对象 `b7ffb1cbdb679cc7499a233d3af4efec4d59c9c3` → 提交 `7c66f0c`（`git cat-file -p v1.26.29` 确认 object 为 docs 提交，与前几轮一致）。
+- **推送**：`a501918..7c66f0c main` + `* [new tag] v1.26.29`（pwsh 把 stderr 报成 NativeCommandError 属已知假失败）。
+- **Gitea release**：`POST status 201`，**id=259**（上一版 v1.26.28 = 252），<http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.29>。
+- **附件**：上传 `status=201`、`size=3853992`、<http://zsyq.hxlab.tech:3000/attachments/f662a1ed-28e2-4be4-9757-13917b0e1ffe>。
+- **独立复核**：`tmp/verify_asset12629.py` 用 `curl.exe -sS -L --noproxy '*'` 下载附件到 `tmp/dl_v12629.pdf`，本地与远端同为 **3853992 B**、SHA256 同为 **3A6856FE24B76F135EF13F5867B7C90A36EF1DA3F21D11646F703D478B3FFE44**、逐字节一致 `True` → `[PASS]`。
+- **远端面**：`refs/heads/main = 7c66f0c`（回填提交前）、`refs/tags/v1.26.29 = b7ffb1cb`；`reviews/` **74 项**（`2026-10-10-independent` 31 + `2026-10-11-scheduled` 35 + `2026-10-12-scheduled` 4 + `2026-10-13-scheduled` 4）**无新增**；`todo/` 为空。
+- **仓库卫生**：提交前 16 个 `.bak*` 全部删除（含 `.bakp57`、`.bakp57b`、`.bak50`、`.bak51`、`.bakrows`、`.bakayo`、`.bakay1/.bakay2/.bakay3`、`.bakayp`、`.bakr12629`、`.baks62`、主文件 `.bakay` 等），复查计数 0；`.cindy-worktrees/` 为未跟踪目录（不在本轮提交范围内）。
+- **下一轮起点**：长期目标继续，候选域升序为 AY4 聚变堆系统与核工程 7（零命中 7/10）、AY2 经济性与系统集成 19（零命中 13/15）、AY5 低温等离子体应用（医学/环境）21（零命中 5/12）、AY3 空间推进与在轨应用 35（零命中 9/15），均由 `tmp/recon_ay.py` 复算。
