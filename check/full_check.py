@@ -690,6 +690,22 @@ def check_I_unitchecks():
         rec('PASS', 'I', u'章末量纲自检齐备：12 章各一条')
 
 
+def check_J_predicts():
+    """例题「先猜再看」引导（v1.26.38 起）：18 个例题各一行，宏已定义。"""
+    text = strip_comments(read(os.path.join(SRC, MAIN)))
+    n_box = text.count('\\begin{example}')
+    n_pre = text.count('\\predict{')
+    if '\\newcommand{\\predict}' not in text:
+        rec('FAIL', 'J', u'缺少 \\predict 宏定义：例题没有「先猜再看」入口')
+    if n_box == 0:
+        rec('FAIL', 'J', u'未找到例题环境')
+    elif n_pre != n_box:
+        rec('FAIL', 'J', u'「先猜再看」应与例题一一对应：例题 %d 个，提示 %d 条'
+                         % (n_box, n_pre))
+    else:
+        rec('PASS', 'J', u'例题「先猜再看」齐备：%d 个例题各一条' % n_pre)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--no-compile', action='store_true', help='跳过重新编译')
@@ -706,6 +722,7 @@ def main():
     check_G_selfstudy()
     check_H_conceptmaps()
     check_I_unitchecks()
+    check_J_predicts()
 
     # ---------------------------------------------------------- 报告
     order = {'FAIL': 0, 'WARN': 1, 'INFO': 2, 'PASS': 3}

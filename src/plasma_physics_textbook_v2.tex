@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.26.37},
+  pdftitle={等离子体物理自学教材 v1.26.38},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -244,6 +244,7 @@
 % 排版宽度：单栏整幅不超过 0.86\textwidth，双图并排各 0.42\textwidth；
 % 正文里的图一律 figure[htbp] + \centering，图注首句点题（这一条从 v1.27.0 起用于新增配图）。
 \newcommand{\figsource}[1]{\par\vspace{1pt}{\footnotesize\color{figGray}图片来源：#1}}
+\newcommand{\predict}[1]{\par\smallskip{\footnotesize\color{figGray}\textbf{先猜再看}：#1}\par\smallskip}
 \newtcbtheorem[number within=chapter]{theorem}{定理}{
   colback=thmblue!5,colframe=thmblue,fonttitle=\bfseries,breakable,
   left=4pt,right=4pt,top=4pt,bottom=4pt}{thm}
@@ -450,7 +451,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.26.37}}
+  {\small\textcolor{white!45}{v1.26.38}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -1235,6 +1236,7 @@ P_{ij} = m \int (v_i - u_i)(v_j - u_j) f\,\diff^3v = mn \langle (v_i-u_i)(v_j-u_
 f(\vect{v}) = n_e \left(\frac{m_e}{2\pi k_B T_e}\right)^{3/2} \exp\left(-\frac{m_e v^2}{2k_B T_e}\right)
 \]
 求：(a) 电子数密度；(b) 平均速度；(c) 电子热压强。
+\predict{在动笔之前先回答两个定性问题：(b) 平均速率与最概然速率哪个大？(c) 热压强更接近 $nk_BT_e$ 还是 $nm_ev_{th}^2$？先写下你的判断。}
 \tcblower
 \textbf{解答：}
 
@@ -1308,6 +1310,7 @@ D(\omega, \vect{k}) = 0
 \begin{example}{简单色散关系的物理图像}{dispersion-example}
 \difficulty{基础}
 真空中的电磁波满足 $\omega = ck$（$c$ 为光速）。若介质中色散关系为 $\omega^2 = \omega_p^2 + c^2k^2$，求波的相速度和群速度。
+\predict{先猜：$\omega^2=\omega_p^2+c^2k^2$ 的相速度比 $c$ 大还是小？群速度呢？两者的乘积应当等于什么？}
 \tcblower
 \textbf{解答：}
 
@@ -1539,6 +1542,7 @@ n_e \approx n_0\left(1 + \frac{e\phi}{k_B T_e}\right), \qquad n_i \approx n_0\le
 \begin{example}{计算德拜长度}{debye-calc}
 \difficulty{基础}
 一实验室等离子体参数为 $n_e = 10^{18}\,\mathrm{m}^{-3}$，$T_e = 2\,\mathrm{eV}$（约 $2.3\times 10^4\,\mathrm{K}$）。求电子德拜长度和德拜球内的粒子数。
+\predict{先猜：$n_e=10^{18}\,\mathrm{m^{-3}}$、$T_e=2\,\mathrm{eV}$ 的德拜长度落在 $\mu$m、mm 还是 cm 量级？先估一个数再往下看。}
 \tcblower
 \textbf{解答：}
 
@@ -1608,6 +1612,7 @@ m_e \ddot{\Delta x} = -\frac{n_e e^2}{\eps_0}\Delta x
 \bottomrule
 \end{tabular}
 \end{center}
+\predict{先猜：从聚变芯部（$10^{20}\,\mathrm{m^{-3}}$）到电离层（$10^{12}\,\mathrm{m^{-3}}$），$\lambda_D$ 跨几个数量级？$\omega_{pe}$ 呢？}
 \tcblower
 \textbf{分析}：
 
@@ -1832,6 +1837,7 @@ v_y &= -\frac{q}{|q|} v_\perp \sin(\omega_c t + \phi_0)
 \begin{example}{计算典型回旋参数}{gyro-calc}
 \difficulty{基础}
 托卡马克中典型参数：$B = 5\,\mathrm{T}$，$T_e = 10\,\mathrm{keV}$，$T_i = 10\,\mathrm{keV}$（氘离子）。求电子和离子的回旋频率与回旋半径。
+\predict{先猜：$B=5\,\mathrm{T}$ 下电子回旋频率是 GHz 还是 THz 量级？同一温度下离子回旋半径比电子大多少倍——10 倍、100 倍还是 1000 倍？}
 \tcblower
 \textbf{解答：}
 
@@ -2480,6 +2486,7 @@ v_A = \frac{B_0}{\sqrt{\mu_0\rho_m}}
 \begin{example}{估算太阳日冕中的阿尔芬速度}{alfven-calc}
 \difficulty{基础}
 太阳日冕中：$n \approx 10^{14}\,\mathrm{m}^{-3}$（质子），$B \approx 10^{-3}\,\mathrm{T}$（约10高斯）。求阿尔芬速度。
+\predict{先猜：$B=10^{-3}\,\mathrm{T}$、$n=10^{14}\,\mathrm{m^{-3}}$ 的日冕里，$v_A$ 是 km/s 量级还是 $10^{3}$ km/s 量级？（对照：日冕声速约 $10^{2}$ km/s。）}
 \tcblower
 \textbf{解答：}
 
@@ -3056,6 +3063,7 @@ Spitzer 动力学修正因子（$\gamma_E\approx0.58$ 一类，$1/1.4\approx0.71
 铜在室温下的电阻率：$\eta_{\text{Cu}} \approx 1.7\times 10^{-8}\,\Omega\cdot\mathrm{m}$。
 
 一个托卡马克等离子体：$T_e = 10\,\mathrm{keV}$，$Z=1$，$\ln\Lambda \approx 17$。求其电阻率并与铜比较。
+\predict{先猜：10 keV 的托卡马克等离子体电阻率比室温铜大还是小？差几个数量级？（提示：别用「等离子体是导体」这句直觉直接下结论。）}
 \tcblower
 \textbf{解答：}
 
@@ -3629,6 +3637,7 @@ V_{\text{bd}} = \frac{B\,pd}{\ln(Apd) - \ln\!\bigl[\ln(1+1/\gamma)\bigr]}
 \difficulty{基础}
 霓虹灯管内充入约 $p = 1\sim 10\,\mathrm{Torr}$ 的氖气，管径 $d \approx 10\,\mathrm{mm}$。计算 $pd = 10\sim 100\,\mathrm{Torr\cdot mm}$，恰好位于帕邢曲线最低点右侧附近。这是霓虹灯只需数百伏即可点亮的根本原因。
 
+\predict{先猜：$pd\approx10$--$100\,\mathrm{Pa\,m}$ 落在帕邢曲线极小值的左边还是右边？随着 $pd$ 增大，放电电压是升高还是降低？}
 \textbf{数值估算}：取氖气 $A = 4\,\mathrm{m^{-1}Pa^{-1}}$，$B = 150\,\mathrm{V\,m^{-1}Pa^{-1}}$，$\gamma \approx 0.05$，$p = 5\,\mathrm{Torr} = 667\,\mathrm{Pa}$，$d = 0.02\,\mathrm{m}$，则 $pd = 13.3\,\mathrm{Pa\,m}$。代入 \cref{eq:paschen-law} 估算得 $V_{\text{bd}} \approx 400\sim 500\,\mathrm{V}$，与商用霓虹灯启辉电压一致。
 \end{example}
 
@@ -3954,6 +3963,7 @@ RIE的协同效应是等离子体工艺中典型的离子增强化学反应：�
 \item 侧壁因无离子轰击而被聚合物保护，实现高度各向异性；
 \item 通过 "Bosch工艺" 循环切换刻蚀与沉积步骤，实现高深宽比刻蚀。
 \end{enumerate}
+\predict{先猜：深宽比 $>50$ 的通孔刻蚀，靠的是纯化学刻蚀、纯物理溅射，还是两者叠加？离子轰击能量在 eV 量级还是 keV 量级？}
 \textbf{数值估算}：ICP功率 $2\,\mathrm{kW}$，$n_e \sim 10^{17}\,\mathrm{m^{-3}}$，鞘层压降 $200\,\mathrm{V}$，离子能量 $E_i \sim 200\,\mathrm{eV}$，硅的溅射阈值约 $20\,\mathrm{eV}$，化学刻蚀速率约 $1\,\mu\mathrm{m}/\mathrm{min}$，物理溅射速率约 $0.1\,\mu\mathrm{m}/\mathrm{min}$，RIE协同后速率可达 $5\sim 10\,\mu\mathrm{m}/\mathrm{min}$。
 \end{example}
 
@@ -4049,6 +4059,7 @@ D_a = \frac{k_B T_e}{e} \mu_i \approx \frac{k_B T_e}{m_i \nu_{in}}
 \difficulty{提高}
 考虑一个半径 $R = 0.15\,\mathrm{m}$、高度 $h = 0.05\,\mathrm{m}$ 的圆柱形CCP刻蚀腔，充入 $p = 10\,\mathrm{mTorr}$ 的 $\mathrm{Cl}_2$ 气体。估算双极扩散系数和粒子损失时间。
 
+\predict{先猜：$10\,\mathrm{mTorr}$ 下离子平均自由程是 mm 还是 cm？它与腔体高度 $h=5\,\mathrm{cm}$ 谁大——这决定了离子在鞘层外是否碰撞。}
 \textbf{解}：
 \begin{enumerate}
 \item 离子-中性碰撞频率：$\nu_{in} = n_n \sigma v_{th,i}$，其中 $n_n = p/k_B T_n \approx 3.2\times 10^{20}\,\mathrm{m^{-3}}$（$T_n = 300\,\mathrm{K}$），$\sigma \sim 10^{-18}\,\mathrm{m^2}$，$v_{th,i} = \sqrt{k_B T_i/m_i} \sim 300\,\mathrm{m/s}$。得 $\nu_{in} \sim 10^5\,\mathrm{s^{-1}}$。
@@ -4113,6 +4124,7 @@ $\nu_{en}\;(\mathrm{s^{-1}})$ & $10^7\sim 10^9$ & $10^6\sim 10^8$ & $10^4\sim 10
 \difficulty{基础}
 一个容性耦合刻蚀机，功率 $P = 500\,\mathrm{W}$，频率 $13.56\,\mathrm{MHz}$，电极面积 $A = 0.05\,\mathrm{m^2}$，极距 $d = 0.03\,\mathrm{m}$，充入 $p = 5\,\mathrm{mTorr}$ 的氩气。估算等离子体密度。
 
+\predict{先猜：$500\,\mathrm{W}$ 功率摊到 $1.5\,\mathrm{L}$ 放电体积里，$n_e$ 更接近 $10^{15}$、$10^{16}$ 还是 $10^{17}\,\mathrm{m^{-3}}$？}
 \textbf{解}：
 \begin{enumerate}
 \item \textbf{功率密度}：放电体积 $V = A d = 1.5\times 10^{-3}\,\mathrm{m^3}$，功率密度 $P/V = 3.3\times 10^5\,\mathrm{W/m^3}$。
@@ -4170,6 +4182,7 @@ ICP刻蚀腔中，6英寸硅片刻蚀槽侧壁出现明显倾斜，正常工艺�
 
 当等离子体密度下降至 $n_e = 5\times 10^{17}\,\mathrm{m}^{-3}$（其他条件不变），鞘层增厚至约 $s \approx 0.14\,\mathrm{mm}$。
 
+\predict{先猜：鞘层厚度按 $s\propto n^{-1/2}$ 随密度变化——密度减半，$s$ 增厚 1.4 倍、2 倍还是 4 倍？增厚为什么会把侧壁刻斜？}
 \tcblower
 \textbf{解答：}
 
@@ -4234,6 +4247,7 @@ PECVD（等离子体增强化学气相沉积）腔体中，$\mathrm{SiO}_2$ 沉�
     \item 故障状态：$T_e = 2.5\,\mathrm{eV}$，$n_e = 8\times 10^{16}\,\mathrm{m}^{-3}$
 \end{itemize}
 
+\predict{先猜：沉积速率减半，最可能来自 $T_e$ 下降、$n_e$ 下降，还是中性基团密度下降？先写下你的判断，再用探针数据检验。}
 \tcblower
 \textbf{解答：}
 
@@ -4660,6 +4674,7 @@ F_{\mathrm{Maxwell}}(\eps) \propto \sqrt{\eps}\,\exp\!\left(-\frac{\eps}{k_BT_e}
 \difficulty{基础}
 某直流辉光放电氩等离子体中，朗缪尔探针（圆柱形，半径 $r = 0.25\,\mathrm{mm}$，长度 $L = 5\,\mathrm{mm}$）测得离子饱和电流 $I_{\mathrm{i,sat}} = 0.15\,\mathrm{mA}$，$\ln I$-$V$ 曲线过渡区斜率为 $3.5\,\mathrm{V}^{-1}$。估算 $T_e$ 和 $n_e$。
 
+\predict{先猜：$T_e\approx0.3\,\mathrm{eV}$ 的直流辉光等离子体，德拜长度是几 $\mu$m 还是几十 $\mu$m？离子饱和电流更接近 $\mu$A 还是 mA？}
 \textbf{解：}
 \begin{enumerate}
     \item 电子温度：由式\eqref{eq:te-slope}，$T_e = 1/3.5 \approx 0.29\,\mathrm{V} = 0.29\,\mathrm{eV}$（约 $3300\,\mathrm{K}$）。
@@ -4791,6 +4806,7 @@ n_r \approx 1 - \frac{1}{2}\frac{\omega_{pe}^2}{\omega^2}
 \difficulty{基础}
 某托卡马克装置使用波长 $\lambda_0 = 2\,\mathrm{mm}$（$f = 150\,\mathrm{GHz}$）的微波进行干涉测量，等离子体柱直径（微波穿越路径）约 $L = 1.0\,\mathrm{m}$。若测得相位移动 $\Delta\phi = 10\pi\,\mathrm{rad}$（5个条纹移动），估算平均电子密度。
 
+\predict{先猜：$2\,\mathrm{mm}$ 微波穿过约 $1\,\mathrm{m}$ 等离子体、相移约一条条纹时，$n_e$ 更接近 $10^{18}$ 还是 $10^{19}\,\mathrm{m^{-3}}$？}
 \textbf{解：}由式\eqref{eq:phase-shift-uniform}，
 \begin{equation}
 n_e = \frac{2\eps_0 m_e c \omega \Delta\phi}{e^2 L}
@@ -4985,6 +5001,7 @@ $A_{ji}$、$A_{lk}$ 为爱因斯坦自发辐射系数。
 \difficulty{基础}
 某氢电弧等离子体中，光谱仪测得 $H_\alpha$ 线（$656.3\,\mathrm{nm}$）的半高全宽为 $\Delta\lambda_{1/2} = 2.5\,\mathrm{nm}$。假设温度在 $1\sim 10\,\mathrm{eV}$ 范围内，粗略估算电子密度。
 
+\predict{先猜：$H_\alpha$ 半高全宽 $2.5\,\mathrm{nm}$ 对应 $n_e$ 是 $10^{21}$、$10^{22}$ 还是 $10^{23}\,\mathrm{m^{-3}}$？展宽是线性还是 $2/3$ 次方依赖？}
 \textbf{解：}先用可追溯标定反演。由 $\Delta\lambda_{1/2} = 0.549\,(n_e/10^{23})^{2/3}\,\mathrm{nm}$ 反解：
 \begin{equation}
 n_e = 10^{23}\times\left(\frac{\Delta\lambda_{1/2}}{0.549\,\mathrm{nm}}\right)^{3/2}
@@ -5092,6 +5109,7 @@ Rogowski 线圈的一个重要优点是：它只测量\emph{穿过环中心的�
 \item 电子密度 $n_\ee$ 在 $8\times 10^{17}\,\mathrm{m}^{-3}$ 至 $1.2\times 10^{18}\,\mathrm{m}^{-3}$ 之间波动，与射频功率的调制周期同步。
 \end{itemize}
 
+\predict{先猜：在线监测里 $T_e$ 的 $0.2\,\mathrm{eV}$ 波动，是仪器噪声还是真实工艺漂移？该报警还是该滤波——先判断，再看解答。}
 \textbf{分析：}上述波动并非随机噪声，而是射频功率调节的直接反映。其物理因果链为：
 \[
 \begin{aligned}
@@ -5118,6 +5136,7 @@ Rogowski 线圈的一个重要优点是：它只测量\emph{穿过环中心的�
 
 \textbf{原理：}终点检测的本质是实时监测反应物或产物谱线强度的突变。刻蚀反应 $3\,\mathrm{Cl}_2 + 2\,\mathrm{Al} \to 2\,\mathrm{AlCl}_3$ 在铝层存在时持续产生铝挥发物，维持强铝谱线；铝层消失后反应停止，铝谱线随之消失。这种"信号归零"检测比"信号出现"检测更可靠，因为背景噪声不会引入假终点。
 
+\predict{先猜：铝层刚被刻穿、硅暴露的那一刻，光谱里 Al 的发射线应当变强还是变弱？Si 的线呢？终点判据为什么用比值而不是绝对强度？}
 \textbf{计算：}可靠检测的判据为信噪比（SNR）大于 $10:1$。假设铝谱线强度为 $I_\mathrm{Al}$，背景噪声为 $I_\mathrm{bg}$，则
 \[
 \mathrm{SNR} = \frac{I_\mathrm{Al}}{\sqrt{I_\mathrm{bg}}} > 10
