@@ -46,3 +46,7 @@
 
 MIT OpenCourseWare 与 DoITPoMS 为 CC BY-NC-SA（非商业 + 相同方式共享），PhET 商用需付费许可，
 HyperPhysics、Feynman Lectures、IAEA《Fusion Physics》为「保留所有权利」，一律未采用。
+| `nonplanar_coil.jpg` | 仿星器的非平面线圈：三维磁场的几何来源 | Siarhei Besarab | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:A_non-planar_coil_from_the_Wendelstein_7-X_stellarator.jpg | 第 3 章 |
+| `icp_torch.jpg` | 电感耦合等离子体炬：欧姆加热的可见结果 | Superchilum | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:ICP_quartz_torch_1.JPG | 第 8 章 |
+| `magnetic_reconnection.jpg` | 磁重联示意：磁力线断开并重新连接 | NASA | Public domain | https://commons.wikimedia.org/wiki/File:Magnetic_reconnection.png | 第 9 章 |
+| `west_divertor.jpg` | WEST 托卡马克偏滤器的在位检查 | Hélène Roche / CEA IRFM | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:Divertor_tokamak_WEST.jpg | 第 12 章 |

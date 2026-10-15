@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.26.36},
+  pdftitle={等离子体物理自学教材 v1.26.37},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -450,7 +450,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.26.36}}
+  {\small\textcolor{white!45}{v1.26.37}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -1969,6 +1969,14 @@ m\dot{\vect{v}'} = q(\vect{E} + (\vect{v}' + \vect{v}_E)\times\vect{B}) = q\vect
 曲率漂移则源于离心力。当粒子沿弯曲的磁力线运动时，会受到离心力 $m v_\parallel^2/R_c$ 的作用，这个等效"力"导致了与 $\vect{F}\times\vect{B}/qB^2$ 形式相同的漂移。
 \end{insight}
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/nonplanar_coil.jpg}
+\caption{三维磁场几何：非平面线圈。仿星器的非平面线圈：粒子的 $\nabla B$ 漂移与曲率漂移由这种三维位形决定，而「磁瓶」正是把漂移补偿写进几何里的一种做法——线圈的形状就是位形。}
+\label{fig:photo-coil}
+\figsource{Siarhei Besarab，CC BY-SA 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
+\end{figure}
+
 \section{磁镜与磁瓶约束}\difficulty{提高}
 
 \begin{theorem}{磁矩守恒与磁镜效应}{magnetic-mirror}
@@ -3009,6 +3017,14 @@ D_a = \frac{\mu_i D_e + \mu_e D_i}{\mu_i + \mu_e} \approx D_i\left(1 + \frac{T_e
 双极扩散是理解放电等离子体（如霓虹灯、等离子体刻蚀机）行为的关键：它决定了等离子体边界的鞘层结构和粒子损失速率。
 \end{insight}
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/icp_torch.jpg}
+\caption{欧姆加热的可见结果：电感耦合等离子体炬。射频电流通过电子--中性碰撞把能量交给等离子体，宏观上就是本章的 Spitzer 电阻率与欧姆加热；炬管里那条明亮的通道，是碰撞把定向能量变成热运动的直接证据。}
+\label{fig:photo-icp}
+\figsource{Superchilum，CC BY-SA 3.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
+\end{figure}
+
 \section{Spitzer 电阻率}\difficulty{提高}
 
 \begin{theorem}{Spitzer 电阻率}{spitzer-resistivity}
@@ -3119,6 +3135,14 @@ Spitzer 动力学修正因子（$\gamma_E\approx0.58$ 一类，$1/1.4\approx0.71
 \end{insight}
 
 不稳定系统的特征是：理论上存在平衡态（参见第5章MHD平衡），但任何微小扰动都会使其偏离并持续放大。等离子体中充满了这样的不稳定平衡——磁场和压强的各种配置都可能驱动不稳定性增长。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/magnetic_reconnection.jpg}
+\caption{磁重联：磁力线断开再连接。反向磁力线靠近、断开并重新连接（NASA 示意）。撕裂模与磁岛的形成，就是这张图在等离子体里的版本：磁场把自由能交给粒子，拓扑随之改变。}
+\label{fig:photo-reconnection}
+\figsource{NASA，公有领域（Wikimedia Commons），链接见 figures/CREDITS.md。}
+\end{figure}
 
 \section{不稳定性分类}\difficulty{基础}
 \label{sec:ch9-class}
@@ -4865,6 +4889,14 @@ q = |\vect{k}_s-\vect{k}_i| = \frac{4\pi}{\lambda_0}\sin\frac{\theta}{2},
 \textbf{数值感受}（$\lambda_0=1064\,\mathrm{nm}$）：$T_e=10\,\mathrm{eV}$、$n_e=10^{20}\,\mathrm{m}^{-3}$（$\lambda_D=2.35\,\mu\mathrm{m}$，$N_D\approx5.4\times10^3$）时，$90^\circ$ 散射给出 $q=8.35\times10^6\,\mathrm{m^{-1}}$、$\alpha\approx0.051$（非相干），而 $1^\circ$ 小角散射的 $\alpha\approx4.1$（\emph{集体}）——同一等离子体仅因散射角不同就换了机制。固定 $T_e=10\,\mathrm{eV}$、$90^\circ$ 时 $\alpha=1$ 落在 $n_e\approx3.9\times10^{22}\,\mathrm{m}^{-3}$（因 $\alpha\propto\sqrt{n_e}$），所以"$n_e\ll10^{23}$ 就非相干"这种说法过松：该密度下 $\alpha\approx1.6$，已经是集体散射。聚变堆芯则相反：$n_e\sim10^{20}\,\mathrm{m}^{-3}$、$T_e\sim10\,\mathrm{keV}$ 时 $\lambda_D\approx74\,\mu\mathrm{m}$，$90^\circ$ 的 $\alpha\approx1.6\times10^{-3}\ll1$，非相干近似成立。
 \end{warning}
 
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/west_divertor.jpg}
+\caption{在位检查：装置内部的面对等离子体部件。法国 WEST 托卡马克的偏滤器检查现场。红外热像与光谱诊断正是这样贴着面对等离子体部件工作的：不接触等离子体，却能读出温度、杂质与侵蚀率——本章三种诊断之外的第四条路。}
+\label{fig:photo-west}
+\figsource{H\u00e9l\u00e8ne Roche / CEA IRFM，CC BY 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
+\end{figure}
 
 \section{光谱诊断基础}
 \label{sec:12.5}
