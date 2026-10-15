@@ -8518,4 +8518,23 @@ example 块数 = 提示条数）：在每个例题块内找**第一个解答标�
 （需放宽 `marginparwidth`）③量级估算盒（NRL／IAEA 定标表）④配图第五批
 （JET 内壁全景、W7-X 俯视、EAST 真空室、KSTAR 内景、LEPECVD 反应腔——按仍偏薄的章优先）。
 
-**71.8 发布记录（待回填）。**
+**71.8 发布记录（已回填）。**
+
+- **Gitea release**：`id=288`（上一版 v1.26.37 = 286），
+  <http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.38>
+- **附件**：`plasma_physics_textbook_v2.pdf`，**11536882 B**，SHA256
+  `E0B3BA4C191EB87F6552A65F143F36DB1B1EDCD71A7DFC28F2BA5549F95C2BB5`，
+  <http://zsyq.hxlab.tech:3000/attachments/3caaac72-b0bc-46ce-9b38-2a513e7fb84e>
+- **独立复核**（`tmp/verify_asset12638.py`，`curl.exe -sS -L --noproxy '*'`）：
+  本地与远端同为 11536882 B、SHA256 同为 `E0B3BA4C…`、**逐字节一致 = True** → PASS。
+- **提交**：内容 `6bbeb05`（3 文件：主文件 18 条提示 + `\predict` 宏、
+  `check/full_check.py` 第 J 类守卫、PDF 11531634 → 11536882 B）；
+  文档 `a18a5eb`（README.md 265943 → 267580 字节 + processed.md §71）。
+- **tag**：`v1.26.38` = 注释 tag 对象 `0744a2efb1b53efef76ec2e9f16cdb1e8dd469e4`
+  → 文档提交 `a18a5eb`。
+- **远端 refs**（回填前）：`refs/heads/main = a18a5ebf2f0886c4f8b439b5d20473a680fa059f`、
+  `refs/tags/v1.26.38 = 0744a2ef`；`reviews/` **74 项**（31+35+4+4）无新增、`todo/` 为空。
+- **仓库卫生**：提交前删除全部 `.bak*`（计数 0）。
+- **下一轮候选**：①常见误区盒（DoITPoMS 式，配附录 F 跳转）②边注符号速查
+  （需放宽 `marginparwidth`）③量级估算盒（NRL／IAEA 定标表）④配图第五批
+  （JET 内壁全景、W7-X 俯视、EAST 真空室、KSTAR 内景、LEPECVD 反应腔——按仍偏薄的章优先）。
