@@ -8264,6 +8264,22 @@ v1.26.33 的自学闭环。盘点时发现一个尴尬的事实：**附录 I 专
 4. **体积要一起看**：5 张图让 PDF 增 1.5 MB，后续批次考虑长边降到 1200 px；
 5. **守卫是「许可合规」的执行者**：`figure_layout.py` 第 16 项把「引用存在 / 有署名 / 已登记」变成常驻检查，新增图不可能绕过署名。
 
-### 68.8 发布记录
+### 68.8 发布记录（已回填）
 
-（待回填）
+- **Gitea release**：`id=280`（上一版 v1.26.34 = 277），
+  <http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.35>
+- **附件**：`plasma_physics_textbook_v2.pdf`，**9999798 B**，SHA256
+  `0916D6C8F584D313C31167E88E57748089C1A8EAC1F3D86FD08812A3FB5FF66E`，
+  <http://zsyq.hxlab.tech:3000/attachments/f5923d46-e48d-480b-8dbd-b29fb1f6faea>
+- **独立复核**（`tmp/verify_asset12635.py`，`curl.exe -sS -L --noproxy '*'`）：
+  本地与远端同为 9999798 B、SHA256 同为 `0916D6C8…`、**逐字节一致 = True** → PASS。
+- **提交**：内容 `f2106bf`（7 文件：5 张新图 + `figures/CREDITS.md` + 主文件 5 处
+  `figure` 块与版本串 + PDF 8467906 → 9999798 B）；文档 `ca8ae68`（README.md
+  262158 → 263195 字节 + processed.md §68）。
+- **tag**：`v1.26.35` = 注释 tag 对象 `ceb3130134c09c01b8329b0babd028bc5901696b` → 文档提交 `ca8ae68`。
+- **远端 refs**（回填前）：`refs/heads/main = ca8ae6899b5998ca7dbddd1f49608168ceb17639`、
+  `refs/tags/v1.26.35 = ceb31301`；`reviews/` **74 项**（31+35+4+4）无新增、`todo/` 为空。
+- **仓库卫生**：提交前删除全部 `.bak*`（计数 0）。
+- **下一轮候选**：① 配图第四批（`image-research/README.md` 里 92 张已验证素材，
+  优先第 8 章等仍空的章；长边降到 1200 px 控制体积）②「先猜再看」例题引导 ③量纲检验栏
+  ④常见误区盒 ⑤边注符号速查 ⑥量级估算盒。
