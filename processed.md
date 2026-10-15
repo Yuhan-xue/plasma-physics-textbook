@@ -8761,4 +8761,22 @@ figOrange / figPurple / figSky，并用填充百分比区分深浅），下方�
 第 1 章 0 张、第 4/6/7/8 章各 1 张）③把学习路径图与附录导航图并成一张「全书地图」
 ④常见误区盒的增量（只在尚无误区式 warning 的章节补）。
 
-**74.8 发布记录（待回填）。**
+**74.8 发布记录（已回填）。**
+
+- **Gitea release**：`id=297`（上一版 v1.26.40 = 295），
+  <http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.41>
+- **附件**：`plasma_physics_textbook_v2.pdf`，**11552114 B**，SHA256
+  `B5623943113B402A8D27CDB9CC80BF50F96E05CF908996442D04FCFC5858B15A`，
+  <http://zsyq.hxlab.tech:3000/attachments/c6730aee-e288-4e64-ab55-2c48f60af4a0>
+- **独立复核**（`tmp/verify_asset12641.py`，`curl.exe -sS -L --noproxy '*'`）：
+  本地与远端同为 11552114 B、SHA256 同为 `B5623943…`、**逐字节一致 = True** → PASS。
+- **提交**：内容 `f0ac630`（3 文件：主文件附录 B 新小节与语义盒、
+  `check/full_check.py` 第 M 类 + 第 I 类计数口径修正、PDF 11546464 → 11552114 B）；
+  文档 `4893fe5`（README.md 271057 → 273020 字节 + processed.md §74）。
+- **tag**：`v1.26.41` = 注释 tag 对象 `f47dc7deb8c0799f1c935b8e4bf76794b43501c8`
+  → 文档提交 `4893fe5`。
+- **远端 refs**（回填前）：`refs/heads/main = 4893fe5a0f19a134c861d9f19f2cca667f5dcf7b`、
+  `refs/tags/v1.26.41 = f47dc7de`；`reviews/` **74 项**（31+35+4+4）无新增、`todo/` 为空。
+- **仓库卫生**：提交前删除全部 `.bak*`（计数 0）。
+- **下一轮候选**：①边注符号速查（需放宽 `marginparwidth`）②配图第五批
+  （第 1 章 0 张、第 4/6/7/8 章各 1 张）③把学习路径图与附录导航图并成一张「全书地图」。
