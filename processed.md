@@ -8429,4 +8429,23 @@ O3b 链补 v1.26.37、实拍图守卫段补 26 处、版本表 v1.26.37 行）�
 ④量级估算盒 ⑤配图第五批候选（JET 内壁全景、W7-X 俯视、EAST 真空室、KSTAR 内景、
 LEPECVD 反应腔、非平面线圈组、NIF 靶室内部——按「仍偏薄的章」优先）。
 
-**70.8 发布记录（待回填）。**
+**70.8 发布记录（已回填）。**
+
+- **Gitea release**：`id=286`（上一版 v1.26.36 = 284），
+  <http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.37>
+- **附件**：`plasma_physics_textbook_v2.pdf`，**11531634 B**，SHA256
+  `93E6C9E5912287B3FA44488BAC6D91D2EBE6AA395F5B5D69226A02D8CE7FE7E6`，
+  <http://zsyq.hxlab.tech:3000/attachments/69eb0d41-d154-4309-a033-db972858835a>
+- **独立复核**（`tmp/verify_asset12637.py`，`curl.exe -sS -L --noproxy '*'`）：
+  本地与远端同为 11531634 B、SHA256 同为 `93E6C9E5…`、**逐字节一致 = True** → PASS。
+- **提交**：内容 `98d210d`（6 文件：4 张新图 + `figures/CREDITS.md` +
+  主文件 4 处 `figure` 块与版本串 + PDF 10006813 → 11531634 B）；
+  文档 `19ad8b0`（README.md 264938 → 265943 字节 + processed.md §70）。
+- **tag**：`v1.26.37` = 注释 tag 对象 `4169a4ee8f4b1a25c638031b9f37caf8e4f90358`
+  → 文档提交 `19ad8b0`。
+- **远端 refs**（回填前）：`refs/heads/main = 19ad8b0305d7b4b4bdc2a67ff4665de86eacdac0`、
+  `refs/tags/v1.26.37 = 4169a4ee`；`reviews/` **74 项**（31+35+4+4）无新增、`todo/` 为空。
+- **仓库卫生**：提交前删除全部 `.bak*`（计数 0）。
+- **下一轮候选**：①「先猜再看」例题引导 ②常见误区盒 ③边注符号速查 ④量级估算盒
+  ⑤配图第五批（JET 内壁全景、W7-X 俯视、EAST 真空室、KSTAR 内景、LEPECVD 反应腔——
+  按「仍偏薄的章」优先；若继续加图，长边降到 1200 px 控制 PDF 体积）。
