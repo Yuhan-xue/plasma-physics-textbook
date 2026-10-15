@@ -21,11 +21,19 @@
 | `solar_corona.jpg` | 日冕与日珥（白光日冕仪，等离子体沿磁力线成环） | NASA Johnson Space Center | Public domain | https://commons.wikimedia.org/wiki/File:Solar_corona-prominence_seen_through_the_White_Light_Coronograph_(s74-15697).jpg | 第 5 章 |
 | `glow_discharge.jpg` | 直流辉光放电管：阴极暗区、负辉光、法拉第暗区、正柱区 | Chetvorno | CC BY-SA 2.0 | https://commons.wikimedia.org/wiki/File:Glow_discharge_regions.jpg | 第 11 章 |
 | `hall_thruster.jpg` | 霍尔推力器点火（氪工质，羽流为电离气体） | MrAdamJohnson | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Orbion_Hall-effect_thruster_firing_on_krypton.jpg | 第 11 章 |
+| `cyclotron_motion.jpg` | 电子束在磁场中弯成圆形轨迹（真实回旋运动） | Marcin Białek | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Cyclotron_motion.jpg | 第 3 章 |
+| `mrx_reconnection.jpg` | 普林斯顿 MRX 磁重联实验装置（环面等离子体） | U.S. Department of Energy | Public domain | https://commons.wikimedia.org/wiki/File:U.S._Department_of_Energy_-_Science_-_413_002_002_(9952381664).jpg | 第 5 章 |
+| `whistler_spectrogram.jpg` | VLF 频谱图：哨声波的下降调谐色散曲线 | drdan14 | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Whistler_radio_palmer_2004-07-23_T035528.png | 第 6 章 |
+| `twk_pinch.jpg` | 环形箍缩装置中的氪等离子体（100 ns 曝光） | Timkoeth | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:TWK_pinch.jpg | 第 9 章 |
+| `nif_hohlraum.jpg` | NIF 黑腔实物：金圆柱内壁与燃料靶丸（毫米级） | Lawrence Livermore National Laboratory | Public domain | https://commons.wikimedia.org/wiki/File:Nif_hohlraum.jpg | 第 10 章 |
+| `bpp_probe_head.jpg` | 朗缪尔探针头部：收集极套在氮化硼陶瓷管内 | Jiri Adamek, IPP ASCR | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:BPP_probe_head.png | 第 12 章 |
 
 ## 采集与校验方式（可复算）
 
 - 检索脚本：`tools/commons_pick.py`（Wikimedia Commons API，按概念检索 + 许可/分辨率过滤，礼貌限速 2.5 s）；
 - 下载脚本：`tools/fetch_figure.py`（清代理、`curl --noproxy '*'`、校验为可识别图像后才写盘）；
+- v1.26.32 起改用 `tmp/commons_resolve.py`（Commons API 取 1400–1920 px 缩略图 + 合规 User-Agent，
+  规避缩略图路径 400 与政策 UA 429）与 `tmp/photos2.py`（批量下载 + 规范化 + 登记）；
 - 规范化脚本：`tmp/normalize_figures.py`、`tmp/shrink_figures.py`（长边 ≤ 1500 px，照片 JPEG q88–q92）。
 
 ## 排除的候选（许可原因）

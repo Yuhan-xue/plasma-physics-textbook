@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.26.31},
+  pdftitle={等离子体物理自学教材 v1.26.32},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -437,7 +437,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.26.31}}
+  {\small\textcolor{white!45}{v1.26.32}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -1800,6 +1800,14 @@ v_{ti} = \sqrt{\frac{k_B T_i}{m_i}} \approx 6.9\times 10^{5}\,\mathrm{m/s}, \qqu
 可见离子回旋半径约为电子的60倍，但仍远小于装置尺度（托卡马克大半径约 $1$--$2\,\mathrm{m}$）。
 \end{example}
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/cyclotron_motion.jpg}
+\caption{电子束在磁场里画出的圆。均匀磁场中的回旋运动不是抽象概念：把一束电子射进磁场，它真的会弯成一个圆。曲率半径 $r=mv/(qB)$ 与回旋频率 $\omega_c=qB/m$ 都可以直接从这样的轨迹量出来。}
+\label{fig:photo-cyclotron}
+\figsource{Marcin Bia\u0142ek，CC BY-SA 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
+\end{figure}
+
 \section{电场与磁场交叉：漂移运动}\difficulty{基础}
 
 当同时存在电场和磁场时，粒子的运动不再是简单的螺旋线，其导向中心（回旋圆的中心）会发生\textbf{漂移}。
@@ -2284,6 +2292,14 @@ MHD做了以下关键近似：
 \textbf{磁张力}的物理效应则类似于弹性弦中的张力：当磁力线弯曲时，张力提供恢复力使其趋向平直。阿尔芬波（\S5.4）正是磁张力作为恢复力产生的横波——可理解为磁力线像弹性弦被拨动后产生的振动。
 \end{insight}
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/mrx_reconnection.jpg}
+\caption{磁重联：实验室里能重复的「磁力线断开再连上」。MRX 装置把磁重联做成了可控实验：环面等离子体里两束反向磁通靠近、断开并重新连接，同时释放磁能。这正说明「磁力线冻结」不是绝对禁令——在电流片足够薄的地方它可以失效。}
+\label{fig:photo-mrx}
+\figsource{U.S. Department of Energy，公有领域（Wikimedia Commons），链接见 figures/CREDITS.md。}
+\end{figure}
+
 \section{磁力线冻结}\difficulty{基础}
 \label{sec:ch5-frozen}
 
@@ -2570,6 +2586,14 @@ c^2 k^2 \approx \frac{\omega_{pe}^2 \omega}{\omega_{ce}}
 \item 给定 $\omega_{pe}/\omega_{ce}=0.1$，取 $\omega/\omega_{ce}=0.3,0.5,0.9$，分别算出 $n_R^2$ 与 $n_L^2$，判断各频率下哪支能传播。再令 $\omega_{pe}/\omega_{ce}=2$ 重做一遍，说明"$\omega<\omega_{ce}$ 时只有 R 波传播"为何不是普遍结论。
 \end{enumerate}
 \end{miniquiz}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/whistler_spectrogram.jpg}
+\caption{哨声波的真实频谱：频率随时间下降的「口哨」。雷电激发的哨声波沿磁力线传播，高频跑得快、低频跑得慢，于是在地面接收到的频谱上留下一条向下弯曲的色散曲线——这是第 6 章色散关系最直接的实验证据。}
+\label{fig:photo-whistler}
+\figsource{drdan14，CC BY-SA 3.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
+\end{figure}
 
 \input{ch6_supplement}
 
@@ -3007,6 +3031,14 @@ x^3\simeq-\frac{\mu}{2}
 \end{enumerate}
 \end{miniquiz}
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/twk_pinch.jpg}
+\caption{箍缩等离子体：电流自己把等离子体捏成一束。环形箍缩装置里的氪等离子体（100 ns 曝光）。电流产生的环向磁场对等离子体施加向内的力，把柱体箍紧——不稳定性（本章的 m=0、m=1 模式）会在这里把柱体拧断。}
+\label{fig:photo-pinch}
+\figsource{Timkoeth，CC BY-SA 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
+\end{figure}
+
 \input{ch9_supplement}
 
 
@@ -3168,6 +3200,14 @@ $n\tau$ & $\sim 10^{20}\,\mathrm{m}^{-3}\cdot\mathrm{s}$ & $\sim 10^{21}\,\mathr
 \end{itemize}
 \textbf{所以"$Q>1$"必须带上下标。} NIF 的 $Q>1$ 是\emph{靶增益}，不是电站净收益；ITER 的 $Q=10$ 是\emph{等离子体加热增益}的设计目标。把一个事件的到靶能量与另一个装置的目标值直接比较，是常见但错误的做法。
 \end{warning}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/nif_hohlraum.jpg}
+\caption{黑腔：把激光能量变成 X 射线再均匀压靶。毫米级的金圆柱（黑腔）内壁吸收激光后辐射 X 射线，X 射线再烧蚀内壁的燃料靶丸——第 10.4 节讲的间接驱动，实物就是这么小，而它承受的辐射温度以百万开计。}
+\label{fig:photo-hohlraum}
+\figsource{Lawrence Livermore National Laboratory，公有领域（Wikimedia Commons），链接见 figures/CREDITS.md。}
+\end{figure}
 
 \section{聚变能源的展望}\difficulty{提高}
 
@@ -4369,6 +4409,14 @@ V_f - V_p = T_e \ln\!\left(\sqrt{\frac{2\pi m_e}{m_i}}\right)
 1924年，美国通用电气研究实验室的欧文·朗缪尔（Irving Langmuir，1881--1957）在研究汞蒸气放电时，首次系统地利用插入金属丝测量电流-电压特性，从而推导出电子温度和密度。朗缪尔当时并没有复杂的等离子体理论框架，他凭借对气体放电的深刻直觉，提出了鞘层（Sheath）的概念，并正确认识到探针周围必然存在一个非中性的空间电荷区。这项工作不仅为等离子体诊断奠定了实验基础，也直接催生了"等离子体"（Plasma）一词在物理学中的现代用法——朗缪尔本人于1928年正式提议用这个词描述电离气体。朗缪尔探针至今仍是等离子体实验室的"标配"，其简洁之美历经百年而不衰。
 \end{history}
 
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/bpp_probe_head.jpg}
+\caption{朗缪尔探针的探头长什么样。真实的探针头：收集极（钨丝）套在氮化硼陶瓷管里，只露出一小段面向等离子体。陶瓷决定收集面积、也决定探针能承受多少热流——这正是 12.2 节要求「探针半径远大于德拜长度」的工程原因。}
+\label{fig:photo-probe}
+\figsource{Jiri Adamek，CC BY-SA 3.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
+\end{figure}
 
 \section{微波干涉诊断}
 \label{sec:12.3}
