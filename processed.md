@@ -7217,4 +7217,37 @@ canon：`tmp/appAU_calc.py`（只 print）→ `tmp/appAU_calc.txt`（307 个数�
 
 ### 58.8 发布记录（v1.26.25）
 
-（待回填）
+- **内容提交**：`7637bda2c826556a5e47c0ed4f0b6111aef507ed`（5 文件 +1083/−5：新建
+  `src/appendix_au_data.tex` 544 行；`check/physics_regression.py` +470 行（套件 5549 → 5807 项）；
+  `check/fixtures/gate_physics_negative.py` 18 处补丁（587 → 605）；主文件挂载 +6/−2；
+  PDF Bin 3623132 → 3664458）。
+- **文档提交**：`bd2056d713331b607c60eec15fe84e5453af2360`（README 234127 → 237669 字节 /
+  processed.md 645330 → 655462 字节）。
+- **tag**：`v1.26.25` = 注释 tag 对象 `84c499c4ba6dd94209769fd1f75277c8de100c61`
+  → `bd2056d713331b607c60eec15fe84e5453af2360`。
+- **推送**：`425eb7b..bd2056d main`、`* [new tag] v1.26.25`（pwsh 报 NativeCommandError 属假失败）；
+  远端 `refs/heads/main = bd2056d713331b607c60eec15fe84e5453af2360`、
+  `refs/tags/v1.26.25 = 84c499c4ba6dd94209769fd1f75277c8de100c61`。
+- **Gitea release**：`POST status 201`、**id=240**（上一版 v1.26.24 = 211），
+  url `http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.25`，
+  名称「v1.26.25 附录 AU 测量、不确定度与数据分析：从原始信号到误差棒」；
+  release 正文直接引用发布版实测指纹（3662987 → 3664458 B / `1001318F…`），**无需二次 PATCH**。
+- **附件**：`上传 status=201`、`size=3664458`、
+  `http://zsyq.hxlab.tech:3000/attachments/890e3bab-61fb-41e8-b4d2-93364b85146a`。
+- **独立复核**（`curl.exe -sS -L --noproxy '*'` 从头发下载到 `tmp/remote_v12625.pdf`）：
+  本地与远端同为 **3664458 B**、SHA256 同为
+  **1001318F0881B0780ECEC6DD8669BA97AFDC2F8E750B11E2722461D9B941FD72**、逐字节一致 `True`。
+- **可复算性复核**：本轮额外重编一次（`tmp/build_v12625.py`）验证发布前状态可复现——
+  原始 PDF 3662987 B、578 页 / 574 书签、Overfull 5 处基线；对原始 PDF 跑
+  `check/pdf_outline.py` 得 O3b **19/574**（书签 − 印刷 = −1 共 19 条），再跑
+  `tmp/fix_pdf_dests.py --write`（写回 19 条、复核 15 条落到新页）→ **0/574**、3664458 B。
+  README 里的「19/574 → 0/574」由此复算而来，不是照抄上一轮。
+- **远端协作面**：`git ls-tree -r --name-only origin/main reviews/` = **74 项**
+  （2026-10-10-independent 31 / 2026-10-11-scheduled 35 / 2026-10-12-scheduled 4 /
+  2026-10-13-scheduled 4），**无新增 reviews**、无 `todo/`；两份 carryover 状态不变
+  （P-CARRY-01 已由 PDF 后处理归零、P-CARRY-02 附录 F 2/35 属已知非缺陷）。
+- **仓库卫生**：本轮 9 个 `.bak*` 全部删除；提交前 `git status` 只剩预期改动
+  （另有工具产生的未跟踪目录 `.cindy-worktrees/`，不纳入任何提交）。
+- **验收口径**：六套件 FAIL 全 0（full_check 37 / ui_readability 59 含 WARN 38 / consistency_audit 14 /
+  physics_regression 5807 / figure_layout 15 / pdf_outline 11 含 WARN 1）、五夹具全 PASS；
+  578 页 / 574 书签、印刷目录 16 页（第 2--17 页）、O3b 0/574。
