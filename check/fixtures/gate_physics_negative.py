@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """可证伪性夹具：故意在源码里植入本轮的典型回退，确认 check/physics_regression.py 会 FAIL。
 
-流程：备份 → 植入 641 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。其中四处打在 v1.8.0/v1.8.1 新增的附录 I/J/K 上（K.5 的阻尼率符号、K.7 的鞘厚量级与单位、K.4 的磁冻结结论、J 的逐章对照表章号），
+流程：备份 → 植入 659 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。其中四处打在 v1.8.0/v1.8.1 新增的附录 I/J/K 上（K.5 的阻尼率符号、K.7 的鞘厚量级与单位、K.4 的磁冻结结论、J 的逐章对照表章号），
 三处打在 v1.10.0 新增的附录 M 上（束速量级、H 模阈值标度、欧姆/自加热倍数口径），
 一处是 v1.10.0 的结构性回退（语义盒退回裸 `\begin{tip}`，正文首字会被吞、标签可能重复），
 三处打在 v1.11.0 新增的附录 N 上（脱靶辐射功率量级、ELM 侵蚀倍数、表标签被改名），
@@ -110,6 +110,7 @@ APPAT = os.path.join(ROOT, 'src', 'appendix_at_waves.tex')
 APPAU = os.path.join(ROOT, 'src', 'appendix_au_data.tex')
 APPAV = os.path.join(ROOT, 'src', 'appendix_av_tritium.tex')
 APPAW = os.path.join(ROOT, 'src', 'appendix_aw_hedp.tex')
+APPAX = os.path.join(ROOT, 'src', 'appendix_ax_beams.tex')
 CH12 = os.path.join(ROOT, 'src', 'ch12_supplement.tex')
 CH10 = os.path.join(ROOT, 'src', 'ch10_supplement.tex')
 SUITE = os.path.join(ROOT, 'check', 'physics_regression.py')
@@ -1881,10 +1882,69 @@ PATCHES = [
            r'$2513.28$'),
     # 641. 黑体辐射压末位 +1
     (APPAW, r'=0.132131\ \mathrm{Mbar}.',
-           r'=0.132132\ \mathrm{Mbar}.'),
+           r'=0.132132\ \mathrm{Mbar}.'),    # 642. 表 AX.3 label 改名
+    (APPAX, r'\label{tab:app-ax-envelope}',
+           r'\label{tab:app-ax-envelopes}'),
+    # 643. 语义盒标签改名
+    (APPAX, r'{tip-app-ax-neutral}',
+           r'{tip-app-ax-neutrals}'),
+    # 644. 公式 label 改名
+    (APPAX, r'\label{eq:app-ax-kdv}',
+           r'\label{eq:app-ax-kdv2}'),
+    # 645. 「出处：」改成「来源：」
+    (APPAX, r'\textbf{出处：}中和效率、气体靶与射程',
+           r'\textbf{来源：}中和效率、气体靶与射程'),
+    # 646. 「解答 3」改成「答案 3」
+    (APPAX, r'\textbf{解答 3}',
+           r'\textbf{答案 3}'),
+    # 647. 语义盒标题改字（主项→主要项）
+    (APPAX, r'{空间电荷不是修正项，它是束流的主项}',
+           r'{空间电荷不是修正项，它是束流的主要项}'),
+    # 648. 语义盒标题改字（束斑→束宽）
+    (APPAX, r'{漂移段不放大发射度，但一定放粗束斑}',
+           r'{漂移段不放大发射度，但一定放粗束宽}'),
+    # 649. 发射度末位 +1
+    (APPAX, r'=2.617994\times10^{-5}\ \mathrm{m\,rad}',
+           r'=2.617995\times10^{-5}\ \mathrm{m\,rad}'),
+    # 650. 等效束温度末位 +1
+    (APPAX, r'T_\mathrm{eff}=31814.4453\ \mathrm{K}',
+           r'T_\mathrm{eff}=31814.4454\ \mathrm{K}'),
+    # 651. 广义派文斯末位 +1
+    (APPAX, r'K&=\frac{I_b}{V^{3/2}}=1.264911\times10^{-6}',
+           r'K&=\frac{I_b}{V^{3/2}}=1.264912\times10^{-6}'),
+    # 652. 有效阻力系数末位 +1
+    (APPAX, r'5.096269\times10^{-27}\ \mathrm{kg\,s^{-1}}',
+           r'5.096270\times10^{-27}\ \mathrm{kg\,s^{-1}}'),
+    # 653. 吸收功率末位 +1
+    (APPAX, r'P_\mathrm{abs}=2.195535\ \mathrm{MW}',
+           r'P_\mathrm{abs}=2.195536\ \mathrm{MW}'),
+    # 654. 空间电荷上限末位 +1
+    (APPAX, r'1.447203\times10^{-6}',
+           r'1.447204\times10^{-6}'),
+    # 655. 阻力公式比值末位 +1
+    (APPAX, r'0.998224',
+           r'0.998225'),
+    # 656. 双流增长时间末位 +1
+    (APPAX, r'1.145470\times10^{-10}',
+           r'1.145471\times10^{-10}'),
+    # 657. 漂移段束斑末位 +1
+    (APPAX, r'3.689657',
+           r'3.689658'),
+    # 658. 离子碰撞系数末位 +1
+    (APPAX, r'5.478026',
+           r'5.478027'),
+    # 659. 引出面半径末位 +1
+    (APPAX, r'0.064662',
+           r'0.064663'),
 ]
 
-MIN_FAIL = 715       # 实测值（641 处植入回退合并计入 729，留 14 的余量）：见下
+MIN_FAIL = 734       # 实测值（659 处植入回退合并计入 748，留 14 的余量）：见下
+# ## v1.26.28 轮（附录 AX 束流物理与束流品质 / 门禁 P56）植入扩到 659 处，18 处新补丁分两层
+#   结构层 7：表 AX.3 label 改名、语义盒标签改名、公式 label 改名、「出处：」→「来源：」、
+#   「解答 3」→「答案 3」、两只语义盒标题改字；
+#   数据层 11：发射度、等效束温度、广义派文斯、有效阻力系数、吸收功率、空间电荷上限、
+#   阻力公式比值、双流增长时间、漂移段束斑、离子碰撞系数、引出面半径各改末位（各 +1）。
+#   注：本轮 4 条数据补丁首轮是洞（末位改写落在 1e-3 容差内），已用门禁 ④c 的 4 条整句绑定堵住。
 # ## v1.26.27 轮（附录 AW 高能量密度物理 / 门禁 P55）植入扩到 641 处，18 处新补丁分两层
 #   结构层 7：表 AW.2 label 改名、语义盒标签改名、公式 label 改名、「出处：」→「来源：」、
 #   「解答 3」→「答案 3」、两只语义盒标题改字；
