@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """可证伪性夹具：故意在源码里植入本轮的典型回退，确认 check/physics_regression.py 会 FAIL。
 
-流程：备份 → 植入 605 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。其中四处打在 v1.8.0/v1.8.1 新增的附录 I/J/K 上（K.5 的阻尼率符号、K.7 的鞘厚量级与单位、K.4 的磁冻结结论、J 的逐章对照表章号），
+流程：备份 → 植入 623 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。其中四处打在 v1.8.0/v1.8.1 新增的附录 I/J/K 上（K.5 的阻尼率符号、K.7 的鞘厚量级与单位、K.4 的磁冻结结论、J 的逐章对照表章号），
 三处打在 v1.10.0 新增的附录 M 上（束速量级、H 模阈值标度、欧姆/自加热倍数口径），
 一处是 v1.10.0 的结构性回退（语义盒退回裸 `\begin{tip}`，正文首字会被吞、标签可能重复），
 三处打在 v1.11.0 新增的附录 N 上（脱靶辐射功率量级、ELM 侵蚀倍数、表标签被改名），
@@ -108,6 +108,7 @@ APPAR = os.path.join(ROOT, 'src', 'appendix_ar_power.tex')
 APPAS = os.path.join(ROOT, 'src', 'appendix_as_rays.tex')
 APPAT = os.path.join(ROOT, 'src', 'appendix_at_waves.tex')
 APPAU = os.path.join(ROOT, 'src', 'appendix_au_data.tex')
+APPAV = os.path.join(ROOT, 'src', 'appendix_av_tritium.tex')
 CH12 = os.path.join(ROOT, 'src', 'ch12_supplement.tex')
 CH10 = os.path.join(ROOT, 'src', 'ch10_supplement.tex')
 SUITE = os.path.join(ROOT, 'check', 'physics_regression.py')
@@ -1773,10 +1774,68 @@ PATCHES = [
            r'半宽 $2.34008\%$'),
     # 605. 3 sigma 检测限末位 +1
     (APPAU, r'$4.24264\times10^{15}\ \mathrm{m^{-3}}$',
-           r'$4.24265\times10^{15}\ \mathrm{m^{-3}}$'),
+           r'$4.24265\times10^{15}\ \mathrm{m^{-3}}$'),    # 606. 表 AV.3 label 改名
+    (APPAV, r'\label{tab:app-av-blanket}',
+           r'\label{tab:app-av-blankets}'),
+    # 607. 语义盒标签改名
+    (APPAV, r'{tip-app-av-nwl}',
+           r'{tip-app-av-nwload}'),
+    # 608. 公式 label 改名
+    (APPAV, r'\label{eq:app-av-cycle}',
+           r'\label{eq:app-av-cycles}'),
+    # 609. 「出处：」改成「来源：」
+    (APPAV, r'\textbf{出处：}氢同位素在金属中的渗透',
+           r'\textbf{来源：}氢同位素在金属中的渗透'),
+    # 610. 「解答 3」改成「答案 3」
+    (APPAV, r'\textbf{解答 3}',
+           r'\textbf{答案 3}'),
+    # 611. 语义盒标题改字（算→记）
+    (APPAV, r'{三本账要分开算}',
+           r'{三本账要分开记}'),
+    # 612. 语义盒标题改字（堆→装置）
+    (APPAV, r'{倍增时间不是「堆的寿命」}',
+           r'{倍增时间不是「装置的寿命」}'),
+    # 613. 增殖率末位 +1
+    (APPAV, r'=1.03864\times10^{-3}\ \mathrm{g\,s^{-1}}',
+           r'=1.03865\times10^{-3}\ \mathrm{g\,s^{-1}}'),
+    # 614. 日增殖量末位 +1
+    (APPAV, r'$89.7384\ \mathrm{g}$',
+           r'$89.7385\ \mathrm{g}$'),
+    # 615. 年增殖量末位 +1
+    (APPAV, r'$32.7769\ \mathrm{kg}$',
+           r'$32.7770\ \mathrm{kg}$'),
+    # 616. 包层体积末位 +1
+    (APPAV, r'$195.813\ \mathrm{m^{3}}$',
+           r'$195.814\ \mathrm{m^{3}}$'),
+    # 617. 最小自持 TBR 末位 +1
+    (APPAV, r'$1.01802$',
+           r'$1.01803$'),
+    # 618. 练 2 净增末位 +1
+    (APPAV, r'$5.60501\ \mathrm{g\,day^{-1}}$',
+           r'$5.60502\ \mathrm{g\,day^{-1}}$'),
+    # 619. 练 5 板数末位 +1
+    (APPAV, r'$11.2227$ 板',
+           r'$11.2228$ 板'),
+    # 620. 每米衰减倍数末位 +1
+    (APPAV, r'$617438$',
+           r'$617439$'),
+    # 621. 库存循环时间末位 +1
+    (APPAV, r'=\frac{10}{4.27326}=2.34014\ \mathrm{day},',
+           r'=\frac{10}{4.27326}=2.34015\ \mathrm{day},'),
+    # 622. 循环衰变份额末位 +1
+    (APPAV, r'循环一圈衰变掉的份额只有 $0.0360402\%$',
+           r'循环一圈衰变掉的份额只有 $0.0360403\%$'),
+    # 623. 氚比活度末位 +1
+    (APPAV, r'氚比活度 & $3.55978\times10^{14}\ \mathrm{Bq\,g^{-1}}$',
+           r'氚比活度 & $3.55979\times10^{14}\ \mathrm{Bq\,g^{-1}}$'),
 ]
 
-MIN_FAIL = 675       # 实测值（605 处植入回退合并计入 689，留 14 的余量）：见下
+MIN_FAIL = 696       # 实测值（623 处植入回退合并计入 710，留 14 的余量）：见下
+# ## v1.26.26 轮（附录 AV 氚循环与氚工厂 / 门禁 P54）植入扩到 623 处，18 处新补丁分两层
+#   结构层 7：表 AV.3 label 改名、语义盒标签改名、公式 label 改名、「出处：」→「来源：」、
+#   「解答 3」→「答案 3」、两只语义盒标题改字；
+#   数据层 11：增殖率、日增殖量、年增殖量、包层体积、最小自持 TBR、练 2 净增、练 5 板数、
+#   每米衰减倍数、库存循环时间、循环衰变份额、氚比活度各改末位（各 +1）。
 # ## v1.26.25 轮（附录 AU 测量、不确定度与数据分析 / 门禁 P53）植入扩到 605 处，18 处新补丁分两层
 #   结构层 7：表 AU.4 label 改名、语义盒标签改名、公式 label 改名、「出处：」→「来源：」、
 #   「解答 3」→「答案 3」、两只语义盒标题改字；
