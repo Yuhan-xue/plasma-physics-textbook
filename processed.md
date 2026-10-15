@@ -7339,6 +7339,33 @@ canon：`tmp/appAV_calc.py`（只 print）→ `tmp/appAV_calc.txt`（99 行 / 69
 4. **洞的两种成因在本轮各出现一次**：同值复述（#616，公式里一份、表行一份）与生成器未收进 STRICT（#619）。两种都靠「整句/整行字面绑定」堵住，不靠收紧容差。
 5. **探针脚本的入参是显式序号列表**，不是区间：本轮首跑只传了两个端点（606、623），等于只探了 2 条。列全 18 个序号后才发现 2 处洞——跑探针时务必核对打印出的「本轮探针 N 条」。
 
-### 59.8 发布记录
+### 59.8 发布记录（v1.26.26）
 
-（待回填）
+- **内容提交**：`2cf5a35617b5e20c8c58518823aaa23fc963f3be`（5 文件 +1112/−6：新建
+  `src/appendix_av_tritium.tex` 557 行；`check/physics_regression.py` +490 行（套件 5807 → 6073 项）；
+  `check/fixtures/gate_physics_negative.py` 18 处补丁（605 → 623）；主文件挂载 +6/−2；
+  PDF Bin 3664458 → 3706909）。
+- **文档提交**：`8fc65544f9939840c9b623c5c278c127368f289d`（README 237669 → 241325 字节 / 27 行差；
+  processed.md +91 行）。
+- **tag**：`v1.26.26` = 注释 tag 对象 `7f5943aa3fb4efda7f5966d230adbad2b12db266`
+  → `8fc65544f9939840c9b623c5c278c127368f289d`。
+- **推送**：`d54ed05..8fc6554 main`、`* [new tag] v1.26.26`（pwsh 报 NativeCommandError 属假失败）；
+  远端 `refs/heads/main = 8fc65544f9939840c9b623c5c278c127368f289d`、
+  `refs/tags/v1.26.26 = 7f5943aa3fb4efda7f5966d230adbad2b12db266`。
+- **Gitea release**：`POST status 201`、**id=243**（上一版 v1.26.25 = 240），
+  url `http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.26`，
+  名称「v1.26.26 附录 AV 氚循环与氚工厂：从增殖到衡算」；
+  release 正文直接引用发布版实测指纹（3705431 → 3706909 B / `8F28FDF9…`），**无需二次 PATCH**。
+- **附件**：`上传 status=201`、`size=3706909`、
+  `http://zsyq.hxlab.tech:3000/attachments/9951cc9c-9319-4228-b7b1-1b38f887ef88`。
+- **独立复核**（`curl.exe -sS -L --noproxy '*'` 从头发下载到 `tmp/dl_v12626.pdf`）：
+  本地与远端同为 **3706909 B**、SHA256 同为
+  **8F28FDF94F6B81979800596580EE951B2103FB971DDFBFC55F803A539F6BA543**、逐字节一致 `True`。
+- **排印修正复核**：本轮因新表列溢出改了正文一处单位写法
+  （`$0.0412024\ \mathrm{g\,m^{-2}\,day^{-1}}$` → `\mathrm{g\,m^{-2}\,d^{-1}}$`），
+  并**同步更新**门禁里对应的整行字面绑定（`check/physics_regression.py`）；
+  改后重编 Overfull 回到 5 处基线（4.78427 / 4.0831 / 2.46873 / 1.93942 / 1.23474 pt），
+  套件仍 FAIL 0 / WARN 0 / 6073 项。
+- **远端协作面**：`git ls-tree -r --name-only origin/main reviews/` = **74 项**
+  （2026-10-10-independent 31 / 2026-10-11-scheduled 35 / 2026-10-12-scheduled 4 /
+  2026-10-13-scheduled 4），**无新增评审**；`todo/` 为空。
