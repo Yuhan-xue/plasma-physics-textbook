@@ -7972,10 +7972,23 @@ physics_regression **7191** / figure_layout **16** / pdf_outline 11（WARN 1，�
 5. **夹具的价值在「会 FAIL」**：本轮两个夹具首跑 FAIL 全部指向真实状态偏差（README 落后、
    登记缺失），修好后自动 PASS——这比「一次全绿」更能证明守卫有效。
 
-### 65.8 发布记录（待回填）
+### 65.8 发布记录（已回填）
 
-- Gitea release：_待回填_
-- 附件与 SHA256：_待回填_
-- 独立复核：_待回填_
-- 提交（内容 / 文档 / 回填）：_待回填_
-- tag 对象与远端 refs：_待回填_
+- **Gitea release**：`id=271`（上一版 v1.26.31 = 267），
+  <http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.32>
+- **附件**：`plasma_physics_textbook_v2.pdf`，**8436031 B**，SHA256
+  `63650A5276425E2D66A2DA335B03CA1DC2C5F4C65424FA2EEDDE30F466EEFF28`，
+  <http://zsyq.hxlab.tech:3000/attachments/ff4bfb21-d211-41e9-8b50-4fe970ba95d5>
+- **独立复核**（`tmp/verify_asset12632.py`，`curl.exe -sS -L --noproxy '*'`）：
+  本地与远端同为 8436031 B、SHA256 同为 `63650A52…`、**逐字节一致 = True** → PASS。
+- **提交**：内容 `4128f18`（12 文件 +4370/−49：6 张图 + `figures/CREDITS.md` +
+  `tools/gen_table.py` + `tools/verified.json` + `image-research/README.md` +
+  主文件 +52/−2 与 PDF 6894620 → 8436031 B）；文档 `1a8697f`（README.md + processed.md §65）；
+  回填提交只改本节文本（`git log --oneline --grep=backfill(v1.26.32)` 可查；因 amend 会改写哈希，故不内嵌）。
+- **tag**：`v1.26.32` = 注释 tag 对象 `f36609535d4743749c67bbc1b9ca882facab1813` → 文档提交 `1a8697f`。
+- **远端 refs**（回填前）：`refs/heads/main = 1a8697f30f2a4d9696aec5586c8d5e818f4af70d`、
+  `refs/tags/v1.26.32 = f3660953`；`reviews/` **74 项**（31+35+4+4）无新增、`todo/` 为空。
+- **仓库卫生**：提交前删除全部 `.bak*`（计数 0）；`figures/` 17 张 4.31 MB、单张 ≤1.5 MB。
+- **下一轮候选**（承接 §64.7 待实施清单）：① 每章「学习目标」盒（附录 I 已声称、正文缺失）；
+  ② 24 个 `miniquiz` 的答案闭环；③「先猜再看」例题引导；④ 量纲检验栏；⑤ 常见误区盒；
+  ⑥ 边注符号速查；⑦ 章末概念图；⑧ 量级估算盒。
