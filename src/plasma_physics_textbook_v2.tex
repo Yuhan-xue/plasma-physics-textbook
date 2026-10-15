@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.26.32},
+  pdftitle={等离子体物理自学教材 v1.26.33},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -103,13 +103,13 @@
 \usepackage{multirow}
 \usepackage{marginnote}
 \usepackage{epigraph}
-\usepackage{pifont}          % \ding：圈号 ①②③ 的可靠字形来源（lmroman 无 U+2460..U+2462）
+\usepackage{pifont}          % \ding：圈号 （1）（2）（3） 的可靠字形来源（lmroman 无 U+2460..U+2462）
 \usepackage{fvextra}         % verbatim 可断行，消除附录 G 代码越界
 \setlength{\marginparwidth}{1.1cm}
 \setlength{\marginparsep}{0.15cm}
-% ---- 圈号 ①②③ 的安全写法 ----
+% ---- 圈号 （1）（2）（3） 的安全写法 ----
 % 原实现直接在 lmroman 中排 U+2460..U+2462，该字体无此字形，PDF 中渲染为空白。
-% \ding{172..174} 对应 ①..③，pifont 的 dingbat 字体覆盖完整。
+% \ding{172..174} 对应 （1）..（3），pifont 的 dingbat 字体覆盖完整。
 \newcommand{\cnum}[1]{\ding{\numexpr171+#1\relax}}
 % ---- 段落、公式与浮动体间距：回收造成大片留白的垂直空间 ----
 \setlength{\parskip}{1.8pt plus 0.8pt minus 0.4pt}
@@ -275,6 +275,9 @@
   colback=reviewblue!3,colframe=reviewblue,fonttitle=\bfseries,
   title={随堂自测},breakable,
   left=4pt,right=4pt,top=4pt,bottom=4pt,#1}
+% 随堂自测的参考要点（2026-10-16 起）：先自己答，再看这一行
+\newcommand{\quizans}[1]{\par\medskip{\color{figGray}\rule{\linewidth}{0.3pt}}\par\smallskip
+  {\footnotesize\textbf{参考要点：}#1}}
 \newtcolorbox{chapterreview}[1][]{
   colback=tipgreen!5,colframe=tipgreen,fonttitle=\bfseries,
   title={本章要点回顾},breakable,
@@ -437,7 +440,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.26.32}}
+  {\small\textcolor{white!45}{v1.26.33}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -735,7 +738,7 @@ $\star\star\star$ & 挑战 & 涉及较深的数学技巧或前沿问题。供科
 
 \textbf{关于「挑战」：} 挑战级内容针对的是\emph{个别推导}而非整节，因此不用边注标记，而是在正文中就地标明——例如小节标题写作「Vlasov 方程（挑战）」、或在正文里直接写「此处从略\,[挑战]\,」。读到方括号\,[挑战]\,即可放心跳过，不影响后续章节。
 
-\begin{miniquiz}
+\begin{miniquiz}[title={本书的难度标记怎么用}]
 在本书中，你会看到边注如\,[基础]\,或\,[应用]\,，以及正文中就地标注的\,[挑战]\,。
 请根据你的学习目标，合理选择阅读深度。基础内容优先保证，
 挑战内容可以第一轮自学时跳过标记，第二轮再补。
@@ -1034,7 +1037,7 @@ Alfv\'{e}n 1942、Rosenbluth--Rostoker 1962），提供背景与要点摘要。 
 
 \textbf{说明：}上表所述的动图、论文导读等交互式资源需通过线上平台获取，本仓库不含其独立脚本；\textbf{随书可独立复现的数值代码只有附录 G.1--G.3 三个 Python 脚本}，读者可先跑通它们建立信心，再按 G.4 的路线进阶到 EPOCH、GENE 等专业代码。
 
-\begin{miniquiz}
+\begin{miniquiz}[title={进入第 1 章之前的三项准备}]
 在进入第 1 章之前，建议你先完成以下准备：\\
 1. 打开附录 G.1 的脚本（复制 \texttt{verbatim} 代码存为 \texttt{g1.py}）并运行，
 观察 $\vect{E}\times\vect{B}$ 漂移，核对打印出的漂移速度约为 $1000\,\mathrm{m/s}$；\\
@@ -1359,6 +1362,7 @@ v_p = \frac{\omega}{k} = \frac{\sqrt{\omega_p^2 + c^2k^2}}{k} = c\sqrt{1 + \frac
 \item 对一维麦克斯韦分布 $f(v) = n\sqrt{m/2\pi k_BT}\,\ee^{-mv^2/2k_BT}$，验证 $\langle v^2 \rangle = k_BT/m$。
 \item 若色散关系为 $\omega = \alpha k^2$（$\alpha>0$ 为常数），求相速度和群速度，并说明两者关系。
 \end{enumerate}
+\quizans{（1） 柱坐标下 $\divg(r\unitvec r)=2$、$\curl(r\unitvec\theta)=2\unitvec z$——度量因子不同，别照搬直角坐标。\par （2） 对高斯分布分部积分即得 $\langle v^2\rangle=k_BT/m$，这就是能量均分定理。\par （3） $v_p=\alpha k$、$v_g=2\alpha k$，群速度是相速度的两倍，因为 $\omega\propto k^2$ 不是线性色散。}
 \end{miniquiz}
 
 \input{ch1_supplement}
@@ -1670,6 +1674,7 @@ N_D = \frac{4}{3}\pi n\lambda_D^3 \approx 4.4\times10^{13} \gg 1 .
 \item 如果一种电离气体的 $N_D \approx 0.5$，它是否能被称为等离子体？为什么？
 \item 德拜屏蔽是否意味着等离子体内部完全没有电场？如果不是，在什么尺度上电场可以被忽略？
 \end{enumerate}
+\quizans{（1） $\lambda_{De}=7.4\times10^{-5}\,\mathrm{m}$，$\omega_{pe}=5.6\times10^{9}\,\mathrm{rad/s}$。\par （2） $\omega_p\propto1/\sqrt m$，离子重得多，氘等离子体里 $\omega_{pi}\approx\omega_{pe}/43$。\par （3） 不能——$N_D\approx0.5$ 时屏蔽球里连一个粒子都装不下，谈不上集体行为。\par （4） 屏蔽只抹掉单个电荷的场；外场和尺度远大于 $\lambda_{De}$ 的宏观场照旧存在（鞘层、漂移波都靠它）。}
 \end{miniquiz}
 
 \begin{figure}[htbp]
@@ -1950,6 +1955,7 @@ m\dot{\vect{v}'} = q(\vect{E} + (\vect{v}' + \vect{v}_E)\times\vect{B}) = q\vect
 \item 一电子在 $B=1\,\mathrm{T}$ 磁场中，$T_e=100\,\mathrm{eV}$。求其回旋半径和回旋频率。
 \item 解释为什么磁镜可以约束粒子，但无法约束一个零温度的冷等离子体（所有粒子 $v_\perp=0$）。
 \end{enumerate}
+\quizans{（1） $E_\parallel$ 只改 $v_\parallel$，垂直漂移的推导不依赖 $v_\parallel$，所以 $\vect v_E$ 不变，粒子一边漂移一边沿 $B$ 加速。\par （2） $\grad B$ 漂移速度与电荷符号有关（正负反向）→ 有净电流；$\vect E\times\vect B$ 漂移与电荷无关 → 无净电流。\par （3） $v_\perp=5.9\times10^{6}\,\mathrm{m/s}$，$r_L\approx34\,\mu\mathrm{m}$，$f_{ce}\approx28\,\mathrm{GHz}$。\par （4） 磁镜力 $-\mu\grad B$ 正比于 $\mu=mv_\perp^2/2B$，$v_\perp=0$ 时 $\mu=0$，粒子径直穿过。}
 \end{miniquiz}
 
 \begin{figure}[htbp]
@@ -2164,6 +2170,7 @@ c_{s,\text{绝热}}=\sqrt{\frac{\gamma_sk_BT_e}{m_i}}
 \item 解释为什么在广义欧姆定律中，霍尔项与电流 $\vect{j}$ 垂直，因此不做功。
 \item 若电子温度 $T_e$ 远高于离子温度 $T_i$，在广义欧姆定律中哪一项会变得重要？
 \end{enumerate}
+\quizans{（1） 定常、不可压时连续性方程化为 $\vect u\cdot\grad n=0$，正是「沿流线不变」。\par （2） 霍尔项 $\vect j\times\vect B/(ne)$ 与 $\vect j$ 垂直，$\vect j\cdot\vect E_H=0$，只改方向不做功。\par （3） $\grad p_e/(ne)$ 项：电子压力把电子推离高压区、建立双极电场，$T_e\gg T_i$ 时它是主导项。}
 \end{miniquiz}
 
 \input{ch4_supplement}
@@ -2399,6 +2406,7 @@ v_A = \frac{B}{\sqrt{\mu_0\rho_m}} = \frac{10^{-3}}{\sqrt{(4\pi\times 10^{-7})(1
 \item 解释为什么阿尔芬波只能沿磁场方向传播（或其分量必须平行于 $\vect{B}$）。
 \item 磁力线冻结被破坏需要什么条件？从电阻 $\eta$ 的角度讨论。
 \end{enumerate}
+\quizans{（1） 静态、$\vect u=0$ 时动量方程只剩 $0=-\grad p+\vect j\times\vect B$。\par （2） $\beta\ll1$ 磁压主导（磁场牵着等离子体走），$\beta\gg1$ 热压主导（等离子体拖着磁场走）。\par （3） 剪切阿尔芬波的恢复力是磁张力，只有 $k_\parallel\neq0$ 时磁力线才被拨动。\par （4） 要有电阻耗散：$R_m=\mu_0Lv/\eta\lesssim1$ 时扩散时间与对流时间相当，冻结失效。}
 \end{miniquiz}
 
 \input{ch5_supplement}
@@ -2585,6 +2593,7 @@ c^2 k^2 \approx \frac{\omega_{pe}^2 \omega}{\omega_{ce}}
 \item 为什么电离层能反射短波无线电（$3$--$30\,\mathrm{MHz}$）但无法反射VHF电视信号（$>100\,\mathrm{MHz}$）？
 \item 给定 $\omega_{pe}/\omega_{ce}=0.1$，取 $\omega/\omega_{ce}=0.3,0.5,0.9$，分别算出 $n_R^2$ 与 $n_L^2$，判断各频率下哪支能传播。再令 $\omega_{pe}/\omega_{ce}=2$ 重做一遍，说明"$\omega<\omega_{ce}$ 时只有 R 波传播"为何不是普遍结论。
 \end{enumerate}
+\quizans{（1） $n^2=1-\omega_{pe}^2/\omega^2<1$，故 $v_p=c/n>c$、$v_g=cn<c$，乘积恒为 $c^2$。\par （2） 短波频率低于电离层峰值 $f_p$（F 层约 9--15 MHz）时 $n^2<0$、波消逝被反射；VHF 高于 $f_p$，直接穿透。\par （3） 用 $n_{R,L}^2=1-X/(1\mp Y)$、$X=(\omega_{pe}/\omega)^2$、$Y=\omega_{ce}/\omega$ 逐点算：$\omega_{pe}/\omega_{ce}=0.1$ 时三个频率都给出 $n_R^2>0$ 且 $n_L^2>0$，两支都能传播；只有把密度提高到 $\omega_{pe}/\omega_{ce}=2$ 才出现 L 支消逝、R 支仍传播。所以「$\omega<\omega_{ce}$ 时只有 R 波」只在密度足够高的参数区成立。}
 \end{miniquiz}
 
 \begin{figure}[htbp]
@@ -2605,7 +2614,7 @@ c^2 k^2 \approx \frac{\omega_{pe}^2 \omega}{\omega_{ce}}
 \epigraph{Landau 阻尼是等离子体物理中最美丽的结果：波不是在碰撞中衰减，而是在与粒子的共振舞蹈中消逝。}{--- 约翰·道森（John M. Dawson）}
 
 \begin{insight}{本章核心目标}{ch7-goal}
-从Vlasov 方程出发，理解无碰撞等离子体中波与粒子的相互作用。掌握Landau 阻尼的物理图像和数学推导，认识动理学描述不可替代的价值。
+从Vlasov 方程出发，理解无碰撞等离子体中波与粒子的相互作用。掌握 Landau 阻尼的物理图像和数学推导，认识动理学描述不可替代的价值。
 \tcblower
 \textbf{前置依赖：}第1章（\S1.2 分布函数 $f(\vect{r},\vect{v},t)$、\S1.3 傅里叶变换）；第4章（\S4.1 玻尔兹曼方程）。若对复变函数中的围道积分不熟悉，附录 C.2 的推导可标记 [挑战] 延后阅读。
 
@@ -2698,7 +2707,7 @@ f = f_0(v) + f_1(x,v,t), \qquad E = E_1(x,t)
 \end{insight}
 
 \begin{history}{Landau 阻尼的发现与实验验证}{landau-history}
-1946年，苏联物理学家\textbf{列夫·朗道}（Lev Landau）从Vlasov 方程出发，通过严格的数学分析预言了这种无碰撞阻尼。当时这一结果极具争议：许多物理学家不相信没有碰撞的系统中波会衰减。费米甚至曾打赌说Landau 的结果一定是错的。
+1946年，苏联物理学家\textbf{列夫·朗道}（Lev Landau）从Vlasov 方程出发，通过严格的数学分析预言了这种无碰撞阻尼。当时这一结果极具争议：许多物理学家不相信没有碰撞的系统中波会衰减。费米甚至曾打赌说 Landau 的结果一定是错的。
 
 理论上的关键突破来自对复变函数积分围道的正确处理（Landau 围道）。实验验证则等到1960年代：加州大学伯克利的Malmberg和Wharton在Q装置中激发电子等离子体波，首次直接测量到了与理论预言一致的阻尼率。这是等离子体物理从"理论漂亮"走向"实验验证"的里程碑。
 \end{history}
@@ -2707,7 +2716,7 @@ f = f_0(v) + f_1(x,v,t), \qquad E = E_1(x,t)
 \begin{enumerate}
 \item \textbf{误区}：Landau 阻尼是共振粒子被波" trapping "导致的。\textbf{事实}：Landau 阻尼的线性理论假设扰动很小，粒子并未被 trapping。 trapping 是非线性效应，发生在振幅较大时。
 \item \textbf{误区}：Landau 阻尼意味着粒子能量增加、温度升高。\textbf{事实}：被阻尼的是宏观的相干波；能量传递给了少数共振粒子，使它们在速度分布的尾部略有凸起——并未使整个系统热化。
-\item \textbf{误区}：只有电子参与Landau 阻尼。\textbf{事实}：任何波模式（包括离子声波）都有相应的Landau 阻尼，由该模式相速度附近的共振粒子决定。
+\item \textbf{误区}：只有电子参与 Landau 阻尼。\textbf{事实}：任何波模式（包括离子声波）都有相应的 Landau 阻尼，由该模式相速度附近的共振粒子决定。
 \end{enumerate}
 \end{warning}
 
@@ -2717,7 +2726,7 @@ f = f_0(v) + f_1(x,v,t), \qquad E = E_1(x,t)
 \item 线性化后得到色散关系，其中 $v = \omega/k$ 处的极点对应\textbf{波--粒子共振}。
 \item \textbf{Landau 阻尼}是无碰撞等离子体中波衰减的机制，由相速度附近的共振粒子引起。
 \item 当 $\partial f_0/\partial v < 0$（麦克斯韦分布）时波被阻尼；若分布有凸起 ($\partial f_0/\partial v > 0$)，则可能出现\textbf{不稳定性}。
-\item 动理学描述不可替代：流体方程完全无法预测Landau 阻尼。
+\item 动理学描述不可替代：流体方程完全无法预测 Landau 阻尼。
 \end{itemize}
 \end{chapterreview}
 
@@ -2727,6 +2736,7 @@ f = f_0(v) + f_1(x,v,t), \qquad E = E_1(x,t)
 \item 若分布函数在 $v=v_0$ 处有一个窄峰（bump-on-tail），定性地说明为什么这会导致不稳定。
 \item Landau 阻尼率随 $k\lambda_D$ 如何变化？从物理上解释为什么长波阻尼弱、短波阻尼强。
 \end{enumerate}
+\quizans{（1） 相空间流不可压缩：$\dot{\vect x}$ 与 $\dot{\vect v}$ 的散度分别为零，$f$ 像不可压流体一样沿轨道守恒。\par （2） 鼓包区 $\partial f/\partial v>0$，波从粒子取能量的通道打开（逆 Landau 阻尼），自由能来自束的定向动能。\par （3） $\gamma\propto kv_{th}\exp[-1/(2k^2\lambda_D^2)]$：$k\lambda_D\ll1$ 时指数压低、阻尼弱；$k\lambda_D\gtrsim1$ 时共振粒子多、阻尼强。}
 \end{miniquiz}
 
 \input{ch7_supplement}
@@ -2899,6 +2909,7 @@ Spitzer 动力学修正因子（$\gamma_E\approx0.58$ 一类，$1/1.4\approx0.71
 \item 若 $T_e = T_i$，双极扩散系数大约是离子扩散系数的多少倍？
 \item 解释为什么高温等离子体的电阻率反而比低温等离子体低。
 \end{enumerate}
+\quizans{（1） $\eta=m_e\nu_{ei}/(ne^2)$，而 $\nu_{ei}\propto n/T_e^{3/2}$，密度恰好抵消，只剩 $T_e^{-3/2}$。\par （2） $T_e=T_i$、$Z=1$ 时 $D_a\approx2D_i$——双极场把离子扩散加快约一倍。\par （3） 温度高则 $\nu\propto T^{-3/2}$ 小，碰撞少、电阻率低。}
 \end{miniquiz}
 
 \input{ch8_supplement}
@@ -3004,7 +3015,7 @@ x^3\simeq-\frac{\mu}{2}
 \begin{insight}{双流不稳定性的物理机制}{two-stream-insight}
 想象两列相向而行的行人（电子束和离子背景）。如果一列中的某人稍微偏离直线，他会撞上对面列中的人。对面的"阻挡"会产生一个反作用力，使偏离进一步增大——正反馈！
 
-双流不稳定性是等离子体中\textbf{电流驱动}不稳定的典型代表。当等离子体中漂移速度超过电子热速度时，这种不稳定性会将定向漂移能量转化为等离子体振荡能（Langmuir 波），最终通过Landau 阻尼（参见第7章）加热电子。这是等离子体中\textbf{反常电阻}（anomalous resistivity）的重要来源之一。
+双流不稳定性是等离子体中\textbf{电流驱动}不稳定的典型代表。当等离子体中漂移速度超过电子热速度时，这种不稳定性会将定向漂移能量转化为等离子体振荡能（Langmuir 波），最终通过 Landau 阻尼（参见第7章）加热电子。这是等离子体中\textbf{反常电阻}（anomalous resistivity）的重要来源之一。
 \end{insight}
 
 \begin{warning}{反常输运与经典输运}{anomalous-transport}
@@ -3029,6 +3040,7 @@ x^3\simeq-\frac{\mu}{2}
 \item 双流不稳定性将哪种形式的能量转化为什么形式？最终通过什么机制耗散？
 \item 反常输运与经典输运的根本区别是什么？
 \end{enumerate}
+\quizans{（1） 坏曲率区曲率矢量与 $\grad p$ 同向，交换相邻磁通管能释放自由能；好曲率区相反，交换要耗能，故稳定。\par （2） 束的定向动能 → 静电波能量，最后经 Landau 阻尼与粒子俘获变成热运动。\par （3） 反常输运由涨落与湍流驱动，标度不同于碰撞输运，典型量级是玻姆型 $\propto T_e/B$。}
 \end{miniquiz}
 
 \begin{figure}[htbp]
@@ -3240,6 +3252,7 @@ $n\tau$ & $\sim 10^{20}\,\mathrm{m}^{-3}\cdot\mathrm{s}$ & $\sim 10^{21}\,\mathr
 \item 惯性约束中，为什么可以用等离子体物理（辐射、状态方程）来描述靶丸压缩，而不需要磁力线冻结等概念？
 \item ITER的 $Q=10$ 目标意味着什么？与 $Q>1$ 有什么区别？
 \end{enumerate}
+\quizans{（1） 聚变功率密度 $\propto n^2\langle\sigma v\rangle$、损失 $\propto nT/\tau_E$，两者之比只依赖 $n\tau_E$（与 $T$），所以判据是乘积。\par （2） 托卡马克轴对称、约束好，但有净电流（要驱动、易破裂）；仿星器无净电流、适合稳态，代价是线圈复杂、输运历史上偏差。\par （3） 内爆压缩只有纳秒量级，磁场来不及起作用，用流体 + 辐射输运（状态方程、不透明度）就够，不需要磁冻结。\par （4） $Q=10$ 表示聚变功率是加热功率的十倍、$\alpha$ 自加热已占主导；$Q>1$ 只是产出大于投入的科学验证点，离点火尚有距离。}
 \end{miniquiz}
 
 \begin{figure}[htbp]
@@ -3429,6 +3442,7 @@ ECR可以产生极高密度（$n_e \sim 10^{18}\sim 10^{19}\,\mathrm{m^{-3}}$）
 \item 射频放电为什么使用 $13.56\,\mathrm{MHz}$ 而非任意频率？
 \item 比较CCP和ICP：哪种耦合方式更适合高纵横比刻蚀孔洞（需要高离子密度和各向异性）？
 \end{enumerate}
+\quizans{（1） 左侧碰撞太少、放电难自持；右侧碰撞太多、每次拿到的能量不够，需要更高电压。工作在极小值右侧可兼顾稳定与寿命。\par （2） 13.56 MHz 是国际分配的 ISM 频段，避免干扰通信；频率足够高才耦合得动，又低到鞘层仍属常规电容性范围。\par （3） ICP：无极板、密度高、气压低，各向异性更好。}
 \end{miniquiz}
 
 \begin{figure}[htbp]
@@ -3616,6 +3630,7 @@ Child--Langmuir 定律的 $V_s^{3/4}$ 依赖关系非常有趣：鞘层厚度不
 \item 玻姆判据中 $u_B = \sqrt{k_B T_e/m_i}$ 的分子为什么是 $T_e$ 而非 $T_i$？
 \item 射频鞘层振荡时，为什么离子能量由时间平均电位决定而非瞬时电位？
 \end{enumerate}
+\quizans{（1） 电子热速度远大于离子，初始电子流更大，壁面充负电，直到两个通量相等。\par （2） $u_B$ 由 $T_e$ 决定，因为建立鞘层电位降的是电子压力，离子只是被这个电位加速。\par （3） $\omega_{rf}$ 远高于离子穿越鞘层的频率，离子只感受到时间平均电位（含直流自偏压）。}
 \end{miniquiz}
 
 \section{等离子体化学反应与工艺应用}
@@ -3702,6 +3717,7 @@ PECVD与溅射沉积的物理机制完全不同：PECVD是"化学反应在表面
 \item 比较PECVD与热CVD的温度优势：PECVD为什么可以在低温下沉积？
 \item 在Bosch工艺中，侧壁保护靠什么实现？底部刻蚀靠什么实现？
 \end{enumerate}
+\quizans{（1） (a) 离子轰击打断表面键、制造悬键，使化学刻蚀更容易；(b) 把反应产物打走、保持表面新鲜；两者叠加远快于纯化学或纯物理。\par （2） 高能电子把前驱气体解离成活性基团，沉积不再依赖衬底高温。\par （3） 侧壁靠 C$_4$F$_8$ 聚合物钝化保护，底部靠 SF$_6$ 的 F 自由基配合离子轰击去掉钝化层并刻蚀硅。}
 \end{miniquiz}
 
 \section{磁控溅射与刻蚀机物理模型}
@@ -3794,6 +3810,7 @@ D_a = \frac{4.806\times10^{-19}}{1.162\times10^{-25}\times10^5} \approx 41\,\mat
 \item 双极扩散系数 $D_a$ 为什么远大于离子自由扩散系数 $D_i$，但远小于电子自由扩散系数 $D_e$？
 \item 非平衡磁控溅射与平衡磁控溅射相比，对衬底薄膜质量有何影响？
 \end{enumerate}
+\quizans{（1） $r_L\propto\sqrt m$：电子回旋半径只有几十微米、被磁场牢牢束缚；氩离子大约 $10^5$ 倍，磁场对它的约束可忽略。\par （2） 双极扩散由双极电场耦合两者，$D_a\approx(T_e+T_i)/T_i\,D_i$，比 $D_i$ 大（等温时约 2 倍），但远小于 $D_e$。\par （3） 非平衡磁控把更多离子引向衬底，膜更致密、附着更好。}
 \end{miniquiz}
 
 \section{低温等离子体特征参数估算案例}
@@ -3861,6 +3878,7 @@ R_{\text{iz}} = \frac{P_{\text{iz}}}{e E_{\text{iz}}} = \frac{75}{1.6\times 10^{
 \item 估算题：一个ICP源功率 $2\,\mathrm{kW}$，$T_e = 5\,\mathrm{eV}$，氩气，电极面积 $0.03\,\mathrm{m^2}$，假设电离效率 $20\%$。估算等离子体密度（提示：先算电离速率，再除以损失面积和玻姆速度）。
 \item 比较辉光放电与ICP的参数：为什么ICP密度更高但 $T_e$ 更低？
 \end{enumerate}
+\quizans{（1） 电离、解离这些步骤由电子完成，离子保持冷，轰击表面时不易造成深层损伤。\par （2） 电离功率 $2\,\mathrm{kW}\times20\%=400\,\mathrm{W}$，氩电离能 15.76 eV → 约 $1.6\times10^{20}\,\mathrm{s^{-1}}$；损失面积 $0.03\,\mathrm{m^2}$、$u_B\approx3.5\times10^{3}\,\mathrm{m/s}$ → $n\approx1.5\times10^{18}\,\mathrm{m^{-3}}$。\par （3） ICP 没有高电压鞘层，能量主要花在电离而不是加速离子撞壁，所以密度更高而 $T_e$ 更低。}
 \end{miniquiz}
 
 \begin{figure}[htbp]
@@ -4764,6 +4782,7 @@ Rogowski 线圈的一个重要优点是：它只测量\emph{穿过环中心的�
     
     \item 磁探针直接测量的是 $B$、$\dot{B}$ 还是 $\ddot{B}$？如果要测量静态磁场，需要增加什么处理步骤？
 \end{enumerate}
+\quizans{（1） 电子热速度高、通量大，探针必须降到负电位才能把电子流压到与离子流相等，故 $V_f<V_p$。\par （2） $n_c(300\,\mathrm{GHz})=1.1\times10^{21}\,\mathrm{m^{-3}}$ 比 $n_e\sim10^{16}\,\mathrm{m^{-3}}$ 高五个量级，相移 $\propto n_e/n_c$ 小到测不出来。\par （3） 汤姆逊截面 $\sigma_T\propto1/m^2$，离子比电子小 $(m_e/m_i)^2\sim10^{-7}$，可以忽略；若 $m_i=100m_e$，离子截面涨到现在的 $(1836/100)^2\approx337$ 倍，仍只有电子信号的 $10^{-4}$。\par （4） $I_1/I_2=(g_1/g_2)\ee^{-\Delta E/T}$：取能级 1 低于能级 2（$\Delta E=-2\,\mathrm{eV}$）才自洽，得 $T_{\mathrm{exc}}=2/\ln2.5\approx2.2\,\mathrm{eV}$——符号约定反了会得到无解。\par （5） 磁探针测的是 $\dot B$（感应电压），要得到静态磁场必须先积分并做零点漂移补偿。}
 \end{miniquiz}
 
 \input{ch12_supplement}
@@ -4914,7 +4933,7 @@ OES发射光谱 & $10^{12}$--$10^{19}$ & $0.1$--$10$ & cm & ms & 工业/空间 \
 
 \frontchapter{结语}
 
-当你读完这本书，你已经走过了等离子体物理的核心地带：从德拜屏蔽的优雅到Landau 阻尼的深刻，从单粒子在磁场中的回旋到MHD中磁力线的集体舞蹈，从实验室的辉光放电到ITER中燃烧的等离子体。
+当你读完这本书，你已经走过了等离子体物理的核心地带：从德拜屏蔽的优雅到 Landau 阻尼的深刻，从单粒子在磁场中的回旋到MHD中磁力线的集体舞蹈，从实验室的辉光放电到ITER中燃烧的等离子体。
 
 等离子体物理的魅力在于它的\textbf{统一性}：
 \begin{itemize}
@@ -5972,7 +5991,7 @@ bad: success=False status=1 message=The maximum number of mesh nodes is exceeded
 \begin{equation}
 \omega^2 = \omega_{pe}^2 + \frac{3k_\mathrm{B}T_e}{m_e}k^2 = \omega_{pe}^2 + 3k^2v_{te}^2
 \end{equation}
-代码含\textbf{有效性回溯检查}：端口输出 $k\lambda_D$ 取 $0.1,0.3,1.0$ 时的热修正量 $3(k\lambda_D)^2$，据此判断 Bohm--Gross 近似的适用范围（约 $k\lambda_D\lesssim0.3$；$k\lambda_D\to1$ 时Landau 阻尼已显著，须用动理学色散关系）。
+代码含\textbf{有效性回溯检查}：端口输出 $k\lambda_D$ 取 $0.1,0.3,1.0$ 时的热修正量 $3(k\lambda_D)^2$，据此判断 Bohm--Gross 近似的适用范围（约 $k\lambda_D\lesssim0.3$；$k\lambda_D\to1$ 时 Landau 阻尼已显著，须用动理学色散关系）。
 
 \begin{Verbatim}[breaklines=true,breakanywhere=false,breaksymbolright=\tiny\ensuremath{\hookrightarrow},fontsize=\small]
 import numpy as np

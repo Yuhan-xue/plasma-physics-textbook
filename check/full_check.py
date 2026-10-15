@@ -644,6 +644,23 @@ def check_E_consistency():
 
 # ---------------------------------------------------------------- 主流程
 
+def check_G_selfstudy():
+    """随堂自测的答案闭环（v1.26.33 起）：18 只盒 = 16 只带参考要点 + 2 只导读盒。"""
+    text = strip_comments(read(os.path.join(SRC, MAIN)))
+    n_box = text.count('\\begin{miniquiz}')
+    n_ans = text.count('\\quizans{')
+    n_titled = len(re.findall(r'\\begin\{miniquiz\}\[title=', text))
+    if '\\newcommand{\\quizans}' not in text:
+        rec('FAIL', 'G', u'缺少 \\quizans 宏定义：随堂自测没有答案入口')
+    if n_box != 18:
+        rec('FAIL', 'G', u'随堂自测盒应为 18 只，实际 %d 只' % n_box)
+    elif n_ans != 16 or n_titled != 2:
+        rec('FAIL', 'G', u'随堂自测答案不完整：应为 16 只有答案 + 2 只导读盒，'
+                         u'实际答案 %d 只 / 带标题 %d 只' % (n_ans, n_titled))
+    else:
+        rec('PASS', 'G', u'随堂自测答案闭环：18 只盒 = 16 只带参考要点 + 2 只导读盒')
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--no-compile', action='store_true', help='跳过重新编译')
@@ -657,6 +674,7 @@ def main():
     check_C_compile(not args.no_compile)
     check_D_pdf()
     check_E_consistency()
+    check_G_selfstudy()
 
     # ---------------------------------------------------------- 报告
     order = {'FAIL': 0, 'WARN': 1, 'INFO': 2, 'PASS': 3}
