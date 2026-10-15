@@ -7455,4 +7455,14 @@ canon：`tmp/appAW_calc.py`（只 print）→ `tmp/appAW_calc.txt`（**151 个�
 
 ### 60.8 发布记录
 
-（待回填）
+本轮（v1.26.27，附录 AW 高能量密度物理）已完成提交、推送、Gitea 发布与独立复核，全部数字如下。
+
+- **提交**：内容 `7a4d383`（`src/appendix_aw_hedp.tex` 639 行新建、`check/physics_regression.py` +556、`check/fixtures/gate_physics_negative.py` 18 条补丁、主文件 +6/-2、PDF Bin 3706909 → 3754810）；文档 `9053f41`（README 与题记同步）。
+- **tag**：`v1.26.27` = 注释 tag 对象 `140d188042c259d037668d1d889189b07b82bcfc` → 提交 `9053f41`（`git cat-file -p` 确认 object 为 docs 提交，与前几轮一致）。
+- **推送**：`91a2a2a..9053f41 main` + `* [new tag] v1.26.27`（pwsh 把 stderr 报成 NativeCommandError 属已知假失败）。
+- **Gitea release**：`POST status 201`，**id=247**（上一版 v1.26.26 = 243），<http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.27>。
+- **附件**：上传 `status=201`、`size=3754810`、<http://zsyq.hxlab.tech:3000/attachments/c637ce41-3ef2-41ec-9d01-8c7c95421afe>。
+- **独立复核**：`tmp/verify_asset12627.py` 用 `curl.exe -sS -L --noproxy '*'` 下载附件到 `tmp/dl_v12627.pdf`，本地与远端同为 **3754810 B**、SHA256 同为 **D4BEB7B12C2A4768E3259C324ABAD91A3C65E2B39F534EEED7C90E2D5E3FC120**、逐字节一致 `True` → `[PASS]`。
+- **远端面**：`refs/heads/main = 9053f41`、`refs/tags/v1.26.27 = 140d1880`；`reviews/` **74 项**（`2026-10-10-independent` 31 + `2026-10-11-scheduled` 35 + `2026-10-12-scheduled` 4 + `2026-10-13-scheduled` 4）**无新增**；`todo/` 为空。
+- **仓库卫生**：提交前 9 个 `.bak*` 全部删除（`README.md.bakr12627`、`README.md.bakrr12627`、`gate_physics_negative.py.bak46/.bak47`、`physics_regression.py.bakp55/.bakp55b`、`processed.md.baks60`、`appendix_aw_hedp.tex.bakai1`、`plasma_physics_textbook_v2.tex.bakaw`），复查计数 0。
+- **协作提醒**：`.cindy-worktrees/` 为未跟踪目录（不在本轮提交范围内）。
