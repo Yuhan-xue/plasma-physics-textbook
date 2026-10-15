@@ -680,8 +680,8 @@ def check_I_unitchecks():
     if len(parts) != 12:
         rec('FAIL', 'I', u'章数应为 12，实际 %d' % len(parts))
         return
-    missing = [i + 1 for i, p in enumerate(parts) if u'量纲自检' not in p]
-    n = text.count(u'量纲自检')
+    missing = [i + 1 for i, p in enumerate(parts) if u'\\item \\textbf{量纲自检}' not in p]
+    n = text.count(u'\\item \\textbf{量纲自检}')
     if missing:
         rec('FAIL', 'I', u'以下章缺少量纲自检要点：%s' % missing)
     elif n != 12:
@@ -741,6 +741,26 @@ def check_L_appendixmap():
         rec('PASS', 'L', u'附录导航图齐备：%d 个附录、10 个主题簇' % n_chip)
 
 
+def check_M_bestimate():
+    """附录 B「一分钟估算」小节（v1.26.41 起）：三步估算 + 三种环境对照表。"""
+    text = strip_comments(read(os.path.join(SRC, MAIN)))
+    need = [
+        u'\\section{一分钟估算：三步摸清一个未知等离子体}',
+        u'{tip-b-estimate}',
+        u'2.43367\\times10^{10}',
+        u'0.223044',
+        u'8204.11',
+        u'0.0483205\\%',
+    ]
+    miss = [s for s in need if s not in text]
+    if miss:
+        rec('FAIL', 'M', u'附录 B「一分钟估算」小节缺失要素：%s' % miss)
+    elif text.count(u'工艺腔') < 1 or text.count(u'太阳风') < 1:
+        rec('FAIL', 'M', u'「一分钟估算」三环境对照不完整')
+    else:
+        rec('PASS', 'M', u'附录 B「一分钟估算」齐备：三步估算 + 三环境对照表')
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--no-compile', action='store_true', help='跳过重新编译')
@@ -760,6 +780,7 @@ def main():
     check_J_predicts()
     check_K_roadmap()
     check_L_appendixmap()
+    check_M_bestimate()
 
     # ---------------------------------------------------------- 报告
     order = {'FAIL': 0, 'WARN': 1, 'INFO': 2, 'PASS': 3}

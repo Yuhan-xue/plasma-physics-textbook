@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.26.40},
+  pdftitle={等离子体物理自学教材 v1.26.41},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -457,7 +457,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.26.40}}
+  {\small\textcolor{white!45}{v1.26.41}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -5712,6 +5712,64 @@ Spitzer 电阻率 & $\eta_\parallel$ & $\displaystyle\eta_\parallel = \frac{Z e^
 %======================================================================
 % 附录C：书中省略的中间数学步骤
 %======================================================================
+\section{一分钟估算：三步摸清一个未知等离子体}
+
+拿到一个没见过的等离子体，先只问四个数：密度 $n_e$、电子温度 $T_e$、磁场 $B$、
+以及你关心的尺度 $L$。其余的量都能从这四个数推出来——这是 NRL Plasma Formulary
+的量级传统，也是本书反复使用的估算路线（量纲核对见各章「量纲自检」）。
+
+\textbf{第一步：屏蔽与集体性。} $\lambda_{De}=\sqrt{\varepsilon_0k_BT_e/(n_ee^2)}$，
+$N_D=\frac{4}{3}\pi n_e\lambda_{De}^3$。$N_D\gg1$ 才是「等离子体」，
+$\lambda_{De}$ 同时决定鞘层厚度与探针的空间分辨极限。
+
+\textbf{第二步：两个频率、一个长度。} 由 $\omega_{pe}$ 与 $\omega_{ce}$ 得 $f=\omega/2\pi$，
+再由 $T_i$ 与 $B$ 得离子回旋半径 $\rho_i=\sqrt{m_ik_BT_i}/(eB)$。
+比值 $f_{pe}/f_{ce}$ 告诉你静电效应与磁化效应谁主导；$\rho_i/L$ 判断离子能否被磁场约束。
+
+\textbf{第三步：一个速度、一个比值。} 阿尔芬速度 $v_A=B/\sqrt{\mu_0n_im_i}$ 与
+比压 $\beta=2\mu_0n_ek_BT_e/B^2$。$\beta\ll1$ 时磁场牵着等离子体走，
+$\beta\gg1$ 时反过来，热压推着磁场走。
+
+同样的三步走，落在三种环境里差距有多大：
+
+{\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}p{3.0cm}p{4.2cm}p{2.6cm}p{2.6cm}p{2.6cm}@{}}
+\toprule
+\textbf{量} & \textbf{公式} & \textbf{工艺腔} & \textbf{太阳风} & \textbf{聚变芯部} \\
+\midrule
+$n_e$ & 输入 & $10^{16}\,\mathrm{m^{-3}}$ & $5\times10^{6}\,\mathrm{m^{-3}}$ & $10^{20}\,\mathrm{m^{-3}}$ \\
+$T_e$ & 输入 & $3\,\mathrm{eV}$ & $10\,\mathrm{eV}$ & $10\,\mathrm{keV}$ \\
+$B$ & 输入 & $5\,\mathrm{mT}$ & $5\,\mathrm{nT}$ & $5.3\,\mathrm{T}$ \\
+$L$ & 关心的尺度 & $0.1\,\mathrm{m}$ & $10^{7}\,\mathrm{m}$ & $2\,\mathrm{m}$ \\
+\midrule
+$\lambda_{De}$ & $\sqrt{\varepsilon_0k_BT_e/(n_ee^2)}$ & $0.12876\,\mathrm{mm}$ & $10.5132\,\mathrm{m}$ & $74.3394\,\mathrm{\mu m}$ \\
+$N_D$ & $\frac{4}{3}\pi n_e\lambda_{De}^3$ & $89418.6$ & $2.43367\times10^{10}$ & $1.72086\times10^{8}$ \\
+$f_{pe}$ & $\omega_{pe}/2\pi$ & $0.897866\,\mathrm{GHz}$ & $20.0769\,\mathrm{kHz}$ & $89.7866\,\mathrm{GHz}$ \\
+$f_{ce}$ & $\omega_{ce}/2\pi$ & $0.139962\,\mathrm{GHz}$ & $139.962\,\mathrm{Hz}$ & $148.36\,\mathrm{GHz}$ \\
+$f_{pe}/f_{ce}$ & —— & $6.41505$ & $143.445$ & $0.605194$ \\
+$\rho_i$ & $\sqrt{m_ik_BT_i}/(eB)$ & $0.223044\,\mathrm{m}$ & $64.621\,\mathrm{km}$ & $2.71649\,\mathrm{mm}$ \\
+$\rho_i/L$ & —— & $2.23044$ & $0.0064621$ & $0.00135825$ \\
+$v_A$ & $B/\sqrt{\mu_0n_im_i}$ & $173.066\,\mathrm{km/s}$ & $48.7732\,\mathrm{km/s}$ & $8204.11\,\mathrm{km/s}$ \\
+$\beta$ & $2\mu_0n_ek_BT_e/B^2$ & $0.0483205\%$ & $80.5342\%$ & $1.4335\%$ \\
+\midrule
+\multicolumn{2}{@{}l}{\textbf{一句话结论}} & 静电为主、离子未被磁化 & 热压主导、$\beta>1$ & 强磁场、低 $\beta$、离子强磁化 \\
+\bottomrule
+\end{tabular}
+}
+
+三个结论都不是背下来的，而是从比值读出来的：工艺腔里 $\rho_i/L=2.23>1$，
+氩离子根本绕不完一圈就已经撞壁，所以那里谈「离子被磁化」是错的；
+太阳风 $\beta=80.53\%$，磁场是被等离子体拖着的；聚变芯部 $f_{pe}/f_{ce}=0.605$，
+电子在磁场里转得比等离子体振荡还快，于是波的图像必须带上磁化。
+
+\begin{tip}{估算的三个纪律}{tip-b-estimate}
+\textbf{估算的三个纪律：}（1）\textbf{先算单位}（本书各章的「量纲自检」就是这件事）；
+（2）\textbf{只保留一位有效数字的输入}，中间不要过早四舍五入——三种环境的差别常常
+就在一个数量级上；（3）\textbf{结论要能反过来检验}：如果 $\rho_i>L$ 却断言「离子被磁化」，
+或者 $\beta\ll1$ 却把磁场当被动变量，那一定是哪一步抄错了公式。
+\end{tip}
+
 \appchapter{附录C：书中省略的中间数学步骤}
 
 正文中为保持叙述流畅，省略了若干冗长但重要的数学推导。本章将它们完整补出，并标注对应正文章节。如果读者在正文处感到跳跃，可查阅本节。
