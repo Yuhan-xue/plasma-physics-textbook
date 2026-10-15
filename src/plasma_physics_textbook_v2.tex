@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.26.30},
+  pdftitle={等离子体物理自学教材 v1.26.31},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -238,6 +238,12 @@
   figlead/.style={draw=figGray, line width=0.5pt, ->, >=Stealth, shorten >=1.5pt},
   figtick/.style={font=\footnotesize, text=figInk},
 }
+% ---- 真实图像配图（2026-10-16 起）：开放许可照片/机构示意图的排版约定 ----
+% 只用 CC0 / 公有领域 / CC BY / CC BY-SA 的图像；每张实拍图随图署名，
+% 在 \caption 之后用 \figsource{作者｜许可｜来源} 写一行灰色小字（作者与许可以 CREDITS.md 为准）。
+% 排版宽度：单栏整幅不超过 0.86\textwidth，双图并排各 0.42\textwidth；
+% 正文里的图一律 figure[htbp] + \centering，图注首句点题（这一条从 v1.27.0 起用于新增配图）。
+\newcommand{\figsource}[1]{\par\vspace{1pt}{\footnotesize\color{figGray}图片来源：#1}}
 \newtcbtheorem[number within=chapter]{theorem}{定理}{
   colback=thmblue!5,colframe=thmblue,fonttitle=\bfseries,breakable,
   left=4pt,right=4pt,top=4pt,bottom=4pt}{thm}
@@ -431,7 +437,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.26.30}}
+  {\small\textcolor{white!45}{v1.26.31}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -1382,6 +1388,23 @@ v_p = \frac{\omega}{k} = \frac{\sqrt{\omega_p^2 + c^2k^2}}{k} = c\sqrt{1 + \frac
 
 很多人初次接触等离子体时会想："这不就是电离的气体吗？"这个说法在直觉上没错，但\textbf{并非所有电离气体都是等离子体}。关键在于：等离子体中的粒子必须表现出\textbf{集体行为}——大量粒子通过长程电磁力耦合在一起，形成具有自身特征尺度和特征频率的自治系统。
 
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[b]{0.485\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{../figures/aurora_iss.jpg}
+  \caption{天然等离子体：极光}\label{fig:photo-aurora}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.485\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{../figures/plasma_globe.jpg}
+  \caption{实验室等离子体：等离子体球}\label{fig:photo-globe}
+\end{subfigure}
+\caption{极光与等离子体球是同一种物质状态。左图里，太阳风粒子沿地磁场沉降、撞击高层大气原子并使其发光；右图里，低压惰性气体被高频电场击穿，形成随外界导体移动的放电丝。两张都不是示意图，而是真实等离子体被拍下来的样子——它们和本章后面算的德拜屏蔽、等离子体频率是同一套物理。}
+\label{fig:photo-natural-lab}
+\figsource{极光：NASA/Johnson Space Center，公有领域；等离子体球：Stbuccia，CC BY-SA 4.0。均为 Wikimedia Commons，完整链接与许可见 figures/CREDITS.md。}
+\end{figure}
+
 \section{德拜屏蔽}\difficulty{基础}
 \label{sec:ch2-debye}
 
@@ -1649,6 +1672,14 @@ N_D = \frac{4}{3}\pi n\lambda_D^3 \approx 4.4\times10^{13} \gg 1 .
 \end{enumerate}
 \end{miniquiz}
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.86\textwidth]{../figures/heliosphere.jpg}
+\caption{太阳风把星际介质向外推开，形成一个以太阳为中心的空腔——日球层；太阳系就泡在这样一团稀薄等离子体里。它的数密度比实验室等离子体低十几个量级，却仍然满足本章的等离子体判据：判据看的是集体行为能不能建立，不是密度本身。}
+\label{fig:photo-heliosphere}
+\figsource{NASA's Scientific Visualization Studio，公有领域（Wikimedia Commons），链接见 figures/CREDITS.md。}
+\end{figure}
+
 \input{ch2_supplement}
 
 
@@ -1912,6 +1943,14 @@ m\dot{\vect{v}'} = q(\vect{E} + (\vect{v}' + \vect{v}_E)\times\vect{B}) = q\vect
 \item 解释为什么磁镜可以约束粒子，但无法约束一个零温度的冷等离子体（所有粒子 $v_\perp=0$）。
 \end{enumerate}
 \end{miniquiz}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.86\textwidth]{../figures/magnetosphere.jpg}
+\caption{地球磁层是自然界最大的磁瓶：带电粒子绕磁力线回旋、被两端更强的磁场反射，于是被约束在辐射带里，并在磁尾与弓激波处产生波与加速。图中标注的波与粒子过程，正是第 3 章单粒子运动与磁镜约束的放大版。}
+\label{fig:photo-magnetosphere}
+\figsource{NASA's Goddard Space Flight Center，公有领域（Wikimedia Commons），链接见 figures/CREDITS.md。}
+\end{figure}
 
 \input{ch3_supplement}
 
@@ -2266,6 +2305,14 @@ MHD做了以下关键近似：
 \item \textbf{磁星}：中子星超强磁场（$10^{8}$--$10^{11}\,\mathrm{T}$）正是通过冻结效应在恒星坍缩过程中从普通恒星磁场放大而来
 \end{itemize}
 \end{insight}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.72\textwidth]{../figures/solar_corona.jpg}
+\caption{日冕与日珥：等离子体被磁力线串成一个个环。因为磁力线冻结在等离子体里（第 5.5 节），物质不能随意穿过磁面，只能沿着它流动——所以太阳大气里看到的「结构」本质上就是磁场结构。}
+\label{fig:photo-corona}
+\figsource{NASA/Johnson Space Center，公有领域（Wikimedia Commons），链接见 figures/CREDITS.md。}
+\end{figure}
 
 \section{阿尔芬波}\difficulty{基础}
 
@@ -3067,6 +3114,23 @@ Lawson 判据的核心是\textbf{能量收支平衡}：
 \textbf{ITER}（国际热核聚变实验堆）是目前在建的最大托卡马克，位于法国卡达拉舍，由35个国家合作建设。其\textbf{设计目标}是：50 MW 外部等离子体加热功率产生 500 MW 聚变功率，即 $Q_{\text{plasma}}\equiv P_{\text{fus}}/P_{\text{heat}}=10$，用以验证聚变能源的科学和工程可行性。请把 ITER 的数字始终读作"设计目标"（截至本书写作时尚未运行），不要与已实现的实验结果混为一谈。
 \end{history}
 
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[b]{0.485\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{../figures/tokamak_interior.jpg}
+  \caption{托卡马克：Alcator C-Mod 真空室内景}\label{fig:photo-tokamak}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.485\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{../figures/stellarator_w7x.jpg}
+  \caption{仿星器：Wendelstein 7-X 实验大厅}\label{fig:photo-stellarator}
+\end{subfigure}
+\caption{两条磁约束路线的真实装置。托卡马克（左）用等离子体自身电流提供极向场，内部是环向对称的「甜甜圈」；仿星器（右）把极向场全部做进三维扭曲的线圈里，换取稳态运行能力，代价是线圈形状极其复杂。左图是真空室内壁，等离子体并不接触它——靠的就是第 10.2 节的磁面。}
+\label{fig:photo-magnetic-confinement}
+\figsource{Alcator C-Mod：Mike Garrett/MIT PSFC，CC BY 3.0；W7-X：Siarhei Besarab，CC BY-SA 4.0。均为 Wikimedia Commons，链接见 figures/CREDITS.md。}
+\end{figure}
+
 \section{惯性约束聚变}\difficulty{基础}
 
 \begin{definition}{惯性约束聚变（ICF）}{icf-def}
@@ -3137,6 +3201,23 @@ $n\tau$ & $\sim 10^{20}\,\mathrm{m}^{-3}\cdot\mathrm{s}$ & $\sim 10^{21}\,\mathr
 \item ITER的 $Q=10$ 目标意味着什么？与 $Q>1$ 有什么区别？
 \end{enumerate}
 \end{miniquiz}
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[b]{0.485\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{../figures/iter_construction.jpg}
+  \caption{ITER 建设现场（2018）}\label{fig:photo-iter}
+\end{subfigure}\hfill
+\begin{subfigure}[b]{0.485\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{../figures/nif_target.jpg}
+  \caption{美国国家点火装置（NIF）靶室}\label{fig:photo-nif}
+\end{subfigure}
+\caption{两条路线在工程尺度上的样子：磁约束要造一个几十米量级的环（左），惯性约束要把几毫米的靶丸在十亿分之一秒内压到千倍固体密度，靶室直径 10 米、四周布满激光入口（右）。度量它们的其实是同一个 0-D 功率账：增益 $Q$ 与三重积。}
+\label{fig:photo-fusion-scale}
+\figsource{ITER：Oak Ridge National Laboratory，CC BY 2.0；NIF：Lawrence Livermore National Laboratory，CC BY-SA 3.0。均为 Wikimedia Commons，链接见 figures/CREDITS.md。}
+\end{figure}
 
 \input{ch10_supplement}
 
@@ -3309,6 +3390,14 @@ ECR可以产生极高密度（$n_e \sim 10^{18}\sim 10^{19}\,\mathrm{m^{-3}}$）
 \item 比较CCP和ICP：哪种耦合方式更适合高纵横比刻蚀孔洞（需要高离子密度和各向异性）？
 \end{enumerate}
 \end{miniquiz}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.86\textwidth]{../figures/glow_discharge.jpg}
+\caption{直流辉光放电管的空间结构（实拍）：阴极暗区、负辉光、法拉第暗区、正柱区依次排列。暗区不是「没有等离子体」，而是电子能量还不够电离；亮区则是激发与电离最剧烈的地方。这张照片可以直接和本章的放电伏安特性、鞘层与电子能量分布对照着看。}
+\label{fig:photo-glow}
+\figsource{Chetvorno，CC BY-SA 2.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
+\end{figure}
 
 \section{等离子体鞘层详细理论}
 \difficulty{提高}
@@ -3733,6 +3822,14 @@ R_{\text{iz}} = \frac{P_{\text{iz}}}{e E_{\text{iz}}} = \frac{75}{1.6\times 10^{
 \item 比较辉光放电与ICP的参数：为什么ICP密度更高但 $T_e$ 更低？
 \end{enumerate}
 \end{miniquiz}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/hall_thruster.jpg}
+\caption{同一类低温放电的另一种用途：霍尔推力器点火（氪工质）。放电室内电子被磁场束缚做霍尔漂移，离子被电场加速喷出产生推力——羽流里那团发光的，就是被电离后加速出去的气体。等离子体在这里不是「要控制住的东西」，而是要利用的工质。}
+\label{fig:photo-thruster}
+\figsource{MrAdamJohnson，CC BY-SA 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
+\end{figure}
 
 \input{ch11_supplement}
 

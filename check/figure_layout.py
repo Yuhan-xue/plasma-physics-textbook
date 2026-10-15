@@ -424,6 +424,57 @@ def check_figure_palette():
         rec('PASS', 'P', '插图配色规范：无写死颜色（全部走统一色板）')
 
 
+def check_photo_sources():
+    """静态扫描：正文引用的实拍/机构图必须①文件存在②图环境里有 \\figsource 署名
+    ③在 figures/CREDITS.md 里登记④单张不超过 1.5 MB。"""
+    import glob as _glob
+    src = os.path.join(ROOT, 'src')
+    figdir = os.path.join(ROOT, 'figures')
+    credits_path = os.path.join(figdir, 'CREDITS.md')
+    credits = open(credits_path, encoding='utf-8').read() if os.path.exists(credits_path) else ''
+    inc = re.compile(r'\\includegraphics(?:\[[^\]]*\])?\{([^}]*)\}')
+    missing, no_src, unlisted, heavy, total = [], [], [], [], 0
+    for path in sorted(_glob.glob(os.path.join(src, '*.tex'))):
+        raw = open(path, encoding='utf-8').read()
+        raw_nc = re.sub(r'(?<!\\)%.*', '', raw)
+        for m in inc.finditer(raw_nc):
+            rel = m.group(1).strip()
+            total += 1
+            p = os.path.normpath(os.path.join(src, rel))
+            base = os.path.basename(rel)
+            line = raw_nc[:m.start()].count('\n') + 1
+            if not os.path.exists(p):
+                missing.append('%s:%d -> %s' % (os.path.basename(path), line, rel))
+                continue
+            sz = os.path.getsize(p)
+            if sz > 1500 * 1024:
+                heavy.append('%s（%.2f MB）' % (base, sz / 1048576.0))
+            if base not in credits:
+                unlisted.append(base)
+        for fm in FIG_ENV.finditer(raw_nc):
+            blk = fm.group(0)
+            if '\\includegraphics' in blk and '\\figsource{' not in blk:
+                line = raw_nc[:fm.start()].count('\n') + 1
+                no_src.append('%s:%d' % (os.path.basename(path), line))
+    if total == 0:
+        rec('FAIL', 'P', '实拍图：正文里一处 \\includegraphics 都没有（配图被删？）')
+        return
+    if missing:
+        for b in missing[:5]:
+            rec('FAIL', 'P', '实拍图文件缺失：%s' % b)
+    if no_src:
+        for b in no_src[:5]:
+            rec('FAIL', 'P', '图环境缺 \\figsource 署名：%s' % b)
+    if unlisted:
+        for b in sorted(set(unlisted))[:5]:
+            rec('FAIL', 'P', '实拍图未在 figures/CREDITS.md 登记：%s' % b)
+    if heavy:
+        for b in heavy[:3]:
+            rec('WARN', 'P', '实拍图偏大（建议 ≤1.5 MB）：%s' % b)
+    if not (missing or no_src or unlisted):
+        rec('PASS', 'P', '实拍图：%d 处引用均存在、均有署名、均已在 CREDITS.md 登记' % total)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--pdf', default=DEFAULT_PDF)
@@ -443,6 +494,7 @@ def main():
                 fitz = None
         if fitz is not None:
             check_figure_palette()
+            check_photo_sources()
             doc = fitz.open(args.pdf)
             seen = set()
             box_keys = set(k for k, _ in FIGURES)
