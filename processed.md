@@ -8353,4 +8353,24 @@ dry-run 输出暴露后改为 `idx+1`（在锚点行之后）。③每章找「�
 ④量级估算盒（NRL/IAEA 定标表）⑤配图第四批（`image-research/README.md` 里 92 张
 已验证素材，优先第 8 章等仍空的章；长边降到 1200 px 控制 PDF 体积）。
 
-**69.8 发布记录（待回填）。**
+**69.8 发布记录（已回填）。**
+
+- **Gitea release**：`id=284`（上一版 v1.26.35 = 280），
+  <http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.36>
+- **附件**：`plasma_physics_textbook_v2.pdf`，**10006813 B**，SHA256
+  `CF683EF568F6C02268C00EB845B9AB7C8F510D8EC3C7465BED2DD06F5629D161`，
+  <http://zsyq.hxlab.tech:3000/attachments/f255cde5-4197-45f0-9f6b-87bdb64afd73>
+- **独立复核**（`tmp/verify_asset12636.py`，`curl.exe -sS -L --noproxy '*'`）：
+  本地与远端同为 10006813 B、SHA256 同为 `CF683EF5…`、**逐字节一致 = True** → PASS。
+- **提交**：内容 `632476a`（3 文件：主文件 +16/−2 共 12 条量纲自检、
+  `check/full_check.py` +18 第 I 类守卫、PDF 9999798 → 10006813 B）；
+  文档 `357e153`（README.md 263195 → 264938 字节 + processed.md §69）。
+- **tag**：`v1.26.36` = 注释 tag 对象 `39cf382d2d8b9743b43ea3427a7d3e2a405849c6`
+  → 文档提交 `357e153`。
+- **远端 refs**（回填前）：`refs/heads/main = 357e1537641614fdf2f2bfa4d065b8f591ad9687`、
+  `refs/tags/v1.26.36 = 39cf382d`；`reviews/` **74 项**（31+35+4+4）无新增、`todo/` 为空。
+- **仓库卫生**：提交前删除全部 `.bak*`（计数 0）。
+- **下一轮候选**：①「先猜再看」例题引导（PhET 式：例题前先估数量级）
+  ②常见误区盒（DoITPoMS 式，配附录 F 跳转）③边注符号速查（需放宽 `marginparwidth`）
+  ④量级估算盒（NRL／IAEA 定标表）⑤配图第四批（`image-research/README.md` 里 92 张
+  已验证素材，优先第 8 章等仍空的章；长边降到 1200 px 控制 PDF 体积）。
