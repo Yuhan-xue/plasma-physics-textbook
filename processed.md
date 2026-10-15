@@ -7725,4 +7725,12 @@ canon：`tmp/appAW_calc.py`（只 print）→ `tmp/appAW_calc.txt`（**151 个�
 4. **洞的形态连续第四轮相同**：都是「同一数值在公式/表格与正文各印一份」，只改一处仍能通过逐节容差 → 处置口径固定为：不收紧容差，补整句字面绑定。
 5. **练习解答里的百分数/比值必须先在 canon 里 print**：本轮正文有 6 处手写百分数（如 $45\%$、掉三成、约 $21\%$）与 5 处手写小数位数，交叉核对前必须先把它们改成 canon 口径并补打印（`tmp/fix_az_pct.py`、`tmp/fix_az_digits.py`）。
 
-### 63.8 发布记录（待回填）
+### 63.8 发布记录
+
+- **提交**：内容 `be74080`（6 个文件：`src/appendix_az_system.tex` 630 行新建、`check/physics_regression.py` +297、`check/fixtures/gate_physics_negative.py` 66 行差、`check/pdf_outline.py` 编号匹配修正、`src/plasma_physics_textbook_v2.tex` +6/-2、`pdf/plasma_physics_textbook_v2.pdf` 3853992 → 3894238 B）；文档 `417cb77`（`README.md` + `processed.md`）。
+- **tag**：`v1.26.30` = 注释 tag 对象 `b0056569396292fa08a602636a138078772e62e1` → 指向文档提交 `417cb77`；推送 `15e2aff..417cb77 main` + `* [new tag] v1.26.30`（pwsh 报 NativeCommandError 属已知假失败）。
+- **Gitea release**：`id=262`（上一版 v1.26.29 = 259），<http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.30>；附件上传 `status=201`、`size=3894238`，<http://zsyq.hxlab.tech:3000/attachments/a4319f73-ab64-4f1e-bf18-a4aeea76eb3d>。
+- **独立复核**（`tmp/verify_asset12630.py`，`curl.exe -sS -L --noproxy '*'` 直连下载）：本地与远端同为 **3894238 B**、SHA256 同为 `857254C990B692C15C1F3F998DCAF8F276DC1284C3F4C6898B9DD5C9D691CC20`、逐字节一致 `True` → `[PASS]`。
+- **远端面**：`refs/heads/main = 417cb77`、`refs/tags/v1.26.30 = b0056569`；`reviews/` 仍为 **74 项**（2026-10-10-independent 31 / 2026-10-11-scheduled 35 / 2026-10-12-scheduled 4 / 2026-10-13-scheduled 4）无新增；`todo/` 为空。
+- **仓库卫生**：提交前删除 17 个 `.bak*` 备份（含 `processed.md.baks63`、`README.md.bakr12630`、门禁 3 个、夹具 2 个、附录 5 个、主文件 1 个、tmp 4 个），提交后 `.bak*` 计数 0。
+- **下一轮候选**（`tmp/recon_az.py` 写后重排）：AZ2 经济性与系统集成（平准化 / 资本成本 / 容量因子 / 净电效率全零命中）、AZ4 低温等离子体医学与环境（杀菌 / 消毒 / 污染物降解 / 活化水 / 活性氧 / 活性氮）、AZ3 空间推进与在轨应用、AZ5 等离子体源与工艺腔；也可转向学习策略侧（附录 I/K/L 的扩展）。
