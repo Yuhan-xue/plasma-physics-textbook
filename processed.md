@@ -8596,4 +8596,24 @@ README 同步（十类 42 项、路径图条目、目录历史与 O3b 链补 v1.
 KSTAR、LEPECVD 反应腔——按仍偏薄的章优先）⑤附录 A--AZ 与 12 章之间的「附录导航图」
 （与本轮路径图同一手法，把 52 个附录按主题分簇）。
 
-**72.8 发布记录（待回填）。**
+**72.8 发布记录（已回填）。**
+
+- **Gitea release**：`id=291`（上一版 v1.26.38 = 288），
+  <http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.39>
+- **附件**：`plasma_physics_textbook_v2.pdf`，**11539840 B**，SHA256
+  `5ECED9A66F616E8355E0508A803DA1A17629C7B5348521A0B00ECEDE75880B5F`，
+  <http://zsyq.hxlab.tech:3000/attachments/46e5f6f0-1e8e-4d23-ba32-53ea5cf1e431>
+- **独立复核**（`tmp/verify_asset12639.py`，`curl.exe -sS -L --noproxy '*'`）：
+  本地与远端同为 11539840 B、SHA256 同为 `5ECED9A6…`、**逐字节一致 = True** → PASS。
+- **提交**：内容 `b69fbb8`（4 文件：主文件 +46/−2 路径图与 5 个样式、
+  `check/full_check.py` 第 K 类、`check/figure_layout.py` 配色正则假阳性修复、
+  PDF 11536882 → 11539840 B）；文档 `51c7c05`（README.md 267580 → 269320 字节 + processed.md §72）。
+- **tag**：`v1.26.39` = 注释 tag 对象 `542d53491f01e2704b44f585047a02f2e5f72643`
+  → 文档提交 `51c7c05`。
+- **远端 refs**（回填前）：`refs/heads/main = 51c7c05262e04a26616173f4a3c180031d181e46`、
+  `refs/tags/v1.26.39 = 542d5349`；`reviews/` **74 项**（31+35+4+4）无新增、`todo/` 为空。
+- **仓库卫生**：提交前删除全部 `.bak*`（计数 0）。
+- **下一轮候选**：①常见误区盒（DoITPoMS 式）②边注符号速查（需放宽 `marginparwidth`）
+  ③量级估算盒（NRL／IAEA 定标表）④配图第五批（JET 内壁、W7-X 俯视、EAST 真空室、
+  KSTAR、LEPECVD 反应腔——按仍偏薄的章优先）⑤「附录导航图」——把 52 个附录按主题分簇，
+  与本轮路径图同一手法（依赖/归属关系一律取自书里已有的表）。
