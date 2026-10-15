@@ -7855,4 +7855,24 @@ physics_regression **7191** / figure_layout **16** / pdf_outline 11（WARN 1，�
 ③ 「先猜再看」式例题引导；④ 量纲检验栏；⑤ 常见误区盒；
 ⑥ 边注符号速查；⑦ 章末概念图；⑧ 量级估算盒。
 
-### 64.8 发布记录（待回填）
+### 64.8 发布记录（已回填）
+
+- **Gitea release**：`id=267`（上一版 v1.26.30 = 262），
+  <http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.31>
+- **附件**：`plasma_physics_textbook_v2.pdf`，**6894620 B**，SHA256
+  `C4F7F3220305E2EA7E16FB0997D8424F1DFEFC245C363F31BBB6F810D3E0AA22`，
+  <http://zsyq.hxlab.tech:3000/attachments/3d1ddc38-62b7-4cf9-86ca-1f5238ac3e20>
+- **独立复核**（`tmp/verify_asset12631.py`，`curl.exe -sS -L --noproxy '*'`）：
+  本地与远端同为 6894620 B、SHA256 同为 `C4F7F322…`、**逐字节一致 = True** → PASS。
+- **提交**：内容 `d23c1fb`（18 文件 +494/−2：11 张图 + `figures/CREDITS.md` +
+  `tools/commons_pick.py` + `tools/fetch_figure.py` + `image-research/README.md` +
+  主文件 +101 + `check/figure_layout.py` 新增守卫 + PDF 3894238 → 6894620 B）；
+  文档 `e4a7c41`（README.md + processed.md）。
+- **tag**：`v1.26.31` = 注释 tag 对象 `c93621be877b27d01c12bbec5005d19816cf6f01` → 文档提交 `e4a7c41`。
+- **远端 refs**（回填前）：`refs/heads/main = e4a7c41a9a63699e6f280d96a187a983462c948b`、
+  `refs/tags/v1.26.31 = c93621be`；`reviews/` **74 项**（31+35+4+4）无新增、`todo/` 为空。
+- **仓库卫生**：提交前删除全部 `.bak*`（计数 0）；`tools/` 只留两个采集脚本，
+  过程文件移入 `tmp/tools_scratch/`（tmp 不入库）。
+- **下一轮候选**（承接 64.7 待实施清单）：① 每章「学习目标」盒（附录 I 已声称、正文缺失）；
+  ② 24 个 `miniquiz` 的答案闭环；③「先猜再看」例题引导；④ 量纲检验栏；⑤ 常见误区盒；
+  ⑥ 边注符号速查；⑦ 章末概念图；⑧ 量级估算盒。
