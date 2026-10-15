@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """可证伪性夹具：故意在源码里植入本轮的典型回退，确认 check/physics_regression.py 会 FAIL。
 
-流程：备份 → 植入 659 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。其中四处打在 v1.8.0/v1.8.1 新增的附录 I/J/K 上（K.5 的阻尼率符号、K.7 的鞘厚量级与单位、K.4 的磁冻结结论、J 的逐章对照表章号），
+流程：备份 → 植入 677 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。其中四处打在 v1.8.0/v1.8.1 新增的附录 I/J/K 上（K.5 的阻尼率符号、K.7 的鞘厚量级与单位、K.4 的磁冻结结论、J 的逐章对照表章号），
 三处打在 v1.10.0 新增的附录 M 上（束速量级、H 模阈值标度、欧姆/自加热倍数口径），
 一处是 v1.10.0 的结构性回退（语义盒退回裸 `\begin{tip}`，正文首字会被吞、标签可能重复），
 三处打在 v1.11.0 新增的附录 N 上（脱靶辐射功率量级、ELM 侵蚀倍数、表标签被改名），
@@ -111,6 +111,7 @@ APPAU = os.path.join(ROOT, 'src', 'appendix_au_data.tex')
 APPAV = os.path.join(ROOT, 'src', 'appendix_av_tritium.tex')
 APPAW = os.path.join(ROOT, 'src', 'appendix_aw_hedp.tex')
 APPAX = os.path.join(ROOT, 'src', 'appendix_ax_beams.tex')
+APPAY = os.path.join(ROOT, 'src', 'appendix_ay_materials.tex')
 CH12 = os.path.join(ROOT, 'src', 'ch12_supplement.tex')
 CH10 = os.path.join(ROOT, 'src', 'ch10_supplement.tex')
 SUITE = os.path.join(ROOT, 'check', 'physics_regression.py')
@@ -1935,10 +1936,70 @@ PATCHES = [
            r'5.478027'),
     # 659. 引出面半径末位 +1
     (APPAX, r'0.064662',
-           r'0.064663'),
+           r'0.064663'),    # 660. 表 AY.3 label 改名
+    (APPAY, r'\label{tab:app-ay-he}',
+           r'\label{tab:app-ay-hes}'),
+    # 661. 语义盒标签改名
+    (APPAY, r'{tip-app-ay-swelling}',
+           r'{tip-app-ay-swellings}'),
+    # 662. 公式 label 改名
+    (APPAY, r'\label{eq:app-ay-nrt}',
+           r'\label{eq:app-ay-nrt2}'),
+    # 663. 「出处：」改成「来源：」
+    (APPAY, r'\textbf{出处：}空洞肿胀的孵化期',
+           r'\textbf{来源：}空洞肿胀的孵化期'),
+    # 664. 「解答 3」改成「答案 3」
+    (APPAY, r'\textbf{解答 3}',
+           r'\textbf{答案 3}'),
+    # 665. 语义盒标题改字（差得很远→相差很远）
+    (APPAY, r'{三件事不能分开算，但它们的时间尺度差得很远}',
+           r'{三件事不能分开算，但它们的时间尺度相差很远}'),
+    # 666. 语义盒标题改字（不是能量→不是吸收的能量）
+    (APPAY, r'{dpa 是计数，不是能量}',
+           r'{dpa 是计数，不是吸收的能量}'),
+    # 667. 44.5634 dpa 时氦浓度末位 +1
+    (APPAY, r'534.762',
+           r'534.763'),
+    # 668. 1% 肿胀的线性变化末位 +1
+    (APPAY, r'0.332228',
+           r'0.332229'),
+    # 669. 总侵蚀速率末位 +1
+    (APPAY, r'1.58173\times10^{-9}',
+           r'1.58174\times10^{-9}'),
+    # 670. 1% 肿胀报警线 fpy 末位 +1
+    (APPAY, r'1.68299',
+           r'1.68300'),
+    # 671. 练习 2 氦原子数末位 +1
+    (APPAY, r'4.23259\times10^{25}',
+           r'4.23260\times10^{25}'),
+    # 672. 练习 6 dpa/fpy 末位 +1
+    (APPAY, r'6.36621',
+           r'6.36622'),
+    # 673. 练习 5 比值末位 +1
+    (APPAY, r'1.24675',
+           r'1.24676'),
+    # 674. 0.1 dpa 饱和百分比末位 +1
+    (APPAY, r'63.2121',
+           r'63.2122'),
+    # 675. 70 dpa 线性变化末位 +1
+    (APPAY, r'3.84988',
+           r'3.84989'),
+    # 676. 孵化期 fpy 末位 +1
+    (APPAY, r'1.122',
+           r'1.123'),
+    # 677. 再沉积速率末位 +1
+    (APPAY, r'47.4198',
+           r'47.4199'),
 ]
 
-MIN_FAIL = 734       # 实测值（659 处植入回退合并计入 748，留 14 的余量）：见下
+MIN_FAIL = 755       # 实测值（677 处植入回退合并计入 769，留 14 的余量）：见下
+# ## v1.26.29 轮（附录 AY 聚变材料与辐照损伤 / 门禁 P57）植入扩到 677 处，18 处新补丁分两层
+#   结构层 7：表 AY.3 label 改名、语义盒标签改名、公式 label 改名、「出处：」→「来源：」、
+#   「解答 3」→「答案 3」、两只语义盒标题改字；
+#   数据层 11：氦浓度、1% 肿胀线性变化、总侵蚀速率、报警线 fpy、练习 2 氦原子数、
+#   练习 6 dpa 率、练习 5 比值、0.1 dpa 饱和百分比、70 dpa 线性变化、孵化期 fpy、
+#   再沉积速率各改末位（各 +1）。
+#   注：本轮 5 条数据补丁首轮是洞（末位改写落在 1e-3 容差内），已用门禁 ④c 的 5 条整句绑定堵住。
 # ## v1.26.28 轮（附录 AX 束流物理与束流品质 / 门禁 P56）植入扩到 659 处，18 处新补丁分两层
 #   结构层 7：表 AX.3 label 改名、语义盒标签改名、公式 label 改名、「出处：」→「来源：」、
 #   「解答 3」→「答案 3」、两只语义盒标题改字；
