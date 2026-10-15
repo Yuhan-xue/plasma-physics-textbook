@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """可证伪性夹具：故意在源码里植入本轮的典型回退，确认 check/physics_regression.py 会 FAIL。
 
-流程：备份 → 植入 677 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。其中四处打在 v1.8.0/v1.8.1 新增的附录 I/J/K 上（K.5 的阻尼率符号、K.7 的鞘厚量级与单位、K.4 的磁冻结结论、J 的逐章对照表章号），
+流程：备份 → 植入 695 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。其中四处打在 v1.8.0/v1.8.1 新增的附录 I/J/K 上（K.5 的阻尼率符号、K.7 的鞘厚量级与单位、K.4 的磁冻结结论、J 的逐章对照表章号），
 三处打在 v1.10.0 新增的附录 M 上（束速量级、H 模阈值标度、欧姆/自加热倍数口径），
 一处是 v1.10.0 的结构性回退（语义盒退回裸 `\begin{tip}`，正文首字会被吞、标签可能重复），
 三处打在 v1.11.0 新增的附录 N 上（脱靶辐射功率量级、ELM 侵蚀倍数、表标签被改名），
@@ -112,6 +112,7 @@ APPAV = os.path.join(ROOT, 'src', 'appendix_av_tritium.tex')
 APPAW = os.path.join(ROOT, 'src', 'appendix_aw_hedp.tex')
 APPAX = os.path.join(ROOT, 'src', 'appendix_ax_beams.tex')
 APPAY = os.path.join(ROOT, 'src', 'appendix_ay_materials.tex')
+APPAZ = os.path.join(ROOT, 'src', 'appendix_az_system.tex')
 CH12 = os.path.join(ROOT, 'src', 'ch12_supplement.tex')
 CH10 = os.path.join(ROOT, 'src', 'ch10_supplement.tex')
 SUITE = os.path.join(ROOT, 'check', 'physics_regression.py')
@@ -1989,10 +1990,69 @@ PATCHES = [
            r'1.123'),
     # 677. 再沉积速率末位 +1
     (APPAY, r'47.4198',
-           r'47.4199'),
+           r'47.4199'),    # 678. 表 AZ.5 label 改名
+    (APPAZ, r'\label{tab:app-az-margin}',
+           r'\label{tab:app-az-margins}'),
+    # 679. 语义盒标签改名
+    (APPAZ, r'{tip-app-az-triple}',
+           r'{tip-app-az-triples}'),
+    # 680. 公式 label 改名
+    (APPAZ, r'\label{eq:app-az-heatflux}',
+           r'\label{eq:app-az-heatflux2}'),
+    # 681. 「出处：」改成「来源：」
+    (APPAZ, r'\textbf{出处：}Greenwald 密度极限',
+           r'\textbf{来源：}Greenwald 密度极限'),
+    # 682. 「解答 3」改成「答案 3」
+    (APPAZ, r'\textbf{解答 3}',
+           r'\textbf{答案 3}'),
+    # 683. 语义盒标题改字（找一个自洽点→找一组自洽解）
+    (APPAZ, r'{系统集成不是把各章加总，而是找一个自洽点}',
+           r'{系统集成不是把各章加总，而是找一组自洽解}'),
+    # 684. 语义盒标题改字（生死→成败）
+    (APPAZ, r'{最小裕度决定生死，平均裕度决定成本}',
+           r'{最小裕度决定成败，平均裕度决定成本}'),
+    # 685. 等离子体压强末位 +1
+    (APPAZ, r'147304',
+           r'147305'),
+    # 686. 裕度乘积末位 +1
+    (APPAZ, r'9.98512',
+           r'9.98513'),
+    # 687. 最小裕度除安全系数末位 +1
+    (APPAZ, r'0.859512',
+           r'0.859513'),
+    # 688. 净电功率末位 +1
+    (APPAZ, r'151.184',
+           r'151.185'),
+    # 689. TBR 1.02 裕度末位 +1
+    (APPAZ, r'1.00194',
+           r'1.00195'),
+    # 690. 五年氚盈余末位 +1
+    (APPAZ, r'0.88841',
+           r'0.88842'),
+    # 691. 练习 2 的 β_N 裕度末位 +1
+    (APPAZ, r'2.68425',
+           r'2.68426'),
+    # 692. 清单比压比末位 +1
+    (APPAZ, r'0.310453',
+           r'0.310454'),
+    # 693. 清单稳定性比末位 +1
+    (APPAZ, r'0.674891',
+           r'0.674892'),
+    # 694. 清单材料比末位 +1
+    (APPAZ, r'0.891268',
+           r'0.891269'),
+    # 695. 清单氚比末位 +1
+    (APPAZ, r'0.969543',
+           r'0.969544'),
 ]
 
-MIN_FAIL = 755       # 实测值（677 处植入回退合并计入 769，留 14 的余量）：见下
+MIN_FAIL = 774       # 实测值（695 处植入回退合并计入 788，留 14 的余量）：见下
+# ## v1.26.30 轮（附录 AZ 聚变堆系统集成与设计裕度 / 门禁 P58）植入扩到 695 处，18 处新补丁分两层
+#   结构层 7：表 AZ.5 label 改名、语义盒标签改名、公式 label 改名、「出处：」→「来源：」、
+#   「解答 3」→「答案 3」、两只语义盒标题改字；
+#   数据层 11：等离子体压强、裕度乘积、最小裕度除安全系数、净电功率、TBR 1.02 裕度、
+#   五年氚盈余、练习 2 的 beta_N 裕度、清单比压/稳定性/材料/氚四项比值各改末位（各 +1）。
+#   注：本轮 5 条数据补丁首轮是洞（末位改写落在 1e-3 容差内），已用门禁 ④c 的 5 条整句绑定堵住。
 # ## v1.26.29 轮（附录 AY 聚变材料与辐照损伤 / 门禁 P57）植入扩到 677 处，18 处新补丁分两层
 #   结构层 7：表 AY.3 label 改名、语义盒标签改名、公式 label 改名、「出处：」→「来源：」、
 #   「解答 3」→「答案 3」、两只语义盒标题改字；
