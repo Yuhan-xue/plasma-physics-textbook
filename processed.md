@@ -8374,3 +8374,59 @@ dry-run 输出暴露后改为 `idx+1`（在锚点行之后）。③每章找「�
   ②常见误区盒（DoITPoMS 式，配附录 F 跳转）③边注符号速查（需放宽 `marginparwidth`）
   ④量级估算盒（NRL／IAEA 定标表）⑤配图第四批（`image-research/README.md` 里 92 张
   已验证素材，优先第 8 章等仍空的章；长边降到 1200 px 控制 PDF 体积）。
+
+## 70. v1.26.37：正文配图第四批（补「零图章」）
+
+**70.1 轮次定位。** 用户指令持续有效：优化正文配图、找现成高清图像替换或补充、
+丰富正文内容、借鉴优秀自学项目的设计思路。前三批共 22 张（v1.26.31 十一张、
+v1.26.32 六张、v1.26.35 五张），本轮按「章级盘点」补齐仍然空着或偏薄的章。
+
+**70.2 选题依据（先盘点再动手）。** `tmp/photo_inventory.py` 按 `\chapter{` 切章统计
+`\includegraphics`：第 2 章 4 张、第 10 章 6 张、第 11 章 3 张、第 3/5 章各 2 张，
+**第 1 章 0 张、第 8 章 0 张**，第 4/6/7/9/12 章各 1 张。候选来自
+`image-research/README.md` 的 92 张已验素材（每张都带精确许可、直链与像素）。
+两条硬约束：① 同一 Commons 源文件不在两章重复使用（`Sun-Earth Interaction.jpg`
+已作为第 7 章 vlasiator 图用掉，因此第 4 章不再取它）；② 不与已用图主题重复
+（第 10 章已有 6 张，不再加托卡马克内景）。
+
+**70.3 四张图与落点。**
+
+| 图 | 章 | 插入锚点（小节标题前） | 作者 / 许可 | 画面与它要说明的事 |
+| --- | --- | --- | --- | --- |
+| `nonplanar_coil.jpg` | 3 | `\section{磁镜与磁瓶约束}` | Siarhei Besarab / CC BY-SA 4.0 | 仿星器非平面线圈：粒子的 $\nabla B$ 与曲率漂移由这种三维位形决定 |
+| `icp_torch.jpg` | 8 | `\section{Spitzer 电阻率}` | Superchilum / CC BY-SA 3.0 | 电感耦合等离子体炬：欧姆加热把定向能量经碰撞变成热运动的可见结果 |
+| `magnetic_reconnection.jpg` | 9 | `\section{不稳定性分类}` | NASA / 公有领域 | 磁重联示意：磁力线断开再连接，撕裂模与磁岛就是它在等离子体里的版本 |
+| `west_divertor.jpg` | 12 | `\section{光谱诊断基础}` | H. Roche / CEA IRFM / CC BY 4.0 | WEST 偏滤器在位检查：红外热像与光谱诊断如何贴着面对等离子体部件工作 |
+
+写法沿用既有约定：`figure[htbp]` + `\centering` + `\includegraphics[width=0.78\textwidth]`
++ `\caption{标题。接回本章公式的一句}` + `\label{fig:photo-*}` + `\figsource{作者｜许可｜来源}`。
+插入器 `tmp/photos4.py insert`（all-or-nothing，四锚点各须恰 1 次）：主文件
+460931 → **463025 字节**（+2094）；`tmp/bump_v12637.py` 把版本升到 v1.26.37。
+
+**70.4 采集与合规。** `tmp/photos4.py fetch`：先用 Commons API
+（`action=query&prop=imageinfo&iiurlwidth=1500`）取官方缩略图直链，再以合规
+User-Agent（`plasma-textbook-figure-fetch/1.0 (educational; contact: repo owner)`）
+下载——不合规 UA 会得到 HTTP 429（与频率无关），这条经验已固化在脚本里。
+四张图统一长边 ≤1500 px、JPEG q90，并逐行登记进 `figures/CREDITS.md`
+（+4 行 → 7497 字节）。许可类型：CC BY-SA 4.0 / CC BY-SA 3.0 / 公有领域 / CC BY 4.0，
+全部允许再分发；`check/figure_layout.py` 第 16 项守卫会核对「引用存在 + 有署名 + 已登记」。
+
+**70.5 构建与验收。** 干净重编：`^!` 0、Overfull **5 处基线**、缺字 0、重复标签 0、
+**643 页 / 624 书签**（图片走浮动体、未推页）、标题 v1.26.37；PDF 11529723 B，
+`tmp/fix_pdf_dests.py --write`（26 条命名目标、23 条落到新页）后 **11531634 B**。
+电池（带 TeX PATH）：六套件 + 五夹具全绿。README 264938 → **265943 字节**
+（插图 22 → 26 处、素材 22 → 26 张、`figures/` 5.77 → 7.22 MB、目录页数历史与
+O3b 链补 v1.26.37、实拍图守卫段补 26 处、版本表 v1.26.37 行）。
+
+**70.6 教训。** ① 选图前先做**章级盘点**：本轮若不做盘点，很容易继续往第 10 章
+堆图，而第 8 章会一直是零；② 候选池要查重（源文件与主题两层），
+`Sun-Earth Interaction.jpg` 已在第 7 章用过，直接换候选；③ 加图不必然加页——
+浮动体会填进既有空白，因此「页数不变」不代表没生效，验收要看插图计数与守卫；
+④ 图片体积要盯：四张图让 PDF 从 10.0 MB 涨到 11.5 MB，`figures/` 合计 7.22 MB，
+后续若继续加图应把长边收到 1200 px。
+
+**70.7 待实施。** ①「先猜再看」例题引导 ②常见误区盒 ③边注符号速查
+④量级估算盒 ⑤配图第五批候选（JET 内壁全景、W7-X 俯视、EAST 真空室、KSTAR 内景、
+LEPECVD 反应腔、非平面线圈组、NIF 靶室内部——按「仍偏薄的章」优先）。
+
+**70.8 发布记录（待回填）。**
