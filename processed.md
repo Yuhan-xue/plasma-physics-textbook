@@ -8176,4 +8176,21 @@ v1.26.33 的自学闭环。盘点时发现一个尴尬的事实：**附录 I 专
 ①「先猜再看」例题引导 ②量纲检验栏 ③常见误区盒 ④边注符号速查 ⑤量级估算盒；
 配图侧 `image-research/README.md` 里 92 张已验证素材可按需补入。
 
-### 67.8 发布记录（待回填）
+### 67.8 发布记录（已回填）
+
+- **Gitea release**：`id=277`（上一版 v1.26.33 = 275），
+  <http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.34>
+- **附件**：`plasma_physics_textbook_v2.pdf`，**8467906 B**，SHA256
+  `43D565E89846FEE42B22E0030FAD65A53DF5BF42C60AF72F8F337ECFBA794031`，
+  <http://zsyq.hxlab.tech:3000/attachments/b80c335e-10ba-4584-864c-a9a2cc4d9216>
+- **独立复核**（`tmp/verify_asset12634.py`，`curl.exe -sS -L --noproxy '*'`）：
+  本地与远端同为 8467906 B、SHA256 同为 `43D565E8…`、**逐字节一致 = True** → PASS。
+- **提交**：内容 `4bf6d82`（3 文件：`src/plasma_physics_textbook_v2.tex` 12 张章末概念图 +
+  `cmnode` 等样式、`check/full_check.py` 新增第 H 类守卫、PDF 8450415 → 8467906 B）；
+  文档 `5edb672`（README.md 262158 字节 + processed.md §67）。
+- **tag**：`v1.26.34` = 注释 tag 对象 `ff067da63f743ede90e29b685bc327d70f7fe240` → 文档提交 `5edb672`。
+- **远端 refs**（回填前）：`refs/heads/main = 5edb67242ff59a08c5bbc1fd5f2faba8e2beb81f`、
+  `refs/tags/v1.26.34 = ff067da6`；`reviews/` **74 项**（31+35+4+4）无新增、`todo/` 为空。
+- **仓库卫生**：提交前删除全部 `.bak*`（计数 0）。
+- **下一轮候选**（承接 §67.7）：①「先猜再看」例题引导 ②量纲检验栏 ③常见误区盒
+  ④边注符号速查 ⑤量级估算盒；配图侧 `image-research/README.md` 里 92 张已验证素材可按需补入。
