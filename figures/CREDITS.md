@@ -27,6 +27,11 @@
 | `twk_pinch.jpg` | 环形箍缩装置中的氪等离子体（100 ns 曝光） | Timkoeth | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:TWK_pinch.jpg | 第 9 章 |
 | `nif_hohlraum.jpg` | NIF 黑腔实物：金圆柱内壁与燃料靶丸（毫米级） | Lawrence Livermore National Laboratory | Public domain | https://commons.wikimedia.org/wiki/File:Nif_hohlraum.jpg | 第 10 章 |
 | `bpp_probe_head.jpg` | 朗缪尔探针头部：收集极套在氮化硼陶瓷管内 | Jiri Adamek, IPP ASCR | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:BPP_probe_head.png | 第 12 章 |
+| `lightning_strike.jpg` | 云地闪电通道：大气中最容易看见的等离子体 | The Modern Polymath | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:Cloud-to-ground_lightning_strike.jpg | 第 2 章 |
+| `cme.jpg` | 日冕仪拍摄的日冕物质抛射：等离子体裹着磁场抛出 | Burkhard Mücke | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Coronal_Mass_Ejection.jpg | 第 4 章 |
+| `vlasiator.jpg` | 太阳风与地球磁层的全球动理学模拟（Vlasiator） | Space Travel Blog / Rute Marta Jansone | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:Sun-Earth_Interaction.jpg | 第 7 章 |
+| `fusion_plant.jpg` | 聚变电站全系统示意：包层、氚循环、汽轮机与发电机 | EUROfusion | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:EUROfusion_schematic_diagram_of_fusion_power_plant.jpg | 第 10 章 |
+| `rie_etcher.jpg` | 反应离子刻蚀设备：低温等离子体的工业用法 | AlabamaUSA | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Reactive_Ion_Etcher.JPG | 第 11 章 |
 
 ## 采集与校验方式（可复算）
 
@@ -34,6 +39,7 @@
 - 下载脚本：`tools/fetch_figure.py`（清代理、`curl --noproxy '*'`、校验为可识别图像后才写盘）；
 - v1.26.32 起改用 `tmp/commons_resolve.py`（Commons API 取 1400–1920 px 缩略图 + 合规 User-Agent，
   规避缩略图路径 400 与政策 UA 429）与 `tmp/photos2.py`（批量下载 + 规范化 + 登记）；
+- 第三批（v1.26.35）：`tmp/photos3.py`（Commons API 取 1500 px + 合规 UA + CREDITS 登记）；
 - 规范化脚本：`tmp/normalize_figures.py`、`tmp/shrink_figures.py`（长边 ≤ 1500 px，照片 JPEG q88–q92）。
 
 ## 排除的候选（许可原因）

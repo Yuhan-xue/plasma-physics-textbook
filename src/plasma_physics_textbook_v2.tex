@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.26.34},
+  pdftitle={等离子体物理自学教材 v1.26.35},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -450,7 +450,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.26.34}}
+  {\small\textcolor{white!45}{v1.26.35}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -1613,6 +1613,14 @@ m_e \ddot{\Delta x} = -\frac{n_e e^2}{\eps_0}\Delta x
 从表中可见，等离子体参数跨越了\textbf{超过20个数量级}！但无论密度和温度如何变化，等离子体的两个关键无量纲参数——德拜球内粒子数 $N_D$ 和耦合参数 $\Gamma$——才是判断系统是否为"真等离子体"的核心。
 \end{example}
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/lightning_strike.jpg}
+\caption{身边的等离子体：闪电通道。云地闪电的通道温度可达约 $3\times10^{4}$ K，电子密度远高于德拜判据的要求——它是大气里最容易看见的等离子体，也是「电离气体」与「等离子体」差别最直观的例子。}
+\label{fig:photo-lightning}
+\figsource{The Modern Polymath，CC BY 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
+\end{figure}
+
 \section{等离子体判据}\difficulty{基础}
 \label{sec:ch2-criteria}
 
@@ -2131,6 +2139,14 @@ nm\left(\frac{\partial\vect{u}}{\partial t} + \vect{u}\cdot\grad\vect{u}\right) 
 \]
 其中 $\vect{B}\,\vect{B}$ 是\textbf{并矢}（二阶张量，$\left(\vect{B}\vect{B}\right)_{ij}=B_iB_j$，不是标量点积 $\vect{B}\cdot\vect{B}=B^2$）。$p_\parallel$ 和 $p_\perp$ 分别对应平行和垂直于磁场的压强分量。
 \end{insight}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/cme.jpg}
+\caption{日冕物质抛射：磁流体的天然演示。日冕仪拍下的抛射云：等离子体带着磁场一起被抛出，尺度以太阳半径计。本章的双流体方程组与下一章的 MHD 方程，正是用来描述这类「导电流体」现象的工具。}
+\label{fig:photo-cme}
+\figsource{Burkhard M\u00fccke，CC BY-SA 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
+\end{figure}
 
 \section{双流体方程组}\difficulty{提高}
 
@@ -2745,6 +2761,14 @@ c^2 k^2 \approx \frac{\omega_{pe}^2 \omega}{\omega_{ce}}
 
 流体描述虽然简洁有力（参见第4章），但它"抹平"了速度空间的细节。当涉及到波与粒子在特定速度上的共振相互作用时，流体方程完全无能为力。\textbf{Landau 阻尼}——一种无碰撞的波衰减机制——正是动理学理论最辉煌的胜利。
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/vlasiator.jpg}
+\caption{全球动理学模拟：把速度空间算到磁层尺度。太阳风与地球磁层相互作用的 Vlasiator 模拟——它解的是 Vlasov 方程而不是流体方程。第 7 章要回答的「什么时候必须回到速度空间」，这张图给出了量级上的答案。}
+\label{fig:photo-vlasiator}
+\figsource{Space Travel Blog / Rute Marta Jansone，CC BY 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
+\end{figure}
+
 \section{Vlasov 方程}\difficulty{基础}
 \label{sec:ch7-vlasov}
 
@@ -3248,6 +3272,14 @@ x^3\simeq-\frac{\mu}{2}
 
 人类对等离子体物理最宏伟的应用，莫过于\textbf{受控核聚变}——在地球上复制太阳的能量来源。这不仅是等离子体物理的终极考场，也可能是人类文明能源格局的转折点。
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/fusion_plant.jpg}
+\caption{从等离子体到电网：聚变电站的全系统。包层、氚循环、蒸汽轮机与发电机。本章讲的是芯部等离子体，而一座电站要做的是把它的中子和热量一路接到电网上——这部分账在附录 Z 与附录 AR 里算。}
+\label{fig:photo-plant}
+\figsource{EUROfusion，CC BY 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
+\end{figure}
+
 \section{聚变反应与Lawson 判据}\difficulty{基础}
 
 \begin{definition}{主要聚变反应}{fusion-reactions}
@@ -3483,6 +3515,14 @@ $n\tau$ & $\sim 10^{20}\,\mathrm{m}^{-3}\cdot\mathrm{s}$ & $\sim 10^{21}\,\mathr
 \begin{tip}{前置依赖：低温工业等离子体}{ch11-preq}
 \textbf{前置依赖：}第2章（\S2.1 德拜屏蔽、鞘层概念）；第3章（\S3.2 E×B漂移）；第4章（\S4.2 双极扩散、\S4.3 广义欧姆定律）。若只关注工业应用，可跳过第7--10章（动理学、不稳定性、聚变）。
 \end{tip}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/rie_etcher.jpg}
+\caption{工业等离子体：反应离子刻蚀设备。低温等离子体最典型的工业用法：离子轰击加自由基化学反应，把晶圆上的图形刻出来。第 11 章的汤森放电与鞘层理论，工作区间就在这类设备的参数里。}
+\label{fig:photo-rie}
+\figsource{AlabamaUSA，CC BY-SA 3.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
+\end{figure}
 
 \section{气体电离与放电基础}
 \difficulty{基础}
