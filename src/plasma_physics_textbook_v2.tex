@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.26.35},
+  pdftitle={等离子体物理自学教材 v1.26.36},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -450,7 +450,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.26.35}}
+  {\small\textcolor{white!45}{v1.26.36}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -1380,6 +1380,7 @@ v_p = \frac{\omega}{k} = \frac{\sqrt{\omega_p^2 + c^2k^2}}{k} = c\sqrt{1 + \frac
 \item \textbf{热速度约定}：本书统一 $v_{t\alpha}=\sqrt{k_BT_\alpha/m_\alpha}$（最概然速率量级）；$\bar{v}_\alpha=\sqrt{8k_BT_\alpha/(\pi m_\alpha)}$ 为平均热速度；$v_{\mathrm{rms},\alpha}=\sqrt{3k_BT_\alpha/m_\alpha}$ 为三维方均根速率。三者只差数值系数，遇到带系数的形式（如 $\sqrt{2k_BT/m}$）注意核对当章定义。
 \item \textbf{傅里叶变换}将线性微分方程变为代数方程，是研究波的利器。色散关系 $D(\omega,k)=0$ 决定波的传播特性。
 \item $\delta$函数是描述点粒子和微观分布的数学工具。
+\item \textbf{量纲自检}：分布函数归一化 $\int f\,\mathrm{d}^3v=n$ 要求 $[f]=\mathrm{m^{-6}\,s^{3}}$；$\delta$ 函数的量纲由 $\int\delta(x)\,\mathrm{d}x=1$ 反推，不能凭记忆。
 \end{itemize}
 \end{chapterreview}
 
@@ -1717,6 +1718,7 @@ N_D = \frac{4}{3}\pi n\lambda_D^3 \approx 4.4\times10^{13} \gg 1 .
 \item 等离子体的\textbf{三个判据}：$L \gg \lambda_D$、$N_D \gg 1$、$\Gamma \ll 1$（弱耦合）。
 \item 德拜屏蔽势：$\phi(r) = (Q/4\pi\eps_0 r)\ee^{-r/\lambda_D}$，在 $r>\lambda_D$ 时指数衰减。
 \item 等离子体参数空间跨越20多个数量级，但核心物理（集体行为、准中性）不变。
+\item \textbf{量纲自检}：$\lambda_{De}=\sqrt{\varepsilon_0k_BT_e/(n_ee^2)}$ 的量纲是 $\sqrt{(\mathrm{C^2\,J^{-1}\,m^{-1}})(\mathrm J)/(\mathrm{m^{-3}})(\mathrm{C^2})}=\mathrm m$，与「屏蔽长度」一致。
 \end{itemize}
 \end{chapterreview}
 
@@ -2016,6 +2018,7 @@ m\dot{\vect{v}'} = q(\vect{E} + (\vect{v}' + \vect{v}_E)\times\vect{B}) = q\vect
 \item 梯度漂移和曲率漂移与 $q$ 有关，电子离子反向，产生净电流。
 \item \textbf{磁矩} $\mu = mv_\perp^2/2B$ 是绝热不变量，导致磁镜反射。
 \item 磁镜比 $R_m = B_{\max}/B_{\min}$ 决定损失锥角度。
+\item \textbf{量纲自检}：$r_L=mv_\perp/(qB)$ 给出 $\mathrm{kg\,m\,s^{-1}/(C\,T)}=\mathrm m$，$\omega_c=qB/m$ 给出 $\mathrm{s^{-1}}$，两者相乘恰好是速度。
 \end{itemize}
 \end{chapterreview}
 
@@ -2259,6 +2262,7 @@ c_{s,\text{绝热}}=\sqrt{\frac{\gamma_sk_BT_e}{m_i}}
 \item \textbf{双流体模型}分别描述电子和离子，捕捉质量差异导致的脱耦行为。
 \item \textbf{广义欧姆定律}联系 $\vect{j}$ 与 $\vect{E}$，包含电阻、霍尔、压强梯度和惯性四项。
 \item 等离子体方程组需要\textbf{闭合条件}（状态方程）才能求解。
+\item \textbf{量纲自检}：动量方程每一项都是力密度 $\mathrm{N\,m^{-3}}$——$nm\,\mathrm dv/\mathrm dt$、$\nabla p$、$ne(\vect E+\vect v\times\vect B)$ 必须同量纲，否则方程一定写错了。
 \end{itemize}
 \end{chapterreview}
 
@@ -2511,6 +2515,7 @@ v_A = \frac{B}{\sqrt{\mu_0\rho_m}} = \frac{10^{-3}}{\sqrt{(4\pi\times 10^{-7})(1
 \item 理想MHD中，磁力线\textbf{冻结}在流体中（磁通守恒）。
 \item \textbf{阿尔芬波}是磁张力恢复的横波，$\omega = k_\parallel v_A$，$v_A = B/\sqrt{\mu_0\rho_m}$。
 \item 等离子体比压 $\beta = 2\mu_0 p/B^2$ 衡量热压与磁压的相对重要性。
+\item \textbf{量纲自检}：$v_A=B/\sqrt{\mu_0\rho}$ 给出 $\mathrm{T/\sqrt{(H\,m^{-1})(kg\,m^{-3})}}=\mathrm{m\,s^{-1}}$；磁压 $B^2/(2\mu_0)$ 的单位是 $\mathrm{Pa}$，才谈得上与热压比大小。
 \end{itemize}
 \end{chapterreview}
 
@@ -2716,6 +2721,7 @@ c^2 k^2 \approx \frac{\omega_{pe}^2 \omega}{\omega_{ce}}
 \item 冷等离子体中电磁波有色散关系 $\omega^2 = \omega_{pe}^2 + c^2k^2$，$\omega_{pe}$ 是截止频率。
 \item 磁化等离子体中波的模式按极化分裂（R波和L波），出现\textbf{共振}($\omega_{ce}$)和\textbf{截止}。
 \item \textbf{哨声波}是低频R波，高频群速度大，产生特征"滑落"音调。
+\item \textbf{量纲自检}：色散关系两边都是 $\mathrm{s^{-2}}$——$\omega^2$、$\omega_{pe}^2$、$k^2v_{Te}^2$ 同量纲，所以能直接相加减；把 $\omega$ 与 $k$ 混着比大小是没有意义的。
 \end{itemize}
 \end{chapterreview}
 
@@ -2884,6 +2890,7 @@ f = f_0(v) + f_1(x,v,t), \qquad E = E_1(x,t)
 \item \textbf{Landau 阻尼}是无碰撞等离子体中波衰减的机制，由相速度附近的共振粒子引起。
 \item 当 $\partial f_0/\partial v < 0$（麦克斯韦分布）时波被阻尼；若分布有凸起 ($\partial f_0/\partial v > 0$)，则可能出现\textbf{不稳定性}。
 \item 动理学描述不可替代：流体方程完全无法预测 Landau 阻尼。
+\item \textbf{量纲自检}：Landau 阻尼率 $\gamma\propto\omega_{pe}(k\lambda_{De})^{-3}$ 的单位是 $\mathrm{s^{-1}}$（与 $\omega$ 相同）；指数 $\exp[-\omega^2/(2k^2v_{Te}^2)]$ 必须无量纲。
 \end{itemize}
 \end{chapterreview}
 
@@ -3075,6 +3082,7 @@ Spitzer 动力学修正因子（$\gamma_E\approx0.58$ 一类，$1/1.4\approx0.71
 \item \textbf{双极扩散}：电子和离子以相同速率扩散，$D_a \approx D_i(1+T_e/T_i)$。
 \item \textbf{Spitzer 电阻率} $\eta \propto T_e^{-3/2}$，与密度无关。高温等离子体是极好的导体。
 \item 库仑对数 $\ln\Lambda$ 反映德拜屏蔽对长程碰撞的截断。
+\item \textbf{量纲自检}：$\eta=m_e\nu_{ei}/(ne^2)$ 给出 $\mathrm{kg\,s^{-1}\,C^{-2}}=\Omega\cdot\mathrm m$，与 $\vect E=\eta\vect j$ 一致；扩散系数 $D$ 的单位是 $\mathrm{m^2\,s^{-1}}$。
 \end{itemize}
 \end{chapterreview}
 
@@ -3227,6 +3235,7 @@ x^3\simeq-\frac{\mu}{2}
 \item \textbf{双流不稳定性}：两束相对运动的粒子流，将漂移能转化为波能。
 \item 实际等离子体中的\textbf{反常输运}远大于经典碰撞输运，是不稳定性导致湍流的结果。
 \item 抑制不稳定性是磁约束聚变和惯性约束聚变的关键技术挑战。
+\item \textbf{量纲自检}：增长率 $\gamma\sim v_A/L$ 的单位是 $\mathrm{s^{-1}}$，所以 $\gamma t$ 无量纲；判断「涨得快不快」要比的是 $\gamma$ 与 $\omega$、$\gamma$ 与 $\tau_E^{-1}$。
 \end{itemize}
 \end{chapterreview}
 
@@ -3466,6 +3475,7 @@ $n\tau$ & $\sim 10^{20}\,\mathrm{m}^{-3}\cdot\mathrm{s}$ & $\sim 10^{21}\,\mathr
 \item \textbf{惯性约束}：极高密度、极短约束时间；激光驱动压缩靶丸。
 \item NIF于2022年首次实现 $Q>1$；ITER目标 $Q=10$。
 \item 商业聚变仍需克服材料、稳态运行和经济性挑战。
+\item \textbf{量纲自检}：Lawson 三重积 $nT\tau_E$ 的单位是 $\mathrm{m^{-3}\cdot keV\cdot s}$——写「$10^{21}$」时必须带单位，三个量的口径一变，这个数字就失去意义。
 \end{itemize}
 \end{chapterreview}
 
@@ -4328,6 +4338,7 @@ P_{\text{abs}} \propto n_e \cdot E_{\text{loss}} \propto \frac{1}{3.75} \times \
     \item \textbf{光学发射光谱（OES, Optical Emission Spectroscopy）：}通过特征谱线强度比（如 $I_{\text{Ar}^{*}}/I_{\text{Ar}}$）推断 $T_e$；通过谱线绝对强度推断 $n_e$。
     \item \textbf{离子能量分析仪（IEP, Ion Energy Analyzer）：}测量离子能量分布函数（IEDF），推断鞘层压降和射频鞘层振荡特性。
     \item \textbf{残气分析（RGA, Residual Gas Analyzer）：}监测腔体本底气体成分，排查气体泄漏和污染。
+\item \textbf{量纲自检}：玻姆速度 $\sqrt{k_BT_e/m_i}$ 的单位是 $\mathrm{m\,s^{-1}}$，鞘层厚度以 $\lambda_{De}$ 为单位；汤森系数 $\alpha$ 的单位是 $\mathrm{m^{-1}}$，所以 $pd$ 才是无量纲组合。
 \end{itemize}
 
 \textbf{核心思路：}工艺异常 $\rightarrow$ 等离子体参数漂移 $\rightarrow$ 物理机制分析 $\rightarrow$ 针对性调节。这正是等离子体物理从基础研究走向工业应用的价值所在。
@@ -5138,6 +5149,7 @@ Rogowski 线圈的一个重要优点是：它只测量\emph{穿过环中心的�
     \item 汤姆逊散射光谱宽度直接反映电子热速度分布，是测量 $T_e$ 的"黄金标准"；离子散射可忽略因为 $(m_e/m_i)^2$ 极小。
     \item 光谱诊断通过线光谱（激发温度、成分）、连续谱（韧致辐射温度）和斯塔克展宽（密度）提供丰富的参数信息。
     \item 磁探针和Rogowski 线圈基于法拉第感应，测量磁场变化和等离子体电流，是MHD宏观参数的主要诊断手段。
+\item \textbf{量纲自检}：探针特性的指数 $\exp(eV/k_BT_e)$ 必须无量纲（$T_e$ 用 eV 时等价于 $V/T_e$）；干涉相移 $\phi=\frac{e^2}{2\varepsilon_0m_ec^2}\int n_eB\,\mathrm{d}l$ 的单位是 rad。
 \end{itemize}
 \end{review}
 
