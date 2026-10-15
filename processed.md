@@ -8677,4 +8677,23 @@ figOrange / figPurple / figSky，并用填充百分比区分深浅），下方�
 ③分簇图的守卫要盯「芯片数 = 附录数」，否则新增附录时图会悄悄漏掉一个字母；
 ④字母集合必须与文档逐一比对（本轮用独立脚本核对），只查数量会放过「张冠李戴」。
 
-**73.8 发布记录（待回填）。**
+**73.8 发布记录（已回填）。**
+
+- **Gitea release**：`id=295`（上一版 v1.26.39 = 291），
+  <http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.40>
+- **附件**：`plasma_physics_textbook_v2.pdf`，**11546464 B**，SHA256
+  `A99970F8323EB3F153D56036B3325EEC13C44C6551622252B3F01DE499FDED69`，
+  <http://zsyq.hxlab.tech:3000/attachments/9fd64d0e-2f31-49af-b335-6b092479ecdc>
+- **独立复核**（`tmp/verify_asset12640.py`，`curl.exe -sS -L --noproxy '*'`）：
+  本地与远端同为 11546464 B、SHA256 同为 `A99970F8…`、**逐字节一致 = True** → PASS。
+- **提交**：内容 `b6a2351`（3 文件：主文件导航图与 nxchip 样式、`check/full_check.py`
+  第 L 类、PDF 11539840 → 11546464 B）；文档 `b574976`（README.md 269320 → 271057 字节
+  + processed.md §73）。
+- **tag**：`v1.26.40` = 注释 tag 对象 `846d84e802f4e8755994efb0dd5c870aaad635f6`
+  → 文档提交 `b574976`。
+- **远端 refs**（回填前）：`refs/heads/main = b574976f1344de410c7d1a53462ef481e2ae7645`、
+  `refs/tags/v1.26.40 = 846d84e8`；`reviews/` **74 项**（31+35+4+4）无新增、`todo/` 为空。
+- **仓库卫生**：提交前删除全部 `.bak*`（计数 0）。
+- **下一轮候选**：①边注符号速查（需放宽 `marginparwidth`）②量级估算盒（NRL／IAEA 定标表）
+  ③配图第五批（按仍偏薄的章）④把学习路径图与附录导航图合并成一张「全书地图」
+  （12 章 + 52 附录 + 三条路线，一页看全）。
