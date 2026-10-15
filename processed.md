@@ -8087,4 +8087,22 @@ v1.26.31 与 v1.26.32 两轮先完成了「配图」这一半（17 张开放许�
 ④边注符号速查 ⑤章末概念图 ⑥量级估算盒；配图侧还有 `image-research/README.md`
 里 92 张已验证素材可按需补入。
 
-### 66.8 发布记录（待回填）
+### 66.8 发布记录（已回填）
+
+- **Gitea release**：`id=275`（上一版 v1.26.32 = 271），
+  <http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.33>
+- **附件**：`plasma_physics_textbook_v2.pdf`，**8450415 B**，SHA256
+  `79D8327A98EF0024DE5F5EFFA0A66F32FC403D1E57AD662C1F40707792B2EFB8`，
+  <http://zsyq.hxlab.tech:3000/attachments/03468801-8423-431e-b1e1-7282dae1302b>
+- **独立复核**（`tmp/verify_asset12633.py`，`curl.exe -sS -L --noproxy '*'`）：
+  本地与远端同为 8450415 B、SHA256 同为 `79D8327A…`、**逐字节一致 = True** → PASS。
+- **提交**：内容 `f73fa04`（3 文件：`src/plasma_physics_textbook_v2.tex` 18 只盒 +
+  16 条参考要点 + `\quizans` 宏、`check/full_check.py` 新增第 G 类守卫、
+  PDF 8436031 → 8450415 B）；文档 `dca0e55`（README.md 261027 字节 + processed.md §66）。
+- **tag**：`v1.26.33` = 注释 tag 对象 `d02add70d5cd6c093c8076f2bc5233f250dbd239` → 文档提交 `dca0e55`。
+- **远端 refs**（回填前）：`refs/heads/main = dca0e55c90d1dc66d7de4c945ee301b390709416`、
+  `refs/tags/v1.26.33 = d02add70`；`reviews/` **74 项**（31+35+4+4）无新增、`todo/` 为空。
+- **仓库卫生**：提交前删除全部 `.bak*`（计数 0）。
+- **下一轮候选**（承接 §66.7）：①「先猜再看」例题引导 ②量纲检验栏 ③常见误区盒
+  ④边注符号速查 ⑤章末概念图 ⑥量级估算盒；配图侧 `image-research/README.md`
+  里 92 张已验证素材可按需补入。
