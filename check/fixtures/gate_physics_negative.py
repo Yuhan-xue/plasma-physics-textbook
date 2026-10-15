@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """可证伪性夹具：故意在源码里植入本轮的典型回退，确认 check/physics_regression.py 会 FAIL。
 
-流程：备份 → 植入 623 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。其中四处打在 v1.8.0/v1.8.1 新增的附录 I/J/K 上（K.5 的阻尼率符号、K.7 的鞘厚量级与单位、K.4 的磁冻结结论、J 的逐章对照表章号），
+流程：备份 → 植入 641 处回退 → 跑套件（期望 退出码≠0 且 FAIL≥MIN_FAIL）→ `finally` 恢复 → 再跑（期望 0）。其中四处打在 v1.8.0/v1.8.1 新增的附录 I/J/K 上（K.5 的阻尼率符号、K.7 的鞘厚量级与单位、K.4 的磁冻结结论、J 的逐章对照表章号），
 三处打在 v1.10.0 新增的附录 M 上（束速量级、H 模阈值标度、欧姆/自加热倍数口径），
 一处是 v1.10.0 的结构性回退（语义盒退回裸 `\begin{tip}`，正文首字会被吞、标签可能重复），
 三处打在 v1.11.0 新增的附录 N 上（脱靶辐射功率量级、ELM 侵蚀倍数、表标签被改名），
@@ -109,6 +109,7 @@ APPAS = os.path.join(ROOT, 'src', 'appendix_as_rays.tex')
 APPAT = os.path.join(ROOT, 'src', 'appendix_at_waves.tex')
 APPAU = os.path.join(ROOT, 'src', 'appendix_au_data.tex')
 APPAV = os.path.join(ROOT, 'src', 'appendix_av_tritium.tex')
+APPAW = os.path.join(ROOT, 'src', 'appendix_aw_hedp.tex')
 CH12 = os.path.join(ROOT, 'src', 'ch12_supplement.tex')
 CH10 = os.path.join(ROOT, 'src', 'ch10_supplement.tex')
 SUITE = os.path.join(ROOT, 'check', 'physics_regression.py')
@@ -1827,10 +1828,69 @@ PATCHES = [
            r'循环一圈衰变掉的份额只有 $0.0360403\%$'),
     # 623. 氚比活度末位 +1
     (APPAV, r'氚比活度 & $3.55978\times10^{14}\ \mathrm{Bq\,g^{-1}}$',
-           r'氚比活度 & $3.55979\times10^{14}\ \mathrm{Bq\,g^{-1}}$'),
+           r'氚比活度 & $3.55979\times10^{14}\ \mathrm{Bq\,g^{-1}}$'),    # 624. 表 AW.2 label 改名
+    (APPAW, r'\label{tab:app-aw-wdm}',
+           r'\label{tab:app-aw-wdms}'),
+    # 625. 语义盒标签改名
+    (APPAW, r'{tip-app-aw-field}',
+           r'{tip-app-aw-fields}'),
+    # 626. 公式 label 改名
+    (APPAW, r'\label{eq:app-aw-keldysh}',
+           r'\label{eq:app-aw-keldysh2}'),
+    # 627. 「出处：」改成「来源：」
+    (APPAW, r'\textbf{出处：}$a_0$、$U_p$、Keldysh 参数与势垒抑制场的定义参照',
+           r'\textbf{来源：}$a_0$、$U_p$、Keldysh 参数与势垒抑制场的定义参照'),
+    # 628. 「解答 3」改成「答案 3」
+    (APPAW, r'\textbf{解答 3}',
+           r'\textbf{答案 3}'),
+    # 629. 语义盒标题改字（到位→用上）
+    (APPAW, r'{高能量密度不是一个数字，是三个刻度同时到位}',
+           r'{高能量密度不是一个数字，是三个刻度同时用上}'),
+    # 630. 语义盒标题改字（线性→正比）
+    (APPAW, r'{温度是通量的四次方根，不是能量的线性函数}',
+           r'{温度是通量的四次方根，不是能量的正比函数}'),
+    # 631. 费米能末位 +1
+    (APPAW, r'=1.25868\times10^{-18}\ \mathrm{J}=7.85604\ \mathrm{eV}',
+           r'=1.25868\times10^{-18}\ \mathrm{J}=7.85605\ \mathrm{eV}'),
+    # 632. 耦合参数末位 +1
+    (APPAW, r'=8.69283.',
+           r'=8.69284.'),
+    # 633. 冷压占比末位 +1
+    (APPAW, r'$0.314242$',
+           r'$0.314243$'),
+    # 634. 离子声速末位 +1
+    (APPAW, r'=22793.3\ \mathrm{m\,s^{-1}}',
+           r'=22793.4\ \mathrm{m\,s^{-1}}'),
+    # 635. 有质动力势末位 +1
+    (APPAW, r'=4875.76\ \mathrm{keV}',
+           r'=4875.77\ \mathrm{keV}'),
+    # 636. 辐射温度末位 +1
+    (APPAW, r'=2.69041\times10^{6}\ \mathrm{K}=231.842\ \mathrm{eV}.',
+           r'=2.69041\times10^{6}\ \mathrm{K}=231.843\ \mathrm{eV}.'),
+    # 637. 烧蚀压强末位 +1
+    (APPAW, r'=45.3057\ \mathrm{Mbar}',
+           r'=45.3058\ \mathrm{Mbar}'),
+    # 638. 冲击压强末位 +1
+    (APPAW, r'冲击压强 $P$ & $6.25\ \mathrm{Mbar}$ & $\rho_0Du_p$ \\',
+           r'冲击压强 $P$ & $6.26\ \mathrm{Mbar}$ & $\rho_0Du_p$ \\'),
+    # 639. 抖动速度末位 +1
+    (APPAW, r'=0.987151,',
+           r'=0.987152,'),
+    # 640. 等离子体 beta 末位 +1
+    (APPAW, r'$2513.27$',
+           r'$2513.28$'),
+    # 641. 黑体辐射压末位 +1
+    (APPAW, r'=0.132131\ \mathrm{Mbar}.',
+           r'=0.132132\ \mathrm{Mbar}.'),
 ]
 
-MIN_FAIL = 696       # 实测值（623 处植入回退合并计入 710，留 14 的余量）：见下
+MIN_FAIL = 715       # 实测值（641 处植入回退合并计入 729，留 14 的余量）：见下
+# ## v1.26.27 轮（附录 AW 高能量密度物理 / 门禁 P55）植入扩到 641 处，18 处新补丁分两层
+#   结构层 7：表 AW.2 label 改名、语义盒标签改名、公式 label 改名、「出处：」→「来源：」、
+#   「解答 3」→「答案 3」、两只语义盒标题改字；
+#   数据层 11：费米能、耦合参数、冷压占比、离子声速、有质动力势、辐射温度、烧蚀压强、
+#   冲击压强、抖动速度、等离子体 beta、黑体辐射压各改末位（各 +1）。
+#   注：本轮 8 条数据补丁首轮是洞（公式与表格各印一份），已用门禁 ④c 的 8 条整句绑定堵住。
 # ## v1.26.26 轮（附录 AV 氚循环与氚工厂 / 门禁 P54）植入扩到 623 处，18 处新补丁分两层
 #   结构层 7：表 AV.3 label 改名、语义盒标签改名、公式 label 改名、「出处：」→「来源：」、
 #   「解答 3」→「答案 3」、两只语义盒标题改字；
