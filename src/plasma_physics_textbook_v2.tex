@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.26.39},
+  pdftitle={等离子体物理自学教材 v1.26.40},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -293,6 +293,7 @@
   rmABC/.style={rmnode,draw=figGreen,very thick},
   rmAB/.style={rmnode,draw=figBlue,very thick},
   rmBC/.style={rmnode,draw=figOrange,very thick},
+  nxchip/.style={draw=figInk!70,rounded corners=1.5pt,minimum width=1.05cm,minimum height=0.95cm,font=\scriptsize,inner sep=1pt},
 }
 \newtcolorbox{chapterreview}[1][]{
   colback=tipgreen!5,colframe=tipgreen,fonttitle=\bfseries,
@@ -456,7 +457,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.26.39}}
+  {\small\textcolor{white!45}{v1.26.40}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -5356,6 +5357,78 @@ OES发射光谱 & $10^{12}$--$10^{19}$ & $0.1$--$10$ & cm & ms & 工业/空间 \
 % 第 27 个及以后由 \appchapter 里的 \xdef\thechapter 逐章算成纯文本（AA、AB…）。
 \renewcommand{\thechapter}{\Alph{chapter}}
 \setcounter{chapter}{0}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=1cm,y=1cm]
+\node[nxchip,fill=figGray!25] at (0.00,0.00) {A};
+\node[nxchip,fill=figGray!25] at (1.16,0.00) {B};
+\node[nxchip,fill=figGray!25] at (2.32,0.00) {C};
+\node[nxchip,fill=figGray!25] at (3.48,0.00) {D};
+\node[nxchip,fill=figGray!25] at (4.64,0.00) {E};
+\node[nxchip,fill=figGray!25] at (5.80,0.00) {F};
+\node[nxchip,fill=figGray!25] at (6.96,0.00) {H};
+\node[nxchip,fill=figGreen!25] at (8.12,0.00) {G};
+\node[nxchip,fill=figGreen!25] at (9.28,0.00) {I};
+\node[nxchip,fill=figGreen!25] at (10.44,0.00) {J};
+\node[nxchip,fill=figGreen!25] at (11.60,0.00) {K};
+\node[nxchip,fill=figGreen!25] at (12.76,0.00) {L};
+\node[nxchip,fill=figBlue!25] at (13.92,0.00) {M};
+\node[nxchip,fill=figBlue!25] at (0.00,-1.10) {S};
+\node[nxchip,fill=figBlue!25] at (1.16,-1.10) {T};
+\node[nxchip,fill=figBlue!25] at (2.32,-1.10) {AE};
+\node[nxchip,fill=figBlue!25] at (3.48,-1.10) {AF};
+\node[nxchip,fill=figBlue!25] at (4.64,-1.10) {AG};
+\node[nxchip,fill=figBlue!25] at (5.80,-1.10) {AL};
+\node[nxchip,fill=figVerm!22] at (6.96,-1.10) {V};
+\node[nxchip,fill=figVerm!22] at (8.12,-1.10) {AD};
+\node[nxchip,fill=figVerm!22] at (9.28,-1.10) {AA};
+\node[nxchip,fill=figOrange!25] at (10.44,-1.10) {N};
+\node[nxchip,fill=figOrange!25] at (11.60,-1.10) {R};
+\node[nxchip,fill=figOrange!25] at (12.76,-1.10) {AO};
+\node[nxchip,fill=figOrange!25] at (13.92,-1.10) {AJ};
+\node[nxchip,fill=figPurple!22] at (0.00,-2.20) {Q};
+\node[nxchip,fill=figPurple!22] at (1.16,-2.20) {AN};
+\node[nxchip,fill=figPurple!22] at (2.32,-2.20) {AQ};
+\node[nxchip,fill=figPurple!22] at (3.48,-2.20) {AU};
+\node[nxchip,fill=figPurple!22] at (4.64,-2.20) {AH};
+\node[nxchip,fill=figPurple!22] at (5.80,-2.20) {AS};
+\node[nxchip,fill=figSky!30] at (6.96,-2.20) {AT};
+\node[nxchip,fill=figSky!30] at (8.12,-2.20) {AX};
+\node[nxchip,fill=figSky!30] at (9.28,-2.20) {X};
+\node[nxchip,fill=figVerm!45] at (10.44,-2.20) {AI};
+\node[nxchip,fill=figVerm!45] at (11.60,-2.20) {AW};
+\node[nxchip,fill=figVerm!45] at (12.76,-2.20) {Y};
+\node[nxchip,fill=figVerm!45] at (13.92,-2.20) {W};
+\node[nxchip,fill=figGreen!45] at (0.00,-3.30) {O};
+\node[nxchip,fill=figGreen!45] at (1.16,-3.30) {P};
+\node[nxchip,fill=figGreen!45] at (2.32,-3.30) {AB};
+\node[nxchip,fill=figGreen!45] at (3.48,-3.30) {AC};
+\node[nxchip,fill=figBlue!45] at (4.64,-3.30) {Z};
+\node[nxchip,fill=figBlue!45] at (5.80,-3.30) {AM};
+\node[nxchip,fill=figBlue!45] at (6.96,-3.30) {AR};
+\node[nxchip,fill=figBlue!45] at (8.12,-3.30) {AP};
+\node[nxchip,fill=figBlue!45] at (9.28,-3.30) {AV};
+\node[nxchip,fill=figBlue!45] at (10.44,-3.30) {AK};
+\node[nxchip,fill=figBlue!45] at (11.60,-3.30) {AY};
+\node[nxchip,fill=figBlue!45] at (12.76,-3.30) {AZ};
+\node[nxchip,fill=figBlue!45] at (13.92,-3.30) {U};
+\node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (0,-4.05) {\textbf{主题簇}（字母为附录编号）:};
+\node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (0.00,-4.55) {\textcolor{figGray}{\rule{2.2mm}{2.2mm}} 工具与速查（A B C D E F H）};
+\node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (0.00,-5.07) {\textcolor{figGreen}{\rule{2.2mm}{2.2mm}} 学习与练习（G I J K L）};
+\node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (0.00,-5.59) {\textcolor{figBlue}{\rule{2.2mm}{2.2mm}} 加热·电流·输运（M S T AE AF AG AL）};
+\node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (0.00,-6.11) {\textcolor{figVerm}{\rule{2.2mm}{2.2mm}} 稳定性·位形·边界（V AD AA）};
+\node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (0.00,-6.63) {\textcolor{figOrange}{\rule{2.2mm}{2.2mm}} 壁·加料·真空·尘埃（N R AO AJ）};
+\node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (7.60,-4.55) {\textcolor{figPurple}{\rule{2.2mm}{2.2mm}} 诊断与测量（Q AN AQ AU AH AS）};
+\node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (7.60,-5.07) {\textcolor{figSky}{\rule{2.2mm}{2.2mm}} 波·束流·辐射（AT AX X）};
+\node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (7.60,-5.59) {\textcolor{figVerm}{\rule{2.2mm}{2.2mm}} 惯性约束·强场（AI AW Y W）};
+\node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (7.60,-6.11) {\textcolor{figGreen}{\rule{2.2mm}{2.2mm}} 工业·空间·数值（O P AB AC）};
+\node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (7.60,-6.63) {\textcolor{figBlue}{\rule{2.2mm}{2.2mm}} 聚变工程与系统（Z AM AR AP AV AK AY AZ U）};
+\end{tikzpicture}
+\caption{附录导航图：52 个附录按主题分成 10 簇。每个字母是一个附录，颜色是它所属的主题簇，图例给出每簇的字母清单。要找某一类内容的附录时，先按主题定位颜色，再按字母翻到对应附录。}
+\label{fig:appendix-map}
+\end{figure}
+
 
 %======================================================================
 % 附录A：矢量与张量公式汇总

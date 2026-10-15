@@ -722,6 +722,25 @@ def check_K_roadmap():
         rec('PASS', 'K', u'全书学习路径图齐备：12 章节点 + 16 条直接依赖边')
 
 
+def check_L_appendixmap():
+    """附录导航图（v1.26.40 起）：52 个附录字母、10 个主题簇、图例与附录数一致。"""
+    text = strip_comments(read(os.path.join(SRC, MAIN)))
+    n_chip = text.count('\\node[nxchip')
+    n_app = len(re.findall(r'\\appchapter\{', text))
+    n_legend = text.count('\\rule{2.2mm}{2.2mm}')
+    if '\\label{fig:appendix-map}' not in text:
+        rec('FAIL', 'L', u'缺少附录导航图（fig:appendix-map）')
+    elif 'nxchip/.style' not in text:
+        rec('FAIL', 'L', u'附录导航图样式定义缺失（nxchip/.style）')
+    elif n_chip != n_app or n_chip != 52:
+        rec('FAIL', 'L', u'附录导航图芯片数应与附录数一致：附录 %d 个、芯片 %d 个'
+                         % (n_app, n_chip))
+    elif n_legend != 10:
+        rec('FAIL', 'L', u'附录导航图图例应为 10 个主题簇，实际 %d' % n_legend)
+    else:
+        rec('PASS', 'L', u'附录导航图齐备：%d 个附录、10 个主题簇' % n_chip)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--no-compile', action='store_true', help='跳过重新编译')
@@ -740,6 +759,7 @@ def main():
     check_I_unitchecks()
     check_J_predicts()
     check_K_roadmap()
+    check_L_appendixmap()
 
     # ---------------------------------------------------------- 报告
     order = {'FAIL': 0, 'WARN': 1, 'INFO': 2, 'PASS': 3}
