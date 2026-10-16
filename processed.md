@@ -9376,4 +9376,16 @@ O3b 0/626；README 279632 → **280597 字节**。
 
 ### 82.7 发布记录
 
-（待回填）
+- **Gitea release**：`id=330`（上一版 v1.26.48 为 327），
+  <http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.49>；
+  附件 `6def33ef-d2d2-4d43-8e86-10b911d9f3d4`、**18659616 B**。
+- **独立复核**：`tmp/verify_asset12649.py`（`curl.exe -sS -L --noproxy '*'`）下载远端附件后与本地
+  PDF 比对——同为 18659616 B、SHA256 同为
+  `B3DE0F1A953BF0FB41A6BBE47E9D33D5EFDABF055B96CEB1B03B16E84A45A229`、逐字节一致 → **PASS**。
+- **提交**：内容 `a4dbc41`（主文件 +30/−8、`check/full_check.py` 守卫口径、PDF 18657752 → 18659616 B）；
+  文档 `23dc603`（README 同步 + `processed.md` §82）。
+- **tag**：`v1.26.49` = 注释 tag 对象 `ee5cbd300f0fea41ed9759af95c484287bb333fa` → 文档提交 `23dc603`。
+- **远端 refs**：`refs/heads/main = 23dc603`、`refs/tags/v1.26.49 = ee5cbd30`；`reviews/` 74 项无新增、
+  无 `todo/`。
+- **工作树**：提交前已删除全部 `.bak*`（含 `.bakpredict2`／`.bakdevidx`／`.bakver49`／`.bakr12649`／
+  `.baks82`），仓库内 `.bak*` 计数 0。
