@@ -8840,4 +8840,22 @@ PNG 源统一铺白底转 JPEG。落盘后 `figures/` 共 **30 张、7.94 MB**�
 4. **README 里的图数与体积必须实测**：30 张、28 处、7.94 MB 都是脚本数出来的，
    不是估算的。
 
-**75.8 发布记录（待回填）。**
+**75.8 发布记录（已回填）。**
+
+- **Gitea release**：`id=310`（上一版 v1.26.41 = 297），
+  <http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.42>
+- **附件**：`plasma_physics_textbook_v2.pdf`，**12309003 B**，SHA256
+  `CA6CC22D25282456A5B4B9A8973507130DBF2BA620C91A18924DAEB1E849E27C`，
+  <http://zsyq.hxlab.tech:3000/attachments/d48e4377-181d-45bb-a6cd-9c4049abc65f>
+- **独立复核**（`tmp/verify_asset12642.py`，`curl.exe -sS -L --noproxy '*'`）：
+  本地与远端同为 12309003 B、SHA256 同为 `CA6CC22D…`、**逐字节一致 = True** → PASS。
+- **提交**：内容 `0cab89f`（主文件 + 4 张新图 + `figures/CREDITS.md` + PDF 11552114 → 12309003 B）；
+  文档 `547e349`（README.md 273020 → 273935 字节 + processed.md §75）。
+- **tag**：`v1.26.42` = 注释 tag 对象 `2d906e8788522ee02351318ef24c86d4bd931d9e`
+  → 文档提交 `547e349`。
+- **远端 refs**（回填前）：`refs/heads/main = 547e349545aef8d25088feb6fc3d0f1c947bbe00`、
+  `refs/tags/v1.26.42 = 2d906e87`；`reviews/` **74 项**（31+35+4+4）无新增、`todo/` 为空。
+- **仓库卫生**：提交前删除全部 `.bak*`（计数 0）。
+- **下一轮候选**：①第 8 章仍只有一张图（缺少贴题的实拍／机构图素材）；
+  ②附录侧几乎没有实拍图（52 个附录共用 0 张），可挑有实物对象的附录（材料、磁体、氚、真空）补；
+  ③把学习路径图与附录导航图并成一张「全书地图」。
