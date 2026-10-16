@@ -9706,6 +9706,26 @@ AY／AV／AJ／AH／AC／AS，本轮补第 21--24 个附录。
 | 六套件 | full_check 48（FAIL 0）／ui 59（WARN 38）／cons 14／physics 7195／figure 16／outline 11（WARN 1） |
 | 五夹具 | 全部 PASS |
 
-### 87.6 待回填
+### 87.6 发布记录
 
-（待回填）
+- **Gitea release**：`id=345`（上一版 v1.26.53 为 342），
+  <http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.54>；
+  三个附件（这是首次一个 release 带多附件）：
+  - 完整版 `plasma_physics_textbook_v2.pdf`、**21071459 B**、附件 `7d3e0ee7-1ec0-449d-adf3-e8897934392c`；
+  - 卷一 `…_vol1_chapters.pdf`、**10704037 B**、附件 `a1021c3a-4874-4eaf-94d0-95a7fc982d29`；
+  - 卷二 `…_vol2_appendices.pdf`、**11505547 B**、附件 `e200b4d3-fb46-41bc-b875-cedd5fad6a4a`。
+- **独立复核**：`tmp/verify_asset12654.py`（`curl.exe -sS -L --noproxy '*'`）逐个下载比对——
+  三个附件与本地**逐字节一致**；SHA256 分别为
+  `A1420D37C1A1D5A7E1C542548B85F89C…`（完整版）、`762956F064F02BF6FCF9FFC13F40FE36…`（卷一）、
+  `8918733B198012CC470EF50AE96C9DAD…`（卷二）→ **全部 PASS**。
+- **提交**：内容 `a0598fa`（主文件版本串、`check/full_check.py` 第 Q 类、三个 PDF）；文档
+  `74de322`（README.md + `processed.md` §87）。
+- **tag**：`v1.26.54` = 注释 tag 对象 `5712dab89435934db48c713125c832c6667f1deb` → 文档提交 `74de322`；
+  推送 `f871d82..74de322 main` + `* [new tag] v1.26.54`。
+- **远端 refs**：`refs/heads/main = 74de322`、`refs/tags/v1.26.54 = 5712dab8`；`reviews/` 74 项无新增、
+  无 `todo/`。
+- **工作树**：提交前删除 `.bakver54`／`.bakr12654`／`.baks87`，仓库内 `.bak*` 计数 0。
+- **本轮小坑**：① pymupdf `insert_link` 的 `to` 必须是 `fitz.Point`、`from` 必须是 `fitz.Rect`，
+  传元组会报 `TypeError: can't multiply sequence by non-int of type 'Matrix'`；
+  ② `doc.resolve_names()` 返回的是 `{name: {'page':…, 'to':…}}` 而不是页号列表；
+  ③ 想在封面盖中文水印会嵌入整套字体（10.7 MB → 23.1 MB），改用**元数据标题带卷别**。
