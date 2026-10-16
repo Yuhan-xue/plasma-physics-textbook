@@ -86,3 +86,7 @@ HyperPhysics、Feynman Lectures、IAEA《Fusion Physics》为「保留所有权�
 | `mast_tokamak.jpg` | MAST 球形托卡马克：中心柱换来的高比压 | Eye Steel Film | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:MAST_Tokamak_(32476489303).jpg | 附录 AA |
 | `spexone_polarimeter.jpg` | SPEXone 偏振仪：把偏振当成一个诊断量 | NASA | Public domain | https://commons.wikimedia.org/wiki/File:SPEXone_Polarimeter_for_the_PACE_satellite_-_GSFC_20201021_PACE_32369.jpg | 附录 AN |
 | `blackbody_carlo.jpg` | 黑体辐射源：误差棒的另一端是标准 | Luminforum | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:Black_body_radiator_at_CARLO_laboratory_in_Poland.jpg | 附录 AU |
+| `aw_z_machine.jpg` | 桑迪亚 Z 装置 | ENERGY.GOV | Public domain | https://commons.wikimedia.org/wiki/File:The_Z_Machine_(8056998596).jpg | 见正文对应附录 |
+| `o_ion_thruster.jpg` | NASA NEXT 离子推力器 | NASA | Public domain | https://commons.wikimedia.org/wiki/File:NASA_NEXT_Ion_thruster.712983main_NEXT_LDT_Thrusterhi-res_full.jpg | 见正文对应附录 |
+| `x_storage_ring.jpg` | 同步辐射储存环 | CLS Research Office from Saskatoon, Canada | CC BY-SA 2.0 | https://commons.wikimedia.org/wiki/File:Storage_ring_(13390679434).jpg | 见正文对应附录 |
+| `u_nova_chamber.jpg` | NOVA 靶室 | Lawrence Livermore National Laboratory | Public domain | https://commons.wikimedia.org/wiki/File:Nova_target_chamber.jpg | 见正文对应附录 |
