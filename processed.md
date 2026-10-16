@@ -9999,3 +9999,15 @@ AY／AV／AJ／AH／AC／AS，本轮补第 21--24 个附录。
 
 1. `mk_next.py` 生成的 bump 脚本 `OLD` 常量仍指上一版（第八批已踩过一次）→ 本轮固定流程：生成后用 `tmp/fix_bump59.py` 强制把 `OLD`/`NEW` 写成当前/目标版本，再跑 bump。
 2. 抓取 Commons 的 `Artist` 字段可能带 HTML 与「Photographer: ?」尾巴，登记 CREDITS 前要清洗（本轮手改 `y_shiva_chamber.jpg` 一行）。
+
+### 92.5 发布记录
+
+- 内容提交 `599d63d`（`src/`、`figures/`、`pdf/`）；文档提交 `16b5d6e`（README + 本文件）；tag `v1.26.59` = 注释对象 `dd20387aca522f5055c33d713fc0fb067faa4d1c`。
+- 推送：`main → 16b5d6e`、`* [new tag] v1.26.59`；远端 `refs/heads/main = 16b5d6e`、`refs/tags/v1.26.59 = dd20387a`。
+- Gitea release **id=361**（上一版 v1.26.58 = 359），三个附件（上传 status 201）：
+  - 完整版 **25761700 B** — `attachments/59650058-97e0-4973-bebc-9d18cd81c4d0` — SHA256 `5A1B8243EFB2C06EB5A47CCEE72F96F1826CCC9196FBAE73FDFD7A00C466743B`
+  - 卷一 **11682744 B** — `attachments/3d5c0e7c-7355-4d44-9c95-3952acf75e8a` — SHA256 `7F1A928DA9E7E776EB634D2717707DC40D673B0C133C5E069ED7A7F6EC84C0CF`
+  - 卷二 **15220064 B** — `attachments/cdf85bb1-1853-4848-8d03-5458547211fe` — SHA256 `AF4C53BD91E3764961B2806C099AE5C665EC9C1EA1169EFB0E4E81D52E5B391F`
+- 独立复核 `tmp/verify_asset12659.py`（`curl.exe -sS -L --noproxy '*'` 直连下载）：三个附件**逐字节一致 PASS**。
+- 远端 `reviews/` 74 项无新增、无 `todo/`。
+- 汇报图：附录 Q → PDF 第 324 页、附录 P → 第 315 页、附录 AZ → 第 657 页、附录 Y → 第 403 页；`tmp/png_app9/app9_summary.png`（2406×3392）。
