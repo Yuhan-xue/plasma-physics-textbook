@@ -50,3 +50,7 @@ HyperPhysics、Feynman Lectures、IAEA《Fusion Physics》为「保留所有权�
 | `icp_torch.jpg` | 电感耦合等离子体炬：欧姆加热的可见结果 | Superchilum | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:ICP_quartz_torch_1.JPG | 第 8 章 |
 | `magnetic_reconnection.jpg` | 磁重联示意：磁力线断开并重新连接 | NASA | Public domain | https://commons.wikimedia.org/wiki/File:Magnetic_reconnection.png | 第 9 章 |
 | `west_divertor.jpg` | WEST 托卡马克偏滤器的在位检查 | Hélène Roche / CEA IRFM | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:Divertor_tokamak_WEST.jpg | 第 12 章 |
+| `maxwell_boltzmann.jpg` | 麦克斯韦速率分布：分布函数的第一课 | InverseHypercube | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Maxwell-Boltzmann_distribution.svg | 第 1 章 |
+| `lepecvd_plasma.jpg` | 等离子体增强化学气相沉积腔内的放电 | Barzandr | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:LEPECVD_plasma.png | 第 4 章 |
+| `sun_earth_interaction.jpg` | 太阳风与磁层耦合：波把能量从太阳风送进磁层 | Space Travel Blog / Rute Marta Jansone | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:Sun-Earth_Interaction.jpg | 第 6 章 |
+| `landau_damping.jpg` | 朗道阻尼：共振粒子把波的能量带走 | Ramin Rahimi / Commons 贡献者 | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Landau-damp.png | 第 7 章 |

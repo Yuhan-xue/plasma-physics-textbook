@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.26.41},
+  pdftitle={等离子体物理自学教材 v1.26.42},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -457,7 +457,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.26.41}}
+  {\small\textcolor{white!45}{v1.26.42}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -1223,6 +1223,14 @@ Alfv\'{e}n 1942、Rosenbluth--Rostoker 1962），提供背景与要点摘要。 
 
 斯托克斯定理则在推导带电粒子\textbf{导向中心漂移}（第3章）时反复使用：通过将洛伦兹力沿闭合回旋轨道积分，提取出粒子整体漂移速度。
 \end{insight}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/maxwell_boltzmann.jpg}
+\caption{分布函数长什么样：麦克斯韦速率分布。统计平均的全部内容都藏在这条曲线里：横轴是速率，纵轴是「落在这一小段里的粒子占比」。本章后面用到的 $\langle v\rangle$、$v_\mathrm{th}$ 与各种矩，都是对这样一条曲线做积分得到的——分布函数不是抽象符号，它是一条可以画出来的曲线。}
+\label{fig:photo-maxwell}
+\figsource{InverseHypercube，CC BY-SA 3.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
+\end{figure}
 
 \section{分布函数与统计平均}\difficulty{基础}
 
@@ -2208,6 +2216,14 @@ nm\left(\frac{\partial\vect{u}}{\partial t} + \vect{u}\cdot\grad\vect{u}\right) 
 \figsource{Burkhard M\u00fccke，CC BY-SA 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
 \end{figure}
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/lepecvd_plasma.jpg}
+\caption{流体描述用在哪里：等离子体增强化学气相沉积。反应腔里那团放电是电子--离子--中性三套「流体」在同时运动：电子被射频场加热、离子被鞘层加速、中性气体被对流带走。本章的双流体方程组，就是给这种场景写的记账方式——每一套流体都有自己的连续性方程与动量方程。}
+\label{fig:photo-lepecvd}
+\figsource{Barzandr，CC BY-SA 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
+\end{figure}
+
 \section{双流体方程组}\difficulty{提高}
 
 等离子体至少包含两种带电粒子：电子和离子。由于 $m_e \ll m_i$，在很多现象中电子和离子的响应完全不同，必须分别描述。
@@ -2704,6 +2720,14 @@ v_p = \frac{\omega}{k} = \frac{\omega_{pe}}{k}
 此效应即为\textbf{电离层反射无线电波}的原理：AM广播（$f\sim 1\,\mathrm{MHz}$）低于电离层的 $\omega_{pe}/2\pi$，被反射回地面，实现远距离传播。而FM广播和电视信号（$f>100\,\mathrm{MHz}$）可以穿透电离层，因此需要卫星或线缆传输。
 \end{insight}
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/sun_earth_interaction.jpg}
+\caption{磁化等离子体里的波：太阳风与磁层的耦合。太阳风把能量送进磁层，靠的不是「撞」，而是波与不稳定性：哨声波、阿尔芬波与磁声波在磁化等离子体里接力传递。本章讨论的色散关系与截止、共振，正是这段耦合的语法。}
+\label{fig:photo-sunearth}
+\figsource{Space Travel Blog / Rute Marta Jansone，CC BY 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
+\end{figure}
+
 \section{磁化等离子体中的波}\difficulty{提高}
 \label{sec:ch6-magnetized}
 
@@ -2882,6 +2906,14 @@ f = f_0(v) + f_1(x,v,t), \qquad E = E_1(x,t)
 
 如何处理这个奇点是动理学理论的核心。Landau 在1946年的开创性工作中证明：必须将积分路径从极点下方绕过（Landau 围道），这对应于因果律的要求（初始值问题而非边值问题）。
 \end{insight}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/landau_damping.jpg}
+\caption{Landau 阻尼：共振粒子与波交换能量。速度略慢于波相的粒子被波加速、略快的被减速，净效果是波把能量交给粒子——这就是 Landau 阻尼的无碰撞机制，也是本章「不用碰撞也能耗散」的核心图像。}
+\label{fig:photo-landau}
+\figsource{Ramin Rahimi 等，CC BY-SA 3.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
+\end{figure}
 
 \section{Landau 阻尼的物理图像}\difficulty{基础}
 \label{sec:ch7-landau}
