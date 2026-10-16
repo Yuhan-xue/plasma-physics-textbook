@@ -54,3 +54,7 @@ HyperPhysics、Feynman Lectures、IAEA《Fusion Physics》为「保留所有权�
 | `lepecvd_plasma.jpg` | 等离子体增强化学气相沉积腔内的放电 | Barzandr | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:LEPECVD_plasma.png | 第 4 章 |
 | `sun_earth_interaction.jpg` | 太阳风与磁层耦合：波把能量从太阳风送进磁层 | Space Travel Blog / Rute Marta Jansone | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:Sun-Earth_Interaction.jpg | 第 6 章 |
 | `landau_damping.jpg` | 朗道阻尼：共振粒子把波的能量带走 | Ramin Rahimi / Commons 贡献者 | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Landau-damp.png | 第 7 章 |
+| `w7x_magnets.jpg` | 仿星器磁体系统示意：线圈怎么排、力往哪里走 | M. Nagel, C.P. Dhard, H. Bau, H.-S. Bosch, U. Meyer, S. Raatz, K. Risse and T. Rummel | CC BY 3.0 | https://commons.wikimedia.org/wiki/File:Wendelstein_7-X_schematic_view_of_magnets_system.jpg | 附录 AM |
+| `plasma_spray.jpg` | 等离子体喷涂：给面向等离子体部件做涂层 | Student-julia-pwr | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Plasma_spraying_process.jpg | 附录 AY |
+| `thruster_vacuum.jpg` | 真空舱里的霍尔推力器：抽气与壁条件决定它能不能点着 | EXOTRAIL SA | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Hall_Effect_Thruster_in_a_vacuum_chamber.jpg | 附录 AO |
+| `jet_mascot.jpg` | JET 的遥操作机械臂：远距离操作的真实尺度 | Steve Parker from Ash Vale, UK | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:JET_Mascot_(1466933452).jpg | 附录 AP |
