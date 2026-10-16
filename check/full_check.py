@@ -691,19 +691,26 @@ def check_I_unitchecks():
 
 
 def check_J_predicts():
-    """例题「先猜再看」引导（v1.26.38 起）：18 个例题各一行，宏已定义。"""
+    """「先猜再看」引导（v1.26.38 起覆盖 18 个例题，v1.26.49 起每章再加 1 条关键推导）。"""
     text = strip_comments(read(os.path.join(SRC, MAIN)))
     n_box = text.count('\\begin{example}')
     n_pre = text.count('\\predict{')
     if '\\newcommand{\\predict}' not in text:
-        rec('FAIL', 'J', u'缺少 \\predict 宏定义：例题没有「先猜再看」入口')
+        rec('FAIL', 'J', u'缺少 \\predict 宏定义：没有「先猜再看」入口')
     if n_box == 0:
         rec('FAIL', 'J', u'未找到例题环境')
-    elif n_pre != n_box:
-        rec('FAIL', 'J', u'「先猜再看」应与例题一一对应：例题 %d 个，提示 %d 条'
+        return
+    parts = re.split(r'\\chapter\{', text)[1:]
+    per_ch = [p.count('\\predict{') for p in parts]
+    ex_ch = [p.count('\\begin{example}') for p in parts]
+    thin = [i + 1 for i, (n, e) in enumerate(zip(per_ch, ex_ch)) if n != e + 1]
+    if n_box != 18 or n_pre != 30:
+        rec('FAIL', 'J', u'「先猜再看」应为 18 条例题 + 12 条推导 = 30 条：例题 %d 个，提示 %d 条'
                          % (n_box, n_pre))
+    elif thin:
+        rec('FAIL', 'J', u'以下章的「先猜再看」条数不等于「例题数 + 1」：%s' % thin)
     else:
-        rec('PASS', 'J', u'例题「先猜再看」齐备：%d 个例题各一条' % n_pre)
+        rec('PASS', 'J', u'「先猜再看」齐备：18 条例题 + 12 条关键推导（各章例题数 + 1）')
 
 
 def check_K_roadmap():
