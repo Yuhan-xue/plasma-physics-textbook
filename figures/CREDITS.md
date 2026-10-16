@@ -58,3 +58,7 @@ HyperPhysics、Feynman Lectures、IAEA《Fusion Physics》为「保留所有权�
 | `plasma_spray.jpg` | 等离子体喷涂：给面向等离子体部件做涂层 | Student-julia-pwr | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Plasma_spraying_process.jpg | 附录 AY |
 | `thruster_vacuum.jpg` | 真空舱里的霍尔推力器：抽气与壁条件决定它能不能点着 | EXOTRAIL SA | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Hall_Effect_Thruster_in_a_vacuum_chamber.jpg | 附录 AO |
 | `jet_mascot.jpg` | JET 的遥操作机械臂：远距离操作的真实尺度 | Steve Parker from Ash Vale, UK | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:JET_Mascot_(1466933452).jpg | 附录 AP |
+| `turbopump.jpg` | 涡轮分子泵：抽速是泵与导管一起决定的 | Moxfyre | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Edwards_turbopump.jpg | 附录 AO |
+| `flywheel_20mw.jpg` | 20 MW 飞轮储能电站：能量存在转子里 | Z22 | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Beacon_Power_New_York_-_20_MW_Flywheel_Energy_Storage.jpg | 附录 AR |
+| `nif_laser_bay.jpg` | 激光驱动器阵列：192 束光要在靶上对准 | Lawrence Livermore National Laboratory, Lawrence Livermore N | Public domain | https://commons.wikimedia.org/wiki/File:NIF_Laser_Bay.jpg | 附录 AI |
+| `iter_plant.jpg` | 堆与厂：主机之外还有一整套系统 | Oak Ridge National Laboratory | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:ITER_Tokamak_and_Plant_Systems_(2016)_(41783636452).jpg | 附录 Z |
