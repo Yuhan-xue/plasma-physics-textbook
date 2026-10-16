@@ -78,3 +78,8 @@ HyperPhysics、Feynman Lectures、IAEA《Fusion Physics》为「保留所有权�
 | `solar_flare_sdo.jpg` | 太阳耀斑（SDO 四波段）：日冕里的磁重联 | NASA/SDO | Public domain | https://commons.wikimedia.org/wiki/File:X3.2_Solar_flare_on_2013-05-14_at_four_wavelengths.jpg | 附录 AB |
 | `magnetic_turbulence.jpg` | 磁湍流：输运由哪一段波数贡献 | Giannandrea Inchingolo | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Magnetic_turbulence.jpg | 附录 AF |
 | `triumf_cyclotron.jpg` | TRIUMF 回旋加速器：回旋运动的工程尺度 | Adam Foster | CC BY-SA 2.0 | https://commons.wikimedia.org/wiki/File:Canadian_Science_-_TRIUMF_cyclotron_-_Flickr_-_Cargo_Cult_(1).jpg | 附录 AX |
+| `red_sprites_iss.jpg` | 红色精灵（ISS 实拍）：平流层的向上放电 | NASA | Public domain | https://commons.wikimedia.org/wiki/File:ISS-44_Red_Sprites,_northwest_Mexico.jpg | 第 2 章 |
+| `nif_target_worker.jpg` | NIF 靶室内部：一个人站在十米级球室里 | Lawrence Livermore National Security | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Worker_inside_the_target_chamber_of_the_National_Ignition_Facility.jpg | 第 10 章 |
+| `chemcam_mars.jpg` | 火星上的激光等离子体：ChemCam 的 LIBS 光谱 | NASA/JPL-Caltech/LANL | Public domain | https://commons.wikimedia.org/wiki/File:ChemCam_Plasma_Iron_Pyrite.jpg | 第 11 章 |
+| `geissler_tube.jpg` | 盖斯勒放电管：谱线是被放电点亮的 | Svk mary | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Geissler_spectrum_tube.JPG | 第 12 章 |
+| `dust_plasma_lab.jpg` | 尘埃等离子体诊断实验台：第三个尺度 | Stanislav Liubauskas | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:Laboratory_of_Dust_Plasma_Diagnostics.jpg | 附录 R |

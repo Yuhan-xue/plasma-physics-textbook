@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.26.55},
+  pdftitle={等离子体物理自学教材 v1.26.56},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -461,7 +461,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.26.55}}
+  {\small\textcolor{white!45}{v1.26.56}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -1735,6 +1735,14 @@ m_e \ddot{\Delta x} = -\frac{n_e e^2}{\eps_0}\Delta x
 \caption{身边的等离子体：闪电通道。云地闪电的通道温度可达约 $3\times10^{4}$ K，电子密度远高于德拜判据的要求——它是大气里最容易看见的等离子体，也是「电离气体」与「等离子体」差别最直观的例子。}
 \label{fig:photo-lightning}
 \figsource{The Modern Polymath，CC BY 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/red_sprites_iss.jpg}
+\caption{红色精灵：大气里的向上放电。闪电并不是大气放电的全部：雷暴上方的强电场会把电子加速到几十电子伏，在平流层顶部激发出向上的丝状放电——红色精灵、蓝色喷流都属于瞬态发光现象。它们和本节讲的电离气体是同一套物理，只是尺度、密度与时间尺度都换了一档。}
+\label{fig:photo-sprites}
+\figsource{NASA，Public domain（Wikimedia Commons）}
 \end{figure}
 
 \section{等离子体判据}\difficulty{基础}
@@ -3696,6 +3704,14 @@ $n\tau$ & $\sim 10^{20}\,\mathrm{m}^{-3}\cdot\mathrm{s}$ & $\sim 10^{21}\,\mathr
 \figsource{Lawrence Livermore National Laboratory，公有领域（Wikimedia Commons），链接见 figures/CREDITS.md。}
 \end{figure}
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/nif_target_worker.jpg}
+\caption{NIF 靶室内部：十米级球室里的一个人。惯性约束的靶室有十米量级，而靶丸只有毫米级——中间这段尺度差正是「把能量精确送到靶上」的全部难度；本节讨论的黑腔与内爆，最终都要在这间球室里按十皮秒级的时序发生。}
+\label{fig:photo-nifworker}
+\figsource{Lawrence Livermore National Security，CC BY-SA 3.0（Wikimedia Commons）}
+\end{figure}
+
 \section{聚变能源的展望}\difficulty{提高}
 
 \begin{insight}{从实验室到电网：剩余挑战}{fusion-challenges}
@@ -4236,6 +4252,14 @@ PECVD与溅射沉积的物理机制完全不同：PECVD是"化学反应在表面
 \end{enumerate}
 \quizans{（1） (a) 离子轰击打断表面键、制造悬键，使化学刻蚀更容易；(b) 把反应产物打走、保持表面新鲜；两者叠加远快于纯化学或纯物理。\par （2） 高能电子把前驱气体解离成活性基团，沉积不再依赖衬底高温。\par （3） 侧壁靠 C$_4$F$_8$ 聚合物钝化保护，底部靠 SF$_6$ 的 F 自由基配合离子轰击去掉钝化层并刻蚀硅。}
 \end{miniquiz}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/chemcam_mars.jpg}
+\caption{火星上的激光等离子体：ChemCam 的 LIBS。好奇号用激光在几米外打出一小团等离子体，再从它的发光谱里读出岩石成分——这是「等离子体作为分析工具」最远的一次应用：激光烧蚀、等离子体发光与光谱定量，每一步都对应本节讲的工艺等离子体物理。}
+\label{fig:photo-chemcam}
+\figsource{NASA/JPL-Caltech/LANL，Public domain（Wikimedia Commons）}
+\end{figure}
 
 \section{磁控溅射与刻蚀机物理模型}
 \label{sec:magnetron-sputtering}
@@ -5265,6 +5289,14 @@ n_e = 10^{23}\times\left(\frac{\Delta\lambda_{1/2}}{0.549\,\mathrm{nm}}\right)^{
 $n_e\sim10^{24}\,\mathrm{m}^{-3}$ 对应高电流密度电弧芯部，与 $2.5\,\mathrm{nm}$ 的展宽量级自洽。但要强调：\textbf{这里的 $2.5\,\mathrm{nm}$ 是"表观"全宽}，实际反演前必须扣除仪器分辨率和多普勒展宽（见上一条告诫）。本例题为了教学把所有展宽都归于斯塔克分量，真实工作中这样做会把密度\emph{高估}。温度依赖也须用查表系数而非固定 $0.549$。
 \end{example}
 
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/geissler_tube.jpg}
+\caption{盖斯勒放电管：谱线是被放电点亮的。光谱诊断的起点是一支会发光的放电管：管内的原子被电子碰撞激发，退激时发出特征谱线。本节讲的谱线强度、展宽与绝对定标，量的就是这支管子发出的光——只不过在托卡马克上，光源换成了上亿度的等离子体。}
+\label{fig:photo-geissler}
+\figsource{Svk mary，CC BY-SA 4.0（Wikimedia Commons）}
+\end{figure}
 
 \section{磁探针（Magnetic Probe / Rogowski Coil）}
 \label{sec:12.6}

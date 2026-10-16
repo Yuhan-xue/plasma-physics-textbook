@@ -413,7 +413,13 @@ def check_figure_palette():
         raw = open(path, encoding='utf-8').read()
         raw = re.sub(r'(?<!\\)%.*', '', raw)
         for m in FIG_ENV.finditer(raw):
-            for wm in PALETTE_PAT.finditer(m.group(0)):
+            block = m.group(0)
+            for wm in PALETTE_PAT.finditer(block):
+                # 只认「颜色用法」：前面紧邻 [ = { , 之一（fill=blue!20 / [blue!20] / \color{blue} / draw=red）。
+                # 否则是文件名或普通单词（如 ../figures/red_sprites_iss.jpg，v1.26.56 修）。
+                prev = block[max(0, wm.start() - 1):wm.start()]
+                if prev not in ('[', '=', '{', ','):
+                    continue
                 line = raw[:m.start() + wm.start()].count('\n') + 1
                 bad.append('%s:%d 用了写死颜色 %s' % (os.path.basename(path), line, wm.group(0)))
     if bad:
