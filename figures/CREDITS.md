@@ -83,3 +83,6 @@ HyperPhysics、Feynman Lectures、IAEA《Fusion Physics》为「保留所有权�
 | `chemcam_mars.jpg` | 火星上的激光等离子体：ChemCam 的 LIBS 光谱 | NASA/JPL-Caltech/LANL | Public domain | https://commons.wikimedia.org/wiki/File:ChemCam_Plasma_Iron_Pyrite.jpg | 第 11 章 |
 | `geissler_tube.jpg` | 盖斯勒放电管：谱线是被放电点亮的 | Svk mary | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Geissler_spectrum_tube.JPG | 第 12 章 |
 | `dust_plasma_lab.jpg` | 尘埃等离子体诊断实验台：第三个尺度 | Stanislav Liubauskas | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:Laboratory_of_Dust_Plasma_Diagnostics.jpg | 附录 R |
+| `mast_tokamak.jpg` | MAST 球形托卡马克：中心柱换来的高比压 | Eye Steel Film | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:MAST_Tokamak_(32476489303).jpg | 附录 AA |
+| `spexone_polarimeter.jpg` | SPEXone 偏振仪：把偏振当成一个诊断量 | NASA | Public domain | https://commons.wikimedia.org/wiki/File:SPEXone_Polarimeter_for_the_PACE_satellite_-_GSFC_20201021_PACE_32369.jpg | 附录 AN |
+| `blackbody_carlo.jpg` | 黑体辐射源：误差棒的另一端是标准 | Luminforum | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:Black_body_radiator_at_CARLO_laboratory_in_Poland.jpg | 附录 AU |
