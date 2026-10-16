@@ -782,6 +782,24 @@ def check_N_strategies():
         rec('PASS', 'N', u'「解题策略」盒齐备：12 章各 1 只（共 12 只）')
 
 
+def check_O_deviceindex():
+    """前言「全书学习装置索引」表（v1.26.47 起）：16 行装置齐备。"""
+    text = strip_comments(read(os.path.join(SRC, MAIN)))
+    if u'\\section*{全书学习装置索引}' not in text or u'\\label{tab:device-index}' not in text:
+        rec('FAIL', 'O', u'缺少「全书学习装置索引」小节或表标签')
+        return
+    need = [u'核心目标盒', u'学习路径图', u'先猜再看', u'解题策略盒', u'概念图',
+            u'量纲自检', u'随堂自测', u'易错点提示', u'物理洞见', u'习题精选',
+            u'自测题库', u'符号与术语总表', u'一分钟估算', u'附录导航图', u'正文实拍图']
+    miss = [s for s in need if s not in text]
+    if miss:
+        rec('FAIL', 'O', u'学习装置索引缺条目：%s' % miss)
+        return
+    rows = text.count(u'\\\\')  # 粗略：表格行以 \\ 结束
+    rec('PASS', 'O', u'「全书学习装置索引」齐备：%d 类装置（表内行标记 %d 处）'
+        % (len(need), rows))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--no-compile', action='store_true', help='跳过重新编译')
@@ -803,6 +821,7 @@ def main():
     check_L_appendixmap()
     check_M_bestimate()
     check_N_strategies()
+    check_O_deviceindex()
 
     # ---------------------------------------------------------- 报告
     order = {'FAIL': 0, 'WARN': 1, 'INFO': 2, 'PASS': 3}
