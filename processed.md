@@ -9859,6 +9859,25 @@ AY／AV／AJ／AH／AC／AS，本轮补第 21--24 个附录。
 | 六套件 | full_check 49（FAIL 0）／ui 59（WARN 38）／cons 14／physics 7195／figure 16／outline 11（WARN 1） |
 | 五夹具 | 全部 PASS |
 
-### 89.5 待回填
+### 89.5 发布记录
 
-（待回填）
+- **Gitea release**：`id=354`（上一版 v1.26.55 为 351），
+  <http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.56>；
+  三个附件：完整版 **22421376 B**（`069e00f7-e251-4e1a-aaf4-326a2b21dadc`）、
+  卷一 **11682575 B**（`a4779cd7-4007-4952-ac09-cf9d684b438e`）、
+  卷二 **11877506 B**（`0d8afa10-b97d-420f-bfd4-2d55bac50a6c`）。
+- **独立复核**：`tmp/verify_asset12656.py`（`curl.exe -sS -L --noproxy '*'`）三个附件与本地
+  **逐字节一致**；SHA256 分别为
+  `6BFA9943CFD764BCB51299D2B3B212E6FBC4102C8D48A44AB091C04171A1E102`（完整版）、
+  `BAC96F8CCBA20A341D9B2F9F438BC42FCE59E6AB605AB4662C419C484BE356F6`（卷一）、
+  `30E4C9CA1001EA0EE993BA80AA55EB6E669880D9EB2BDF42BDCFAF81848B40F5`（卷二）→ 全部 PASS。
+- **提交**：内容 `91740dc`（主文件 + 附录 R 插图、`check/figure_layout.py` 配色判据收紧、
+  5 张新图 + `figures/CREDITS.md`、三个 PDF）；文档 `156d6a1`（README.md + `processed.md` §89）。
+- **tag**：`v1.26.56` = 注释 tag 对象 `3ef8905a0f2915e27fc00e7ec23aeebdfcce551c` → 文档提交 `156d6a1`；
+  推送 `7d42409..156d6a1 main` + `* [new tag] v1.26.56`。
+- **远端 refs**：`refs/heads/main = 156d6a1`、`refs/tags/v1.26.56 = 3ef8905a`；`reviews/` 74 项无新增、
+  无 `todo/`。
+- **本轮两处工具坑**：① 图形守卫的配色正则把**文件名** `red_sprites_iss.jpg` 当成写死颜色
+  （`src/plasma_physics_textbook_v2.tex:1742`）→ 判据收紧为只认颜色用法（前邻字符 ∈ `[={,`）；
+  ② full_check 的页数断言是 `\*\*(\d+)\s*页\*\*`（任意加粗页数）→ 版本表行里
+  `**659 页**`/`**211 页**` 这类叙述必须去掉加粗（`tmp/fix_readme_v12656b.py`）。
