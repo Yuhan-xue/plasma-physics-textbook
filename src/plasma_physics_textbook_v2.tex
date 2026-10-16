@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.26.47},
+  pdftitle={等离子体物理自学教材 v1.26.48},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -461,7 +461,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.26.47}}
+  {\small\textcolor{white!45}{v1.26.48}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -3222,6 +3222,14 @@ D_a = \frac{\mu_i D_e + \mu_e D_i}{\mu_i + \mu_e} \approx D_i\left(1 + \frac{T_e
 \caption{欧姆加热的可见结果：电感耦合等离子体炬。射频电流通过电子--中性碰撞把能量交给等离子体，宏观上就是本章的 Spitzer 电阻率与欧姆加热；炬管里那条明亮的通道，是碰撞把定向能量变成热运动的直接证据。}
 \label{fig:photo-icp}
 \figsource{Superchilum，CC BY-SA 3.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/plasma_cutting.jpg}
+\caption{把电流压进等离子体：等离子弧切割。割炬里的电弧要在一个很小的截面上通过几十到几百安培的电流，靠的正是本章算的 Spitzer 电阻率：电阻随温度下降，电流才能集中——这条弧就是「电阻率决定能量往哪去」的现场。}
+\label{fig:photo-cutting}
+\figsource{Loffredo，CC BY-SA 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
 \end{figure}
 
 \section{Spitzer 电阻率}\difficulty{提高}

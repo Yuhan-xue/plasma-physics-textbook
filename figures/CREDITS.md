@@ -66,3 +66,7 @@ HyperPhysics、Feynman Lectures、IAEA《Fusion Physics》为「保留所有权�
 | `gyrotron_140ghz.jpg` | 140 GHz / 1 MW 回旋管：射频加热三件套里的一件 | Z6ehswhha5HGRTd | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Wendelstein_7-X,_Gyrotron,140Ghz,_1MW.jpg | 附录 M |
 | `sputter_gun.jpg` | 磁控溅射枪：受控的溅射侵蚀 | Tavoromann | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Magnetron_sputtering_gun.jpg | 附录 N |
 | `dry_cask.jpg` | 干式贮存罐：活化废物最后的去处 | Nuclear Regulatory Commission from US | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Massive_containers_hold_spent_nuclear_fuel_(15420175144).jpg | 附录 AK |
+| `plasma_cutting.jpg` | 等离子弧切割：电流被电阻率限制 | Loffredo | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:STEP-NC_plasma_cutting.jpg | 第 8 章 |
+| `tritium_glowring.jpg` | 氚发光环：半衰期与活度摸得着的样子 | Cgommel | CC BY-SA 2.0 de | https://commons.wikimedia.org/wiki/File:Tritium-Glowring_-_320s.jpg | 附录 AV |
+| `ion_irradiation.jpg` | 离子辐照实验：dpa 是怎么被制造出来的 | BibMak | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:The_irradiation_experiments_at_the_ion_accelerator_DC-60._Astana,_Kazakhstan.JPG | 附录 AY |
+| `ion_source_fermilab.jpg` | 离子源：中性束注入的第一步 | Z22 | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Ion_source_at_used_in_the_Cockcroft-Walton_accelerators_at_Fermilab.jpg | 附录 M |
