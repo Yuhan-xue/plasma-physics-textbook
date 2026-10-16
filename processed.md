@@ -9284,4 +9284,25 @@ O3b 0/626；README 279632 → **280597 字节**。
 **81.7 待实施。** ①「先猜再看」可扩展到公式推导；②索引表可加「初学／复习」两栏用法；
 ③附录 AS／AN／AE 等仍无实拍图，继续找贴题素材。
 
-**81.8 发布记录（待回填）。**
+**81.8 发布记录（已回填）。**
+
+- **Gitea release**：`id=327`（上一版 v1.26.47 = 323），
+  <http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.48>
+- **附件**：`plasma_physics_textbook_v2.pdf`，**18656643 B**，SHA256
+  `25FE0DDF925C5016AEA9E7DB5FCD559BFFA05FDFD7E0E1E186C30E06238DCD8A`，
+  <http://zsyq.hxlab.tech:3000/attachments/1e650bf9-0e1d-4cd2-a7dc-d8a99aea2e1d>
+- **独立复核**（`tmp/verify_asset12648.py`，`curl.exe -sS -L --noproxy '*'`）：
+  本地与远端同为 18656643 B、SHA256 同为 `25FE0DDF…`、**逐字节一致 = True** → PASS。
+- **提交**：内容 `e13e9f0`（主文件 + 3 个附录文件 + 4 张新图 + `figures/CREDITS.md` +
+  PDF 17443606 → 18656643 B）；文档 `94c3adc`（README.md 279632 → 280589 字节 + processed.md §81）。
+- **tag**：`v1.26.48` = 注释 tag 对象 `c652e43a5ed1e681ad4d9afcfab7d22967eafdf0`
+  → 文档提交 `94c3adc`。
+- **同型坑第三次出现（已修）**：README 版本表里 v1.26.47 那行写「页数 655 → **656 页**」，
+  加粗页数再次被 `full_check` 当成当前页数声明 → FAIL；去掉加粗后全绿
+  （`tmp/fix_readme_pages_bold3.py`）。**结论：版本表行里永远不要给页数加粗**，
+  这条已写进 §81.6，后续 README 同步脚本模板也照此办。
+- **远端 refs**（回填前）：`refs/heads/main = 94c3adc381cb46870b6f0e985cf1b4fb01ea0318`、
+  `refs/tags/v1.26.48 = c652e43a`；`reviews/` **74 项**（31+35+4+4）无新增、`todo/` 为空。
+- **仓库卫生**：提交前删除全部 `.bak*`（计数 0）；主文件行尾已规范化为纯 CRLF。
+- **下一轮候选**：①「先猜再看」扩展到公式推导；②学习装置索引表加「初学／复习」两栏用法；
+  ③附录 AS／AN／AE 等仍无实拍图，继续找贴题素材。
