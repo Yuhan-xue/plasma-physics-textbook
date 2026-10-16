@@ -9881,3 +9881,39 @@ AY／AV／AJ／AH／AC／AS，本轮补第 21--24 个附录。
   （`src/plasma_physics_textbook_v2.tex:1742`）→ 判据收紧为只认颜色用法（前邻字符 ∈ `[={,`）；
   ② full_check 的页数断言是 `\*\*(\d+)\s*页\*\*`（任意加粗页数）→ 版本表行里
   `**659 页**`/`**211 页**` 这类叙述必须去掉加粗（`tmp/fix_readme_v12656b.py`）。
+
+## 90. v1.26.57：附录实拍图第七批（AA / AN / AU）
+
+### 90.1 轮次定位
+
+用户方向指令（持续有效）：不要在附录排版上过度投入，**优化正文配图、寻找现成高清图像替换、丰富正文内容、借鉴优秀自学项目的设计思路**。
+
+配图线按「按章（或按附录）盘点 → 找合格素材 → 插图 + 署名」的小步推进。本轮回到附录：正文 12 章每章已有 ≥2 张实拍图，附录侧 52 个里仍有 28 处空白，其中三处「这一节讲的东西有实物对象」：
+
+| 附录 | 小节 | 实物对象 |
+| --- | --- | --- |
+| AA 替代位形 | 场反位形：比压等于一，代价是稳定性 | MAST 球形托卡马克 |
+| AN 偏振与磁光诊断 | 从相位到剖面：弦数、分辨率与不确定度 | SPEXone 偏振仪 |
+| AU 数据与不确定度 | 两条腿：A 类统计、B 类系统与合成 | 黑体辐射源 |
+
+### 90.2 三张图与来源
+
+| 文件 | 内容 | 作者 / 许可 | 长边 |
+| --- | --- | --- | --- |
+| `figures/mast_tokamak.jpg` | MAST 球形托卡马克真空室内部 | Eye Steel Film，CC BY 2.0 | 1500 px |
+| `figures/spexone_polarimeter.jpg` | SPEXone 星载偏振仪 | NASA/GSFC，Public domain | 1500 px |
+| `figures/blackbody_carlo.jpg` | CARLO 黑体辐射源 | PTB，CC BY 4.0 | 1500 px |
+
+三张都经 `tools/fetch_figure.py` 一类流程下载、`tmp/photos_app7.py` 规范化（长边 ≤1500 px；照片 JPEG q88–q92）并登记进 `figures/CREDITS.md`。
+
+### 90.3 验收
+
+- 结构：素材 59 → **62 张**、插图 57 → **60 处**、附录配图 21 → **24 处**、`figures/` 17.58 → **18.42 MB**。
+- 页面：661 → **662 页**（卷二 450 → **451 页**，卷一 211 页不变）；书签 626 条（150 + 476）。
+- 构建：`^!` 0、Overfull 仍 5 处基线、缺字 0、重复标签 0；PDF 23304964 →（导航目标修正后）**23307154 B**。
+- 电池：六套件 + 五夹具全绿（full_check 49 / ui_readability 59（WARN 38）/ consistency 14 / physics_regression 7195 / figure_layout 16 / pdf_outline 11（WARN 1））。
+
+### 90.4 本轮两处教训
+
+1. **`$\beta_N$` 写在非 raw Python 字符串里会变成退格符**：首次构建 exit 12，日志里是 `Text line contains an invalid character`（题注中出现 U+0008），修法是把生成脚本里的 `\b` 写成 `\\b`（`tmp/fix_appa_caption.py` 同时修 tex 与生成器）。凡在 Python 字符串里写 LaTeX 的 `\b`、`\t`、`\n`、`\f`、`\v`、`\a` 都要警惕。
+2. **README 版本表行里的加粗页数会被 `full_check` 当成「当前 PDF 页数」声明**：这是第 5 次同型修复（v1.26.53 / v1.26.56 / v1.26.57 行），统一改为不加粗（`tmp/fix_readme_pages_bold5.py`）。此后写版本表行时页数一律不加粗。
