@@ -9501,6 +9501,19 @@ v1.26.49 发布后做例行目视核对：把 12 条新提示所在的 PDF 页�
 | 五夹具 | 全部 PASS |
 | 实拍图守卫 | 50 处引用均存在、均有署名、均已登记（含 20 处附录） |
 
-### 84.5 待回填
+### 84.5 发布记录
 
-（待回填）
+- **Gitea release**：`id=337`（上一版 v1.26.50 为 331），
+  <http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.51>；
+  附件 `7f7d9185-2292-4214-9c7f-61ae3133ec85`、**19966962 B**。
+- **独立复核**：`tmp/verify_asset12651.py`（`curl.exe -sS -L --noproxy '*'`）——本地与远端同为
+  19966962 B、SHA256 同为
+  `FDF690A1FD1034B74E6648057AD4AA395C327A8665A6D73A321F14226F25A261`、逐字节一致 → **PASS**。
+- **提交**：内容 `6950889`（4 个附录 tex、`figures/CREDITS.md`、4 张新图、主 PDF
+  18659652 → 19966962 B）；文档 `df03cca`（README.md + `processed.md` §84）。
+- **tag**：`v1.26.51` = 注释 tag 对象 `b376fe80e765217609ae2e5bf0a176f3155fd991` → 文档提交 `df03cca`；
+  推送 `4a7fe77..df03cca main` + `* [new tag] v1.26.51`。
+- **远端 refs**：`refs/heads/main = df03cca`、`refs/tags/v1.26.51 = b376fe80`；`reviews/` 74 项无新增、
+  无 `todo/`。
+- **工作树**：提交前删除全部 `.bak*`（`.bakapp4` ×4、`.bakcr4`、`.bakver51`、`.bakr12651`、`.baks84`），
+  仓库内计数 0。
