@@ -903,6 +903,30 @@ def check_Q_volumes():
            len(dm), len(dm.get_toc())))
 
 
+def check_R_selfstudy():
+    """自学标准（v1.26.55 起）：判据在 check/selfstudy_criteria.py，报告在 docs/self-study-audit.md。"""
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import selfstudy_criteria as SC
+    except ImportError as exc:
+        rec('FAIL', 'R', u'无法导入 check/selfstudy_criteria.py：%s' % exc)
+        return
+    ch, tools, topics, gaps = SC.audit(SRC)
+    if gaps:
+        rec('FAIL', 'R', u'自学标准缺口 %d 项：%s' % (len(gaps), gaps[:6]))
+        return
+    report = os.path.join(ROOT, 'docs', 'self-study-audit.md')
+    if not os.path.exists(report):
+        rec('FAIL', 'R', u'缺 docs/self-study-audit.md（跑 tmp/selfstudy_audit.py --write 生成）')
+        return
+    body = io.open(report, encoding='utf-8', newline='').read()
+    if u'**无缺口**' not in body:
+        rec('FAIL', 'R', u'docs/self-study-audit.md 未记录「无缺口」结论（报告与判据不同步？）')
+        return
+    rec('PASS', 'R', u'自学标准：%d 章 + %d 工具型附录 + %d 专题附录全部达标，报告已同步'
+        % (len(ch), len(tools), len(topics)))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--no-compile', action='store_true', help='跳过重新编译')
@@ -927,6 +951,7 @@ def main():
     check_O_deviceindex()
     check_P_codelist()
     check_Q_volumes()
+    check_R_selfstudy()
 
     # ---------------------------------------------------------- 报告
     order = {'FAIL': 0, 'WARN': 1, 'INFO': 2, 'PASS': 3}
