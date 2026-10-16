@@ -74,3 +74,7 @@ HyperPhysics、Feynman Lectures、IAEA《Fusion Physics》为「保留所有权�
 | `hollow_cathode_lamp.jpg` | 空心阴极灯：谱线是被激发出来的 | Szasza | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Hollow_cathode_lamp.JPG | 附录 AH |
 | `summit_supercomputer.jpg` | 超级计算机：粒子步总账最终要在这里付 | Carlos Jones/ORNL | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Summit_(supercomputer | 附录 AC |
 | `optics_lab_inrim.jpg` | 光学台：射线方程在这里被验证 | Giorgio Brida from Torino, Italy | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Femtosecond_Laser_and_Pulse_Compressor_-_Optics_Lab_-_INRIM.jpg | 附录 AS |
+| `scylla_theta_pinch.jpg` | θ 箍缩 Scylla I（1958）：最早的磁约束实验之一 | Unknown LANL photographer | Public domain | https://commons.wikimedia.org/wiki/File:Scylla_I_in_1958.jpg | 附录 AG |
+| `solar_flare_sdo.jpg` | 太阳耀斑（SDO 四波段）：日冕里的磁重联 | NASA/SDO | Public domain | https://commons.wikimedia.org/wiki/File:X3.2_Solar_flare_on_2013-05-14_at_four_wavelengths.jpg | 附录 AB |
+| `magnetic_turbulence.jpg` | 磁湍流：输运由哪一段波数贡献 | Giannandrea Inchingolo | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Magnetic_turbulence.jpg | 附录 AF |
+| `triumf_cyclotron.jpg` | TRIUMF 回旋加速器：回旋运动的工程尺度 | Adam Foster | CC BY-SA 2.0 | https://commons.wikimedia.org/wiki/File:Canadian_Science_-_TRIUMF_cyclotron_-_Flickr_-_Cargo_Cult_(1).jpg | 附录 AX |
