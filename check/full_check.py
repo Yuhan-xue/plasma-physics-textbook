@@ -761,6 +761,27 @@ def check_M_bestimate():
         rec('PASS', 'M', u'附录 B「一分钟估算」齐备：三步估算 + 三环境对照表')
 
 
+def check_N_strategies():
+    """每章「解题策略」盒（v1.26.46 起）：12 章各一只，环境已定义。"""
+    text = strip_comments(read(os.path.join(SRC, MAIN)))
+    if u'\\newtcolorbox{strategy}[1][]{' not in text:
+        rec('FAIL', 'N', u'缺少 strategy 环境定义')
+        return
+    n_begin = text.count(u'\\begin{strategy}')
+    n_end = text.count(u'\\end{strategy}')
+    if n_begin != 12 or n_end != 12:
+        rec('FAIL', 'N', u'「解题策略」盒应为 12 只，实际 begin %d / end %d'
+            % (n_begin, n_end))
+        return
+    parts = text.split(u'\\chapter{')[1:]
+    per = [p.count(u'\\begin{strategy}') for p in parts]
+    bad = [(i + 1, c) for i, c in enumerate(per) if c != 1]
+    if bad:
+        rec('FAIL', 'N', u'各章「解题策略」盒数不均：%s' % bad)
+    else:
+        rec('PASS', 'N', u'「解题策略」盒齐备：12 章各 1 只（共 12 只）')
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--no-compile', action='store_true', help='跳过重新编译')
@@ -781,6 +802,7 @@ def main():
     check_K_roadmap()
     check_L_appendixmap()
     check_M_bestimate()
+    check_N_strategies()
 
     # ---------------------------------------------------------- 报告
     order = {'FAIL': 0, 'WARN': 1, 'INFO': 2, 'PASS': 3}
