@@ -9958,3 +9958,15 @@ AY／AV／AJ／AH／AC／AS，本轮补第 21--24 个附录。
 
 1. **`mk_next.py` 生成的 bump 脚本只替换「新版本串」**：从 `bump_v12657.py` 生成 `bump_v12658.py` 后，`OLD` 常量仍是 `v1.26.56`（未被替换），导致断言「期望 2 处」失败、版本号没升。生成后必须检查并手改 `OLD`。
 2. **分册与完整版的页数/书签守恒**继续由第 Q 类守卫核对：211 + 453 = 664、150 + 476 = 626。
+
+### 91.5 发布记录
+
+- 内容提交 `7b31385`（`src/`、`figures/`、`pdf/`）；文档提交 `1145533`（README + 本文件）；tag `v1.26.58` = 注释对象 `a1f64f57c927bcfaf5f9dd0be8aa798dbfa7babf`。
+- 推送：`main → 1145533`、`* [new tag] v1.26.58`；远端 `refs/heads/main = 1145533`、`refs/tags/v1.26.58 = a1f64f57`。
+- Gitea release **id=359**（上一版 v1.26.57 = 358），三个附件（上传 status 201）：
+  - 完整版 **24992731 B** — `attachments/3c710249-eaee-447c-975f-767c72c720c2` — SHA256 `AA72969C6170E91C65CB7D4AFE2527BCD8F645B598843507C5DAE10F234716F0`
+  - 卷一 **11682725 B** — `attachments/05660c17-81e0-4413-9b94-be921c879ce9` — SHA256 `E31B0410ACCDA4BDEEC3F57B3A49A5471222A058918A6617DF5ED129C0AF19B7`
+  - 卷二 **14450295 B** — `attachments/9a275c60-68d0-405e-a6c8-27458dbe9998` — SHA256 `925530FC2504AD25B08DA5D935CA9D4F61B030CC2BAE45A302BB041FF27A926A`
+- 独立复核 `tmp/verify_asset12658.py`（`curl.exe -sS -L --noproxy '*'` 直连下载）：三个附件**逐字节一致 PASS**。
+- 远端 `reviews/` 74 项无新增、无 `todo/`。
+- 汇报图：`tmp/png_app8/app8_summary.png`（四张新插图所在页 2×2）。
