@@ -90,3 +90,7 @@ HyperPhysics、Feynman Lectures、IAEA《Fusion Physics》为「保留所有权�
 | `o_ion_thruster.jpg` | NASA NEXT 离子推力器 | NASA | Public domain | https://commons.wikimedia.org/wiki/File:NASA_NEXT_Ion_thruster.712983main_NEXT_LDT_Thrusterhi-res_full.jpg | 见正文对应附录 |
 | `x_storage_ring.jpg` | 同步辐射储存环 | CLS Research Office from Saskatoon, Canada | CC BY-SA 2.0 | https://commons.wikimedia.org/wiki/File:Storage_ring_(13390679434).jpg | 见正文对应附录 |
 | `u_nova_chamber.jpg` | NOVA 靶室 | Lawrence Livermore National Laboratory | Public domain | https://commons.wikimedia.org/wiki/File:Nova_target_chamber.jpg | 见正文对应附录 |
+| `q_rf_probe.jpg` | 射频补偿朗缪尔探针 | Vadmalis | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:RF_Probe_2.jpg | 见正文对应附录 |
+| `p_corona_tube.jpg` | 电晕放电管 | BentaxGermany | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Ionization_tube_with_corona.jpg | 见正文对应附录 |
+| `az_plant_schematic.jpg` | 聚变电厂系统示意图 | EUROfusion | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:EUROfusion_schematic_diagram_of_fusion_power_plant.jpg | 见正文对应附录 |
+| `y_shiva_chamber.jpg` | Shiva 激光靶室 | Lawrence Livermore National Laboratory./ Photographer: ? | Public domain | https://commons.wikimedia.org/wiki/File:Shiva_target_chamber_1978.jpg | 见正文对应附录 |
