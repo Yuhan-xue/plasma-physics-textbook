@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.26.50},
+  pdftitle={等离子体物理自学教材 v1.26.52},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -461,7 +461,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.26.50}}
+  {\small\textcolor{white!45}{v1.26.52}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -6492,81 +6492,23 @@ m\frac{\diff\vect{v}}{\diff t} = q(\vect{E}+\vect{v}\times\vect{B}), \qquad \fra
 
 \begin{Verbatim}[breaklines=true,breakanywhere=false,breaksymbolright=\tiny\ensuremath{\hookrightarrow},fontsize=\small]
 import numpy as np
-import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
 
-# -------------------- 物理参数 --------------------
-q = 1.602e-19       # 电荷 (C)
-m = 1.673e-27       # 质量 (kg, 质子)
-E0 = np.array([0.0, 1e3, 0.0])   # 均匀电场 (V/m)，沿 y
-B0 = 1.0                          # 均匀磁场幅值 (T)，沿 z
-L  = 0.05                         # 磁镜梯度长度 (m)，用于非均匀场
+B0, L = 1.0, 0.05        # 均匀场幅值 (T)、磁镜梯度长度 (m)
 
-def B_uniform(r):
-    """均匀场 B = B0 * z_hat"""
-    return np.array([0.0, 0.0, B0])
-
-def B_mirror(r):
-    """近轴磁镜场，满足 div B = 0:
-       B_z = B0(1 + (z/L)^2),  B_r = -(r/2) dB_z/dz = -r*B0*z/L^2
-       (r 为到轴的垂直距离)"""
+def B_mirror(r):         # 近轴磁镜场，满足 div B = 0
     x, y, z = r
     Bz = B0 * (1.0 + (z/L)**2)
-    Br_scale = -0.5 * B0 * (2.0*z/L**2)   # (1/2) dBz/dz 的负号
-    return np.array([Br_scale*x, Br_scale*y, Bz])
+    Br = -0.5 * B0 * (2.0*z/L**2)      # B_r = -(r/2) dB_z/dz
+    return np.array([Br*x, Br*y, Bz])
 
-# -------------------- 洛伦兹力方程 --------------------
-def make_rhs(B_func):
-    def rhs(t, y):
-        r, v = y[0:3], y[3:6]
-        a = (q/m) * np.cross(v, B_func(r))     # 仅磁力项 (E=0)
-        return np.concatenate([v, a])
-    return rhs
-
-# -------------------- 情形 A: 均匀场 + E x B 漂移 --------------------
-def rhs_EB(t, y):
+def rhs(t, y):           # 洛伦兹力：a = (q/m) v x B
     r, v = y[0:3], y[3:6]
-    a = (q/m) * (E0 + np.cross(v, np.array([0, 0, B0])))
-    return np.concatenate([v, a])
-
-y0 = np.concatenate([[0, 0, 0], [1e5, 0, 1e4]])
-t = np.linspace(0, 2e-6, 2000)
-solA = solve_ivp(rhs_EB, [t[0], t[-1]], y0, t_eval=t, rtol=1e-9, atol=1e-12)
-vdrift = np.cross(E0, np.array([0, 0, B0])) / B0**2
-print("E x B drift speed [m/s]:", np.linalg.norm(vdrift))
-
-# -------------------- 情形 B: 磁镜反射 --------------------
-y0m = np.concatenate([[0.005, 0, 0], [0, 3e5, 1.0e5]])
-t2 = np.linspace(0, 3e-6, 4000)
-solB = solve_ivp(make_rhs(B_mirror), [t2[0], t2[-1]], y0m,
-                 t_eval=t2, rtol=1e-9, atol=1e-12)
-zB = solB.y[2]
-print("mirror turning points z [m]:", zB.min(), zB.max())
-
-# -------------------- 能量守恒检查 --------------------
-def kinetic(sol):
-    v2 = sol.y[3]**2 + sol.y[4]**2 + sol.y[5]**2
-    return 0.5*m*v2
-KE = kinetic(solB)
-print("relative KE drift:", (KE.max()-KE.min())/KE.mean())
-
-# -------------------- 绘图 --------------------
-fig = plt.figure(figsize=(12, 5))
-ax1 = fig.add_subplot(131, projection='3d')
-ax1.plot(solA.y[0], solA.y[1], solA.y[2], lw=0.8)
-ax1.set_title("Uniform B: orbit + ExB"); ax1.set_xlabel('x [m]')
-ax1.set_ylabel('y [m]'); ax1.set_zlabel('z [m]')
-ax2 = fig.add_subplot(132)
-ax2.plot(solA.y[0], solA.y[1], lw=0.8)
-ax2.set_aspect('equal'); ax2.set_title("x-y projection (ExB drift)")
-ax2.set_xlabel('x [m]'); ax2.set_ylabel('y [m]')
-ax3 = fig.add_subplot(133)
-ax3.plot(solB.t*1e6, zB, lw=0.8)
-ax3.set_title("Mirror: z(t)"); ax3.set_xlabel('t [us]'); ax3.set_ylabel('z [m]')
-plt.tight_layout()
-plt.savefig('single_particle_orbit.png', dpi=150)
-plt.show()
+    return np.concatenate([v, (q/m) * np.cross(v, B_mirror(r))])
 \end{Verbatim}
+
+\noindent\textbf{完整脚本（可直接运行）：}\texttt{code/appendix\_g/orbit\_tracking.py}——它补齐参数、
+两种情形（均匀场 + $\vect{E}\times\vect{B}$ 漂移、磁镜反射）、能量守恒检查与三联图，输出与本节的数值实验一致。
 
 \begin{insight}{数值实验应当验证什么}{}
 在均匀磁场中，洛伦兹力方程可解析求解：粒子在垂直于 $B$ 的平面内做圆周运动（回旋），圆心以速度 $\vect{E}\times\vect{B}/B^2$ 漂移（运行代码应输出约 $1000\,\mathrm{m/s}$，与 $E_0/B_0=10^3/1$ 一致）。\textbf{磁镜情形}则必须用\emph{散度为零}的近轴场：只把 $B_z$ 改成 $B(z)=B_0(1+(z/L)^2)$ 会违反 $\divg\vect{B}=\partial_zB_z\ne0$，得到的不是合法的磁场。上面的 \texttt{B\_mirror} 函数配套了径向分量 $B_r = -(r/2)\,\partial_zB_z = -rB_0z/L^2$，使 $\divg\vect{B}=\frac1r\partial_r(rB_r)+\partial_zB_z=0$ 自动满足。运行时可检查：(1) 磁镜情形下 $z(t)$ 在 $\pm z_t$ 之间往返（反射）；(2) 动能相对漂移在 $10^{-6}$ 量级（纯磁场不做功，能量守恒）；(3) 磁矩 $\mu=mv_\perp^2/(2B)$ 近似守恒。
@@ -6605,81 +6547,20 @@ y''+\frac{2}{x}y' = \ee^{\,y}-1 ,
 \textbf{把 \texttt{status} 读反是常见事故：\texttt{status=1} 不是"已收敛"，而是失败。} 因此下面的代码在提取解、画曲线之前，先把 \texttt{success}、\texttt{status}、\texttt{message}、残差与边界残差全部打印出来核对。
 
 \begin{Verbatim}[breaklines=true,breakanywhere=false,breaksymbolright=\tiny\ensuremath{\hookrightarrow},fontsize=\small]
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.integrate import solve_bvp
-
-# -------------------- 物理参数 --------------------
-n0    = 1e18            # 背景密度 m^-3
-Te_eV = 10.0            # 电子温度 (eV)
-q_e   = 1.602e-19
-eps0  = 8.854e-12
-Theta = Te_eV * q_e     # 电子热能 (J) —— 必须转成焦耳！
-lam_D = np.sqrt(eps0 * Theta / (n0 * q_e**2))
-print("lambda_D [m] =", lam_D)
-
-# ------------- 无量纲化: x = r/lam_D, y = e*phi/Theta -------------
-# 球坐标泊松方程化为:  y'' + (2/x) y' = exp(y) - 1
-x_min, x_max = 1e-3, 15.0      # 计算区间（以 lam_D 为单位）
-def poisson_debye(x, y):
-    """y = [y, y']，无量纲球坐标泊松方程"""
+def poisson_debye(x, y):     # y = [y, y']，无量纲球坐标泊松方程
     y0, y1 = y
-    expo = np.clip(y0, -60.0, 60.0)              # 防指数溢出
-    return np.vstack([y1, np.exp(expo) - 1.0 - 2.0 * y1 / x])
+    return np.vstack([y1, np.exp(np.clip(y0, -60.0, 60.0)) - 1.0 - 2.0*y1/x])
 
-def bc(ya, yb, amp):
-    """边界条件恰好 2 个: y(x_min) = amp, y(x_max) = 0"""
+def bc(ya, yb):              # 边界条件恰好 2 个：y(x_min) = amp、y(x_max) = 0
     return np.array([ya[0] - amp, yb[0]])
 
-def solve(amp, tol=1e-8, max_nodes=50000):
-    def bc_amp(ya, yb):
-        return bc(ya, yb, amp)
-    x = np.linspace(x_min, x_max, 400)
-    y_guess = np.zeros((2, x.size))
-    y_guess[0] = amp * (x_min / x)               # 初始猜测: 1/x 型
-    return solve_bvp(poisson_debye, bc_amp, x, y_guess, tol=tol, max_nodes=max_nodes)
-
-# -------------------- 1) 小振幅（线性极限）求解 --------------------
-sol = solve(amp=1e-2)
-print("success:", sol.success)   # 唯一可信的收敛判据（布尔量）
-print("status :", sol.status)    # 0=收敛, 1=网格节点超限, 2=雅可比奇异
-print("message:", sol.message)   # 终止原因的文字说明
-print("nodes  :", sol.x.size, "| niter:", sol.niter)
-print("rms residual max:", np.max(sol.rms_residuals), "| tol = 1e-8")
-print("BC residual max :", np.max(np.abs(bc(sol.y[:, 0], sol.y[:, -1], 1e-2))))
-
-# -------------------- 2) 与线性德拜解逐点对比 --------------------
-xx = np.linspace(x_min, x_max, 2000)
-y_num = sol.sol(xx)[0]
-y_lin = 1e-2 * (x_min / xx) * np.exp(-(xx - x_min))   # 同一 x_min 定标
-for xp in (0.1, 1.0, 5.0):
-    i = np.argmin(np.abs(xx - xp))
-    print("x=%.0e: y_num=%.6e  y_lin=%.6e  相对偏差=%.3e"
-          % (xp, y_num[i], y_lin[i], y_num[i] / y_lin[i] - 1.0))
-
-# ------------- 3) 线性极限的证据: 相对偏差与 amp 成正比 -------------
-for a in (1e-2, 1e-1, 1.0):
-    s = solve(a)
-    yv = float(s.sol(np.array([1.0]))[0][0])
-    yl = a * x_min * np.exp(-(1.0 - x_min))
-    dev = yv / yl - 1.0
-    print("amp=%.0e: x=1 相对偏差=%+.3e, 偏差/amp=%+.3e (success=%s)"
-          % (a, dev, dev / a, s.success))
-
-# ------------- 4) 负例: 故意把节点上限压到 200 -------------
-bad = solve(1e-2, tol=1e-12, max_nodes=200)
-print("bad: success=%s status=%d message=%s" % (bad.success, bad.status, bad.message))
-
-# -------------------- 5) 绘图 --------------------
-plt.figure(figsize=(8, 5))
-plt.loglog(xx, np.abs(y_num), lw=2, label='nonlinear Poisson (amp=1e-2)')
-plt.loglog(xx, np.abs(y_lin), '--', lw=2, label=r'linear Debye: $e^{-x}/x$')
-plt.xlabel('x = r / lambda_D')
-plt.ylabel('|y| = |e phi / Theta|')
-plt.legend(); plt.grid(True, which='both', ls='--', alpha=0.5)
-plt.tight_layout(); plt.savefig('debye_shielding.png', dpi=150)
-plt.show()
+# x、y_guess 与 amp 的取值见完整脚本
+sol = solve_bvp(poisson_debye, bc, x, y_guess, tol=1e-8, max_nodes=50000)
+print(sol.success, sol.status, sol.message)   # 唯一可信的收敛判据
 \end{Verbatim}
+
+\noindent\textbf{完整脚本（可直接运行）：}\texttt{code/appendix\_g/debye\_bvp.py}——含无量纲化、
+线性德拜解逐点对比、幅值扫描（验证偏差正比于振幅）与\texttt{max\_nodes} 负例。
 
 \textbf{正常例的实测输出}（NumPy 2.5.3 / SciPy 1.18.1）：
 \begin{Verbatim}[breaklines=true,breakanywhere=false,breaksymbolright=\tiny\ensuremath{\hookrightarrow},fontsize=\small]
@@ -6722,53 +6603,20 @@ bad: success=False status=1 message=The maximum number of mesh nodes is exceeded
 代码含\textbf{有效性回溯检查}：端口输出 $k\lambda_D$ 取 $0.1,0.3,1.0$ 时的热修正量 $3(k\lambda_D)^2$，据此判断 Bohm--Gross 近似的适用范围（约 $k\lambda_D\lesssim0.3$；$k\lambda_D\to1$ 时 Landau 阻尼已显著，须用动理学色散关系）。
 
 \begin{Verbatim}[breaklines=true,breakanywhere=false,breaksymbolright=\tiny\ensuremath{\hookrightarrow},fontsize=\small]
-import numpy as np
-import matplotlib.pyplot as plt
-
-# -------------------- 物理参数 --------------------
-n    = 1e18            # m^-3
-Te_eV = 10.0           # eV
-q_e  = 1.602e-19
-m_e  = 9.109e-31
-eps0 = 8.854e-12
-Theta = Te_eV * q_e    # J
-
-# 等离子体频率与德拜长度
+# n、Te_eV、q_e、m_e、eps0 为物理参数（取值见完整脚本）
 omega_pe = np.sqrt(n * q_e**2 / (eps0 * m_e))
-v_te     = np.sqrt(Theta / m_e)          # 注意: 本书 v_te = sqrt(k_B T_e/m_e)
+v_te     = np.sqrt(Te_eV * q_e / m_e)        # 本书口径 v_te = sqrt(k_B T_e / m_e)
 lam_D    = v_te / omega_pe
-print("omega_pe [rad/s]:", omega_pe)
-print("lambda_D [m]:", lam_D)
 
-# -------------------- Bohm-Gross 色散关系 --------------------
-# omega^2 = omega_pe^2 + 3 k^2 v_te^2 ;  近似有效范围 k*lambda_D <~ 0.3
-k = np.linspace(0.0, 1.0 / lam_D, 500)
-omega = np.sqrt(omega_pe**2 + 3.0 * k**2 * v_te**2)
+k     = np.linspace(0.0, 1.0 / lam_D, 500)
+omega = np.sqrt(omega_pe**2 + 3.0 * k**2 * v_te**2)      # Bohm--Gross
 
-# -------------------- 有效性回溯检查 --------------------
-# 与冷等离子体对比: 热修正量 omega^2/omega_pe^2 - 1 = 3(k lambda_D)^2
-kLD = k * lam_D
-print("at k*lambda_D=0.1, thermal correction =", 3*0.1**2)
-print("at k*lambda_D=0.3, thermal correction =", 3*0.3**2,
-      " (Landau damping already noticeable)")
-print("at k*lambda_D=1.0, thermal correction =", 3*1.0**2,
-      " (Bohm-Gross no longer reliable)")
-
-# -------------------- 绘图 --------------------
-plt.figure(figsize=(8, 5))
-plt.plot(kLD, omega / omega_pe, 'b-', lw=2, label='Bohm-Gross')
-plt.axhline(y=1.0, color='r', linestyle='--', label='Cold: omega = omega_pe')
-plt.axvspan(0, 0.3, color='green', alpha=0.08)
-plt.text(0.32, 1.02, 'reliable region (k*lambda_D < 0.3)', fontsize=9)
-plt.xlabel('k * lambda_D')
-plt.ylabel('omega / omega_pe')
-plt.title('Langmuir Wave Dispersion Relation')
-plt.legend(); plt.grid(True, ls='--', alpha=0.5)
-plt.xlim(0, 1.0); plt.ylim(0.9, 2.5)
-plt.tight_layout()
-plt.savefig('langmuir_dispersion.png', dpi=150)
-plt.show()
+for kLD in (0.1, 0.3, 1.0):                  # 有效性回溯检查
+    print(kLD, 3.0 * kLD**2)
 \end{Verbatim}
+
+\noindent\textbf{完整脚本（可直接运行）：}\texttt{code/appendix\_g/langmuir\_dispersion.py}——含冷等离子体
+对照曲线、适用范围着色与\texttt{omega/omega\_pe} 图。
 
 
 \section{仿真软件清单与学习路线}

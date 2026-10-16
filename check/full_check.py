@@ -807,6 +807,60 @@ def check_O_deviceindex():
         % (len(need), rows))
 
 
+CODE_BLOCK_LIMIT = 20
+
+
+def check_P_codelist():
+    """代码清单（v1.26.52 起）：正文提到的 code/**.py 必须存在且可编译，长清单不得回流。"""
+    import py_compile
+    referenced = set()
+    longest = (0, u'')
+    for p in sorted(glob.glob(os.path.join(SRC, '*.tex'))):
+        text = strip_comments(io.open(p, encoding='utf-8', newline='').read())
+        for m in re.finditer(r'code/([A-Za-z0-9_./\\_-]+)', text):
+            rel = m.group(1).replace(u'\\_', u'_').replace(u'\\', u'')
+            if rel.endswith(u'.py'):
+                referenced.add(rel)
+        lines = text.split(u'\n')
+        i = 0
+        while i < len(lines):
+            if re.search(r'\\begin\{(Verbatim|lstlisting|minted)\}', lines[i]):
+                j = i + 1
+                while j < len(lines) and not re.search(
+                        r'\\end\{(Verbatim|lstlisting|minted)\}', lines[j]):
+                    j += 1
+                span = j - i - 1
+                if span > longest[0]:
+                    longest = (span, os.path.basename(p))
+                i = j + 1
+            else:
+                i += 1
+    if not referenced:
+        rec('FAIL', 'P', u'正文未引用任何 code/**.py')
+        return
+    missing = sorted(r for r in referenced
+                     if not os.path.exists(os.path.join(ROOT, 'code', r)))
+    if missing:
+        rec('FAIL', 'P', u'正文引用的脚本不存在：%s' % missing)
+        return
+    bad = []
+    for r in sorted(referenced):
+        try:
+            py_compile.compile(os.path.join(ROOT, 'code', r), doraise=True,
+                               cfile=os.path.join(ROOT, 'tmp', '_pyc_check.pyc'))
+        except Exception as e:
+            bad.append((r, str(e)[:60]))
+    if bad:
+        rec('FAIL', 'P', u'脚本语法检查未通过：%s' % bad)
+        return
+    if longest[0] > CODE_BLOCK_LIMIT:
+        rec('FAIL', 'P', u'代码清单过长：%s 内 %d 行（上限 %d）'
+            % (longest[1], longest[0], CODE_BLOCK_LIMIT))
+        return
+    rec('PASS', 'P', u'代码清单：正文引用 %d 个脚本，均存在且可编译；最长清单 %d 行（上限 %d）'
+        % (len(referenced), longest[0], CODE_BLOCK_LIMIT))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--no-compile', action='store_true', help='跳过重新编译')
@@ -829,6 +883,7 @@ def main():
     check_M_bestimate()
     check_N_strategies()
     check_O_deviceindex()
+    check_P_codelist()
 
     # ---------------------------------------------------------- 报告
     order = {'FAIL': 0, 'WARN': 1, 'INFO': 2, 'PASS': 3}

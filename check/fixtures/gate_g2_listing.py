@@ -34,6 +34,7 @@ SciPy 1.18.1）。若本机版本不同导致末位数字漂移，那正是需�
 import argparse
 import os
 import re
+import shutil
 import subprocess
 import sys
 
@@ -46,23 +47,35 @@ SEC_G2 = r'\section{德拜屏蔽电势的数值求解}'
 SEC_G3 = r'\section{朗缪尔波色散曲线绘制}'
 BEGIN = r'\begin{Verbatim}'
 END = r'\end{Verbatim}'
+SCRIPT_REL = os.path.join('code', 'appendix_g', 'debye_bvp.py')
+POINTER = r'code/appendix\_g/debye\_bvp.py'
 
 
 def extract_blocks():
-    """返回 (code_lines, printed_lines)；结构不符时抛 ValueError。"""
+    """返回 printed_lines；结构不符时抛 ValueError。
+
+    结构（v1.26.52 起）：G.2 节里恰好 2 个 Verbatim 块——① 正文骨架（≤20 行，
+    代码本体已移入仓库）② 印刷输出；正文必须给出脚本路径指针。
+    """
     text = open(MAIN_TEX, encoding='utf-8').read()
     i0 = text.find(SEC_G2)
     i1 = text.find(SEC_G3)
     if i0 < 0 or i1 < 0 or i1 <= i0:
         raise ValueError('G.2/G.3 section markers not found in main tex')
     region = text[i0:i1]
+    if POINTER not in region:
+        raise ValueError('G.2 does not point at %s' % SCRIPT_REL)
     blocks = re.findall(
         re.escape(BEGIN) + r'[^\n]*\n(.*?)' + re.escape(END),
         region, re.S)
     if len(blocks) != 2:
-        raise ValueError('expected exactly 2 Verbatim blocks in G.2, got %d'
-                         % len(blocks))
-    return blocks[0].splitlines(), blocks[1].splitlines()
+        raise ValueError(
+            'expected exactly 2 Verbatim blocks (skeleton + printed output) in G.2, got %d'
+            % len(blocks))
+    skeleton = [ln for ln in blocks[0].splitlines() if ln.strip()]
+    if len(skeleton) > 20:
+        raise ValueError('G.2 skeleton is %d lines (limit 20)' % len(skeleton))
+    return blocks[1].splitlines()
 
 
 def norm(lines):
@@ -82,11 +95,14 @@ def compare(expected, actual):
     return (not diff), detail, diff
 
 
-def run_listing(code_lines, keep):
+def run_listing(keep):
+    """把仓库脚本复制进工作目录后实跑（脚本里的 savefig 落在工作目录）。"""
     os.makedirs(OUTDIR, exist_ok=True)
-    code_path = os.path.join(OUTDIR, 'g2_code.py')
-    with open(code_path, 'w', encoding='utf-8', newline='') as f:
-        f.write('\n'.join(code_lines) + '\n')
+    src_path = os.path.join(ROOT, SCRIPT_REL)
+    if not os.path.exists(src_path):
+        return 127, ['<缺少脚本：%s>' % SCRIPT_REL]
+    code_path = os.path.join(OUTDIR, 'g2_debye_bvp.py')
+    shutil.copyfile(src_path, code_path)
     env = dict(os.environ)
     env['MPLBACKEND'] = 'Agg'
     env['PYTHONIOENCODING'] = 'utf-8'
@@ -122,15 +138,15 @@ def main():
     bad = 0
 
     try:
-        code_lines, printed_lines = extract_blocks()
+        printed_lines = extract_blocks()
     except ValueError as exc:
         print('[X] extract: %s' % exc)
         return 1
-    code, printed = norm(code_lines), norm(printed_lines)
-    print('[OK] extract: code=%d lines, printed_output=%d lines'
-          % (len(code), len(printed)))
+    printed = norm(printed_lines)
+    print('[OK] extract: printed_output=%d lines (script: %s)'
+          % (len(printed), SCRIPT_REL))
 
-    rc, actual = run_listing(code_lines, args.keep)
+    rc, actual = run_listing(args.keep)
     actual = norm(actual)
     ok, detail, diff = compare(printed, actual)
     print('[%s] reproduce: exit=%d, match=%s (%s)'
@@ -159,7 +175,7 @@ def main():
         bad += 1
 
     if not args.keep:
-        for name in ('g2_code.py', 'debye_shielding.png'):
+        for name in ('g2_debye_bvp.py', 'debye_shielding.png'):
             path = os.path.join(OUTDIR, name)
             if os.path.exists(path):
                 os.remove(path)

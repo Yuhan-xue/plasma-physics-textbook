@@ -705,10 +705,16 @@ def check_O02_appendix_g():
         return
     blk = t[i0:i1]
     for s in (r'\texttt{sol.success}', r'\texttt{sol.status}', '0}=收敛到指定精度',
-              '网格节点数超过', r'sol.rms_residuals', 'max_nodes',
+              '网格节点数超过', r'\texttt{sol.rms\_residuals}', 'max_nodes',
               '读反是常见事故', '而是失败',
-              '无量纲化: x = r/lam_D', "y'' + (2/x) y' = exp(y) - 1"):
+              r'\texttt{code/appendix\_g/debye\_bvp.py}',
+              'def poisson_debye(x, y)', 'solve_bvp(poisson_debye, bc, x, y_guess'):
         has(blk, s, 'src/%s（附录 G.2）' % MAIN)
+    # v1.26.52 起 G.2 的代码本体移入仓库：那三条表述必须仍留在脚本里
+    script = read(os.path.join(ROOT, 'code', 'appendix_g', 'debye_bvp.py'))
+    for s in (r'sol.rms_residuals', '无量纲化: x = r/lam_D',
+              "y'' + (2/x) y' = exp(y) - 1"):
+        has(script, s, 'code/appendix_g/debye_bvp.py')
     if re.search(r'#[^\n]*最近一次网格上收敛', blk):
         rec('FAIL', 'O', 'src/%s（附录 G.2）代码注释仍把 status=1 解释成收敛' % MAIN)
     else:
