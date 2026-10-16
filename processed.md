@@ -9576,6 +9576,20 @@ v1.26.49 发布后做例行目视核对：把 12 条新提示所在的 PDF 页�
 
 全套件由十四类 46 项变为**十五类 47 项**。
 
-### 85.6 待回填
+### 85.6 发布记录
 
-（待回填）
+- **Gitea release**：`id=340`（上一版 v1.26.51 为 337），
+  <http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.52>；
+  附件 `39906df8-eab3-4945-97fa-d2b40d6dcf11`、**19942943 B**。
+- **独立复核**：`tmp/verify_asset12652.py`（`curl.exe -sS -L --noproxy '*'`）——本地与远端同为
+  19942943 B、SHA256 同为
+  `49EA5FD83E17049F70E2DF18860B73E0E03F73FD6B562B2CDEB0AD2C439DB759`、逐字节一致 → **PASS**。
+- **提交**：内容 `b1c72dd`（主文件 −5906 字节、`code/` 新建 4 个文件、
+  `check/full_check.py` 第 P 类、`check/physics_regression.py` G.2 口径、`gate_g2_listing.py`
+  改实跑仓库脚本、PDF 19966962 → 19942943 B）；文档 `9616b42`（README.md + `processed.md` §85）。
+- **tag**：`v1.26.52` = 注释 tag 对象 `fcfaf79ffb29d5f442d2466f9947869534bda8ee` → 文档提交 `9616b42`；
+  推送 `ab5b693..9616b42 main` + `* [new tag] v1.26.52`。
+- **远端 refs**：`refs/heads/main = 9616b42`、`refs/tags/v1.26.52 = fcfaf79f`；`reviews/` 74 项无新增、
+  无 `todo/`。
+- **工作树**：提交前删除全部 `.bak*`（`.bakcodeslim`、`.bakver52`、`.bakr12652`、`.baks85`），
+  仓库内计数 0。
