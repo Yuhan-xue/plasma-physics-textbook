@@ -9785,6 +9785,26 @@ AY／AV／AJ／AH／AC／AS，本轮补第 21--24 个附录。
 重编后重跑 `tmp/split_volumes.py`：卷一 209 页（10704034 B）、卷二 450 页（11505547 B），
 第 Q 类守卫核对页数与书签守恒（209 + 450 = 659、150 + 476 = 626）。
 
-### 88.6 待回填
+### 88.6 发布记录
 
-（待回填）
+- **Gitea release**：`id=351`（上一版 v1.26.54 为 345），
+  <http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.55>；
+  三个附件：
+  - 完整版 `plasma_physics_textbook_v2.pdf`、**21071456 B**、附件 `306ed1a1-35a1-4135-a2c0-acb232d79b55`；
+  - 卷一 `…_vol1_chapters.pdf`、**10704034 B**、附件 `85b3325d-e9fa-41d0-8ecb-8ac2b2d1c3e8`；
+  - 卷二 `…_vol2_appendices.pdf`、**11505547 B**、附件 `74f81a9c-eeea-4c2f-9783-040913ff6636`。
+- **独立复核**：`tmp/verify_asset12655.py`（`curl.exe -sS -L --noproxy '*'`）逐个下载比对——
+  三个附件与本地**逐字节一致**；SHA256 分别为
+  `3623D213B47FCEE69F84803FB7792A4815D10A6F7F8C7C8FD9D6EF0138935E8E`（完整版）、
+  `A6EC2E24DEADCF9B549DC5891E59200F96FDCFBB8E91A46DEDB507FF823916FC`（卷一）、
+  `0BEBBD29001FB92531DA2551093EE9144D4D23FE96A4A60BA09FA44331669621`（卷二）→ **全部 PASS**。
+- **提交**：内容 `fe968d0`（`check/selfstudy_criteria.py`、`docs/README.md`、
+  `docs/self-study-audit.md`、`check/full_check.py` 第 R 类、主文件版本串、三个 PDF）；
+  文档 `b6e8f43`（README.md + `processed.md` §88）。
+- **tag**：`v1.26.55` = 注释 tag 对象 `bd10868cfc6e45213a52d250510f36a7a1aa3bb8` → 文档提交 `b6e8f43`；
+  推送 `ccbeb87..b6e8f43 main` + `* [new tag] v1.26.55`。
+- **远端 refs**：`refs/heads/main = b6e8f43`、`refs/tags/v1.26.55 = bd10868c`；`reviews/` 74 项无新增、
+  无 `todo/`。
+- **本轮小坑**：① `gitea_release.py asset` 紧跟 `create` 时偶发「release 不存在，先 create」
+  ——重跑一次即 201（本轮完整版附件就是重跑成功的）；② README 又一次混入裸 LF（5 处）→
+  `tmp/diag_readme_eol.py --fix` 规范化后同步脚本才通过 CRLF 断言（第三轮同型问题）。
