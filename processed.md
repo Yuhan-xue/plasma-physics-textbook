@@ -9917,3 +9917,15 @@ AY／AV／AJ／AH／AC／AS，本轮补第 21--24 个附录。
 
 1. **`$\beta_N$` 写在非 raw Python 字符串里会变成退格符**：首次构建 exit 12，日志里是 `Text line contains an invalid character`（题注中出现 U+0008），修法是把生成脚本里的 `\b` 写成 `\\b`（`tmp/fix_appa_caption.py` 同时修 tex 与生成器）。凡在 Python 字符串里写 LaTeX 的 `\b`、`\t`、`\n`、`\f`、`\v`、`\a` 都要警惕。
 2. **README 版本表行里的加粗页数会被 `full_check` 当成「当前 PDF 页数」声明**：这是第 5 次同型修复（v1.26.53 / v1.26.56 / v1.26.57 行），统一改为不加粗（`tmp/fix_readme_pages_bold5.py`）。此后写版本表行时页数一律不加粗。
+
+### 90.5 发布记录
+
+- 内容提交 `3cc6884`（`src/`、`figures/`、`pdf/`、`check/`）；文档提交 `c8a4843`（README + 本文件）；tag `v1.26.57` = 注释对象 `9b07fe5d569c113e9be630a23e671640dbe96fb9`。
+- 推送：`main → c8a4843`、`* [new tag] v1.26.57`；远端 `refs/heads/main = c8a4843`、`refs/tags/v1.26.57 = 9b07fe5d`。
+- Gitea release **id=358**（上一版 v1.26.56 = 354），三个附件（上传 status 201）：
+  - 完整版 **23307154 B** — `attachments/a95c661f-763a-4325-b1ab-d64953b4d067` — SHA256 `E100FFB0B73E64378C20500F73233C06AD3C13CA6601630FD19E49C2F922B8CB`
+  - 卷一 **11682765 B** — `attachments/51842bf6-9a17-4fab-aff7-f44afd26eee9` — SHA256 `C92284C8D93FBCA4E798EDC6B93BC725628F5681D5A6AC2B663986DC2F2AFCAF`
+  - 卷二 **12763118 B** — `attachments/9d2c74e0-8ad7-49e6-88d7-966421c81658` — SHA256 `7F597A7807E5CD1DA226140A28B30F36C1BCC3BE9DC04A5991521AB81E1D44D3`
+- 独立复核 `tmp/verify_asset12657.py`（`curl.exe -sS -L --noproxy '*'` 直连下载）：三个附件**逐字节一致 PASS**（字节数与 SHA256 均与本地相同）。
+- 远端 `reviews/` 74 项无新增、无 `todo/`。
+- 汇报图：附录 AA → PDF 第 418 页、附录 AN → 第 541 页、附录 AU → 第 604 页；`tmp/png_app7/app7_summary.png`（2406×3392）。
