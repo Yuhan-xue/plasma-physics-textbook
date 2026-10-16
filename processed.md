@@ -9640,6 +9640,23 @@ AY／AV／AJ／AH／AC／AS，本轮补第 21--24 个附录。
 | 五夹具 | 全部 PASS |
 | 实拍图守卫 | 54 处引用均存在、均有署名、均已登记（含 24 处附录） |
 
-### 86.6 待回填
+### 86.6 发布记录
 
-（待回填）
+- **Gitea release**：`id=342`（上一版 v1.26.52 为 340），
+  <http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.53>；
+  附件 `f57023ad-4515-4d1a-89f5-11a2d5015139`、**21071459 B**。
+- **独立复核**：`tmp/verify_asset12653.py`（`curl.exe -sS -L --noproxy '*'`）——本地与远端同为
+  21071459 B、SHA256 同为
+  `75F7C92824837E20CCFFD5256828E160C108BA1DC285795440572B72DE8AD5A3`、逐字节一致 → **PASS**。
+- **提交**：内容 `10ce71c`（4 个附录 tex、`figures/CREDITS.md`、4 张新图、主 PDF
+  19942943 → 21071459 B）；文档 `ebc967e`（README.md + `processed.md` §86）。
+- **tag**：`v1.26.53` = 注释 tag 对象 `427af72b5182dc898817cfc2e9498cea7887b5b6` → 文档提交 `ebc967e`；
+  推送 `e2d1468..ebc967e main` + `* [new tag] v1.26.53`。
+- **远端 refs**：`refs/heads/main = ebc967e`、`refs/tags/v1.26.53 = 427af72b`；`reviews/` 74 项无新增、
+  无 `todo/`。
+- **工作树**：提交前删除全部 `.bak*`（`.bakapp5` ×4、`.bakver53`、`.bakr12653`、`.baks86`），
+  仓库内计数 0。
+- **本轮小坑**：① 正文题注里写了裸希腊字母 `θ` → 重编报 2 处缺字，改 `$\theta$` 归零；
+  ② v1.26.52 的 README 新增文本用了 LF 行尾，混进纯 CRLF 的 README（4 处裸 LF）→
+  `tmp/diag_readme_eol.py --fix` 规范化；③ 叙述性「660 → **656 页**」被 full_check 当成当前页数
+  声明 → 去掉加粗（`tmp/fix_readme_pages_bold4.py`，这是第四次同型修复）。
