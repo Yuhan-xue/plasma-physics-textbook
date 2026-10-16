@@ -70,3 +70,7 @@ HyperPhysics、Feynman Lectures、IAEA《Fusion Physics》为「保留所有权�
 | `tritium_glowring.jpg` | 氚发光环：半衰期与活度摸得着的样子 | Cgommel | CC BY-SA 2.0 de | https://commons.wikimedia.org/wiki/File:Tritium-Glowring_-_320s.jpg | 附录 AV |
 | `ion_irradiation.jpg` | 离子辐照实验：dpa 是怎么被制造出来的 | BibMak | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:The_irradiation_experiments_at_the_ion_accelerator_DC-60._Astana,_Kazakhstan.JPG | 附录 AY |
 | `ion_source_fermilab.jpg` | 离子源：中性束注入的第一步 | Z22 | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Ion_source_at_used_in_the_Cockcroft-Walton_accelerators_at_Fermilab.jpg | 附录 M |
+| `pellet_injector.jpg` | 弹丸注入器：把燃料冻成弹丸打进去 | Oak Ridge National Laboratory | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:ITER_Prototype_3-barrel_shattered_pellet_injector_(14132373814 | 附录 AJ |
+| `hollow_cathode_lamp.jpg` | 空心阴极灯：谱线是被激发出来的 | Szasza | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Hollow_cathode_lamp.JPG | 附录 AH |
+| `summit_supercomputer.jpg` | 超级计算机：粒子步总账最终要在这里付 | Carlos Jones/ORNL | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Summit_(supercomputer | 附录 AC |
+| `optics_lab_inrim.jpg` | 光学台：射线方程在这里被验证 | Giorgio Brida from Torino, Italy | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Femtosecond_Laser_and_Pulse_Compressor_-_Optics_Lab_-_INRIM.jpg | 附录 AS |

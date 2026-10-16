@@ -289,6 +289,14 @@ $8.322\times10^{22}$，而模拟里只有 $2\times10^{7}$ 个超级粒子，
 \textbf{100}, 32）；PIC 的成本估算与超级粒子概念参照 Birdsall \& Langdon（1985/1991，第 1 章）
 与 Tajima \emph{Computational Plasma Physics}（1989/2004，第 2 章）。
 本节凡标出数字的量都由 \texttt{tmp/appAC\_calc.py} 复算。
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/summit_supercomputer.jpg}
+\caption{超级计算机：粒子步总账最终要在这里付。粒子步总数乘上每步的场求解成本，就是本节的成本账；它落在真实机器上时还要除以并行效率——图上这台机器有上万块加速卡，而 PIC 的瓶颈往往不在浮点峰值，而在粒子与网格之间的数据搬运。}
+\label{fig:photo-appac}
+\figsource{Carlos Jones/ORNL，CC BY 2.0（Wikimedia Commons）}
+\end{figure}
+
 \section{粒子噪声：超级粒子的代价}
 \label{sec:app-ac-noise}
 
