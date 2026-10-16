@@ -8916,4 +8916,23 @@ README 273935 → 274921 字节。
 **76.7 待实施。** ①其余有实物对象的附录（AV 氚、AK 安全、AR 电源、AO 的泵组）
 继续补图；②正文第 8 章仍只有 1 张图；③把学习路径图与附录导航图并成一张「全书地图」。
 
-**76.8 发布记录（待回填）。**
+**76.8 发布记录（已回填）。**
+
+- **Gitea release**：`id=312`（上一版 v1.26.42 = 310），
+  <http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.43>
+- **附件**：`plasma_physics_textbook_v2.pdf`，**13919171 B**，SHA256
+  `5DB2D10151EBFB44EAF6EB0E98424F0F1F4EEFB9F27A53ABEC09CB110B53B697`，
+  <http://zsyq.hxlab.tech:3000/attachments/f343b82a-e313-4e17-ade7-e53e1cc16fd6>
+- **独立复核**（`tmp/verify_asset12643.py`，`curl.exe -sS -L --noproxy '*'`）：
+  本地与远端同为 13919171 B、SHA256 同为 `5DB2D101…`、**逐字节一致 = True** → PASS。
+- **提交**：内容 `1d3f350`（4 个附录文件 + 4 张新图 + `figures/CREDITS.md` +
+  PDF 12309003 → 13919171 B）；文档 `707f4cc`（README.md 273935 → 274921 字节 + processed.md §76）。
+- **tag**：`v1.26.43` = 注释 tag 对象 `db0ebbc74bf501c7a9d596d82c0427c4aeb8b956`
+  → 文档提交 `707f4cc`。
+- **远端 refs**（回填前）：`refs/heads/main = 707f4cc4a98229bb62fec1c6208269f87ea1c13b`、
+  `refs/tags/v1.26.43 = db0ebbc7`；`reviews/` **74 项**（31+35+4+4）无新增、`todo/` 为空。
+- **发布体勘误**：首次 `asset` 上传报「release v1.26.43 不存在，先 create」（创建可见性延迟），
+  重跑即 201；正文随后 PATCH 补上实测 SHA256。
+- **仓库卫生**：提交前删除全部 `.bak*`（计数 0）。
+- **下一轮候选**：①继续给有实物对象的附录补图（AV 氚、AK 安全、AR 电源、AO 的泵组）；
+  ②正文第 8 章仍只有 1 张图；③把学习路径图与附录导航图并成一张「全书地图」。
