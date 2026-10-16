@@ -62,3 +62,7 @@ HyperPhysics、Feynman Lectures、IAEA《Fusion Physics》为「保留所有权�
 | `flywheel_20mw.jpg` | 20 MW 飞轮储能电站：能量存在转子里 | Z22 | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Beacon_Power_New_York_-_20_MW_Flywheel_Energy_Storage.jpg | 附录 AR |
 | `nif_laser_bay.jpg` | 激光驱动器阵列：192 束光要在靶上对准 | Lawrence Livermore National Laboratory, Lawrence Livermore N | Public domain | https://commons.wikimedia.org/wiki/File:NIF_Laser_Bay.jpg | 附录 AI |
 | `iter_plant.jpg` | 堆与厂：主机之外还有一整套系统 | Oak Ridge National Laboratory | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:ITER_Tokamak_and_Plant_Systems_(2016)_(41783636452).jpg | 附录 Z |
+| `gyrotron_ecrh.jpg` | 回旋管：电子回旋共振加热的功率源 | Siarhei Besarab | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Gyrotron_for_electron_cyclotron_resonance_heating_of_the_Wendelstein_7-X_stellarator.jpg | 附录 AT |
+| `gyrotron_140ghz.jpg` | 140 GHz / 1 MW 回旋管：射频加热三件套里的一件 | Z6ehswhha5HGRTd | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Wendelstein_7-X,_Gyrotron,140Ghz,_1MW.jpg | 附录 M |
+| `sputter_gun.jpg` | 磁控溅射枪：受控的溅射侵蚀 | Tavoromann | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Magnetron_sputtering_gun.jpg | 附录 N |
+| `dry_cask.jpg` | 干式贮存罐：活化废物最后的去处 | Nuclear Regulatory Commission from US | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Massive_containers_hold_spent_nuclear_fuel_(15420175144).jpg | 附录 AK |
