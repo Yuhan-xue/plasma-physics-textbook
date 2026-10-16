@@ -8990,4 +8990,25 @@ README 274921 → 275720 字节。
 **77.7 待实施。** ①附录 AV（氚）、AK（安全）继续找贴题素材；②正文第 8 章仅 1 张图；
 ③把学习路径图与附录导航图并成一张「全书地图」。
 
-**77.8 发布记录（待回填）。**
+**77.8 发布记录（已回填）。**
+
+- **Gitea release**：`id=316`（上一版 v1.26.43 = 312），
+  <http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.44>
+- **附件**：`plasma_physics_textbook_v2.pdf`，**15806030 B**，SHA256
+  `8B4BEBD2450CA6FAB20303BDA16B32BD26ACBA043109AC30ED8F398ACA6EA821`，
+  <http://zsyq.hxlab.tech:3000/attachments/3942bcba-313f-4f27-ad58-03d12bb7f15a>
+- **独立复核**（`tmp/verify_asset12644.py`，`curl.exe -sS -L --noproxy '*'`）：
+  本地与远端同为 15806030 B、SHA256 同为 `8B4BEBD2…`、**逐字节一致 = True** → PASS。
+- **提交**：内容 `6631a75`（4 个附录文件 + 4 张新图 + `figures/CREDITS.md` +
+  PDF 13919171 → 15806030 B）；文档 `9f98ccd`（README.md 274921 → 275720 字节 + processed.md §77）。
+- **tag**：`v1.26.44` = 注释 tag 对象 `d9840f5262b3a0aa8f42567f83e504f475e8c431`
+  → 文档提交 `9f98ccd`。
+- **一次流程失误（已修）**：§77.5 里把「后处理后的 PDF 字节数」写成占位语，
+  追加脚本的关键字断言 `15806030 B` 因此 FAIL；发现时文档提交已经产生，
+  于是补写数字后 `git commit --amend` 重做文档提交并重建 tag（尚未推送，未影响远端）。
+  教训：**追加脚本断言的关键字必须是真的数字**，不能留「见下文」这类占位。
+- **远端 refs**（回填前）：`refs/heads/main = 9f98ccd6801d47626a04d7b37314f3a86864bd17`、
+  `refs/tags/v1.26.44 = d9840f52`；`reviews/` **74 项**（31+35+4+4）无新增、`todo/` 为空。
+- **仓库卫生**：提交前删除全部 `.bak*`（计数 0）。
+- **下一轮候选**：①附录 AV（氚）、AK（安全）继续找贴题素材；②正文第 8 章仅 1 张图；
+  ③把学习路径图与附录导航图并成一张「全书地图」。
