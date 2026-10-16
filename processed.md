@@ -9433,4 +9433,16 @@ v1.26.49 发布后做例行目视核对：把 12 条新提示所在的 PDF 页�
 
 ### 83.6 发布记录
 
-（待回填）
+- **Gitea release**：`id=331`（上一版 v1.26.49 为 330），
+  <http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.50>；
+  附件 `86418a41-43c2-4f5e-b719-588e47b99814`、**18659652 B**。
+- **独立复核**：`tmp/verify_asset12650.py`（`curl.exe -sS -L --noproxy '*'`）——本地与远端同为
+  18659652 B、SHA256 同为
+  `001AE17A2CB985B3ADC0CF714322BEFAE04B336635360C47FC0A248DFA125794`、逐字节一致 → **PASS**。
+- **提交**：内容 `a9cdf37`（主文件 −261 字节、PDF 18657788 → 18659652 B）；文档 `9117b48`
+  （README 同步 + `processed.md` §83）。
+- **tag**：`v1.26.50` = 注释 tag 对象 `edb7d91c86cb61f7fa0e0ba384fa3ca455759e29` → 文档提交 `9117b48`
+  （提交后推送：`b319c31..9117b48 main`）。
+- **远端 refs**：`refs/heads/main = 9117b48`、`refs/tags/v1.26.50 = edb7d91c`；`reviews/` 74 项无新增、
+  无 `todo/`。
+- **工作树**：提交前删除全部 `.bak*`（`.bakpfx`／`.bakver50`／`.bakr12650`／`.baks83`），仓库内计数 0。
