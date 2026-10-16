@@ -861,6 +861,48 @@ def check_P_codelist():
         % (len(referenced), longest[0], CODE_BLOCK_LIMIT))
 
 
+VOL1 = 'plasma_physics_textbook_v2_vol1_chapters.pdf'
+VOL2 = 'plasma_physics_textbook_v2_vol2_appendices.pdf'
+
+
+def check_Q_volumes():
+    """书本分册（v1.26.54 起）：卷一/卷二 存在，页数与书签数之和等于完整 PDF。"""
+    main_pdf = os.path.join(ROOT, 'pdf', 'plasma_physics_textbook_v2.pdf')
+    if not os.path.exists(main_pdf):
+        rec('FAIL', 'Q', u'完整 PDF 不存在')
+        return
+    try:
+        import fitz
+    except ImportError:
+        rec('WARN', 'Q', u'未安装 pymupdf，跳过分册检查')
+        return
+    dm = fitz.open(main_pdf)
+    info = []
+    for name, vol in ((VOL1, u'卷一'), (VOL2, u'卷二')):
+        p = os.path.join(ROOT, 'pdf', name)
+        if not os.path.exists(p):
+            rec('FAIL', 'Q', u'%s 不存在：%s' % (vol, name))
+            return
+        d = fitz.open(p)
+        title = (d.metadata or {}).get('title') or ''
+        info.append((vol, len(d), len(d.get_toc()), title))
+    pages = info[0][1] + info[1][1]
+    tocs = info[0][2] + info[1][2]
+    if pages != len(dm):
+        rec('FAIL', 'Q', u'两册页数之和 %d ≠ 完整 PDF %d 页' % (pages, len(dm)))
+        return
+    if tocs != len(dm.get_toc()):
+        rec('FAIL', 'Q', u'两册书签之和 %d ≠ 完整 PDF %d 条' % (tocs, len(dm.get_toc())))
+        return
+    bad = [v for v, _p, _t, title in info if u'卷' not in title]
+    if bad:
+        rec('FAIL', 'Q', u'分册元数据标题缺卷别：%s' % bad)
+        return
+    rec('PASS', 'Q', u'书本分册：卷一 %d 页／%d 书签 + 卷二 %d 页／%d 书签 = 完整 PDF（%d 页／%d 书签）'
+        % (info[0][1], info[0][2], info[1][1], info[1][2],
+           len(dm), len(dm.get_toc())))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--no-compile', action='store_true', help='跳过重新编译')
@@ -884,6 +926,7 @@ def main():
     check_N_strategies()
     check_O_deviceindex()
     check_P_codelist()
+    check_Q_volumes()
 
     # ---------------------------------------------------------- 报告
     order = {'FAIL': 0, 'WARN': 1, 'INFO': 2, 'PASS': 3}
