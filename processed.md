@@ -9212,4 +9212,25 @@ PDF 17441629 → 后处理后的字节数见 §80.8；O3b 0/626；README 278050 
 **80.7 待实施。** ①正文第 8 章仍只有 1 张图；②附录 AV（氚）继续找贴题素材；
 ③「先猜再看」可扩展到公式推导；④索引表可加「初学／复习」两栏用法。
 
-**80.8 发布记录（待回填）。**
+**80.8 发布记录（已回填）。**
+
+- **Gitea release**：`id=323`（上一版 v1.26.46 = 321），
+  <http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases/tag/v1.26.47>
+- **附件**：`plasma_physics_textbook_v2.pdf`，**17443606 B**，SHA256
+  `548E1D3090FE59EE27643926DDFAE8B59159D68CD6EC625301F4E349EEB06032`，
+  <http://zsyq.hxlab.tech:3000/attachments/e1134105-b105-4f03-8cd1-ece464d08e5f>
+- **独立复核**（`tmp/verify_asset12647.py`，`curl.exe -sS -L --noproxy '*'`）：
+  本地与远端同为 17443606 B、SHA256 同为 `548E1D30…`、**逐字节一致 = True** → PASS。
+- **提交**：内容 `ff48a3f`（主文件 + `check/full_check.py` 第 O 类 + PDF 17440854 → 17443606 B）；
+  文档 `4699847`（README.md 278050 → 279632 字节 + processed.md §80）。
+- **tag**：`v1.26.47` = 注释 tag 对象 `da67ca4a241dbca89db5d70fadb14f804b93fa91`
+  → 文档提交 `4699847`。
+- **一个老毛病（已修）**：README 版本表里 v1.26.46 那行写「页数仍 **655 页**」，
+  加粗页数被 `full_check` 的文档一致性检查当作当前页数声明 → 新版本一出就误报 FAIL；
+  去掉加粗后全绿（`tmp/fix_readme_pages_bold2.py`，备份 README.md.bakpages2）。
+  与 v1.26.34 同型，教训已写入 §80.6。
+- **远端 refs**（回填前）：`refs/heads/main = 4699847c7170c1c20dd95b177ac03427ee8008d7`、
+  `refs/tags/v1.26.47 = da67ca4a`；`reviews/` **74 项**（31+35+4+4）无新增、`todo/` 为空。
+- **仓库卫生**：提交前删除全部 `.bak*`（计数 0）。
+- **下一轮候选**：①正文第 8 章仍只有 1 张图；②附录 AV（氚）继续找贴题素材；
+  ③「先猜再看」扩展到公式推导；④索引表加「初学／复习」两栏用法。
