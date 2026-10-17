@@ -33,7 +33,7 @@ for i, (lvl, title, page) in enumerate(toc):
         chapters.append((title, page, (nxt or total + 1) - page))
 
 LAYOUT = {'I': '研究', 'J': '研究', 'K': '研究', 'L': '研究'}
-GROUPS = [('工具型附录 A–L', [r['letter'] for r in rows if len(r['letter']) == 1
+GROUPS = [('工具型附录 A–I', [r['letter'] for r in rows if len(r['letter']) == 1
                             and r['letter'] <= 'L']),
           ('专题附录 M–Z', [r['letter'] for r in rows if len(r['letter']) == 1
                           and r['letter'] > 'L']),
