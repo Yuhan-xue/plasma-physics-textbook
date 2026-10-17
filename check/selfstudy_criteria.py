@@ -121,7 +121,7 @@ def markdown(src, main_name='plasma_physics_textbook_v2.tex'):
     """生成审计报告正文（Markdown）。"""
     ch_rows, tool_rows, topic_rows, gaps = audit(src, main_name)
     L = [u'# 自学标准审计（自动生成）', u'',
-         u'由 `tmp/selfstudy_audit.py --write` 生成，判据在 `check/selfstudy_criteria.py`'
+         u'由 `tools/selfstudy_audit.py --write` 生成，判据在 `check/selfstudy_criteria.py`'
          u'（与 `check/full_check.py` 第 R 类守卫共用同一份标准）。', u'',
          u'三分对象各用各的标准：章节看「正文 + 本章习题精选」；工具型附录（A–L）看结构、'
          u'可检索与互链；专题附录（M–AZ）看练习、答案、出处、适用边界、数据表与语义盒。', u'',

@@ -978,7 +978,7 @@ def check_R_selfstudy():
         return
     report = os.path.join(ROOT, 'docs', 'self-study-audit.md')
     if not os.path.exists(report):
-        rec('FAIL', 'R', u'缺 docs/self-study-audit.md（跑 tmp/selfstudy_audit.py --write 生成）')
+        rec('FAIL', 'R', u'缺 docs/self-study-audit.md（跑 python -X utf8 tools/selfstudy_audit.py --write 生成）')
         return
     body = io.open(report, encoding='utf-8', newline='').read()
     if u'**无缺口**' not in body:
