@@ -466,17 +466,42 @@ def check_B_content(files):
 
 # ---------------------------------------------------------------- C. 编译
 
+def find_latexmk():
+    """找到 latexmk：先看 PATH，再找 TeX Live / MiKTeX 的常见安装位置。
+
+    Windows 上 TeX Live 默认不把 bin 目录写进 PATH，直接调用会抛 FileNotFoundError。
+    """
+    import shutil
+    exe = shutil.which('latexmk')
+    if exe:
+        return exe
+    cands = []
+    cands += sorted(glob.glob(r'C:\texlive\*\bin\windows\latexmk.exe'), reverse=True)
+    cands += sorted(glob.glob(r'C:\texlive\*\bin\*\latexmk'), reverse=True)
+    cands += [r'C:\Program Files\MiKTeX\miktex\bin\x64\latexmk.exe',
+              '/usr/bin/latexmk', '/usr/local/bin/latexmk',
+              '/Library/TeX/texbin/latexmk']
+    for c in cands:
+        if os.path.exists(c):
+            return c
+    return None
+
+
 def check_C_compile(do_compile):
     log = os.path.join(SRC, MAIN.replace('.tex', '.log'))
     if do_compile:
-        rec('INFO', 'C', '正在编译（latexmk -xelatex）……')
-        r = subprocess.run(
-            ['latexmk', '-xelatex', '-interaction=nonstopmode', '-f', MAIN],
-            cwd=SRC, capture_output=True, text=True, errors='replace')
-        if r.returncode != 0:
-            rec('FAIL', 'C', 'latexmk 退出码 %d' % r.returncode)
+        latexmk = find_latexmk()
+        if latexmk is None:
+            rec('INFO', 'C', '没找到 latexmk（PATH 与常见安装位置都没有），跳过编译，只核对已有日志')
         else:
-            rec('PASS', 'C', 'latexmk 退出码 0')
+            rec('INFO', 'C', '正在编译（%s -xelatex）……' % os.path.basename(latexmk))
+            r = subprocess.run(
+                [latexmk, '-xelatex', '-interaction=nonstopmode', '-f', MAIN],
+                cwd=SRC, capture_output=True, text=True, errors='replace')
+            if r.returncode != 0:
+                rec('FAIL', 'C', 'latexmk 退出码 %d' % r.returncode)
+            else:
+                rec('PASS', 'C', 'latexmk 退出码 0')
 
     if not os.path.exists(log):
         rec('FAIL', 'C', '找不到编译日志 %s' % log)

@@ -1,6 +1,6 @@
 # 配图来源与许可（figures/）
 
-本目录收录正文使用的**真实图像**：装置照片、天文观测与机构示意图，共 87 张。
+本目录收录正文使用的**真实图像**：装置照片、天文观测与机构示意图，共 95 张。
 全部采用开放许可（CC0 / 公有领域 / CC BY / CC BY-SA），并按许可要求署名：
 
 - 正文中每张图都在图注下方用 `\figsource{作者｜许可｜来源页}` 署名；
@@ -55,16 +55,24 @@
 | `summit_supercomputer.jpg` | 超级计算机：粒子步总账最终要在这里付 | Carlos Jones/ORNL | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Summit_(supercomputer).jpg | 附录AC |
 | `ad_cmod_interior.jpg` | 托卡马克真空室内壁与限制器 | Mike Garrett | CC BY 3.0 | https://commons.wikimedia.org/wiki/File:Alcator_C-Mod_Tokamak_Interior.jpg | 附录AD |
 | `ae_gyrotron.jpg` | 回旋管：用电子回旋运动产生毫米波 | Rama | CC BY-SA 2.5 | https://commons.wikimedia.org/wiki/File:Gyrotron_plateforme.jpg | 附录AE |
+| `ae_asdex_section.jpg` | ASDEX Upgrade 的极向截面 | Nico Kaiser | CC BY-SA 2.0 | https://commons.wikimedia.org/wiki/File:ASDEX_Upgrade_section_(1567515317).jpg | 附录AE |
 | `magnetic_turbulence.jpg` | 磁湍流：输运由哪一段波数贡献 | Giannandrea Inchingolo | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Magnetic_turbulence.jpg | 附录AF |
+| `af_kelvin_helmholtz.jpg` | 开尔文–亥姆霍兹不稳定性的云街 | Brocken Inaglory | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Kelvin-Helmholtz_instability_clouds.JPG | 附录AF |
 | `scylla_theta_pinch.jpg` | θ 箍缩 Scylla I（1958）：最早的磁约束实验之一 | Unknown LANL photographer | Public domain | https://commons.wikimedia.org/wiki/File:Scylla_I_in_1958.jpg | 附录AG |
+| `ag_kstar_tokamak.jpg` | KSTAR 超导托卡马克装置本体 | Michel Maccagnan | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:KSTAR_tokamak.jpg | 附录 AG |
 | `hollow_cathode_lamp.jpg` | 空心阴极灯：谱线是被激发出来的 | Szasza | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Hollow_cathode_lamp.JPG | 附录AH |
+| `ah_helium_discharge.jpg` | 放电管里被激发的氦 | Alicepublic | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Angeregtes_Helium_3.jpg | 附录AH |
 | `nif_laser_bay.jpg` | 激光驱动器阵列：192 束光要在靶上对准 | Lawrence Livermore National Laboratory | Public domain | https://commons.wikimedia.org/wiki/File:NIF_Laser_Bay.jpg | 附录AI |
+| `ai_nif_target_assembly.jpg` | NIF 靶装配体：黑腔与燃料靶丸 | Lawrence Livermore National Laboratory | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:NIF_ignition_target_assembly.jpg | 附录 AI |
 | `pellet_injector.jpg` | 弹丸注入器：把燃料冻成弹丸打进去 | Oak Ridge National Laboratory | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:ITER_Prototype_3-barrel_shattered_pellet_injector_(14132373814).jpg | 附录AJ |
 | `dry_cask.jpg` | 干式贮存罐：活化废物最后的去处 | Nuclear Regulatory Commission from US | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Massive_containers_hold_spent_nuclear_fuel_(15420175144).jpg | 附录AK |
+| `ak_manipulator_arm.jpg` | 热室里的远程操作机械臂 | Idaho National Laboratory | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Manipulator_Arm.jpg | 附录AK |
 | `al_gibraltar_soliton.jpg` | 直布罗陀海峡的内孤立波 | NASA / 国际空间站宇航员（2004） | Public domain | https://commons.wikimedia.org/wiki/File:Solitons,_Strait_of_Gibraltar_(4585).jpg | 附录AL |
+| `al_laser_filament.jpg` | 激光自聚焦形成的丝 | Jean-Christophe Delagnes | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Laser_Filament.jpg | 附录AL |
 | `am_iter_solenoid.jpg` | ITER 中心螺线管的绕制 | Oak Ridge National Laboratory | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:ITER_central_solenoid_manufacturing_(41809722361).jpg | 附录AM |
 | `w7x_magnets.jpg` | 仿星器磁体系统示意：线圈怎么排、力往哪里走 | M. Nagel, C.P. Dhard, H. Bau, H.-S. Bosch, U. Meyer, S. Raatz, K. Risse and T. Rummel | CC BY 3.0 | https://commons.wikimedia.org/wiki/File:Wendelstein_7-X_schematic_view_of_magnets_system.jpg | 附录AM |
 | `spexone_polarimeter.jpg` | SPEXone 偏振仪：把偏振当成一个诊断量 | NASA | Public domain | https://commons.wikimedia.org/wiki/File:SPEXone_Polarimeter_for_the_PACE_satellite_-_GSFC_20201021_PACE_32369.jpg | 附录AN |
+| `an_calcite_birefringence.jpg` | 方解石的双折射 | Masha Milshina | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:Birefringence_of_calcite.jpg | 附录AN |
 | `ao_chamber_a.jpg` | NASA Chamber A 热真空室 | NASA / Johnson Space Center | Public domain | https://commons.wikimedia.org/wiki/File:NEO_Surveyor_Instrument_Enclosure_Inside_Historic_Chamber_A_(PIA26583).jpg | 附录AO |
 | `thruster_vacuum.jpg` | 真空舱里的霍尔推力器：抽气与壁条件决定它能不能点着 | EXOTRAIL SA | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Hall_Effect_Thruster_in_a_vacuum_chamber.jpg | 附录AO |
 | `turbopump.jpg` | 涡轮分子泵：抽速是泵与导管一起决定的 | Moxfyre | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Edwards_turbopump.jpg | 附录AO |
@@ -81,7 +89,7 @@
 | `ay_w7x_tiles.jpg` | W7-X 偏滤器碳瓦安装 | Christopher Roux / EUROfusion | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:W7-X_tile_installation.jpg | 附录AY |
 | `ion_irradiation.jpg` | 离子辐照实验：dpa 是怎么被制造出来的 | BibMak | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:The_irradiation_experiments_at_the_ion_accelerator_DC-60._Astana,_Kazakhstan.JPG | 附录AY |
 | `plasma_spray.jpg` | 等离子体喷涂：给面向等离子体部件做涂层 | Student-julia-pwr | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Plasma_spraying_process.jpg | 附录AY |
-| `az_plant_schematic.jpg` | 聚变电厂系统示意图 | EUROfusion | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:EUROfusion_schematic_diagram_of_fusion_power_plant.jpg | 附录AZ |
+| `az_iter_complex.jpg` | ITER 主机厂房建设实景（2018） | Cedarstrand / ITER Organization | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:ITER_construction_in_2018_(41809718461).jpg | 附录 AZ |
 | `gyrotron_140ghz.jpg` | 140 GHz / 1 MW 回旋管：射频加热三件套里的一件 | Z6ehswhha5HGRTd | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Wendelstein_7-X,_Gyrotron,140Ghz,_1MW.jpg | 附录M |
 | `ion_source_fermilab.jpg` | 离子源：中性束注入的第一步 | Z22 | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Ion_source_at_used_in_the_Cockcroft-Walton_accelerators_at_Fermilab.jpg | 附录M |
 | `sputter_gun.jpg` | 磁控溅射枪：受控的溅射侵蚀 | Tavoromann | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Magnetron_sputtering_gun.jpg | 附录N |
