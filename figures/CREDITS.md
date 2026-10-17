@@ -1,6 +1,6 @@
 # 配图来源与许可（figures/）
 
-本目录收录正文使用的**真实图像**：装置照片、天文观测与机构示意图，共 85 张。
+本目录收录正文使用的**真实图像**：装置照片、天文观测与机构示意图，共 87 张。
 全部采用开放许可（CC0 / 公有领域 / CC BY / CC BY-SA），并按许可要求署名：
 
 - 正文中每张图都在图注下方用 `\figsource{作者｜许可｜来源页}` 署名；
@@ -51,6 +51,7 @@
 | `aa_muse_stellarator.jpg` | MUSE 永磁仿星器装配 | T. M. Qian 等（MUSE 团队） | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:Design_and_construction_of_the_MUSE_permanent_magnet_stellarator_-_Fig20.jpg | 附录AA |
 | `mast_tokamak.jpg` | MAST 球形托卡马克：中心柱换来的高比压 | Eye Steel Film | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:MAST_Tokamak_(32476489303).jpg | 附录AA |
 | `solar_flare_sdo.jpg` | 太阳耀斑（SDO 四波段）：日冕里的磁重联 | NASA/SDO | Public domain | https://commons.wikimedia.org/wiki/File:X3.2_Solar_flare_on_2013-05-14_at_four_wavelengths.jpg | 附录AB |
+| `ab_comet_ion_tail.jpg` | 西村彗星的离子尾：太阳风把彗尾吹成一条直线 | STEREO/NASA（内日球成像仪 HI-1） | Public domain | https://commons.wikimedia.org/wiki/File:Cometnishimura.png | 附录AB |
 | `summit_supercomputer.jpg` | 超级计算机：粒子步总账最终要在这里付 | Carlos Jones/ORNL | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Summit_(supercomputer).jpg | 附录AC |
 | `ad_cmod_interior.jpg` | 托卡马克真空室内壁与限制器 | Mike Garrett | CC BY 3.0 | https://commons.wikimedia.org/wiki/File:Alcator_C-Mod_Tokamak_Interior.jpg | 附录AD |
 | `ae_gyrotron.jpg` | 回旋管：用电子回旋运动产生毫米波 | Rama | CC BY-SA 2.5 | https://commons.wikimedia.org/wiki/File:Gyrotron_plateforme.jpg | 附录AE |
@@ -91,6 +92,7 @@
 | `dust_plasma_lab.jpg` | 尘埃等离子体诊断实验台：第三个尺度 | Stanislav Liubauskas | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:Laboratory_of_Dust_Plasma_Diagnostics.jpg | 附录R |
 | `s_tcv_vessel.jpg` | TCV 托卡马克真空室 | TCV 团队（Commons 页面未署名） | CC BY-SA 2.5 | https://commons.wikimedia.org/wiki/File:TCV-img1502-0006.jpg | 附录S |
 | `t_lhd_heliotron.jpg` | LHD 大型螺旋装置：旋转变换由线圈给出 | National Institute for Fusion Science (NIFS) | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Large_Helical_Device_2014.jpg | 附录T |
+| `t_coronal_loops.jpg` | 太阳表面的磁环：磁通量管在自然界的样子 | NASA/Goddard Space Flight Center/SDO | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Magnetic_loops_on_the_sun.jpg | 附录T |
 | `u_nova_chamber.jpg` | NOVA 靶室 | Lawrence Livermore National Laboratory | Public domain | https://commons.wikimedia.org/wiki/File:Nova_target_chamber.jpg | 附录U |
 | `v_pfc_erosion.jpg` | 面向等离子体部件的侵蚀与再沉积 | Christophe Roux / CEA IRFM | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:Composant_face_au_plasma.jpg | 附录V |
 | `w_jet_1991.jpg` | JET 装置（1991） | EFDA JET | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:The_JET_magnetic_fusion_experiment_in_1991.jpg | 附录W |

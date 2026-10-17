@@ -35,8 +35,8 @@
 \usepackage{graphicx}
 \usepackage{enumitem}
 % ---- 列表全局规范：替代全书零散的逐实例配置 ----
-\setlist{nosep,leftmargin=1.25em,topsep=2pt plus 0.8pt minus 0.8pt,
-         itemsep=0.8pt plus 0.4pt,parsep=0pt,partopsep=0pt}
+\setlist{nosep,leftmargin=1.25em,topsep=1.6pt plus 0.6pt minus 0.6pt,
+         itemsep=0.6pt plus 0.3pt,parsep=0pt,partopsep=0pt}
 \setlist[itemize,1]{label=\textbullet}
 \setlist[itemize,2]{label=$\circ$}
 \setlist[enumerate,1]{label=\arabic*.}
@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.27.0},
+  pdftitle={等离子体物理自学教材 v1.27.1},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -112,18 +112,20 @@
 % \ding{172..174} 对应 （1）..（3），pifont 的 dingbat 字体覆盖完整。
 \newcommand{\cnum}[1]{\ding{\numexpr171+#1\relax}}
 % ---- 段落、公式与浮动体间距：回收造成大片留白的垂直空间 ----
-\setlength{\parskip}{1.8pt plus 0.8pt minus 0.4pt}
-\setlength{\jot}{1.6pt}
+% v1.27.1：在不改字号、不改页边距、不删一个字的前提下再收一档行间空白，
+% 把新增实拍图占掉的页数压回来（段落靠首行缩进区分，不靠空行）。
+\setlength{\parskip}{1.25pt plus 0.5pt minus 0.25pt}
+\setlength{\jot}{1.2pt}
 \AtBeginDocument{%
-  \setlength{\abovedisplayskip}{3.6pt plus 1.5pt minus 1.5pt}%
-  \setlength{\belowdisplayskip}{3.6pt plus 1.5pt minus 1.5pt}%
-  \setlength{\abovedisplayshortskip}{2.4pt plus 0.8pt}%
-  \setlength{\belowdisplayshortskip}{2.4pt plus 0.8pt}%
+  \setlength{\abovedisplayskip}{2.6pt plus 1pt minus 1pt}%
+  \setlength{\belowdisplayskip}{2.6pt plus 1pt minus 1pt}%
+  \setlength{\abovedisplayshortskip}{1.8pt plus 0.6pt}%
+  \setlength{\belowdisplayshortskip}{1.8pt plus 0.6pt}%
 }
 % 浮动体上下间距（默认 book 类为 12pt 级，是页面上最显眼的空白来源）
-\setlength{\textfloatsep}{8pt plus 2pt minus 2pt}
-\setlength{\floatsep}{8pt plus 2pt minus 2pt}
-\setlength{\intextsep}{8pt plus 2pt minus 2pt}
+\setlength{\textfloatsep}{6pt plus 2pt minus 2pt}
+\setlength{\floatsep}{6pt plus 2pt minus 2pt}
+\setlength{\intextsep}{6pt plus 2pt minus 2pt}
 % 放宽浮动体在同一页的比例上限，减少"图表被挤到下一页"留下的整块空白
 \renewcommand{\topfraction}{0.92}
 \renewcommand{\bottomfraction}{0.75}
@@ -177,7 +179,7 @@
   {-2.4ex}
   {\Huge\heiti\filright}
   [\vspace{0.35ex}{\color{coverMid!45}\titlerule[1.2pt]}]
-\titlespacing*{\chapter}{0pt}{-26pt}{18pt}
+\titlespacing*{\chapter}{0pt}{-30pt}{15pt}
 % ---- 难度边注：就地排版，不用 \hfill 顶边 ----
 % 历史缺陷：
 %  (a) 旧宏内 \hfill 使 2pt \rule 紧贴边注盒右边界，墨迹到达 20.62cm，越出盒边界
@@ -195,10 +197,10 @@
 \newcommand{\difficultyhere}[1]{\marginnote{\raggedright\diffmarktext{#1}}}
 \titleformat{\section}
   {\normalfont\Large\heiti\color{coverMid}}{\thesection}{0.9em}{}
-\titlespacing*{\section}{0pt}{9pt plus 2pt minus 2pt}{4.5pt plus 1.5pt minus 1pt}
+\titlespacing*{\section}{0pt}{7pt plus 1.6pt minus 1.6pt}{3.4pt plus 1.2pt minus 0.8pt}
 \titleformat{\subsection}
   {\normalfont\large\heiti\color{coverMid!85}}{\thesubsection}{0.8em}{}
-\titlespacing*{\subsection}{0pt}{7pt plus 1.5pt minus 1pt}{3pt}
+\titlespacing*{\subsection}{0pt}{5.4pt plus 1.2pt minus 0.8pt}{2.4pt}
 % ---- 章前引语：楷体，与标题黑体形成字型区分（KaiTi 无斜体，不设 itshape）----
 \setlength{\epigraphwidth}{0.62\textwidth}
 \renewcommand{\epigraphsize}{\small\kaishu}
@@ -461,7 +463,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.27.0}}
+  {\small\textcolor{white!45}{v1.27.1}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -5300,7 +5302,7 @@ $n_e\sim10^{24}\,\mathrm{m}^{-3}$ 对应高电流密度电弧芯部，与 $2.5\,
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/geissler_tube.jpg}
+\includegraphics[width=0.67\textwidth]{../figures/geissler_tube.jpg}
 \caption{盖斯勒放电管：谱线是被放电点亮的。光谱诊断的起点是一支会发光的放电管：管内的原子被电子碰撞激发，退激时发出特征谱线。本节讲的谱线强度、展宽与绝对定标，量的就是这支管子发出的光——只不过在托卡马克上，光源换成了上亿度的等离子体。}
 \label{fig:photo-geissler}
 \figsource{Svk mary，CC BY-SA 4.0（Wikimedia Commons）}

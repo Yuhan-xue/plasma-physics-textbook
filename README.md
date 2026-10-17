@@ -5,7 +5,7 @@
 
 ![托卡马克真空室内部：磁约束聚变要面对的容器](figures/tokamak_interior.jpg)
 
-教材共 **674 页**，涵盖 12 章正文 + 52 附录，内容从单粒子运动一直走到聚变堆系统集成，
+教材共 **664 页**，涵盖 12 章正文 + 52 附录，内容从单粒子运动一直走到聚变堆系统集成，
 并在每一章里都放了自学需要的东西：核心目标、前置依赖、"先猜再看"、例题与答案、
 随堂自测、估算练习。写作目标是**一个人、一支笔、一台能算数的电脑就能读完**。
 
@@ -15,9 +15,9 @@
 
 | 文件 | 页数 | 内容 |
 |------|------|------|
-| [`pdf/plasma_physics_textbook_v2.pdf`](pdf/plasma_physics_textbook_v2.pdf) | 674 页完整教材，可直接阅读 | 正文 + 全部附录，推荐先读这本 |
-| [`pdf/plasma_physics_textbook_v2_vol1_chapters.pdf`](pdf/plasma_physics_textbook_v2_vol1_chapters.pdf) | 212 页 | 前言 + 第 1–12 章正文 |
-| [`pdf/plasma_physics_textbook_v2_vol2_appendices.pdf`](pdf/plasma_physics_textbook_v2_vol2_appendices.pdf) | 462 页 | 52 个附录 |
+| [`pdf/plasma_physics_textbook_v2.pdf`](pdf/plasma_physics_textbook_v2.pdf) | 664 页完整教材，可直接阅读 | 正文 + 全部附录，推荐先读这本 |
+| [`pdf/plasma_physics_textbook_v2_vol1_chapters.pdf`](pdf/plasma_physics_textbook_v2_vol1_chapters.pdf) | 208 页 | 前言 + 第 1–12 章正文 |
+| [`pdf/plasma_physics_textbook_v2_vol2_appendices.pdf`](pdf/plasma_physics_textbook_v2_vol2_appendices.pdf) | 456 页 | 52 个附录 |
 
 三个 PDF 都由本仓库源码编译而成，带版本号；历史版本见
 [Releases](http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases)。
@@ -207,6 +207,7 @@ python check/consistency_audit.py   # 符号、单位、附录与正文的交叉
 
 | 版本 | 主要变化 |
 |------|----------|
+| v1.27.1 | 补上最后两张实拍图（附录 T 日冕磁环、附录 AB 西村彗星离子尾），全书画册到 87 张；把竖幅照片按高度上限重新定尺（不再一张图占满一页），并收紧行间与标题间距——字未删、字号未改，页数 674 → 664 |
 | v1.27.0 | 以人为本改造：正文与记录不再贴程序（只给路径）、删去过程性旁白、新增 13 张现代高清实拍图、README 与版本记录重写为面向读者；附录 Q／S／W 再增 3 张实拍图（朗缪尔探针、TCV 真空室、JET）；长路径改为可断行，Overfull 回到 5 处基线 |
 | v1.26.59 | 附录实拍图第九批：射频探针、电晕管、系统图、靶室（Q / P / AZ / Y） |
 | v1.26.55 | 自学标准审计：把"能自学"写成可检查的清单 |
