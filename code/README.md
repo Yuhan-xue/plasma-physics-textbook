@@ -1,31 +1,31 @@
-# 书中脚本（可直接运行）
+# code/ —— 书中会用到的脚本
 
-教材里出现的完整程序放在这里，正文只留「骨架 + 路径」——这样正文更短，
-而想动手的读者能拿到真正能跑的版本。
+正文里不贴整段程序：需要动手的地方只写"用哪个脚本、跑出来应该看到什么"，
+脚本本体放在这里，可以直接运行。
 
-## 目录
+## 三个脚本
 
-| 文件 | 对应章节 | 做什么 |
-| --- | --- | --- |
-| `appendix_g/orbit_tracking.py` | 附录 G.1 单粒子轨道追踪 | 均匀磁场回旋 + $E\times B$ 漂移 + 近轴磁镜反射；含能量守恒检查与三联图 |
-| `appendix_g/debye_bvp.py` | 附录 G.2 德拜屏蔽电势的数值求解 | 无量纲球坐标泊松方程边值问题；与线性德拜解逐点对比、幅值扫描、`max_nodes` 负例 |
-| `appendix_g/langmuir_dispersion.py` | 附录 G.3 朗缪尔波色散曲线 | Bohm--Gross 色散关系、冷等离子体对照、$k\lambda_D$ 适用范围回溯检查 |
+| 脚本 | 对应位置 | 做什么 | 你会看到 |
+| --- | --- | --- | --- |
+| [`appendix_g/orbit_tracking.py`](appendix_g/orbit_tracking.py) | 附录 G「单粒子轨道追踪」 | 均匀磁场里的回旋 + $E\times B$ 漂移 + 近轴磁镜反射 | 三联图：轨道、能量守恒曲线、磁镜反射点 |
+| [`appendix_g/debye_bvp.py`](appendix_g/debye_bvp.py) | 附录 G「德拜屏蔽电势的数值求解」 | 球坐标泊松方程的边值问题，与线性德拜解逐点对比 | 电势曲线对比图 + 求解器自报的收敛信息（`success`、`status`、残差范数） |
+| [`appendix_g/langmuir_dispersion.py`](appendix_g/langmuir_dispersion.py) | 附录 G「朗缪尔波色散曲线」 | Bohm–Gross 色散关系与冷等离子体对照 | 色散曲线 + 适用范围（$k\lambda_D$）回溯检查 |
 
 ## 怎么跑
+
+装好依赖，在仓库根目录执行即可：
 
 ```
 pip install numpy scipy matplotlib
 python code/appendix_g/debye_bvp.py
 ```
 
-脚本用相对路径保存图片（`single_particle_orbit.png`、`debye_shielding.png`、
-`langmuir_dispersion.png`），在仓库根目录运行时图片会落在根目录；想固定输出位置，
-把 `savefig` 里的文件名换成带目录的路径即可。
+三个脚本都会把图存到当前目录（`single_particle_orbit.png`、`debye_shielding.png`、
+`langmuir_dispersion.png`）。想固定输出位置，改一下脚本里保存图片的文件名即可。
 
 ## 与正文的关系
 
-- 正文给出物理目标、方程与「应当验证什么」，脚本给出完整实现；
-- 正文里印出的运行输出（如 `success/status/message` 与残差）就是这些脚本在
-  NumPy 2.5.3 / SciPy 1.18.1 下的实测输出；
-- 路径守卫在 `check/full_check.py` 的「代码清单」一类里：正文提到的每个 `code/**.py`
-  必须存在且能通过语法编译，同时正文不再出现超过 20 行的代码清单。
+- 正文负责讲清物理目标、方程，以及"应当验证什么"；脚本负责给出可直接运行的实现。
+- 附录 G 里印出的运行信息（是否收敛、迭代情况、残差大小）就是这些脚本的真实输出，
+  版本为 NumPy 2.5 / SciPy 1.18；换环境后数值可能在小数位上有差别。
+- 想在正文里新增脚本引用，只需写清路径；全量检查会核对"正文提到的每个脚本都存在且能通过语法编译"。

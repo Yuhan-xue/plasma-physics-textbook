@@ -10,4 +10,6 @@
 
 本轮物理数值回归 1351 项、插图版式 15 项均通过，色板夹具在检查器中验证为可触发失败。PDF 结构检查通过 6 项、保留 2 条已知警告：392 条目录书签中 17 条页码差一页；附录 F 的 35 个章节链接中有 31 个目标页与 `.aux` 记录页不一致。上一轮的六项内容修复在当前回归集上没有重现；本轮未确认新的教材内容错误。
 
-详细状态见 [`findings.json`](findings.json)、[`TODO.md`](TODO.md) 和 [`evidence/checks.md`](evidence/checks.md)。
+详细状态见 [`TODO.md`](TODO.md) 和 [`evidence/checks.md`](evidence/checks.md)。
+
+> 机器读数说明：当轮的 当轮发现清单（已移出仓库） 等 JSON 索引与原始日志已移出仓库，需要时用 `check/*.py` 重跑复现。

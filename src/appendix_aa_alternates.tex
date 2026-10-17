@@ -1,5 +1,5 @@
 % 附录 AA：替代位形——仿星器、球形托卡马克与场反位形（v1.25.0 新增）
-% 数值唯一来源：tmp/appAA_calc.py -> tmp/appAA_calc.txt（正文与门禁 P32 的唯一来源）
+% 数值唯一来源：tools/calc/appAA_calc.py -> tools/calc/appAA_calc.txt（正文与门禁 P32 的唯一来源）
 % 单位写法：T / MA / Pa / m^-3 / s / %，全部走 \mathrm{}，不放中文字符进数学字体。
 % 版权口径：只借鉴经典教材与文献的物理结论、公式形式与题型；文字、数值与表格自拟并独立复算。
 % 离线环境无法核验 DOI，故只给书名、作者、年份、卷期页。
@@ -77,7 +77,15 @@ D1 的 $\beta = 1.318\%$（$\beta_N = 1.5523$）、
 \emph{Ideal Magnetohydrodynamics}（1987，第 1 章）与 Wesson \emph{Tokamaks}
 （第 4 版，2011，第 1 章）；球形托卡马克与仿星器的量级取自各自的装置手册
 （NSTX-U 与 W7-X，离线环境无法核验 DOI，故只给装置名与量级）。本节数字由
-\texttt{tmp/appAA\_calc.py} 复算。
+\texttt{tools/\allowbreak{}calc/\allowbreak{}appAA\_calc.py} 复算。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/aa_muse_stellarator.jpg}
+\caption{仿星器不必靠复杂线圈：MUSE 用稀土永磁体拼出三维磁面，图中是它的装配现场。本节比较三种替代位形，这一条代表「不用等离子体电流也能有旋转变换」的现代做法。}
+\label{fig:photo-appaa3}
+\figsource{T. M. Qian 等（MUSE 团队），CC BY 4.0（Wikimedia Commons）}
+\end{figure}
 
 \section{旋转变换：仿星器为什么不需要等离子体电流}
 \label{sec:app-aa-iota}
@@ -134,7 +142,7 @@ W7-X 的线圈有几十个不同形状的模块，装配公差是毫米级。
 
 \textbf{出处：}旋转变换与安全因子的关系、磁剪切恒等式参照 Helander
 \emph{Theory of Stellarators}（2014，第 1、2 章）与附录 T 的推导；W7-X 的 $\iota$ 剖面
-量级取自 W7-X 装置手册。本节数字由 \texttt{tmp/appAA\_calc.py} 复算。
+量级取自 W7-X 装置手册。本节数字由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAA\_calc.py} 复算。
 
 \section{新经典输运：根号 eps 与 eps 有效值的二分之三次方}
 \label{sec:app-aa-transport}
@@ -201,7 +209,7 @@ $\varepsilon_{\mathrm{eff}}^{3/2}$ & $0.00148223$ & $1/\nu$ 区 & 仿星器的�
 
 \textbf{出处：}香蕉区 $\sqrt{\varepsilon}$ 输运参照 Wesson \emph{Tokamaks}（第 4 版，2011，第 2 章）；
 仿星器 $1/\nu$ 区与有效纹波 $\varepsilon_{\mathrm{eff}}$ 的引入参照 Helander
-\emph{Theory of Stellarators}（2014，第 3、4 章）。本节数字由 \texttt{tmp/appAA\_calc.py} 复算。
+\emph{Theory of Stellarators}（2014，第 3、4 章）。本节数字由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAA\_calc.py} 复算。
 
 \section{球形托卡马克：高比压与中心柱的空间代价}
 \label{sec:app-aa-st}
@@ -269,7 +277,7 @@ D1 有 $R-a = 4.2\ \mathrm{m}$，而附录 Z 算出中子屏蔽需要 $2.0723\ \
 \textbf{出处：}球形托卡马克的高 $\beta$ 与自举电流份额参照 Peng \& Strickler
 （1986）\emph{Nucl.\ Fusion} \textbf{26}, 769 与 NSTX 装置手册；
 自举份额的标度形式参照 Wesson（2011，第 2 章）；屏蔽厚度沿用附录 Z 的 $2.0723\ \mathrm{m}$。
-本节数字由 \texttt{tmp/appAA\_calc.py} 复算。
+本节数字由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAA\_calc.py} 复算。
 
 \begin{figure}[htbp]
 \centering
@@ -346,7 +354,7 @@ FRC 里 $\beta=1$ 是\textbf{位形的定义}——内部磁场为零、压力�
 \textbf{出处：}FRC 的压力平衡与反平行电流图像参照 Tuszewski（1988）
 \emph{Nucl.\ Fusion} \textbf{28}, 2033；$n=1$ 倾斜模与动理学稳定机制的量级参照
 Steinhauer（2011）\emph{Phys.\ Plasmas} \textbf{18}, 070501。本节数字由
-\texttt{tmp/appAA\_calc.py} 复算。
+\texttt{tools/\allowbreak{}calc/\allowbreak{}appAA\_calc.py} 复算。
 
 \section{定标与三重积：替代位形离点火有多远}
 \label{sec:app-aa-scaling}
@@ -415,7 +423,6 @@ ISS04 有 $6$ 个自由指数、$1$ 个前置系数，全部是拟合出来的�
 
 \textbf{出处：}ISS04 定标参照 Yamada 等（2005）\emph{Nucl.\ Fusion} \textbf{45}, 1684；
 三重积阈值与点火条件沿用附录 U 的口径；IPB98(y,2) 的 D1 值来自附录 S。
-本节数字由 \texttt{tmp/appAA\_calc.py} 复算。
 
 \section{估算练习}
 \label{sec:app-aa-problems}
@@ -511,7 +518,7 @@ Yamada 等（2005）\emph{Nucl.\ Fusion} \textbf{45}, 1684 &
 
 版权与复现口径，四条：第一，\textbf{不复制}任何教材或论文的表格数值，
 表 \ref{tab:app-aa-map} 到表 \ref{tab:app-aa-source} 的每一个数字都由
-\texttt{tmp/appAA\_calc.py} 在给定参数上现算；第二，\textbf{不复制}原书的题面与解答文字，
+\texttt{tools/\allowbreak{}calc/\allowbreak{}appAA\_calc.py} 在给定参数上现算；第二，\textbf{不复制}原书的题面与解答文字，
 练习 1--6 的题目与解答均为本书自拟；第三，\textbf{不复制}离线环境无法核验的 DOI，
 一律只给书名、作者、年份、卷期页；第四，\textbf{不复制}任何未经复算的「精确值」——
 凡本附录引入的\textbf{声明值}（三种位形的装置级参数、球形托卡马克的 $I_p = 2\ \mathrm{MA}$、

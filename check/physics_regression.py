@@ -705,15 +705,15 @@ def check_O02_appendix_g():
         return
     blk = t[i0:i1]
     for s in (r'\texttt{sol.success}', r'\texttt{sol.status}', '0}=收敛到指定精度',
-              '网格节点数超过', r'\texttt{sol.rms\_residuals}', 'max_nodes',
+              '网格节点数超过', r'\texttt{sol.rms\_residuals}', r'\texttt{max\_nodes}',
               '读反是常见事故', '而是失败',
-              r'\texttt{code/appendix\_g/debye\_bvp.py}',
-              'def poisson_debye(x, y)', 'solve_bvp(poisson_debye, bc, x, y_guess'):
+              r'\texttt{code/\allowbreak{}appendix\_g/\allowbreak{}debye\_bvp.py}'):
         has(blk, s, 'src/%s（附录 G.2）' % MAIN)
-    # v1.26.52 起 G.2 的代码本体移入仓库：那三条表述必须仍留在脚本里
+    # v1.27.0 起附录 G 不再印代码：函数与求解调用改由脚本本体保证
     script = read(os.path.join(ROOT, 'code', 'appendix_g', 'debye_bvp.py'))
     for s in (r'sol.rms_residuals', '无量纲化: x = r/lam_D',
-              "y'' + (2/x) y' = exp(y) - 1"):
+              "y'' + (2/x) y' = exp(y) - 1",
+              'def poisson_debye(x, y)', 'solve_bvp(poisson_debye, bc_amp, x, y_guess'):
         has(script, s, 'code/appendix_g/debye_bvp.py')
     if re.search(r'#[^\n]*最近一次网格上收敛', blk):
         rec('FAIL', 'O', 'src/%s（附录 G.2）代码注释仍把 status=1 解释成收敛' % MAIN)
@@ -2943,7 +2943,7 @@ def check_P19_appendix_s_confinement():
          W、ΔW、峰值热负荷、n_G 比值、f_GAM、三种外推），或搬到了别的小节里；
       ⑤ 口径回流：ρ_i 丢掉 2T 约定、回旋玻姆写成 ρ*²、错式的幂次混进新式。
 
-    数值唯一来源 tmp/appS_calc.py；表内数字的单位写在表头，故这些用例传 unit=''。
+    数值唯一来源 tools/calc/appS_calc.py；表内数字的单位写在表头，故这些用例传 unit=''。
     语义盒标签写在 \\begin{tip}{标题}{标签} 的第二个必选参数里，不写成 \\label{}。
     """
     spath = os.path.join(SRC, APP_FILES['S'])
@@ -3122,10 +3122,10 @@ def check_P19_appendix_s_confinement():
         if not value_in(blk, v, rel, ''):
             bad.append('%s（期望 %.6g）' % (why, v))
     if bad:
-        rec('FAIL', 'P', '附录 S 有 %d 处印出的数值与 tmp/appS_calc.py 不符或不在应有小节：%s'
+        rec('FAIL', 'P', '附录 S 有 %d 处印出的数值与 tools/calc/appS_calc.py 不符或不在应有小节：%s'
             % (len(bad), '；'.join(bad)))
     else:
-        rec('PASS', 'P', '附录 S 的 %d 处关键数值与 tmp/appS_calc.py 逐一相符' % len(cases))
+        rec('PASS', 'P', '附录 S 的 %d 处关键数值与 tools/calc/appS_calc.py 逐一相符' % len(cases))
 
     # 口径回流守卫
     lacks(text, r'\rho_i=\frac{\sqrt{m_iT_i}}',
@@ -3257,7 +3257,7 @@ def check_P22_appendix_t_topology():
       ⑤ 口径回流：χ_∥ 用了离子质量、τ_e 的 3/2 次幂被改、岛宽系数从 4 退回 2、
          q 剖面从 ρ² 退回 ρ、反转半径丢掉根号、Ψ_h'' 与剪切的对应被改。
 
-    数值唯一来源 tmp/appT_calc.py；表内数字的单位写在表头，故这些用例传 unit=''。
+    数值唯一来源 tools/calc/appT_calc.py；表内数字的单位写在表头，故这些用例传 unit=''。
     语义盒标签写在 \\begin{tip}{标题}{标签} 的第二个必选参数里，不写成 \\label{}。
     """
     spath = os.path.join(SRC, APP_FILES['T'])
@@ -3487,7 +3487,7 @@ def check_P22_appendix_t_topology():
         if block is None:
             rec('FAIL', 'P', '附录 T 找不到小节「%s」，无法核对 %s' % (where, what))
         elif not value_in(block, v, rel, unit=''):
-            rec('FAIL', 'P', '附录 T 的 %s 缺失或与 tmp/appT_calc.py 不符：期望 %g（小节「%s」）'
+            rec('FAIL', 'P', '附录 T 的 %s 缺失或与 tools/calc/appT_calc.py 不符：期望 %g（小节「%s」）'
                 % (what, v, where))
     rec('PASS', 'P', '附录 T 的 %d 个关键数值均在小节内复算通过' % len(cases))
 
@@ -3577,7 +3577,7 @@ def check_P24_appendix_u_gain():
          分母写成 Q+4、回路指数被写成大于 1、Q 的单调性写反、工程增益漏括号、
          盈亏平衡忘掉减 1、Greenwald 极限错一个量级、P_loss 取倒数。
 
-    数值唯一来源 tmp/appU_calc.py；表内数字的单位写在表头，故这些用例传 unit=''。
+    数值唯一来源 tools/calc/appU_calc.py；表内数字的单位写在表头，故这些用例传 unit=''。
     语义盒标签写在 \\begin{tip}{标题}{标签} 的第二个必选参数里，不写成 \\label{}。
     """
     spath = os.path.join(SRC, APP_FILES['U'])
@@ -3770,7 +3770,7 @@ def check_P24_appendix_u_gain():
              '练习 6 解答的 ITER 工程增益'),
             ('$Q = 1/0.16 - 1 = 5.250$。结论',
              '练习 6 解答的盈亏平衡 Q'),
-            ('\\texttt{tmp/appU\\_calc.py}',
+            ('\\texttt{tools/\\allowbreak{}calc/\\allowbreak{}appU\\_calc.py}',
              '数值唯一来源脚本（独立复算的凭据）'),
             ('三者的三个装置工作点完全一致，可以互相代入验算。',
              'U 与 S、T 的工作点一致性声明'),
@@ -3976,7 +3976,7 @@ def check_P24_appendix_u_gain():
         if block is None:
             rec('FAIL', 'P', '附录 U 找不到小节「%s」，无法核对 %s' % (where, what))
         elif not value_in(block, v, rel, unit=''):
-            rec('FAIL', 'P', '附录 U 的 %s 缺失或与 tmp/appU_calc.py 不符：期望 %g（小节「%s」）'
+            rec('FAIL', 'P', '附录 U 的 %s 缺失或与 tools/calc/appU_calc.py 不符：期望 %g（小节「%s」）'
                 % (what, v, where))
     rec('PASS', 'P', '附录 U 的 %d 个关键数值均在小节内复算通过' % len(cases))
 
@@ -4097,7 +4097,7 @@ def check_P26_appendix_v_disruption():
          33.5%、E_tor/E_D 写回 0.0151、雪崩放大倍数写回 1.0e40、Greenwald 极限
          错一个量级、晕电流力错一个量级、tau_CQ 下界单位写成 ms。
 
-    数值唯一来源 tmp/appV_calc.py；表内数字的单位写在表头，故这些用例传 unit=''。
+    数值唯一来源 tools/calc/appV_calc.py；表内数字的单位写在表头，故这些用例传 unit=''。
     语义盒标签写在 \\begin{tip}{标题}{标签} 的第二个必选参数里，不写成 \\label{}。
     """
     spath = os.path.join(SRC, APP_FILES['V'])
@@ -4197,7 +4197,7 @@ def check_P26_appendix_v_disruption():
              '表 V.9 的 V.3 行（借鉴与自拟的分界）'),
             ('V.5 & Dreicer（1959）；Connor \\& Hastie（1975）；Rosenbluth \\& Putvinski（1997） & Dreicer 场、临界场、雪崩 & 三个场的数值算例、$e$ 折时间与束能量 \\\\',
              '表 V.9 的 V.5 行'),
-            ('V.7 & 本书自拟 & 六道估算题的题型 & 全部数字来自 \\texttt{tmp/appV\\_calc.py} \\\\',
+            ('V.7 & 本书自拟 & 六道估算题的题型 & 全部数字来自 \\texttt{tools/\\allowbreak{}calc/\\allowbreak{}appV\\_calc.py} \\\\',
              '表 V.9 的 V.7 行（数值唯一来源）'),
             ('记住本附录要算的四个时间尺度：壁的 $\\tau_w=52.7788\\ \\mathrm{ms}$（V.3）、雪崩的',
              'tip V.1 的四个时间尺度（壁 / 雪崩）'),
@@ -4257,9 +4257,9 @@ def check_P26_appendix_v_disruption():
              'tip V.3 的标题（四处简化声明）'),
             ('不复制任何教材或论文的表格数值——本附录每一张表的数字都能用',
              '「不复制」约定的第一条'),
-            ('\\texttt{tmp/appV\\_calc.py}',
+            ('\\texttt{tools/\\allowbreak{}calc/\\allowbreak{}appV\\_calc.py}',
              '数值唯一来源脚本（独立复算的凭据）'),
-            ('全部数字来自 \\texttt{tmp/appV\\_calc.py}',
+            ('全部数字来自 \\texttt{tools/\\allowbreak{}calc/\\allowbreak{}appV\\_calc.py}',
              '来源表里对数值来源的交代'),
             ):
         has(text, lit, 'src/%s（%s）' % (APP_FILES['V'], why))
@@ -4439,7 +4439,7 @@ def check_P26_appendix_v_disruption():
         if block is None:
             rec('FAIL', 'P', '附录 V 找不到小节「%s」，无法核对 %s' % (where, what))
         elif not value_in(block, v, rel, unit=''):
-            rec('FAIL', 'P', '附录 V 的 %s 缺失或与 tmp/appV_calc.py 不符：期望 %g（小节「%s」）'
+            rec('FAIL', 'P', '附录 V 的 %s 缺失或与 tools/calc/appV_calc.py 不符：期望 %g（小节「%s」）'
                 % (what, v, where))
     rec('PASS', 'P', '附录 V 的 %d 个关键数值均在小节内复算通过' % len(cases))
 
@@ -4460,7 +4460,7 @@ def check_P27_appendix_w_fastparticle():
          0.21%、首轨份额写成 0.499%、能量 e 折写成 0.16 s、快密度写成 2.13e17、
          E_c 写成 295.1 keV、T_e 倍数写成 32.1。
 
-    数值唯一来源 tmp/appW_calc.py；表内数字的单位写在表头，故部分用例传 unit=''。
+    数值唯一来源 tools/calc/appW_calc.py；表内数字的单位写在表头，故部分用例传 unit=''。
     语义盒标签写在 \\begin{tip}{标题}{标签} 的第二个必选参数里，不写成 \\label{}。
     """
     spath = os.path.join(SRC, APP_FILES['W'])
@@ -4708,7 +4708,7 @@ def check_P29_appendix_x_radiation():
          平均自由程写成 6.8e5 m、光子波长写成 0.13 nm、修正后 P_BR 写成 28.0 MW、
          beta_perp^2 写成 0.036、线辐射总量写成 0.83 MW。
 
-    数值唯一来源 tmp/appX_calc.py；表内数字的单位写在表头，故部分用例传 unit=''。
+    数值唯一来源 tools/calc/appX_calc.py；表内数字的单位写在表头，故部分用例传 unit=''。
     语义盒标签写在 \\begin{tip}{标题}{标签} 的第二个必选参数里，不写成 \\label{}。
     """
     spath = os.path.join(SRC, APP_FILES['X'])
@@ -5847,7 +5847,7 @@ def check_P33_appendix_i_paper():
         ('我不同意哪一点？ & 从「读者」变成「同行」 & 附录 K 的例题与解答对照 \\\\',
          '表 2 最后一行'),
         ('\\textbf{能用本书的脚本复现出论文里的一个数，', '「读懂」的可操作定义句'),
-        ('用 \\texttt{tmp/app\\_\\_calc.py} 代入', '文献笔记模板的可复现步骤'),
+        ('用 \\texttt{tools/\\allowbreak{}calc/\\allowbreak{}app\\_\\_calc.py} 代入', '文献笔记模板的可复现步骤'),
         ('Keshav（2007）', '出处段的 Keshav 年份'),
         ('ACM SIGCOMM Computer Communication Review \\textbf{37}(3), 83--84',
          '出处段的卷期页'),
@@ -6653,7 +6653,7 @@ def check_P36_appendix_ad_pedestal():
         ('\\begin{tip}{台基决定「有多少」，SOL 决定「多小」}{tip-app-ad-sol}', '语义盒标题'),
         ('\\textbf{出处：}热流宽度的经验定标参照 Eich 等（2013，\\emph{Nucl. Fusion} \\textbf{53}, 0', '出处声明整行'),
         ('等级 & 例子 & 来源 & 可否被门禁绑定 \\\\', '表格数据行'),
-        ('现算级 & $P_{\\mathrm{SOL}}=103.468\\ \\mathrm{MW}$、$\\lambda_q=0.388859\\ \\mathrm{mm}$ & \\texttt{tmp/appAD\\_calc.py} & 可以（逐节数值绑定） \\\\', '表格数据行'),
+        ('现算级 & $P_{\\mathrm{SOL}}=103.468\\ \\mathrm{MW}$、$\\lambda_q=0.388859\\ \\mathrm{mm}$ & \\texttt{tools/\\allowbreak{}calc/\\allowbreak{}appAD\\_calc.py} & 可以（逐节数值绑定） \\\\', '表格数据行'),
         ('声明级 & $\\alpha_{\\mathrm{crit}}$、$H_{98}$、$0.07$、$1\\ \\mathrm{MJ\\,m^{-2}}$ & 脚本顶部注释 & 可以（表格整行字面绑定） \\\\', '表格数据行'),
         ('文献级 & ELM 上升时间范围、$\\lambda_q$ 定标散布 & 本节的文献条目 & 否（只作定性对照） \\\\', '表格数据行'),
         ('\\begin{tip}{诚实地说清「哪些数不是算出来的」}{tip-app-ad-honest}', '语义盒标题'),
@@ -7350,7 +7350,7 @@ def check_P38_appendix_af_turbulence():
         ('\\begin{tip}{谱指数不是装饰，它决定输运集中在哪里}{tip-app-af-spectrum}', '语义盒标题'),
         ('\\textbf{出处：}二维漂移波熵级串与逆能量级串的谱指数参照 Kraichnan \\emph{Phys. Fluids}', '出处声明整行'),
         ('级别 & 内容 & 例子 & 可核验性 \\\\', '表格数据行'),
-        ('现算级 & 由 \\texttt{tmp/appAF\\_calc.py} 从工作点算出 & $\\rho_s=2.92274$ mm、$\\chi_{\\mathrm{mix}}=16.9004$ m$^2$s$^{-1}$ & 可逐位复算 \\\\', '表格数据行'),
+        ('现算级 & 由 \\texttt{tools/\\allowbreak{}calc/\\allowbreak{}appAF\\_calc.py} 从工作点算出 & $\\rho_s=2.92274$ mm、$\\chi_{\\mathrm{mix}}=16.9004$ m$^2$s$^{-1}$ & 可逐位复算 \\\\', '表格数据行'),
         ('声明级 & 脚本顶部的输入或文献量级 & $L_n=1.0$ m、$\\eta_{i,\\mathrm{crit}}=1.5$、谱指数 $-3/-5/3$ & 可改输入重算 \\\\', '表格数据行'),
         ('文献级 & 定标系数的适用范围 & 回旋玻姆系数、混合长饱和因子 & 需查原文 \\\\', '表格数据行'),
         ('\\begin{tip}{诚实地说清「本附录不给什么」}{tip-app-af-honest}', '语义盒标题'),
@@ -8128,7 +8128,7 @@ def check_P40_appendix_ah_atomic():
         ('\\begin{tip}{光学薄是假设，不是事实——每次都要验算}{tip-app-ah-opacity}', '语义盒标题'),
         ('\\textbf{出处：}光学深度与自吸收对谱线诊断的限制，参照 Griem（1964，第 3 章）、', '出处声明整行'),
         ('等级 & 含义 & 本附录中的例子 \\\\', '表格数据行'),
-        ('现算级 & 由 \\texttt{tmp/appAH\\_calc.py} 从常数与输入现算 & Saha 常数、各电离度、跃迁波长、多普勒线宽、塞曼分裂、$\\sigma_{12}$、$\\tau$、练习解答 \\\\', '表格数据行'),
+        ('现算级 & 由 \\texttt{tools/\\allowbreak{}calc/\\allowbreak{}appAH\\_calc.py} 从常数与输入现算 & Saha 常数、各电离度、跃迁波长、多普勒线宽、塞曼分裂、$\\sigma_{12}$、$\\tau$、练习解答 \\\\', '表格数据行'),
         ('声明级 & 脚本顶部写入的输入或文献值，不参与推导 & D-$\\alpha$ 波长 $656.28$ nm、He II $468.57$ nm、$A_{21}=4.41\\times10^{7}$ s$^{-1}$、仪器展宽 $0.02$ nm、Stark FWHM $0.053$ nm、日冕极限 $10^{20}$ m$^{-3}$ \\\\', '表格数据行'),
         ('文献级 & 只作定性对照或公式出处，不进入任何数值断言 & Griem 的谱线展宽理论、Saha 方程的原始文献、NIST 波长表的量级 \\\\', '表格数据行'),
         ('\\begin{tip}{本附录不给什么}{tip-app-ah-honest}', '语义盒标题'),
@@ -8580,7 +8580,7 @@ def check_P41_appendix_ai_icf():
         ('\\textbf{出处：}本文的燃耗拟合、增益定义与 ICF 能量账参照 Atzeni \\&', '出处声明整行'),
         ('\\textbf{出处：}本节六道题的题型参照 Atzeni \\& Meyer-ter-Vehn', '出处声明整行'),
         ('级别 & 定义 & 本附录的例子 & 复算途径 \\\\', '表格数据行'),
-        ('$G = 160.033$ & \\texttt{tmp/appAI\\_calc.py} \\\\', '表格数据行'),
+        ('$G = 160.033$ & \\texttt{tools/\\allowbreak{}calc/\\allowbreak{}appAI\\_calc.py} \\\\', '表格数据行'),
         ('$\\alpha$ 射程 $0.3$ g cm$^{-2}$ & 脚本内 \\texttt{[DECLARED]} 段 \\\\', '表格数据行'),
         ('\\begin{tip}{本附录不给什么}{tip-app-ai-honest}', '语义盒标题'),
         ('\\textbf{出处：}本附录的间接驱动、内爆、不稳定性与点火图像分别参照', '出处声明整行'),
@@ -9960,7 +9960,7 @@ def check_P44_appendix_al_nonlinear():
         ('\\begin{tip}{相干结构是「自组织」的，不是「外加」的}{tip-app-al-structures}', '语义盒标题'),
         ('\\textbf{出处：}双电层与相空间空洞的实验与理论综述参照 Sagdeev 与 Galeev（1969，第 4 章）', '出处声明整行'),
         ('级别 & 内容 & 说明 \\\\', '表格数据行'),
-        ('现算级 & 抖动速度、有质动力势、阈值、孤子宽度、$P_c$、$E_{WB}$、$\\omega_b$、$E^{*}$、双电层场强 & 全部由 \\texttt{tmp/appAL\\_calc.py} 用 $n_e = 10^{20}$ m$^{-3}$、$T_e = 9194$ eV、$B = 5.3$ T 与声速 $c_s = 593524$ m s$^{-1}$（与附录 AE 同口径）算出 \\\\', '表格数据行'),
+        ('现算级 & 抖动速度、有质动力势、阈值、孤子宽度、$P_c$、$E_{WB}$、$\\omega_b$、$E^{*}$、双电层场强 & 全部由 \\texttt{tools/\\allowbreak{}calc/\\allowbreak{}appAL\\_calc.py} 用 $n_e = 10^{20}$ m$^{-3}$、$T_e = 9194$ eV、$B = 5.3$ T 与声速 $c_s = 593524$ m s$^{-1}$（与附录 AE 同口径）算出 \\\\', '表格数据行'),
         ('声明级 & 自聚焦系数 $17.4$、孤子形状因子、双电层厚度 $100\\,\\lambda_{De}$、冕区 $0.35$ $\\mu$m 与 $500$ TW 驱动器参数 & 量级或工程典型值，正文中已逐处标为「声明」或「量级」 \\\\', '表格数据行'),
         ("文献级 & 孤子解（KdV）、三波耦合方程形式、O'Neil 阻尼振荡图景、BGK 平衡、扎哈罗夫方程 & 只引用方程形式与结论，不作数值比对 \\\\", '表格数据行'),
         ('\\begin{tip}{本附录不给什么}{tip-app-al-honest}', '语义盒标题'),
@@ -12065,7 +12065,7 @@ def check_P49_appendix_aq_interferometry():
         ('Hutchinson, \\textit{Principles of Plasma Diagnostics}, 2nd ed. (2002) 第 4 章 & 折射率、阿贝尔反演、误差传播、相对论修正 & 一级（标准教材） \\\\', '表格数据行'),
         ('Donné 等, \\textit{Nuclear Fusion} \\textbf{47} (2007) S337 & ITER 密度诊断的精度要求与工程口径 & 二级（工程综述） \\\\', '表格数据行'),
         ('Abel (1826) 的积分变换 & 阿贝尔正反变换与层析思想 & 三级（史料） \\\\', '表格数据行'),
-        ('本书 \\texttt{tmp/appAQ\\_calc.py} & 全部数值（可由脚本复算） & 自算（一级） \\\\', '表格数据行'),
+        ('本书 \\texttt{tools/\\allowbreak{}calc/\\allowbreak{}appAQ\\_calc.py} & 全部数值（可由脚本复算） & 自算（一级） \\\\', '表格数据行'),
         ('\\begin{tip}{本附录不给什么}{tip-app-aq-honest}', '语义盒标题'),
     ):
         has(text, lit, 'src/%s（%s）' % (APP_FILES['AQ'], why))

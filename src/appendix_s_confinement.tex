@@ -1,5 +1,5 @@
 % 附录 S：能量约束与输运：从功率平衡到 IPB98(y,2)（v1.16.0 新增）
-% 数值唯一来源：tmp/appS_calc.py -> tmp/appS_calc.txt（正文与门禁的唯一来源）
+% 数值唯一来源：tools/calc/appS_calc.py -> tools/calc/appS_calc.txt（正文与门禁的唯一来源）
 % 时间单位写成 yr/day，避免中文字符进入数学字体；全部数字可用仓库脚本复算。
 % 版权口径：只借鉴经典教材与文献的物理结论、公式形式与题型；文字、数值与表格自拟并独立复算。
 % 离线环境无法核验 DOI，故只给书名、作者、年份、卷期页。
@@ -41,7 +41,7 @@ $\epsilon=a/R$、$\kappa$（拉长比）、$Z_{\mathrm{eff}}$。\textbf{外推�
 \begin{table}[htbp]
   \centering
   \caption{本附录的三段路线：先把 $\tau_E$ 化成输运系数，再判断输运属于哪一种标度，最后才谈外推。
-    每一段都可用仓库脚本 \texttt{tmp/appS\_calc.py} 复算。}
+    每一段都可用仓库脚本 \texttt{tools/\allowbreak{}calc/\allowbreak{}appS\_calc.py} 复算。}
   \label{tab:app-s-map}
   \begin{tabular}{@{}p{1.2cm}p{4.4cm}p{5.4cm}p{4.6cm}@{}}
     \toprule
@@ -250,7 +250,7 @@ $(R,\epsilon)$ 还是 $(R,a)$。}两种写法都常见，混用就会出错—�
 表 \ref{tab:app-s-oldformula} 的教训比错本身重要：\textbf{同一个错式在不同装置上偏差 $3.0$、
 $1.4$、$0.47$ 倍，方向和大小都变。}只拿一台装置试算，很可能"看起来差不多"而放过它；
 正确的校验办法只有一个——\textbf{逐项对照幂次与量纲}。本附录把这条写进门禁：
-\texttt{check/physics\_regression.py} 里保存了式 \eqref{eq:app-s-ipb98} 的幂次表与
+\texttt{check/\allowbreak{}physics\_regression.py} 里保存了式 \eqref{eq:app-s-ipb98} 的幂次表与
 表 \ref{tab:app-s-oldformula} 的三个数值，任何一个被改回去都会立刻红灯。
 
 \textbf{出处：}ITER Physics Basis，\textit{Nuclear Fusion} \textbf{39}，2175（1999）第 2 章
@@ -367,6 +367,14 @@ Snyder 等，\textit{Nuclear Fusion} \textbf{49}，085035（2009）与 \textbf{5
 EPED 台基模型）。台基储能、ELM 峰值热负荷与频率下界由本书按上述口径自算，
 并与附录 N 的独立口径对照。
 
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/s_tcv_vessel.jpg}
+\caption{TCV 真空室：位形可变的托卡马克。约束定标律与运行空间都要在同一种装置的不同位形上反复测量；TCV 的可变形能力就是为这件事设计的。}
+\label{fig:photo-apps2}
+\figsource{未署名（Wikimedia Commons），CC BY-SA 2.5}
+\end{figure}
 
 \section{Greenwald 密度极限与运行空间}
 \label{sec:app-s-greenwald}
@@ -510,7 +518,7 @@ $B$ 是真空磁场还是等离子体表面的？口径不同结果能差 $30\%$
 \section{六道估算练习}
 \label{sec:app-s-problems}
 
-这六道题按 S.2 到 S.9 的顺序排，答案都可以用仓库脚本 \texttt{tmp/appS\_calc.py} 复算。
+这六道题按 S.2 到 S.9 的顺序排，答案都可以用仓库脚本 \texttt{tools/\allowbreak{}calc/\allowbreak{}appS\_calc.py} 复算。
 
 \textbf{练习 1（功率口径）}。D1 量级在 $P=150\ \mathrm{MW}$ 时 $\tau_E=2.476\ \mathrm{s}$；
 若同一装置只改加热功率到 $P=87\ \mathrm{MW}$，$\tau_E$ 变成多少？相差几倍？这说明什么？
@@ -593,12 +601,12 @@ $f=c_s/(2\pi R)$ 得芯部 $17.0\ \mathrm{kHz}$、边缘 $5.6\ \mathrm{kHz}$。
   \item 本附录\textbf{不复制}任何教材或论文的原文、图、表与题目。文献只被用来确认物理结论、
         公式形式与题型分类（"这类问题经典文献是怎么问的"）。
   \item 全部数值（表 \ref{tab:app-s-devices} 到表 \ref{tab:app-s-gam}、
-        练习 1--6 的答案）由本书自编脚本 \texttt{tmp/appS\_calc.py} 独立计算，
+        练习 1--6 的答案）由本书自编脚本 \texttt{tools/\allowbreak{}calc/\allowbreak{}appS\_calc.py} 独立计算，
         输入参数取公开设计参数附近的圆整值，\textbf{不是任何装置的运行记录}。
-        脚本输出保存在 \texttt{tmp/appS\_calc.txt}，正文与门禁都只引用它。
+        脚本输出保存在 \texttt{tools/\allowbreak{}calc/\allowbreak{}appS\_calc.txt}，正文与门禁都只引用它。
   \item 三个装置名为"ITER 量级 / JET 量级 / DIII-D 量级"，表示"取该装置公开参数的量级"，
         不表示对其真实性能的复现或评价。
   \item 离线环境无法核验 DOI，故只给书名、期刊、卷、页与年份；引用中的卷期页取自公开书目信息。
   \item 第 10 章公式卡的 IPB98(y,2) 抄写错在 v1.16.0 一并修正，并已写成门禁断言
-        （见 S.4 节与 \texttt{check/physics\_regression.py}）。
+        （见 S.4 节与 \texttt{check/\allowbreak{}physics\_regression.py}）。
 \end{itemize}

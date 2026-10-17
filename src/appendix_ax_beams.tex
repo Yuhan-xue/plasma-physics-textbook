@@ -1,7 +1,7 @@
 % =====================================================================
 % 附录 AX：束流物理与束流品质 —— 从发射度到空间电荷（注明出处）
 % ---------------------------------------------------------------------
-% 数值唯一来源：tmp/appAX_calc.py（只 print；输出 tmp/appAX_calc.txt，116 行）
+% 数值唯一来源：tools/calc/appAX_calc.py（只 print；输出 tools/calc/appAX_calc.txt，116 行）
 %   工作点沿用 D1（与附录 M/S/U/V/W/AW 同口径）：
 %     n_e = 1e20 m^-3、T_e = T_i = 9.194 keV、B = 5.3 T、a = 2.0 m、R = 6.2 m、
 %     V = 832.2 m^3、P_fus = 556.5 MW、P_alpha = 111.3 MW、lnLambda = 17、Z_eff = 2；
@@ -487,6 +487,14 @@ $235.9598\ \mathrm{keV}$ 说的是快离子把能量交给电子还是离子。
 \textbf{出处：}电子阻力与离子阻力的分段形式、临界能量与慢化时间参照
 Stacey 与 Wesson 的教材（附录 W 已用同一组公式处理 $3.5\ \mathrm{MeV}$ 的
 $\alpha$ 粒子）；本书只借公式结构，不复制其快离子分布演化与输运结果。
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/ax_awake_wakefield.jpg}
+\caption{等离子体不只被加速器诊断，它本身就能当加速器：质子束在等离子体里激起尾场，把电子在厘米尺度上加速到 GeV。本节讲束流与等离子体耦合，这是最直接的证据。}
+\label{fig:photo-appax2}
+\figsource{E. Adli 等（AWAKE 合作组，Nature 561, 363），CC BY 4.0（Wikimedia Commons）}
+\end{figure}
+
 \section{束流与等离子体耦合：冷束双流模与稳定化门槛}
 \label{sec:app-ax-coupling}
 
@@ -653,8 +661,6 @@ $P_\mathrm{ion}=0.55\times4.0000\ \mathrm{MW}=2.2000\ \mathrm{MW}$。
 
 \textbf{不复制声明：}本附录只借用上述来源的定义、判据形式与量级口径；
 不复制其束光学设计程序、电极与束线几何、相空间匹配方法、实验数据与习题。
-所有数值都由本书自己的声明输入经 tmp/appAX\_calc.py 复算得到，
-读者可以用同一脚本复现每一个数。
 
 \textbf{本附录不给什么：}不给完整的束光学设计（磁透镜布置、色差与球差校正）、
 不给离子源的等离子体放电物理（那属于附录 AH 与 AO 的范畴）、

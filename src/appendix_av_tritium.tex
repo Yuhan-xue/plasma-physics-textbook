@@ -1,7 +1,7 @@
 % =====================================================================
 % 附录 AV：氚循环与氚工厂 —— 从增殖到衡算（注明出处）
 % ---------------------------------------------------------------------
-% 数值唯一来源：tmp/appAV_calc.py（只 print，不写文件；输出 tmp/appAV_calc.txt）
+% 数值唯一来源：tools/calc/appAV_calc.py（只 print，不写文件；输出 tools/calc/appAV_calc.txt）
 %   工作点沿用全书 D1：P_fus = 556.5 MW、P_alpha = 111.3 MW、V = 832.2 m^3、
 %   R = 6.2 m、a = 2.0 m、n_e0 = 1e20 m^-3、T_e = 9.194 keV；A_wall = 489.532 m^2（与附录 X 一致）
 %   核数据：D-T 总释能 17.586 MeV（中子 14.068、alpha 3.518）；6Li(n,alpha)T 释能 4.78 MeV；
@@ -88,7 +88,7 @@ $0.153576\ \mathrm{g}$ 氚——记住这个数，它把「功率」与「燃料
 渗透由分压与壁温定。把它们写成一个「总效率」，就等于放弃了找问题出在哪一格的能力。
 \end{tip}
 
-本节凡标出数字的量都由 \texttt{tmp/appAV\_calc.py} 复算。顺带一个自洽性检查：若燃料
+本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAV\_calc.py} 复算。顺带一个自洽性检查：若燃料
 按 $n_\mathrm{D}=n_\mathrm{T}=5\times10^{19}\ \mathrm{m^{-3}}$、体积 $V=832.2\ \mathrm{m^{3}}$
 填满，则 $R=n_\mathrm{D}n_\mathrm{T}\langle\sigma v\rangle V$ 反推出
 $\langle\sigma v\rangle=9.49336\times10^{-23}\ \mathrm{m^{3}\,s^{-1}}$——这正是
@@ -434,7 +434,7 @@ $161.952\ \mathrm{a}$ 的含义不是「能跑 162 年」，而是「一直没�
 \textbf{出处：}氚自持与倍增时间的分析框架参考 ITER 技术基础文件
 （\emph{ITER Technical Basis}, IAEA, 2002）关于氚库存与增殖要求的讨论，
 以及 Stacey（2011）第 11 章的自持判据。本节所有数字由
-\texttt{tmp/appAV\_calc.py} 按本书工作点复算；不复制原文件的库存限值表与增殖包层方案。
+\texttt{tools/\allowbreak{}calc/\allowbreak{}appAV\_calc.py} 按本书工作点复算；不复制原文件的库存限值表与增殖包层方案。
 \section{衡算、安全与环境：百分之零点五的精度意味着什么}
 \label{sec:app-av-account}
 
@@ -480,7 +480,7 @@ $0.5\%$ 衡算 & $50\ \mathrm{g}$ & 同上 & $0.585034$ 天 \\
 
 \textbf{出处：}氚衡算与氚安全的分级参照 ITER 氚安全与衡算体系文件
 （\emph{ITER Tritium Safety} 系列, 2018）与 IAEA 氚环境排放限值口径；
-比活度与稀释体积由 \texttt{tmp/appAV\_calc.py} 按本书工作点复算。
+比活度与稀释体积由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAV\_calc.py} 按本书工作点复算。
 本书只借用「衡算误差折成天数」这一判据，不复制原文件的限值表、监测系统方案与事故分析。
 
 \section{估算练习}
@@ -534,7 +534,7 @@ $50\ \mathrm{g}$，相当于 $0.585034$ 天的燃烧量。
 
 本附录的定位是「燃料循环的账本」：它把氚的耗、生、存、取、算五件事写成可以复算的
 乘法链，并显式区分哪些量来自核数据、哪些量是本书声明输入。全书所有数字由
-\texttt{tmp/appAV\_calc.py} 按 D1 工作点复算，正文不引用任何未在本附录出现的数值。
+\texttt{tools/\allowbreak{}calc/\allowbreak{}appAV\_calc.py} 按 D1 工作点复算，正文不引用任何未在本附录出现的数值。
 
 \textbf{借鉴来源与边界}（分级：核心口径来自 A 类，材料与工程数据来自 B 类）：
 \begin{itemize}

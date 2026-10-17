@@ -4,7 +4,7 @@
 % 章标题 \appchapter{附录O：...} 由主文件发出，本文件只提供正文。
 % 设计约定：补"应用侧"的空白——第 3 章的 E×B 漂移、第 6 章的波与加热、第 11 章的鞘层在航天电推进里的合流。
 % 版权约定：只借鉴经典教材与文献的物理结论、公式形式与题型，文字与数值由本书自拟并独立复算。
-% 数值来源：tmp/appO_calc.py（本附录每一节的关键数字都能由它复现）。
+% 数值来源：tools/calc/appO_calc.py（本附录每一节的关键数字都能由它复现）。
 
 第 3 章讲了 $\mathbf{E}\times\mathbf{B}$ 漂移，第 6 章讲了波与加热，第 11 章讲了鞘层与玻姆判据——这三块知识在航天领域有一个直接的去处：\textbf{电推进}（electric propulsion）。它的想法很朴素：与其用化学燃烧的热速度排气，不如\textbf{用电场把离子加速到几十千米每秒}。代价也同样朴素：同样的功率下，排气越快，推力越小。本附录把这条"把等离子体当发动机"的链条算一遍。
 
@@ -189,6 +189,14 @@ v_E=\frac{E}{B}=6.0\times10^{5}\ \mathrm{m/s}.
 \textbf{出处：}Choueiri 的电推进等离子体物理综述；Jahn《Physics of Electric Propulsion》的 $\mathbf{E}\times\mathbf{B}$ 推力器章节。
 
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/o_pppl_fusion_rocket.jpg}
+\caption{磁喷嘴不做静电加速：它让等离子体沿磁力线膨胀，把轴向动能直接变成推力。本节讲的比冲与功率账，就是这类「无栅极」推进方案的核心权衡。}
+\label{fig:photo-appo3}
+\figsource{Elle Starkman / PPPL，Public domain（Wikimedia Commons）}
+\end{figure}
+
 \section{磁喷嘴与 VASIMR：让比冲可调}
 
 不用栅极也能加速：让等离子体在\textbf{发散磁场}（磁喷嘴）中膨胀，平行速度增加、垂直速度减小，最后由等离子体与磁场的"脱磁"把推力交出来。这类装置（如 VASIMR）通常用离子回旋共振加热（附录 M 的 ICRH）把功率交给离子，因此\textbf{比冲可以调}。
@@ -261,7 +269,6 @@ CEX 侵蚀 & $1.5\%$（$n_n=10^{17}$）到 $15\%$（$n_n=10^{18}$） & 快离子
 
 \section{六道估算练习}
 
-以下六题全部只用到本附录的公式与量级，建议\textbf{先自己算到量级，再对答案}；答案里的每一步都能在仓库脚本 \texttt{appO\_{}calc.py} 中复现。
 
 \begin{enumerate}
 \item \textbf{（比冲与火箭方程）} 某电推进 $I_{\mathrm{sp}}=2500\ \mathrm{s}$。求排气速度；若任务需要 $\Delta v=6\ \mathrm{km/s}$，质量比 $m_0/m_f$ 是多少？\\

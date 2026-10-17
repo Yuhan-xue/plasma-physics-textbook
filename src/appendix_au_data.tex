@@ -1,7 +1,7 @@
 % =====================================================================
 % 附录 AU：测量、不确定度与数据分析 —— 从原始信号到误差棒（注明出处）
 % ---------------------------------------------------------------------
-% 数值唯一来源：tmp/appAU_calc.py（只 print，不写文件；输出 tmp/appAU_calc.txt）
+% 数值唯一来源：tools/calc/appAU_calc.py（只 print，不写文件；输出 tools/calc/appAU_calc.txt）
 %   工作点沿用全书 D1：n_e0 = 1e20 m^-3、T_e = 9.194 keV、B = 5.3 T、a = 2.0 m、R = 6.2 m
 %   例：汤姆孙散射每点 200 个光子、单点统计误差 5%（相对）、B 类系统误差 2%（均匀分布）
 %   跨附录对照：附录 AQ 的相位分辨 sigma_phi = 0.000361482 rad
@@ -64,7 +64,6 @@ U=k\,u_\mathrm{c}=2\times0.0538516=0.107703,
 只写中心值的表格，在物理上是不可用的。
 \end{tip}
 
-本节凡标出数字的量都由 \texttt{tmp/appAU\_calc.py} 复算。
 
 \textbf{出处：}JCGM 100:2008《测量不确定度表示指南》（GUM）第 4--5 章给出合成与扩展
 不确定度的国际口径；Taylor, \emph{An Introduction to Error Analysis}（2nd ed., 1997）
@@ -140,7 +139,6 @@ $u_\mathrm{c}=2.29129\%$，高估 $0.6840$ 个百分点。对系统项本来就�
 把系统项当成统计项去「多测几次」，是实验设计里最常见的自欺：重复测量不会让刻度变准。
 \end{tip}
 
-本节凡标出数字的量都由 \texttt{tmp/appAU\_calc.py} 复算。
 
 \textbf{出处：}GUM 第 4.2--4.3 节（A/B 类定义）与附录 G（有效自由度）；
 Bevington \& Robinson, \emph{Data Reduction and Error Analysis for the Physical Sciences}
@@ -215,7 +213,6 @@ $r=0.99$ 时 $5.00277\%$，$r=1$ 时恰好回到 $5.00000\%$。
 共模设计（双波长、双探针、参考通道）就是把 $r$ 推向 $1$ 的工程手段。
 \end{tip}
 
-本节凡标出数字的量都由 \texttt{tmp/appAU\_calc.py} 复算。
 
 \textbf{出处：}Taylor 第 3 章（加减与乘除规则）；Bevington \& Robinson 第 3 章
 （含相关项的一般传播公式）。
@@ -287,7 +284,6 @@ $\chi^2/\nu$ 的散布本身就有 $33.3333\%$，所以不要为了把它压到 
 先问误差棒是不是被高估或漏掉了系统项。
 \end{tip}
 
-本节凡标出数字的量都由 \texttt{tmp/appAU\_calc.py} 复算。
 
 \textbf{出处：}Bevington \& Robinson 第 6--7 章（最小二乘与参数协方差）；
 Press, Teukolsky, Vetterling \& Flannery, \emph{Numerical Recipes}（3rd ed., 2007）
@@ -338,7 +334,6 @@ $n<10$ 时用 $k=2$ 会把 $95\%$ 区间报窄四成以上；把 $t$ 值随样�
 比事后争论「误差棒是不是偏小」有用得多。
 \end{tip}
 
-本节凡标出数字的量都由 \texttt{tmp/appAU\_calc.py} 复算。
 
 \textbf{出处：}Student（W. S. Gosset）, \emph{Biometrika} \textbf{6} (1908) 1（$t$ 分布原始文献）；
 GUM 附录 G（覆盖因子与有效自由度）；Barlow, \emph{Statistics}（1989）第 4--5 章。
@@ -393,7 +388,6 @@ $t_i\propto c_i$ 是「灵敏度预算」的直接结论：先把每个通道的
 再谈要不要加班——这比事后解释误差棒为什么这么大省事得多。
 \end{tip}
 
-本节凡标出数字的量都由 \texttt{tmp/appAU\_calc.py} 复算。
 
 \textbf{出处：}Box, Hunter \& Hunter, \emph{Statistics for Experimenters}（2nd ed., 2005）
 第 5--6 章（因子设计与效应方差）；Montgomery, \emph{Design and Analysis of Experiments}
@@ -449,7 +443,6 @@ $3\times14.1421=42.4264$ counts：
 $4.24264\times10^{15}\ \mathrm{m^{-3}}$。凡是报「微量杂质浓度」的表格，
 都应该能反推出这个数。
 
-本节凡标出数字的量都由 \texttt{tmp/appAU\_calc.py} 复算。
 
 \textbf{出处：}Efron \& Tibshirani, \emph{An Introduction to the Bootstrap}（1993）
 第 6--7 章；JCGM 101:2008（用蒙特卡洛法传播分布的补充文件）；
@@ -510,9 +503,6 @@ $f_s\ge2\times1300=2600\ \mathrm{Hz}$。
 \section{来源、分级与版权说明}
 \label{sec:app-au-source}
 
-本附录的量级、判据与公式口径全部来自公开发表的标准与经典教材，本书只做三件事：
-把口径统一到同一个覆盖因子、把公式接到本书的诊断场景上、把每个数字用
-\texttt{tmp/appAU\_calc.py} 复算一遍。
 
 \begin{table}[htbp]
 \centering

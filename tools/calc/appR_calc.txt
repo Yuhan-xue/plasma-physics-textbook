@@ -1,0 +1,184 @@
+COUL_NM = e^2/(4 pi eps0) = 1.439965 eV*nm
+
+== C1 刻蚀工艺腔尘埃 (Ar, T_e=3.00 eV, n_e=1e+17 m^-3, a=0.50 um, rho=2000, n_d=1e+12 m^-3)
+  lambda_D        = 4.071738e-05 m = 40.7174 um
+  a/lambda_D      = 0.012280
+  a/lambda_D (sci)= 1.2280e-02
+  m_d/m_i         = 1.578645e+10
+  omega_pd        = 4.088742e+03 rad/s（= sqrt(n_d Z_d^2 e^2/(eps0 m_d))）
+  z = e|phi|/Te   = 2.359003
+  phi_d           = 7.077009 V
+  Z_d             = 2.457355e+03 e
+  Q_d             = 3.937117e-16 C
+  m_d             = 1.047198e-15 kg
+  4 pi a^2        = 3.141593e-12 m^2
+  v_eth,e         = 1.159155e+06 m/s
+  I_e0            = 1.458618e-08 A
+  t_charge=Q/I_e0 = 2.699210e-08 s = 26.9921 ns
+  Delta (spacing) = 6.203505e-05 m = 62.0350 um
+  P_Havnes        = 2.457355e-02
+  lambda_eff      = 40.2261 um
+  Gamma(Delta)    = 5.411913e+03
+  Gamma(a)        = 6.714566e+05
+  Gamma_a/Gamma_D = 124.070098
+  kappa=Delta/ld  = 1.523552
+  Yukawa factor   = 0.802912
+  Gamma_eff       = 4.345289e+03
+  c_DA            = 1.545453e-02 m/s = 1.5455 cm/s
+  f_DA (1 mm)     = 15.454534 Hz
+  E_need=m g/Q    = 26.083806 V/m
+  F_coul/F_grav   = 35.251250
+
+== C2 实验室尘埃晶体 (Ar, T_e=3.00 eV, n_e=1e+15 m^-3, a=4.80 um, rho=1510, n_d=1e+09 m^-3)
+  lambda_D        = 4.071738e-04 m = 407.1738 um
+  a/lambda_D      = 0.011789
+  a/lambda_D (sci)= 1.1789e-02
+  m_d/m_i         = 1.054496e+13
+  omega_pd        = 4.802646e+01 rad/s（= sqrt(n_d Z_d^2 e^2/(eps0 m_d))）
+  z = e|phi|/Te   = 2.359003
+  phi_d           = 7.077009 V
+  Z_d             = 2.359061e+04 e
+  Q_d             = 3.779632e-15 C
+  m_d             = 6.995025e-13 kg
+  4 pi a^2        = 2.895292e-10 m^2
+  v_eth,e         = 1.159155e+06 m/s
+  I_e0            = 1.344263e-08 A
+  t_charge=Q/I_e0 = 2.811677e-07 s = 281.1677 ns
+  Delta (spacing) = 6.203505e-04 m = 620.3505 um
+  P_Havnes        = 2.359061e-02
+  lambda_eff      = 402.4544 um
+  Gamma(Delta)    = 4.305978e+04
+  Gamma(a)        = 5.565032e+06
+  Gamma_a/Gamma_D = 129.239686
+  kappa=Delta/ld  = 1.523552
+  Yukawa factor   = 0.802912
+  Gamma_eff       = 3.457321e+04
+  c_DA            = 1.815293e-03 m/s = 0.1815 cm/s
+  f_DA (1 mm)     = 1.815293 Hz
+  E_need=m g/Q    = 1814.932068 V/m
+  F_coul/F_grav   = 0.048636
+
+== C3 聚变边界尘埃 (D, T_e=15.00 eV, n_e=2e+19 m^-3, a=1.00 um, rho=2000, n_d=1e+10 m^-3)
+  lambda_D        = 6.437983e-06 m = 6.4380 um
+  a/lambda_D      = 0.155328
+  a/lambda_D (sci)= 1.5533e-01
+  m_d/m_i         = 2.505569e+12
+  omega_pd        = 1.700819e+03 rad/s（= sqrt(n_d Z_d^2 e^2/(eps0 m_d))）
+  z = e|phi|/Te   = 2.775505
+  phi_d           = 41.632576 V
+  Z_d             = 2.891222e+04 e
+  Q_d             = 4.632249e-15 C
+  m_d             = 8.377580e-15 kg
+  4 pi a^2        = 1.256637e-11 m^2
+  v_eth,e         = 2.591949e+06 m/s
+  I_e0            = 2.609256e-05 A
+  t_charge=Q/I_e0 = 1.775314e-10 s = 0.1775 ns
+  Delta (spacing) = 2.879412e-04 m = 287.9412 um
+  P_Havnes        = 1.445611e-05
+  lambda_eff      = 6.4379 um
+  Gamma(Delta)    = 4.180334e+03
+  Gamma(a)        = 1.203690e+06
+  Gamma_a/Gamma_D = 287.941191
+  kappa=Delta/ld  = 44.725376
+  Yukawa factor   = 0.000000
+  Gamma_eff       = 1.647098e-13
+  c_DA            = 1.094985e-02 m/s = 1.0950 cm/s
+  f_DA (1 mm)     = 10.949846 Hz
+  E_need=m g/Q    = 17.735662 V/m
+  F_coul/F_grav   = 28.312505
+
+== C4 星际尘埃 (H, T_e=1.00 eV, n_e=1e+06 m^-3, a=0.10 um, rho=2000, n_d=1e-06 m^-3)
+  lambda_D        = 7.433942e+00 m = 7433941.9947 um
+  a/lambda_D      = 0.000000
+  a/lambda_D (sci)= 1.3452e-08
+  m_d/m_i         = 5.005925e+09
+  omega_pd        = 1.544276e-06 rad/s（= sqrt(n_d Z_d^2 e^2/(eps0 m_d))）
+  z = e|phi|/Te   = 1.195363
+  phi_d           = 1.195363 V
+  Z_d             = 8.301337e+01 e
+  Q_d             = 1.330021e-17 C
+  m_d             = 8.377580e-18 kg
+  4 pi a^2        = 1.256637e-13 m^2
+  v_eth,e         = 6.692383e+05 m/s
+  I_e0            = 3.368535e-21 A
+  t_charge=Q/I_e0 = 3.948366e+03 s = 3948366280479.4058 ns
+  Delta (spacing) = 6.203505e+01 m = 62035049.0899 um
+  P_Havnes        = 8.301337e-11
+  lambda_eff      = 7433941.9944 um
+  Gamma(Delta)    = 1.599598e-05
+  Gamma(a)        = 9.923113e+03
+  Gamma_a/Gamma_D = 620350490.899400
+  kappa=Delta/ld  = 8.344839
+  Yukawa factor   = 0.010494
+  Gamma_eff       = 1.678618e-07
+  c_DA            = 1.065689e-06 m/s = 0.0001 cm/s
+  f_DA (1 mm)     = 0.001066 Hz
+  E_need=m g/Q    = 6.177046 V/m
+  F_coul/F_grav   = 0.000000
+
+== Z_d 随半径与 T_e 的标度（Ar, T_i = 300 K）==
+  a=0.1 um, T_e=3.0 eV -> Z_d=4.914710e+02, Q_d=7.874234e-17 C
+  a=0.5 um, T_e=3.0 eV -> Z_d=2.457355e+03, Q_d=3.937117e-16 C
+  a=1.0 um, T_e=3.0 eV -> Z_d=4.914710e+03, Q_d=7.874234e-16 C
+  a=4.8 um, T_e=3.0 eV -> Z_d=2.359061e+04, Q_d=3.779632e-15 C
+  Z_d / (a/um) at 3 eV = 4.914710e+03
+  Z_d / (a/um)/(Te/eV) = 1.638237e+03
+  z_Ar = 2.359003（与密度无关：n_i=n_e 时密度在 OML 平衡里约掉）
+
+== 充电时间 vs 射频周期 ==
+  13.56 MHz（常用射频）: T=7.374631e-08 s = 73.7463 ns, t_charge/T=0.366013
+  10 kHz（附录 P 的 DBD 驱动）: T=1.000000e-04 s = 100000.0000 ns, t_charge/T=0.000270
+
+== Havnes 参数 P=1 的临界尘埃密度 n_d = n_e/Z_d ==
+  刻蚀工艺腔: n_d(P=1) = 4.069416e+13 m^-3
+  实验室晶体: n_d(P=1) = 4.238975e+10 m^-3
+  聚变边界: n_d(P=1) = 6.921709e+14 m^-3
+
+== 鞘层里的悬浮（附录 P 的 100 V / 0.633 mm 鞘层）==
+  s=0.000633 m, V_s=100.0 V -> E_mean=1.579779e+05 V/m, E_wall(Child)=(5/3)E_mean=2.632965e+05 V/m
+  0.5 um 工艺尘: E_need=26.083806 V/m, E_need/E_mean=0.000165, E_need/E_wall=0.000099, x/s=9.860272e-07, x=6.241552e-10 m
+  4.8 um 晶体尘: E_need=1814.932068 V/m, E_need/E_mean=0.011489, E_need/E_wall=0.006893, x/s=5.722990e-04, x=3.622653e-07 m
+
+== 聚变边界尘埃（D 等离子体，T_e=T_i=15 eV）==
+  z = 2.775505, phi_d = 41.632576 V
+  Z_d(a=1 um) = 2.891222e+04, Q_d = 4.632249e-15 C
+  m_d(1 um, 2000 kg/m3) = 8.377580e-15 kg
+  尘埃总量 1 g: 比表面积 1500.0 m^2/kg, 总表面积 1.5000 m^2, 若面密度 1e21 m^-2 则氚 1.500000e+21 个 = 0.007512 g
+  尘埃总量 100 g: 比表面积 1500.0 m^2/kg, 总表面积 150.0000 m^2, 若面密度 1e21 m^-2 则氚 1.500000e+23 个 = 0.751240 g
+
+== 空间尘埃：光电充电与辐射压 ==
+  a=0.1 um, phi=+1.0 V -> Z_d = 6.944615e+01
+  a=0.1 um, phi=+2.0 V -> Z_d = 1.388923e+02
+  a=0.1 um, phi=+5.0 V -> Z_d = 3.472308e+02
+  beta = A/(rho a), A = 3L/(16 pi c G M) = 5.742194e-04 kg/m^2
+  a=0.1 um, rho=2000 -> beta(1 AU) = 2.871097
+  a=1.0 um, rho=2000 -> beta(1 AU) = 0.287110
+  a=1.0 um, rho=3000 -> beta(1 AU) = 0.191406
+  rho=2000 kg/m^3 时的临界半径 a_crit = 2.871097e-07 m = 0.2871 um
+
+== 尘埃声波与离子声速对照（C1）==
+  c_s(Ar, T_e=3 eV)  = 2691.805988 m/s
+  c_DA               = 1.545453e-02 m/s = 1.5455 cm/s
+  c_s/c_DA           = 1.741758e+05
+  omega_pi(Ar)       = 6.610951e+07 rad/s
+  omega_pi/omega_pd  = 1.616867e+04
+  lambda=1 mm -> f = 15.454534 Hz
+  lambda=10 mm -> f = 1.545453 Hz
+
+== 四个工况的量级跨度与量级判据（写正文时直接引用）==
+  n_e 范围 1e+06 -> 2e+19 m^-3，跨度 13.30 个数量级
+  lambda_D 范围 6.4380 um -> 7.43 m，跨度 6.06 个数量级
+  m_d/m_Ar（rho=2000, a=0.01 um）= 1.2629e+05
+  m_d/m_Ar（rho=2000, a=10.00 um）= 1.2629e+14
+  P_Havnes: C1 2.4574e-02（Z_d=2457.4）, C4 8.3013e-11（Z_d=83.0），相差 8.47 个数量级
+  0.751240 g 氚 = 0.249081 mol（M_T = 3.0160492 g/mol）
+
+== 六道练习答案（与正文一致）==
+  练习1: phi_d=7.077009 V, Z_d=2.457355e+03, Q_d=3.937117e-16 C
+  练习2: t_charge=26.9921 ns, 13.56 MHz 周期=73.7463 ns, 比值=0.366013
+  练习3: Delta=62.0350 um, Gamma(Delta)=5.411913e+03, Gamma(a)=6.714566e+05, 比值=124.0701
+  练习4: n_d(P=1)=4.069416e+13 m^-3, lambda_eff(1e12)=40.2261 um
+  练习5: c_DA=1.5455 cm/s, f(1 mm)=15.454534 Hz
+  练习6: E_need=26.083806 V/m; beta(1 um, 2000)=0.287110; a_crit=0.2871 um
+
+以上数字是正文与门禁的唯一来源。

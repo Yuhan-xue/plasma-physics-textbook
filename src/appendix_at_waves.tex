@@ -1,6 +1,6 @@
 % =====================================================================
 %  附录 AT：波的传播——截止、共振与模式转换（注明出处）
-%  数值唯一来源：tmp/appAT_calc.py（只 print，输出 tmp/appAT_calc.txt）
+%  数值唯一来源：tools/calc/appAT_calc.py（只 print，输出 tools/calc/appAT_calc.txt）
 %  单位口径：SI；频率写成 GHz/MHz，长度写成 m/mm/um，密度写成 m^-3，磁场写成 T。
 %  与其他附录的分工：附录 AS 管几何光学（本附录正好管它失效的地方：截止、共振、消逝层）；
 %  附录 M 管加热与电流驱动（本附录只算波在哪里停、在哪里被吸收）；
@@ -99,7 +99,6 @@ $n_\mathrm{O}^2$ & $0.588692$ & $n_\mathrm{X}^2$ & $1.45317$ \\
 角色。所谓「寻常模」与「反常模」，区分的不是波的形状，而是波在磁场里转的方向。
 \end{tip}
 
-本节凡标出数字的量都由 \texttt{tmp/appAT\_calc.py} 复算。
 \textbf{出处：}冷等离子体介电张量与 Stix 参数的标准写法见 Stix, \emph{Waves in Plasmas}
 （1992）第 1--2 章、Swanson, \emph{Plasma Waves}（2003）第 2 章；本附录只做数值复算，
 不复制原书表格与图。
@@ -195,7 +194,6 @@ $140$ GHz 的寻常模因为 $n_\mathrm{e0}<n_\mathrm{c}$ 而一路传播到 $0.
 两个词经常被混用，但它们对波做的事完全不同：一个是反射，一个是吸收。
 \end{tip}
 
-本节凡标出数字的量都由 \texttt{tmp/appAT\_calc.py} 复算。
 \textbf{出处：}截止与共振的分类、上混杂与下混杂频率的表达式见 Stix（1992）第 2 章与
 Swanson（2003）第 2--3 章；CMA 分类见 Stix 第 2 章。本附录不复制原书图表。
 
@@ -278,7 +276,7 @@ $2.0$ & $0$ & $0.801248$ & $1$ & $1$ & $1$ \\
 看见消逝层时，先算这个指数，再谈「隧穿」。
 \end{tip}
 
-本节凡标出数字的量都由 \texttt{tmp/appAT\_calc.py} 复算。
+本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAT\_calc.py} 复算。
 \textbf{出处：}消逝层与隧穿因子的 WKB 处理、以及「基频反常模需从高场侧发射」的结论见
 Stix（1992）第 2--3 章、Swanson（2003）第 3 章；O--X--B 方案的原始讨论见 Preinhaelter 与
 Kopecky（1973）与 Laqua 等（1997）。本附录只做数值复算，不复制原书图表。
@@ -342,7 +340,6 @@ IBW & $0.5$ & $171.694$ & $1.13869$ GHz & --- \\
 垂直方向的回旋运动。换句话：这是一类「模型之外」的波，物理在模型里，波才会出现。
 \end{tip}
 
-本节凡标出数字的量都由 \texttt{tmp/appAT\_calc.py} 复算。
 \textbf{出处：}电子与离子伯恩斯坦波的色散关系与热修正的推导见 Bernstein（1958）、
 Stix（1992）第 7--8 章、Swanson（2003）第 4 章；本附录只做数值复算，不复制原书图表。
 
@@ -411,7 +408,6 @@ D 二次谐波 & $2f_\mathrm{cD}=80.8$ MHz & $r=0.00134951$ m & 与 H 基频相�
 位形设计一起做。
 \end{tip}
 
-本节凡标出数字的量都由 \texttt{tmp/appAT\_calc.py} 复算。
 \textbf{出处：}电子回旋与离子回旋共振条件、少数离子加热的谐波重合见 Wesson,
 \emph{Tokamaks}（2011）第 11 章与 ITER Physics Basis（1999）第 6 章；本附录只做数值复算，
 不复制原书表格与图。
@@ -460,7 +456,7 @@ CMA 图回答「这个频率上介质属于哪一类、有哪些模能存在」�
 第 5 节那个共振层」。后者要靠沿路径扫 $n^2$ 的符号，也就是第三节的做法。
 \end{tip}
 
-本节凡标出数字的量都由 \texttt{tmp/appAT\_calc.py} 复算。
+本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAT\_calc.py} 复算。
 \textbf{出处：}CMA 图的构造与各区域边界（$P=0$、$R=0$、$L=0$、$S=0$）见 Stix（1992）第 2 章
 与 Swanson（2003）第 2 章；本附录不复制原图，只复算图中坐标。
 \section{估算练习}
@@ -522,7 +518,7 @@ $170$ GHz 时反常模同样要先过 $L$ 截止层，$n_\mathrm{X}^2>0$ 只说�
 
 本附录的推导与数值都定位在「冷等离子体线性波」这一层，不涉及非线性、不涉及输运、也不涉及
 加热效率的工程核算（那三块分别属于附录 AL、AF 与 M）。所有频率、折射率、消逝带与隧穿指数
-都由 \texttt{tmp/appAT\_calc.py} 按 D1 工作点复算，脚本随仓库发布。
+都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAT\_calc.py} 按 D1 工作点复算，脚本随仓库发布。
 
 \begin{table}[htbp]
 \centering
@@ -554,6 +550,5 @@ ITER Physics Basis（1999）第 6 章 & 加热落点 & ECRH/ICRH 参数口径的
 其余问题属于附录 M（加热与电流驱动）、AL（非线性）与 AS（射线与波束）。
 \end{tip}
 
-本节凡标出数字的量都由 \texttt{tmp/appAT\_calc.py} 复算。
 \textbf{出处：}来源分级与版权口径沿用本套教材的统一约定（只复算、不复制）；
 参考文献的完整信息见 \texttt{README.md} 的「借鉴来源」一节。

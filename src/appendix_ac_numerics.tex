@@ -1,12 +1,12 @@
 % 附录 AC：等离子体数值方法——从 PIC 到 MHD（v1.26.7 新增）
-% 数值唯一来源：tmp/appAC_calc.py -> tmp/appAC_calc.txt（正文与门禁 P35 的唯一来源）
+% 数值唯一来源：tools/calc/appAC_calc.py -> tools/calc/appAC_calc.txt（正文与门禁 P35 的唯一来源）
 % 单位写法：m / s / rad s^-1 / Hz / V m^-1 / K / Pa / kg m^-3，全部走 \mathrm{}，不放中文字符进数学字体。
 % 版权口径：只借鉴经典教材与文献的物理结论、公式形式与题型；文字、数值与表格自拟并独立复算。
 % 离线环境无法核验 DOI，故只给书名、作者、年份、卷期页。
 % 分工：M--AB 讲的是物理（加热、边界、约束、破裂、快粒子、辐射、强场、堆工程、替代位形、空间天体）；
 %       附录 G 是软件上手教程，附录 I 讲学习策略，附录 Q 讲诊断误差；
 %       本附录补最后一环：同一批方程，怎么变成可信的计算。
-% 引用的全部数字由 tmp/appAC_calc.py 现算；脚本内声明的输入见 AC.1 开头的表。
+% 引用的全部数字由 tools/calc/appAC_calc.py 现算；脚本内声明的输入见 AC.1 开头的表。
 
 \section{分辨率：先算三个长度与三个时间}
 \label{sec:app-ac-resolve}
@@ -110,7 +110,7 @@ $\Delta x$ 比德拜长度粗、$\Delta t$ 比回旋周期粗、每格粒子数�
 \emph{Plasma Physics via Computer Simulation}（1985/1991，第 1--2 章）与
 Hockney \& Eastwood \emph{Computer Simulation Using Particles}（1988，第 2、5 章）；
 Spitzer 碰撞时间只借公式形式，库仑对数作为声明输入写在脚本里。
-本节凡标出数字的量都由 \texttt{tmp/appAC\_calc.py} 复算。
+本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAC\_calc.py} 复算。
 
 \section{推进粒子：蛙跳、Boris 与相位误差}
 \label{sec:app-ac-pusher}
@@ -200,7 +200,7 @@ Boris 步里速度模逐位不变，靠的是「旋转不改变长度」这条�
 \textbf{出处：}蛙跳与 Boris 推进器的构造参照 Boris（1970，第 4 届数值模拟等离子体会议论文集）
 与 Birdsall \& Langdon（1985/1991，第 4 章）；相对论版本的形式参照 Vay
 （2008，\emph{Physics of Plasmas} \textbf{15}, 056701）。
-本节凡标出数字的量都由 \texttt{tmp/appAC\_calc.py} 复算。
+本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAC\_calc.py} 复算。
 
 \section{稳定性与成本：CFL、两种不稳定与粒子步总账}
 \label{sec:app-ac-cost}
@@ -288,7 +288,7 @@ $8.322\times10^{22}$，而模拟里只有 $2\times10^{7}$ 个超级粒子，
 \textbf{出处：}CFL 条件参照 Courant, Friedrichs \& Lewy（1928，\emph{Mathematische Annalen}
 \textbf{100}, 32）；PIC 的成本估算与超级粒子概念参照 Birdsall \& Langdon（1985/1991，第 1 章）
 与 Tajima \emph{Computational Plasma Physics}（1989/2004，第 2 章）。
-本节凡标出数字的量都由 \texttt{tmp/appAC\_calc.py} 复算。
+本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAC\_calc.py} 复算。
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.78\textwidth]{../figures/summit_supercomputer.jpg}
@@ -355,7 +355,7 @@ $10^{4}$ & $1\%$ & $0.1\%$ & 单步就要 $1\%$ 精度时 \\
 \textbf{出处：}粒子噪声的 $1/\sqrt{N_p}$ 标度与时间平均降噪，
 参照 Birdsall \& Langdon \emph{Plasma Physics via Computer Simulation}（1985/1991，第 3 章）
 与 Tajima \emph{Computational Plasma Physics}（1989/2004，第 2 章）。
-本节凡标出数字的量都由 \texttt{tmp/appAC\_calc.py} 复算。
+本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAC\_calc.py} 复算。
 
 \section{场怎么求：泊松、FFT 与离散误差}
 \label{sec:app-ac-field}
@@ -427,7 +427,7 @@ $10^{4}$ & $1\%$ & $0.1\%$ & 单步就要 $1\%$ 精度时 \\
 \emph{Numerical Recipes}（第 3 版，2007，第 12--13、19 章）；
 PIC 中的场求解与截断误差，参照 Birdsall \& Langdon（1985/1991，第 5 章）与
 Hockney \& Eastwood \emph{Computer Simulation Using Particles}（1988，第 6 章）。
-本节凡标出数字的量都由 \texttt{tmp/appAC\_calc.py} 复算。
+本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAC\_calc.py} 复算。
 
 \section{流体与 MHD：守恒格式、限制器与旋度约束}
 \label{sec:app-ac-mhd}
@@ -500,13 +500,11 @@ Hockney \& Eastwood \emph{Computer Simulation Using Particles}（1988，第 6 �
 约束输运参照 Gardiner \& Stone（2005，\emph{Journal of Computational Physics} \textbf{205}, 509；
 2008，\textbf{227}, 4123）与 Stone 等（2008，\emph{Astrophysical Journal Supplement}
 \textbf{178}, 137）；隐式格式可放大步长的量级作为声明写在脚本里。
-本节凡标出数字的量都由 \texttt{tmp/appAC\_calc.py} 复算。
+本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAC\_calc.py} 复算。
 \section{估算练习}
 \label{sec:app-ac-problems}
 
 下面六题只用本附录的公式与工作点，把其中一个量换掉重算一遍。
-每题都能用笔算完成，答案在题后给出；全部数值由 \texttt{tmp/appAC\_ex.py} 现算，
-该脚本开跑时会先核对 \texttt{tmp/appAC\_calc.py} 的基准值，防止口径漂移。
 
 \textbf{练习 1}（稀疏等离子体）：把密度降到 $1.0\times10^{19}\ \mathrm{m^{-3}}$，
 温度降到 $1\ \mathrm{keV}$，磁场仍取 $5.3\ \mathrm{T}$。
@@ -568,8 +566,6 @@ $\Delta t\le0.2/\omega_{ce}=5.68563\times10^{-13}\ \mathrm{s}$，
 
 本附录的数字分三级，和前面各附录同一口径。
 
-\textbf{现算级}：正文与表格里所有带有效数字的量，都由 \texttt{tmp/appAC\_calc.py}
-（输出 \texttt{tmp/appAC\_calc.txt}）与 \texttt{tmp/appAC\_ex.py}（练习解答）现场算出。
 工作点与附录 M 到 AB 完全一致：$n_e=1.0\times10^{20}\ \mathrm{m^{-3}}$、
 $T_e=9.194\ \mathrm{keV}$、$B=5.3\ \mathrm{T}$、$Z_{\mathrm{eff}}=2$、$m_i=2.5m_p$；
 模拟盒取 $100\lambda_{De}$、$\Delta x=\lambda_{De}$、每格 $20$ 个粒子、
@@ -623,10 +619,9 @@ Gardiner \& Stone（2005/2008）、Stone 等（2008） & 约束输运 & 只借 $
 \begin{tip}{学会说「这不算」}{tip-app-ac-honest}
 数值工作的诚实体现在三句话上：这个数是我算的，那个数是我假设的，
 还有一个数是别人测的。混在一起讲，结论就没法被检验——
-本附录的每一个数字，都能在 \texttt{tmp/appAC\_calc.py} 的输出里找到出处。
+本附录的每一个数字，都能在 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAC\_calc.py} 的输出里找到出处。
 \end{tip}
 
 \textbf{出处：}本节的来源分级与版权口径，沿用本教材附录 E（分级自学书单）与
 附录 I（学习策略）的既定做法；方法层面的引用见上表，
 对应的文献信息与 AC.1--AC.6 各节的「出处：」段一致。
-本附录全部数值由 \texttt{tmp/appAC\_calc.py} 复算。

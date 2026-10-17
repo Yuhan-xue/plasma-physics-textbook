@@ -1,23 +1,25 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-可证伪夹具：附录 G.2「印刷输出 == 代码实跑输出」
+可证伪夹具：附录 G.2「仓库脚本实跑输出 == 仓库里的期望输出」
 =========================================================================
 
 为什么需要它：`check/physics_regression.py` 的 O02 只做静态断言（源码里是否
-出现 `success`/`status` 等字样），无法证明书里印刷的那段实测输出**真的**是这段
-代码跑出来的。本夹具把 G.2 的 Verbatim 代码块抽出来实跑，与紧随其后的印刷输出
-块逐行比对——这是「输出不是手写的」唯一硬证据。
+出现 `success`/`status` 等字样），无法证明仓库里那份期望输出**真的**是这段
+代码跑出来的。本夹具把 G.2 正文骨架（Verbatim）对应的脚本实跑，与仓库内
+`code/appendix_g/debye_bvp.expected.txt` 逐行比对——这是「输出不是手写的」
+唯一硬证据。
 
 三段判定：
   1. extract   : 在 `\\section{德拜屏蔽电势的数值求解}` 与 G.3 节之间必须恰好
-                 有 2 个 Verbatim 块（第一个=代码，第二个=印刷输出）。
-  2. reproduce : 用 `MPLBACKEND=Agg` 实跑代码，stdout（去尾空格、丢空行）必须
-                 与印刷输出**逐行完全相同**。
-  3. comparator: 把印刷输出篡改一位数字 / 删掉一行后，比对器必须报出差异
+                 有 1 个 Verbatim 块（正文骨架，≤20 行）并给出脚本路径指针
+                 （v1.27.0 起正文不再印完整清单与输出，二者都在仓库里）。
+  2. reproduce : 用 `MPLBACKEND=Agg` 实跑 `code/appendix_g/debye_bvp.py`，
+                 stdout（去尾空格、丢空行）必须与仓库期望输出**逐行完全相同**。
+  3. comparator: 把期望输出篡改一位数字 / 删掉一行后，比对器必须报出差异
                  ——证明第 2 步不是「永远通过」的空检查。
 
-严格逐行相等，不做数值容差：印刷输出块旁就写着实测环境（NumPy 2.5.3 /
+严格逐行相等，不做数值容差：期望输出文件里写着实测环境（NumPy 2.5.3 /
 SciPy 1.18.1）。若本机版本不同导致末位数字漂移，那正是需要人看一眼的信号，
 不应被容差悄悄吞掉。
 
@@ -25,7 +27,7 @@ SciPy 1.18.1）。若本机版本不同导致末位数字漂移，那正是需�
     python check/fixtures/gate_g2_listing.py           # 需要 numpy/scipy/matplotlib
     python check/fixtures/gate_g2_listing.py --keep    # 保留生成的 .py 与 PNG
 
-工作目录固定在仓库内 `tmp/g2-listing-fixture/`（代码里的 `plt.savefig` 会往
+工作目录固定在仓库内 `tmp/g2-listing-fixture/`（脚本里的 `plt.savefig` 会往
 当前目录写 PNG；系统临时目录在受限环境不可写）。控制台只打印 ASCII 结论行，
 避免 Windows CP936 下 UnicodeEncodeError。
 退出码：0 = 全部符合预期；1 = 有不符预期的项。
@@ -48,14 +50,15 @@ SEC_G3 = r'\section{朗缪尔波色散曲线绘制}'
 BEGIN = r'\begin{Verbatim}'
 END = r'\end{Verbatim}'
 SCRIPT_REL = os.path.join('code', 'appendix_g', 'debye_bvp.py')
+EXPECTED_REL = os.path.join('code', 'appendix_g', 'debye_bvp.expected.txt')
 POINTER = r'code/appendix\_g/debye\_bvp.py'
 
 
-def extract_blocks():
-    """返回 printed_lines；结构不符时抛 ValueError。
+def extract_skeleton():
+    """校验正文骨架结构，返回骨架有效行数。
 
-    结构（v1.26.52 起）：G.2 节里恰好 2 个 Verbatim 块——① 正文骨架（≤20 行，
-    代码本体已移入仓库）② 印刷输出；正文必须给出脚本路径指针。
+    结构（v1.27.0 起）：G.2 节里恰好 1 个 Verbatim 块——正文骨架（≤20 行，
+    代码本体与实测输出都放在仓库里）；正文必须给出脚本路径指针。
     """
     text = open(MAIN_TEX, encoding='utf-8').read()
     i0 = text.find(SEC_G2)
@@ -63,19 +66,30 @@ def extract_blocks():
     if i0 < 0 or i1 < 0 or i1 <= i0:
         raise ValueError('G.2/G.3 section markers not found in main tex')
     region = text[i0:i1]
+    # v1.27.0 起路径里插了 \allowbreak{}（排版断行用），比对前先剥掉。
+    region = region.replace(r'\allowbreak{}', '')
     if POINTER not in region:
         raise ValueError('G.2 does not point at %s' % SCRIPT_REL)
     blocks = re.findall(
         re.escape(BEGIN) + r'[^\n]*\n(.*?)' + re.escape(END),
         region, re.S)
-    if len(blocks) != 2:
+    if len(blocks) != 1:
         raise ValueError(
-            'expected exactly 2 Verbatim blocks (skeleton + printed output) in G.2, got %d'
+            'expected exactly 1 Verbatim block (skeleton) in G.2, got %d'
             % len(blocks))
     skeleton = [ln for ln in blocks[0].splitlines() if ln.strip()]
     if len(skeleton) > 20:
         raise ValueError('G.2 skeleton is %d lines (limit 20)' % len(skeleton))
-    return blocks[1].splitlines()
+    return len(skeleton)
+
+
+def load_expected():
+    """读仓库内期望输出（UTF-8，容忍 BOM），抛 ValueError 表示缺失。"""
+    path = os.path.join(ROOT, EXPECTED_REL)
+    if not os.path.exists(path):
+        raise ValueError('missing expected output: %s' % EXPECTED_REL)
+    with open(path, encoding='utf-8-sig') as fh:
+        return fh.read().splitlines()
 
 
 def norm(lines):
@@ -138,13 +152,14 @@ def main():
     bad = 0
 
     try:
-        printed_lines = extract_blocks()
+        skel_lines = extract_skeleton()
+        raw_expected = load_expected()
     except ValueError as exc:
         print('[X] extract: %s' % exc)
         return 1
-    printed = norm(printed_lines)
-    print('[OK] extract: printed_output=%d lines (script: %s)'
-          % (len(printed), SCRIPT_REL))
+    printed = norm(raw_expected)
+    print('[OK] extract: skeleton=%d lines, expected=%d lines (script: %s)'
+          % (skel_lines, len(printed), SCRIPT_REL))
 
     rc, actual = run_listing(args.keep)
     actual = norm(actual)
@@ -154,7 +169,7 @@ def main():
     if not ok:
         bad += 1
         for lineno, e, a in diff[:5]:
-            print('      line %d: printed=%r actual=%r' % (lineno, e, a))
+            print('      line %d: expected=%r actual=%r' % (lineno, e, a))
 
     tampered = list(printed)
     if tampered:

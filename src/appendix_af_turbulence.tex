@@ -1,11 +1,11 @@
 % ============================================================================
 % 附录 AF：等离子体湍流与反常输运（注明出处）
-% 数值唯一来源：tmp/appAF_calc.py -> tmp/appAF_calc.txt（本附录所有标出的数字都由它复算）
+% 数值唯一来源：tools/calc/appAF_calc.py -> tools/calc/appAF_calc.txt（本附录所有标出的数字都由它复算）
 % 单位写法：量纲用 \mathrm{...}，避免中文字符进数学字体；百分比写成 $0.77663$ 这样的纯数字
 % 速度与长度约定：rho_i = sqrt(2 T_i/m_i)/omega_ci（附录 AD/AE 口径）、
 %                 rho_s = c_s/omega_ci = rho_i/sqrt(2)（等温电子口径）、
 %                 谱用无量纲波数 k_theta rho_s 标注
-% 版权口径：只借鉴结论、公式形式与题型；文字、数值、表格自拟并由 tmp/appAF_calc.py 独立复算；
+% 版权口径：只借鉴结论、公式形式与题型；文字、数值、表格自拟并由 tools/calc/appAF_calc.py 独立复算；
 %           离线环境无法核验 DOI，故只给书名/作者/年份/卷期页
 % 分工：附录 S 讲约束定标、附录 AE 讲动理学框架、附录 AD 讲台基、附录 AC 讲数值方法；
 %       本附录讲「为什么约束就是现在这个数」——湍流机制与反常输运
@@ -79,7 +79,7 @@ $\chi_B/\chi_{\mathrm{eff}}=200.577$ 听起来像「玻姆定标很差」，但�
 
 \textbf{出处：}本节的输运系数分类与回旋玻姆定标参照 Horton \emph{Rev. Mod. Phys.} \textbf{71} (1999) 735 与
 Connor \& Wilson \emph{Plasma Phys. Control. Fusion} \textbf{36} (1994) 719；功率账口径与附录 S、附录 U 一致。
-本节凡标出数字的量都由 \texttt{tmp/appAF\_calc.py} 复算。
+本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAF\_calc.py} 复算。
 
 \section{漂移波：梯度和磁场谁说了算}
 \label{sec:app-af-driftwave}
@@ -135,7 +135,7 @@ $k_\theta\rho_s$）：把 $k_\theta=k_\theta\rho_s/\rho_s$ 代进去，$\rho_s$ 
 \textbf{出处：}漂移波机制与 $\omega_*$ 的推导参照 Wesson \emph{Tokamaks}（第 4 版，2011，第 12 章）、
 Helander \& Sigmar \emph{Collisional Transport in Magnetized Plasmas}（2002，第 4 章）与
 Horton \emph{Rev. Mod. Phys.} \textbf{71} (1999) 735；$\rho_s$ 与 $\rho_i$ 的口径与附录 AE 一致。
-本节凡标出数字的量都由 \texttt{tmp/appAF\_calc.py} 复算。
+本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAF\_calc.py} 复算。
 
 \section{不稳定性：ITG 与 TEM}
 \label{sec:app-af-instability}
@@ -210,7 +210,6 @@ $L_T$ 与临界值之比 & $0.5$ m & $1.24$ m & 陡 $2.48$ 倍 \\
 \textbf{出处：}ITG 与 TEM 的阈值判据参照 Wesson \emph{Tokamaks}（第 4 版，2011，第 12 章）、
 Horton \emph{Rev. Mod. Phys.} \textbf{71} (1999) 735 与 Garbet 等
 \emph{Plasma Phys. Control. Fusion} \textbf{46} (2004) B557；捕获比例与附录 AE 同口径。
-本节凡标出数字的量都由 \texttt{tmp/appAF\_calc.py} 复算。
 
 \begin{figure}[htbp]
 \centering
@@ -281,7 +280,7 @@ $\chi_{\mathrm{mix}}/\chi_{\mathrm{eff}}=31.2658$ 这个数不要背成「混合
 \textbf{出处：}混合长与饱和的讨论参照 Horton \emph{Rev. Mod. Phys.} \textbf{71} (1999) 735 与
 Connor \& Wilson \emph{Plasma Phys. Control. Fusion} \textbf{36} (1994) 719；
 「上界与真值」的口径与附录 AC 的截断误差、附录 AD 的气球模上限同一思路。
-本节凡标出数字的量都由 \texttt{tmp/appAF\_calc.py} 复算。
+本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAF\_calc.py} 复算。
 
 \section{带状流与剪切抑制}
 \label{sec:app-af-zonal}
@@ -338,7 +337,7 @@ $a/10=0.2$ m & $50226.9$ s$^{-1}$ & $0.282083$ & 否 \\
 \textbf{出处：}带状流与 $E\times B$ 剪切抑制判据参照 Biglari、Diamond \& Terry
 \emph{Phys. Fluids B} \textbf{2} (1990) 1、Hahm \& Burrell \emph{Phys. Plasmas} \textbf{2} (1995) 1648
 与 Burrell \emph{Phys. Plasmas} \textbf{4} (1997) 1499；径向电场口径与附录 AD 一致。
-本节凡标出数字的量都由 \texttt{tmp/appAF\_calc.py} 复算。
+本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAF\_calc.py} 复算。
 
 \section{谱与级联：输运由哪一段波数贡献}
 \label{sec:app-af-spectrum}
@@ -390,7 +389,7 @@ $0.1$--$0.5$ 与 $0.5$--$1.0$ 两段的份额；谱越平，输运越向高波�
 \textbf{出处：}二维漂移波熵级串与逆能量级串的谱指数参照 Kraichnan \emph{Phys. Fluids}
 \textbf{10} (1967) 1417 与 Hasegawa \& Mima \emph{Phys. Fluids} \textbf{21} (1978) 87；
 三维 Kolmogorov 谱参照 Kolmogorov \emph{Dokl. Akad. Nauk SSSR} \textbf{30} (1941) 301。
-本节凡标出数字的量都由 \texttt{tmp/appAF\_calc.py} 复算。
+本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAF\_calc.py} 复算。
 
 \section{估算练习}
 \label{sec:app-af-problems}
@@ -448,7 +447,7 @@ $\chi_B=57.4625$ m$^2$s$^{-1}$、$\chi_{\mathrm{gB}}=0.712099$ m$^2$s$^{-1}$，
 \toprule
 级别 & 内容 & 例子 & 可核验性 \\
 \midrule
-现算级 & 由 \texttt{tmp/appAF\_calc.py} 从工作点算出 & $\rho_s=2.92274$ mm、$\chi_{\mathrm{mix}}=16.9004$ m$^2$s$^{-1}$ & 可逐位复算 \\
+现算级 & 由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAF\_calc.py} 从工作点算出 & $\rho_s=2.92274$ mm、$\chi_{\mathrm{mix}}=16.9004$ m$^2$s$^{-1}$ & 可逐位复算 \\
 声明级 & 脚本顶部的输入或文献量级 & $L_n=1.0$ m、$\eta_{i,\mathrm{crit}}=1.5$、谱指数 $-3/-5/3$ & 可改输入重算 \\
 文献级 & 定标系数的适用范围 & 回旋玻姆系数、混合长饱和因子 & 需查原文 \\
 \bottomrule
@@ -475,4 +474,4 @@ $\chi_{\mathrm{eff}}$ 是实验反推的等效扩散系数，不是从湍流方�
 与 Helander \& Sigmar \emph{Collisional Transport in Magnetized Plasmas}（2002，第 1 章）；
 临界梯度与刚性的综述参照 Dimits 等 \emph{Phys. Plasmas} \textbf{7} (2000) 969 与
 Doyle 等 \emph{Nucl. Fusion} \textbf{47} (2007) S18；$\rho_s$ 与 $\rho_i$ 的口径与附录 AE 一致。
-本节凡标出数字的量都由 \texttt{tmp/appAF\_calc.py} 复算。
+本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAF\_calc.py} 复算。

@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.26.59},
+  pdftitle={等离子体物理自学教材 v1.27.0},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -461,7 +461,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.26.59}}
+  {\small\textcolor{white!45}{v1.27.0}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -1021,7 +1021,7 @@ Physics LibreTexts 的自学教材惯例（见附录 J 的对照说明）。
 符号与术语总表（附录 H） & 1 & 附录 H & 查符号、查中英对照、查易混写法 \\
 一分钟估算（附录 B） & 1 & 附录 B & 四个数摸清一个没见过的等离子体 \\
 附录导航图 & 1 & 前言 & 52 个附录按 10 个主题簇定位 \\
-正文实拍图 & 42 & 正文与附录 & 每张都署作者与许可，见 \texttt{figures/CREDITS.md} \\
+正文实拍图 & 42 & 正文与附录 & 每张都署作者与许可，见 \texttt{figures/\allowbreak{}CREDITS.md} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -1743,6 +1743,14 @@ m_e \ddot{\Delta x} = -\frac{n_e e^2}{\eps_0}\Delta x
 \caption{红色精灵：大气里的向上放电。闪电并不是大气放电的全部：雷暴上方的强电场会把电子加速到几十电子伏，在平流层顶部激发出向上的丝状放电——红色精灵、蓝色喷流都属于瞬态发光现象。它们和本节讲的电离气体是同一套物理，只是尺度、密度与时间尺度都换了一档。}
 \label{fig:photo-sprites}
 \figsource{NASA，Public domain（Wikimedia Commons）}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/ch2_st_elmo_fire.jpg}
+\caption{等离子体并不只在实验室里：强电场把空气局部电离，机头与风挡周围就会出现这种流光放电。本节的三条判据，正好用来判断它算不算等离子体。}
+\label{fig:photo-ch2-elmo}
+\figsource{U.S. Air Force / Tech. Sgt. Diana Cossaboom，Public domain（Wikimedia Commons）}
 \end{figure}
 
 \section{等离子体判据}\difficulty{基础}
@@ -6522,24 +6530,9 @@ m\frac{\diff\vect{v}}{\diff t} = q(\vect{E}+\vect{v}\times\vect{B}), \qquad \fra
 运行前请确保已安装：\texttt{pip install numpy scipy matplotlib}
 \end{tip}
 
-\begin{Verbatim}[breaklines=true,breakanywhere=false,breaksymbolright=\tiny\ensuremath{\hookrightarrow},fontsize=\small]
-import numpy as np
-from scipy.integrate import solve_ivp
+\noindent\textbf{关键实现：}脚本用 \texttt{B\_mirror} 给出散度为零的近轴磁镜场，用 \texttt{rhs} 给出洛伦兹力右端项。
 
-B0, L = 1.0, 0.05        # 均匀场幅值 (T)、磁镜梯度长度 (m)
-
-def B_mirror(r):         # 近轴磁镜场，满足 div B = 0
-    x, y, z = r
-    Bz = B0 * (1.0 + (z/L)**2)
-    Br = -0.5 * B0 * (2.0*z/L**2)      # B_r = -(r/2) dB_z/dz
-    return np.array([Br*x, Br*y, Bz])
-
-def rhs(t, y):           # 洛伦兹力：a = (q/m) v x B
-    r, v = y[0:3], y[3:6]
-    return np.concatenate([v, (q/m) * np.cross(v, B_mirror(r))])
-\end{Verbatim}
-
-\noindent\textbf{完整脚本（可直接运行）：}\texttt{code/appendix\_g/orbit\_tracking.py}——它补齐参数、
+\noindent\textbf{完整脚本（可直接运行）：}\texttt{code/\allowbreak{}appendix\_g/\allowbreak{}orbit\_tracking.py}——它补齐参数、
 两种情形（均匀场 + $\vect{E}\times\vect{B}$ 漂移、磁镜反射）、能量守恒检查与三联图，输出与本节的数值实验一致。
 
 \begin{insight}{数值实验应当验证什么}{}
@@ -6578,21 +6571,8 @@ y''+\frac{2}{x}y' = \ee^{\,y}-1 ,
 \end{itemize}
 \textbf{把 \texttt{status} 读反是常见事故：\texttt{status=1} 不是"已收敛"，而是失败。} 因此下面的代码在提取解、画曲线之前，先把 \texttt{success}、\texttt{status}、\texttt{message}、残差与边界残差全部打印出来核对。
 
-\begin{Verbatim}[breaklines=true,breakanywhere=false,breaksymbolright=\tiny\ensuremath{\hookrightarrow},fontsize=\small]
-def poisson_debye(x, y):     # y = [y, y']，无量纲球坐标泊松方程
-    y0, y1 = y
-    return np.vstack([y1, np.exp(np.clip(y0, -60.0, 60.0)) - 1.0 - 2.0*y1/x])
+\noindent\textbf{完整脚本：}\texttt{code/\allowbreak{}appendix\_g/\allowbreak{}debye\_bvp.py}——无量纲化、网格初值、边界条件封装与探针点比较都在其中：函数 \texttt{poisson\_debye} 给出无量纲方程的右端项，\texttt{bc} 给出恰好两个边界条件，求解调用把两者交给 \texttt{solve\_bvp}，运行后打印 \texttt{success}、\texttt{status}、\texttt{message}、节点数、残差与探针偏差。
 
-def bc(ya, yb):              # 边界条件恰好 2 个：y(x_min) = amp、y(x_max) = 0
-    return np.array([ya[0] - amp, yb[0]])
-
-# x、y_guess 与 amp 的取值见完整脚本
-sol = solve_bvp(poisson_debye, bc, x, y_guess, tol=1e-8, max_nodes=50000)
-print(sol.success, sol.status, sol.message)   # 唯一可信的收敛判据
-\end{Verbatim}
-
-\noindent\textbf{完整脚本（可直接运行）：}\texttt{code/appendix\_g/debye\_bvp.py}——含无量纲化、
-线性德拜解逐点对比、幅值扫描（验证偏差正比于振幅）与\texttt{max\_nodes} 负例。
 
 \textbf{正常例的实测输出}（NumPy 2.5.3 / SciPy 1.18.1）：
 \begin{Verbatim}[breaklines=true,breakanywhere=false,breaksymbolright=\tiny\ensuremath{\hookrightarrow},fontsize=\small]
@@ -6634,21 +6614,8 @@ bad: success=False status=1 message=The maximum number of mesh nodes is exceeded
 \end{equation}
 代码含\textbf{有效性回溯检查}：端口输出 $k\lambda_D$ 取 $0.1,0.3,1.0$ 时的热修正量 $3(k\lambda_D)^2$，据此判断 Bohm--Gross 近似的适用范围（约 $k\lambda_D\lesssim0.3$；$k\lambda_D\to1$ 时 Landau 阻尼已显著，须用动理学色散关系）。
 
-\begin{Verbatim}[breaklines=true,breakanywhere=false,breaksymbolright=\tiny\ensuremath{\hookrightarrow},fontsize=\small]
-# n、Te_eV、q_e、m_e、eps0 为物理参数（取值见完整脚本）
-omega_pe = np.sqrt(n * q_e**2 / (eps0 * m_e))
-v_te     = np.sqrt(Te_eV * q_e / m_e)        # 本书口径 v_te = sqrt(k_B T_e / m_e)
-lam_D    = v_te / omega_pe
+\noindent\textbf{完整脚本：}\texttt{code/\allowbreak{}appendix\_g/\allowbreak{}langmuir\_dispersion.py}——按 Bohm--Gross 关系绘制色散曲线，并打印 $k\lambda_D=0.1,0.3,1.0$ 处的热修正量 $3(k\lambda_D)^2$，供有效性回溯检查使用。
 
-k     = np.linspace(0.0, 1.0 / lam_D, 500)
-omega = np.sqrt(omega_pe**2 + 3.0 * k**2 * v_te**2)      # Bohm--Gross
-
-for kLD in (0.1, 0.3, 1.0):                  # 有效性回溯检查
-    print(kLD, 3.0 * kLD**2)
-\end{Verbatim}
-
-\noindent\textbf{完整脚本（可直接运行）：}\texttt{code/appendix\_g/langmuir\_dispersion.py}——含冷等离子体
-对照曲线、适用范围着色与\texttt{omega/omega\_pe} 图。
 
 
 \section{仿真软件清单与学习路线}
@@ -7139,89 +7106,89 @@ Landau 阻尼 & Landau damping & 无碰撞相混导致的波阻尼 \\
 \input{appendix_i_learning}
 \appchapter{附录J：经典教材逐章对照与延伸阅读}
 \input{appendix_j_textbook_map}
-\appchapter{附录K：跨教材经典例题精选（注明出处）}
+\appchapter{附录K：跨教材经典例题精选}
 \input{appendix_k_problems}
 \appchapter{附录L：分章自测题库（含答案与提示）}
 \input{appendix_l_problems}
-\appchapter{附录M：聚变等离子体加热、电流驱动与运行极限（注明出处）}
+\appchapter{附录M：聚变等离子体加热、电流驱动与运行极限}
 \input{appendix_m_heating}
-\appchapter{附录N：等离子体-壁相互作用与偏滤器物理（注明出处）}
+\appchapter{附录N：等离子体-壁相互作用与偏滤器物理}
 \input{appendix_n_boundary}
-\appchapter{附录O：电推进：把等离子体当发动机（注明出处）}
+\appchapter{附录O：电推进：把等离子体当发动机}
 \input{appendix_o_propulsion}
-\appchapter{附录P：低温等离子体应用：从刻蚀到等离子体医学（注明出处）}
+\appchapter{附录P：低温等离子体应用：从刻蚀到等离子体医学}
 \input{appendix_p_lowtemp}
-\appchapter{附录Q：等离子体诊断：从探针曲线到光谱（注明出处）}
+\appchapter{附录Q：等离子体诊断：从探针曲线到光谱}
 \input{appendix_q_diagnostics}
-\appchapter{附录R：尘埃等离子体：从刻蚀腔到等离子体晶体（注明出处）}
+\appchapter{附录R：尘埃等离子体：从刻蚀腔到等离子体晶体}
 \input{appendix_r_dusty}
-\appchapter{附录S：能量约束与输运：从功率平衡到 IPB98(y,2)（注明出处）}
+\appchapter{附录S：能量约束与输运：从功率平衡到 IPB98(y,2)}
 \input{appendix_s_confinement}
-\appchapter{附录T：磁面、磁岛与磁通量管：拓扑如何决定约束（注明出处）}
+\appchapter{附录T：磁面、磁岛与磁通量管：拓扑如何决定约束}
 \input{appendix_t_topology}
-\appchapter{附录U：聚变增益与点火：从三重积到工程电功率（注明出处）}
+\appchapter{附录U：聚变增益与点火：从三重积到工程电功率}
 \input{appendix_u_gain}
-\appchapter{附录V：破裂、误差场与逃逸电子：运行空间什么时候被撞破（注明出处）}
+\appchapter{附录V：破裂、误差场与逃逸电子：运行空间什么时候被撞破}
 \input{appendix_v_disruption}
-\appchapter{附录W：快粒子与 alpha 粒子物理：3.5 MeV 去了哪里（注明出处）}
+\appchapter{附录W：快粒子与 alpha 粒子物理：3.5 MeV 去了哪里}
 \input{appendix_w_fastparticle}
-\appchapter{附录X：辐射输运与辐射损失：能量还有一条出口（注明出处）}
+\appchapter{附录X：辐射输运与辐射损失：能量还有一条出口}
 \input{appendix_x_radiation}
-\appchapter{附录Y：强场与激光等离子体：电子在一个周期内就被推到近光速（注明出处）}
+\appchapter{附录Y：强场与激光等离子体：电子在一个周期内就被推到近光速}
 \input{appendix_y_strongfield}
-\appchapter{附录Z：聚变堆工程：从等离子体到电网（注明出处）}
+\appchapter{附录Z：聚变堆工程：从等离子体到电网}
 \input{appendix_z_reactor}
-\appchapter{附录AA：替代位形：仿星器、球形托卡马克与场反位形（注明出处）}
+\appchapter{附录AA：替代位形：仿星器、球形托卡马克与场反位形}
 \input{appendix_aa_alternates}
-\appchapter{附录AB：空间与天体等离子体：从太阳风到磁层与重联（注明出处）}
+\appchapter{附录AB：空间与天体等离子体：从太阳风到磁层与重联}
 \input{appendix_ab_space_astro}
-\appchapter{附录AC：等离子体数值方法：从 PIC 到 MHD（注明出处）}
+\appchapter{附录AC：等离子体数值方法：从 PIC 到 MHD}
 \input{appendix_ac_numerics}
-\appchapter{附录AD：边界台基与 L-H 模：约束改善从哪里来（注明出处）}
+\appchapter{附录AD：边界台基与 L-H 模：约束改善从哪里来}
 \input{appendix_ad_pedestal}
-\appchapter{附录AE：动理学与回旋动理学：把最快的运动平均掉（注明出处）}
+\appchapter{附录AE：动理学与回旋动理学：把最快的运动平均掉}
 \input{appendix_ae_kinetics}
-\appchapter{附录AF：等离子体湍流与反常输运：为什么约束就是这个数（注明出处）}
+\appchapter{附录AF：等离子体湍流与反常输运：为什么约束就是这个数}
 \input{appendix_af_turbulence}
-\appchapter{附录AG：磁流体平衡与位形：磁面、比压与 Shafranov 位移（注明出处）}
+\appchapter{附录AG：磁流体平衡与位形：磁面、比压与 Shafranov 位移}
 \input{appendix_ag_equilibrium}
-\appchapter{附录AH：原子过程与谱线：从能级到诊断（注明出处）}
+\appchapter{附录AH：原子过程与谱线：从能级到诊断}
 \input{appendix_ah_atomic}
-\appchapter{附录AI：惯性约束内爆与点火：从黑腔到点火增益（注明出处）}
+\appchapter{附录AI：惯性约束内爆与点火：从黑腔到点火增益}
 \input{appendix_ai_icf}
-\appchapter{附录AJ：加料与排灰：粒子从阀门走到芯部再走出去（注明出处）}
+\appchapter{附录AJ：加料与排灰：粒子从阀门走到芯部再走出去}
 \input{appendix_aj_fuelling}
-\appchapter{附录AK：聚变安全与环境：从氚的克数到废物的分级（注明出处）}
+\appchapter{附录AK：聚变安全与环境：从氚的克数到废物的分级}
 \input{appendix_ak_safety}
-\appchapter{附录AL：非线性等离子体物理：当场强不再是「小量」（注明出处）}
+\appchapter{附录AL：非线性等离子体物理：当场强不再是「小量」}
 \input{appendix_al_nonlinear}
-\appchapter{附录AM：磁体与超导：从临界电流到失超保护（注明出处）}
+\appchapter{附录AM：磁体与超导：从临界电流到失超保护}
 \input{appendix_am_magnets}
-\appchapter{附录AN：偏振与磁光诊断：从法拉第旋转到运动斯塔克效应（注明出处）}
+\appchapter{附录AN：偏振与磁光诊断：从法拉第旋转到运动斯塔克效应}
 \input{appendix_an_polarimetry}
-\appchapter{附录AO：真空与壁处理：把压强、放气和氚库存写成数字（注明出处）}
+\appchapter{附录AO：真空与壁处理：把压强、放气和氚库存写成数字}
 \input{appendix_ao_vacuum}
-\appchapter{附录AP：维护与遥操作：从热室到包层更换（注明出处）}
+\appchapter{附录AP：维护与遥操作：从热室到包层更换}
 \input{appendix_ap_maintenance}
-\appchapter{附录AQ：干涉与相位诊断：从条纹到密度剖面（注明出处）}
+\appchapter{附录AQ：干涉与相位诊断：从条纹到密度剖面}
 \input{appendix_aq_interferometry}
-\appchapter{附录AR：电源与储能：从脉冲电源到电网接口（注明出处）}
+\appchapter{附录AR：电源与储能：从脉冲电源到电网接口}
 \input{appendix_ar_power}
-\appchapter{附录AS：射线追踪与波束光学：把波画成一条线（注明出处）}
+\appchapter{附录AS：射线追踪与波束光学：把波画成一条线}
 \input{appendix_as_rays}
-\appchapter{附录AT：波的传播：截止、共振与模式转换（注明出处）}
+\appchapter{附录AT：波的传播：截止、共振与模式转换}
 \input{appendix_at_waves}
-\appchapter{附录AU：测量、不确定度与数据分析：从原始信号到误差棒（注明出处）}
+\appchapter{附录AU：测量、不确定度与数据分析：从原始信号到误差棒}
 \input{appendix_au_data}
-\appchapter{附录AV：氚循环与氚工厂：从增殖到衡算（注明出处）}
+\appchapter{附录AV：氚循环与氚工厂：从增殖到衡算}
 \input{appendix_av_tritium}
-\appchapter{附录AW：高能量密度物理：从温稠密物质到实验室天体物理（注明出处）}
+\appchapter{附录AW：高能量密度物理：从温稠密物质到实验室天体物理}
 \input{appendix_aw_hedp}
-\appchapter{附录AX：束流物理与束流品质：从发射度到空间电荷（注明出处）}
+\appchapter{附录AX：束流物理与束流品质：从发射度到空间电荷}
 \input{appendix_ax_beams}
-\appchapter{附录AY：聚变材料与辐照损伤：从 dpa 到肿胀与寿命（注明出处）}
+\appchapter{附录AY：聚变材料与辐照损伤：从 dpa 到肿胀与寿命}
 \input{appendix_ay_materials}
-\appchapter{附录AZ：聚变堆系统集成与设计裕度：从 0-D 功率平衡到自洽设计点（注明出处）}
+\appchapter{附录AZ：聚变堆系统集成与设计裕度：从 0-D 功率平衡到自洽设计点}
 \input{appendix_az_system}
 
 % 附录结束

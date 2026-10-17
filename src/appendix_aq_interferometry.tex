@@ -1,7 +1,7 @@
 % ===========================================================================
 % 附录 AQ：干涉与相位诊断——从条纹到密度剖面
 % ---------------------------------------------------------------------------
-% 数值唯一来源：tmp/appAQ_calc.py -> tmp/appAQ_calc.txt
+% 数值唯一来源：tools/calc/appAQ_calc.py -> tools/calc/appAQ_calc.txt
 %   重生成：python tmp\appAQ_calc.py | Out-File -Encoding utf8 tmp\appAQ_calc.txt
 %   正文里凡标出数字的量都必须能在这个输出里找到；改数字先改脚本。
 % 工作点：与附录 Q / AN / Z 同一台（n_e0 = 1e20 m^-3、T_e = 9.194 keV、B = 5.3 T、
@@ -115,7 +115,7 @@ $N_L/(2a) = 6.66667\times10^{19}\ \mathrm{m^{-3}}$（附录 AN 用的是同一�
 （2002）第 4 章「干涉与折射率」；Heald \& Wharton \textit{Plasma Diagnostics with
 Microwaves}（1965）关于相移、截止密度与条纹计数的讨论。
 本附录不复制任何教材的图、表与习题，只借用结论与量级。
-本节凡标出数字的量都由 \texttt{tmp/appAQ\_calc.py} 复算。
+本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAQ\_calc.py} 复算。
 
 \section{条纹、外差与零差：把相位从光强里取出来}
 \label{sec:app-aq-heterodyne}
@@ -205,7 +205,7 @@ $9.38429\times10^{24}\ \mathrm{m^{-2}/s}$，折合电子密度 $3.51911\times10^
 \textbf{出处：}Hutchinson \textit{Principles of Plasma Diagnostics} 第 2 版
 （2002）第 4 章关于外差与相位精度的讨论；Heald \& Wharton（1965）
 关于条纹计数与相位测量的对比。本节凡标出数字的量都由
-\texttt{tmp/appAQ\_calc.py} 复算。
+\texttt{tools/\allowbreak{}calc/\allowbreak{}appAQ\_calc.py} 复算。
 
 \section{振动补偿与色散干涉：把共模误差减掉}
 \label{sec:app-aq-dispersion}
@@ -285,7 +285,7 @@ $7.38578\times10^{20}\ \mathrm{m^{-3}}$，比工作密度还大 $7.38578$ 倍—
 \textbf{出处：}Boboc 等，\textit{Rev. Sci. Instrum.} \textbf{81}（2010）
 色散干涉仪方案与 ITER 适用性讨论；Hutchinson 第 2 版（2002）第 4 章
 关于振动与共模抑制的分析。本附录不复制任何教材的图、表与习题。
-本节凡标出数字的量都由 \texttt{tmp/appAQ\_calc.py} 复算。
+本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAQ\_calc.py} 复算。
 \section{阿贝尔反演：从弦积分到剖面}
 \label{sec:app-aq-abel}
 
@@ -382,7 +382,14 @@ $y = 1.80\ \mathrm{m}$ 弦 & $2.20851\times10^{19}\ \mathrm{m^{-2}}$ & 最外道
 Diagnostics} 第 2 版（2002）第 4 章关于阿贝尔反演与层析的讨论；
 剥皮法（onion peeling）的标准表述见 Hutchinson 同章。
 本附录不复制任何教材的图、表与习题，只使用其结论与题型。
-本节凡标出数字的量都由 \texttt{tmp/appAQ\_calc.py} 复算。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/aq_laser_interferometer.jpg}
+\caption{激光干涉仪：把长度变化读成相位变化。等离子体干涉仪是同一套原理换了个被测对象：本节算的相移，在实验室里就是这台仪器读出的条纹移动，而它的噪声底线由光源与探测器共同决定。}
+\label{fig:photo-appaq2}
+\figsource{Logg Tandy，CC BY 4.0（Wikimedia Commons）}
+\end{figure}
 
 \section{源与探测器链：相位噪声是噪声温度的函数}
 \label{sec:app-aq-chain}
@@ -455,7 +462,7 @@ $P_{\mathrm{IF}}$ 受变频损耗与源功率限制。
 （1965）关于外差接收与混频器噪声的讨论；Donné 等，\textit{Nuclear Fusion}
 \textbf{47}（2007）S337「ITER 诊断」章节关于毫米波与远红外诊断链的工程口径。
 本附录不复制任何教材的图、表与习题。本节凡标出数字的量都由
-\texttt{tmp/appAQ\_calc.py} 复算。
+\texttt{tools/\allowbreak{}calc/\allowbreak{}appAQ\_calc.py} 复算。
 
 \section{误差预算与相对论修正}
 \label{sec:app-aq-error}
@@ -538,7 +545,7 @@ $\omega_{\mathrm{pe}}^2 = n_ee^2/(\epsilon_0m_e)$ 里的 $m_e$ 在高温下要�
 （2002）第 4 章关于折射率的相对论修正与误差传播；Donné 等，
 \textit{Nuclear Fusion} \textbf{47}（2007）S337 关于 ITER 密度诊断的
 精度要求与误差预算方法。本附录不复制任何教材的图、表与习题。
-本节凡标出数字的量都由 \texttt{tmp/appAQ\_calc.py} 复算。
+本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAQ\_calc.py} 复算。
 \section{估算练习}
 \label{sec:app-aq-problems}
 
@@ -652,7 +659,7 @@ Heald \& Wharton, \textit{Plasma Diagnostics with Microwaves} (1965) & 微波干
 Hutchinson, \textit{Principles of Plasma Diagnostics}, 2nd ed. (2002) 第 4 章 & 折射率、阿贝尔反演、误差传播、相对论修正 & 一级（标准教材） \\
 Donné 等, \textit{Nuclear Fusion} \textbf{47} (2007) S337 & ITER 密度诊断的精度要求与工程口径 & 二级（工程综述） \\
 Abel (1826) 的积分变换 & 阿贝尔正反变换与层析思想 & 三级（史料） \\
-本书 \texttt{tmp/appAQ\_calc.py} & 全部数值（可由脚本复算） & 自算（一级） \\
+本书 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAQ\_calc.py} & 全部数值（可由脚本复算） & 自算（一级） \\
 \bottomrule
 \end{tabular}
 \end{table}

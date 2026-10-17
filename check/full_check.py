@@ -550,6 +550,27 @@ def check_C_compile(do_compile):
 
 # ---------------------------------------------------------------- D. PDF
 
+def pdf_meta_text(pdf):
+    """没有 poppler 的 pdfinfo 时，用 PyMuPDF 读出等价的标题与页数。"""
+    try:
+        import pymupdf as fitz
+    except ImportError:
+        import fitz
+    d = fitz.open(pdf)
+    title = (d.metadata or {}).get('title') or ''
+    return 'Title:          %s\nPages:          %d\n' % (title, d.page_count)
+
+
+def pdf_body_text(pdf):
+    """没有 poppler 的 pdftotext 时，用 PyMuPDF 取正文文本层。"""
+    try:
+        import pymupdf as fitz
+    except ImportError:
+        import fitz
+    d = fitz.open(pdf)
+    return '\n'.join(page.get_text() for page in d)
+
+
 def check_D_pdf():
     pdf = os.path.join(SRC, MAIN.replace('.tex', '.pdf'))
     if not os.path.exists(pdf):
@@ -557,7 +578,13 @@ def check_D_pdf():
         return
 
     def run(cmd):
-        r = subprocess.run(cmd, capture_output=True)
+        try:
+            r = subprocess.run(cmd, capture_output=True)
+        except FileNotFoundError:
+            # 没装 poppler（pdfinfo/pdftotext）时用 PyMuPDF 兜底
+            if cmd[0] == 'pdfinfo':
+                return pdf_meta_text(pdf)
+            return pdf_body_text(pdf)
         return r.stdout.decode('utf-8', errors='replace')
 
     info = run(['pdfinfo', pdf])
@@ -587,8 +614,11 @@ def check_E_consistency():
     pages = None
     info = ''
     if os.path.exists(pdf):
-        r = subprocess.run(['pdfinfo', pdf], capture_output=True)
-        info = r.stdout.decode('utf-8', errors='replace')
+        try:
+            r = subprocess.run(['pdfinfo', pdf], capture_output=True)
+            info = r.stdout.decode('utf-8', errors='replace')
+        except FileNotFoundError:
+            info = pdf_meta_text(pdf)
         m = re.search(r'Pages:\s*(\d+)', info)
         pages = int(m.group(1)) if m else None
 
@@ -817,6 +847,9 @@ def check_P_codelist():
     longest = (0, u'')
     for p in sorted(glob.glob(os.path.join(SRC, '*.tex'))):
         text = strip_comments(io.open(p, encoding='utf-8', newline='').read())
+        # v1.27.0 起长路径在 \texttt 里插了 \allowbreak{}（避免 Overfull），
+        # 这里先剥掉再找 code/**.py。
+        text = text.replace(u'\\allowbreak{}', u'')
         for m in re.finditer(r'code/([A-Za-z0-9_./\\_-]+)', text):
             rel = m.group(1).replace(u'\\_', u'_').replace(u'\\', u'')
             if rel.endswith(u'.py'):

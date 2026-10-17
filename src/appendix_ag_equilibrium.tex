@@ -1,12 +1,12 @@
 % 附录 AG：磁流体平衡与位形（第 33 个附录，v1.26.11 新增）
 %
-% 数值唯一来源：tmp/appAG_calc.py -> tmp/appAG_calc.txt
+% 数值唯一来源：tools/calc/appAG_calc.py -> tools/calc/appAG_calc.txt
 %   （正文里凡标出数字的量都可以在 calc 输出里逐位找到；单位一律写在数学模式内，
 %    避免中文字符进入数学字体）
 % 速度与几何口径：与附录 AD/AE/AF 同一工作点 R=6.2 m、a=2.0 m、B0=5.3 T、I_p=15 MA、
 %   kappa=1.7、delta=0.4、n_e=1e20 m^-3、T_e=T_i=9194 eV、m_i=2.5 m_p。
 % 版权口径：只借鉴经典教材与文献的结论、公式形式与题型；文字、数值、表格均自拟并由
-%   tmp/appAG_calc.py 独立复算。离线环境无法核验 DOI，故只给作者、年份、卷期页。
+%   tools/calc/appAG_calc.py 独立复算。离线环境无法核验 DOI，故只给作者、年份、卷期页。
 % 与相邻附录的分工：本附录讲「平衡」（给定压强与电流，磁面长什么样）；磁岛与拓扑留给
 %   附录 T，台基与边界稳定性留给附录 AD，输运定标留给附录 S，位形比较留给附录 AA。
 
@@ -90,7 +90,7 @@ V = 2\pi^2 R a^2 \kappa = 832.205\ \mathrm{m^3},
 
 \textbf{出处：}磁面几何与安全因子的记法参照 Freidberg \emph{Ideal MHD}（2014，第 5--6 章）、
 Wesson \emph{Tokamaks}（第 4 版，2011，第 3 章）与 ITER Physics Basis（\emph{Nucl. Fusion}
-\textbf{39} (1999) 2137）；本节的写法与全部数值由 \texttt{tmp/appAG\_calc.py} 复算。
+\textbf{39} (1999) 2137）；本节的写法与全部数值由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAG\_calc.py} 复算。
 
 \begin{figure}[htbp]
 \centering
@@ -174,7 +174,7 @@ $(B_0/B_\theta)^2 = 12.4844$ 的因子，这个因子后面还会以 Shafranov �
 \textbf{出处：}Grad--Shafranov 方程的推导与各项含义参照 Grad \& Rubin（1958，第二次
 日内瓦会议论文集 \textbf{31}，190）、Shafranov（\emph{Reviews of Plasma Physics}
 \textbf{2} (1966) 103）与 Freidberg \emph{Ideal MHD}（2014，第 6、11 章）；
-本节的写法与全部数值由 \texttt{tmp/appAG\_calc.py} 复算。
+本节的写法与全部数值由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAG\_calc.py} 复算。
 
 \section{Shafranov 位移：磁轴为什么往外跑}
 \label{sec:app-ag-shift}
@@ -239,7 +239,7 @@ $1/I_p^2$ 成正比，所以提高电流既压住位移，又顺带抬高 $q$ �
 \textbf{出处：}Shafranov 位移的小 $\epsilon$ 表达式参照 Shafranov（\emph{Reviews of
 Plasma Physics} \textbf{2} (1966) 103）、Zakharov \& Shafranov（\emph{Sov. Phys.
 Tech. Phys.} \textbf{18} (1973) 151）与 Wesson \emph{Tokamaks}（第 4 版，2011，
-第 3 章）；本节的写法与全部数值由 \texttt{tmp/appAG\_calc.py} 复算。
+第 3 章）；本节的写法与全部数值由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAG\_calc.py} 复算。
 \section{位形参数：伸长比与三角形变买到了什么}
 \label{sec:app-ag-shaping}
 
@@ -297,7 +297,7 @@ $\kappa=1.7$ 相对圆截面多要了将近一倍的电流，代价是垂直稳�
 \textbf{出处：}形状因子与 $\beta_N$ 的三角形变增益参照 Troyon 等（\emph{Plasma Phys.
 Control. Fusion} \textbf{26} (1984) 209）、Freidberg \emph{Ideal MHD}（2014，第 6、12 章）
 与 ITER Physics Basis（\emph{Nucl. Fusion} \textbf{39} (1999) 2137）；本节的写法与
-全部数值由 \texttt{tmp/appAG\_calc.py} 复算。
+全部数值由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAG\_calc.py} 复算。
 
 \section{压强极限：比压能推到多高}
 \label{sec:app-ag-beta}
@@ -374,7 +374,7 @@ Fluids} \textbf{14} (1971) 671）与 Freidberg \emph{Ideal MHD}（2014，第 11-
 Troyon 型极限与形状增益取自 Troyon 等（\emph{Plasma Phys. Control. Fusion} \textbf{26}
 (1984) 209）、Wesson \emph{Tokamaks}（第 4 版，2011，第 3、6 章）与 ITER Physics Basis
 （\emph{Nucl. Fusion} \textbf{39} (1999) 2137）；本节的写法与全部数值由
-\texttt{tmp/appAG\_calc.py} 复算。
+\texttt{tools/\allowbreak{}calc/\allowbreak{}appAG\_calc.py} 复算。
 
 \section{从平衡到稳定性：与磁岛、台基的分工}
 \label{sec:app-ag-stability}
@@ -432,11 +432,10 @@ $\beta_p+l_i/2$ & $0.829081$ & 本附录、附录 AA & Shafranov 位移 \\
 \textbf{出处：}Suydam 判据参照 Suydam（1958，第二次日内瓦会议论文集 \textbf{31}，157）、
 Mercier 判据参照 Mercier（\emph{Nucl. Fusion} \textbf{4} (1964) 213）、能量原理的
 系统叙述参照 Freidberg \emph{Ideal MHD}（2014，第 8--11 章）与 Wesson \emph{Tokamaks}
-（第 4 版，2011，第 6 章）；本节的写法与全部数值由 \texttt{tmp/appAG\_calc.py} 复算。
+（第 4 版，2011，第 6 章）；本节的写法与全部数值由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAG\_calc.py} 复算。
 \section{估算练习}
 \label{sec:app-ag-problems}
 
-六道题全部只用本附录的公式，答案都在 \texttt{tmp/appAG\_calc.py} 里可复算。
 
 \textbf{练习 1}（换一台机器）一台中等装置取 $R=5.5\ \mathrm{m}$、$a=1.5\ \mathrm{m}$、
 $B_0=5.3\ \mathrm{T}$、$I_p=8\ \mathrm{MA}$、$\kappa=1.6$，等离子体
@@ -486,9 +485,9 @@ $8.82069\times10^{19}\ \mathrm{m^{-3}}$，于是 $n_e/n_G=1.1337$——超过了
 本附录的数值分三级，读的时候请看清哪一级。
 
 \textbf{第一级：现算级。}凡在正文里标出数字、并在句尾注明由
-\texttt{tmp/appAG\_calc.py} 复算的量，都是第一级。它们全部由上表列出的五个几何输入
+\texttt{tools/\allowbreak{}calc/\allowbreak{}appAG\_calc.py} 复算的量，都是第一级。它们全部由上表列出的五个几何输入
 （$R$、$a$、$B_0$、$I_p$、$\kappa$）与两个剖面参数（$q_0$、$l_i$）导出，可以被逐位复现。
-交叉核对脚本 \texttt{tmp/appAG\_check.py} 会把正文里的每个数字与脚本输出比对，
+交叉核对脚本 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAG\_check.py} 会把正文里的每个数字与脚本输出比对，
 阈值取相对误差 $10^{-3}$。
 
 \textbf{第二级：声明级。}以下量在脚本顶部以输入形式声明，它们的取值属于工程惯例而非
@@ -542,4 +541,4 @@ Wesson \emph{Tokamaks}（第 4 版，2011，第 3、6 章）、Grad \& Rubin（1
 名称与用途参照 Lao 等（\emph{Nucl. Fusion} \textbf{25} (1985) 1611）、Hirshman \&
 Whitson（\emph{Phys. Fluids} \textbf{26} (1983) 3553）与 Lütjens, Bondeson \& Sauter
 （\emph{Comput. Phys. Commun.} \textbf{97} (1996) 219）。本节的写法与全部数值由
-\texttt{tmp/appAG\_calc.py} 复算。
+\texttt{tools/\allowbreak{}calc/\allowbreak{}appAG\_calc.py} 复算。

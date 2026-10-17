@@ -1,5 +1,5 @@
 % 附录 AL：非线性等离子体物理（从孤子到参量不稳定性与波崩塌）
-% 数值唯一来源：tmp/appAL_calc.py -> tmp/appAL_calc.txt（本附录凡标出数字的量都由它复算）
+% 数值唯一来源：tools/calc/appAL_calc.py -> tools/calc/appAL_calc.txt（本附录凡标出数字的量都由它复算）
 % 工作点与附录 M/S/U/V/W/X/Y/Z/AD/AE/AI/AJ/AK 同一台：
 %   n_e = 1e20 m^-3, T_e = 9.194 keV, B = 5.3 T, m_i = 2.5 m_p；
 %   微波侧：140 GHz / 1 MW / 光斑 2 cm；激光侧：0.35 μm、冕区 n_e = 1e26 m^-3、T_e = 1 keV
@@ -75,7 +75,7 @@ $n_c = 9.10085\times10^{27}$ m$^{-3}$，冕区 $n_e/n_c = 0.010988$——\textbf
 工作密度/截止 & $0.411308$ & $0.010988$ & 冕区离截止更远 \\
 \bottomrule
 \end{tabular}
-\caption{两个驱动器的非线性判据：同一套公式，两个数量级不同的答案（数值由 \texttt{tmp/appAL\_calc.py} 复算）。}
+\caption{两个驱动器的非线性判据：同一套公式，两个数量级不同的答案（数值由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAL\_calc.py} 复算）。}
 \label{tab:app-al-nonlinear}
 \end{table}
 
@@ -91,7 +91,14 @@ $U_p/T_e$、$a_0$。同一个 $1$ MW 微波在 $10^{20}$ m$^{-3}$ 的芯部是�
 与 Hasegawa \emph{Plasma Instabilities and Nonlinear Effects}（1975，第 1 章）；
 有质动力力的推导形式参照 Max（\emph{Physics of Fluids} 16, 1277, 1973）与
 Kruer \emph{The Physics of Laser Plasma Interactions}（1988，第 2、6 章）。
-本节凡标出数字的量都由 \texttt{tmp/appAL\_calc.py} 复算。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/al_gibraltar_soliton.jpg}
+\caption{孤子是色散与非线性刚好打平的产物：海峡里这列能跨越大洋而不散架的内波，和等离子体中的孤子、非线性波结构遵循同一类平衡。本节先在这张卫星图上建立图像。}
+\label{fig:photo-appal2}
+\figsource{NASA / 国际空间站宇航员（2004），Public domain（Wikimedia Commons）}
+\end{figure}
 
 \section{孤子：色散与非线性平衡}
 \label{sec:app-al-soliton}
@@ -161,7 +168,7 @@ $1.76643\times10^{12}$ W m$^{-2}$ $= 1.76643\times10^{8}$ W cm$^{-2}$，
 17, 996, 1966）与 Karpman \emph{Nonlinear Waves in Dispersive Media}（1975，第 2--3 章）；
 有质动力密度凹陷的量级参照 Max（1973）与 Gibbon \emph{Short Pulse Laser Interactions with
 Matter}（2005，第 4 章）；教科书式的整理参照 Boyd 与 Sanderson \emph{The Physics of Plasmas}
-（2003，第 9 章）。本节凡标出数字的量都由 \texttt{tmp/appAL\_calc.py} 复算。
+（2003，第 9 章）。本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAL\_calc.py} 复算。
 
 \section{参量不稳定性：三波共振与阈值}
 \label{sec:app-al-parametric}
@@ -242,7 +249,7 @@ $\lambda_L = 192.758$ nm，$k_L\lambda_{De} = 0.766278$（冕区 $\lambda_{De} =
 Davidson（1972，第 4--5 章）与 Hasegawa（1975，第 2--3 章）；激光等离子体中的
 受激散射参照 Kruer（1988，第 6--7 章）与 Gibbon（2005，第 5 章）；
 阈值与匹配条件的标准写法参照 Boyd 与 Sanderson（2003，第 9 章）。
-本节凡标出数字的量都由 \texttt{tmp/appAL\_calc.py} 复算。
+本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAL\_calc.py} 复算。
 \section{自聚焦与波崩塌}
 \label{sec:app-al-collapse}
 
@@ -312,7 +319,7 @@ $1\%$ 密度坑所需场 & $3.64820\times10^{7}$ V m$^{-1}$ & $1.20317\times10^{
 \textbf{出处：}波崩塌与 caviton 的框架参照 Zakharov（\emph{Soviet Physics JETP} 35, 908, 1972）、
 Davidson（1972，第 6 章）与 Hasegawa（1975，第 4 章）；激光自聚焦与成丝参照
 Kruer（1988，第 6 章）与 Gibbon（2005，第 4--5 章）；波破裂场的标准写法参照
-Boyd 与 Sanderson（2003，第 9 章）。本节凡标出数字的量都由 \texttt{tmp/appAL\_calc.py} 复算。
+Boyd 与 Sanderson（2003，第 9 章）。本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAL\_calc.py} 复算。
 
 \section{粒子俘获：什么时候非线性跑赢阻尼}
 \label{sec:app-al-trapping}
@@ -374,7 +381,6 @@ Landau 阻尼之所以显得神秘，是因为它把一个可逆的微观过程�
 Davidson（1972，第 3 章）与 Hasegawa（1975，第 2 章）；BGK 型平衡态参照
 Bernstein、Greene 与 Kruskal（\emph{Physical Review} 108, 546, 1957）；
 动理学背景（$\lambda_{De}$、$v_{the}$、Landau 阻尼率）与附录 AE 同口径。
-本节凡标出数字的量都由 \texttt{tmp/appAL\_calc.py} 复算。
 
 \section{相干结构：双电层与相空间空洞}
 \label{sec:app-al-structures}
@@ -453,7 +459,7 @@ caviton & $\sim10\,\lambda_{De} = 712.806$ $\mu$m & 崩到 $E_{WB}$ 为止 & 几
 与 Hasegawa（1975，第 5 章）；扎哈罗夫方程的原始形式参照 Zakharov（1972）与
 Hasegawa 与 Mima（\emph{Physics of Fluids} 21, 87, 1978）；BGK 模参照
 Bernstein、Greene 与 Kruskal（1957）；无碰撞激波与边界处的结构对照附录 AB 与附录 AD。
-本节凡标出数字的量都由 \texttt{tmp/appAL\_calc.py} 复算。
+本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAL\_calc.py} 复算。
 \section{估算练习}
 \label{sec:app-al-problems}
 
@@ -536,7 +542,7 @@ $k_L\lambda_{De} = 0.766278$——\textbf{短波、强阻尼区}），
 \toprule
 级别 & 内容 & 说明 \\
 \midrule
-现算级 & 抖动速度、有质动力势、阈值、孤子宽度、$P_c$、$E_{WB}$、$\omega_b$、$E^{*}$、双电层场强 & 全部由 \texttt{tmp/appAL\_calc.py} 用 $n_e = 10^{20}$ m$^{-3}$、$T_e = 9194$ eV、$B = 5.3$ T 与声速 $c_s = 593524$ m s$^{-1}$（与附录 AE 同口径）算出 \\
+现算级 & 抖动速度、有质动力势、阈值、孤子宽度、$P_c$、$E_{WB}$、$\omega_b$、$E^{*}$、双电层场强 & 全部由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAL\_calc.py} 用 $n_e = 10^{20}$ m$^{-3}$、$T_e = 9194$ eV、$B = 5.3$ T 与声速 $c_s = 593524$ m s$^{-1}$（与附录 AE 同口径）算出 \\
 声明级 & 自聚焦系数 $17.4$、孤子形状因子、双电层厚度 $100\,\lambda_{De}$、冕区 $0.35$ $\mu$m 与 $500$ TW 驱动器参数 & 量级或工程典型值，正文中已逐处标为「声明」或「量级」 \\
 文献级 & 孤子解（KdV）、三波耦合方程形式、O'Neil 阻尼振荡图景、BGK 平衡、扎哈罗夫方程 & 只引用方程形式与结论，不作数值比对 \\
 \bottomrule

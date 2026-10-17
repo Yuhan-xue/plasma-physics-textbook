@@ -1,0 +1,14 @@
+lambda_D [m] = 2.3509235309107274e-05
+success: True
+status : 0
+message: The algorithm converged to the desired accuracy.
+nodes  : 2417 | niter: 11
+rms residual max: 9.988005338664265e-09 | tol = 1e-8
+BC residual max : 1.9255074743120825e-37
+x=1e-01: y_num=9.204813e-05  y_lin=9.204821e-05  相对偏差=-9.169e-07
+x=1e+00: y_num=3.690339e-06  y_lin=3.690348e-06  相对偏差=-2.407e-06
+x=5e+00: y_num=1.351907e-08  y_lin=1.351910e-08  相对偏差=-2.633e-06
+amp=1e-02: x=1 相对偏差=-2.410e-06, 偏差/amp=-2.410e-04 (success=True)
+amp=1e-01: x=1 相对偏差=-2.411e-05, 偏差/amp=-2.411e-04 (success=True)
+amp=1e+00: x=1 相对偏差=-2.417e-04, 偏差/amp=-2.417e-04 (success=True)
+bad: success=False status=1 message=The maximum number of mesh nodes is exceeded.

@@ -1,5 +1,5 @@
 % 附录 AH：原子过程与谱线（v1.26.12 新增）
-% 数值唯一来源：tmp/appAH_calc.py -> tmp/appAH_calc.txt（98 行）。正文引用的每个数都能在那里找到。
+% 数值唯一来源：tools/calc/appAH_calc.py -> tools/calc/appAH_calc.txt（98 行）。正文引用的每个数都能在那里找到。
 % 单位写法：数字与单位一律写进数学模式（\mathrm{nm}、\mathrm{eV}、\mathrm{m^{-3}}），避免中文字符进入数学字体。
 % 三种约定：温度用 eV；波长用 nm；线宽一律指 FWHM（半高全宽），不是标准差。
 % 版权口径：只借鉴结论、公式形式与题型；文字、数值、表格自拟并独立复算。离线环境无法核验 DOI，故只给书名/作者/年份/卷期页。
@@ -71,7 +71,7 @@ v_1 = Z\alpha c = 6\times7.29735\times10^{-3}\times2.99792\times10^{8}
 
 \textbf{出处：}本节关于类氢能级、玻尔速度与跃迁波长的写法，参照 Griem \emph{Principles of Plasma Spectroscopy}（1997，第 2--3 章）、
 Salzmann \emph{Atomic Physics in Hot Plasmas}（1998，第 2 章）与 Hutchinson \emph{Principles of Plasma Diagnostics}（第 2 版，2002，第 6 章）；
-D-$\alpha$ 波长与自发辐射系数为文献声明值。本节凡标出数字的量都由 \texttt{tmp/appAH\_calc.py} 复算。
+D-$\alpha$ 波长与自发辐射系数为文献声明值。本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAH\_calc.py} 复算。
 
 \begin{figure}[htbp]
 \centering
@@ -150,7 +150,7 @@ $T=0.5$ eV 时碳的电离度是 $5.77523\%$（氢只有 $0.568235\%$）。
 
 \textbf{出处：}Saha 方程及其在恒星与实验室等离子体中的应用，参照 Saha（1920，\emph{Philosophical Magazine} \textbf{40}, 472）、
 Unsöld \emph{Physik der Sternatmosphären}（1955，第 3 章）、Mihalas \emph{Stellar Atmospheres}（第 2 版，1978，第 5 章）
-与 Salzmann（1998，第 3 章）；电离能取文献值。本节凡标出数字的量都由 \texttt{tmp/appAH\_calc.py} 复算。
+与 Salzmann（1998，第 3 章）；电离能取文献值。本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAH\_calc.py} 复算。
 
 \section{强度比：为什么日冕平衡能当温度计}
 \label{sec:app-ah-corona}
@@ -219,7 +219,6 @@ D-$\alpha$ 的自发辐射系数是 $A_{21}=4.41\times10^{7}$ s$^{-1}$（声明�
 \textbf{出处：}日冕平衡与强度比测温的推导与适用条件，参照 Griem \emph{Plasma Spectroscopy}（1964，第 6 章）、
 Griem（1997，第 4--5 章）、Fujimoto \emph{Plasma Spectroscopy}（2004，第 4 章）
 与 Salzmann（1998，第 5 章）；$A_{21}$ 与日冕极限判据为文献声明值。
-本节凡标出数字的量都由 \texttt{tmp/appAH\_calc.py} 复算。
 
 \section{多普勒展宽：线宽测离子温度}
 \label{sec:app-ah-doppler}
@@ -282,7 +281,6 @@ D-$\alpha$ 的线宽是 C VI 的 $474.862$ 倍：波长长、质量小，两个�
 \textbf{出处：}多普勒展宽公式与线宽测温的实践，参照 Hutchinson（2002，第 6--7 章）、
 Griem（1997，第 4 章）、Lochte-Holtgreven \emph{Plasma Diagnostics}（1968，第 4 章）
 与 Wesson \emph{Tokamaks}（第 4 版，2011，第 12 章）；仪器展宽为声明值。
-本节凡标出数字的量都由 \texttt{tmp/appAH\_calc.py} 复算。
 
 \section{塞曼分裂与斯塔克展宽：谱线里的场与密度}
 \label{sec:app-ah-fields}
@@ -341,7 +339,6 @@ Griem（1997，第 4 章）、Lochte-Holtgreven \emph{Plasma Diagnostics}（1968
 \textbf{出处：}塞曼效应与斯塔克展宽的公式形式、以及氢样离子线宽的密度定标，
 参照 Griem（1964，第 4 章）、Griem（1997，第 3--4 章）、Hutchinson（2002，第 6 章）
 与 Salzmann（1998，第 6 章）；斯塔克系数为按 $n_e^{2/3}$ 外推的声明值。
-本节凡标出数字的量都由 \texttt{tmp/appAH\_calc.py} 复算。
 
 \section{光学薄还是光学厚：谱线诊断的自检}
 \label{sec:app-ah-opacity}
@@ -407,7 +404,7 @@ I \propto \int n_z\,A_{21}\,\mathrm{d}L \quad(\text{强度可加，诊断线性}
 
 \textbf{出处：}光学深度与自吸收对谱线诊断的限制，参照 Griem（1964，第 3 章）、
 Griem（1997，第 4 章）、Lochte-Holtgreven（1968，第 3 章）与 Mihalas（1978，第 10 章）；
-轫致吸收系数沿用附录 X 的口径。本节凡标出数字的量都由 \texttt{tmp/appAH\_calc.py} 复算。
+轫致吸收系数沿用附录 X 的口径。本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAH\_calc.py} 复算。
 
 \section{估算练习}
 \label{sec:app-ah-problems}
@@ -468,7 +465,7 @@ $T_i=1$ keV 的多普勒线宽是 $0.00237607$ nm，两者之比 $0.00118621$。
 \toprule
 等级 & 含义 & 本附录中的例子 \\
 \midrule
-现算级 & 由 \texttt{tmp/appAH\_calc.py} 从常数与输入现算 & Saha 常数、各电离度、跃迁波长、多普勒线宽、塞曼分裂、$\sigma_{12}$、$\tau$、练习解答 \\
+现算级 & 由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAH\_calc.py} 从常数与输入现算 & Saha 常数、各电离度、跃迁波长、多普勒线宽、塞曼分裂、$\sigma_{12}$、$\tau$、练习解答 \\
 声明级 & 脚本顶部写入的输入或文献值，不参与推导 & D-$\alpha$ 波长 $656.28$ nm、He II $468.57$ nm、$A_{21}=4.41\times10^{7}$ s$^{-1}$、仪器展宽 $0.02$ nm、Stark FWHM $0.053$ nm、日冕极限 $10^{20}$ m$^{-3}$ \\
 文献级 & 只作定性对照或公式出处，不进入任何数值断言 & Griem 的谱线展宽理论、Saha 方程的原始文献、NIST 波长表的量级 \\
 \bottomrule
@@ -479,7 +476,6 @@ $T_i=1$ keV 的多普勒线宽是 $0.00237607$ nm，两者之比 $0.00118621$。
 
 \subsection*{借鉴来源}
 
-本附录的写法参照以下经典教材与原始文献（离线环境无法核验 DOI，故只给书名/作者/年份/卷期页）：
 
 \begin{itemize}
 \item Saha, M. N. (1920), \emph{Philosophical Magazine} \textbf{40}, 472——Saha 方程原始文献；

@@ -1,13 +1,13 @@
 % ============================================================================
 % 附录 AE：动理学与回旋动理学：从弗拉索夫方程到回旋动理学（v1.26.9 新增）
 %
-% 数值唯一来源：tmp/appAE_calc.py → tmp/appAE_calc.txt（正文与门禁 P37 引用的
+% 数值唯一来源：tools/calc/appAE_calc.py → tools/calc/appAE_calc.txt（正文与门禁 P37 引用的
 %   每一个数字都必须出现在该输出里；文献值只作定性对照，不参与数值断言）
 % 单位写法：单位一律写进数学字体（\mathrm{...}），避免中文字符进数学模式
 % 速度约定：v_the = sqrt(T_e/m_e)（与附录 AC 一致）、v_Ti = sqrt(2T_i/m_i)
 %   （与附录 AD 的 rho_i 一致）、c_s = sqrt(T_e/m_i)（附录 AD 的离子声速）
 % 版权口径：只借鉴结论、方程形式与题型；文字、数值、表格全部自拟，
-%   由 tmp/appAE_calc.py 独立复算。离线环境无法核验 DOI，故只给书名/作者/年份/卷期页。
+%   由 tools/calc/appAE_calc.py 独立复算。离线环境无法核验 DOI，故只给书名/作者/年份/卷期页。
 % 与其他附录的分工：附录 S 讲约束与输运（流体视角）、附录 AC 讲数值方法、
 %   附录 W 讲快粒子与 alpha；本附录补「分布函数本身」这一层。
 % ============================================================================
@@ -92,7 +92,6 @@ $f(\mathbf{x},\mathbf{v},t)$ 不是把 $n(\mathbf{x},t)$ 加一个速度维度�
 （1983，第 4--5 章）与 Chen \emph{Introduction to Plasma Physics and Controlled Fusion}
 （第 2 版，1984，第 3 章）；速度分布的矩与闭合问题参照 Braginskii（1965，
 \emph{Reviews of Plasma Physics} \textbf{1}, 205）与 Freidberg \emph{Ideal MHD}（2014，第 2 章）。
-本节凡标出数字的量都由 \texttt{tmp/appAE\_calc.py} 复算。
 
 \section{无碰撞不等于无相互作用：弗拉索夫方程与闭合问题}
 \label{sec:app-ae-vlasov}
@@ -179,7 +178,7 @@ p=\frac{m}{3}\int(\mathbf{v}-\mathbf{u})^2f\,d^3v .
 闭合问题与 Braginskii 输运系数参照 Braginskii（1965，\emph{Reviews of Plasma Physics} \textbf{1}, 205）
 与 Helander \& Sigmar \emph{Collisional Transport in Magnetized Plasmas}（2002，第 3--4 章）；
 库仑对数与碰撞时间的量级参照 Wesson \emph{Tokamaks}（第 4 版，2011，第 14 章）。
-本节凡标出数字的量都由 \texttt{tmp/appAE\_calc.py} 复算。
+本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAE\_calc.py} 复算。
 \section{波粒共振：Landau 阻尼为什么是「无碰撞」的}
 \label{sec:app-ae-landau}
 
@@ -267,7 +266,7 @@ $\omega=kc_s=8.32659\times10^{8}\ \mathrm{rad\,s^{-1}}$，即 $f=132.522\ \mathr
 Greene \& Kruskal（1957，\emph{Physical Review} \textbf{108}, 546）。
 公式形式与量级参照 Nicholson \emph{Introduction to Plasma Physics}（1983，第 6--7 章）
 与 Krall \& Trivelpiece \emph{Principles of Plasma Physics}（1973，第 8 章）。
-本节凡标出数字的量都由 \texttt{tmp/appAE\_calc.py} 复算。
+本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAE\_calc.py} 复算。
 
 \section{捕获粒子、香蕉轨道与新经典输运}
 \label{sec:app-ae-orbit}
@@ -344,7 +343,15 @@ $\sim1/\sqrt{\epsilon}$ 倍，而这个因子在本工作点是 $1.76068$。
 （1976，\emph{Reviews of Modern Physics} \textbf{48}, 239）与 Helander \& Sigmar
 \emph{Collisional Transport in Magnetized Plasmas}（2002，第 6--8 章）；
 自举电流与捕获粒子的关系参照 Wesson \emph{Tokamaks}（第 4 版，2011，第 4 章）。
-本节凡标出数字的量都由 \texttt{tmp/appAE\_calc.py} 复算。
+本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAE\_calc.py} 复算。
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/ae_gyrotron.jpg}
+\caption{把电子回旋运动当快变量平均掉，才有回旋动理学；回旋管则反过来利用这段运动做毫米波源。本节出现的回旋频率与回旋半径，正是这台器件的工作参数。}
+\label{fig:photo-appae2}
+\figsource{Rama，CC BY-SA 2.5（Wikimedia Commons）}
+\end{figure}
+
 \section{回旋动理学：把最快的那个运动平均掉}
 \label{sec:app-ae-gyro}
 
@@ -434,7 +441,7 @@ $2$ & $4$ & $0.207002$ & $79.2998\%$（短波，几乎完全被平均掉） \\
 回旋玻姆与玻姆标度的对照、以及离子尺度湍流的输运定标参照 Hahm \& Burrell
 （1995，\emph{Physics of Plasmas} \textbf{2}, 1648）；$\Gamma_0$ 因子的写法与
 回旋黏性参照 Helander \& Sigmar \emph{Collisional Transport in Magnetized Plasmas}
-（2002，第 6 章）。本节凡标出数字的量都由 \texttt{tmp/appAE\_calc.py} 复算。
+（2002，第 6 章）。本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAE\_calc.py} 复算。
 
 \section{速度分布的形状：尾部、损失锥与从动理学到流体}
 \label{sec:app-ae-tail}
@@ -535,12 +542,12 @@ alpha 等效 $u$ & $15.4249$（$v_{Ti}$） & $v_\alpha/v_{Ti}$ & 热尾权重 $4
 Wesson \emph{Tokamaks}（第 4 版，2011，第 1、14 章）；损失锥与磁镜的经典处理
 见 Krall \& Trivelpiece \emph{Principles of Plasma Physics}（1973，第 1 章）；
 各向异性输运与张量闭合参照 Braginskii（1965，\emph{Reviews of Plasma Physics} \textbf{1}, 205）。
-本节凡标出数字的量都由 \texttt{tmp/appAE\_calc.py} 复算。
+本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAE\_calc.py} 复算。
 \section{估算练习}
 \label{sec:app-ae-problems}
 
 以下六题都可以只用本附录的公式与本工作点参数手算。答案保留四到六位有效数字，
-每一步都能用 \texttt{tmp/appAE\_calc.py} 复算。
+每一步都能用 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAE\_calc.py} 复算。
 
 \textbf{练习 1}（尺度换算）把工作点换成 $n_e=1\times10^{19}\ \mathrm{m^{-3}}$、
 $T_e=T_i=1\ \mathrm{keV}$、$B=5.3\ \mathrm{T}$：求德拜长度、德拜立方内粒子数、
@@ -596,7 +603,7 @@ $\lambda_{\mathrm{mfp}}/(2\pi R)=920.929$——比工作点的 $92$ 倍又稀了
 
 本附录的数值分三级，读者可以据此判断每个数有多「硬」：
 
-(1) \textbf{现算级}：由 \texttt{tmp/appAE\_calc.py} 从工作点参数直接算出，
+(1) \textbf{现算级}：由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAE\_calc.py} 从工作点参数直接算出，
 包括所有速度、长度、频率、比例与本节的练习解答。这一级的每一个数字都可在脚本里复现。
 
 (2) \textbf{声明级}：脚本顶部的输入与约定，包括 $\tau_E=3.7\ \mathrm{s}$、
@@ -629,7 +636,7 @@ Bosch \& Hale (1992) & D-T 反应率对温度的依赖 & 拟合公式与系数 \
 \bottomrule
 \end{tabular}
 \caption{本附录的文献来源与借用边界。本附录的文字、数值、表格与练习全部自拟，
-由 \texttt{tmp/appAE\_calc.py} 独立复算；文献只提供结论与图像。}
+由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAE\_calc.py} 独立复算；文献只提供结论与图像。}
 \label{tab:app-ae-source}
 \end{table}
 
@@ -640,7 +647,7 @@ Bosch \& Hale (1992) & D-T 反应率对温度的依赖 & 拟合公式与系数 \
 (2) 不复制经典文献里的推导细节，只采用已被广泛引用的结论与量级；
 
 (3) 不引用任何实验数据点、拟合曲线或软件输出作为本附录的数值来源——
-所有数字都能在 \texttt{tmp/appAE\_calc.py} 里找到对应的一行；
+所有数字都能在 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAE\_calc.py} 里找到对应的一行；
 
 (4) 不复制任何软件的文档或教程；工具层面的入门由附录 G 承担，本附录只讲方法。
 

@@ -1,7 +1,7 @@
 % ===========================================================================
 % 附录 AP：维护与遥操作——从热室到包层更换
 % ---------------------------------------------------------------------------
-% 数值唯一来源：tmp/appAP_calc.py -> tmp/appAP_calc.txt
+% 数值唯一来源：tools/calc/appAP_calc.py -> tools/calc/appAP_calc.txt
 %   重生成：python tmp\appAP_calc.py | Out-File -Encoding utf8 tmp\appAP_calc.txt
 %   正文里凡标出数字的量都必须能在这个输出里找到；改数字先改脚本。
 % 工作点：与附录 Z / AJ / AK / AO 同一台（P_fus = 556.5 MW），
@@ -76,7 +76,7 @@ $1.92\times10^{6}$ 元}；全年满发是 $1.752\times10^{6}\ \mathrm{MWh}$，
 
 \textbf{出处：}维护与可用性的工程口径参照 Dolan（编）\textit{Magnetic Fusion Technology}
 （2013）第 15 章「维护与远程处理」、Wesson \textit{Tokamaks} 4th ed.（2011）第 1 章
-对装置运行窗口的讨论。本节凡标出数字的量都由 \texttt{tmp/appAP\_calc.py} 复算。
+对装置运行窗口的讨论。本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAP\_calc.py} 复算。
 
 \section{包层寿命与更换周期}
 \label{sec:app-ap-blanket}
@@ -133,7 +133,6 @@ $5$ 年不是「材料五岁会坏」，而是「我们决定每五年换一次�
 \textbf{出处：}包层与增殖段维护的工程口径参照 ITER Physics Basis
 （\textit{Nuclear Fusion} \textbf{39}, 1999）第 4 章、Dolan（编）
 \textit{Magnetic Fusion Technology}（2013）第 6 章与第 15 章。
-本节凡标出数字的量都由 \texttt{tmp/appAP\_calc.py} 复算。
 
 \section{活化与冷却窗口：剂量率的两个分量}
 \label{sec:app-ap-dose}
@@ -221,7 +220,6 @@ t_{\text{hands}} = T_{\text{long}}\log_2\frac{D_{\text{long}}}{D_{\text{hands}}}
 \textbf{出处：}活化与剂量率的工程口径参照 Gilbert 与 Sublet 的活化计算综述
 （2010 年代）、Turner \textit{Atoms, Radiation, and Radiation Protection}
 （2007）、ICRP 第 103 号报告（2007）的剂量限值框架。
-本节凡标出数字的量都由 \texttt{tmp/appAP\_calc.py} 复算。
 
 \begin{figure}[htbp]
 \centering
@@ -303,7 +301,6 @@ v_{\max} = \frac{0.01\ \mathrm{m}}{0.1\ \mathrm{s}} = 0.1\ \mathrm{m}/\mathrm{s}
 \textbf{出处：}遥操作与机器人学的工程口径参照 Siciliano 与 Khatib（编）
 \textit{Springer Handbook of Robotics} 2nd ed.（2016）第 4 部分「现场与服务机器人」、
 Dolan（编）\textit{Magnetic Fusion Technology}（2013）第 15 章。
-本节凡标出数字的量都由 \texttt{tmp/appAP\_calc.py} 复算。
 
 \section{热室与部件流转：能力余量}
 \label{sec:app-ap-hotcell}
@@ -362,7 +359,6 @@ cask 年转运能力 & $24.3333$ 段$/$年 & $2 \times 365/30$ \\
 
 \textbf{出处：}热室与部件流转的口径参照 Dolan（编）\textit{Magnetic Fusion Technology}
 （2013）第 15 章、IAEA 关于聚变装置远程处理与热室设施的公开技术文件（2000 年代）。
-本节凡标出数字的量都由 \texttt{tmp/appAP\_calc.py} 复算。
 
 \section{在役检查与人因}
 \label{sec:app-ap-human}
@@ -418,7 +414,6 @@ D_{\text{year}} = N_{\text{hands}}D_{\text{inspect}} = 2.5\ \mathrm{mSv}/\text{�
 
 \textbf{出处：}剂量限值与防护框架参照 ICRP 第 103 号报告（2007）、
 Turner \textit{Atoms, Radiation, and Radiation Protection}（2007）。
-本节凡标出数字的量都由 \texttt{tmp/appAP\_calc.py} 复算。
 
 \section{估算练习}
 \label{sec:app-ap-problems}
@@ -503,7 +498,7 @@ IAEA 远程处理与热室技术文件（2000 年代） & 技术文件 & cask �
 \end{tip}
 
 \textbf{不复制}本附录不复制上述来源的原文、图表、参数表与习题；
-所有数值均由 \texttt{tmp/appAP\_calc.py} 按本附录声明的输入复算，
+所有数值均由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAP\_calc.py} 按本附录声明的输入复算，
 读者可以用同一脚本改输入重算。
 \textbf{不复制}IEC/IAEA 标准文本与 ICRP 报告条文；
 本附录只使用「$20\ \mathrm{mSv}/$年 与 $1\ \mathrm{mSv}/$年 这类限值数字」

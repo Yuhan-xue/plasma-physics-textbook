@@ -1,6 +1,6 @@
 % ============================================================================
 % 附录 AJ：加料与排灰——燃料怎么进去，灰怎么出来
-% 数值唯一来源：tmp/appAJ_calc.py -> tmp/appAJ_calc.txt（只 print，不写文件）
+% 数值唯一来源：tools/calc/appAJ_calc.py -> tools/calc/appAJ_calc.txt（只 print，不写文件）
 % 单位写法：数字与单位都进数学模式（避免中文字符进数学字体）；温度用 eV，质量用 kg，
 %          流量用 Pa m^3/s 与 mbar L/s 并列，粒子数一律给 s^-1。
 % 工作点：n_e = 1e20 m^-3、T_e = 9.194 keV、B = 5.3 T、a = 2.0 m、R = 6.2 m、
@@ -105,7 +105,6 @@ $5.21683$ 倍，按注气量算则是 $52.1683$ 倍。凡是看到「加料量�
 Freidberg \emph{Plasma Physics and Fusion Energy}（2007，第 13--14 章）与
 ITER Physics Basis（1999，\emph{Nucl. Fusion} \textbf{39}, 2137，第 2 章）；
 $17.6\ \mathrm{MeV}$ 与氚质量取与附录 Z 相同的口径。
-本节凡标出数字的量都由 \texttt{tmp/appAJ\_calc.py} 复算。
 
 \section{气体加料与弹丸加料：效率差在哪}
 \label{sec:app-aj-fuelling}
@@ -173,7 +172,6 @@ $3.43184\times10^{21}\ \mathrm{s^{-1}}$，质量流率
 \textbf{出处：}弹丸加料的综述与效率区间参照 Milora 等（1995，\emph{Nucl. Fusion} \textbf{35}, 657）；
 边缘再循环与加料效率的处理参照 Stangeby \emph{The Plasma Boundary of Magnetic Fusion Devices}
 （2000，第 4 章）与 Loarte 等（2007，\emph{Nucl. Fusion} \textbf{47}, S203，ITER 物理基础第 4 章）。
-本节凡标出数字的量都由 \texttt{tmp/appAJ\_calc.py} 复算。
 
 \begin{figure}[htbp]
 \centering
@@ -260,7 +258,7 @@ $r_p = 1.5\ \mathrm{mm}$ 需要 $v_p \ge 2500\ \mathrm{m\,s^{-1}}$；
 \textbf{出处：}中性气体屏蔽与烧蚀标度参照 Parks \& Turnbull（1978，\emph{Phys. Fluids} \textbf{21}, 1735）；
 弹丸参数区间与加料效率参照 Milora 等（1995，\emph{Nucl. Fusion} \textbf{35}, 657）；
 几何口径与附录 AD 的弹丸原子数保持一致。
-本节凡标出数字的量都由 \texttt{tmp/appAJ\_calc.py} 复算。
+本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAJ\_calc.py} 复算。
 
 \section{氦灰：稀释与排出条件}
 \label{sec:app-aj-ash}
@@ -342,7 +340,7 @@ P_{\mathrm{fus}} \to 556.5\times(0.912256)^{2} = 463.126\ \mathrm{MW}
 与 ITER Physics Basis（1999，\emph{Nucl. Fusion} \textbf{39}, 2137，第 4 章）；
 反应率与稀释的处理参照 Bosch \& Hale（1992，\emph{Nucl. Fusion} \textbf{32}, 611）与 Wesson
 \emph{Tokamaks}（第 4 版，2011，第 6 章）；氦谱线见附录 AH。本节凡标出数字的量都由
-\texttt{tmp/appAJ\_calc.py} 复算。
+\texttt{tools/\allowbreak{}calc/\allowbreak{}appAJ\_calc.py} 复算。
 
 \section{抽气与氚存量：为什么瓶颈不在泵上}
 \label{sec:app-aj-pumping}
@@ -425,7 +423,7 @@ t_{\mathrm{lim}} = \frac{2.0\ \mathrm{kg}}{1.6272\ \text{kg/年}} = 1.22911\ \te
 \textbf{出处：}偏滤器抽气与再循环的处理参照 Stangeby（2000，第 8 章）与 Loarte 等（2007）；
 氚滞留与共沉积的综述参照 Causey（2002，\emph{J. Nucl. Mater.} \textbf{300}, 91）；
 氚库存、半衰期与自持口径与附录 Z 一致。本节凡标出数字的量都由
-\texttt{tmp/appAJ\_calc.py} 复算。
+\texttt{tools/\allowbreak{}calc/\allowbreak{}appAJ\_calc.py} 复算。
 
 \section{密度控制：反馈回路的带宽}
 \label{sec:app-aj-control}
@@ -486,7 +484,7 @@ Greenwald 密度 & $I_p/(\pi a^{2})$ & $8.82069\times10^{19}\ \mathrm{m^{-3}}$ &
 
 \textbf{出处：}Greenwald 密度极限参照 Greenwald 等（1988，\emph{Nucl. Fusion} \textbf{28}, 2199）；
 密度控制与加料剖面的实验处理参照 Loarte 等（2007，\emph{Nucl. Fusion} \textbf{47}, S203）；
-弹丸步调与 ELM 控制的联系见附录 AD。本节凡标出数字的量都由 \texttt{tmp/appAJ\_calc.py} 复算。
+弹丸步调与 ELM 控制的联系见附录 AD。本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAJ\_calc.py} 复算。
 
 \section{估算练习}
 \label{sec:app-aj-problems}
@@ -534,7 +532,7 @@ $\tau_{\mathrm{abl}} = 0.646087\ \mathrm{ms}$、$L_{\mathrm{pen}} = 0.193826\ \m
 $2.0/1.6272 = 1.22911$ 年，即 $14.7493$ 个月。
 
 \textbf{出处：}本题参数与公式分别来自 Milora 等（1995）、Parks \& Turnbull（1978）、
-Loarte 等（2007）与 Causey（2002）；数值由 \texttt{tmp/appAJ\_calc.py} 复算。
+Loarte 等（2007）与 Causey（2002）；数值由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAJ\_calc.py} 复算。
 
 \section{来源、分级与版权说明}
 \label{sec:app-aj-source}
@@ -548,7 +546,7 @@ Loarte 等（2007）与 Causey（2002）；数值由 \texttt{tmp/appAJ\_calc.py}
 \toprule
 级别 & 含义 & 本附录的例子 \\
 \midrule
-现算级 & 由 \texttt{tmp/appAJ\_calc.py} 当场算出 & $S_{\mathrm{ext}} = 2.0591\times10^{21}\ \mathrm{s^{-1}}$、
+现算级 & 由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAJ\_calc.py} 当场算出 & $S_{\mathrm{ext}} = 2.0591\times10^{21}\ \mathrm{s^{-1}}$、
 $n_{\mathrm{He}} = 4.38719\times10^{18}\ \mathrm{m^{-3}}$、$162.72\ \text{kg/年}$ \\
 声明级 & 输入量或明确的量级值 & $\tau_p = 2.5\ \mathrm{s}$、$R = 0.95$、
 $\eta_{\mathrm{gas}} = 0.10$、$\eta_{\mathrm{pel}} = 0.60$、$\tau_{\mathrm{abl}} = 0.4\ \mathrm{ms}$、
@@ -567,7 +565,7 @@ $\eta_{\mathrm{gas}} = 0.10$、$\eta_{\mathrm{pel}} = 0.60$、$\tau_{\mathrm{abl
 本附录的工程口径都是为这个自洽工作点自拟的；
 \textbf{不复制}氚滞留数据库，只引用其「百分比量级」的结论；
 \textbf{不复制}练习原题，六道题与解答均为本仓库自拟。所有数字都可由
-\texttt{tmp/appAJ\_calc.py} 复算，交叉核对脚本 \texttt{tmp/appAJ\_check.py} 逐条比对正文。
+\texttt{tools/\allowbreak{}calc/\allowbreak{}appAJ\_calc.py} 复算，交叉核对脚本 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAJ\_check.py} 逐条比对正文。
 
 \begin{tip}{本附录不给什么}{tip-app-aj-honest}
 本附录只给\textbf{粒子账}与\textbf{标度}：加料量、穿透深度、灰的稀释与排出条件、

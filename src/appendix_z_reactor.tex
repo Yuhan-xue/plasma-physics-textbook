@@ -1,5 +1,5 @@
 % 附录 Z：聚变堆工程——从等离子体到电网（v1.24.0 新增）
-% 数值唯一来源：tmp/appZ_calc.py -> tmp/appZ_calc.txt（正文与门禁 P31 的唯一来源）
+% 数值唯一来源：tools/calc/appZ_calc.py -> tools/calc/appZ_calc.txt（正文与门禁 P31 的唯一来源）
 % 单位写法：MW / MW m^-2 / kg s^-1 / g/day / GWh，全部走 \mathrm{}，不放中文字符进数学字体。
 % 版权口径：只借鉴经典教材与工程文献的物理结论、公式形式与题型；文字、数值与表格自拟并独立复算。
 % 离线环境无法核验 DOI，故只给书名、作者、年份、卷期页。
@@ -103,7 +103,7 @@ $0.391\ \mathrm{MW}$ 电}。看到这个数，就明白为什么工程上抠每�
 \emph{Tokamaks}（第 4 版，2011，第 1 章）；包层能量倍增与再循环份额的量级参照
 ITER 设计报告（1999，\emph{Nucl.\ Fusion} \textbf{39}, 2137）与 Stacey
 \emph{Fusion Plasma Physics}（2005，第 1 章）。本节凡标出数字的量都由
-\texttt{tmp/appZ\_calc.py} 复算。
+\texttt{tools/\allowbreak{}calc/\allowbreak{}appZ\_calc.py} 复算。
 
 \section{中子：壁负载与材料损伤}
 \label{sec:app-z-neutron}
@@ -165,7 +165,7 @@ $50\ \mathrm{dpa}$ 只够撑 $10.996$ 年。所以聚变堆包层是\textbf{消�
 \textbf{出处：}中子壁负载与 dpa 的工程口径参照 Stacey \emph{Fusion Plasma Physics}
 （2005，第 1 章）与 Atzeni \& Meyer-ter-Vehn \emph{The Physics of Inertial Fusion}
 （2004，第 1 章）；第一壁面积与热负荷口径与附录 N、附录 X 一致。本节数字由
-\texttt{tmp/appZ\_calc.py} 复算。
+\texttt{tools/\allowbreak{}calc/\allowbreak{}appZ\_calc.py} 复算。
 
 \section{氚循环：增殖比、库存与自持}
 \label{sec:app-z-tritium}
@@ -248,7 +248,7 @@ $12\ \mathrm{kg/day}$ 的氚处理系统——这是聚变堆里唯一「每天�
 \textbf{出处：}氚燃耗与增殖比的定义参照 Freidberg \emph{Plasma Physics and Fusion
 Energy}（2007，第 14 章）与 Stacey（2005，第 1 章）；氚半衰期与衰变常数取自
 NNDC/IAEA 核数据（离线环境无法核验 DOI，故只给机构与量级）；处理循环时间的量级
-参照 ITER 氚系统设计报告（1999）。本节数字由 \texttt{tmp/appZ\_calc.py} 复算。
+参照 ITER 氚系统设计报告（1999）。本节数字由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appZ\_calc.py} 复算。
 
 \section{屏蔽与超导磁体：多远才够}
 \label{sec:app-z-shield}
@@ -292,7 +292,7 @@ P_{\mathrm{cryo}} = \mathrm{COP}\,\varepsilon P_n = 133.56\ \mathrm{kW},
 \textbf{出处：}中子屏蔽的指数衰减与制冷系数量级参照 Stacey \emph{Fusion Plasma
 Physics}（2005，第 1 章）与 Wesson \emph{Tokamaks}（第 4 版，2011，第 1 章）；
 「先算上限再决定要不要细算」的做法与附录 X、附录 Y 一致。本节数字由
-\texttt{tmp/appZ\_calc.py} 复算。
+\texttt{tools/\allowbreak{}calc/\allowbreak{}appZ\_calc.py} 复算。
 
 \section{热工与冷却剂：热怎么搬出去}
 \label{sec:app-z-thermal}
@@ -340,7 +340,6 @@ P_{\mathrm{pump}} = 0.01\,P_{\mathrm{th}} = 6.3997\ \mathrm{MW},
 
 \textbf{出处：}热量守恒与冷却剂流量账参照 Stacey（2005，第 1 章）；
 氦冷却剂的比热与温升量级参照 ITER 设计报告（1999）与 Freidberg（2007，第 14 章）。
-本节数字由 \texttt{tmp/appZ\_calc.py} 复算。
 
 \section{可用率与年发电量：工程增益的另一半}
 \label{sec:app-z-availability}
@@ -396,7 +395,7 @@ $P_{\mathrm{net}}$。而年发电量还要乘 $A$。两者的地位完全对称�
 
 \textbf{出处：}可用率与年发电量的账参照 Freidberg \emph{Plasma Physics and Fusion
 Energy}（2007，第 14 章）；标煤折算系数是\textbf{声明的}量级口径（本书只用作对照，
-不参与任何推导）。本节数字由 \texttt{tmp/appZ\_calc.py} 复算。
+不参与任何推导）。本节数字由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appZ\_calc.py} 复算。
 
 \section{估算练习}
 \label{sec:app-z-problems}
@@ -486,7 +485,7 @@ Freidberg（2007）第 14 章 &
 
 版权与复现口径，四条：第一，\textbf{不复制}任何教材或论文的表格数值，
 表 \ref{tab:app-z-chain} 到表 \ref{tab:app-z-source} 的每一个数字都由
-\texttt{tmp/appZ\_calc.py} 在给定工作点上现算；第二，\textbf{不复制}原书的题面与解答文字，
+\texttt{tools/\allowbreak{}calc/\allowbreak{}appZ\_calc.py} 在给定工作点上现算；第二，\textbf{不复制}原书的题面与解答文字，
 练习 1--6 的题目与解答均为本书自拟；第三，\textbf{不复制}离线环境无法核验的 DOI，
 一律只给书名、作者、年份、卷期页；第四，\textbf{不复制}任何未经复算的「精确值」——
 凡本附录引入的\textbf{声明值}（包层倍增 $1.15$、热效率 $0.40$、再循环份额 $0.15$、

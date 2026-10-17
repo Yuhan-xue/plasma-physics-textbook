@@ -1,0 +1,106 @@
+﻿==============================================================================
+附录 AD 数值来源：边界台基与 L-H 模（工作点 D1）
+==============================================================================
+[DECLARED] 输入一览
+  n_e=1e+20 m^-3  T_e=T_i=9.194 keV  B=5.3 T  R=6.2 m  a=2 m  V=832.2 m^3
+  W_th=371.4 MJ  P_fus=556.5 MW  P_alpha=111.3 MW  P_aux=20 MW  P_rad_core=27.8322 MW
+  I_p=15 MA  q_95=3.5  q_0=1  m_i=2.5 m_p  Z_eff=2  S_wall=489.532 m^2
+  n_ped=6e+19 m^-3（0.6 n_e）  T_ped=3 keV
+  Martin: P_th=0.0488 n20^0.717 B^0.803 S^0.941 MW
+  EPED: Delta_ped=0.076 sqrt(beta_p,ped) R m；alpha_crit=2.5/4（无/含自举）
+  ELM: dW/W_th=0.07  t_ELM=0.3 ms  L_div=1 m  E_th(W)=1 MJ/m^2
+  f_exp=5  f_out=0.7  q_limit=10 MW/m^2  tau_E=3.7 s  N_pellet=1e+21
+
+[AD.1] 从 L 模到 H 模：阈值、密度极限与回滞
+  L-H 阈值 P_th = 63.2554 MW
+  P_alpha / P_th = 1.75953
+  P_SOL = P_alpha + P_aux - P_rad_core = 103.468 MW
+  P_SOL / P_th = 1.63572
+  余量 P_SOL - P_th = 40.2124 MW
+  格林沃尔德密度 n_G = I_p/(pi a^2) = 1.19366e+20 m^-3 = 11.9366 10^19 m^-3
+  密度分数 f_G = n_e / n_G = 0.837758
+  回滞：H->L 反向阈值 = 0.65 P_th = 41.116 MW
+  阈值对密度的敏感度：0.5 n_e -> P_th = 38.4821 MW，2 n_e -> P_th = 103.977 MW
+  阈值对磁场的敏感度：B=4 T -> P_th = 50.4612 MW，B=6 T -> P_th = 69.881 MW
+  离子声速 c_s = sqrt(T_e/m_i) = 593524 m/s = 593.524 km/s
+  湍流速率（序估计）gamma ~ c_s/a = 296762 s^-1
+  抑制湍流所需极向速度 v_theta >= gamma Delta_ped(12 cm) = 35493.6 m/s
+  对应径向电场 E_r = v_theta B_theta = 53240.5 V/m = 53.2405 kV/m
+  若实测 E_r = 30 kV/m，则剪切率 omega = E_r/(B_theta Delta_ped) = 167220 s^-1 = 0.563481 gamma
+
+[AD.2] 台基：宽度、梯度与自举电流
+  极向磁场（边界）B_theta = mu0 I_p/(2 pi a) = 1.5 T
+  离子拉莫尔半径 rho_i(T_i,B) = 0.00413338 m = 4.13338 mm
+  极向拉莫尔半径 rho_theta = rho_i B/B_theta = 0.0146046 m = 1.46046 cm
+  湍流波数 k_theta = 1/rho_i = 241.933 m^-1（k_theta rho_i = 1）
+  台基顶压强 p_ped = 2 n_ped T_ped = 57678.4 Pa = 57.6784 kPa
+  体积平均压强 <p> = 2 W_th/(3 V) = 297525 Pa = 297.525 kPa
+  p_ped / <p> = 0.193861
+  台基极向 beta：beta_p,ped = 2 mu0 p_ped/B_theta^2 = 0.0644273
+  台基总 beta：beta_ped = 2 mu0 p_ped/B^2 = 0.00516061 = 0.5161 %
+  EPED 宽度 Delta_ped = 0.076 sqrt(beta_p,ped) R = 0.119603 m = 11.9603 cm
+  Delta_ped / rho_theta = 8.18937
+  台基梯度 |dp/dr| = p_ped/Delta_ped = 482250 Pa/m
+  气球参数 alpha_MHD = 2 mu0 R q95^2 |dp/dr|/B^2 = 3.27709
+  反径比 eps = a/R = 0.322581；台基顶半径 r_ped = a - Delta_ped = 1.8804 m
+  自举电流密度 j_bs = 1.5 sqrt(eps)/B_theta |dp/dr| = 273900 A/m^2
+  平均电流密度 j_avg = I_p/(pi a^2) = 1.19366e+06 A/m^2
+  j_bs / j_avg = 0.229462
+  台基自举电流 I_bs = j_bs Delta_ped 2 pi R = 1.27616e+06 A = 1.27616 MA
+  I_bs / I_p = 0.085077
+
+[AD.3] 台基压强上限：气球模与剥离模两条边界
+  气球模上限（无自举 alpha_crit=2.5）：p_max = 44001.2 Pa = 44.0012 kPa
+  气球模上限（含自举 alpha_crit=4）：p_max = 70401.9 Pa = 70.4019 kPa
+  声明的 p_ped = 57.6784 kPa -> alpha_MHD/alpha_crit(无自举) = 1.31084，alpha_MHD/alpha_crit(含自举) = 0.819273
+  剥离模：j_bs/j_avg = 0.229462；I_bs/I_p = 0.085077
+  台基壳层体积 V_ped = S_wall Delta_ped = 58.5493 m^3 = 7.03548 % V
+  壳层储能（线性降到 0）W_ped = (3/2)(p_ped/2)V_ped = 2.53277e+06 J = 2.53277 MJ
+  W_ped / W_th = 0.00681952
+  与总 beta 的对照：beta_ped = 0.5161 %，芯部 beta ≈ 3.993 %
+
+[AD.4] ELM：储能坍塌、频率与靶板能量密度
+  每次损失 dW_ELM = 0.07 W_th = 2.5998e+07 J = 25.998 MJ
+  偏滤器面积 A_div = 2 pi R L_div = 38.9557 m^2
+  能量密度 = dW_ELM/A_div = 667373 J/m^2 = 0.667373 MJ/m^2
+  峰值热流（t_ELM=0.3 ms）= 2.22458e+09 W/m^2 = 2.22458 GW/m^2
+  与钨阈值 E_th=1 MJ/m^2 之比 = 0.667373（余量 1.49841 倍）
+  功率平衡定出的 ELM 频率 f_ELM = P_SOL/dW_ELM = 3.97984 Hz
+  ELM 周期 T_ELM = 0.251267 s = 251.267 ms
+  每 1000 个 ELM 的时间 = 251.267 s
+  与 tau_E 的对照：tau_E=3.7 s -> f_ELM tau_E = 14.7254；W_ped/tau_E = 0.684532 MW
+  ELM 通道的功率 = f_ELM dW_ELM = 103.468 MW（= P_SOL，自洽）
+
+[AD.5] 缓解：弹丸步调与共振磁扰动
+  弹丸步调 f=20 Hz -> 每次 dW = P_SOL/f = 5.17339 MJ
+  能量密度 = 0.132802 MJ/m^2（未缓解 0.667373 MJ/m^2 的 0.199 倍）
+  峰值热流 = 0.442672 GW/m^2
+  要把能量密度压到 0.3 MJ/m^2 以下，频率须 >= 8.85345 Hz
+  共振面 q=2：r/a = 0.632456 -> r = 1.26491 m（台基顶内 61.5486 cm）
+  共振面 q=3：r/a = 0.894427 -> r = 1.78885 m（台基顶内 9.15431 cm）
+  弹丸：1e+21 个原子 -> 质量 4.18155e-06 kg = 4.18155 mg
+  全部沉积在 V_ped=58.5493 m^3 -> dn = 1.70796e+19 m^-3 = 28.4661 % n_ped
+
+[AD.6] 边界与 SOL：热流通道宽度（接口到附录 N）
+  Eich 定标 lambda_q = 0.63 B_theta^-1.19 = 0.388859 mm
+  靶板足迹 lambda_t = f_exp lambda_q = 0.00194429 m = 1.94429 mm
+  外侧靶板湿面积 A_out = 2 pi R lambda_t = 0.0757414 m^2
+  未缓解峰值热流 q_peak = f_out P_SOL/A_out = 9.56246e+08 W/m^2 = 956.246 MW/m^2
+  与材料上限 10 MW/m^2 之比 = 95.6246
+  只靠辐射：需要辐射掉 0.989542 的 P_SOL
+  展宽 5 倍 + 辐射 0.9 -> q = 19.1249 MW/m^2
+  展宽 5 倍 + 辐射 0.95 -> q = 9.56246 MW/m^2
+  展宽 10 倍 + 辐射 0.9 -> q = 9.56246 MW/m^2
+  与附录 X 的壁面韧致辐射热流 55.1547 kW/m^2 之比 = 17337.5
+
+[AD.7] 六道练习解答
+  1) P_aux=50 MW: P_SOL = 133.468 MW，P_SOL/P_th = 2.10998，余量 70.2124 MW
+  2) n_e=5e19 m^-3: P_th = 38.4821 MW（0.608361 倍），f_G = 0.418879
+  3) B=4 T: P_th = 50.4612 MW（0.797739 倍）；B_theta 不变（I_p 不变）
+  4) dW=3% W_th: dW = 11.142 MJ，f = 9.28629 Hz，能量密度 = 0.286017 MJ/m^2
+  5) q=2 共振面 r/a = 0.632456，r = 1.26491 m，距离最外磁面 73.5089 cm
+  6) n_ped=0.8 n_e, T_ped=2 keV: p_ped = 51.2697 kPa，beta_p,ped = 0.0572688，Delta_ped = 11.2762 cm，alpha_MHD = 3.08967
+
+==============================================================================
+以上即附录 AD 正文与门禁 P36 可以引用的全部数值。
+==============================================================================

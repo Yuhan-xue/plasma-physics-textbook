@@ -1,18 +1,16 @@
-# docs/ —— 交付物报告
+# docs/ —— 可复跑的检查报告
 
-这里放**可复跑的检查报告**：不是手写的说明，而是脚本生成的快照，随时可以重跑核对。
+这里放**脚本生成的检查快照**，不是手写的说明；随时可以重跑核对。
 
-| 文件 | 生成方式 | 内容 |
-| --- | --- | --- |
-| [`self-study-audit.md`](self-study-audit.md) | `python tmp/selfstudy_audit.py --write` | 自学标准全量审计：12 章、44 个附录逐项对照自学要素 |
+| 文件 | 内容 |
+| --- | --- |
+| [`self-study-audit.md`](self-study-audit.md) | 自学标准全量审计：12 章、52 个附录逐项对照自学要素 |
 
 ## 判据在哪
 
-判据写在 `check/selfstudy_criteria.py`（仓库内、可 review），三处共用同一份：
-
-- `docs/self-study-audit.md` 的报告内容；
-- `check/full_check.py` 第 R 类守卫（每次跑全量检查都会核对，有缺口即 FAIL）；
-- `tmp/selfstudy_audit.py` 的缺口打印。
+判据写在 [`check/selfstudy_criteria.py`](../check/selfstudy_criteria.py)，三处共用同一份：
+生成这份报告、全量检查里的自学标准一类、以及缺口打印。
+换言之：报告里的每一项都能在检查里被重新核对，不是"看起来差不多"。
 
 ## 三分对象、三套标准
 

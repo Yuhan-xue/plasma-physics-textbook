@@ -1,7 +1,7 @@
 % ============================================================================
 % 附录 AY：聚变材料与辐照损伤 —— 从 dpa 到肿胀与寿命（注明出处）
 %
-% 数值来源：tmp/appAY_calc.py（只打印，输出 tmp/appAY_calc.txt）。
+% 数值来源：tools/calc/appAY_calc.py（只打印，输出 tools/calc/appAY_calc.txt）。
 %   * 工作点 D1 与附录 M/S/U/V/W/AK/AP/AV/AX 同口径：
 %     P_fus = 556.5 MW、P_n = 445.175 MW、A_wall = 489.532 m^2、V = 832.2 m^3。
 %   * 中子壁负载取附录 AV/Z 的 0.909388 MW/m^2（由 P_n/A_wall 复算为 0.909389，
@@ -445,6 +445,14 @@ Zinkle 等的聚变材料综述；本书只借唯象关系与量级，不复制�
 \figsource{Student-julia-pwr，CC BY-SA 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
 \end{figure}
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/ay_w7x_tiles.jpg}
+\caption{寿命是数出来的：一块瓦能挨多少热流、被溅射掉多少，决定了整个部件的更换周期。本节算的净侵蚀与热负荷，就落在图中这批主动冷却的偏滤器瓦上。}
+\label{fig:photo-appay3}
+\figsource{Christopher Roux / EUROfusion，CC BY 4.0（Wikimedia Commons）}
+\end{figure}
+
 \section{溅射侵蚀与再沉积：净侵蚀才是寿命}
 \label{sec:app-ay-erosion}
 
@@ -679,8 +687,8 @@ $3/2.99493=1.00169$ fpy。\textbf{再沉积从 $0.95$ 掉到 $0.97$ 看似变好
 \section{来源、分级与版权说明}
 \label{sec:app-ay-source}
 
-本附录的数值全部由 \texttt{tmp/appAY\_calc.py} 复算（输出
-\texttt{tmp/appAY\_calc.txt}），工作点与附录 M/S/U/V/W/AK/AP/AV/AX 一致；
+本附录的数值全部由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAY\_calc.py} 复算（输出
+\texttt{tools/\allowbreak{}calc/\allowbreak{}appAY\_calc.txt}），工作点与附录 M/S/U/V/W/AK/AP/AV/AX 一致；
 中子壁负载取附录 AV/Z 声明的 $0.909388\ \mathrm{MW\,m^{-2}}$。
 材料与损伤侧的输入（位移截面、离位阈能、氦产生率、肿胀参数、硬化与
 DBTT 系数、溅射产额、再沉积份额、蠕变寿命）都是\textbf{声明输入}，

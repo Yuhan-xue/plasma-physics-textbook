@@ -1,11 +1,11 @@
 % 附录 AB：空间与天体等离子体——从太阳风到磁层与重联（v1.26.6 新增）
-% 数值唯一来源：tmp/appAB_calc.py -> tmp/appAB_calc.txt（正文与门禁 P34 的唯一来源）
+% 数值唯一来源：tools/calc/appAB_calc.py -> tools/calc/appAB_calc.txt（正文与门禁 P34 的唯一来源）
 % 单位写法：km/s / nT / Pa / W / s / R_E，全部走 \mathrm{}，不放中文字符进数学字体。
 % 版权口径：只借鉴经典教材与文献的物理结论、公式形式与题型；文字、数值与表格自拟并独立复算。
 % 离线环境无法核验 DOI，故只给书名、作者、年份、卷期页。
 % 分工：M--AA 讲的是托卡马克主线（加热、边界、约束、增益、破裂、快粒子、辐射、强场、堆工程、替代位形）；
 %       本附录跳出实验室，讲太阳风—磁层—重联这条天体链，重点是「同一套方程，两套尺度」。
-% 引用的全部数字由 tmp/appAB_calc.py 现算；脚本内声明的输入见 AB.2 开头的表。
+% 引用的全部数字由 tools/calc/appAB_calc.py 现算；脚本内声明的输入见 AB.2 开头的表。
 
 \section{四个尺度：从太阳风到磁尾}
 \label{sec:app-ab-scales}
@@ -55,7 +55,7 @@
 \textbf{出处：}本节的分区口径与尺度取值参照 Kivelson \& Russell \emph{Introduction to Space Physics}
 （1995，第 1--3 章）与 Baumjohann \& Treumann \emph{Basic Space Plasma Physics}（1996，第 1 章）；
 表 \ref{tab:app-ab-scales} 的四行内容由本文自拟，其中的量级关系都能用本节后面的公式复算。
-本节凡标出数字的量都由 \texttt{tmp/appAB\_calc.py} 复算。所有文字、数值与表格均不复制原书，
+本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAB\_calc.py} 复算。所有文字、数值与表格均不复制原书，
 只借鉴结论与讲解顺序。
 
 \section{太阳风：为什么它是超声速的}
@@ -121,7 +121,7 @@ M_s=\frac{v}{c_s}=9.1388,\qquad M_A=\frac{v}{v_A}=8.2012 .
 等离子体 $\beta$ & $0.80534$ & --- & 磁压与热压同量级 \\
 \bottomrule
 \end{tabular}
-\caption{太阳风工作点的七个导出量。所有数由 \texttt{tmp/appAB\_calc.py} 现算。}
+\caption{太阳风工作点的七个导出量。所有数由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAB\_calc.py} 现算。}
 \label{tab:app-ab-solarwind}
 \end{table}
 
@@ -137,7 +137,7 @@ $M_s=9.1388$ 不能理解成「太阳风被加热到了 9 倍声速」。
 （1996，第 1、8 章）与 Parks \emph{Physics of Space Plasmas}（2004，第 1--3 章）；
 「声速点」的定性图像参照 Parker 的太阳风解（文献综述见 Kivelson \& Russell 1995，第 4 章）。
 本节只借鉴结论与推导形式，公式里的四个输入取本附录的工作点，全部数值由
-\texttt{tmp/appAB\_calc.py} 复算，不复制原书表格与文字。本附录\textbf{不复制}任何教材的数值表格。
+\texttt{tools/\allowbreak{}calc/\allowbreak{}appAB\_calc.py} 复算，不复制原书表格与文字。本附录\textbf{不复制}任何教材的数值表格。
 
 \section{弓激波与磁鞘：无碰撞激波靠什么耗散}
 \label{sec:app-ab-bowshock}
@@ -211,7 +211,7 @@ P_{sw}=\frac12\rho v^3\cdot\pi R_E^2
 \textbf{出处：}磁层顶力学平衡与弓激波几何参照 Kivelson \& Russell \emph{Introduction to Space Physics}
 （1995，第 5--6 章）；无碰撞激波的定性图像参照 Parks \emph{Physics of Space Plasmas}（2004，第 5 章）
 与 Baumjohann \& Treumann（1996，第 9 章）。本节公式自拟，输入取本附录工作点，
-数值由 \texttt{tmp/appAB\_calc.py} 复算；\textbf{不复制}原书的观测曲线与图表。
+数值由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAB\_calc.py} 复算；\textbf{不复制}原书的观测曲线与图表。
 
 \begin{figure}[htbp]
 \centering
@@ -275,7 +275,7 @@ P_{sw}=\frac12\rho v^3\cdot\pi R_E^2
 \textbf{出处：}对流循环与电离层发电机的讲解参照 Kivelson \& Russell \emph{Introduction to Space Physics}
 （1995，第 5--8 章）与 Baumjohann \& Treumann（1996，第 7、9 章）；
 「欧姆定律极限」的表述方式参照 Priest \& Forbes \emph{Magnetic Reconnection}（2000，第 1--2 章）。
-本节数值由 \texttt{tmp/appAB\_calc.py} 复算，\textbf{不复制}原书插图与推导细节。
+本节数值由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAB\_calc.py} 复算，\textbf{不复制}原书插图与推导细节。
 
 \section{磁重联：Sweet--Parker 与 Petschek 差在哪}
 \label{sec:app-ab-reconnection}
@@ -355,7 +355,7 @@ $S$ 掉下来，重联率上去。所以「重联率是多少」这个问题，
 （2000，第 1--4 章）与 Kivelson \& Russell（1995，第 8 章）；
 原始图像分别见 Sweet（1958）与 Petschek（1964）的会议文集；
 无碰撞重联的定性说明参照 Baumjohann \& Treumann（1996，第 9 章）。
-\textbf{不复制}原书推导与观测图，数值全部由 \texttt{tmp/appAB\_calc.py} 现算。
+\textbf{不复制}原书推导与观测图，数值全部由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAB\_calc.py} 现算。
 
 \section{辐射带与空间天气：磁矩守恒的必然结果}
 \label{sec:app-ab-radbelt}
@@ -424,14 +424,12 @@ T_{ce}=\frac{2\pi m_e}{eB}=0.00714477\ \mathrm{s},
 \textbf{出处：}三层运动与损失锥的讲解参照 Kivelson \& Russell \emph{Introduction to Space Physics}
 （1995，第 3、10 章）与 Parks \emph{Physics of Space Plasmas}（2004，第 4、6 章）；
 表 \ref{tab:app-ab-radbelt} 的四行内容由本文自拟，只给尺度关系不给通量，
-数值由 \texttt{tmp/appAB\_calc.py} 复算，\textbf{不复制}原书的辐射带通量图。
+数值由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAB\_calc.py} 复算，\textbf{不复制}原书的辐射带通量图。
 
 \section{估算练习}
 \label{sec:app-ab-problems}
 
 下面六题只用本附录的公式与工作点，把其中一个量换掉重算一遍。
-每题都能用笔算完成，答案在题后给出；全部数值由 \texttt{tmp/appAB\_ex.py} 现算，
-该脚本开跑时会先核对 \texttt{tmp/appAB\_calc.py} 的三个基准值，防止口径漂移。
 
 \textbf{练习 1}（密度）：把太阳风密度从 $5\ \mathrm{cm^{-3}}$ 加倍到 $10\ \mathrm{cm^{-3}}$，
 温度、磁场与速度不变。求电子与离子等离子体频率、阿尔芬速与阿尔芬马赫数。
@@ -504,7 +502,7 @@ Sweet (1958) / Petschek (1964) 会议文集 & 1958/1964 & 两种重联的原始�
 本附录的数字分三级，正文里逐节标明：
 
 \begin{itemize}
-\item \textbf{现算级}：由 \texttt{tmp/appAB\_calc.py} 现算并打印，正文与门禁 P34 逐位对齐。
+\item \textbf{现算级}：由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAB\_calc.py} 现算并打印，正文与门禁 P34 逐位对齐。
 包括两个频率、声速、阿尔芬速、两个马赫数、$\beta$、动压与磁压、磁层顶距离、
 输入功率、电阻率、伦德奎斯特数、两种重联率与时间、回旋半径与回旋周期、阿尔芬电导。
 \item \textbf{声明级}：作为输入写死在脚本顶部的四个数
@@ -523,4 +521,3 @@ Sweet (1958) / Petschek (1964) 会议文集 & 1958/1964 & 两种重联的原始�
 只在「借鉴来源」中标注物理结论与讲解顺序的出处。
 本附录\textbf{不复制}任何观测通量数值——辐射带一节只给尺度关系，
 因为离线环境无法核验原始观测文献，给出精确通量反而不可追溯。
-凡是本附录给出的数字，读者都可以在本地重跑脚本得到同样的结果。

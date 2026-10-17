@@ -10,4 +10,6 @@
 
 新增内容的物理回归汇总为 3380 PASS、0 WARN、0 FAIL；图形布局检查 12 项 PASS、0 WARN/FAIL。PDF 结构检查保留两类警告：印刷目录有 19/482 项与书签页码相差一页；附录 F 有 29/35 个链接目标页与 `.aux` 页面记录不一致。前轮相同问题仍未关闭，偏差比例分别较上次记录增加；应按本轮 487 页版本重新验证并处理。
 
-本轮没有确认新的教材内容错误。各检查不能替代全书逐式人工审查；详细证据和 TODO 见 [`evidence/checks.md`](evidence/checks.md)、[`findings.json`](findings.json) 与 [`TODO.md`](TODO.md)。
+本轮没有确认新的教材内容错误。各检查不能替代全书逐式人工审查；详细证据和 TODO 见 [`evidence/checks.md`](evidence/checks.md) 与 [`TODO.md`](TODO.md)。
+
+> 机器读数说明：当轮的 当轮发现清单（已移出仓库） 等 JSON 索引与原始日志已移出仓库，需要时用 `check/*.py` 重跑复现。

@@ -41,6 +41,21 @@ def read(p):
     return io.open(p, encoding='utf-8').read()
 
 
+def pdf_text(pdf):
+    """取 PDF 全文：优先 poppler 的 pdftotext，没装时用 PyMuPDF 兜底。"""
+    import subprocess
+    try:
+        r = subprocess.run(['pdftotext', '-layout', pdf, '-'], capture_output=True)
+        return r.stdout.decode('utf-8', errors='replace')
+    except FileNotFoundError:
+        try:
+            import pymupdf as fitz
+        except ImportError:
+            import fitz
+        doc = fitz.open(pdf)
+        return '\n'.join(page.get_text() for page in doc)
+
+
 def strip_comments(t):
     out = []
     for line in t.split('\n'):
@@ -511,11 +526,8 @@ def check_G_ui(files):
     # ---- 页眉一致性（从 PDF 检查附录页眉）
     pdf = os.path.join(SRC, MAIN.replace('.tex', '.pdf'))
     if os.path.exists(pdf):
-        import subprocess
-        r = subprocess.run(['pdftotext', '-layout', pdf, '-'],
-                           capture_output=True)
-        txt = r.stdout.decode('utf-8', errors='replace')
-        ap = len(re.findall(r'附录 [A-G]', txt))
+        txt = pdf_text(pdf)
+        ap = len(re.findall(r'附录\s*[A-Z]{1,2}', txt))
         rec('PASS' if ap > 0 else 'WARN', 'G',
             '附录页眉：检测到 %d 处「附录 X」标记' % ap)
 

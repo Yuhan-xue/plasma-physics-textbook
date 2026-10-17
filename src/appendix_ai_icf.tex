@@ -1,6 +1,6 @@
 % 附录 AI：惯性约束内爆与点火（v1.26.13 新增）
 %
-% 数值唯一来源：tmp/appAI_calc.py（只 print，不写文件）→ tmp/appAI_calc.txt。
+% 数值唯一来源：tools/calc/appAI_calc.py（只 print，不写文件）→ tools/calc/appAI_calc.txt。
 %   本节凡标出数字的量都由该脚本复算；其余只能定性引用。
 % 单位写法：数字与单位一律进数学模式（避免中文字符落进数学字体）；
 %   温度用 keV 或 eV、面密度用 g/cm^2、压力用 Pa 并给出 Gbar/Mbar 换算。
@@ -88,7 +88,7 @@ X 射线能量 & $\eta_{\mathrm{ce}}E_{\mathrm{drv}}$ & $1.7\ \mathrm{MJ}$ & 式
 Lindl \emph{Physics of Plasmas}（1995，第 2 卷，3933 页）与 Lindl 等
 \emph{Physics of Plasmas}（2004，第 11 卷，339 页）；黑腔能量平衡的形式参照
 Atzeni \& Meyer-ter-Vehn \emph{The Physics of Inertial Fusion}（2004，第 10 章）。
-本节凡标出数字的量都由 \texttt{tmp/appAI\_calc.py} 复算。
+本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAI\_calc.py} 复算。
 
 \section{内爆：火箭模型与滞止}
 \label{sec:app-ai-implosion}
@@ -167,7 +167,7 @@ $\rho = 200$ g cm$^{-3}$：半径压缩比 $9.2221$、密度压缩比 $784.314$�
 \emph{The Physics of Inertial Fusion}（2004，第 7 章）；惯性约束聚变的原始构想见
 Nuckolls 等 \emph{Nature}（1972，第 239 卷，139 页）；滞止动压的量级口径参照
 Lindl \emph{Physics of Plasmas}（1995，第 2 卷，3933 页）。
-本节凡标出数字的量都由 \texttt{tmp/appAI\_calc.py} 复算。
+本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAI\_calc.py} 复算。
 
 \section{绝热与熵：为什么压缩要冷}
 \label{sec:app-ai-adiabat}
@@ -243,7 +243,7 @@ P_{\mathrm{th}}(100\ \mathrm{eV}) = 7.71883\times10^{14}\ \mathrm{Pa},
 Zel'dovich \& Raizer \emph{Physics of Shock Waves and High-Temperature Hydrodynamic
 Phenomena}（1966 初版 / 2002 再版，第 1--2 章）；脉冲整形与激波定时的讨论参照
 Lindl \emph{Physics of Plasmas}（1995，第 2 卷，3933 页）。
-本节凡标出数字的量都由 \texttt{tmp/appAI\_calc.py} 复算。
+本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAI\_calc.py} 复算。
 
 \section{流体不稳定性：瑞利--泰勒与烧蚀稳定化}
 \label{sec:app-ai-rt}
@@ -344,7 +344,7 @@ Richtmyer \emph{Communications on Pure and Applied Mathematics}（1960，第 13 
 297 页）与 Meshkov（1969，第 4 卷，101 页）；烧蚀稳定化与内爆不稳定性综述参照
 Kilkenny 等 \emph{Physics of Plasmas}（1994，第 1 卷，1379 页）与 Atzeni \&
 Meyer-ter-Vehn \emph{The Physics of Inertial Fusion}（2004，第 8 章）。
-本节凡标出数字的量都由 \texttt{tmp/appAI\_calc.py} 复算。
+本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAI\_calc.py} 复算。
 
 \section{热斑与点火：自加热怎样跑赢轫致损失}
 \label{sec:app-ai-ignition}
@@ -453,7 +453,7 @@ $\alpha$ 射程 & $\rho R = 0.3\ \mathrm{g\,cm^{-2}}$ & $15\ \mu$m ($200$ g cm$^
 （2014，第 506 卷，343 页）；DT 反应率数据见 Bosch \& Hale \emph{Nuclear Fusion}
 （1992，第 32 卷，611 页）；轫致损失的公式与数值口径与附录 X 一致，另见
 Wesson \emph{Tokamaks}（第 4 版，2011，第 14 章）。本节凡标出数字的量都由
-\texttt{tmp/appAI\_calc.py} 复算。
+\texttt{tools/\allowbreak{}calc/\allowbreak{}appAI\_calc.py} 复算。
 
 \section{燃烧与增益：把三本账合起来}
 \label{sec:app-ai-burn}
@@ -546,7 +546,7 @@ Nuckolls 等 \emph{Nature}（1972，第 239 卷，139 页）；点火与增益�
 Betti \& Hurricane \emph{Nature Physics}（2016，第 12 卷，435 页）；
 2022 年国家点火装置的结果属文献级对照（输入 $2.05$ MJ、产额约 $3.15$ MJ），
 离线环境无法核验卷期页与 DOI，故只作定性引用。本节凡标出数字的量都由
-\texttt{tmp/appAI\_calc.py} 复算。
+\texttt{tools/\allowbreak{}calc/\allowbreak{}appAI\_calc.py} 复算。
 
 \section{估算练习}
 \label{sec:app-ai-problems}
@@ -603,12 +603,11 @@ $\rho R = 1.57854$ g cm$^{-2}$。增益要求降下来，面密度要求也降�
 \textbf{出处：}本节六道题的题型参照 Atzeni \& Meyer-ter-Vehn
 \emph{The Physics of Inertial Fusion}（2004，第 6--8 章的估算题传统）与
 Lindl \emph{Physics of Plasmas}（1995，第 2 卷，3933 页）中的标度讨论；
-题面与解答的数字由 \texttt{tmp/appAI\_calc.py} 独立复算。
+题面与解答的数字由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAI\_calc.py} 独立复算。
 
 \section{来源、分级与版权说明}
 \label{sec:app-ai-source}
 
-本附录的数值分三级，读者可以据此判断每个数字的可信度与可复算性：
 
 \begin{table}[htbp]
 \centering
@@ -619,7 +618,7 @@ Lindl \emph{Physics of Plasmas}（1995，第 2 卷，3933 页）中的标度讨�
 \midrule
 现算级 & 由给定输入按公式算出 & $T_{\mathrm{rad}} = 286.597$ eV、
 $v_{\mathrm{imp}} = 301.052$ km s$^{-1}$、$\rho R = 3$ g cm$^{-2}$、
-$G = 160.033$ & \texttt{tmp/appAI\_calc.py} \\
+$G = 160.033$ & \texttt{tools/\allowbreak{}calc/\allowbreak{}appAI\_calc.py} \\
 声明级 & 量级估计或设计输入，不作断言 & $\eta_{\mathrm{ce}} = 0.85$、
 $v_{\mathrm{ex}} = 330$ km s$^{-1}$、$v_{\mathrm{abl}} = 3.0\times10^{4}$ m s$^{-1}$、
 $\langle\sigma v\rangle$ 拟合、热斑 $5$ keV/$30$ g cm$^{-3}$、
@@ -662,4 +661,4 @@ Hurricane 等 \emph{Nature}（2014，第 506 卷，343 页）、
 Bosch \& Hale \emph{Nuclear Fusion}（1992，第 32 卷，611 页）与
 Zel'dovich \& Raizer（1966/2002）。本附录与附录 Y 第 6 节是同一个靶点
 （附录 Y 只给 0-D 账），与附录 U 的点火判据、附录 Z 的电厂账分工不同：
-本节凡标出数字的量都由 \texttt{tmp/appAI\_calc.py} 复算。
+本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAI\_calc.py} 复算。

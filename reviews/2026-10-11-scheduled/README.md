@@ -1,8 +1,11 @@
 # 等离子体教材 v1.8.0：2026-10-11 定时独立评审
 
+> 说明：本轮的机器索引（`*.json`）、原始检查日志（原始检查日志（已移出仓库））与评审方复算脚本（`recheck_*.py`）
+> 已移出仓库，只保留这份人类可读的记录；需要时用 `check/` 下的检查脚本重跑复现。
+
 本轮新增 **4 项 P2**；本目录共有 **6 项待处理问题**（旧项沿用原编号，不重复计新发现）。只新增评审资料，教材正文、生产脚本和发布件均未修订。
 
-基线：`b95117b3ee8e8e53b4c3d2fbfe1e5ef3a368ce8a`。发布件：`pdf/plasma_physics_textbook_v2.pdf`，239 页、220 条书签；SHA-256 见 [audit.json](audit.json)。
+基线：`b95117b3ee8e8e53b4c3d2fbfe1e5ef3a368ce8a`。发布件：`pdf/plasma_physics_textbook_v2.pdf`，239 页、220 条书签；SHA-256 见 当轮审阅记录（已移出仓库）。
 
 | 编号 | 状态 | 问题 |
 |---|---|---|
@@ -20,7 +23,7 @@
 
 完整构建成功，最终 no-compile 检查 30 项、FAIL 0 / WARN 1；physics_regression 122 项、FAIL 0 / WARN 0；UI 35 项、WARN 17 / FAIL 0；一致性 14 项、FAIL 0；图形 13 项、FAIL 0；目录 11 项、WARN 2 / FAIL 0。编译 WARN 为两处既有溢出（最大约 6.8 pt）。日志负例夹具通过；G.2 原样代码复跑 14/14 行匹配，两个输出变异均被识别。不同阶段检查数不同，原始日志完整保存，不套用旧 CLOSURE 的统计数。
 
-发布件与重建件全部页面的文本、书签及同环境 **60 dpi 渲染逐页相同**；PDF 字节不同，但上述内容比对一致，未将字节差异判为内容缺陷。见 [pdf-comparison.json](pdf-comparison.json)。这证明两份产物一致，不证明教材物理正确，也不等于人工逐页认证。
+发布件与重建件全部页面的文本、书签及同环境 **60 dpi 渲染逐页相同**；PDF 字节不同，但上述内容比对一致，未将字节差异判为内容缺陷。见 当轮 PDF 逐页比对记录（已移出仓库）。这证明两份产物一致，不证明教材物理正确，也不等于人工逐页认证。
 
 人工查看 PDF 页：114, 115, 164, 165, 220, 226, 235, 236, 237, 238。截图和覆盖说明见 [02-ui-reading.md](02-ui-reading.md)。
 
@@ -29,7 +32,7 @@
 从仓库根目录执行：
 
 ```powershell
-python reviews/2026-10-11-scheduled/recheck_review.py
+python reviews/2026-10-11-scheduled/评审方复算脚本（已移出仓库）
 ```
 
 依赖：Python、NumPy；本目录数学反例按需使用 SciPy（力学）或 SymPy（数学基础）。本轮环境 Python 3.14.7、NumPy 2.5.3、SciPy 1.18.1、PyMuPDF 1.28.2。PDF 机器比对使用同一 PyMuPDF 实现，人工查看的是发布件截图。
@@ -43,10 +46,10 @@ python reviews/2026-10-11-scheduled/recheck_review.py
 - [工作流报告](03-workflow.md)
 - [旧问题复验](04-previous-round.md)
 - [TODO 与验收条件](TODO.md)
-- [机器可读问题索引](findings.json)
-- [独立计算结果](verification.json)
-- [原始检查记录](checks/)
+- `机器可读问题索引`
+- `独立计算结果`
+- 原始检查记录（已移出仓库）
 
 报告中的正式发现均附源码定位、反例或具体检查证据；自动检查通过与内容正确性分开报告。范围外部分不作全书正确性背书。
 
-版本变化记录见 [baseline-diff.txt](checks/baseline-diff.txt)。
+版本变化记录见 当轮版本变化记录（已移出仓库）。

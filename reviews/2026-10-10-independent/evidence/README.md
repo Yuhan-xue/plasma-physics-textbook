@@ -1,6 +1,9 @@
 # 页面证据
 
-来自仓库 `pdf/plasma_physics_textbook_v2.pdf`（218 页），按 1.6 倍渲染后保存为 JPEG。未改字、未加标记；截图哈希见 [audit.json](../audit.json)。
+> 说明：本轮的机器索引（`*.json`）、原始检查日志（原始检查日志（已移出仓库））与评审方复算脚本（`recheck_*.py`）
+> 已移出仓库，只保留这份人类可读的记录；需要时用 `check/` 下的检查脚本重跑复现。
+
+来自仓库 `pdf/plasma_physics_textbook_v2.pdf`（218 页），按 1.6 倍渲染后保存为 JPEG。未改字、未加标记；截图哈希见 当轮审阅记录（已移出仓库）。
 
 | 页 | 对应问题 |
 | --- | --- |
@@ -16,4 +19,4 @@
 | [204](p204.jpg) | 第 12 章导航与实际条目 |
 | [208](p208.jpg) | BVP 求解器状态码解释 |
 
-已跟踪 PDF 与重编译 PDF 的全页 72 dpi 渲染比较结果在 [build-published-comparison.json](../build-published-comparison.json)。这仅说明两份制品在该环境／分辨率下相同，不说明图中内容正确，也不替代逐页人工审阅。
+已跟踪 PDF 与重编译 PDF 的全页 72 dpi 渲染比较结果在 `build-published-comparison.json`。这仅说明两份制品在该环境／分辨率下相同，不说明图中内容正确，也不替代逐页人工审阅。

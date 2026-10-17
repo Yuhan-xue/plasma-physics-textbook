@@ -1,5 +1,5 @@
 % 附录 V：破裂、误差场与逃逸电子（v1.19.0 新增）
-% 数值唯一来源：tmp/appV_calc.py -> tmp/appV_calc.txt（正文与门禁 P26 的唯一来源）
+% 数值唯一来源：tools/calc/appV_calc.py -> tools/calc/appV_calc.txt（正文与门禁 P26 的唯一来源）
 % 时间单位写成 s/ms，避免中文字符进入数学字体；全部数字可用仓库脚本复算。
 % 版权口径：只借鉴经典教材与文献的物理结论、公式形式与题型；文字、数值与表格自拟并独立复算。
 % 离线环境无法核验 DOI，故只给书名、作者、年份、卷期页。
@@ -212,6 +212,14 @@ Phys.\ Control.\ Fusion} \textbf{26}, 209 与 Freidberg《Ideal MHD》（Cambrid
 RWM 的物理与反馈控制参照 Chu \& Okabayashi（2010）\textit{Plasma Phys.\ Control.\
 Fusion} \textbf{52}, 123001；无壁与理想壁的数值区间见 Hender 等（2007）。$\tau_w$ 的
 算例、增长率与反馈带宽要求为本书自拟。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/v_pfc_erosion.jpg}
+\caption{破裂的代价留在壁上：这块面向等离子体部件表面被侵蚀、又在别处再沉积了一层。本节把力、热与电子三笔账分别算完，最后都落在这张照片所示的那种表面损伤上。}
+\label{fig:photo-appv2}
+\figsource{Christophe Roux / CEA IRFM，CC BY 4.0（Wikimedia Commons）}
+\end{figure}
 
 \section{破裂的后果：力、热与电子三本账}
 \label{sec:app-v-consequence}
@@ -540,7 +548,7 @@ $18.947\ \mathrm{s^{-1}}$，反馈带宽要按 $\tau_w/10$ 设计，即 $189.47\
 \label{sec:app-v-source}
 
 本附录使用的公式类型、结论与题型均有明确出处；所有数值、表格与文字自拟，并由
-\texttt{tmp/appV\_calc.py} 独立复算。离线环境无法核验 DOI，故只给书名、作者、年份与卷期页。
+\texttt{tools/\allowbreak{}calc/\allowbreak{}appV\_calc.py} 独立复算。离线环境无法核验 DOI，故只给书名、作者、年份与卷期页。
 
 \begin{table}[htbp]
 \centering
@@ -555,7 +563,7 @@ V.3 & Troyon 等（1984）；Chu \& Okabayashi（2010）；Freidberg《Ideal MHD
 V.4 & Hender 等（2007）；Wesson 第 14 章 & 晕电流与电磁载荷、热猝灭量级 & 三本账的计算（玩具几何已声明） \\
 V.5 & Dreicer（1959）；Connor \& Hastie（1975）；Rosenbluth \& Putvinski（1997） & Dreicer 场、临界场、雪崩 & 三个场的数值算例、$e$ 折时间与束能量 \\
 V.6 & de Vries 等（2011）；Hollmann 等（2015）；Hender 等（2007） & 先兆统计与缓解系统现状 & 两项任务的粒子数与气量账 \\
-V.7 & 本书自拟 & 六道估算题的题型 & 全部数字来自 \texttt{tmp/appV\_calc.py} \\
+V.7 & 本书自拟 & 六道估算题的题型 & 全部数字来自 \texttt{tools/\allowbreak{}calc/\allowbreak{}appV\_calc.py} \\
 \bottomrule
 \end{tabular}
 \caption{本附录的借鉴来源与自拟部分对照表。所有量级 1 的精确系数、实验定标与工程设计值均
@@ -565,7 +573,7 @@ V.7 & 本书自拟 & 六道估算题的题型 & 全部数字来自 \texttt{tmp/a
 
 \textbf{三条"不复制"约定：}
 (1) 不复制任何教材或论文的表格数值——本附录每一张表的数字都能用
-\texttt{tmp/appV\_calc.py} 从同一组输入复算；
+\texttt{tools/\allowbreak{}calc/\allowbreak{}appV\_calc.py} 从同一组输入复算；
 (2) 不复制原文文字——所有叙述重新组织，并把简化与适用条件写在正文与语义盒里；
 (3) 不把实验定标写成"公式"——凡属统计或工程经验的数字（预警窗口、材料阈值、注入系统
 规模）都显式标注为经验值。
