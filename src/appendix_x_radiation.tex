@@ -76,10 +76,11 @@ $890.01\ \mathrm{MW}$，是聚变功率 $556.5\ \mathrm{MW}$ 的 $1.5993$ 倍。
 接下来要算的才是输运）。本附录三种辐射正好把两种情况都碰到了。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}三种机制的划分与轫致辐射公式参照 Wesson \emph{Tokamaks}（第 4 版，2011，
 第 2 章）与 NRL \emph{Plasma Formulary}（2018，辐射节）；光学薄与光学厚的判据参照
 Rybicki \& Lightman \emph{Radiative Processes in Astrophysics}（1979，第 1、5 章）。
-本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appX\_calc.py} 复算。
+}
 
 \section{光学薄还是光学厚：轫致辐射为什么逃得掉}
 \label{sec:app-x-opacity}
@@ -146,10 +147,11 @@ $1/\alpha_{ff}=6.8301\times10^{5}\ \mathrm{m}$，也就是 $683\ \mathrm{km}$，
 先确认它说的是 emission 还是 loss。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}光学深度与自由-自由吸收的具体形式参照 Rybicki \& Lightman
 \emph{Radiative Processes in Astrophysics}（1979，式 5.18 一带）；
 共振吸收与回旋辐射的输运处理参照 Bornatici 等（1983）\emph{Nucl.\ Fusion} \textbf{23}, 1153。
-本节数字由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appX\_calc.py} 复算。
+}
 
 \section{轫致辐射：为什么它总是主要损失}
 \label{sec:app-x-brems}
@@ -224,13 +226,15 @@ $55.1547\ \mathrm{kW\,m^{-2}}$，比偏滤器的稳态热流还小，看起来�
 \label{tab:app-x-brems}
 \end{table}
 
+{\footnotesize
 \textbf{出处：}轫致辐射的系数形式与 $Z_{\mathrm{eff}}$、$\sqrt{T_e}$ 依赖参照
 Wesson \emph{Tokamaks}（第 4 版，2011，第 2 章）与 NRL \emph{Plasma Formulary}（2018）；
 相对论修正的一阶形式参照 Wesson 同章；光子能量与波长的换算为本书自拟。
+}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/x_storage_ring.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/x_storage_ring.jpg}
 \caption{同步辐射储存环：回旋辐射从「损失」变成「工具」。本节把回旋辐射当损失算；把电子加速到相对论能量后，同一种辐射成了同步辐射光源——同一套公式，两种用法。}
 \label{fig:photo-appx2}
 \figsource{CLS Research Office，CC BY-SA 2.0（Wikimedia Commons）}
@@ -315,11 +319,12 @@ P_{\mathrm{CYC}}^{\mathrm{bb}} = F_{\mathrm{RJ}}\,A = 0.164622\ \mathrm{MW},
 \label{tab:app-x-cyclotron}
 \end{table}
 
+{\footnotesize
 \textbf{出处：}回旋辐射的单粒子功率、谐波结构与电子回旋波的输运处理参照
 Bornatici 等（1983）\emph{Nucl.\ Fusion} \textbf{23}, 1153 与
 Hutchinson \emph{Principles of Plasma Diagnostics}（2002，第 6 章）；
 Rayleigh--Jeans 极限参照 Rybicki \& Lightman（1979，第 1 章）。
-本节数字由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appX\_calc.py} 复算。
+}
 
 \section{线辐射与杂质：辐射崩塌}
 \label{sec:app-x-line}
@@ -377,9 +382,11 @@ n_W^{*} = \frac{P_\alpha}{V n_e L_W} = 1.3374\times10^{17}\ \mathrm{m^{-3}},
 \label{tab:app-x-impurity}
 \end{table}
 
+{\footnotesize
 \textbf{出处：}冷却率系数的定义与杂质辐射崩塌的图像参照 Post 等（1977）
 \emph{At.\ Data Nucl.\ Data Tables} \textbf{20}, 397 与 ADAS 数据库的公开说明；
 钨在 $10\ \mathrm{keV}$ 的量级取值按上述来源的曲线读数量级，具体精度不声明。
+}
 
 \section{辐射在功率账里的位置}
 \label{sec:app-x-budget}
@@ -439,9 +446,11 @@ $173.511$ 倍——\textbf{辐射是慢刀子，破裂是快刀子}：前者决�
 它同时放大轫致辐射（线性）与线辐射（线性），而这两项都从自加热里扣。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}功率平衡的分类与点火条件参照 Freidberg
 \emph{Plasma Physics and Fusion Energy}（2007，第 13 章）；
 把辐射损失单列成账的做法与附录 U 一致；与破裂时间尺度的对比参照附录 V。
+}
 
 \section{估算练习}
 \label{sec:app-x-problems}
@@ -495,6 +504,7 @@ $T = 1507.93\ \mathrm{keV}$，
 \section{来源、分级与版权说明}
 \label{sec:app-x-source}
 
+\begingroup\small
 本附录按难度分三档：X.1 与 X.2 是量级与判据（读完应当能判断「一个新损失通道重不重要」）；
 X.3 与 X.4 是两种机制的具体算法（读完应当能独立复算轫致辐射与回旋辐射的上下限）；
 X.5 与 X.6 是把辐射放回功率账（读完应当能说清「点火裕度里有四分之一是辐射」）。
@@ -539,3 +549,4 @@ Freidberg \emph{Plasma Physics and Fusion Energy}（2007）第 13 章 &
 一律只给书名、作者、年份、卷期页；第四，\textbf{不复制}任何未经复算的「精确值」——
 凡本附录引入的\textbf{声明值}（钨的冷却率系数 $10^{-32}\ \mathrm{W\,m^3}$、
 回旋谐波带宽 $\sim f_{ce}$）都在正文里写明是量级值，不假装精确。
+\endgroup

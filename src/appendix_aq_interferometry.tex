@@ -111,11 +111,12 @@ $N_L/(2a) = 6.66667\times10^{19}\ \mathrm{m^{-3}}$（附录 AN 用的是同一�
 所以\textbf{任何一条干涉仪曲线，都必须写清楚它对应哪一条弦}。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}Hutchinson \textit{Principles of Plasma Diagnostics} 第 2 版
 （2002）第 4 章「干涉与折射率」；Heald \& Wharton \textit{Plasma Diagnostics with
 Microwaves}（1965）关于相移、截止密度与条纹计数的讨论。
 本附录不复制任何教材的图、表与习题，只借用结论与量级。
-本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAQ\_calc.py} 复算。
+}
 
 \section{条纹、外差与零差：把相位从光强里取出来}
 \label{sec:app-aq-heterodyne}
@@ -202,10 +203,12 @@ $9.38429\times10^{24}\ \mathrm{m^{-2}/s}$，折合电子密度 $3.51911\times10^
 比本书任何工况的密度上升率都高几个量级。
 \textbf{真正会让相位跟踪失锁的，是振动与折射率跳变，不是等离子体本身}。
 
+{\footnotesize
 \textbf{出处：}Hutchinson \textit{Principles of Plasma Diagnostics} 第 2 版
 （2002）第 4 章关于外差与相位精度的讨论；Heald \& Wharton（1965）
 关于条纹计数与相位测量的对比。本节凡标出数字的量都由
 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAQ\_calc.py} 复算。
+}
 
 \section{振动补偿与色散干涉：把共模误差减掉}
 \label{sec:app-aq-dispersion}
@@ -282,12 +285,13 @@ $7.38578\times10^{20}\ \mathrm{m^{-3}}$，比工作密度还大 $7.38578$ 倍—
 两束光的几何路径是不是同一条。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}Boboc 等，\textit{Rev. Sci. Instrum.} \textbf{81}（2010）
 色散干涉仪方案与 ITER 适用性讨论；Hutchinson 第 2 版（2002）第 4 章
 关于振动与共模抑制的分析。本附录不复制任何教材的图、表与习题。
-本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAQ\_calc.py} 复算。
 \section{阿贝尔反演：从弦积分到剖面}
 \label{sec:app-aq-abel}
+}
 
 第 AQ.1 节说过，相位只给线积分。要做剖面，就得先在若干碰撞参数 $y$ 上测出
 $N_L(y)$，再解\textbf{阿贝尔变换}。对轴对称等离子体，正变换与反变换是
@@ -378,14 +382,16 @@ $y = 1.80\ \mathrm{m}$ 弦 & $2.20851\times10^{19}\ \mathrm{m^{-2}}$ & 最外道
 哪个数是被放大的、哪个数是可信的。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}Abel 的原始变换（1826）与 Hutchinson \textit{Principles of Plasma
 Diagnostics} 第 2 版（2002）第 4 章关于阿贝尔反演与层析的讨论；
 剥皮法（onion peeling）的标准表述见 Hutchinson 同章。
 本附录不复制任何教材的图、表与习题，只使用其结论与题型。
+}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/aq_laser_interferometer.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/aq_laser_interferometer.jpg}
 \caption{激光干涉仪：把长度变化读成相位变化。等离子体干涉仪是同一套原理换了个被测对象：本节算的相移，在实验室里就是这台仪器读出的条纹移动，而它的噪声底线由光源与探测器共同决定。}
 \label{fig:photo-appaq2}
 \figsource{Logg Tandy，CC BY 4.0（Wikimedia Commons）}
@@ -458,11 +464,13 @@ $P_{\mathrm{IF}}$ 受变频损耗与源功率限制。
 而不是急着去数条纹——\textbf{链的噪声决定你能看见多小的密度变化}。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}Heald \& Wharton \textit{Plasma Diagnostics with Microwaves}
 （1965）关于外差接收与混频器噪声的讨论；Donné 等，\textit{Nuclear Fusion}
 \textbf{47}（2007）S337「ITER 诊断」章节关于毫米波与远红外诊断链的工程口径。
 本附录不复制任何教材的图、表与习题。本节凡标出数字的量都由
 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAQ\_calc.py} 复算。
+}
 
 \section{误差预算与相对论修正}
 \label{sec:app-aq-error}
@@ -541,13 +549,14 @@ $\omega_{\mathrm{pe}}^2 = n_ee^2/(\epsilon_0m_e)$ 里的 $m_e$ 在高温下要�
 不是小修正。判断一台干涉仪的报告是否可信，看它有没有提这一项就够了。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}Hutchinson \textit{Principles of Plasma Diagnostics} 第 2 版
 （2002）第 4 章关于折射率的相对论修正与误差传播；Donné 等，
 \textit{Nuclear Fusion} \textbf{47}（2007）S337 关于 ITER 密度诊断的
 精度要求与误差预算方法。本附录不复制任何教材的图、表与习题。
-本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAQ\_calc.py} 复算。
 \section{估算练习}
 \label{sec:app-aq-problems}
+}
 
 下面六道题只用到 AQ.1--AQ.6 的公式。数值口径与全书一致：
 $n_{e0} = 10^{20}\ \mathrm{m^{-3}}$、$T_e = 9.194\ \mathrm{keV}$、$a = 2.0\ \mathrm{m}$
@@ -645,6 +654,7 @@ $0.0628319/0.592753 = 0.106\ \mu\mathrm{m} = 1.06\times10^{-7}\ \mathrm{m}$。
 \section{来源、分级与版权说明}
 \label{sec:app-aq-source}
 
+\begingroup\small
 \begin{table}[htbp]
 \centering
 \small
@@ -695,3 +705,4 @@ Cotton--Mouton 效应会混进相位（那是附录 AN 的主题），需要用�
 锁相环带宽取多少。这些问题要靠工程手册与测试报告，
 而不是靠教材——\textbf{会算账不等于会做实验}，但不会算账就一定做不好实验。
 \end{tip}
+\endgroup

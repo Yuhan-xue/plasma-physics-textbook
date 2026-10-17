@@ -11,7 +11,7 @@
 与相邻附录的分工：附录 J 回答"这个主题该读哪本书的哪一章"；附录 K 是完整解答的\textbf{范例}；附录 L 是\textbf{自测}题库；附录 M 是加热与运行极限的专题深挖；本附录继续专题深挖，但主题换成\textbf{边界与壁}。
 
 \begin{tip}{单位与口径自查}{tip-appn-units}
-本附录的数字都可以用计算器复算，仓库脚本 \texttt{appN\_{}calc2.py} 列出了每一步。若结果差一个量级，先查三种口径错位：
+若结果差一个量级，先查三种口径错位：
 \begin{enumerate}[nosep,leftmargin=1.6em]
   \item 功率是"总功率"还是"单靶功率"；
   \item 热流是\textbf{平行}磁力线的 $q_\parallel$ 还是\textbf{垂直}靶面的 $q_\perp$（二者差 $\sin\theta$，$\theta$ 是靶面与磁力线的夹角）；
@@ -73,7 +73,9 @@ $q_\perp\ (\mathrm{MW/m^2})$ & $35.9$ & $6.24$ & $3.13$ & $1.88$ & $0.627$ \\
 \end{table}
 \textbf{结论二：}把靶板"放平"到与磁力线成 $3^\circ$，热流被压低到 $1.88\ \mathrm{MW/m^2}$——几何杠杆 $1/\sin3^\circ\approx19$ 倍，与磁通膨胀 $f_x=5$ 倍合起来约 $95$ 倍。现代偏滤器正是靠这两级几何杠杆把 $\mathrm{MW/m^2}$ 量级以上的平行热流降到钨靶板可以稳态承受的 $5$--$10\ \mathrm{MW/m^2}$ 以内。
 
+{\footnotesize
 \textbf{出处：}Stangeby《The Plasma Boundary of Magnetic Fusion Devices》第 1--5 章（功率账、$\lambda_q$、磁通膨胀与倾角）；Wesson《Tokamaks》（第 4 版）偏滤器与刮削层一章；Fitzpatrick《Plasma Physics: An Introduction》第 4 章末（鞘层与壁面）。
+}
 
 
 \section{刮削层与两点模型：靶板温度由上游决定}
@@ -131,7 +133,9 @@ E_i\simeq5k_BT_t\approx75\ \mathrm{eV}\ (\text{鞘层加速后的轰击能量}),
 \end{equation}
 它是下一节算溅射侵蚀的输入。
 
+{\footnotesize
 \textbf{出处：}Stangeby 第 5 章（两点模型、$K_{0e}$ 与高再循环）；Pitcher \& Stangeby, \textit{Plasma Phys.\ Control.\ Fusion} \textbf{39} (1997) 779（刮削层与偏滤器综述）；Wesson 偏滤器章。
+}
 
 
 \section{脱靶：让杂质把功率"辐射掉"}
@@ -171,12 +175,14 @@ $3\times10^{-33}$（弱辐射区） & $5.02\times10^{18}$ & $5.0\%$ \\
 脱靶并不是让功率消失，而是把它\textbf{提前变成辐射}：辐射是各向同性的，落到整面壁上（面积约 $979\ \mathrm{m^2}$）而不是 $1\ \mathrm{m^2}$ 的靶带上，所以壁面能承受。代价是：(1) 靶板前温度过低时，等离子体"脱离"靶板，打击点位置与粒子排出通道都会改变；(2) 辐射区若上移到 X 点以上（"MARFE"），会直接冷却芯部边缘并可能触发密度极限。脱靶是一个\textbf{运行窗口}，不是开关。
 \end{warning}
 
+{\footnotesize
 \textbf{出处：}Stangeby 第 4--6 章（脱靶与杂质辐射）；Pitcher \& Stangeby (1997) 综述中的辐射功率账；Wesson 偏滤器章。
+}
 
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/sputter_gun.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/sputter_gun.jpg}
 \caption{把溅射拿来做工艺：磁控溅射枪。同一套物理在这里被反过来用：等离子体里的离子被鞘层加速后打到靶上，把靶原子撞出来沉积到别处——壁上的溅射侵蚀与这里的镀膜是同一件事的两种结果。}
 \label{fig:photo-appn2}
 \figsource{Tavoromann，CC BY-SA 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -221,7 +227,9 @@ $5\ \mathrm{mm}$ 靶板寿命只剩约 $15$ 年——\textbf{ELM 造成的侵蚀
 
 \textbf{结论：}决定钨靶板寿命的不是"稳态热流与稳态溅射"，而是\textbf{瞬态事件}。因此现代装置的壁寿命设计必须包含 ELM 缓解（弹丸注入提高 ELM 频率、共振磁扰动 RMP 抑制 ELM，或完全无 ELM 的运行模式），这条结论与下一节的热负荷结论完全同源。
 
+{\footnotesize
 \textbf{出处：}Stangeby 第 3、6 章（溅射产额与再沉积）；Roth 等，\textit{J.\ Nucl.\ Mater.} 系列溅射产额数据汇编（氘/杂质对钨、铍、碳）；Federici 等关于等离子体-壁相互作用与靶板寿命的综述；Wesson 偏滤器章。
+}
 
 
 \section{边缘局域模（ELM）与瞬态热负荷}
@@ -253,7 +261,9 @@ q_{\mathrm{ELM}}\simeq\frac{20.2\ \mathrm{MJ}}{20\ \mathrm{m^2}\times0.3\ \mathr
 
 \textbf{与附录 M 的呼应：}附录 M 讲的是"怎么把功率加进芯部"，本附录讲的是"这些功率最终砸在哪里"。同一个 $70\ \mathrm{MW}$（式 \eqref{eq:app-n-psol}），芯部要的是"进得去"，边界要的是"出得来且别砸坏壁"——两者构成聚变装置的两端约束。
 
+{\footnotesize
 \textbf{出处：}Loarte 等，\textit{Phys.\ Scr.}（2007）关于 ELM 与瞬态热负荷的综述；Wesson 第 14 章（H 模与 ELM）；Leonard 关于偏滤器与现代边界运行的综述；ITER 设计基准文档（Physics Basis）中的瞬态热负荷限值。
+}
 
 
 \section{燃料滞留、氚自持与增殖比}
@@ -297,7 +307,9 @@ $P_{\mathrm{fus}}=300\ \mathrm{MW}$ 时放宽到约 $0.60\%$（对应约 $6.0$ �
 
 \textbf{与全书其他部分的连线：}氚消耗率由第 10 章的 $P_{\mathrm{fus}}$ 决定；滞留与壁材料由本附录 \S N.4 的溅射/再沉积决定；而 TBR 属于包层与中子学，本书不展开，但给出量级与判据。
 
+{\footnotesize
 \textbf{出处：}Wesson 第 1 章与第 14 章（氚消耗与增殖）；ITER 设计基准文档（库存限值与 TBR 要求）；Stangeby 第 1 章（共沉积与燃料滞留的机制综述）。
+}
 
 
 \section{六道估算练习（含答案）}
@@ -327,6 +339,9 @@ $P_{\mathrm{fus}}=300\ \mathrm{MW}$ 时放宽到约 $0.60\%$（对应约 $6.0$ �
 
 \section{来源、分级与版权说明}
 
+\begingroup\small
+本附录的数字都可以用 \texttt{tools/\allowbreak{}calc/\allowbreak{}appN\_calc.py} 重算一遍；脚本与当时的输出记录都在仓库里。
+
 \begin{table}[htbp]
 \centering
 \small
@@ -351,7 +366,7 @@ N.6 & Wesson 第 1、14 章；ITER 设计基准文档；Stangeby 第 1 章 & 氚
 \item 本附录\textbf{不复制}任何教材或文献的题目原文、解答、图表与数据表；表格中的参数区间与物理结论属于教科书公共知识，文字表述与全部数值由本书自拟。
 \item 表中列出的教材与文献是\textbf{取材来源}（说明该主题在哪本书里讲、按什么顺序讲），不是逐句引用；读者若要系统学习，请直接阅读原书。
 \item 本附录所用的一切"文献量级输入"（$\gamma\approx7$、$K_{0e}\simeq2000$、$Y\approx10^{-5}$ 与 $10^{-3}$、$L_z$ 的两个取值、$\Delta W_{\mathrm{ELM}}/W_{\mathrm{th}}$、辐射份额 $50\%$、再沉积 $90\%$）都在正文中\textbf{显式标出}，便于读者替换成自己装置的数据重算；结论中凡依赖这些输入的倍数关系（如"ELM 比稳态高约 $390$ 倍"）都会随输入变化，但量级结论稳定。
-\item 因离线环境无法核验 DOI，本附录只给出可自行检索的期刊、卷号与书名，\textbf{不写无法核实的 DOI}。
+\item 本附录只给出可自行检索的期刊、卷号与书名，\textbf{不写无法核实的 DOI}。
 \end{itemize}
 
 \begin{tip}{与附录 L、M 串联使用}{tip-appn-chain}
@@ -363,3 +378,4 @@ N.6 & Wesson 第 1、14 章；ITER 设计基准文档；Stangeby 第 1 章 & 氚
 \end{enumerate}
 三份附录合起来，正好覆盖聚变装置从芯部到壁的完整功率与粒子循环。
 \end{tip}
+\endgroup

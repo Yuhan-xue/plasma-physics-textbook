@@ -9,7 +9,7 @@
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/iter_plant.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/iter_plant.jpg}
 \caption{三本账之外：主机只是一部分。聚变堆不是一台机器，而是一座厂：磁体、真空、氚、电源、冷却与安全系统都要围着主机转。本章的三本账（功率、中子、氚）就是这座厂能不能自持的三道门槛。}
 \label{fig:photo-appz2}
 \figsource{Oak Ridge National Laboratory，CC BY 2.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -98,12 +98,14 @@ $1.15\times0.40\times0.85 = 0.391$，也就是\textbf{每 $1\ \mathrm{MW}$ 聚�
 $0.391\ \mathrm{MW}$ 电}。看到这个数，就明白为什么工程上抠每一个百分点都值得。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}能量账的四步链与整链效率的定义参照 Freidberg
 \emph{Plasma Physics and Fusion Energy}（2007，第 13、14 章）与 Wesson
 \emph{Tokamaks}（第 4 版，2011，第 1 章）；包层能量倍增与再循环份额的量级参照
 ITER 设计报告（1999，\emph{Nucl.\ Fusion} \textbf{39}, 2137）与 Stacey
 \emph{Fusion Plasma Physics}（2005，第 1 章）。本节凡标出数字的量都由
 \texttt{tools/\allowbreak{}calc/\allowbreak{}appZ\_calc.py} 复算。
+}
 
 \section{中子：壁负载与材料损伤}
 \label{sec:app-z-neutron}
@@ -162,10 +164,12 @@ $50\ \mathrm{dpa}$ 只够撑 $10.996$ 年。所以聚变堆包层是\textbf{消�
 后者往往更贵。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}中子壁负载与 dpa 的工程口径参照 Stacey \emph{Fusion Plasma Physics}
 （2005，第 1 章）与 Atzeni \& Meyer-ter-Vehn \emph{The Physics of Inertial Fusion}
 （2004，第 1 章）；第一壁面积与热负荷口径与附录 N、附录 X 一致。本节数字由
 \texttt{tools/\allowbreak{}calc/\allowbreak{}appZ\_calc.py} 复算。
+}
 
 \section{氚循环：增殖比、库存与自持}
 \label{sec:app-z-tritium}
@@ -245,10 +249,12 @@ $12\ \mathrm{kg/day}$ 的氚处理系统——这是聚变堆里唯一「每天�
 把两者混成一个数，就再也说不清「为什么余量是 $10\%$ 而不是 $1\%$」。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}氚燃耗与增殖比的定义参照 Freidberg \emph{Plasma Physics and Fusion
 Energy}（2007，第 14 章）与 Stacey（2005，第 1 章）；氚半衰期与衰变常数取自
 NNDC/IAEA 核数据（离线环境无法核验 DOI，故只给机构与量级）；处理循环时间的量级
-参照 ITER 氚系统设计报告（1999）。本节数字由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appZ\_calc.py} 复算。
+参照 ITER 氚系统设计报告（1999）。
+}
 
 \section{屏蔽与超导磁体：多远才够}
 \label{sec:app-z-shield}
@@ -289,10 +295,12 @@ P_{\mathrm{cryo}} = \mathrm{COP}\,\varepsilon P_n = 133.56\ \mathrm{kW},
 \label{tab:app-z-shield}
 \end{table}
 
+{\footnotesize
 \textbf{出处：}中子屏蔽的指数衰减与制冷系数量级参照 Stacey \emph{Fusion Plasma
 Physics}（2005，第 1 章）与 Wesson \emph{Tokamaks}（第 4 版，2011，第 1 章）；
 「先算上限再决定要不要细算」的做法与附录 X、附录 Y 一致。本节数字由
 \texttt{tools/\allowbreak{}calc/\allowbreak{}appZ\_calc.py} 复算。
+}
 
 \section{热工与冷却剂：热怎么搬出去}
 \label{sec:app-z-thermal}
@@ -338,8 +346,10 @@ P_{\mathrm{pump}} = 0.01\,P_{\mathrm{th}} = 6.3997\ \mathrm{MW},
 工程账最容易犯的错不是算错一个数，而是\textbf{把同一笔钱花两次}。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}热量守恒与冷却剂流量账参照 Stacey（2005，第 1 章）；
 氦冷却剂的比热与温升量级参照 ITER 设计报告（1999）与 Freidberg（2007，第 14 章）。
+}
 
 \section{可用率与年发电量：工程增益的另一半}
 \label{sec:app-z-availability}
@@ -393,9 +403,11 @@ $P_{\mathrm{net}}$。而年发电量还要乘 $A$。两者的地位完全对称�
 工程上后者常常更便宜，因为可用率取决于\textbf{维护方案}而不是等离子体物理。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}可用率与年发电量的账参照 Freidberg \emph{Plasma Physics and Fusion
 Energy}（2007，第 14 章）；标煤折算系数是\textbf{声明的}量级口径（本书只用作对照，
-不参与任何推导）。本节数字由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appZ\_calc.py} 复算。
+不参与任何推导）。
+}
 
 \section{估算练习}
 \label{sec:app-z-problems}
@@ -446,6 +458,7 @@ $P_n$ 的利用率而不是无限放大第一壁。
 \section{来源、分级与版权说明}
 \label{sec:app-z-source}
 
+\begingroup\small
 本附录按难度分三档：Z.1 与 Z.2 是账本与判据（读完应当能把一条功率链一次乘完）；
 Z.3 与 Z.4 是两个子系统（氚循环与屏蔽，读完应当能独立算出「自持要多少 TBR」）；
 Z.5 与 Z.6 是工程收尾（读完应当能说清「为什么可用率与等离子体增益等价」）。
@@ -502,3 +515,4 @@ TBR $1.10$、氚半衰期 $12.32$ 年、库存 $2\ \mathrm{kg}$、处理循环 $
 附录 V 立下的这条口径，这里是第四次使用：\textbf{把做不到的地方标出来，
 比用一个看起来精确的数字盖过去更有用}。
 \end{tip}
+\endgroup

@@ -9,7 +9,7 @@
 与相邻附录的分工：附录 J 回答"这个主题该读哪本书的哪一章"；附录 K 是完整解答的范例；附录 L 是自测题库；附录 M 是加热与运行极限的专题深挖；附录 N 是聚变装置的边界与壁；附录 O 是电推进。本附录换成\textbf{低温等离子体的工业与医疗应用}，并把每一笔能量、通量与速率都算成可以直接和手册对比的数。
 
 \begin{tip}{单位与口径自查}{tip-appp-units}
-本附录的数字都可以用计算器复算，仓库脚本 \texttt{appP\_calc.py} 列出了每一步。若结果差一个量级，先查三种口径错位：
+若结果差一个量级，先查三种口径错位：
 \begin{enumerate}[nosep,leftmargin=1.6em]
   \item 密度与通量：$n_e$ 是 $\mathrm{m}^{-3}$ 还是 $\mathrm{cm}^{-3}$（差 $10^6$ 倍）？离子流密度常写成 $\mathrm{mA/cm^2}$，而 $1\ \mathrm{A/m^2}=0.1\ \mathrm{mA/cm^2}$；
   \item 温度：等离子体里的"温度"几乎都是能量单位 $\mathrm{eV}$，室温气体是 $0.0259\ \mathrm{eV}$，二者不能直接相加或相除——要先用 $1\ \mathrm{eV}=11600\ \mathrm{K}$ 换算；
@@ -152,11 +152,13 @@ $1\ \mathrm{mm}$ 间隙只需 $3000\ \mathrm{V}$。外推值 $5035\ \mathrm{V}$ 
 
 \textbf{这里出现一个看似矛盾的结果}：$\alpha d\ll k$，按式 \eqref{eq:app-p-selfsustain} 不该击穿，可经验上 $1\ \mathrm{mm}$ 间隙在 $3000\ \mathrm{V}$ 就击穿了。\textbf{这正是汤森理论在大气压下失效的标志}：$\alpha d<1$ 意味着平均每个初始电子产生的电离少于一次，雪崩无法自持；实际发生的是\emph{流注}（streamer）——局部空间电荷把电场畸变到远高于平均值，并且光电离提供了额外的种子电子。所以在大气压下，正确做法是承认经验值 $E_{\mathrm{br}}=30\ \mathrm{kV/cm}$，而不要用汤森公式反推。
 
+{\footnotesize
 \textbf{出处：} Raizer《Gas Discharge Physics》汤森雪崩与帕申定律章；Lieberman \& Lichtenberg《Principles of Plasma Discharges and Materials Processing》第 2 版第 1 章与第 14 章（帕申曲线与最小击穿电压）；本书第 2 章碰撞与电离。
+}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/p_corona_tube.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/p_corona_tube.jpg}
 \caption{电晕放电管：大气压下的放电就长这样。介质阻挡放电把放电限制在介质表面附近，避免它收缩成弧；照片里这种电晕管是同一件事的另一种几何。}
 \label{fig:photo-appp2}
 \figsource{BentaxGermany，CC BY-SA 3.0（Wikimedia Commons）}
@@ -225,7 +227,9 @@ DBD 的功率不能用 $UI$ 算（电压电流有相位差），要用曼利（M
 
 \textbf{四千万分之一的时空体积}——能量只落在这极少数的丝里，因此重粒子气体温度仍停在 $300$--$400\ \mathrm{K}$，而电子在丝内被加热到几个 $\mathrm{eV}$。这就是大气压冷等离子体"宏观冷、微观热"的几何原因：不是能量不够，而是能量落得太集中、太快。
 
+{\footnotesize
 \textbf{出处：} Kogelschatz, \emph{Plasma Chemistry and Plasma Processing} \textbf{23}(1), 1--46 (2003)（DBD 综述与曼利公式）；Fridman, Chirokov \& Gutsol, \emph{Journal of Physics D} \textbf{38}, R1--R24 (2005)（大气压放电非平衡机制）；Raizer《Gas Discharge Physics》第 12 章。
+}
 
 \section{鞘层与离子轰击：刻蚀的方向性}
 \label{sec:app-p-sheath}
@@ -292,7 +296,9 @@ $\lambda/s = 4.91\gg1$：鞘层基本无碰撞（离子在鞘层内几乎不与�
 
 \textbf{选择比}定义为两种材料刻蚀速率之比；在离子通量相同时它就等于产额之比 $1.2/0.1 = 12$。真实的反应离子刻蚀（RIE）选择比能到几十甚至上百，靠的是化学产额的差异而非物理溅射。
 
+{\footnotesize
 \textbf{出处：} Lieberman \& Lichtenberg《Principles of Plasma Discharges and Materials Processing》第 2 版第 6 章（鞘层）与第 15 章（刻蚀）；Child 1911、Langmuir 1913（Child--Langmuir 律原始文献，推导见附录 K.7）；本书第 11 章鞘层与玻姆判据。
+}
 
 \section{PECVD 与溅射沉积}
 \label{sec:app-p-deposit}
@@ -340,7 +346,9 @@ $\lambda/s = 4.91\gg1$：鞘层基本无碰撞（离子在鞘层内几乎不与�
 
 对应 $6.7408\times10^{24}$ 个离子；$Y=0.5$ 时移走 $3.37\times10^{24}$ 个铜原子，即 \textbf{355.6 g 铜}。连续 $100\ \mathrm{h}$（约 $4.2$ \texttt{day}）换 $356\ \mathrm{g}$ 靶材——这就是溅射靶的寿命账，与附录 N 的壁侵蚀是同一个物理（见 §\ref{sec:app-p-source} 的对照表）。
 
+{\footnotesize
 \textbf{出处：} Lieberman \& Lichtenberg《Principles of Plasma Discharges and Materials Processing》第 2 版第 15 章（PECVD 与溅射沉积）；Wasa、Kanno \& Kotera《Handbook of Sputter Deposition Technology》靶材与产额章；附录 N §N.4 溅射侵蚀。
+}
 
 \section{等离子体医学与农业：剂量学}
 \label{sec:app-p-medicine}
@@ -388,7 +396,9 @@ $1\ \mathrm{kg}$ 氮对应 $71394.4\ \mathrm{mol}$ NO，故
 
 \textbf{主导误差}：本节所有数字都是把总能量平摊到产物的口径，从它到真实的生物学剂量还差三步：射流出口到表面的距离（活性物种在气相里只有毫秒到秒的寿命）、气相湿度与液相体积（决定 $\mathrm{H_2O_2}$ 的生成与损失）、表面温升（几十 $\mathrm{K}$，会改变细胞响应）。所以文献里的剂量数只能当量级起点，不能跨装置直接比较。
 
+{\footnotesize
 \textbf{出处：} von Woedtke, Reuter, Masur \& Weltmann, \emph{Physics Reports} \textbf{530}, 291--320 (2013)（等离子体医学综述与剂量概念）；Graves, \emph{Journal of Physics D} \textbf{45}, 383001 (2012)（剂量学与活性物种）；Laroussi, \emph{IEEE Transactions on Plasma Science} \textbf{37}(6), 714--725 (2009)（射流与生物效应）。
+}
 
 \section{环境与催化：能量效率的硬账}
 \label{sec:app-p-env}
@@ -438,7 +448,9 @@ $1\ \mathrm{kg}$ 氮对应 $71394.4\ \mathrm{mol}$ NO，故
   \end{tabular}
 \end{table}
 
+{\footnotesize
 \textbf{出处：} Kogelschatz, \emph{Plasma Chemistry and Plasma Processing} \textbf{23}(1), 1--46 (2003)（臭氧合成能量产率）；Kim, \emph{Plasma Processes and Polymers} \textbf{1}, 91--110 (2004)（等离子体催化与 VOC 处理）；Neyts, Ostrikov, Sunkara \& Bogaerts, \emph{Chemical Reviews} \textbf{115}, 13408--13446 (2015)（$\mathrm{CO_2}$ 与甲烷转化综述）；Attri, Ishikawa, Okumura, Koga \& Shiratani, \emph{Processes} \textbf{8}, 1002 (2020)（等离子体农业与活性物种）。
+}
 
 \section{六道估算练习}
 \label{sec:app-p-problems}
@@ -487,9 +499,12 @@ $Y=0.1$ 时 $32.3\ \mathrm{nm/min}$，选择比 $=1.2/0.1 = 12$。
 \end{tip}
 
 \section{来源、分级与版权说明}
+
+\begingroup\small
+本附录的数字都可以用 \texttt{tools/\allowbreak{}calc/\allowbreak{}appP\_calc.py} 重算一遍；脚本与当时的输出记录都在仓库里。
 \label{sec:app-p-source}
 
-本附录的做法与前几个附录一致：\textbf{只借鉴经典教材与文献的物理结论、公式形式与题型，文字、数值与表格全部由本书自拟并独立复算}。所有量级输入（$A=15$、$B=365$、$\gamma=0.01$、$\epsilon_r=10$、$\mathrm{SIE}=300\ \mathrm{J/L}$、产额 $Y$、离子流密度 $100\ \mathrm{A/m^2}$ 等）都在正文中显式写出，读者可以换掉任何一个重新算。
+所有量级输入（$A=15$、$B=365$、$\gamma=0.01$、$\epsilon_r=10$、$\mathrm{SIE}=300\ \mathrm{J/L}$、产额 $Y$、离子流密度 $100\ \mathrm{A/m^2}$ 等）都在正文中显式写出，读者可以换掉任何一个重新算。
 
 \begin{table}[htbp]
   \centering
@@ -516,11 +531,12 @@ $Y=0.1$ 时 $32.3\ \mathrm{nm/min}$，选择比 $=1.2/0.1 = 12$。
 \begin{itemize}[nosep,leftmargin=1.6em]
   \item 本附录\textbf{不复制}任何教材或论文的题目、解答、图表与数据表；
   \item 所有引用只到"书名/期刊名 + 作者 + 年份 + 卷页"一级，用于指路；
-  \item 因离线环境无法核验 DOI，本附录\textbf{不写无法核实的 DOI 与卷页}的额外信息；
+  \item 本附录\textbf{不写无法核实的 DOI 与卷页}的额外信息；
   \item 教材给出的量级（如臭氧产率 $100\ \mathrm{g/kWh}$、$\mathrm{SIE}=300\ \mathrm{J/L}$）在正文中显式标出，读者可替换；
-  \item 所有数值均可用仓库脚本复算，与正文、门禁三方一致。
+  \item 所有数值均可用仓库脚本复算，与正文引用一致。
 \end{itemize}
 
 \begin{tip}{下一步读什么}{tip-appp-next}
 建议先做附录 K.3（鞘层加速）与 K.7（Child--Langmuir 律），再读第 11 章鞘层与玻姆判据，然后做本附录六题。若对聚变方向的边界问题感兴趣，接着读附录 N（壁与偏滤器）；若对航天应用感兴趣，读附录 O（电推进）——§O.3 的空间电荷限制与本附录 §P.4 的鞘层是同一套 Child 律。
 \end{tip}
+\endgroup

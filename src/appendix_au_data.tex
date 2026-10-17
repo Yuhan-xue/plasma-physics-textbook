@@ -64,14 +64,16 @@ U=k\,u_\mathrm{c}=2\times0.0538516=0.107703,
 只写中心值的表格，在物理上是不可用的。
 \end{tip}
 
+{\small
 
 \textbf{出处：}JCGM 100:2008《测量不确定度表示指南》（GUM）第 4--5 章给出合成与扩展
 不确定度的国际口径；Taylor, \emph{An Introduction to Error Analysis}（2nd ed., 1997）
 第 3 章给出本书采用的入门写法。
+}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/blackbody_carlo.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/blackbody_carlo.jpg}
 \caption{黑体辐射源：误差棒的另一端是标准。任何一条误差棒都要有溯源链：黑体辐射源给出已知温度的基准，探测器读数才谈得上不确定度。本节把 A 类统计与 B 类系统合成成一条误差棒，而 B 类里的每一项，追到底都是这样的标准器。}
 \label{fig:photo-appau2}
 \figsource{Luminforum，CC BY 4.0（Wikimedia Commons）}
@@ -139,10 +141,12 @@ $u_\mathrm{c}=2.29129\%$，高估 $0.6840$ 个百分点。对系统项本来就�
 把系统项当成统计项去「多测几次」，是实验设计里最常见的自欺：重复测量不会让刻度变准。
 \end{tip}
 
+{\small
 
 \textbf{出处：}GUM 第 4.2--4.3 节（A/B 类定义）与附录 G（有效自由度）；
 Bevington \& Robinson, \emph{Data Reduction and Error Analysis for the Physical Sciences}
 （3rd ed., 2003）第 4 章。
+}
 
 \section{误差传播：加减、乘除与相关项}
 \label{sec:app-au-propagate}
@@ -213,9 +217,11 @@ $r=0.99$ 时 $5.00277\%$，$r=1$ 时恰好回到 $5.00000\%$。
 共模设计（双波长、双探针、参考通道）就是把 $r$ 推向 $1$ 的工程手段。
 \end{tip}
 
+{\small
 
 \textbf{出处：}Taylor 第 3 章（加减与乘除规则）；Bevington \& Robinson 第 3 章
 （含相关项的一般传播公式）。
+}
 
 \section{最小二乘与卡方：把直线拟合进带误差的点}
 \label{sec:app-au-fit}
@@ -284,10 +290,12 @@ $\chi^2/\nu$ 的散布本身就有 $33.3333\%$，所以不要为了把它压到 
 先问误差棒是不是被高估或漏掉了系统项。
 \end{tip}
 
+{\small
 
 \textbf{出处：}Bevington \& Robinson 第 6--7 章（最小二乘与参数协方差）；
 Press, Teukolsky, Vetterling \& Flannery, \emph{Numerical Recipes}（3rd ed., 2007）
 第 15 章（卡方分布与拟合优度）；Cowan, \emph{Statistical Data Analysis}（1998）第 7 章。
+}
 
 \section{置信区间：小样本为什么必须用 t}
 \label{sec:app-au-interval}
@@ -334,9 +342,11 @@ $n<10$ 时用 $k=2$ 会把 $95\%$ 区间报窄四成以上；把 $t$ 值随样�
 比事后争论「误差棒是不是偏小」有用得多。
 \end{tip}
 
+{\small
 
 \textbf{出处：}Student（W. S. Gosset）, \emph{Biometrika} \textbf{6} (1908) 1（$t$ 分布原始文献）；
 GUM 附录 G（覆盖因子与有效自由度）；Barlow, \emph{Statistics}（1989）第 4--5 章。
+}
 
 \section{实验设计：把机时花在敏感的方向}
 \label{sec:app-au-design}
@@ -388,10 +398,12 @@ $t_i\propto c_i$ 是「灵敏度预算」的直接结论：先把每个通道的
 再谈要不要加班——这比事后解释误差棒为什么这么大省事得多。
 \end{tip}
 
+{\small
 
 \textbf{出处：}Box, Hunter \& Hunter, \emph{Statistics for Experimenters}（2nd ed., 2005）
 第 5--6 章（因子设计与效应方差）；Montgomery, \emph{Design and Analysis of Experiments}
 （9th ed., 2017）第 6 章。
+}
 
 \section{蒙特卡洛与数据陷阱：误差棒自己也有误差}
 \label{sec:app-au-mc}
@@ -443,11 +455,13 @@ $3\times14.1421=42.4264$ counts：
 $4.24264\times10^{15}\ \mathrm{m^{-3}}$。凡是报「微量杂质浓度」的表格，
 都应该能反推出这个数。
 
+{\small
 
 \textbf{出处：}Efron \& Tibshirani, \emph{An Introduction to the Bootstrap}（1993）
 第 6--7 章；JCGM 101:2008（用蒙特卡洛法传播分布的补充文件）；
 Nyquist, \emph{Trans. AIEE} \textbf{47} (1928) 617 与 Shannon, \emph{Proc. IRE}
 \textbf{37} (1949) 10（采样定理原始文献）。
+}
 
 \section{估算练习}
 \label{sec:app-au-problems}
@@ -503,6 +517,7 @@ $f_s\ge2\times1300=2600\ \mathrm{Hz}$。
 \section{来源、分级与版权说明}
 \label{sec:app-au-source}
 
+\begingroup\small
 
 \begin{table}[htbp]
 \centering
@@ -540,3 +555,4 @@ Efron \& Tibshirani 1993 & bootstrap 与重采样 & 专著 \\
 以及任何未标注覆盖因子的「精度」数字。它只解决一件事：把一根误差棒从信号算到结论，
 并且让读者能照着复算。
 \end{tip}
+\endgroup

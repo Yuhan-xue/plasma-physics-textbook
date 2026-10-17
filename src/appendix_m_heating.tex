@@ -11,7 +11,7 @@
 与相邻附录的分工：附录 J 回答"这个主题该读哪本书的哪一章"；附录 K 是完整解答的\textbf{范例}；附录 L 是\textbf{自测}题库；本附录是\textbf{专题深挖}——只讲一件事，但讲透，并把每个公式的出处标出来。
 
 \begin{tip}{单位错位自查}{tip-appm-units}
-本附录的每个数字都可以用计算器复算，仓库脚本 \texttt{appM\_{}calc2.py} 列出了每一步。若你的结果与文中差一个量级，先检查四种单位错位：$\mathrm{eV}$ 与 $\mathrm{keV}$、$\mathrm{A/m^2}$ 与 $\mathrm{MA/m^2}$、$\mathrm{GHz}$ 与 $\mathrm{Hz}$、以及 $\mathrm{10^{20}\ m^{-3}}$ 这一密度单位（托卡马克文献习惯用它）。
+若你的结果与文中差一个量级，先检查四种单位错位：$\mathrm{eV}$ 与 $\mathrm{keV}$、$\mathrm{A/m^2}$ 与 $\mathrm{MA/m^2}$、$\mathrm{GHz}$ 与 $\mathrm{Hz}$、以及 $\mathrm{10^{20}\ m^{-3}}$ 这一密度单位（托卡马克文献习惯用它）。
 \end{tip}
 
 
@@ -45,7 +45,9 @@ $\alpha$ 自加热 & $3.5\ \mathrm{MeV}$ $\alpha$ 粒子慢化 & 点火后主导
 
 \textbf{一句话记住全表：}低温靠欧姆、中温靠束与射频、高温靠 $\alpha$ 自加热；而\textbf{电流}（不是能量）要靠束与射频非感应地驱动，这是稳态运行的关键。
 
+{\footnotesize
 \textbf{出处：}Wesson《Tokamaks》（第 4 版）加热与电流驱动相关章节；Goldston \& Rutherford《Introduction to Plasma Physics》聚变章；Chen 第 9--10 章。
+}
 
 
 \section{欧姆加热：为什么它在高温下必然失效}
@@ -73,7 +75,9 @@ P_\Omega&=2.80\times10^{-8}\times(10^6)^2\approx2.8\times10^4\ \mathrm{W/m^3}=28
 \end{equation}
 $a=2\ \mathrm{m}$ 时 $\tau_R=1.26\times10^{-6}\times4/2.80\times10^{-8}\approx180\ \mathrm{s}$。它意味着\textbf{电流剖面的调整比能量约束时间慢得多}，这既是欧姆放电可以长期维持的原因，也是"电流一旦失控（破裂）就来不及救"的原因（第 9 章）。
 
+{\footnotesize
 \textbf{出处：}Chen 第 5 章（扩散与电阻率）；Fitzpatrick 第 3--4 章；Wesson《Tokamaks》等离子体电阻相关章节。
+}
 
 \begin{warning}{把欧姆加热当成主力}{warn:m-ohm}
 \textbf{误区：}"有电流就有加热，所以托卡马克不需要外加加热。"
@@ -139,7 +143,9 @@ P_{\mathrm{RF}}=\frac{1\times1\times6.2}{0.3}\approx21\ \mathrm{MW},
 \]
 这正好是 ITER 量级装置辅助加热功率的数量级；相比之下电子回旋电流驱动 $\gamma\approx0.05$，同样 $1\ \mathrm{MA}$ 要 $124\ \mathrm{MW}$（附录 M.6 练习 6 会用到这个账）。
 
+{\footnotesize
 \textbf{出处：}Wesson《Tokamaks》（第 4 版）中性束注入与电流驱动章节；Goldston \& Rutherford《Introduction to Plasma Physics》聚变章；临界能量公式的经典形式见 Wesson 与 Stix 的综述（本书只做数量级使用，系数 $14.8$ 保留经典写法）。
+}
 
 
 \begin{figure}[htbp]
@@ -200,7 +206,9 @@ k_\parallel=\frac{2\pi f}{v_\varphi}
 \textbf{纠正：}共振层的位置由\textbf{磁场剖面}决定（$\omega=\omega_c(B)$ 只在某半径满足），因此波把能量沉积在哪里，取决于你选的频率与装置的磁场分布；而低杂波还要额外满足 $k_\parallel$ 的朗道条件与边缘耦合窗口。\textbf{"可及性（accessibility）"与"耦合"是射频加热的两个真正的难点}，不是工程细节。
 \end{warning}
 
+{\footnotesize
 \textbf{出处：}Wesson《Tokamaks》射频加热与电流驱动章节；Lieberman \& Lichtenberg《Principles of Plasma Discharges and Materials Processing》射频鞘层与耦合相关章节（与第 11 章的天线鞘层同源）；Chen 第 4、6 章（波的色散与共振）。
+}
 
 
 \section{运行极限：密度、比压与 H 模阈值}
@@ -238,7 +246,9 @@ f_{\mathrm{bs}}+f_{\mathrm{CD}}\approx1,
 \textbf{纠正：}这三条都是\textbf{多装置数据的经验拟合}：散度通常在 $\pm30\%$ 甚至更大，且不同装置之间还有系统偏差（例如金属壁、偏滤器几何都会改变密度极限）。它们的正确用法是\textbf{估计数量级与设计余量}，而不是当作不可违反的定律。本书引用它们时一律标注"经验标度"。
 \end{warning}
 
+{\footnotesize
 \textbf{出处：}Wesson《Tokamaks》运行极限与 H 模章节；Greenwald 等（1988）密度极限；Troyon 等（1984）比压极限；Martin 等（2008）H 模阈值标度。完整书目见附录 E 与附录 J。
+}
 
 
 \section{六道估算练习（含答案）}
@@ -292,9 +302,12 @@ $P_{\mathrm{ext}}=P_{\mathrm{loss}}-P_\alpha=0.2P_\alpha\approx1.24\times10^{5}\
 
 
 \section{来源、分级与版权说明}
+
+\begingroup\small
+本附录的数字都可以用 \texttt{tools/\allowbreak{}calc/\allowbreak{}appM\_calc.py} 重算一遍；脚本与当时的输出记录都在仓库里。
 \label{sec:app-m-source}
 
-本附录与附录 J、K、L 使用同一套出处约定：\textbf{只借鉴经典教材与文献的物理结论与公式形式，文字、算例与数值一律自拟并独立复算}。下表逐节说明借鉴范围。
+下表逐节说明借鉴范围。
 
 {\small
 \begin{longtable}{@{}p{1.5cm}p{5.2cm}p{5.3cm}p{3.6cm}@{}}
@@ -323,9 +336,10 @@ M.6 & 本书自拟 & 六道估算练习 & 题目、参数与答案全部自拟�
 \item 本附录的\textbf{文字表述、算例参数与全部数值}均由本书自拟，并可用仓库脚本 \texttt{appM\_{}calc2.py} 或手算逐条复现（正文保留三位有效数字）；
 \item 经验标度律（Greenwald、Troyon、Martin）的\textbf{原始出处按作者与年份标注}；
 \item 本附录\textbf{不复制}任何教材或文献的题目原文、解答、图表与数据表，引用它们只为说明物理结论的来源；
-\item 与前几个附录一致：本机离线无法核验 DOI，故只给作者、年份与书名/期刊名，\textbf{不写未经核验的 DOI}（见附录 I 的同一约定）。
+\item 与前几个附录一致：只给作者、年份与书名/期刊名，\textbf{不写无法核实的 DOI}。
 \end{itemize}
 
 \begin{tip}{下一步}{tip-appm-next}
 附录 M 是"从物理到装置"的最后一环：把这里的功率账、运行极限与第 10 章的劳森判据拼在一起，你就能对一个聚变装置做\textbf{完整的一次量级评估}——这既是附录 L 第 10 章自测题的目的，也是本书全书量级方法（附录 I 第 4 节）的终点。若想继续深入，附录 J 的进阶专著清单里给出了 Wesson 与 Freidberg 的入口。
 \end{tip}
+\endgroup

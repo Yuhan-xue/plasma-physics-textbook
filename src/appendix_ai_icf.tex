@@ -1,7 +1,7 @@
 % 附录 AI：惯性约束内爆与点火（v1.26.13 新增）
 %
 % 数值唯一来源：tools/calc/appAI_calc.py（只 print，不写文件）→ tools/calc/appAI_calc.txt。
-%   本节凡标出数字的量都由该脚本复算；其余只能定性引用。
+%   
 % 单位写法：数字与单位一律进数学模式（避免中文字符落进数学字体）；
 %   温度用 keV 或 eV、面密度用 g/cm^2、压力用 Pa 并给出 Gbar/Mbar 换算。
 % 口径：本附录的靶参数与附录 Y 的第 6 节是同一个点（燃料 2.82743 mg、rhoR = 3 g/cm^2、
@@ -12,7 +12,7 @@
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/nif_laser_bay.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/nif_laser_bay.jpg}
 \caption{驱动器的尺度：激光阵列。黑腔里的辐射温度不是凭空来的：几百束激光要在几十微米的目标上同时对准，每束的能量、脉宽与同步误差都直接进本章的驱动账。}
 \label{fig:photo-appai2}
 \figsource{Lawrence Livermore National Laboratory, Lawrence Livermore N，Public domain（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -84,11 +84,12 @@ X 射线能量 & $\eta_{\mathrm{ce}}E_{\mathrm{drv}}$ & $1.7\ \mathrm{MJ}$ & 式
 把 $T_{\mathrm{rad}}$ 当成「腔里的温度」会算错量级，把它当成「通量的等效温度」才对。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}本文的间接驱动与黑腔图像、转换效率与辐射温度的口径参照
 Lindl \emph{Physics of Plasmas}（1995，第 2 卷，3933 页）与 Lindl 等
 \emph{Physics of Plasmas}（2004，第 11 卷，339 页）；黑腔能量平衡的形式参照
 Atzeni \& Meyer-ter-Vehn \emph{The Physics of Inertial Fusion}（2004，第 10 章）。
-本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAI\_calc.py} 复算。
+}
 
 \section{内爆：火箭模型与滞止}
 \label{sec:app-ai-implosion}
@@ -163,11 +164,12 @@ $\rho = 200$ g cm$^{-3}$：半径压缩比 $9.2221$、密度压缩比 $784.314$�
 这是一个必须一起算的权衡（见练习 2）。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}本文的火箭模型与内爆参数化参照 Atzeni \& Meyer-ter-Vehn
 \emph{The Physics of Inertial Fusion}（2004，第 7 章）；惯性约束聚变的原始构想见
 Nuckolls 等 \emph{Nature}（1972，第 239 卷，139 页）；滞止动压的量级口径参照
 Lindl \emph{Physics of Plasmas}（1995，第 2 卷，3933 页）。
-本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAI\_calc.py} 复算。
+}
 
 \section{绝热与熵：为什么压缩要冷}
 \label{sec:app-ai-adiabat}
@@ -238,12 +240,13 @@ P_{\mathrm{th}}(100\ \mathrm{eV}) = 7.71883\times10^{14}\ \mathrm{Pa},
 可以压到几百克每立方厘米；一旦激波把熵抬起来，同样的压缩就要付出高得多的压力代价。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}本文的简并压与绝热压缩图像参照 Atzeni \& Meyer-ter-Vehn
 \emph{The Physics of Inertial Fusion}（2004，第 3 章）；激波关系与熵增的经典处理见
 Zel'dovich \& Raizer \emph{Physics of Shock Waves and High-Temperature Hydrodynamic
 Phenomena}（1966 初版 / 2002 再版，第 1--2 章）；脉冲整形与激波定时的讨论参照
 Lindl \emph{Physics of Plasmas}（1995，第 2 卷，3933 页）。
-本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAI\_calc.py} 复算。
+}
 
 \section{流体不稳定性：瑞利--泰勒与烧蚀稳定化}
 \label{sec:app-ai-rt}
@@ -337,6 +340,7 @@ $\delta_0 \le 7.4462$ nm。这就是为什么靶丸表面粗糙度要控制在�
 只讨论「稳定不稳定」不会给出任何设计约束。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}本文的瑞利--泰勒不稳定性经典处理见 Rayleigh \emph{Proceedings of the
 London Mathematical Society}（1883，第 14 卷，170 页）与 Taylor \emph{Proceedings of
 the Royal Society A}（1950，第 201 卷，192 页）；界面冲击加速的对应结果见
@@ -344,11 +348,11 @@ Richtmyer \emph{Communications on Pure and Applied Mathematics}（1960，第 13 
 297 页）与 Meshkov（1969，第 4 卷，101 页）；烧蚀稳定化与内爆不稳定性综述参照
 Kilkenny 等 \emph{Physics of Plasmas}（1994，第 1 卷，1379 页）与 Atzeni \&
 Meyer-ter-Vehn \emph{The Physics of Inertial Fusion}（2004，第 8 章）。
-本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAI\_calc.py} 复算。
+}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/ai_nif_target_assembly.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/ai_nif_target_assembly.jpg}
 \caption{美国国家点火装置的靶装配体：金色锥体是黑腔（hohlraum），中间那颗毫米级小丸就是燃料靶丸，整件东西装在同轴定位臂上送进靶室中心，对准误差要小于本节算的数十微米级。}
 \label{fig:photo-appai3}
 \figsource{Lawrence Livermore National Security, LLC，CC BY-SA 3.0（Wikimedia Commons）}
@@ -456,12 +460,14 @@ $\alpha$ 射程 & $\rho R = 0.3\ \mathrm{g\,cm^{-2}}$ & $15\ \mu$m ($200$ g cm$^
 把 $2.4$ keV 与文献 $4.3$ keV 的差别记住：判据的形式比判据上的具体数字更可靠。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}本文的热斑与点火图像、$\alpha$ 自加热判据参照 Betti \& Hurricane
 \emph{Nature Physics}（2016，第 12 卷，435 页）与 Hurricane 等 \emph{Nature}
 （2014，第 506 卷，343 页）；DT 反应率数据见 Bosch \& Hale \emph{Nuclear Fusion}
 （1992，第 32 卷，611 页）；轫致损失的公式与数值口径与附录 X 一致，另见
 Wesson \emph{Tokamaks}（第 4 版，2011，第 14 章）。本节凡标出数字的量都由
 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAI\_calc.py} 复算。
+}
 
 \section{燃烧与增益：把三本账合起来}
 \label{sec:app-ai-burn}
@@ -548,6 +554,7 @@ $G_{\mathrm{wall}} = 16.0033$ 才轮到「电厂」；再往下要接附录 U �
 才是附录 Z 那本账。凡是引用增益，先问分母是什么。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}本文的燃耗拟合、增益定义与 ICF 能量账参照 Atzeni \&
 Meyer-ter-Vehn \emph{The Physics of Inertial Fusion}（2004，第 6--7 章）与
 Nuckolls 等 \emph{Nature}（1972，第 239 卷，139 页）；点火与增益的现代综述见
@@ -555,6 +562,7 @@ Betti \& Hurricane \emph{Nature Physics}（2016，第 12 卷，435 页）；
 2022 年国家点火装置的结果属文献级对照（输入 $2.05$ MJ、产额约 $3.15$ MJ），
 离线环境无法核验卷期页与 DOI，故只作定性引用。本节凡标出数字的量都由
 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAI\_calc.py} 复算。
+}
 
 \section{估算练习}
 \label{sec:app-ai-problems}
@@ -616,6 +624,7 @@ Lindl \emph{Physics of Plasmas}（1995，第 2 卷，3933 页）中的标度讨�
 \section{来源、分级与版权说明}
 \label{sec:app-ai-source}
 
+\begingroup\small
 
 \begin{table}[htbp]
 \centering
@@ -631,9 +640,9 @@ $G = 160.033$ & \texttt{tools/\allowbreak{}calc/\allowbreak{}appAI\_calc.py} \\
 $v_{\mathrm{ex}} = 330$ km s$^{-1}$、$v_{\mathrm{abl}} = 3.0\times10^{4}$ m s$^{-1}$、
 $\langle\sigma v\rangle$ 拟合、热斑 $5$ keV/$30$ g cm$^{-3}$、
 $\alpha$ 射程 $0.3$ g cm$^{-2}$ & 脚本内 \texttt{[DECLARED]} 段 \\
-文献级 & 只作定性对照，不参与任何数值断言 & 理想点火温度约 $4.3$ keV、
+文献级 & 只作定性对照，不参与任何计算 & 理想点火温度约 $4.3$ keV、
 NIF 2022 年 $2.05$ MJ $\to$ 约 $3.15$ MJ（靶增益约 $1.54$） &
-离线环境无法核验 DOI，按书名/卷期页引用 \\
+按书名/卷期页引用 \\
 \bottomrule
 \end{tabular}
 \caption{三级数值的分工。凡读者要用来做设计的数，必须落在「现算级」并能被脚本复现。}
@@ -669,4 +678,4 @@ Hurricane 等 \emph{Nature}（2014，第 506 卷，343 页）、
 Bosch \& Hale \emph{Nuclear Fusion}（1992，第 32 卷，611 页）与
 Zel'dovich \& Raizer（1966/2002）。本附录与附录 Y 第 6 节是同一个靶点
 （附录 Y 只给 0-D 账），与附录 U 的点火判据、附录 Z 的电厂账分工不同：
-本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAI\_calc.py} 复算。
+\endgroup

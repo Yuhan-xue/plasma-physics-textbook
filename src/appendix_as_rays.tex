@@ -79,10 +79,12 @@ $kL_n$ 不再大，波开始「绕过」几何光学的结论——出现隧穿�
 沉积之前，先算一遍 $kL_n$，这是最便宜的自检。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}几何光学极限与色散关系见 Ginzburg, \emph{The Propagation of
 Electromagnetic Waves in Plasmas}（1964/1970）第 1--3 章；短波极限的误差估计是 WKB
 方法的标准内容，见 Bender \& Orszag, \emph{Advanced Mathematical Methods for
 Scientists and Engineers}（1978）。本附录不复制原书图表。
+}
 
 
 \section{射线方程与折射：波为什么会拐弯}
@@ -156,10 +158,12 @@ $60^\circ$（直线） & --- & --- & $0.747509$ m & 路径是直线的 $3.94620$
 $n_\mathrm{e}<n_\mathrm{c}$ 是不够的。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}射线方程与分层介质中的折射守恒见 Tracy, Brizard, Richardson \&
 Kaufman, \emph{Ray Tracing and Beyond}（2014）与 Ginzburg（1964/1970）第 4 章；
 托卡马克几何下的射线追踪实现见 Wesson, \emph{Tokamaks}（第 3 版，2004）第 4 章。
 本附录不复制原书图。
+}
 
 
 \section{高斯波束与准光学：把波当成有粗细的束}
@@ -232,15 +236,17 @@ E_\mathrm{f}=\sqrt{\frac{2I_\mathrm{f}}{c\epsilon_0}}=3.21312\times10^{6}\ \math
 $w_0/\lambda_0$ 算出来，再谈机械公差，顺序反了会白干。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}高斯波束与聚焦腰斑的公式见 Born \& Wolf, \emph{Principles of Optics}
 （第 7 版，1999）第 8 章与 Goldsmith, \emph{Quasioptical Systems}（1998）；
 聚变装置上的准光学注入设计见 Thumm \& Kasparek, \emph{Fusion Engineering and Design}
 （2002）。本附录不复制原书图。
+}
 
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/optics_lab_inrim.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/optics_lab_inrim.jpg}
 \caption{光学台：射线方程在这里被验证。把波长缩到远小于装置尺度时，波的传播就退化成本节的射线与准光学；光学台上那些反射镜与透镜，正是同一套射线方程在可见光波段的日常应用——微波诊断里的聚焦镜与它们遵循的是同一组公式。}
 \label{fig:photo-appas}
 \figsource{Giorgio Brida from Torino, Italy，CC BY 2.0（Wikimedia Commons）}
@@ -319,10 +325,12 @@ $75$ GHz & $6.97749\times10^{19}$ m$^{-3}$ & $1.09955$ m & $13.4255$ ns & $0.549
 相对论修正）与转折几何（斜入射还是垂直入射）。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}微波反射计的原理、群延迟与剖面反演见 Hutchinson, \emph{Principles of
 Plasma Diagnostics}（第 2 版，2002）第 5 章与 Hartfuss \& Geist, \emph{Plasma Physics
 and Controlled Fusion}（1998）；多普勒反射计用于湍流速度测量见 Conway 等,
 \emph{Plasma Physics and Controlled Fusion}（2004）。本附录不复制原书图表。
+}
 
 
 \section{电子回旋发射成像：共振面就是成像面}
@@ -395,9 +403,11 @@ ECE 的空间定位来自磁场，不来自光学：改变 $B_0$ 会把整个成
 变化」。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}电子回旋发射的诊断原理与光学厚度讨论见 Hutchinson（2002）第 6 章与
 Mazzucato, \emph{Physics of Plasmas}（1998）；成像 ECE 的通道设计见 Park 等,
 \emph{Review of Scientific Instruments}（2006）。本附录不复制原书图表。
+}
 
 
 \section{功率沉积定位：共振面、多普勒展宽与沉积体积}
@@ -478,10 +488,12 @@ $+$ 支共振半径 & $1.41121$ & m & 外移 $1.04098$ m \\
 不是修正项。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}电子回旋波的多普勒共振与功率沉积见 Bornatici 等, \emph{Nuclear Fusion}
 （1983）与 ITER Physics Basis, \emph{Nuclear Fusion}（1999）第 6 章；波束在等离子体
 中的传播与吸收的数值方法见 Westerhof, \emph{Plasma Physics and Controlled Fusion}
 （2000）。本附录不复制原书图表。
+}
 
 
 \section{估算练习}
@@ -548,6 +560,7 @@ $E=\sqrt{2I/(c\epsilon_0)}=6.19463\times10^{6}$ V m$^{-1}=6.19463$ MV m$^{-1}$�
 \section{来源、分级与版权说明}
 \label{sec:app-as-source}
 
+\begingroup\small
 本附录的定位是「把波画成线、把线算成位置」：色散关系取自经典教材，射线方程与准光学
 取自波动光学与聚变装置工程文献，诊断部分的通道参数按本书统一工作点复算。所有标出数值的
 量都在 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAS\_calc.py} 里重算过，没有从任何一本书的表格里搬数。
@@ -582,3 +595,4 @@ ITER Physics Basis 1999 & AS.6 & 多普勒共振与沉积 & 不复制剖面图 \
 数值一律用 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAS\_calc.py} 按 D1 工作点重算。射线追踪的工程实现可参考
 Tracy 等（2014）与 Westerhof（2000）；诊断通道参数与本书附录 Q 的同一组口径。
 本附录不复制任何原书表格与图。
+\endgroup

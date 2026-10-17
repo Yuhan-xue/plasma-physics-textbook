@@ -89,10 +89,12 @@ $50\ \mathrm{MW}$ 加热功率。$Q\to\infty$（外部加热可以关掉）才�
 对应四件不同的事，混用就会出现"Q=1 就自持了"这类错误。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：} $Q$ 的定义与四个语义节点参照 Wesson《Tokamaks》第 4 版（Oxford, 2011）
 第 1 章，以及 Freidberg《Plasma Physics and Fusion Energy》（Cambridge, 2007）第 5、13 章；
 D-T 反应能与 $\alpha$/中子 $1:4$ 的功率分配见本书第 10 章。三个工作点由附录 S 的
 IPB98(y,2) 口径独立复算，未复制任何教材表格数值。
+}
 
 \section{$\alpha$ 加热份额：一个只依赖 Q 的数}
 \label{sec:app-u-falpha}
@@ -144,10 +146,12 @@ $P_{\mathrm{fus}}$ 与等离子体参数同时推高一大截。
 所以聚变界把 $Q\ge5$ 作为燃烧等离子体的门槛，而把 $Q=1$ 只当作一个能量收支的记号。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：} $\alpha$ 加热份额的表达式由本节自行推导（只用 $P_\alpha=P_{\mathrm{fus}}/5$
 与 $Q$ 的定义）；物理背景参照 Wesson《Tokamaks》第 4 版第 1 章与 ITER Physics Basis
 （1999, \textit{Nucl. Fusion} \textbf{39}）。表 \ref{tab:app-u-falpha} 的数值由
 \texttt{tools/\allowbreak{}calc/\allowbreak{}appU\_calc.py} 算出。
+}
 
 \section{自加热闭环：迭代找不动点}
 \label{sec:app-u-loop}
@@ -246,14 +250,16 @@ $P_\alpha \propto P_{\mathrm{tot}}^{0.62}$（斜率小于 1 的幂函数）。�
 可控，正因为定标律给出的指数小于 1。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：} 功率平衡与 $W=3nTV$ 的写法与附录 S 第 S.1、S.4 节一致；IPB98(y,2) 定标律
 及其 $P^{-0.69}$ 指数取自附录 S 式 (S.6) 一带的同一口径（原式源自 ITER Physics Basis,
 1999, \textit{Nucl. Fusion} \textbf{39}）。迭代格式、收敛性与指数 $0.62$ 的推导为本书自拟，
 数值由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appU\_calc.py} 复算。
+}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/u_nova_chamber.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/u_nova_chamber.jpg}
 \caption{NOVA 靶室：点火这条路最早的十束激光平台。本节的三重积阈值不是纸面条件，它对应的是一间十米级的靶室和几十束激光。}
 \label{fig:photo-appu2}
 \figsource{LLNL，Public domain（Wikimedia Commons）}
@@ -333,12 +339,14 @@ $nT\tau_E = 2.299\times10^{21}\ \mathrm{keV\,s\,m^{-3}}$，是阈值的 $74.2\%$
 又不要求突破密度极限。工程上更实用的路径是提高 $\tau_E$（H 模、台基、更大尺寸）而不是
 硬堆密度。
 
+{\footnotesize
 \textbf{出处：} 点火条件 $P_\alpha=P_{\mathrm{loss}}$、三重积形式的推导与 Greenwald 极限的
 引用遵循 Lawson (1957) \textit{Proc. Phys. Soc. B} \textbf{70}, 6 与 Freidberg
 《Plasma Physics and Fusion Energy》第 13 章；反应率拟合与 $E_{\mathrm{fus}}$ 见第 10 章
 与 Bosch \& Hale (1992) \textit{Nucl. Fusion} \textbf{32}, 611。Greenwald 极限公式与
 $n_G$ 的数值取自本书附录 M 第 M.5 节（口径一致）。全部数字由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appU\_calc.py}
 复算。
+}
 
 \section{工程增益：Q 单独不是好指标}
 \label{sec:app-u-qeng}
@@ -428,11 +436,13 @@ ITER 设计点      & 500.0 & 50.0  & 550.0  & 220.0 & 125.0 & 1.760 \\
 $Q_{\mathrm{eng}}=1.760$，这才是"聚变电站"意义上的正增益。教学简化必须标明：真实电厂账还要
 减掉电流驱动功率、包层与氚循环的功耗、以及占空比造成的停机时间。
 
+{\footnotesize
 \textbf{出处：} $Q$ 随 $P_{\mathrm{aux}}$ 下降的指数关系由本节用 IPB98(y,2) 的指数自行推导；
 工程增益的写法参照 Freidberg《Plasma Physics and Fusion Energy》第 13 章与 ITER Physics
 Basis（1999, \textit{Nucl. Fusion} \textbf{39}）中关于再循环功率的讨论，简化为
 $\eta_{\mathrm{th}}\eta_{\mathrm{aux}}(Q+1)$ 并已在正文标明教学简化。数值由
 \texttt{tools/\allowbreak{}calc/\allowbreak{}appU\_calc.py} 复算。
+}
 
 \section{六道估算练习}
 \label{sec:app-u-problems}
@@ -501,8 +511,9 @@ $Q = 1/0.16 - 1 = 5.250$。结论：要让聚变在电厂账上为正，$Q$ 要�
 \section{来源、分级与版权说明}
 \label{sec:app-u-source}
 
+\begingroup\small
 本附录使用的公式类型、结论与题型均有明确出处；所有数值、表格与文字自拟，并由
-\texttt{tools/\allowbreak{}calc/\allowbreak{}appU\_calc.py} 独立复算。离线环境无法核验 DOI，故只给书名、作者、年份与卷期页。
+\texttt{tools/\allowbreak{}calc/\allowbreak{}appU\_calc.py} 独立复算。参考文献只给书名、作者、年份与卷期页。
 
 \begin{table}[htbp]
 \centering
@@ -537,3 +548,4 @@ $\alpha$ 加热份额与自加热闭环 & Wesson 第 1 章；ITER Physics Basis�
 \textbf{与前后附录的关系：} 附录 S 回答"约束有多好"（$\tau_E$ 与 IPB98(y,2)），
 附录 T 回答"磁面什么时候不再是磁面"（拓扑与磁岛），本附录回答"这些约束能换来多少聚变功率、
 离自持与电厂还有多远"。三者的三个装置工作点完全一致，可以互相代入验算。
+\endgroup

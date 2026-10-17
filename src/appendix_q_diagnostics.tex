@@ -43,13 +43,15 @@ $105.13\ \mathrm{\mu m}$、医学射流 $2.88\ \mathrm{\mu m}$、大气压 DBD �
 聚变边界 $6.44\ \mathrm{\mu m}$。同一条公式跨五个量级——这就是为什么诊断手段必须按工况挑，
 不能"买一台通用的"。
 
+{\footnotesize
 \textbf{出处：} Hutchinson《Principles of Plasma Diagnostics》第 2 版（诊断路线的总览与各章判据）；
 Lieberman \& Lichtenberg《Principles of Plasma Discharges and Materials Processing》第 2 版第 6 章
 （低温等离子体的探针诊断）；本书第 11 章鞘层与玻姆判据、附录 P 表 P.1。
+}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/q_rf_probe.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/q_rf_probe.jpg}
 \caption{朗缪尔探针的实物：一根导线加一层鞘。本节把探针理论分成薄鞘与厚鞘两套，判据是探针半径与德拜长度之比；实物上它只是插进等离子体的一小段电极，难的是把射频干扰与二次发射挡在外面。}
 \label{fig:photo-appq2}
 \figsource{Vadmalis，CC BY-SA 3.0（Wikimedia Commons）}
@@ -90,9 +92,11 @@ Lieberman \& Lichtenberg《Principles of Plasma Discharges and Materials Process
 比 $0.5\ \mathrm{mm}$ 细约 $4$ 倍；而同一支探针搬到 $10^{15}\ \mathrm{m^{-3}}$ 的余辉里就自洽了。
 判据是\textbf{比值}，不是探针尺寸本身。
 
+{\footnotesize
 \textbf{出处：} Mott-Smith \& Langmuir, \emph{Physical Review} \textbf{28}, 727--763 (1926)（OML 收集
 理论原始文献）；Hutchinson《Principles of Plasma Diagnostics》第 2 版探针各章（OML、ABR 与径向运动
 理论的适用区间）；Lieberman \& Lichtenberg 第 2 版第 6 章。
+}
 
 \section{从 I--V 曲线读电子温度}
 \label{sec:app-q-te}
@@ -147,9 +151,11 @@ Lieberman \& Lichtenberg《Principles of Plasma Discharges and Materials Process
 同样不减 $I_{is}$，改用 $-1\ \mathrm{V}$ 与 $-2\ \mathrm{V}$ 两点，得到 $T_e=2.5022\ \mathrm{eV}$，
 只低估 $16.59\%$。实际操作中还要避开电子饱和区，落到"离子电流可忽略、又没进饱和"的中间段。
 
+{\footnotesize
 \textbf{出处：} Druyvesteyn, \emph{Zeitschrift f\"ur Physik} \textbf{64}, 781--798 (1930)（由探针曲线
 二次导数求电子能量分布）；Godyak \& Demidov, \emph{Journal of Physics D} \textbf{44}, 233001 (2011)
 （探针测 EEDF 的可靠性与误差来源综述）；Lieberman \& Lichtenberg 第 2 版第 6 章。
+}
 
 \section{从离子饱和电流读密度}
 \label{sec:app-q-ne}
@@ -193,9 +199,11 @@ $T_e=3.0\ \mathrm{eV}$ 的氩离子玻姆速度 $c_s=2691.81\ \mathrm{m/s}$，�
 而探针面积错了 $5\%$ 就直接错 $5\%$。所以探针诊断里最该盯住的不是电子温度，而是\textbf{有效收集面积}
 （边缘效应、薄膜沉积、探针杆暴露）。
 
+{\footnotesize
 \textbf{出处：} Lieberman \& Lichtenberg 第 2 版第 6 章（离子饱和电流与 $0.6$ 因子）；Hutchinson
 《Principles of Plasma Diagnostics》第 2 版探针各章（面积效应与二次电子）；本书附录 P 表 P.1 与
 式 \eqref{eq:app-p-flux}。
+}
 
 \section{悬浮电位与等离子体电位}
 \label{sec:app-q-float}
@@ -224,9 +232,11 @@ $T_e=3.0\ \mathrm{eV}$ 时 $\bar v_e=1.1592\times10^{6}\ \mathrm{m/s}$，比值 
 
 做量级自检时若发现自己的悬浮电位和教科书差 $T_e\ln(1/0.6)$，先检查用的是哪一套离子电流公式，再怀疑算错。
 
+{\footnotesize
 \textbf{出处：} Hutchinson《Principles of Plasma Diagnostics》第 2 版探针各章（悬浮电位与
 浮动表面）；Lieberman \& Lichtenberg 第 2 版第 6 章；本书第 11 章玻姆判据、附录 P 式
 \eqref{eq:app-p-noneq} 附近的非平衡讨论。
+}
 
 \section{磁诊断：Rogowski 线圈与 RC 积分}
 \label{sec:app-q-magnetic}
@@ -263,8 +273,10 @@ $S=8.0000\times10^{-3}\ \mathrm{V/A}$。反向校验：$V_{\mathrm{coil}}\times$
 $S$ 变小（$1\ \mathrm{A}$ 只给 $8\ \mathrm{mV}$，需要低噪声放大）。B-dot 探针同理，只是把它测的
 $\diff B/\diff t$ 换成磁场。
 
+{\footnotesize
 \textbf{出处：} Hutchinson《Principles of Plasma Diagnostics》第 2 版磁诊断各章（Rogowski 线圈、
 磁探针与积分器设计）；本书第 12 章磁探针与放电电流测量的相关小节。
+}
 
 \section{光学诊断：Doppler 宽度与谱线比}
 \label{sec:app-q-optical}
@@ -320,9 +332,11 @@ $T_e$ 就从 $2.9956\ \mathrm{eV}$ 变成 $2.4613$ 或 $3.7965\ \mathrm{eV}$（$
 $1\ \mathrm{mW}$ 的 $750\ \mathrm{nm}$ 光进入 $1\%$ 通量的光谱仪是 $3.7756\times10^{13}$ 光子/s，
 曝光 $1\ \mathrm{ms}$ 得 $3.776\times10^{10}$ 个光子——探测器会饱和，实际必须衰减或缩短曝光。
 
+{\footnotesize
 \textbf{出处：} Fantz, \emph{Plasma Sources Science and Technology} \textbf{15}, S137--S147 (2006)
 （等离子体光谱基础与谱线比方法）；Hutchinson《Principles of Plasma Diagnostics》第 2 版发射光谱
 各章（Doppler 增宽与仪器宽度）。
+}
 
 \section{汤姆孙散射与微波干涉仪}
 \label{sec:app-q-scatter}
@@ -382,10 +396,12 @@ $\Delta\phi=2.5344\ \mathrm{rad}=0.4034$ 条纹——相位法测到不到半条
 $10^{19}\ \mathrm{m^{-3}}$，必须 $f>28.39\ \mathrm{GHz}$。反过来，$10\ \mathrm{GHz}$ 的
 $n_c=1.2404\times10^{18}\ \mathrm{m^{-3}}$ 也正是刻蚀等离子体的适用上限。
 
+{\footnotesize
 \textbf{出处：} Sheffield, Froula, Glenzer \& Luhmann《Plasma Scattering of Electromagnetic
 Radiation》第 2 版（汤姆孙散射谱与 Salpeter 参数）；Heald \& Wharton《Plasma Diagnostics with
 Microwaves》（微波干涉法、截止密度）；Hutchinson《Principles of Plasma Diagnostics》第 2 版
 散射与折射率各章。
+}
 
 \section{误差与自检：把不确定度写成结论}
 \label{sec:app-q-error}
@@ -422,9 +438,11 @@ Microwaves》（微波干涉法、截止密度）；Hutchinson《Principles of P
 之前就把不合适的方案筛掉。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：} Godyak \& Demidov, \emph{Journal of Physics D} \textbf{44}, 233001 (2011)（探针诊断的
 系统误差清单与可靠性判据）；Hutchinson《Principles of Plasma Diagnostics》第 2 版各章的误差讨论；
 本书附录 I「测量与不确定度」一节（学习方法侧的同一套口径）。
+}
 
 \section{六道估算练习}
 \label{sec:app-q-problems}
@@ -489,8 +507,9 @@ $\Delta\phi=25.3439\ \mathrm{rad}=4.0336$ 条纹——这一次条纹足够多�
 \section{来源、分级与版权说明}
 \label{sec:app-q-source}
 
+\begingroup\small
 本附录只借鉴经典教材与文献的\textbf{物理结论、公式形式与题型}，全部文字、数值与表格由本书自拟并
-用 \texttt{appQ\_calc.py} 独立复算。离线环境无法核验 DOI，故只给可核对的定位信息。
+用 \texttt{appQ\_calc.py} 独立复算。参考文献只给可核对的定位信息。
 
 \begin{table}[htbp]
   \centering
@@ -517,7 +536,8 @@ $\Delta\phi=25.3439\ \mathrm{rad}=4.0336$ 条纹——这一次条纹足够多�
 \begin{itemize}
   \item 本附录\textbf{不复制}任何教材或论文的题目、解答、图表与数据表；表格中的参数与判据区间属于
         教科书公共知识，文字表述与全部数值由本书自拟并独立复算；
-  \item 所有数值均可用仓库脚本 \texttt{appQ\_calc.py} 复算，与正文、门禁三方一致；
+  \item 所有数值均可用仓库脚本 \texttt{appQ\_calc.py} 复算，与正文引用一致；
   \item 诊断手段的取舍属于工程判断，本附录给出的是\textbf{量级判据}，实际装置还需考虑成本、
         空间与安全性。
 \end{itemize}
+\endgroup

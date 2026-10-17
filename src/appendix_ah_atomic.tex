@@ -8,7 +8,7 @@
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/ah_helium_discharge.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/ah_helium_discharge.jpg}
 \caption{管子里这条发光的等离子体，颜色由原子的能级差决定：电子被撞到高能级、再逐级落回来，只肯发出那几个特定波长的光。本节从这张照片的颜色出发，把谱线写成能级差的账。}
 \label{fig:photo-appah3}
 \figsource{Alicepublic，CC BY-SA 4.0（Wikimedia Commons）}
@@ -77,13 +77,15 @@ v_1 = Z\alpha c = 6\times7.29735\times10^{-3}\times2.99792\times10^{8}
 而芯部的碳虽然被剥到 C VI，中性份额却低到 $1.88172\times10^{-14}$，只有杂质辐射没有中性氢谱线。
 一条谱线能不能被看到，先要问这个离子在不在。
 
+{\footnotesize
 \textbf{出处：}本节关于类氢能级、玻尔速度与跃迁波长的写法，参照 Griem \emph{Principles of Plasma Spectroscopy}（1997，第 2--3 章）、
 Salzmann \emph{Atomic Physics in Hot Plasmas}（1998，第 2 章）与 Hutchinson \emph{Principles of Plasma Diagnostics}（第 2 版，2002，第 6 章）；
-D-$\alpha$ 波长与自发辐射系数为文献声明值。本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAH\_calc.py} 复算。
+D-$\alpha$ 波长与自发辐射系数为文献声明值。
+}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/hollow_cathode_lamp.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/hollow_cathode_lamp.jpg}
 \caption{空心阴极灯：离散谱线是被激发出来的。能级之间的跃迁给出离散的谱线，而要让原子发光就得先把它们激发起来：空心阴极灯用低压放电把原子激发到高能级，出来的正是本节讨论的那种线状谱——强度比与展宽，都是在这类光源上先被量出来的。}
 \label{fig:photo-appah}
 \figsource{Szasza，CC BY-SA 3.0（Wikimedia Commons）}
@@ -156,9 +158,11 @@ $T=0.5$ eV 时碳的电离度是 $5.77523\%$（氢只有 $0.568235\%$）。
 式~\eqref{eq:app-ah-neutral} 是本节所有百分数的来源；把它写成这个形式，
 就能一眼看出「密度越高越难电离」的原因：分母里的 $n_e$ 把电离的收益（自由电子数）摊薄了。
 
+{\footnotesize
 \textbf{出处：}Saha 方程及其在恒星与实验室等离子体中的应用，参照 Saha（1920，\emph{Philosophical Magazine} \textbf{40}, 472）、
 Unsöld \emph{Physik der Sternatmosphären}（1955，第 3 章）、Mihalas \emph{Stellar Atmospheres}（第 2 版，1978，第 5 章）
-与 Salzmann（1998，第 3 章）；电离能取文献值。本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAH\_calc.py} 复算。
+与 Salzmann（1998，第 3 章）；电离能取文献值。
+}
 
 \section{强度比：为什么日冕平衡能当温度计}
 \label{sec:app-ah-corona}
@@ -224,9 +228,11 @@ D-$\alpha$ 的自发辐射系数是 $A_{21}=4.41\times10^{7}$ s$^{-1}$（声明�
 它比典型的碰撞退激发率大得多，所以边缘的 D-$\alpha$ 处在日冕极限附近，
 而芯部的软 X 射线谱线必须用碰撞辐射模型（collisional-radiative）算，不能套式~\eqref{eq:app-ah-corona}。
 
+{\footnotesize
 \textbf{出处：}日冕平衡与强度比测温的推导与适用条件，参照 Griem \emph{Plasma Spectroscopy}（1964，第 6 章）、
 Griem（1997，第 4--5 章）、Fujimoto \emph{Plasma Spectroscopy}（2004，第 4 章）
 与 Salzmann（1998，第 5 章）；$A_{21}$ 与日冕极限判据为文献声明值。
+}
 
 \section{多普勒展宽：线宽测离子温度}
 \label{sec:app-ah-doppler}
@@ -286,9 +292,11 @@ D-$\alpha$ 的线宽是 C VI 的 $474.862$ 倍：波长长、质量小，两个�
 这意味着\textbf{在软 X 射线波段用普通谱仪测 C VI 线宽，测到的基本上是仪器函数}。
 要么把分辨率提上去，要么换到波长更长的谱线（代价是发光区域不同）。
 
+{\footnotesize
 \textbf{出处：}多普勒展宽公式与线宽测温的实践，参照 Hutchinson（2002，第 6--7 章）、
 Griem（1997，第 4 章）、Lochte-Holtgreven \emph{Plasma Diagnostics}（1968，第 4 章）
 与 Wesson \emph{Tokamaks}（第 4 版，2011，第 12 章）；仪器展宽为声明值。
+}
 
 \section{塞曼分裂与斯塔克展宽：谱线里的场与密度}
 \label{sec:app-ah-fields}
@@ -344,9 +352,11 @@ Griem（1997，第 4 章）、Lochte-Holtgreven \emph{Plasma Diagnostics}（1968
 换一个斯塔克系数，密度可能差两成。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}塞曼效应与斯塔克展宽的公式形式、以及氢样离子线宽的密度定标，
 参照 Griem（1964，第 4 章）、Griem（1997，第 3--4 章）、Hutchinson（2002，第 6 章）
 与 Salzmann（1998，第 6 章）；斯塔克系数为按 $n_e^{2/3}$ 外推的声明值。
+}
 
 \section{光学薄还是光学厚：谱线诊断的自检}
 \label{sec:app-ah-opacity}
@@ -410,9 +420,11 @@ I \propto \int n_z\,A_{21}\,\mathrm{d}L \quad(\text{强度可加，诊断线性}
 式~\eqref{eq:app-ah-optthin} 是「光学薄」在实际使用中的含义：沿视线的贡献可以直接相加。
 一旦 $\tau$ 不小，辐射输运把强度与密度的关系变成非线性的，必须求解输运方程（附录 X 的方法）。
 
+{\footnotesize
 \textbf{出处：}光学深度与自吸收对谱线诊断的限制，参照 Griem（1964，第 3 章）、
 Griem（1997，第 4 章）、Lochte-Holtgreven（1968，第 3 章）与 Mihalas（1978，第 10 章）；
-轫致吸收系数沿用附录 X 的口径。本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAH\_calc.py} 复算。
+轫致吸收系数沿用附录 X 的口径。
+}
 
 \section{估算练习}
 \label{sec:app-ah-problems}
@@ -462,6 +474,7 @@ $T_i=1$ keV 的多普勒线宽是 $0.00237607$ nm，两者之比 $0.00118621$。
 \section{来源、分级与版权说明}
 \label{sec:app-ah-source}
 
+\begingroup\small
 \subsection*{数值的三个等级}
 
 本附录出现的每一个数字都属于以下三级之一：
@@ -475,10 +488,10 @@ $T_i=1$ keV 的多普勒线宽是 $0.00237607$ nm，两者之比 $0.00118621$。
 \midrule
 现算级 & 由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAH\_calc.py} 从常数与输入现算 & Saha 常数、各电离度、跃迁波长、多普勒线宽、塞曼分裂、$\sigma_{12}$、$\tau$、练习解答 \\
 声明级 & 脚本顶部写入的输入或文献值，不参与推导 & D-$\alpha$ 波长 $656.28$ nm、He II $468.57$ nm、$A_{21}=4.41\times10^{7}$ s$^{-1}$、仪器展宽 $0.02$ nm、Stark FWHM $0.053$ nm、日冕极限 $10^{20}$ m$^{-3}$ \\
-文献级 & 只作定性对照或公式出处，不进入任何数值断言 & Griem 的谱线展宽理论、Saha 方程的原始文献、NIST 波长表的量级 \\
+文献级 & 只作定性对照或公式出处，不进入任何计算 & Griem 的谱线展宽理论、Saha 方程的原始文献、NIST 波长表的量级 \\
 \bottomrule
 \end{tabular}
-\caption{数值分级。门禁 P40 只对「现算级」做数值断言，「声明级」做字面绑定，「文献级」不做断言。}
+\caption{数值分级。只有「现算级」参与逐节核对，「声明级」是给定的输入，「文献级」只作对照。}
 \label{tab:app-ah-source}
 \end{table}
 
@@ -522,3 +535,4 @@ $T_i=1$ keV 的多普勒线宽是 $0.00237607$ nm，两者之比 $0.00118621$。
 
 \textbf{出处：}本节的分级与版权口径沿用全书统一约定；
 数值分级的三级划分与附录 Q、X、AC 保持一致。本节不含现算数值。
+\endgroup

@@ -77,9 +77,10 @@ $\chi_B/\chi_{\mathrm{eff}}=200.577$ 听起来像「玻姆定标很差」，但�
 磁场翻倍时回旋玻姆降到 $0.25$ 倍、玻姆只降到 $0.5$ 倍——这就是「为什么还要把 $B$ 往上推」。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}本节的输运系数分类与回旋玻姆定标参照 Horton \emph{Rev. Mod. Phys.} \textbf{71} (1999) 735 与
 Connor \& Wilson \emph{Plasma Phys. Control. Fusion} \textbf{36} (1994) 719；功率账口径与附录 S、附录 U 一致。
-本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAF\_calc.py} 复算。
+}
 
 \section{漂移波：梯度和磁场谁说了算}
 \label{sec:app-af-driftwave}
@@ -132,10 +133,11 @@ $k_\theta\rho_s$）：把 $k_\theta=k_\theta\rho_s/\rho_s$ 代进去，$\rho_s$ 
 只会让它换了驱动来源。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}漂移波机制与 $\omega_*$ 的推导参照 Wesson \emph{Tokamaks}（第 4 版，2011，第 12 章）、
 Helander \& Sigmar \emph{Collisional Transport in Magnetized Plasmas}（2002，第 4 章）与
 Horton \emph{Rev. Mod. Phys.} \textbf{71} (1999) 735；$\rho_s$ 与 $\rho_i$ 的口径与附录 AE 一致。
-本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAF\_calc.py} 复算。
+}
 
 \section{不稳定性：ITG 与 TEM}
 \label{sec:app-af-instability}
@@ -207,13 +209,15 @@ $L_T$ 与临界值之比 & $0.5$ m & $1.24$ m & 陡 $2.48$ 倍 \\
 这也解释了为什么托卡马克的芯部剖面总是长得差不多。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}ITG 与 TEM 的阈值判据参照 Wesson \emph{Tokamaks}（第 4 版，2011，第 12 章）、
 Horton \emph{Rev. Mod. Phys.} \textbf{71} (1999) 735 与 Garbet 等
 \emph{Plasma Phys. Control. Fusion} \textbf{46} (2004) B557；捕获比例与附录 AE 同口径。
+}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/magnetic_turbulence.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/magnetic_turbulence.jpg}
 \caption{磁湍流：输运由哪一段波数贡献。把磁场的湍流结构画出来，才能理解「输运不是均匀发生」：能量从驱动尺度级联到耗散尺度，而真正贡献输运的往往只是其中一段波数——本节讨论的谱与级联，就是在这样的结构上做积分。}
 \label{fig:photo-appaf}
 \figsource{Giannandrea Inchingolo，CC BY-SA 4.0（Wikimedia Commons）}
@@ -277,10 +281,11 @@ $\chi_{\mathrm{mix}}/\chi_{\mathrm{eff}}=31.2658$ 这个数不要背成「混合
 就看去掉饱和因子之后它还能不能对上量级——本工作点能，所以回旋玻姆定标在工程上够用。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}混合长与饱和的讨论参照 Horton \emph{Rev. Mod. Phys.} \textbf{71} (1999) 735 与
 Connor \& Wilson \emph{Plasma Phys. Control. Fusion} \textbf{36} (1994) 719；
 「上界与真值」的口径与附录 AC 的截断误差、附录 AD 的气球模上限同一思路。
-本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAF\_calc.py} 复算。
+}
 
 \section{带状流与剪切抑制}
 \label{sec:app-af-zonal}
@@ -334,14 +339,15 @@ $a/10=0.2$ m & $50226.9$ s$^{-1}$ & $0.282083$ & 否 \\
 所以把输运写成「$\chi\propto$ 梯度」的单调函数一定是错的：\textbf{它自己带刹车}。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}带状流与 $E\times B$ 剪切抑制判据参照 Biglari、Diamond \& Terry
 \emph{Phys. Fluids B} \textbf{2} (1990) 1、Hahm \& Burrell \emph{Phys. Plasmas} \textbf{2} (1995) 1648
 与 Burrell \emph{Phys. Plasmas} \textbf{4} (1997) 1499；径向电场口径与附录 AD 一致。
-本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAF\_calc.py} 复算。
+}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/af_kelvin_helmholtz.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/af_kelvin_helmholtz.jpg}
 \caption{湍流不是无序：能量先在大尺度生成，再逐级传到小尺度耗散掉。大气里这排卷起的云街，就是同一套级联在眼前发生——本节要问的是，输运由哪一段波数买单。}
 \label{fig:photo-appaf3}
 \figsource{Brocken Inaglory，CC BY-SA 3.0（Wikimedia Commons）}
@@ -394,10 +400,11 @@ $0.1$--$0.5$ 与 $0.5$--$1.0$ 两段的份额；谱越平，输运越向高波�
 做模拟前先问「我的谱指数是多少」，比先调系数有效。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}二维漂移波熵级串与逆能量级串的谱指数参照 Kraichnan \emph{Phys. Fluids}
 \textbf{10} (1967) 1417 与 Hasegawa \& Mima \emph{Phys. Fluids} \textbf{21} (1978) 87；
 三维 Kolmogorov 谱参照 Kolmogorov \emph{Dokl. Akad. Nauk SSSR} \textbf{30} (1941) 301。
-本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAF\_calc.py} 复算。
+}
 
 \section{估算练习}
 \label{sec:app-af-problems}
@@ -446,6 +453,7 @@ $\chi_B=57.4625$ m$^2$s$^{-1}$、$\chi_{\mathrm{gB}}=0.712099$ m$^2$s$^{-1}$，
 \section{来源、分级与版权说明}
 \label{sec:app-af-source}
 
+\begingroup\small
 本附录的数值分三级，每一级的可核验程度不同：
 
 \begin{table}[htbp]
@@ -482,4 +490,4 @@ $\chi_{\mathrm{eff}}$ 是实验反推的等效扩散系数，不是从湍流方�
 与 Helander \& Sigmar \emph{Collisional Transport in Magnetized Plasmas}（2002，第 1 章）；
 临界梯度与刚性的综述参照 Dimits 等 \emph{Phys. Plasmas} \textbf{7} (2000) 969 与
 Doyle 等 \emph{Nucl. Fusion} \textbf{47} (2007) S18；$\rho_s$ 与 $\rho_i$ 的口径与附录 AE 一致。
-本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAF\_calc.py} 复算。
+\endgroup

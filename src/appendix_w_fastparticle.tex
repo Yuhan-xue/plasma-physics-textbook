@@ -9,7 +9,7 @@
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/w_jet_1991.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/w_jet_1991.jpg}
 \caption{JET：第一次做氘氚实验的装置。本节 3.5 MeV 的 alpha 粒子，最早就是在 JET 的氘氚放电里成批出现的——从那时起，「自加热」不再是纸面上的项。}
 \label{fig:photo-appw2}
 \figsource{EFDA JET，CC BY-SA 3.0（Wikimedia Commons）}
@@ -99,12 +99,14 @@ $V=832.2\ \mathrm{m^3}$ 是等离子体体积。也就是说\textbf{每秒钟有
 变成背景的一部分。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：} D--T 反应的 $17.6\ \mathrm{MeV}$ 能量分配与 alpha 功率份额 $1/5$ 参照
 Wesson \textit{Tokamaks}（第 4 版，2011，第 1 章）与 Freidberg \textit{Plasma Physics
 and Fusion Energy}（2007，第 1、13 章）；回旋半径与特征时间的量级划分参照
 Wesson 同书第 2 章。本节的数值口径（$P_{\mathrm{fus}}=556.5\ \mathrm{MW}$、
 $V=832.2\ \mathrm{m^3}$）与附录 U 的 D1 工作点一致，全部由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appW\_calc.py}
 复算。
+}
 
 \section{慢化：为什么不能用「快离子」公式}
 \label{sec:app-w-slowing}
@@ -234,6 +236,7 @@ $4227\ \mathrm{km}$，绕环 $108514$ 圈 \\
 走多远}，轨道宽度决定它\textbf{跨过几个磁面}。加热的局域性由后者决定，不是前者。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：} Chand\-ra\-sekhar 阻力函数与 $H(x)$ 的形式参照 Chand\-ra\-sekhar
 \textit{Principles of Stellar Dynamics}（1943）与 Spitzer \textit{Physics of Fully
 Ionized Gases}（第 2 版，1962，第 5 章）；临界能量的定义与「$0.3$--$0.5\ \mathrm{MeV}$」
@@ -242,6 +245,7 @@ Freidberg \textit{Plasma Physics and Fusion Energy}（2007，第 13 章）；电
 能量均分时间的 NRL 形式参照 NRL \textit{Plasma Formulary}（2013，第 1 章）。
 本节全部数值由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appW\_calc.py} 复算，其中 $\tau_{eq}$ 与 $\tau_E$ 的
 闭合是独立的交叉验证。
+}
 
 \section{加热落在哪：18 厘米的径向宽度}
 \label{sec:app-w-orbit}
@@ -315,12 +319,14 @@ $18$ 厘米。所以 alpha 加热的真实图像是：\textbf{一层一层套着
 层与层之间不均匀——而不是「芯部一个点热、其余都冷」。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：} 香蕉轨道宽度与极向回旋半径的定义参照 Wesson \textit{Tokamaks}
 （第 4 版，2011，第 3 章）与 Freidberg \textit{Plasma Physics and Fusion Energy}
 （2007，第 13 章）；快粒子首次轨道损失与逃生锥的几何参照 Wesson 同书第 3 章与
 Hender 等（2007）\textit{Nucl.\ Fusion} \textbf{47}, S128。出生率的
 $(1-\rho^2)^2$ 剖面与 $18$ 厘米的落点宽度为本附录自拟的简化口径，量级 1 的系数
 由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appW\_calc.py} 复算。
+}
 
 \section{慢化分布与高能尾巴}
 \label{sec:app-w-tail}
@@ -409,12 +415,14 @@ $\beta_{\text{fast}}$ & $0.241671\%$ & $2\mu_0p_{\text{fast}}/B^2$ &
 的逃逸电子那里已经出现过一次（电流占比小、破坏力最大），本附录是同一枚硬币的另一面。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：} 经典慢化分布 $f\propto 1/(v^3+v_c^3)$ 参照 Wesson \textit{Tokamaks}
 （第 4 版，2011，第 9 章）与 Freidberg \textit{Plasma Physics and Fusion Energy}
 （2007，第 13 章）；快粒子压强用 $(2/3)n\langle E\rangle$ 的口径参照
 Freidberg 同书第 13 章；alpha 密度与 beta 份额的量级参照 Wesson 同书第 9 章。
 本节的全部分布积分、平均值与尾巴份额由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appW\_calc.py} 用
 $400000$ 点梯形积分独立复算，不引用任何外部结论数值。
+}
 
 \section{快粒子驱动的不稳定性：先算三个比值}
 \label{sec:app-w-instability}
@@ -513,6 +521,7 @@ BAE、EPM……），另一种是直接抄阈值。两种都不解决问题。�
 会变，而判断的顺序不变。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：} TAE 的色散关系与「快粒子速度接近 $v_A$ 时共振」的判据参照
 Wesson \textit{Tokamaks}（第 4 版，2011，第 9 章）与 Freidberg \textit{Plasma
 Physics and Fusion Energy}（2007，第 13 章）；鱼骨模与 alpha 进动共振的机理参照
@@ -520,6 +529,7 @@ Wesson 同书第 9 章与 Hender 等（2007）\textit{Nucl.\ Fusion} \textbf{47}
 alpha 连续谱与 BAE 的定性描述参照 Wesson 同书第 9 章。本节所有频率与比值由
 \texttt{tools/\allowbreak{}calc/\allowbreak{}appW\_calc.py} 复算，\textbf{不给出任何阈值数字}——这是刻意的口径声明，
 理由写在表 \ref{tab:app-w-instability} 的题注里。
+}
 
 \section{损失与第一壁：三条通道}
 \label{sec:app-w-loss}
@@ -604,12 +614,14 @@ $0.5564\ \mathrm{MW}$ 摊在 $7.7911\ \mathrm{m^2}$ 上 &
 「把简化声明写在明处」里已经立过一次，这里是第二次。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：} 纹波俘获条件 $|v_\parallel/v|<\sqrt{2\delta}$ 与纹波损失的量级参照
 Wesson \textit{Tokamaks}（第 4 版，2011，第 3 章）与 Hender 等（2007）
 \textit{Nucl.\ Fusion} \textbf{47}, S128；首次轨道损失与壁热负荷的量级参照
 Wesson 同书第 3 章；NPA 与 FIDA 的原理参照 Hutchinson \textit{Principles of Plasma
 Diagnostics}（2002，第 7、11 章）。本节凡标出数字的量都由
 \texttt{tools/\allowbreak{}calc/\allowbreak{}appW\_calc.py} 复算；不稳定性输运份额明确留空。
+}
 
 \section{六道估算练习}
 \label{sec:app-w-problems}
@@ -682,6 +694,7 @@ $f_d:f_b:f_{\text{TAE}}=1:34.6:34.4$。\textbf{要点}：$f_b\approx f_{\text{TA
 \section{来源、分级与版权说明}
 \label{sec:app-w-source}
 
+\begingroup\small
 本附录使用的公式类型、结论与题型均有明确出处；所有数值、表格与文字自拟，并由
 仓库脚本 \texttt{tools/\allowbreak{}calc/\allowbreak{}appW\_calc.py} 独立复算（印刷精度与脚本输出逐位一致）。
 
@@ -720,7 +733,7 @@ Wesson 第 4 版第 3 章；Hutchinson 2002 第 7、11 章 &
 \hline
 \end{tabular}
 \caption{本附录的借鉴来源与自拟部分对照表。所有量级 1 的精确系数、实验定标与工程设计
-值均为本附录自拟；离线环境无法核验 DOI，故只给书名、作者、年份、章节或卷期页。}
+值均为本附录自拟；故只给书名、作者、年份、章节或卷期页。}
 \label{tab:app-w-source}
 \end{table}
 
@@ -730,3 +743,4 @@ Wesson 第 4 版第 3 章；Hutchinson 2002 第 7、11 章 &
 (2) 不复制原文文字——所有叙述重新组织，并把简化与适用条件写在正文与语义盒里；
 (3) 不复制原书习题——六道估算练习的题型参考经典教材，但参数、问法与解答自拟，
 其中练习 2 与练习 6 的「先检查前提」设计是本附录特有的。
+\endgroup

@@ -106,11 +106,12 @@ $\Delta x$ 比德拜长度粗、$\Delta t$ 比回旋周期粗、每格粒子数�
 把这三条写在纸上算一遍，比事后调参数便宜一千倍。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}本节的分辨率判据与有限网格不稳定性的结论，参照 Birdsall \& Langdon
 \emph{Plasma Physics via Computer Simulation}（1985/1991，第 1--2 章）与
 Hockney \& Eastwood \emph{Computer Simulation Using Particles}（1988，第 2、5 章）；
 Spitzer 碰撞时间只借公式形式，库仑对数作为声明输入写在脚本里。
-本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAC\_calc.py} 复算。
+}
 
 \section{推进粒子：蛙跳、Boris 与相位误差}
 \label{sec:app-ac-pusher}
@@ -197,10 +198,11 @@ Boris 步里速度模逐位不变，靠的是「旋转不改变长度」这条�
 不是分辨率的缺陷。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}蛙跳与 Boris 推进器的构造参照 Boris（1970，第 4 届数值模拟等离子体会议论文集）
 与 Birdsall \& Langdon（1985/1991，第 4 章）；相对论版本的形式参照 Vay
 （2008，\emph{Physics of Plasmas} \textbf{15}, 056701）。
-本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAC\_calc.py} 复算。
+}
 
 \section{稳定性与成本：CFL、两种不稳定与粒子步总账}
 \label{sec:app-ac-cost}
@@ -288,10 +290,9 @@ $8.322\times10^{22}$，而模拟里只有 $2\times10^{7}$ 个超级粒子，
 \textbf{出处：}CFL 条件参照 Courant, Friedrichs \& Lewy（1928，\emph{Mathematische Annalen}
 \textbf{100}, 32）；PIC 的成本估算与超级粒子概念参照 Birdsall \& Langdon（1985/1991，第 1 章）
 与 Tajima \emph{Computational Plasma Physics}（1989/2004，第 2 章）。
-本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAC\_calc.py} 复算。
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/summit_supercomputer.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/summit_supercomputer.jpg}
 \caption{超级计算机：粒子步总账最终要在这里付。粒子步总数乘上每步的场求解成本，就是本节的成本账；它落在真实机器上时还要除以并行效率——图上这台机器有上万块加速卡，而 PIC 的瓶颈往往不在浮点峰值，而在粒子与网格之间的数据搬运。}
 \label{fig:photo-appac}
 \figsource{Carlos Jones/ORNL，CC BY 2.0（Wikimedia Commons）}
@@ -352,10 +353,11 @@ $10^{4}$ & $1\%$ & $0.1\%$ & 单步就要 $1\%$ 精度时 \\
 只能加粒子、加平均，或者改问一个对噪声不敏感的问题。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}粒子噪声的 $1/\sqrt{N_p}$ 标度与时间平均降噪，
 参照 Birdsall \& Langdon \emph{Plasma Physics via Computer Simulation}（1985/1991，第 3 章）
 与 Tajima \emph{Computational Plasma Physics}（1989/2004，第 2 章）。
-本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAC\_calc.py} 复算。
+}
 
 \section{场怎么求：泊松、FFT 与离散误差}
 \label{sec:app-ac-field}
@@ -423,11 +425,12 @@ $10^{4}$ & $1\%$ & $0.1\%$ & 单步就要 $1\%$ 精度时 \\
 附录 I 讲学习流程，附录 Q 讲诊断误差，本节讲的是第三种误差：算出来的误差。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}FFT 泊松求解与直接求和的成本对照，参照 Press, Teukolsky, Vetterling \& Flannery
 \emph{Numerical Recipes}（第 3 版，2007，第 12--13、19 章）；
 PIC 中的场求解与截断误差，参照 Birdsall \& Langdon（1985/1991，第 5 章）与
 Hockney \& Eastwood \emph{Computer Simulation Using Particles}（1988，第 6 章）。
-本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAC\_calc.py} 复算。
+}
 
 \section{流体与 MHD：守恒格式、限制器与旋度约束}
 \label{sec:app-ac-mhd}
@@ -495,14 +498,15 @@ Hockney \& Eastwood \emph{Computer Simulation Using Particles}（1988，第 6 �
 判据很简单：把总能量、总质量、总动量打印出来，看它们是不是只随边界通量变化。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}通量形式与黎曼求解器参照 Godunov（1959，\emph{Matematicheskii Sbornik}
 \textbf{47}, 271）与 Van Leer（1979，\emph{Journal of Computational Physics} \textbf{32}, 101）；
 约束输运参照 Gardiner \& Stone（2005，\emph{Journal of Computational Physics} \textbf{205}, 509；
 2008，\textbf{227}, 4123）与 Stone 等（2008，\emph{Astrophysical Journal Supplement}
 \textbf{178}, 137）；隐式格式可放大步长的量级作为声明写在脚本里。
-本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAC\_calc.py} 复算。
 \section{估算练习}
 \label{sec:app-ac-problems}
+}
 
 下面六题只用本附录的公式与工作点，把其中一个量换掉重算一遍。
 
@@ -564,6 +568,7 @@ $\Delta t\le0.2/\omega_{ce}=5.68563\times10^{-13}\ \mathrm{s}$，
 \section{来源、分级与版权说明}
 \label{sec:app-ac-source}
 
+\begingroup\small
 本附录的数字分三级，和前面各附录同一口径。
 
 工作点与附录 M 到 AB 完全一致：$n_e=1.0\times10^{20}\ \mathrm{m^{-3}}$、
@@ -578,7 +583,7 @@ GPU 每秒 $10^{9}$ 粒子步、每个格点 $8$ 个变量 $\times8\ \mathrm{B}$
 写在脚本开头的 \texttt{[DECLARED]} 段里，正文引用时会说明是声明值。
 
 \textbf{文献级}：推进器、CFL 条件、限制器、约束输运这些\textbf{方法}的出处，
-只给书名、作者、年份与卷期页。本附录离线写作，无法核验 DOI，
+只给书名、作者、年份与卷期页。本附录
 因此不给链接、不给页码区间。
 
 \begin{table}[htbp]
@@ -611,7 +616,7 @@ Gardiner \& Stone（2005/2008）、Stone 等（2008） & 约束输运 & 只借 $
 不给可直接运行的实现（附录 G 已给出上手路线，其代码由本教材自行编写）。
 
 三、\textbf{不复制}任何文献中的性能基准数字（例如某代码在某 GPU 上的加速比）：
-离线环境无法核验，且随硬件变化极快，因此只用本教材自己的量级估算。
+这类数随硬件变化极快，只用本教材自己的量级估算。
 
 四、\textbf{不复制}任何未经验证的参数推荐值（例如「每格 100 个粒子最好」）：
 只给判据与代价曲线，把选择权留给读者自己的工作点。
@@ -625,3 +630,4 @@ Gardiner \& Stone（2005/2008）、Stone 等（2008） & 约束输运 & 只借 $
 \textbf{出处：}本节的来源分级与版权口径，沿用本教材附录 E（分级自学书单）与
 附录 I（学习策略）的既定做法；方法层面的引用见上表，
 对应的文献信息与 AC.1--AC.6 各节的「出处：」段一致。
+\endgroup

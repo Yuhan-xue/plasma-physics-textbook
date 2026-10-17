@@ -88,13 +88,15 @@ V = 2\pi^2 R a^2 \kappa = 832.205\ \mathrm{m^3},
 电流越小，磁面就越会往外挤——第三节的 Shafranov 位移说的就是这件事。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}磁面几何与安全因子的记法参照 Freidberg \emph{Ideal MHD}（2014，第 5--6 章）、
 Wesson \emph{Tokamaks}（第 4 版，2011，第 3 章）与 ITER Physics Basis（\emph{Nucl. Fusion}
-\textbf{39} (1999) 2137）；本节的写法与全部数值由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAG\_calc.py} 复算。
+\textbf{39} (1999) 2137）；
+}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/scylla_theta_pinch.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/scylla_theta_pinch.jpg}
 \caption{$\theta$ 箍缩 Scylla I：磁面嵌套最早的实验版本。1958 年的 Scylla I 用一条快速上升的环向电流把等离子体压缩成磁通管，这是「磁面嵌套」最朴素的实现；本书附录 AG 讲的磁面、安全因子与平衡，正是从这类装置的测量里长出来的。}
 \label{fig:photo-appag}
 \figsource{Unknown LANL photographer，Public domain（Wikimedia Commons）}
@@ -171,10 +173,11 @@ $(B_0/B_\theta)^2 = 12.4844$ 的因子，这个因子后面还会以 Shafranov �
 把这条方程当成「磁面的力平衡」，比记它的算符形式有用得多。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}Grad--Shafranov 方程的推导与各项含义参照 Grad \& Rubin（1958，第二次
 日内瓦会议论文集 \textbf{31}，190）、Shafranov（\emph{Reviews of Plasma Physics}
 \textbf{2} (1966) 103）与 Freidberg \emph{Ideal MHD}（2014，第 6、11 章）；
-本节的写法与全部数值由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAG\_calc.py} 复算。
+}
 
 \section{Shafranov 位移：磁轴为什么往外跑}
 \label{sec:app-ag-shift}
@@ -239,10 +242,10 @@ $1/I_p^2$ 成正比，所以提高电流既压住位移，又顺带抬高 $q$ �
 \textbf{出处：}Shafranov 位移的小 $\epsilon$ 表达式参照 Shafranov（\emph{Reviews of
 Plasma Physics} \textbf{2} (1966) 103）、Zakharov \& Shafranov（\emph{Sov. Phys.
 Tech. Phys.} \textbf{18} (1973) 151）与 Wesson \emph{Tokamaks}（第 4 版，2011，
-第 3 章）；本节的写法与全部数值由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAG\_calc.py} 复算。
+第 3 章）；
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/ag_kstar_tokamak.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/ag_kstar_tokamak.jpg}
 \caption{把等离子体拉长、压成 D 形，是为了在同样磁场下多装压强与电流。图为 KSTAR 装置本体与厂房：等离子体就装在中间那个环形真空室里，外面一圈 shaping 线圈，正是本节伸长比 $\kappa$ 与三角形变 $\delta$ 的实物落点。}
 \label{fig:photo-appag3}
 \figsource{Eye Steel Film，CC BY 2.0（Wikimedia Commons）}
@@ -302,10 +305,12 @@ $(1+\kappa^2)/2$ 出现在 $q_{95}$ 的分母里，所以拉长截面等于给�
 $\kappa=1.7$ 相对圆截面多要了将近一倍的电流，代价是垂直稳定性必须靠反馈控制兜住。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}形状因子与 $\beta_N$ 的三角形变增益参照 Troyon 等（\emph{Plasma Phys.
 Control. Fusion} \textbf{26} (1984) 209）、Freidberg \emph{Ideal MHD}（2014，第 6、12 章）
 与 ITER Physics Basis（\emph{Nucl. Fusion} \textbf{39} (1999) 2137）；本节的写法与
 全部数值由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAG\_calc.py} 复算。
+}
 
 \section{压强极限：比压能推到多高}
 \label{sec:app-ag-beta}
@@ -377,12 +382,14 @@ $\beta$ 上不去，不是因为容器会被压坏，而是因为磁压不够把
 前者是理论量级，后者是实验归纳，用哪一个要说明口径。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}维里定理与比压量级上界参照 Greene, Johnson \& Weimer（\emph{Phys.
 Fluids} \textbf{14} (1971) 671）与 Freidberg \emph{Ideal MHD}（2014，第 11--12 章）；
 Troyon 型极限与形状增益取自 Troyon 等（\emph{Plasma Phys. Control. Fusion} \textbf{26}
 (1984) 209）、Wesson \emph{Tokamaks}（第 4 版，2011，第 3、6 章）与 ITER Physics Basis
 （\emph{Nucl. Fusion} \textbf{39} (1999) 2137）；本节的写法与全部数值由
 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAG\_calc.py} 复算。
+}
 
 \section{从平衡到稳定性：与磁岛、台基的分工}
 \label{sec:app-ag-stability}
@@ -437,12 +444,14 @@ $\beta_p+l_i/2$ & $0.829081$ & 本附录、附录 AA & Shafranov 位移 \\
 稳定性分析的输入，不是结论；把它们当成「能跑」的证据是最常见的误读。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}Suydam 判据参照 Suydam（1958，第二次日内瓦会议论文集 \textbf{31}，157）、
 Mercier 判据参照 Mercier（\emph{Nucl. Fusion} \textbf{4} (1964) 213）、能量原理的
 系统叙述参照 Freidberg \emph{Ideal MHD}（2014，第 8--11 章）与 Wesson \emph{Tokamaks}
-（第 4 版，2011，第 6 章）；本节的写法与全部数值由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAG\_calc.py} 复算。
+（第 4 版，2011，第 6 章）；
 \section{估算练习}
 \label{sec:app-ag-problems}
+}
 
 
 \textbf{练习 1}（换一台机器）一台中等装置取 $R=5.5\ \mathrm{m}$、$a=1.5\ \mathrm{m}$、
@@ -490,11 +499,12 @@ $8.82069\times10^{19}\ \mathrm{m^{-3}}$，于是 $n_e/n_G=1.1337$——超过了
 \section{来源、分级与版权说明}
 \label{sec:app-ag-source}
 
+\begingroup\small
 本附录的数值分三级，读的时候请看清哪一级。
 
 \textbf{第一级：现算级。}凡在正文里标出数字、并在句尾注明由
 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAG\_calc.py} 复算的量，都是第一级。它们全部由上表列出的五个几何输入
-（$R$、$a$、$B_0$、$I_p$、$\kappa$）与两个剖面参数（$q_0$、$l_i$）导出，可以被逐位复现。
+（$R$、$a$、$B_0$、$I_p$、$\kappa$）与两个剖面参数（$q_0$、$l_i$）导出，可以逐位核对。
 交叉核对脚本 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAG\_check.py} 会把正文里的每个数字与脚本输出比对，
 阈值取相对误差 $10^{-3}$。
 
@@ -511,7 +521,7 @@ $S=4\pi^2Ra$。凡用到处都写明「声明值」。
 \textbf{版权口径。}（1）不复制任何原书的文字、编号、插图与数据表；本附录的文字、
 表格与数值均自拟，并由脚本独立复算。（2）不复制文献中的平衡解算例与程序输出图；
 EFIT、VMEC、CHEASE 只提及名称与用途，不转载其结果。（3）不复制其他教材的习题；
-六道练习与解答均为自拟，且答案全部由脚本给出。（4）离线环境无法核验 DOI，因此
+六道练习与解答均为自拟，且答案全部由脚本给出。（4）因此
 只给作者、年份、卷期页，不引用预印本编号与网络资源。
 
 \textbf{与相邻附录的分工。}本附录讲平衡：给定压强与电流，磁面是什么形状、磁轴偏多少、
@@ -550,3 +560,4 @@ Wesson \emph{Tokamaks}（第 4 版，2011，第 3、6 章）、Grad \& Rubin（1
 Whitson（\emph{Phys. Fluids} \textbf{26} (1983) 3553）与 Lütjens, Bondeson \& Sauter
 （\emph{Comput. Phys. Commun.} \textbf{97} (1996) 219）。本节的写法与全部数值由
 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAG\_calc.py} 复算。
+\endgroup

@@ -87,10 +87,12 @@ W_{carnot}=Q\left(\frac{T_{h}}{T_{c}}-1\right)
 这是本附录后半部分（失超保护、制冷、交流损耗）全部内容的出发点。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}磁体设计方程与超导磁体的工程口径参照 Wilson \emph{Superconducting Magnets}（1983，第 1--2 章）、
 Iwasa \emph{Case Studies in Superconducting Magnets}（第 2 版，2009，第 1--3 章）、
 Freidberg \emph{Plasma Physics and Fusion Energy}（2007，线圈与力章节）；
 托卡马克环向场线圈的工程参数对照 ITER Physics Basis（\emph{Nuclear Fusion} 39，1999，第 1 章）。
+}
 
 \section{临界面：临界电流、温度裕度和 n 值}
 \label{sec:app-am-critical}
@@ -180,14 +182,16 @@ $J_c$、$T_c$、$I_c$ 三个名字容易让人以为超导体只有一个余量�
 而不是「离临界电流还有几安培」。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}超导临界面的参数化与 $n$ 值口径参照 Wilson \emph{Superconducting Magnets}（1983，第 3--5 章）、
 Bottura 与 Godeke \emph{Reviews of Accelerator Science and Technology} 5（2012，超导材料与导体综述）、
 Iwasa（2009，第 4--5 章）；
 $12\ \mathrm{T}$ 与应变退化的工程口径对照 Mitchell 等 \emph{IEEE Transactions on Applied Superconductivity} 21（2011，ITER 磁体）。
+}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/am_iter_solenoid.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/am_iter_solenoid.jpg}
 \caption{等离子体电流不是凭空来的：中心螺线管就是变压器的原边，等离子体是它的副边。本节讲 CICC 导体与氦冷，图中就是这种导体被绕成巨型线圈的现场。}
 \label{fig:photo-appam2}
 \figsource{Oak Ridge National Laboratory，CC BY 2.0（Wikimedia Commons）}
@@ -252,10 +256,9 @@ Stekly 电流 & $14.2829\ \mathrm{kA}$ & 判据 & 只到工作电流的 $1/5$ \\
 \textbf{出处：}CICC 与稳定化判据参照 Wilson（1983，第 6--8 章）、
 Iwasa（2009，第 6--7 章）、Bottura 与 Godeke（2012）；
 强制流超临界氦的工程口径对照 Mitchell 等（2011）与 ITER Physics Basis（1999，第 1 章）。
-本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAM\_calc.py} 复算。
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/w7x_magnets.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/w7x_magnets.jpg}
 \caption{磁体系统长什么样：仿星器的线圈排布。这张示意图把「磁体首先是结构件」画在明处：每一根线圈都要同时满足临界电流、洛伦兹力与冷量三条约束，形状本身就是这些约束的解。}
 \label{fig:photo-appam}
 \figsource{M. Nagel, C.P. Dhard, H. Bau, H.-S. Bosch, U. Meyer, S. Raatz, K. Risse and T. Rummel，CC BY 3.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -347,10 +350,12 @@ $386.349\ \mathrm{MN}$ 是什么概念？它相当于把 $4$ 万吨的重物挂�
 力不只决定材料，还决定了装配顺序与检修方案。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}磁压与洛伦兹力的口径参照 Wilson（1983，第 2 章）、
 Freidberg \emph{Plasma Physics and Fusion Energy}（2007，线圈与力章节）、
 Wesson \emph{Tokamaks}（第 4 版，2011，磁体与结构章节）；
 线圈向心力量级对照 Mitchell 等（2011）与 ITER Physics Basis（1999，第 1 章）。
+}
 
 \section{失超与保护：能量必须有个出口}
 \label{sec:app-am-quench}
@@ -438,9 +443,11 @@ $1000\ \mathrm{s}$ & $2.22667\times10^{18}$ & $7422.22\ \mathrm{K}$ & 导体烧�
 都是与磁体本体同等重要的设计内容。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}储能、泄能与绝热热点模型参照 Wilson（1983，第 9--10 章）、
 Iwasa（2009，第 8--9 章）、Bottura 与 Godeke（2012）；
 失超检测与保护的工程口径对照 Mitchell 等（2011）。
+}
 
 \section{制冷与交流损耗：冷量是最贵的电}
 \label{sec:app-am-cryo}
@@ -500,12 +507,13 @@ q_{cpl}=\frac{n\tau}{\mu_0}\left(\frac{\mathrm{d}B}{\mathrm{d}t}\right)^{2}
 而是\textbf{把热负荷一项一项砍下来}。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}制冷卡诺因子与交流损耗口径参照 Wilson（1983，第 8 章）、
 Iwasa（2009，第 6 章）、Bottura 与 Godeke（2012）；
 耦合损耗时间常数的工程取值对照 Mitchell 等（2011）。
-本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAM\_calc.py} 复算。
 \section{估算练习}
 \label{sec:app-am-problems}
+}
 
 
 \begin{enumerate}
@@ -550,6 +558,7 @@ $20\ \mathrm{s}$ 已经越过 $150\ \mathrm{K}$ 的安全线——\textbf{保护
 \section{来源、分级与版权说明}
 \label{sec:app-am-source}
 
+\begingroup\small
 本附录的数字分三级，读的时候请分清：
 
 \textbf{现算级}：由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAM\_calc.py} 从声明量出发算出的量
@@ -606,3 +615,4 @@ ITER Physics Basis（\emph{Nuclear Fusion} 39，1999） & 装置级参数的量�
 承受多大的力、储能往哪里去、冷端的每一瓦值多少电。
 把这五笔账算清楚，再读任何一份磁体设计报告都不会迷路。
 \end{tip}
+\endgroup

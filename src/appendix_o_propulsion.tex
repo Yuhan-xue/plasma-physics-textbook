@@ -11,7 +11,7 @@
 与相邻附录的分工：附录 J 回答"这个主题该读哪本书的哪一章"；附录 K 是完整解答的\textbf{范例}；附录 L 是\textbf{自测}题库；附录 M 是加热与运行极限；附录 N 是边界与壁；本附录换到\textbf{应用侧}：让等离子体飞出去。
 
 \begin{tip}{单位与口径自查}{tip-appo-units}
-本附录的数字都可以用计算器复算，仓库脚本 \texttt{appO\_{}calc.py} 列出了每一步。若结果差一个量级，先查三种口径错位：
+若结果差一个量级，先查三种口径错位：
 \begin{enumerate}[nosep,leftmargin=1.6em]
   \item 比冲 $I_{\mathrm{sp}}$ 的单位是"秒"（$I_{\mathrm{sp}}=v_{\mathrm{ex}}/g_0$）还是"$\mathrm{m/s}$"（那就是排气速度本身），两者差 $g_0=9.80665\ \mathrm{m/s^2}$；
   \item 推力是\textbf{束流推力} $T=I_b\sqrt{2m_iV_b/q}$ 还是含中性损失与羽流发散的\textbf{实测推力}（后者更小）；
@@ -53,7 +53,9 @@ I_{\mathrm{sp}}\equiv\frac{v_{\mathrm{ex}}}{g_0},
 
 结论：\textbf{同样的 $\Delta v$，化学发动机要带走 $9.6$ 倍于自身的初始质量，而 $5000\ \mathrm{s}$ 的电推进只要 $1.23$ 倍}——这就是电推进存在的理由，也是它必须付出的代价：推力极小（下一节量化）。
 
+{\footnotesize
 \textbf{出处：}Sutton \& Biblarz《Rocket Propulsion Elements》（第 9 版）的火箭方程与比冲章节；Jahn《Physics of Electric Propulsion》第 1 章的推进方式分类。
+}
 
 
 \section{推力与功率账：$40\ \mathrm{mN/kW}$ 的价目表}
@@ -99,12 +101,14 @@ NSTAR 级 & 0.092 & 3.03 & 1398 & 2293 & 40.1 \\
 
 结论：\textbf{推力与功率成正比（$40\ \mathrm{mN/kW}$）：想要 $1\ \mathrm{N}$ 就得准备 $24.5\ \mathrm{kW}$，想要 $100\ \mathrm{N}$ 需要 $2.45\ \mathrm{MW}$}——电推进因此只能做"长期小推力"，用时间换速度增量。
 
+{\footnotesize
 \textbf{出处：}Goebel \& Katz《Fundamentals of Electric Propulsion》的推力/功率/效率关系与推力器指标章节。
+}
 
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/o_ion_thruster.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/o_ion_thruster.jpg}
 \caption{NEXT 离子推力器：栅极把电压变成速度。静电加速的全部机构就是两层栅极：离子在几千伏的电位差里被加速，比冲因此可以做到化学火箭的十倍。}
 \label{fig:photo-appo2}
 \figsource{NASA，Public domain（Wikimedia Commons）}
@@ -155,7 +159,9 @@ j=\frac{4\varepsilon_0}{9}\sqrt{\frac{2q}{m_i}}\,\frac{V^{3/2}}{d^2}.
 
 结论：\textbf{推力不是靠"更高的电压"，而是靠"更大的束流面积"}。把电压从 $1000\ \mathrm{V}$ 提到 $1500\ \mathrm{V}$，比冲只涨 $22\%$，而空间电荷限制电流涨 $84\%$（$\propto V^{3/2}$）——离子推力器做大的关键在栅极面积与间距，而不在电源电压。
 
+{\footnotesize
 \textbf{出处：}附录 K.7 的 Child--Langmuir 推导（Child 1911；Langmuir 1913 原始文献）；Goebel \& Katz 的离子光学与栅极章节。
+}
 
 
 \section{霍尔推力器：用磁场"挡住"电子}
@@ -186,12 +192,14 @@ v_E=\frac{E}{B}=6.0\times10^{5}\ \mathrm{m/s}.
 
 结论：\textbf{只用一块磁场，就让比冲从化学的 $450\ \mathrm{s}$ 抬到 $2100\ \mathrm{s}$，而且不需要栅极}——代价是效率（$\eta\approx0.5$）与通道壁的寿命。
 
+{\footnotesize
 \textbf{出处：}Choueiri 的电推进等离子体物理综述；Jahn《Physics of Electric Propulsion》的 $\mathbf{E}\times\mathbf{B}$ 推力器章节。
+}
 
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/o_pppl_fusion_rocket.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/o_pppl_fusion_rocket.jpg}
 \caption{磁喷嘴不做静电加速：它让等离子体沿磁力线膨胀，把轴向动能直接变成推力。本节讲的比冲与功率账，就是这类「无栅极」推进方案的核心权衡。}
 \label{fig:photo-appo3}
 \figsource{Elle Starkman / PPPL，Public domain（Wikimedia Commons）}
@@ -229,7 +237,9 @@ $I_{\mathrm{sp}}$（$\mathrm{s}$） & $v_{\mathrm{ex}}$（$\mathrm{km/s}$） & $
 
 结论：\textbf{同一个电源，比冲调高一倍，推力就减半}——$T\propto1/I_{\mathrm{sp}}$ 是电推进无法回避的交换，也正是"可调比冲"的价值所在。
 
+{\footnotesize
 \textbf{出处：}Ahedo 的磁喷嘴与空间推进综述；Chang D\'iaz 等的 VASIMR 论文（离子回旋加热与可调比冲）。
+}
 
 
 \section{中和、寿命与羽流：效率的损失清单}
@@ -264,7 +274,9 @@ CEX 侵蚀 & $1.5\%$（$n_n=10^{17}$）到 $15\%$（$n_n=10^{18}$） & 快离子
 
 结论：\textbf{电推进的效率天花板不在加速原理，而在损失清单}——放电损耗 $35$--$50\%$ 才是主项，其余所有工程努力都是围绕"把它压下去、同时不让寿命掉下来"。
 
+{\footnotesize
 \textbf{出处：}Goebel \& Katz 的推力器效率、空心阴极与羽流章节；附录 N \S N.4 的溅射侵蚀口径。
+}
 
 
 \section{六道估算练习}
@@ -294,6 +306,9 @@ CEX 侵蚀 & $1.5\%$（$n_n=10^{17}$）到 $15\%$（$n_n=10^{18}$） & 快离子
 
 \section{来源、分级与版权说明}
 
+\begingroup\small
+本附录的数字都可以用 \texttt{tools/\allowbreak{}calc/\allowbreak{}appO\_calc.py} 重算一遍；脚本与当时的输出记录都在仓库里。
+
 \begin{table}[htbp]
 \centering
 \small
@@ -318,7 +333,7 @@ O.6 & Goebel \& Katz 的效率、空心阴极与羽流章；附录 N \S N.4 的�
 \item 本附录\textbf{不复制}任何教材或文献的题目原文、解答、图表与数据表；表格中的参数区间与物理结论属于教科书公共知识，文字表述与全部数值由本书自拟。
 \item 表中列出的教材与文献是\textbf{取材来源}（说明该主题在哪本书里讲、按什么顺序讲），不是逐句引用；读者若要系统学习，请直接阅读原书。
 \item 本附录所用的一切"文献量级输入"（$m_{\mathrm{Xe}}=131.29\ \mathrm{u}$、$B=0.02\ \mathrm{T}$、$n_n$ 与 $\sigma$ 的取值、$\eta=0.5$--$0.7$、$\sigma_{\mathrm{CEX}}=5\times10^{-19}\ \mathrm{m^2}$、发散角）都在正文中\textbf{显式标出}，便于读者替换成自己装置的数据重算；结论中依赖这些输入的倍数关系（如"霍尔电流是束流的 $28.6$ 倍"）会随输入变化，但量级结论稳定。
-\item 因离线环境无法核验 DOI，本附录只给出可自行检索的书名、作者与年份，\textbf{不写无法核实的 DOI 与卷页}。
+\item 本附录只给出可自行检索的书名、作者与年份，\textbf{不写无法核实的 DOI 与卷页}。
 \end{itemize}
 
 \begin{tip}{与附录 K、M、N 串联使用}{tip-appo-chain}
@@ -329,3 +344,4 @@ O.6 & Goebel \& Katz 的效率、空心阴极与羽流章；附录 N \S N.4 的�
   \item 最后做本附录的 6 道估算题，并把 \S O.6 的损失清单与附录 N 的溅射侵蚀对照着看——两边算的都是"离子撞壁"，只是一个要推力、一个怕寿命。
 \end{enumerate}
 \end{tip}
+\endgroup

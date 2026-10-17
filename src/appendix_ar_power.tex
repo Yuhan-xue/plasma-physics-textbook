@@ -120,10 +120,12 @@ $2.71649$ 倍；单看能量它只有环流功率运行 $27.1649$ ms 的量，�
 开关。混在一起算，结果一定偏大，然后被「成本太高」这个结论误导。
 \end{tip}
 
+{\small
 
 \textbf{出处：}电厂能量账与再循环功率的口径见 Freidberg, \emph{Plasma Physics and Fusion Energy}
 （2007）第 5 章；磁体与低温电耗取本书附录 AM 的同一组数值；中心螺线管的电流摆幅与爬升时间取量级
 口径，用于说明「脉冲账」的量级关系。本附录不复印原书图表。
+}
 
 \section{变流器与纹波：十二脉波为什么是标准}
 \label{sec:app-ar-converter}
@@ -210,7 +212,7 @@ $2.71586\%$。
 与量级，不复印原书图表。
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/flywheel_20mw.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/flywheel_20mw.jpg}
 \caption{把能量存在转子里：20 MW 飞轮储能。飞轮的能量是 $\frac12 I\omega^2$，能撑多久由功率与容量共同决定。这座电站的 200 台飞轮并机运行，正对应本章「储能：飞轮、电容与它们能撑多久」那笔账。}
 \label{fig:photo-appar2}
 \figsource{Z22，CC BY-SA 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -308,11 +310,13 @@ $0.548311$ MWh 的电池，却能在几十毫秒里把功率交出去。储能�
 $3.8365$ 倍——而能量按 $v^2$ 涨，于是同样的质量能存九倍多的能量。
 \end{tip}
 
+{\small
 
 \textbf{出处：}飞轮的应力限制与比能量推导见 Genta, \emph{Kinetic Energy Storage}（1985）与
 Bolund 等，\emph{Energy Conversion and Management} 48 (2007) 讨论飞轮储能的综述；电容与电感储能
 的公式属电磁学基本内容；四条路线的对比口径参考 Dolan（编），\emph{Magnetic Fusion Technology}
 （2013）储能与电源章。本附录不复制原书数值表。
+}
 
 \section{环流功率：电厂净效率的分母}
 \label{sec:app-ar-recirculating}
@@ -370,11 +374,13 @@ $55.65$ MW，相当于再削减 $17.9744$ MW——这比省下一项 $8$ MW 的�
 「厂内要吃掉多少电」，再谈聚变功率要多大。
 \end{tip}
 
+{\small
 
 \textbf{出处：}再循环功率与工程增益的定义见 Freidberg, \emph{Plasma Physics and Fusion Energy}
 （2007）第 5 章与 Stacey, \emph{Fusion: An Introduction to the Physics and Technology of Magnetic
 Confinement Fusion}（第 2 版，2011）电厂章；电流驱动功率的物理见本书附录 M 与 Wesson,
 \emph{Tokamaks}（第 3 版，2004）电流驱动章。本附录不复制原书表格。
+}
 
 \section{电网接口：并网、频率响应与无功}
 \label{sec:app-ar-grid}
@@ -426,6 +432,7 @@ $0.2$ Hz 对应时间 & $20$ s & 一次调频与储能的动作窗口 \\
 聚变厂的电气设计与等离子体设计必须一起做。
 \end{tip}
 
+{\small
 
 \textbf{出处：}频率变化率与惯性常数的关系见 Kundur, \emph{Power System Stability and Control}
 （1994）频率控制章；并网点的无功与谐波考核口径是电力系统标准做法（见上一节引的电力电子教科书）；
@@ -433,6 +440,7 @@ $0.2$ Hz 对应时间 & $20$ s & 一次调频与储能的动作窗口 \\
 原书图表。
 \section{保护与故障：毫秒级动作}
 \label{sec:app-ar-protect}
+}
 
 电源系统最贵的部分往往不是稳态容量，而是\textbf{动态能力}。三件事决定了它的时间尺度。
 
@@ -496,11 +504,13 @@ SPI 阀门的动作时间约 $1$ ms，相对 $\tau_\mathrm{CQ}$ 有 $76.9074$ �
 「慢慢来」的借口，往往会在几毫秒的暂态里失控。
 \end{tip}
 
+{\small
 
 \textbf{出处：}破裂缓解的时间窗口与 $\tau_\mathrm{CQ}$ 口径取本书附录 V、X 的同一组数值；快控线圈的
 电压与功率按 $V=L\,\mathrm{d}I/\mathrm{d}t$ 的量级估算；聚变装置电源保护的一般讨论见 ITER
 Physics Basis, \emph{Nuclear Fusion} 39 (1999) 与 Dolan（编），\emph{Magnetic Fusion Technology}
 （2013）。本附录不复制原书图表。
+}
 
 \section{估算练习}
 \label{sec:app-ar-problems}
@@ -566,6 +576,7 @@ $\tan25^\circ=0.466308$，无功 $Q=0.466308\times222.6=103.8$ MVAr（式 \eqref
 \section{来源、分级与版权说明}
 \label{sec:app-ar-source}
 
+\begingroup\small
 本附录的目标是把聚变电厂的电气支路补成一本可算的账。它的边界与分工写在下面，读者据此判断哪些
 结论可以直接用、哪些只是量级。
 
@@ -606,3 +617,4 @@ AP（维护与遥操作）同一层级。所有数值都由 \texttt{tools/\allow
 
 \textbf{出处：}来源表所列文献；分级与不复制口径沿用本书附录 AM/AO/AP 的同一约定。本附录不复制
 原书图表。
+\endgroup

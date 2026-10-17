@@ -20,7 +20,7 @@
 % =====================================================================
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/tritium_glowring.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/tritium_glowring.jpg}
 \caption{氚长什么样：自发光的小环。氚的 $\beta$ 衰变（半衰期 12.32 年）激发荧光粉，于是有了这种不需要电池的光源——本章的活度、比活度与剂量换算，说的就是它每秒钟在衰变多少次。}
 \label{fig:photo-appav2}
 \figsource{Cgommel，CC BY-SA 2.0 de（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -88,18 +88,20 @@ $0.153576\ \mathrm{g}$ 氚——记住这个数，它把「功率」与「燃料
 渗透由分压与壁温定。把它们写成一个「总效率」，就等于放弃了找问题出在哪一格的能力。
 \end{tip}
 
-本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAV\_calc.py} 复算。顺带一个自洽性检查：若燃料
+顺带一个自洽性检查：若燃料
 按 $n_\mathrm{D}=n_\mathrm{T}=5\times10^{19}\ \mathrm{m^{-3}}$、体积 $V=832.2\ \mathrm{m^{3}}$
 填满，则 $R=n_\mathrm{D}n_\mathrm{T}\langle\sigma v\rangle V$ 反推出
 $\langle\sigma v\rangle=9.49336\times10^{-23}\ \mathrm{m^{3}\,s^{-1}}$——这正是
 $T_\mathrm{e}\approx9.2\ \mathrm{keV}$ 附近的 D-T 反应率量级，说明本工作点自洽。
 
+{\footnotesize
 \textbf{出处：}D-T 反应的运动学与反应率系数取自 Bosch \& Hale,
 \emph{Nucl. Fusion} \textbf{32}, 611 (1992) 的经典评述；「三本账」的组织方式参考
 Stacey, \emph{Fusion: An Introduction to the Physics and Technology of Magnetic
 Confinement Fusion}（2nd ed., Wiley-VCH, 2011）第 11 章与 Dolan 编
 \emph{Magnetic Fusion Technology}（Springer, 2013）燃料循环一章的框架，
 只保留本书工作点需要的算式；不复制原书的反应率拟合公式、数据表与算例。
+}
 
 \section{增殖：TBR 是「每烧一个氚要生回几个」}
 \label{sec:app-av-breeding}
@@ -171,11 +173,13 @@ $1.05$ 与 $1.01$ 都「大于 1」，但前者能自持、后者会被衰变与
 判断标准不是 $>1$，而是「净增能否把库存从零补到设计值」——见 AV.6。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}锂与铍的中子反应数据取自 IAEA 核数据服务与
 Mughabghab, \emph{Atlas of Neutron Resonances}（6th ed., Elsevier, 2018）的口径；
 包层增殖比与陶瓷增殖剂的讨论参考 Johnson \& Dean 在
 \emph{Fusion Eng. Des.} 系列综述中给出的陶瓷增殖剂材料数据，本书只取质量与摩尔质量换算；
 不复制原综述的中子学计算程序、包层几何模型与实验数据表。
+}
 
 \section{包层与中子壁负载：中子功率摊在多小的面积上}
 \label{sec:app-av-blanket}
@@ -219,11 +223,13 @@ $0.909388\ \mathrm{MW\,m^{-2}}$；如果堆的尺寸被人为放大一倍（面�
 讨论「壁负载高不高」时，永远要同时说出面积与峰值因子。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}中子壁负载与包层厚度的设计口径参考 Abdou 等,
 \emph{Fusion Eng. Des.} \textbf{100}, 2 (2015) 与 Federici 等,
 \emph{Nucl. Fusion} \textbf{57}, 092002 (2017) 关于 DEMO 包层与第一壁挑战的综述；
 屏蔽衰减长度取钢水混合介质的公开量级，作为声明输入写入本节；不复制原报告的
 设计图、材料数据库与屏蔽算例。
+}
 
 \begin{table}[htbp]
 \centering
@@ -305,11 +311,13 @@ TBR 与提取效率不是「两个独立的 90\%」：没提出来的氚等于�
 $\eta_\mathrm{ext}$ 放进 $\mathrm{TBR}_\mathrm{min}$，而不是留在「以后优化」的清单里。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}低温蒸馏分离氢同位素的理论板数口径参考 Cristescu 等在国际热核聚变实验堆
 同位素分离系统设计文献中的写法（\emph{Fusion Sci. Technol.} 系列）；
 ITER 氚工厂的总体流程与规模参考 Glugla 等，\emph{Fusion Eng. Des.} \textbf{82}, 472 (2007)。
 本书只借用「板数由分离因子与进料/产品份额决定」这一个关系，不复制原文献的流程框图、
 塔板结构与运行参数。
+}
 
 \section{渗透与滞留：库存不是一个数，是一条链}
 \label{sec:app-av-permeation}
@@ -370,10 +378,12 @@ $3250.94\ \mathrm{W}=3.25094\ \mathrm{kW}$。每天衰变掉 $1.54025\ \mathrm{g
 收益很小，把 $\Phi_\mathrm{eff}$ 压低两个量级才是正解。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}氢同位素在金属中的渗透与渗透降低因子参考 Hollenberg 等,
 \emph{Fusion Eng. Des.} \textbf{28}, 190 (1995) 关于氚/氢渗透壁垒的经典综述；
 共沉积滞留口径与附录 AJ 一致。本书只取「平方根定律 + PRF 的乘法链」这一层，
 不复制原综述的渗透率数据库、镀层工艺与实验装置图。
+}
 
 \section{自持：TBR 的及格线在哪里}
 \label{sec:app-av-selfsuff}
@@ -431,12 +441,14 @@ t_\mathrm{cyc}=\frac{m_\mathrm{inv}}{\dot m_\mathrm{inj}}
 $161.952\ \mathrm{a}$ 的含义不是「能跑 162 年」，而是「一直没有足够燃料启动」。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}氚自持与倍增时间的分析框架参考 ITER 技术基础文件
 （\emph{ITER Technical Basis}, IAEA, 2002）关于氚库存与增殖要求的讨论，
 以及 Stacey（2011）第 11 章的自持判据。本节所有数字由
 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAV\_calc.py} 按本书工作点复算；不复制原文件的库存限值表与增殖包层方案。
 \section{衡算、安全与环境：百分之零点五的精度意味着什么}
 \label{sec:app-av-account}
+}
 
 氚是会「跑」的：它会渗透、会被滞留、会衰变，而每一种损失都很难直接称重。燃料循环能不能
 闭合，最后靠的不是流量计，而是衡算——用「进去的减出来的」来推断「还剩多少」。
@@ -478,10 +490,12 @@ $0.5\%$ 衡算 & $50\ \mathrm{g}$ & 同上 & $0.585034$ 天 \\
 它与加料系统的日流量同量级，因此可以被独立核对。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}氚衡算与氚安全的分级参照 ITER 氚安全与衡算体系文件
 （\emph{ITER Tritium Safety} 系列, 2018）与 IAEA 氚环境排放限值口径；
 比活度与稀释体积由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAV\_calc.py} 按本书工作点复算。
 本书只借用「衡算误差折成天数」这一判据，不复制原文件的限值表、监测系统方案与事故分析。
+}
 
 \section{估算练习}
 \label{sec:app-av-problems}
@@ -532,6 +546,7 @@ $50\ \mathrm{g}$，相当于 $0.585034$ 天的燃烧量。
 \section{来源、分级与版权说明}
 \label{sec:app-av-source}
 
+\begingroup\small
 本附录的定位是「燃料循环的账本」：它把氚的耗、生、存、取、算五件事写成可以复算的
 乘法链，并显式区分哪些量来自核数据、哪些量是本书声明输入。全书所有数字由
 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAV\_calc.py} 按 D1 工作点复算，正文不引用任何未在本附录出现的数值。
@@ -563,3 +578,4 @@ $50\ \mathrm{g}$，相当于 $0.585034$ 天的燃烧量。
 \textbf{本附录不做什么}：不给中子输运计算（那需要蒙卡程序与三维几何），
 不给氚工厂的工艺流程图与设备尺寸设计，不给安全分析（事故序列与后果评价），
 也不给氚在环境中的迁移模型——这些分别属于中子学、化工与安全分析专著的范围。
+\endgroup

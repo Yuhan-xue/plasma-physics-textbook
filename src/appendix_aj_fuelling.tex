@@ -101,10 +101,12 @@ $5.21683$ 倍，按注气量算则是 $52.1683$ 倍。凡是看到「加料量�
 两者差一个到两个量级。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}粒子平衡与再循环的处理参照 Wesson \emph{Tokamaks}（第 4 版，2011，第 1、6 章）、
 Freidberg \emph{Plasma Physics and Fusion Energy}（2007，第 13--14 章）与
 ITER Physics Basis（1999，\emph{Nucl. Fusion} \textbf{39}, 2137，第 2 章）；
 $17.6\ \mathrm{MeV}$ 与氚质量取与附录 Z 相同的口径。
+}
 
 \section{气体加料与弹丸加料：效率差在哪}
 \label{sec:app-aj-fuelling}
@@ -169,13 +171,15 @@ $3.43184\times10^{21}\ \mathrm{s^{-1}}$，质量流率
 \textbf{把粒子送到电离之前就已经很深的地方}——弹丸、超声分子束、紧凑环都是这个思路。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}弹丸加料的综述与效率区间参照 Milora 等（1995，\emph{Nucl. Fusion} \textbf{35}, 657）；
 边缘再循环与加料效率的处理参照 Stangeby \emph{The Plasma Boundary of Magnetic Fusion Devices}
 （2000，第 4 章）与 Loarte 等（2007，\emph{Nucl. Fusion} \textbf{47}, S203，ITER 物理基础第 4 章）。
+}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/pellet_injector.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/pellet_injector.jpg}
 \caption{弹丸注入器：燃料以固体弹丸的形式进堆。弹丸加料之所以效率高，是因为它把燃料直接送到芯部，而不是靠边界再往里扩散；本节算的烧蚀与穿透深度，决定了这颗弹丸能走多深——图中的三条炮管正是为了在一次注入里给出不同深度与不同粒径的组合。}
 \label{fig:photo-appaj}
 \figsource{Oak Ridge National Laboratory，CC BY 2.0（Wikimedia Commons）}
@@ -255,10 +259,11 @@ $r_p = 1.5\ \mathrm{mm}$ 需要 $v_p \ge 2500\ \mathrm{m\,s^{-1}}$；
 穿透深度的物理全部藏在这层气盾的传导里，不在弹丸材料上。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}中性气体屏蔽与烧蚀标度参照 Parks \& Turnbull（1978，\emph{Phys. Fluids} \textbf{21}, 1735）；
 弹丸参数区间与加料效率参照 Milora 等（1995，\emph{Nucl. Fusion} \textbf{35}, 657）；
 几何口径与附录 AD 的弹丸原子数保持一致。
-本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAJ\_calc.py} 复算。
+}
 
 \section{氦灰：稀释与排出条件}
 \label{sec:app-aj-ash}
@@ -336,11 +341,13 @@ P_{\mathrm{fus}} \to 556.5\times(0.912256)^{2} = 463.126\ \mathrm{MW}
 这也是为什么偏滤器设计对聚变堆是生死问题。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}功率与粒子控制（含氦灰排出条件）参照 Loarte 等（2007，\emph{Nucl. Fusion} \textbf{47}, S203）
 与 ITER Physics Basis（1999，\emph{Nucl. Fusion} \textbf{39}, 2137，第 4 章）；
 反应率与稀释的处理参照 Bosch \& Hale（1992，\emph{Nucl. Fusion} \textbf{32}, 611）与 Wesson
 \emph{Tokamaks}（第 4 版，2011，第 6 章）；氦谱线见附录 AH。本节凡标出数字的量都由
 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAJ\_calc.py} 复算。
+}
 
 \section{抽气与氚存量：为什么瓶颈不在泵上}
 \label{sec:app-aj-pumping}
@@ -420,10 +427,12 @@ t_{\mathrm{lim}} = \frac{2.0\ \mathrm{kg}}{1.6272\ \text{kg/年}} = 1.22911\ \te
 而不是把泵做大。反过来，氚存量问题也提醒：真正需要盯住的是「滞留份额」这个百分比。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}偏滤器抽气与再循环的处理参照 Stangeby（2000，第 8 章）与 Loarte 等（2007）；
 氚滞留与共沉积的综述参照 Causey（2002，\emph{J. Nucl. Mater.} \textbf{300}, 91）；
 氚库存、半衰期与自持口径与附录 Z 一致。本节凡标出数字的量都由
 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAJ\_calc.py} 复算。
+}
 
 \section{密度控制：反馈回路的带宽}
 \label{sec:app-aj-control}
@@ -482,9 +491,11 @@ Greenwald 密度 & $I_p/(\pi a^{2})$ & $8.82069\times10^{19}\ \mathrm{m^{-3}}$ &
 所以密度反馈控制的被控对象不是「阀门」，而是 $\tau_p$ 与再循环系数这两个等离子体参数。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}Greenwald 密度极限参照 Greenwald 等（1988，\emph{Nucl. Fusion} \textbf{28}, 2199）；
 密度控制与加料剖面的实验处理参照 Loarte 等（2007，\emph{Nucl. Fusion} \textbf{47}, S203）；
-弹丸步调与 ELM 控制的联系见附录 AD。本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAJ\_calc.py} 复算。
+弹丸步调与 ELM 控制的联系见附录 AD。
+}
 
 \section{估算练习}
 \label{sec:app-aj-problems}
@@ -537,6 +548,7 @@ Loarte 等（2007）与 Causey（2002）；数值由 \texttt{tools/\allowbreak{}
 \section{来源、分级与版权说明}
 \label{sec:app-aj-source}
 
+\begingroup\small
 本附录的数值分三级，读的时候要能分清：
 
 \begin{table}[htbp]
@@ -578,4 +590,5 @@ $\eta_{\mathrm{gas}} = 0.10$、$\eta_{\mathrm{pel}} = 0.60$、$\tau_{\mathrm{abl
 Stangeby（2000）、Freidberg（2007）、ITER Physics Basis 第 2、4 章（1999；2007）、
 Milora 等（1995）、Parks \& Turnbull（1978）、Greenwald 等（1988）、Causey（2002）
 与 Bosch \& Hale（1992）；只借鉴结论、公式形式与题型，文字、数值、表格自拟并独立复算。
-离线环境无法核验 DOI，故只给书名/作者/年份/卷期页。
+故只给书名/作者/年份/卷期页。
+\endgroup

@@ -74,9 +74,11 @@ $1.92\times10^{6}$ 元}；全年满发是 $1.752\times10^{6}\ \mathrm{MWh}$，
 而不是反过来。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}维护与可用性的工程口径参照 Dolan（编）\textit{Magnetic Fusion Technology}
 （2013）第 15 章「维护与远程处理」、Wesson \textit{Tokamaks} 4th ed.（2011）第 1 章
-对装置运行窗口的讨论。本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAP\_calc.py} 复算。
+对装置运行窗口的讨论。
+}
 
 \section{包层寿命与更换周期}
 \label{sec:app-ap-blanket}
@@ -130,9 +132,11 @@ $5$ 年不是「材料五岁会坏」，而是「我们决定每五年换一次�
 真正的寿命由 \textbf{dpa 与氦脆}决定（附录 AK），周期只是人为选定的整数。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}包层与增殖段维护的工程口径参照 ITER Physics Basis
 （\textit{Nuclear Fusion} \textbf{39}, 1999）第 4 章、Dolan（编）
 \textit{Magnetic Fusion Technology}（2013）第 6 章与第 15 章。
+}
 
 \section{活化与冷却窗口：剂量率的两个分量}
 \label{sec:app-ap-dose}
@@ -217,9 +221,11 @@ t_{\text{hands}} = T_{\text{long}}\log_2\frac{D_{\text{long}}}{D_{\text{hands}}}
 另一个会高估屏蔽需求。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}活化与剂量率的工程口径参照 Gilbert 与 Sublet 的活化计算综述
 （2010 年代）、Turner \textit{Atoms, Radiation, and Radiation Protection}
 （2007）、ICRP 第 103 号报告（2007）的剂量限值框架。
+}
 
 \begin{figure}[htbp]
 \centering
@@ -298,9 +304,11 @@ v_{\max} = \frac{0.01\ \mathrm{m}}{0.1\ \mathrm{s}} = 0.1\ \mathrm{m}/\mathrm{s}
 表~\ref{tab:app-ap-blanket}，每段只有 $600\ \mathrm{h}$。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}遥操作与机器人学的工程口径参照 Siciliano 与 Khatib（编）
 \textit{Springer Handbook of Robotics} 2nd ed.（2016）第 4 部分「现场与服务机器人」、
 Dolan（编）\textit{Magnetic Fusion Technology}（2013）第 15 章。
+}
 
 \section{热室与部件流转：能力余量}
 \label{sec:app-ap-hotcell}
@@ -357,8 +365,10 @@ cask 年转运能力 & $24.3333$ 段$/$年 & $2 \times 365/30$ \\
 上表里容器余量 $7.6$ 倍而工位只能覆盖需求，就是这个区别。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}热室与部件流转的口径参照 Dolan（编）\textit{Magnetic Fusion Technology}
 （2013）第 15 章、IAEA 关于聚变装置远程处理与热室设施的公开技术文件（2000 年代）。
+}
 
 \section{在役检查与人因}
 \label{sec:app-ap-human}
@@ -412,8 +422,10 @@ D_{\text{year}} = N_{\text{hands}}D_{\text{inspect}} = 2.5\ \mathrm{mSv}/\text{�
 就意味着还有余量去增加人工检查次数，或者把远程比例降到 $0.9$ 也不违规。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}剂量限值与防护框架参照 ICRP 第 103 号报告（2007）、
 Turner \textit{Atoms, Radiation, and Radiation Protection}（2007）。
+}
 
 \section{估算练习}
 \label{sec:app-ap-problems}
@@ -459,6 +471,7 @@ $0.0410959$。也就是说省下 $15\ \mathrm{d}$ 的计划维护，能换回约
 \section{来源、分级与版权说明}
 \label{sec:app-ap-source}
 
+\begingroup\small
 本附录的主题是\textbf{「机器坏了怎么换」}，因此它引用的是工程手册、
 安全报告与机器人学教材，而不是等离子体物理的经典论文。
 表~\ref{tab:app-ap-source} 列出借鉴来源与借鉴方式（只借鉴结论、量级与题型，
@@ -507,3 +520,4 @@ IAEA 远程处理与热室技术文件（2000 年代） & 技术文件 & cask �
 臂长、精度、力分辨率与延迟均为本附录自行声明的量级。
 \textbf{不复制}具体热室设施的设计图与转运流程；
 $30\ \mathrm{d}$ 周转与 $2$ 个 cask 是本附录为说明「除法题」而设的假设。
+\endgroup

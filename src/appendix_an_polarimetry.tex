@@ -93,17 +93,29 @@ $X$/$O$ 相位差 & $0.000111775^\circ$ & $0.15755^\circ$ & $\lambda^3 B_\perp^2
 单弦偏振仪测到的不是某一点的磁场，而是整条路径上的加权平均。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}偏振诊断的总体框架与 Stokes 参数口径参照 Hutchinson《Principles of Plasma Diagnostics》2nd ed.（2002）第 6 章与 Wesson《Tokamaks》4th ed.（2011）第 12 章。
+}
 
+{\footnotesize
 \textbf{出处：}法拉第旋转的推导与工程系数参照 Hutchinson（2002）第 6 章与 Kunze《Introduction to Plasma Spectroscopy》（2009）第 6 章；文献常系数 $2.62\times10^{-13}$ 的对照见正文。
+}
 
+{\footnotesize
 \textbf{出处：}科顿--穆顿效应的推导与高斯单位制下的常系数参照 Hutchinson（2002）第 6 章；单位换算口径由本书统一。
+}
 
+{\footnotesize
 \textbf{出处：}线性斯塔克效应与 MSE 原理参照 Levinton 等, Phys. Rev. Lett. 63, 2060 (1989) 与 Griem《Principles of Plasma Spectroscopy》（1997）；定标思路参照 Wróblewski 与 Lao, Rev. Sci. Instrum. 63, 5140 (1992)。
+}
 
+{\footnotesize
 \textbf{出处：}线积分反演与多弦几何的处理参照 Hutchinson（2002）第 6 章与本书附录 Q 的 Abel 反演口径。
+}
 
+{\footnotesize
 \textbf{出处：}光弹调制与消光比的口径参照 Hutchinson（2002）第 6 章；整圈模糊的处理方式参照 Wesson（2011）第 12 章的讨论。
+}
 
 
 \section{法拉第旋转：把密度和磁场一起称重}
@@ -177,10 +189,9 @@ $R$ 模与 $L$ 模的相位差是 $(\omega/c)\Delta nL$；
 而这正好落在「看起来仍然合理」的范围内，所以它是最危险的一类错误。
 \end{tip}
 
-本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAN\_calc.py} 复算。
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/an_calcite_birefringence.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/an_calcite_birefringence.jpg}
 \caption{一束光进晶体变成两束，因为两个偏振方向的折射率不同。等离子体在磁场里对光做的事与此同类，只是效应弱得多——本节的双折射公式，量级差距就在这张图里。}
 \label{fig:photo-appan3}
 \figsource{Masha Milshina，CC BY 4.0（Wikimedia Commons）}
@@ -326,7 +337,7 @@ $q$ 对投掷角的相对灵敏度是 $18.5005\%$ 每度（$1/\tan\gamma=10.6$ �
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/spexone_polarimeter.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/spexone_polarimeter.jpg}
 \caption{SPEXone 偏振仪：偏振是要被标定的物理量。偏振测量的难点不在「看见光」，而在把偏振态完整地解出来：调制、检偏与标定每一步都会引入系统误差。本节讲的相位—剖面反演与不确定度预算，与这类星载偏振仪用的是同一套语言。}
 \label{fig:photo-appan2}
 \figsource{NASA，Public domain（Wikimedia Commons）}
@@ -391,7 +402,6 @@ $0.01^\circ$ 的相位分辨率已经是很好的水平，它折算出的磁场�
 诊断设计的第一步永远是数弦，而不是选探测器。
 \end{tip}
 
-本节凡标出数字的量都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAN\_calc.py} 复算。
 \section{工程实现：调制、消光比与整圈模糊}
 \label{sec:app-an-engineering}
 
@@ -528,6 +538,9 @@ $\Delta\lambda=3.32461\ \mathrm{nm}$，
 \textbf{再往下压相位分辨率没有收益}。
 
 \section{来源、分级与版权说明}
+
+\begingroup\small
+本附录的数字都可以用 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAN\_calc.py} 重算一遍；脚本与当时的输出记录都在仓库里。
 \label{sec:app-an-source}
 
 \subsection*{本附录的借鉴来源}
@@ -558,7 +571,7 @@ MSE 数据分析与定标 & Wróblewski 与 Lao, Rev. Sci. Instrum. 63, 5140 (19
 \item 不复制文献中偏振仪的光路图、探测器布置与机械结构细节；
 \item 不复制各文献使用的符号体系（本书统一用 $X$、$Y$、$\varphi_{\mathrm{rot}}$、$\varphi_{\mathrm{CM}}$）；
 \item 不复制原始论文中对 MSE 定标流程的逐步操作描述；
-\item 不复制任何教科书或论文中的习题原题（本附录六道题均为自拟，数值全部可复算）。
+\item 不复制任何教科书或论文中的习题原题（
 \end{itemize}
 
 \begin{tip}{本附录不给什么}{tip-app-an-honest}
@@ -567,4 +580,4 @@ MSE 数据分析与定标 & Wróblewski 与 Lao, Rev. Sci. Instrum. 63, 5140 (19
 它只做一件事：把「偏振怎么变成磁场与 $q$」这条链条上的每一步量级算清楚，
 其余的留给专门文献。
 \end{tip}
-
+\endgroup

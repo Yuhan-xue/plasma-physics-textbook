@@ -63,12 +63,14 @@ $S=100$ m$^3$/s 配 5 Pa，得 $Q=500$ Pa$\cdot$m$^3$/s $=5000$ mbar$\cdot$L/s�
 偏滤器的高压强区靠低温泵“大吃”，真空室的低压强区靠同一批泵的边角余量维持——所以泵的选型要按\textbf{高压强工况}定，而本底目标却由\textbf{放气}决定（AO.3 节）。
 \end{tip}
 
+{\small
 
 \textbf{出处：}真空系统的量与工程口径参照 O'Hanlon《A User's Guide to Vacuum Technology》3rd ed.（2003）第 1--3 章；聚变装置的工作压强与吞吐量口径参照 ITER Physics Basis（\textit{Nuclear Fusion} \textbf{39}, 1999）第 4 章与 Wesson《Tokamaks》4th ed.（2011）第 4 章。
+}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/thruster_vacuum.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/thruster_vacuum.jpg}
 \caption{真空舱里的放电：抽气与壁条件。推力器在真空舱里点火，舱内压强由抽速与放气共同决定——正是本章「本底压强是一次除法」与「有效抽速由导管决定」两节所算的场景。}
 \label{fig:photo-appao}
 \figsource{EXOTRAIL SA，CC BY-SA 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -84,7 +86,7 @@ $S=100$ m$^3$/s 配 5 Pa，得 $Q=500$ Pa$\cdot$m$^3$/s $=5000$ mbar$\cdot$L/s�
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/ao_chamber_a.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/ao_chamber_a.jpg}
 \caption{真空不是「抽干净」就完事：这样一座热真空室要同时把压强、放气和温度压住。本节的有效抽速、流导与放气率，最终都体现在这类系统级工程的规模上。}
 \label{fig:photo-appao3}
 \figsource{NASA / Johnson Space Center，Public domain（Wikimedia Commons）}
@@ -142,8 +144,10 @@ C\ \ge\ 9S_p\quad\Longrightarrow\quad d\ \ge\ \Big(\frac{9S_pL}{12.1}\Big)^{1/3}
 买泵看铭牌，设计看流导。分子流下流导正比于 $d^3/L$——\textbf{直径是三次方，长度是一次方}：把导管做短一倍，比把泵换大一倍划算得多。
 \end{tip}
 
+{\small
 
 \textbf{出处：}分子流流导与有效抽速的公式参照 O'Hanlon《A User's Guide to Vacuum Technology》3rd ed.（2003）第 3--4 章；低温泵对氦与氘的抽速差异参照 ITER Physics Basis（\textit{Nuclear Fusion} \textbf{39}, 1999）第 4 章与 Dolan（编）《Magnetic Fusion Technology》（2013）第 6 章。
+}
 
 \section{放气与漏率：本底压强是一次除法}
 \label{sec:app-ao-outgassing}
@@ -208,8 +212,10 @@ $\sigma_{\rm mono}=10^{19}$ m$^{-2}$ 给出 $4.89532\times10^{21}$ 个分子，�
 $P=Q/S$ 里的 $Q$ 和 $S$ 是两笔独立的账：把泵换大一倍只能把压强减半，把壁烘一遍能把 $Q$ 降三个数量级。\textbf{先改分子，再改泵。}
 \end{tip}
 
+{\small
 
 \textbf{出处：}放气率与烘烤的数据口径参照 O'Hanlon《A User's Guide to Vacuum Technology》3rd ed.（2003）第 8 章；托卡马克真空室烘烤与检漏规范参照 ITER Physics Basis（\textit{Nuclear Fusion} \textbf{39}, 1999）第 4 章与 Wesson《Tokamaks》4th ed.（2011）第 4 章。
+}
 
 \section{烘烤与壁处理：为什么要把壁“洗”干净}
 \label{sec:app-ao-conditioning}
@@ -257,10 +263,12 @@ $t_B=100$ nm、$\rho_B=2.34\times10^{3}$ kg/m$^3$ 得 114.55 g 硼，面密度 $
 硼化不是把壁“擦干净”，而是让氧优先和硼结合；锂壁、硅化也是同一逻辑。\textbf{壁处理的指标不是清洁度，而是再循环系数与杂质来源的平衡}（AO.5）。
 \end{tip}
 
+{\small
 
 \textbf{出处：}硼化与放电清洗的物理参照 Winter（\textit{Plasma Physics and Controlled Fusion} \textbf{38}, 1996）与 Wesson《Tokamaks》4th ed.（2011）第 4 章；壁处理对再循环的影响参照 ITER Physics Basis（\textit{Nuclear Fusion} \textbf{39}, 1999）第 4 章与 Stangeby《The Plasma Boundary of Magnetic Fusion Devices》（2000）第 4 章。
 \section{壁条件与再循环：净加料只是零头}
 \label{sec:app-ao-recycling}
+}
 
 芯部每秒钟损失的粒子数是 $N/\tau_p$：$N=n_eV=8.322\times10^{22}$、$\tau_p=2.5$ s（附录 AJ 口径）给出 $3.3288\times10^{22}$ s$^{-1}$。这些粒子绝大多数\textbf{没有离开装置}，而是打到壁上、又以中性粒子的形式回来：
 
@@ -319,8 +327,10 @@ $\Phi_{\rm net}=1.6644\times10^{21}$ s$^{-1}$，与外部加料之比是 1.23714
 $R=0.95$ 意味着壁每秒钟“还回来”95\% 的粒子。它让加料系统显得很小，也让\textbf{任何对 $R$ 的扰动都被放大 20 倍}（分母 $1-R$）——密度控制的稳定性，本质上是壁条件的稳定性。
 \end{tip}
 
+{\small
 
 \textbf{出处：}再循环系数与粒子平衡的口径参照 Wesson《Tokamaks》4th ed.（2011）第 4 章与 Stangeby《The Plasma Boundary of Magnetic Fusion Devices》（2000）第 4 章；溅射产额与侵蚀寿命的量级参照 ITER Physics Basis（\textit{Nuclear Fusion} \textbf{39}, 1999）第 4 章与 Roth 等（\textit{Plasma Physics and Controlled Fusion} \textbf{50}, 2008）的壁侵蚀综述。
+}
 
 \section{燃料滞留与氚库存：账在壁上，不在罐里}
 \label{sec:app-ao-retention}
@@ -375,10 +385,12 @@ $m_{\rm limit}=2$ kg、$f=1\%$ 给出 \textbf{1.22911 年}——也就是说，\
 燃料罐里的氚是“账面库存”，壁上的氚是“真实库存”。\textbf{共沉积层既存氚、又挡住清除}——它把“库存上限”变成了“清洗频率”的设计约束。
 \end{tip}
 
+{\small
 
 \textbf{出处：}共沉积与氚滞留的物理参照 Federici 等（\textit{Nuclear Fusion} \textbf{41}, 2001）与 Roth 等（\textit{Plasma Physics and Controlled Fusion} \textbf{50}, 2008）；库存与去氚的运行约束参照 ITER Physics Basis（\textit{Nuclear Fusion} \textbf{39}, 1999）第 4 章与 Dolan（编）《Magnetic Fusion Technology》（2013）第 6 章。
 \section{估算练习}
 \label{sec:app-ao-problems}
+}
 
 \begin{enumerate}
 \item \textbf{练习 1（抽速加倍）}把抽速从 100 m$^3$/s 提到 200 m$^3$/s，烘烤后的平衡压强是多少？相对 $10^{-6}$ Pa 的本底目标还剩多少余量？
@@ -405,6 +417,7 @@ $m_{\rm limit}=2$ kg、$f=1\%$ 给出 \textbf{1.22911 年}——也就是说，\
 \section{来源、分级与版权说明}
 \label{sec:app-ao-source}
 
+\begingroup\small
 本附录与附录 N（等离子体--壁相互作用与偏滤器）、附录 AJ（加料与排灰）、附录 AK（聚变安全与环境）、附录 Z（聚变堆工程）、附录 AM（磁体与超导）分工如下：附录 N 讲壁面上的原子过程与偏滤器几何，附录 AJ 讲粒子的进出账，附录 AK 讲安全与剂量，附录 Z 讲整机工程与氚循环，附录 AM 讲磁体；\textbf{本附录只讲“机器这一侧”的三件事}——真空系统怎么把压强写出来（AO.1--AO.3）、壁怎么被处理与再循环怎么被放大（AO.4--AO.5）、氚库存被什么卡住（AO.6）。
 
 \begin{table}[htbp]
@@ -443,3 +456,4 @@ $m_{\rm limit}=2$ kg、$f=1\%$ 给出 \textbf{1.22911 年}——也就是说，\
 \end{tip}
 
 本附录所有标出的数字都由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAO\_calc.py} 复算；工作点与附录 AJ/AK 完全一致（$V=832.2$ m$^3$、$A_{\rm wall}=489.532$ m$^2$、$n_e=10^{20}$ m$^{-3}$、$P_{\rm div}=5$ Pa、$S=100$ m$^3$/s）。
+\endgroup

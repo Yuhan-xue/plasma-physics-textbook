@@ -73,15 +73,17 @@ D1 的 $\beta = 1.318\%$（$\beta_N = 1.5523$）、
 因为一旦代价能算出来，就知道该往哪里优化。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}三种位形的分类与环径比、比压的定义参照 Freidberg
 \emph{Ideal Magnetohydrodynamics}（1987，第 1 章）与 Wesson \emph{Tokamaks}
 （第 4 版，2011，第 1 章）；球形托卡马克与仿星器的量级取自各自的装置手册
 （NSTX-U 与 W7-X，离线环境无法核验 DOI，故只给装置名与量级）。本节数字由
 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAA\_calc.py} 复算。
+}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/aa_muse_stellarator.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/aa_muse_stellarator.jpg}
 \caption{仿星器不必靠复杂线圈：MUSE 用稀土永磁体拼出三维磁面，图中是它的装配现场。本节比较三种替代位形，这一条代表「不用等离子体电流也能有旋转变换」的现代做法。}
 \label{fig:photo-appaa3}
 \figsource{T. M. Qian 等（MUSE 团队），CC BY 4.0（Wikimedia Commons）}
@@ -140,9 +142,11 @@ W7-X 的线圈有几十个不同形状的模块，装配公差是毫米级。
 \textbf{工程复杂度换物理自由度}，这是仿星器的全部交易。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}旋转变换与安全因子的关系、磁剪切恒等式参照 Helander
 \emph{Theory of Stellarators}（2014，第 1、2 章）与附录 T 的推导；W7-X 的 $\iota$ 剖面
-量级取自 W7-X 装置手册。本节数字由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAA\_calc.py} 复算。
+量级取自 W7-X 装置手册。
+}
 
 \section{新经典输运：根号 eps 与 eps 有效值的二分之三次方}
 \label{sec:app-aa-transport}
@@ -207,9 +211,11 @@ $\varepsilon_{\mathrm{eff}}^{3/2}$ & $0.00148223$ & $1/\nu$ 区 & 仿星器的�
 这是本附录最重要的方法学提醒，也是托卡马克与仿星器之间最常被误读的一处。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}香蕉区 $\sqrt{\varepsilon}$ 输运参照 Wesson \emph{Tokamaks}（第 4 版，2011，第 2 章）；
 仿星器 $1/\nu$ 区与有效纹波 $\varepsilon_{\mathrm{eff}}$ 的引入参照 Helander
-\emph{Theory of Stellarators}（2014，第 3、4 章）。本节数字由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAA\_calc.py} 复算。
+\emph{Theory of Stellarators}（2014，第 3、4 章）。
+}
 
 \section{球形托卡马克：高比压与中心柱的空间代价}
 \label{sec:app-aa-st}
@@ -274,14 +280,15 @@ D1 有 $R-a = 4.2\ \mathrm{m}$，而附录 Z 算出中子屏蔽需要 $2.0723\ \
 教训：做方案评价时，除了算物理指标，一定还要算\textbf{空间、屏蔽与维护通道}这三个「几何硬约束」。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}球形托卡马克的高 $\beta$ 与自举电流份额参照 Peng \& Strickler
 （1986）\emph{Nucl.\ Fusion} \textbf{26}, 769 与 NSTX 装置手册；
 自举份额的标度形式参照 Wesson（2011，第 2 章）；屏蔽厚度沿用附录 Z 的 $2.0723\ \mathrm{m}$。
-本节数字由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAA\_calc.py} 复算。
+}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/mast_tokamak.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/mast_tokamak.jpg}
 \caption{MAST 球形托卡马克：中心柱换来的高比压。球形托卡马克把环径比压到接近 1：同样磁场下能装更高的比压，代价是中心柱占掉了本来可以放等离子体的空间。本节算的 $\beta_N$ 与中心柱空间账，就是这台装置与常规托卡马克的分水岭。}
 \label{fig:photo-appa2}
 \figsource{Eye Steel Film，CC BY 2.0（Wikimedia Commons）}
@@ -351,10 +358,12 @@ FRC 里 $\beta=1$ 是\textbf{位形的定义}——内部磁场为零、压力�
 这就是本附录要先画一张地图（表 \ref{tab:app-aa-map}）再谈别的原因。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}FRC 的压力平衡与反平行电流图像参照 Tuszewski（1988）
 \emph{Nucl.\ Fusion} \textbf{28}, 2033；$n=1$ 倾斜模与动理学稳定机制的量级参照
 Steinhauer（2011）\emph{Phys.\ Plasmas} \textbf{18}, 070501。本节数字由
 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAA\_calc.py} 复算。
+}
 
 \section{定标与三重积：替代位形离点火有多远}
 \label{sec:app-aa-scaling}
@@ -421,8 +430,10 @@ ISS04 有 $6$ 个自由指数、$1$ 个前置系数，全部是拟合出来的�
 一贯做法：借结论、借结构、借题型，但把每一个数字都用自己的脚本在声明的参数上现算。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}ISS04 定标参照 Yamada 等（2005）\emph{Nucl.\ Fusion} \textbf{45}, 1684；
 三重积阈值与点火条件沿用附录 U 的口径；IPB98(y,2) 的 D1 值来自附录 S。
+}
 
 \section{估算练习}
 \label{sec:app-aa-problems}
@@ -479,6 +490,7 @@ $\beta_N \propto \beta B$，于是 $\beta_N = 1.2483\times(1.5/1.0)/2.25 = 0.832
 \section{来源、分级与版权说明}
 \label{sec:app-aa-source}
 
+\begingroup\small
 本附录按难度分三档：AA.1 与 AA.2 是几何与旋转变换（读完应当能说清「仿星器为什么不需要电流」）；
 AA.3 与 AA.4 是两个位形的核心代价（读完应当能独立算出有效纹波因子与中心柱空间账）；
 AA.5 与 AA.6 是极端位形与定标（读完应当能把三种位形放进同一个语言里比较）。
@@ -526,3 +538,4 @@ Yamada 等（2005）\emph{Nucl.\ Fusion} \textbf{45}, 1684 &
 FRC 的 $B_{\mathrm{ext}} = 0.5\ \mathrm{T}$ 与 $r_s = 0.4\ \mathrm{m}$、
 自举系数 $C_{bs} = 1$、ISS04 的系数与六个指数）都在正文里写明是量级值或拟合系数，
 不假装精确。
+\endgroup

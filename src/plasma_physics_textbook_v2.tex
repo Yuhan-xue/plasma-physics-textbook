@@ -35,8 +35,8 @@
 \usepackage{graphicx}
 \usepackage{enumitem}
 % ---- 列表全局规范：替代全书零散的逐实例配置 ----
-\setlist{nosep,leftmargin=1.25em,topsep=1.6pt plus 0.6pt minus 0.6pt,
-         itemsep=0.6pt plus 0.3pt,parsep=0pt,partopsep=0pt}
+\setlist{nosep,leftmargin=1.25em,topsep=1.4pt plus 0.5pt minus 0.5pt,
+         itemsep=0.5pt plus 0.3pt,parsep=0pt,partopsep=0pt}
 \setlist[itemize,1]{label=\textbullet}
 \setlist[itemize,2]{label=$\circ$}
 \setlist[enumerate,1]{label=\arabic*.}
@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.27.2},
+  pdftitle={等离子体物理自学教材 v1.27.3},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -114,18 +114,18 @@
 % ---- 段落、公式与浮动体间距：回收造成大片留白的垂直空间 ----
 % v1.27.1：在不改字号、不改页边距、不删一个字的前提下再收一档行间空白，
 % 把新增实拍图占掉的页数压回来（段落靠首行缩进区分，不靠空行）。
-\setlength{\parskip}{1.25pt plus 0.5pt minus 0.25pt}
-\setlength{\jot}{1.2pt}
+\setlength{\parskip}{1.0pt plus 0.4pt minus 0.2pt}
+\setlength{\jot}{1.0pt}
 \AtBeginDocument{%
-  \setlength{\abovedisplayskip}{2.6pt plus 1pt minus 1pt}%
-  \setlength{\belowdisplayskip}{2.6pt plus 1pt minus 1pt}%
+  \setlength{\abovedisplayskip}{2.2pt plus 0.8pt minus 0.8pt}%
+  \setlength{\belowdisplayskip}{2.2pt plus 0.8pt minus 0.8pt}%
   \setlength{\abovedisplayshortskip}{1.8pt plus 0.6pt}%
   \setlength{\belowdisplayshortskip}{1.8pt plus 0.6pt}%
 }
 % 浮动体上下间距（默认 book 类为 12pt 级，是页面上最显眼的空白来源）
-\setlength{\textfloatsep}{6pt plus 2pt minus 2pt}
-\setlength{\floatsep}{6pt plus 2pt minus 2pt}
-\setlength{\intextsep}{6pt plus 2pt minus 2pt}
+\setlength{\textfloatsep}{5pt plus 2pt minus 2pt}
+\setlength{\floatsep}{5pt plus 2pt minus 2pt}
+\setlength{\intextsep}{5pt plus 2pt minus 2pt}
 % 放宽浮动体在同一页的比例上限，减少"图表被挤到下一页"留下的整块空白
 \renewcommand{\topfraction}{0.92}
 \renewcommand{\bottomfraction}{0.75}
@@ -463,7 +463,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.27.2}}
+  {\small\textcolor{white!45}{v1.27.3}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -1275,7 +1275,7 @@ Alfv\'{e}n 1942、Rosenbluth--Rostoker 1962），提供背景与要点摘要。 
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/maxwell_boltzmann.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/maxwell_boltzmann.jpg}
 \caption{分布函数长什么样：麦克斯韦速率分布。统计平均的全部内容都藏在这条曲线里：横轴是速率，纵轴是「落在这一小段里的粒子占比」。本章后面用到的 $\langle v\rangle$、$v_\mathrm{th}$ 与各种矩，都是对这样一条曲线做积分得到的——分布函数不是抽象符号，它是一条可以画出来的曲线。}
 \label{fig:photo-maxwell}
 \figsource{InverseHypercube，CC BY-SA 3.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -1733,7 +1733,7 @@ m_e \ddot{\Delta x} = -\frac{n_e e^2}{\eps_0}\Delta x
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/lightning_strike.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/lightning_strike.jpg}
 \caption{身边的等离子体：闪电通道。云地闪电的通道温度可达约 $3\times10^{4}$ K，电子密度远高于德拜判据的要求——它是大气里最容易看见的等离子体，也是「电离气体」与「等离子体」差别最直观的例子。}
 \label{fig:photo-lightning}
 \figsource{The Modern Polymath，CC BY 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -1741,7 +1741,7 @@ m_e \ddot{\Delta x} = -\frac{n_e e^2}{\eps_0}\Delta x
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/red_sprites_iss.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/red_sprites_iss.jpg}
 \caption{红色精灵：大气里的向上放电。闪电并不是大气放电的全部：雷暴上方的强电场会把电子加速到几十电子伏，在平流层顶部激发出向上的丝状放电——红色精灵、蓝色喷流都属于瞬态发光现象。它们和本节讲的电离气体是同一套物理，只是尺度、密度与时间尺度都换了一档。}
 \label{fig:photo-sprites}
 \figsource{NASA，Public domain（Wikimedia Commons）}
@@ -1749,7 +1749,7 @@ m_e \ddot{\Delta x} = -\frac{n_e e^2}{\eps_0}\Delta x
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/ch2_st_elmo_fire.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/ch2_st_elmo_fire.jpg}
 \caption{等离子体并不只在实验室里：强电场把空气局部电离，机头与风挡周围就会出现这种流光放电。本节的三条判据，正好用来判断它算不算等离子体。}
 \label{fig:photo-ch2-elmo}
 \figsource{U.S. Air Force / Tech. Sgt. Diana Cossaboom，Public domain（Wikimedia Commons）}
@@ -2006,7 +2006,7 @@ v_{ti} = \sqrt{\frac{k_B T_i}{m_i}} \approx 6.9\times 10^{5}\,\mathrm{m/s}, \qqu
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/cyclotron_motion.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/cyclotron_motion.jpg}
 \caption{电子束在磁场里画出的圆。均匀磁场中的回旋运动不是抽象概念：把一束电子射进磁场，它真的会弯成一个圆。曲率半径 $r=mv/(qB)$ 与回旋频率 $\omega_c=qB/m$ 都可以直接从这样的轨迹量出来。}
 \label{fig:photo-cyclotron}
 \figsource{Marcin Bia\u0142ek，CC BY-SA 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -2116,7 +2116,7 @@ m\dot{\vect{v}'} = q(\vect{E} + (\vect{v}' + \vect{v}_E)\times\vect{B}) = q\vect
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/nonplanar_coil.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/nonplanar_coil.jpg}
 \caption{三维磁场几何：非平面线圈。仿星器的非平面线圈：粒子的 $\nabla B$ 漂移与曲率漂移由这种三维位形决定，而「磁瓶」正是把漂移补偿写进几何里的一种做法——线圈的形状就是位形。}
 \label{fig:photo-coil}
 \figsource{Siarhei Besarab，CC BY-SA 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -2309,7 +2309,7 @@ nm\left(\frac{\partial\vect{u}}{\partial t} + \vect{u}\cdot\grad\vect{u}\right) 
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/cme.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/cme.jpg}
 \caption{日冕物质抛射：磁流体的天然演示。日冕仪拍下的抛射云：等离子体带着磁场一起被抛出，尺度以太阳半径计。本章的双流体方程组与下一章的 MHD 方程，正是用来描述这类「导电流体」现象的工具。}
 \label{fig:photo-cme}
 \figsource{Burkhard M\u00fccke，CC BY-SA 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -2317,7 +2317,7 @@ nm\left(\frac{\partial\vect{u}}{\partial t} + \vect{u}\cdot\grad\vect{u}\right) 
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/lepecvd_plasma.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/lepecvd_plasma.jpg}
 \caption{流体描述用在哪里：等离子体增强化学气相沉积。反应腔里那团放电是电子--离子--中性三套「流体」在同时运动：电子被射频场加热、离子被鞘层加速、中性气体被对流带走。本章的双流体方程组，就是给这种场景写的记账方式——每一套流体都有自己的连续性方程与动量方程。}
 \label{fig:photo-lepecvd}
 \figsource{Barzandr，CC BY-SA 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -2585,7 +2585,7 @@ MHD做了以下关键近似：
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/mrx_reconnection.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/mrx_reconnection.jpg}
 \caption{磁重联：实验室里能重复的「磁力线断开再连上」。MRX 装置把磁重联做成了可控实验：环面等离子体里两束反向磁通靠近、断开并重新连接，同时释放磁能。这正说明「磁力线冻结」不是绝对禁令——在电流片足够薄的地方它可以失效。}
 \label{fig:photo-mrx}
 \figsource{U.S. Department of Energy，公有领域（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -2843,7 +2843,7 @@ v_p = \frac{\omega}{k} = \frac{\omega_{pe}}{k}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/sun_earth_interaction.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/sun_earth_interaction.jpg}
 \caption{磁化等离子体里的波：太阳风与磁层的耦合。太阳风把能量送进磁层，靠的不是「撞」，而是波与不稳定性：哨声波、阿尔芬波与磁声波在磁化等离子体里接力传递。本章讨论的色散关系与截止、共振，正是这段耦合的语法。}
 \label{fig:photo-sunearth}
 \figsource{Space Travel Blog / Rute Marta Jansone，CC BY 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -2949,7 +2949,7 @@ c^2 k^2 \approx \frac{\omega_{pe}^2 \omega}{\omega_{ce}}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/whistler_spectrogram.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/whistler_spectrogram.jpg}
 \caption{哨声波的真实频谱：频率随时间下降的「口哨」。雷电激发的哨声波沿磁力线传播，高频跑得快、低频跑得慢，于是在地面接收到的频谱上留下一条向下弯曲的色散曲线——这是第 6 章色散关系最直接的实验证据。}
 \label{fig:photo-whistler}
 \figsource{drdan14，CC BY-SA 3.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -2982,7 +2982,7 @@ c^2 k^2 \approx \frac{\omega_{pe}^2 \omega}{\omega_{ce}}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/vlasiator.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/vlasiator.jpg}
 \caption{全球动理学模拟：把速度空间算到磁层尺度。太阳风与地球磁层相互作用的 Vlasiator 模拟——它解的是 Vlasov 方程而不是流体方程。第 7 章要回答的「什么时候必须回到速度空间」，这张图给出了量级上的答案。}
 \label{fig:photo-vlasiator}
 \figsource{Space Travel Blog / Rute Marta Jansone，CC BY 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -3040,7 +3040,7 @@ f = f_0(v) + f_1(x,v,t), \qquad E = E_1(x,t)
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/landau_damping.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/landau_damping.jpg}
 \caption{Landau 阻尼：共振粒子与波交换能量。速度略慢于波相的粒子被波加速、略快的被减速，净效果是波把能量交给粒子——这就是 Landau 阻尼的无碰撞机制，也是本章「不用碰撞也能耗散」的核心图像。}
 \label{fig:photo-landau}
 \figsource{Ramin Rahimi 等，CC BY-SA 3.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -3243,7 +3243,7 @@ D_a = \frac{\mu_i D_e + \mu_e D_i}{\mu_i + \mu_e} \approx D_i\left(1 + \frac{T_e
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/icp_torch.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/icp_torch.jpg}
 \caption{欧姆加热的可见结果：电感耦合等离子体炬。射频电流通过电子--中性碰撞把能量交给等离子体，宏观上就是本章的 Spitzer 电阻率与欧姆加热；炬管里那条明亮的通道，是碰撞把定向能量变成热运动的直接证据。}
 \label{fig:photo-icp}
 \figsource{Superchilum，CC BY-SA 3.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -3251,7 +3251,7 @@ D_a = \frac{\mu_i D_e + \mu_e D_i}{\mu_i + \mu_e} \approx D_i\left(1 + \frac{T_e
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/plasma_cutting.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/plasma_cutting.jpg}
 \caption{把电流压进等离子体：等离子弧切割。割炬里的电弧要在一个很小的截面上通过几十到几百安培的电流，靠的正是本章算的 Spitzer 电阻率：电阻随温度下降，电流才能集中——这条弧就是「电阻率决定能量往哪去」的现场。}
 \label{fig:photo-cutting}
 \figsource{Loffredo，CC BY-SA 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -3382,7 +3382,7 @@ Spitzer 动力学修正因子（$\gamma_E\approx0.58$ 一类，$1/1.4\approx0.71
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/magnetic_reconnection.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/magnetic_reconnection.jpg}
 \caption{磁重联：磁力线断开再连接。反向磁力线靠近、断开并重新连接（NASA 示意）。撕裂模与磁岛的形成，就是这张图在等离子体里的版本：磁场把自由能交给粒子，拓扑随之改变。}
 \label{fig:photo-reconnection}
 \figsource{NASA，公有领域（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -3529,7 +3529,7 @@ x^3\simeq-\frac{\mu}{2}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/twk_pinch.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/twk_pinch.jpg}
 \caption{箍缩等离子体：电流自己把等离子体捏成一束。环形箍缩装置里的氪等离子体（100 ns 曝光）。电流产生的环向磁场对等离子体施加向内的力，把柱体箍紧——不稳定性（本章的 m=0、m=1 模式）会在这里把柱体拧断。}
 \label{fig:photo-pinch}
 \figsource{Timkoeth，CC BY-SA 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -3562,7 +3562,7 @@ x^3\simeq-\frac{\mu}{2}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/fusion_plant.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/fusion_plant.jpg}
 \caption{从等离子体到电网：聚变电站的全系统。包层、氚循环、蒸汽轮机与发电机。本章讲的是芯部等离子体，而一座电站要做的是把它的中子和热量一路接到电网上——这部分账在附录 Z 与附录 AR 里算。}
 \label{fig:photo-plant}
 \figsource{EUROfusion，CC BY 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -3708,7 +3708,7 @@ $n\tau$ & $\sim 10^{20}\,\mathrm{m}^{-3}\cdot\mathrm{s}$ & $\sim 10^{21}\,\mathr
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/nif_hohlraum.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/nif_hohlraum.jpg}
 \caption{黑腔：把激光能量变成 X 射线再均匀压靶。毫米级的金圆柱（黑腔）内壁吸收激光后辐射 X 射线，X 射线再烧蚀内壁的燃料靶丸——第 10.4 节讲的间接驱动，实物就是这么小，而它承受的辐射温度以百万开计。}
 \label{fig:photo-hohlraum}
 \figsource{Lawrence Livermore National Laboratory，公有领域（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -3716,7 +3716,7 @@ $n\tau$ & $\sim 10^{20}\,\mathrm{m}^{-3}\cdot\mathrm{s}$ & $\sim 10^{21}\,\mathr
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/nif_target_worker.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/nif_target_worker.jpg}
 \caption{NIF 靶室内部：十米级球室里的一个人。惯性约束的靶室有十米量级，而靶丸只有毫米级——中间这段尺度差正是「把能量精确送到靶上」的全部难度；本节讨论的黑腔与内爆，最终都要在这间球室里按十皮秒级的时序发生。}
 \label{fig:photo-nifworker}
 \figsource{Lawrence Livermore National Security，CC BY-SA 3.0（Wikimedia Commons）}
@@ -3826,7 +3826,7 @@ $n\tau$ & $\sim 10^{20}\,\mathrm{m}^{-3}\cdot\mathrm{s}$ & $\sim 10^{21}\,\mathr
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/rie_etcher.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/rie_etcher.jpg}
 \caption{工业等离子体：反应离子刻蚀设备。低温等离子体最典型的工业用法：离子轰击加自由基化学反应，把晶圆上的图形刻出来。第 11 章的汤森放电与鞘层理论，工作区间就在这类设备的参数里。}
 \label{fig:photo-rie}
 \figsource{AlabamaUSA，CC BY-SA 3.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -4265,7 +4265,7 @@ PECVD与溅射沉积的物理机制完全不同：PECVD是"化学反应在表面
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/chemcam_mars.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/chemcam_mars.jpg}
 \caption{火星上的激光等离子体：ChemCam 的 LIBS。好奇号用激光在几米外打出一小团等离子体，再从它的发光谱里读出岩石成分——这是「等离子体作为分析工具」最远的一次应用：激光烧蚀、等离子体发光与光谱定量，每一步都对应本节讲的工艺等离子体物理。}
 \label{fig:photo-chemcam}
 \figsource{NASA/JPL-Caltech/LANL，Public domain（Wikimedia Commons）}
@@ -4436,7 +4436,7 @@ R_{\text{iz}} = \frac{P_{\text{iz}}}{e E_{\text{iz}}} = \frac{75}{1.6\times 10^{
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/hall_thruster.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/hall_thruster.jpg}
 \caption{同一类低温放电的另一种用途：霍尔推力器点火（氪工质）。放电室内电子被磁场束缚做霍尔漂移，离子被电场加速喷出产生推力——羽流里那团发光的，就是被电离后加速出去的气体。等离子体在这里不是「要控制住的东西」，而是要利用的工质。}
 \label{fig:photo-thruster}
 \figsource{MrAdamJohnson，CC BY-SA 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -5015,7 +5015,7 @@ V_f - V_p = T_e \ln\!\left(\sqrt{\frac{2\pi m_e}{m_i}}\right)
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/bpp_probe_head.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/bpp_probe_head.jpg}
 \caption{朗缪尔探针的探头长什么样。真实的探针头：收集极（钨丝）套在氮化硼陶瓷管里，只露出一小段面向等离子体。陶瓷决定收集面积、也决定探针能承受多少热流——这正是 12.2 节要求「探针半径远大于德拜长度」的工程原因。}
 \label{fig:photo-probe}
 \figsource{Jiri Adamek，CC BY-SA 3.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -5194,7 +5194,7 @@ q = |\vect{k}_s-\vect{k}_i| = \frac{4\pi}{\lambda_0}\sin\frac{\theta}{2},
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/west_divertor.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/west_divertor.jpg}
 \caption{在位检查：装置内部的面对等离子体部件。法国 WEST 托卡马克的偏滤器检查现场。红外热像与光谱诊断正是这样贴着面对等离子体部件工作的：不接触等离子体，却能读出温度、杂质与侵蚀率——本章三种诊断之外的第四条路。}
 \label{fig:photo-west}
 \figsource{H\u00e9l\u00e8ne Roche / CEA IRFM，CC BY 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}

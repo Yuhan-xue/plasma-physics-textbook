@@ -27,7 +27,7 @@
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.78\textwidth]{../figures/az_iter_complex.jpg}
+\includegraphics[width=0.72\textwidth]{../figures/az_iter_complex.jpg}
 \caption{正在施工的 ITER 主机厂房（2018 年 4 月）。本附录讲的「系统集成」，在工程上就是这个直径几十米的坑：磁体、真空室、包层、低温与电源管线都要塞进去，而且每一路的接口都在别人的空间里——裕度就是这么被吃掉的。}
 \label{fig:photo-appaz2}
 \figsource{Cedarstrand / ITER Organization，CC BY 2.0（Wikimedia Commons）}
@@ -77,10 +77,12 @@ $Q$ 的分母里算不算低温与厂用电？辐射损失算不算在输运损�
 系统集成的价值恰恰在于\textbf{把「同时成立」这四个字量化}。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}0-D 系统账的写法、口径一致性的要求与设计点概念参照
 Stacey 的聚变堆设计教材、Freidberg 的等离子体物理与聚变能教材，
 以及 ITER/DEMO 设计研究的公开技术文件；本书只借账目结构与判据，
 不复制其系统码程序、设计参数表与运行方案。
+}
 
 \section{0-D 功率平衡：Q、增益与再循环}
 \label{sec:app-az-power}
@@ -164,9 +166,11 @@ $Q_\mathrm{eng}$ 以及最终的净电效率——这也是为什么附录 AR �
 「每 1 MW 净电对应 $3.73551$ MW 聚变功率」单独算了一遍。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}0-D 功率平衡、$Q_\mathrm{pl}$ 与 $Q_\mathrm{eng}$ 的定义、
 点火与辅助加热的关系参照 Stacey、Freidberg 的教材与 Wesson 的
 托卡马克教材；本书只借方程形式与量级，不复制其运行场景与参数表。
+}
 
 \section{自洽解：把 0-D 方程迭代到收敛}
 \label{sec:app-az-solve}
@@ -231,11 +235,13 @@ $0.8$ 倍定标时的加热需求 & $P_\mathrm{CD}$ & $28.8307$ MW \\
 这比记住任何单个数字都重要。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}IPB98(y,2) 约束定标的形式与指数、$H$ 因子口径、
 0-D 自洽迭代流程参照 ITER 定标工作、Stacey 与 Freidberg 的教材；
 本书只借定标形式与迭代结构，不复制其拟合系数表、系统码与运行方案。
 \section{工作窗与三重积：可用区是怎么围出来的}
 \label{sec:app-az-window}
+}
 
 功率平衡给出的是「需要多少约束时间」，但装置能在哪个密度、比压与安全因子
 区间里运行，是由一组\textbf{经验极限}决定的。最常用的三条是密度极限、
@@ -322,10 +328,12 @@ $nT\tau_E$ 常被当成「聚变性能的单一指标」，但它只是一个乘
 交集才是可用区}——只看三重积容易得出「只要把三个量都乘以 2 就行」的错误结论。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}Greenwald 密度极限、$\beta_N$ 口径、$q_{95}$ 圆柱近似与
 成形因子的量级、三重积与点火判据参照 Freidberg、Wesson 的教材与
 ITER 设计研究的公开技术文件；本书只借经验判据的形式与量级，
 不复制其数据库、定标拟合与运行限制表。
+}
 
 \section{设计裕度：怎么定义、怎么分配}
 \label{sec:app-az-margin}
@@ -385,10 +393,12 @@ M>1\ \text{才算可用}.
 卡住设计点的却是氚自持、可用率与材料寿命这三项工程指标。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}设计裕度的定义与分配、木桶效应式的串联判据、
 物理裕度与工程裕度的分类参照系统工程的通用做法与
 聚变设计研究的公开技术文件；本书只借判据形式，
 不复制其裕度分配表与评审程序。
+}
 
 \section{灵敏度分析：哪个参数最值钱}
 \label{sec:app-az-sensitivity}
@@ -452,12 +462,14 @@ S_x=\frac{\partial\ln y}{\partial\ln x}
 裕度回答「距离」}——设计优化永远是「斜率大的方向上还有多少距离」。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}对数灵敏度的定义与聚变功率对各参数的灵敏度指数、
 约束定标指数的解读参照 Freidberg 的教材与
 系统码灵敏度分析的公开文献；本书只借方法，
 不复制其灵敏度矩阵与优化结果。
 \section{集成检查清单：从 0-D 到工程约束}
 \label{sec:app-az-checklist}
+}
 
 把前面六节串起来，就得到一张可以照着走的\textbf{集成检查清单}。
 每一项都是一条不等式，全部满足才算设计点成立：
@@ -548,9 +560,11 @@ $44.4976\ \mathrm{MW\,m^{-2}}$ 远高于常规偏滤器的稳态承受能力
 就意味着设计的重心要转移过去。
 \end{tip}
 
+{\footnotesize
 \textbf{出处：}集成检查清单的判据集合、电账与电流驱动账的口径、
 偏滤器热流量级参照 Stacey 的教材、ITER/DEMO 设计研究的公开技术文件
 与附录 N 的脱靶口径；本书只借清单结构，不复制其设计点与裕度分配。
+}
 
 \section{估算练习}
 \label{sec:app-az-problems}
@@ -598,6 +612,7 @@ $(5.0/5.3)^4=0.792094$，即掉约 $20.7906\%$；
 \section{来源、分级与版权说明}
 \label{sec:app-az-source}
 
+\begingroup\small
 本附录的数值全部由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAZ\_calc.py} 复算（输出
 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAZ\_calc.txt}），工作点与附录 M/S/U/V/W/X/AK/AP/AV/AX/AY 一致，
 工程侧输入（$P_\mathrm{CD}$、$P_\mathrm{cryo}$、$P_\mathrm{plant}$、
@@ -636,3 +651,4 @@ $\eta_\mathrm{th}$、辐射损失、TBR 与下限、可用率、5 年剂量、
 「借公式与量级、不复制原文」原则；与附录 Z（总账）、AR（电源与储能）、
 X（辐射损失）、AV（氚自持）、AP（可用率与更换）、AY（材料寿命）、
 N（偏滤器热流）的分工见各节交叉引用。
+\endgroup
