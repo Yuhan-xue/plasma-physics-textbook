@@ -158,12 +158,15 @@ src/        教材源码（主文件 + 12 章补充材料 + 52 个附录）
 figures/    全部插图与 CREDITS.md（作者、许可、来源链接）
 code/       教材里提到的可运行脚本（正文只给路径与用法）
 check/      自动检查套件：结构、数值、编译、版式、插图、自学标准
-docs/       自学标准审计报告
+docs/       项目一览（overview.md ＋ overview.png）与自学标准审计报告
 pdf/        编译好的三个 PDF
-tools/      配图与表格的辅助工具
+tools/      配图与表格的辅助工具，以及附录体检脚本
 processed.md 版本记录：每一轮改了什么、为什么改、怎么验收
 README.md   本文件
 ```
+
+想先看全貌，直接点 [`docs/overview.md`](docs/overview.md)（一页图看完这本书与这个仓库）；
+想知道"还想再薄能动哪里"，看 [`docs/appendix-audit.md`](docs/appendix-audit.md)。
 
 正文与附录里**不贴整段程序**：需要动手的地方只给脚本路径、运行方式和预期输出，
 脚本本体都在 [`code/`](code/)。
