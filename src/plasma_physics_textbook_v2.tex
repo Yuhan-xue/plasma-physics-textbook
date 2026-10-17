@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.27.5},
+  pdftitle={等离子体物理自学教材 v1.27.6},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -463,7 +463,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.27.5}}
+  {\small\textcolor{white!45}{v1.27.6}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -6022,9 +6022,10 @@ $\beta$ & $2\mu_0n_ek_BT_e/B^2$ & $0.0483205\%$ & $80.5342\%$ & $1.4335\%$ \\
 电子在磁场里转得比等离子体振荡还快，于是波的图像必须带上磁化。
 
 \begin{tip}{估算的三个纪律}{tip-b-estimate}
-\textbf{估算的三个纪律：}（1）\textbf{先算单位}（本书各章的「量纲自检」就是这件事）；
+\textbf{估算的三个纪律：}（1）\textbf{先算单位}（本书各章的「量纲自检」就是这件事）。
 （2）\textbf{只保留一位有效数字的输入}，中间不要过早四舍五入——三种环境的差别常常
-就在一个数量级上；（3）\textbf{结论要能反过来检验}：如果 $\rho_i>L$ 却断言「离子被磁化」，
+就在一个数量级上。
+（3）\textbf{结论要能反过来检验}：如果 $\rho_i>L$ 却断言「离子被磁化」，
 或者 $\beta\ll1$ 却把磁场当被动变量，那一定是哪一步抄错了公式。
 \end{tip}
 
@@ -6535,7 +6536,9 @@ m\frac{\diff\vect{v}}{\diff t} = q(\vect{E}+\vect{v}\times\vect{B}), \qquad \fra
 两种情形（均匀场 + $\vect{E}\times\vect{B}$ 漂移、磁镜反射）、能量守恒检查与三联图，输出与本节的数值实验一致。
 
 \begin{insight}{数值实验应当验证什么}{}
-在均匀磁场中，洛伦兹力方程可解析求解：粒子在垂直于 $B$ 的平面内做圆周运动（回旋），圆心以速度 $\vect{E}\times\vect{B}/B^2$ 漂移（运行代码应输出约 $1000\,\mathrm{m/s}$，与 $E_0/B_0=10^3/1$ 一致）。\textbf{磁镜情形}则必须用\emph{散度为零}的近轴场：只把 $B_z$ 改成 $B(z)=B_0(1+(z/L)^2)$ 会违反 $\divg\vect{B}=\partial_zB_z\ne0$，得到的不是合法的磁场。上面的 \texttt{B\_mirror} 函数配套了径向分量 $B_r = -(r/2)\,\partial_zB_z = -rB_0z/L^2$，使 $\divg\vect{B}=\frac1r\partial_r(rB_r)+\partial_zB_z=0$ 自动满足。运行时可检查：(1) 磁镜情形下 $z(t)$ 在 $\pm z_t$ 之间往返（反射）；(2) 动能相对漂移在 $10^{-6}$ 量级（纯磁场不做功，能量守恒）；(3) 磁矩 $\mu=mv_\perp^2/(2B)$ 近似守恒。
+在均匀磁场中，洛伦兹力方程可解析求解：粒子在垂直于 $B$ 的平面内做圆周运动（回旋），圆心以速度 $\vect{E}\times\vect{B}/B^2$ 漂移（运行代码应输出约 $1000\,\mathrm{m/s}$，与 $E_0/B_0=10^3/1$ 一致）。\textbf{磁镜情形}则必须用\emph{散度为零}的近轴场：只把 $B_z$ 改成 $B(z)=B_0(1+(z/L)^2)$ 会违反 $\divg\vect{B}=\partial_zB_z\ne0$，得到的不是合法的磁场。上面的 \texttt{B\_mirror} 函数配套了径向分量 $B_r = -(r/2)\,\partial_zB_z = -rB_0z/L^2$，使 $\divg\vect{B}=\frac1r\partial_r(rB_r)+\partial_zB_z=0$ 自动满足。运行时可检查：(1) 磁镜情形下 $z(t)$ 在 $\pm z_t$ 之间往返（反射）。
+(2) 动能相对漂移在 $10^{-6}$ 量级（纯磁场不做功，能量守恒）。
+(3) 磁矩 $\mu=mv_\perp^2/(2B)$ 近似守恒。
 \end{insight}
 
 
