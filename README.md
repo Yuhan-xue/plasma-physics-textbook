@@ -5,7 +5,7 @@
 
 ![托卡马克真空室内部：磁约束聚变要面对的容器](figures/tokamak_interior.jpg)
 
-教材共 **635 页**，涵盖 12 章正文 + 49 附录，内容从单粒子运动一直走到聚变堆系统集成，
+教材共 **634 页**，涵盖 12 章正文 + 49 附录，内容从单粒子运动一直走到聚变堆系统集成，
 并在每一章里都放了自学需要的东西：核心目标、前置依赖、"先猜再看"、例题与答案、
 随堂自测、估算练习。写作目标是**一个人、一支笔、一台能算数的电脑就能读完**。
 
@@ -15,9 +15,9 @@
 
 | 文件 | 页数 | 内容 |
 |------|------|------|
-| [`pdf/plasma_physics_textbook_v2.pdf`](pdf/plasma_physics_textbook_v2.pdf) | 635 页完整教材，可直接阅读 | 正文 + 全部附录，推荐先读这本 |
+| [`pdf/plasma_physics_textbook_v2.pdf`](pdf/plasma_physics_textbook_v2.pdf) | 634 页完整教材，可直接阅读 | 正文 + 全部附录，推荐先读这本 |
 | [`pdf/plasma_physics_textbook_v2_vol1_chapters.pdf`](pdf/plasma_physics_textbook_v2_vol1_chapters.pdf) | 208 页 | 前言 + 第 1–12 章正文 |
-| [`pdf/plasma_physics_textbook_v2_vol2_appendices.pdf`](pdf/plasma_physics_textbook_v2_vol2_appendices.pdf) | 427 页 | 49 个附录 |
+| [`pdf/plasma_physics_textbook_v2_vol2_appendices.pdf`](pdf/plasma_physics_textbook_v2_vol2_appendices.pdf) | 426 页 | 49 个附录 |
 | [`pdf/plasma_physics_handbook.pdf`](pdf/plasma_physics_handbook.pdf) | 26 页 | 配套手册：附录 J／K／L（逐章对照、跨教材例题、分章题库） |
 
 四个 PDF 都由本仓库源码编译而成，带版本号；历史版本见
@@ -147,6 +147,7 @@
 - 来源包括 Wikimedia Commons、NASA / ESA / JET / EUROfusion / NIFS / PPPL / ORNL / CEA 等，
   逐一标注作者与许可，清单见 [`figures/CREDITS.md`](figures/CREDITS.md)。
 - 许可以公有领域（PD）与 CC BY / CC BY-SA 为主；使用时按 CREDITS 中的署名要求注明。
+- 全部 95 张图按章 / 附录排成一册：[`docs/figures.md`](docs/figures.md)（缩略图 + 中文说明 + 作者 + 许可 + 来源页）。
 - 少量示意图（曲线、能级图、流程）由本仓库脚本生成，同样可在 `figures/` 下找到。
 
 ---
@@ -158,15 +159,15 @@ src/        教材源码（主文件 + 12 章补充材料 + 49 个附录 + 配�
 figures/    全部插图与 CREDITS.md（作者、许可、来源链接）
 code/       教材里提到的可运行脚本（正文只给路径与用法）
 check/      自动检查套件：结构、数值、编译、版式、插图、自学标准
-docs/       项目一览（overview.md ＋ overview.png）与自学标准审计报告
-pdf/        编译好的三个 PDF
+docs/       项目一览（overview.md ＋ overview.png）、图册（figures.md）、附录体检与自学标准审计报告
+pdf/        编译好的四个 PDF（完整本、卷一、卷二、配套手册）
 tools/      配图与表格的辅助工具，以及附录体检脚本
 processed.md 版本记录：每一轮改了什么、为什么改、怎么验收
 README.md   本文件
 ```
 
 想先看全貌，直接点 [`docs/overview.md`](docs/overview.md)（一页图看完这本书与这个仓库）；
-想知道"还想再薄能动哪里"，看 [`docs/appendix-audit.md`](docs/appendix-audit.md)。
+想知道"还想再薄能动哪里"，看 [`docs/appendix-audit.md`](docs/appendix-audit.md)；想把 95 张图一次看个够，看 [`docs/figures.md`](docs/figures.md)。
 
 正文与附录里**不贴整段程序**：需要动手的地方只给脚本路径、运行方式和预期输出，
 脚本本体都在 [`code/`](code/)。
@@ -211,6 +212,7 @@ python check/consistency_audit.py   # 符号、单位、附录与正文的交叉
 | 版本 | 主要变化 |
 |------|----------|
 | v1.27.5 | 把附录 J（经典教材逐章对照）、K（跨教材经典例题）、L（分章自测题库）从主册移出，单独编成 26 页的[配套手册](pdf/plasma_physics_handbook.pdf)；主册附录字母保留 J／K／L 空位、A–I 之后直接接 M；正文里 62 处指向它们的说法改为「配套手册」；页数 657 → 635 |
+| v1.27.7 | 插图与文档收尾：附录 AL 那张又暗又糊的激光丝照片，换成清晰的「Kerr 自聚焦 → 细丝 → 等离子体通道」示意图；新增面向读者的图册 `docs/figures.md`（95 张图按章/附录排开，含缩略图、作者、许可、来源页）；修掉 docs 里几处陈旧数字与重复段落；页数 635 → 634 |
 | v1.27.6 | 可读性收尾：270 段「出处：」文献罗列从分号长句改成一引一句（约 490 处断句，书名与卷期页一处未删）；单句里埋着的（1）（2）（3）枚举全部改成一行一项；正文 >100 字长句 382 → 255 句，可读性检查的枚举类提示归零；页数不变（635 页） |
 | v1.27.3 | 把「来源、分级与版权说明」小节与各节出处段改为细排（9pt／8pt 脚注体）；删掉 85 句每节重复的「本节数字由脚本复算」交代（每附录只留一处脚本路径）；版面再收紧一档、插图宽度 0.78 → 0.72；页数 668 → 657 |
 | v1.27.2 | 再补 8 张实拍图：ASDEX Upgrade 极向截面（AE）、开尔文–亥姆霍兹云街（AF）、KSTAR 装置本体（AG）、氦放电管（AH）、NIF 靶装配体（AI）、热室机械臂（AK）、激光自聚焦丝（AL）、方解石双折射（AN）——画册到 95 张，每个专题附录至少两张图；同时逐张比对图片哈希，换掉三处「同一张图用两次」（MAST 照片、NIF 靶室、EUROfusion 系统图）；页数 664 → 668 |

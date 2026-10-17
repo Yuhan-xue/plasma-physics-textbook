@@ -68,7 +68,7 @@
 | `dry_cask.jpg` | 干式贮存罐：活化废物最后的去处 | Nuclear Regulatory Commission from US | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Massive_containers_hold_spent_nuclear_fuel_(15420175144).jpg | 附录AK |
 | `ak_manipulator_arm.jpg` | 热室里的远程操作机械臂 | Idaho National Laboratory | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Manipulator_Arm.jpg | 附录AK |
 | `al_gibraltar_soliton.jpg` | 直布罗陀海峡的内孤立波 | NASA / 国际空间站宇航员（2004） | Public domain | https://commons.wikimedia.org/wiki/File:Solitons,_Strait_of_Gibraltar_(4585).jpg | 附录AL |
-| `al_laser_filament.jpg` | 激光自聚焦形成的丝 | Jean-Christophe Delagnes | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Laser_Filament.jpg | 附录AL |
+| `al_self_focusing.png` | 激光自聚焦与成丝：Kerr 自聚焦 → 细丝 → 等离子体通道（示意图） | Ikarion | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Laser_filamentation.png | 附录AL |
 | `am_iter_solenoid.jpg` | ITER 中心螺线管的绕制 | Oak Ridge National Laboratory | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:ITER_central_solenoid_manufacturing_(41809722361).jpg | 附录AM |
 | `w7x_magnets.jpg` | 仿星器磁体系统示意：线圈怎么排、力往哪里走 | M. Nagel, C.P. Dhard, H. Bau, H.-S. Bosch, U. Meyer, S. Raatz, K. Risse and T. Rummel | CC BY 3.0 | https://commons.wikimedia.org/wiki/File:Wendelstein_7-X_schematic_view_of_magnets_system.jpg | 附录AM |
 | `spexone_polarimeter.jpg` | SPEXone 偏振仪：把偏振当成一个诊断量 | NASA | Public domain | https://commons.wikimedia.org/wiki/File:SPEXone_Polarimeter_for_the_PACE_satellite_-_GSFC_20201021_PACE_32369.jpg | 附录AN |
