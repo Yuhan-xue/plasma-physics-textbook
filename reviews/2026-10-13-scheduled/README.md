@@ -12,4 +12,4 @@
 
 本轮没有确认新的教材内容错误。各检查不能替代全书逐式人工审查；详细证据和 TODO 见 [`evidence/checks.md`](evidence/checks.md) 与 [`TODO.md`](TODO.md)。
 
-> 机器读数说明：当轮的 当轮发现清单（已移出仓库） 等 JSON 索引与原始日志已移出仓库，需要时用 `check/*.py` 重跑复现。
+> 机器读数说明：当轮的 `findings.json` 等 JSON 索引与原始日志已移出仓库，需要时用 `check/*.py` 重跑复现。

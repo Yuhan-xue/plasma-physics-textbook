@@ -1,6 +1,6 @@
 # CLOSURE —— 独立评审 13 项问题的修复与验证记录
 
-> 说明：本轮的机器索引（`*.json`）、原始检查日志（原始检查日志（已移出仓库））与评审方复算脚本（`recheck_*.py`）
+> 说明：本轮的机器索引（`*.json`）、`checks/*.txt` 与评审方复算脚本（`recheck_*.py`）
 > 已移出仓库，只保留这份人类可读的记录；需要时用 `check/` 下的检查脚本重跑复现。
 
 - 轮次：v1.7.0（2026-10-10），基线 `f6317daf8b4203b96674304e08471caccb9f895f`（v1.6.0）
@@ -224,9 +224,9 @@ numpy 2.5.3、scipy 1.18.1、PyMuPDF 1.28.2、matplotlib 3.11.1（v1.7.1 起附�
 
 评审目录里的两个脚本是**当时基线的快照与绊线**，按「历史评审不回写」原则保持原样，本轮**没有**修改它们：
 
-- 评审方示例脚本（已移出仓库）：`Expected 3 Appendix G scripts` —— 它按 `Verbatim` 块数量（当时 3 个）判断「源码是否被改动」。
+- `recheck_examples.py`：`Expected 3 Appendix G scripts` —— 它按 `Verbatim` 块数量（当时 3 个）判断「源码是否被改动」。
   本轮重写 G.2 后，G.2 的**示例输出**单独成为一个 `Verbatim` 块（现共 4 个：G.1、G.2 代码、G.2 输出、G.3），故绊线按设计触发。
-- 评审方复算脚本（已移出仓库）：`assert not any(r[0] in ('FAIL','WARN') ...)` —— 它断言的是**修复前**的检查口径
+- `recheck_review.py`：`assert not any(r[0] in ('FAIL','WARN') ...)` —— 它断言的是**修复前**的检查口径
   （缺字 `Ω` 与 200 pt 溢出当时都不算 FAIL）。PP-W01 正是要求把这两类改成必须报错，故该断言按设计不再成立。
 
 本轮的「修复通过」由**新**回归资产承担：`check/physics_regression.py`（96 项）＋ `check/fixtures/` 三套夹具（7 + 4 + 5 例）。
