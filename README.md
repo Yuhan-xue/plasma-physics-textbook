@@ -187,6 +187,9 @@ xelatex -interaction=nonstopmode plasma_physics_textbook_v2.tex   # 第二遍生
 
 **已知限制**：少量公式行与宽表格会有轻微 overfull 警告（不影响阅读）；
 书签生成时有几条 `\texorpdfstring` 提示；PDF 约 25 MB，首次编译需几分钟。
+PDF 的书签里有 27 条（约 4.5%，多为刚好另起一页的小节）比印刷页码早一页——印刷目录的页码是对的，
+点书签会先落到标题的前一页；同因使附录 F 的 7 条跨章链接差一页。这两项已核实为 hyperref 与标题样式的锚点机制，
+不影响正文阅读。
 
 ---
 
