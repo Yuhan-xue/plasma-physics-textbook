@@ -1,12 +1,19 @@
-# docs/ —— 项目一览、体检表与可复跑的检查报告
+# docs/ —— 项目一览、图册、体检表与可复跑的检查报告
 
-这里放两类东西：**给人看的一页**，和**脚本生成的检查快照**（随时可以重跑核对）。
+这里放两类东西：**给人看的一页**（一览图、图册、体检表），和**脚本生成的检查快照**（随时可以重跑核对）。
 
 | 文件 | 内容 |
 | --- | --- |
 | [`overview.md`](overview.md) ＋ [`overview.png`](overview.png) | 项目一页看完：规模、配图、交付物、六套检查、版面演进 |
-| [`appendix-audit.md`](appendix-audit.md) | 52 个附录逐个体检（页数、图表数）＋"还想再薄能动哪里"的四处候选 |
-| [`self-study-audit.md`](self-study-audit.md) | 自学标准全量审计：12 章、52 个附录逐项对照自学要素 |
+| [`figures.md`](figures.md) | 图册：95 张插图按章/附录排开，含缩略图、中文说明、作者、许可与来源页 |
+| [`appendix-audit.md`](appendix-audit.md) | 49 个附录逐个体检（页数、图表数）＋"还想再薄能动哪里"的四处候选 |
+| [`self-study-audit.md`](self-study-audit.md) | 自学标准全量审计：12 章、49 个附录（另含配套手册 J／K／L 源文件）逐项对照自学要素 |
+
+## 怎么重生成
+
+- 图册：`python -X utf8 tools/make_figures_gallery.py --write`（读 `figures/CREDITS.md`）
+- 附录体检：`python -X utf8 tools/appendix_audit.py --json` 再 `python -X utf8 tools/make_appendix_audit_doc.py --write`
+- 自学标准审计：`python -X utf8 tools/selfstudy_audit.py --write`
 
 ## 判据在哪
 
