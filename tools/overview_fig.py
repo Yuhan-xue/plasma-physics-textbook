@@ -34,13 +34,13 @@ BG = '#f7f5f0'
 fig = plt.figure(figsize=(13.6, 8.6), dpi=140)
 fig.patch.set_facecolor(BG)
 fig.text(0.035, 0.955, '等离子体物理自学教材 · 项目一览', fontsize=24, color=INK, weight='bold')
-fig.text(0.035, 0.915, 'v1.27.3 ｜ 657 页 ｜ 12 章正文 + 52 附录 ｜ 95 张实拍图 ｜ 六套检查全绿',
+fig.text(0.035, 0.915, 'v1.27.5 ｜ 635 页 ｜ 12 章正文 + 49 附录 ｜ 95 张实拍图 ｜ 六套检查全绿',
          fontsize=13, color=MUTED)
 
 # ── 左上：篇幅构成
 ax1 = fig.add_axes([0.05, 0.635, 0.42, 0.165])
 ax1.set_facecolor(BG)
-parts = [('52 个附录', 449, ACCENT), ('12 章正文', 177, LIGHT),
+parts = [('49 个附录', 427, ACCENT), ('12 章正文', 177, LIGHT),
          ('符号与前言', 21, PALE), ('结语与索引', 10, FAINT)]
 left = 0
 for label, val, color in parts:
@@ -49,23 +49,23 @@ for label, val, color in parts:
         ax1.text(left + val / 2, 0, '%s · %d 页' % (label, val), ha='center', va='center',
                  fontsize=11.5, color='white' if color == ACCENT else INK, weight='bold')
     left += val
-ax1.set_xlim(0, 657)
+ax1.set_xlim(0, 635)
 ax1.set_ylim(-0.55, 0.62)
 ax1.axis('off')
-ax1.set_title('657 页怎么分：三分之二在附录，正文 177 页', fontsize=13, color=INK,
+ax1.set_title('635 页怎么分：三分之二在附录，正文 177 页', fontsize=13, color=INK,
               loc='left', pad=8)
-ax1.text(0, -0.50, '52 个附录共 449 页；前 10 大附录只占其中 27%，最大一个 22 页',
+ax1.text(0, -0.50, '49 个附录共 427 页；前 10 大附录只占其中 27%，最大一个 22 页',
          fontsize=10.3, color=MUTED)
 
 # ── 右上：版本演进
 ax2 = fig.add_axes([0.545, 0.615, 0.40, 0.21])
 ax2.set_facecolor('white')
-vers = ['v1.26.31', 'v1.27.0', 'v1.27.1', 'v1.27.2', 'v1.27.3']
-pages = [676, 674, 664, 668, 657]
-figs = [70, 87, 87, 95, 95]
+vers = ['v1.26.31', 'v1.27.0', 'v1.27.1', 'v1.27.2', 'v1.27.3', 'v1.27.5']
+pages = [676, 674, 664, 668, 657, 635]
+figs = [70, 87, 87, 95, 95, 95]
 xs = list(range(len(vers)))
 ax2.plot(xs, pages, marker='o', color=ACCENT, linewidth=2.4, label='页数')
-offsets = [(0, 9), (0, 9), (0, 9), (0, 9), (-2, -18)]
+offsets = [(0, 9), (0, 9), (0, 9), (0, 9), (-2, -18), (6, 8)]
 for x, p, off in zip(xs, pages, offsets):
     ax2.annotate(str(p), (x, p), textcoords='offset points', xytext=off,
                  ha='center', fontsize=10.5, color=ACCENT, weight='bold')
@@ -129,9 +129,10 @@ ax5.axis('off')
 ax5.set_title('读者拿得到的东西', fontsize=13, color=INK, loc='left', pad=22)
 ax5.set_xlim(0, 1)
 ax5.set_ylim(0, 1)
-items = [('pdf/…v2.pdf', '657 页完整教材'),
+items = [('pdf/…v2.pdf', '635 页完整教材'),
          ('…vol1_chapters.pdf', '208 页：前言 + 12 章'),
-         ('…vol2_appendices.pdf', '449 页：52 个附录'),
+         ('…vol2_appendices.pdf', '427 页：49 个附录'),
+              ('…handbook.pdf', '26 页：配套手册 J/K/L'),
          ('figures/CREDITS.md', '95 张图的作者与许可')]
 for i, (a, b) in enumerate(items):
     y = 0.74 - i * 0.235
@@ -148,11 +149,11 @@ fig.text(0.035, 0.098,
          '⑤ 每版重编、分册、跑六套检查；⑥ 附件逐字节复核后再发布。',
          fontsize=10.4, color=INK)
 fig.text(0.035, 0.064,
-         '另有 code/ 与 tools/calc/ 下的可运行脚本（正文只给路径），以及每版三个带版本号的 PDF 附件。',
+         '另有 code/ 与 tools/calc/ 下的可运行脚本（正文只给路径），以及每版四个带版本号的 PDF 附件。',
          fontsize=10.1, color=MUTED)
 fig.text(0.035, 0.026,
          '数据来源：README.md 版本表、check/ 六套检查输出、tools/appendix_audit.json、'
-         'pdf/ 实测页数（2026-10-17，v1.27.3）。',
+         'pdf/ 实测页数（2026-10-18，v1.27.5）。',
          fontsize=9.4, color='#8b8577')
 
 out = os.path.join(ROOT, 'docs', 'overview.png')

@@ -1,0 +1,430 @@
+% ============================================================
+% 等离子体物理自学教材
+% ============================================================
+\documentclass[12pt,a4paper,openany,oneside]{book}
+\usepackage[UTF8]{ctex}
+\usepackage{geometry}
+% ---- 版面密度规格 v1.9.0（2026-10-11）------------------------------------
+% 目标：不缩小字号（正文仍 12pt）的前提下，让每页承载更多内容，并重新规划
+% 页面元素的垂直间距。边距与间距的实测效果见 processed.md 的 v1.9.0 一节。
+% 边距：left 2.1->1.75cm、right 2.6->1.95cm、top 2.1->1.85cm、bottom 1.8->1.55cm。
+%   版心由 16.30cm x 25.80cm 增至 17.30cm x 26.30cm，可用面积 +8.1%。
+%   行宽 17.30cm 在 12pt 中文下约 41 字/行，仍在可读范围内（不超过 45 字）。
+% right 收到 1.95cm 的约束：难度边注盒（marginparwidth + marginparsep）右边界
+%   须落在纸面 21.0cm 内。现取 1.1 + 0.15 = 1.25cm，右边界
+%   1.75+17.30+0.15+1.10 = 20.30cm，距裁切边 0.70cm。边注内容实测最宽为
+%   「[基础]」「[提高]」「[应用]」等 2 字标签（footnotesize 约 0.81cm），
+%   在 1.10cm 的 marginparwidth 内不会被拆行或溢出。
+% headsep 0.5->0.4cm、footskip 0.8->0.7cm：页眉页脚同步贴近版心。
+\geometry{left=1.75cm,right=1.95cm,top=1.85cm,bottom=1.55cm,
+          footskip=0.7cm,headsep=0.4cm}
+\setlength{\headheight}{15pt}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{bm}
+\usepackage{esint}
+\usepackage{siunitx}
+\usepackage{tikz,pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta,decorations.pathmorphing,decorations.markings,
+  patterns,calc,positioning,shapes,shadings,fadings,through}
+\pgfdeclarelayer{bg}
+\pgfdeclarelayer{fg}
+\pgfsetlayers{bg,main,fg}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{enumitem}
+% ---- 列表全局规范：替代全书零散的逐实例配置 ----
+\setlist{nosep,leftmargin=1.25em,topsep=1.4pt plus 0.5pt minus 0.5pt,
+         itemsep=0.5pt plus 0.3pt,parsep=0pt,partopsep=0pt}
+\setlist[itemize,1]{label=\textbullet}
+\setlist[itemize,2]{label=$\circ$}
+\setlist[enumerate,1]{label=\arabic*.}
+\setlist[enumerate,2]{label=(\alph*)}
+\usepackage{etoolbox}
+\usepackage{microtype}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems,skins,breakable}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{caption}
+% ---- 封面与全书主题色 ----
+\definecolor{coverDeep}{RGB}{6, 10, 32}        % 深空藏青（渐变锚点）
+\definecolor{coverMid}{RGB}{28, 42, 96}        % 中段藏青蓝（全文标题主色）
+\definecolor{coverGlow}{RGB}{196, 92, 42}      % 太阳风暖辉
+\definecolor{imfLine}{RGB}{120, 190, 235}      % IMF 磁力线青
+\definecolor{swFlow}{RGB}{255, 186, 96}        % 太阳风流线琥珀
+\definecolor{magnetopause}{RGB}{120, 232, 190} % 磁层顶青绿
+\definecolor{reconX}{RGB}{255, 238, 140}       % X 点高亮
+\definecolor{earthBlue}{RGB}{42, 104, 176}     % 地球盘面
+% ---- 封面示意图配色（语义化命名，便于逐元素调整）----
+\colorlet{shockC}{magnetopause}                % 弓形激波（虚线）
+\colorlet{mpC}{magnetopause}                   % 磁层顶
+\colorlet{tailC}{imfLine}                      % 磁尾尾瓣磁场
+\colorlet{lineC}{imfLine}                      % 磁力线（同 IMF 青）
+\colorlet{cuspC}{swFlow}                       % 极尖区标记
+\definecolor{plasmaC}{RGB}{46, 40, 96}         % 等离子体片（深紫）
+\definecolor{neutralC}{RGB}{10, 10, 20}        % 中性片（近黑）
+\definecolor{bLineC}{RGB}{120, 190, 235}       % 封面磁力线
+\definecolor{orbC}{RGB}{255, 186, 96}         % 封面回旋轨迹
+\definecolor{torusC}{RGB}{96, 168, 224}       % 封面环向磁场
+\definecolor{glowC}{RGB}{86, 196, 236}        % 封面电离辉光
+\definecolor{filC}{RGB}{150, 226, 255}        % 封面放电丝
+\colorlet{sheetC}{swFlow}                      % 等离子体片 / 电流片
+\colorlet{earthC}{earthBlue}                   % 地球盘面
+% ---- 封面柔光淡出（必须声明在导言区，放进 picture 会扰乱 overlay 定位）----
+\tikzfading[name=glowFade, inner color=transparent!85, outer color=transparent!0,
+            middle color=transparent!35]
+\tikzfading[name=warmFade, inner color=transparent!55, outer color=transparent!0,
+            middle color=transparent!18]
+\tikzfading[name=xFade, inner color=transparent!75, outer color=transparent!0,
+            middle color=transparent!25]
+% ---- 图表标题：表格与图注分区处理 ----
+\captionsetup{font=small,labelfont={bf,color=coverMid},labelsep=quad,
+              justification=centering,skip=3pt,belowskip=1pt}
+\captionsetup[table]{position=top,skip=2pt}
+\captionsetup[figure]{position=bottom}
+% ---- 表格字号与列距统一（不改 arraystretch，避免覆盖 4312 行的显式设置）----
+\AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
+\usepackage{subcaption}
+\usepackage[pdfusetitle,
+  pdftitle={等离子体物理自学教材·配套手册 v1.27.5},
+  pdfauthor={Han \& Kimi},
+  pdfsubject={经典弱耦合等离子体物理入门},
+  pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
+  pdfcreationdate={D:20260913000000Z}]{hyperref}
+\hypersetup{colorlinks=true,linkcolor=coverMid,citecolor=coverMid,urlcolor=coverMid}
+\usepackage{cleveref}
+\usepackage{braket}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{marginnote}
+\usepackage{epigraph}
+\usepackage{pifont}          % \ding：圈号 （1）（2）（3） 的可靠字形来源（lmroman 无 U+2460..U+2462）
+\usepackage{fvextra}         % verbatim 可断行，消除附录 G 代码越界
+\setlength{\marginparwidth}{1.1cm}
+\setlength{\marginparsep}{0.15cm}
+% ---- 圈号 （1）（2）（3） 的安全写法 ----
+% 原实现直接在 lmroman 中排 U+2460..U+2462，该字体无此字形，PDF 中渲染为空白。
+% \ding{172..174} 对应 （1）..（3），pifont 的 dingbat 字体覆盖完整。
+\newcommand{\cnum}[1]{\ding{\numexpr171+#1\relax}}
+% ---- 段落、公式与浮动体间距：回收造成大片留白的垂直空间 ----
+% v1.27.1：在不改字号、不改页边距、不删一个字的前提下再收一档行间空白，
+% 把新增实拍图占掉的页数压回来（段落靠首行缩进区分，不靠空行）。
+\setlength{\parskip}{1.0pt plus 0.4pt minus 0.2pt}
+\setlength{\jot}{1.0pt}
+\AtBeginDocument{%
+  \setlength{\abovedisplayskip}{2.2pt plus 0.8pt minus 0.8pt}%
+  \setlength{\belowdisplayskip}{2.2pt plus 0.8pt minus 0.8pt}%
+  \setlength{\abovedisplayshortskip}{1.8pt plus 0.6pt}%
+  \setlength{\belowdisplayshortskip}{1.8pt plus 0.6pt}%
+}
+% 浮动体上下间距（默认 book 类为 12pt 级，是页面上最显眼的空白来源）
+\setlength{\textfloatsep}{5pt plus 2pt minus 2pt}
+\setlength{\floatsep}{5pt plus 2pt minus 2pt}
+\setlength{\intextsep}{5pt plus 2pt minus 2pt}
+% 放宽浮动体在同一页的比例上限，减少"图表被挤到下一页"留下的整块空白
+\renewcommand{\topfraction}{0.92}
+\renewcommand{\bottomfraction}{0.75}
+\renewcommand{\textfraction}{0.06}
+\renewcommand{\floatpagefraction}{0.72}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\pagestyle{fancy}
+\fancyhf{}
+% 中文页眉不用 \itshape：SimSun 无真斜体，会触发合成倾斜，与正文正体断裂。
+\fancyhead[L]{\nouppercase{\small\heiti\leftmark}}
+\fancyhead[R]{\small\bfseries\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+% 章首页（\chapter 下发 \thispagestyle{plain}）原先无页眉也无页码，此处补上页码。
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \fancyhead[R]{\small\bfseries\thepage}%
+  \renewcommand{\headrulewidth}{0.3pt}%
+}
+% 附录章：\chapter* 不更新 \leftmark，导致 186--210 页页眉恒为"第 12 章"。
+% \appchapter 显式维护页眉与书签，并让小节/定理编号继承附录章号（A/B/C...）。
+% v1.25.0：字母方案 A--Z, AA, AB…。\thechapter 必须在这里就 \xdef 成**纯文本**：
+% 若留成含 \ifnum / expl3 的宏，hyperref 生成书签（PDF 字符串）时会展开失败，
+% 书签会丢掉「AA.」前缀，pdf_outline 的 O3a 就会报「印刷目录与书签不同名」。
+\makeatletter
+\newcommand{\appendixAlph}[1]{%
+  \ifnum#1>26 A\@Alph{\numexpr#1-26\relax}\else\@Alph{#1}\fi}
+\makeatother
+\newcommand{\appchapter}[1]{%
+  \cleardoublepage
+  \refstepcounter{chapter}%
+  \xdef\thechapter{\appendixAlph{\arabic{chapter}}}%
+  \chapter*{#1}%
+  \addcontentsline{toc}{chapter}{#1}%
+  \markboth{#1}{#1}%
+  \thispagestyle{plain}%
+}
+% 前言/符号说明/结语等既非正文章、也不属于附录的部分：
+% 需要页眉与书签，但绝不能递增 chapter 计数器（否则正文章号整体后移）。
+\newcommand{\frontchapter}[1]{%
+  \cleardoublepage
+  \chapter*{#1}%
+  \addcontentsline{toc}{chapter}{#1}%
+  \markboth{#1}{#1}%
+  \thispagestyle{plain}%
+}
+\titleformat{\chapter}[display]
+  {\normalfont\huge\heiti\color{coverMid}}
+  {\filleft\fontsize{52}{52}\selectfont\color{coverMid!30}\thechapter}
+  {-2.4ex}
+  {\Huge\heiti\filright}
+  [\vspace{0.35ex}{\color{coverMid!45}\titlerule[1.2pt]}]
+\titlespacing*{\chapter}{0pt}{-30pt}{15pt}
+% ---- 难度边注：就地排版，不用 \hfill 顶边 ----
+% 历史缺陷：
+%  (a) 旧宏内 \hfill 使 2pt \rule 紧贴边注盒右边界，墨迹到达 20.62cm，越出盒边界
+%      (20.50cm)，影响 20 页；配合 geometry right 2.3cm->2.6cm 后已落回盒内。
+%  (b) 旧宏锚定的是"当前位置"，写在 \section{...} 之后时会掉到标题下方的正文
+%      首行。现改为在 \section 的"标题后"钩子里立刻排出，锚点即标题行。
+\newcommand{\diffmarktext}[1]{%
+  \textcolor{coverMid!80}{\rule[-0.1em]{2pt}{0.9em}}\,%
+  \textcolor{coverMid}{\footnotesize\textbf{[#1]}}%
+}
+% 就地排出：\section{...}\difficulty{基础} 中该宏紧跟标题文本，仍在标题行内，
+% \marginnote 因此锚定标题行本身。不再依赖额外钩子，也不会漏排。
+\newcommand{\difficulty}[1]{\marginnote{\raggedright\diffmarktext{#1}}}
+% 兼容旧用法别名（tcolorbox 标题内等场合），行为与 \difficulty 一致
+\newcommand{\difficultyhere}[1]{\marginnote{\raggedright\diffmarktext{#1}}}
+\titleformat{\section}
+  {\normalfont\Large\heiti\color{coverMid}}{\thesection}{0.9em}{}
+\titlespacing*{\section}{0pt}{7pt plus 1.6pt minus 1.6pt}{3.4pt plus 1.2pt minus 0.8pt}
+\titleformat{\subsection}
+  {\normalfont\large\heiti\color{coverMid!85}}{\thesubsection}{0.8em}{}
+\titlespacing*{\subsection}{0pt}{5.4pt plus 1.2pt minus 0.8pt}{2.4pt}
+% ---- 章前引语：楷体，与标题黑体形成字型区分（KaiTi 无斜体，不设 itshape）----
+\setlength{\epigraphwidth}{0.62\textwidth}
+\renewcommand{\epigraphsize}{\small\kaishu}
+\setlength{\epigraphrule}{0pt}
+\definecolor{thmblue}{RGB}{41, 98, 255}
+\definecolor{defgreen}{RGB}{46, 125, 50}
+\definecolor{cororange}{RGB}{230, 81, 0}
+\definecolor{exampurple}{RGB}{106, 27, 154}
+\definecolor{insightred}{RGB}{183, 28, 28}
+\definecolor{warnyellow}{RGB}{255, 160, 0}
+\definecolor{historybrown}{RGB}{121, 85, 72}
+\definecolor{reviewblue}{RGB}{25, 118, 210}
+\definecolor{tipgreen}{RGB}{56, 142, 60}
+% ---- 插图统一视觉语言（2026-10-13 插图重画轮立下的规矩，新图与改图一律遵守）----
+% 色板取 Okabe--Ito 色盲安全八色；同一物理量在全书各图里用同一色：
+%   电子/快/束流 = figVerm（朱）；离子/慢/背景 = figBlue（蓝）；
+%   磁场/磁力线  = figGreen（绿）；区域填充 = 同色 !12 并配同色 0.8pt 边；
+%   判据/阈值    = figPurple（紫）；辅助线/包络 = figGray（灰）虚线。
+% 线宽：坐标轴 0.9pt、数据曲线 1.2pt、辅助虚线 0.6pt；箭头统一 Stealth。
+% 字号：图内主标签 \small、次标签与刻度 \footnotesize；内容标签全书禁用 \tiny。
+% 标签永不压线：必须靠近曲线时用 fill=white, inner sep=1.5pt 的光环；
+% 区域标签若放不进色块（留不出约 3mm 边）就移到块外，用 figlead 引线点指。
+% 图例一律放在绘图区外（下方或右侧），带线型样本。
+\definecolor{figInk}{HTML}{2B2B2B}
+\definecolor{figBlue}{HTML}{0072B2}
+\definecolor{figOrange}{HTML}{E69F00}
+\definecolor{figGreen}{HTML}{009E73}
+\definecolor{figVerm}{HTML}{D55E00}
+\definecolor{figPurple}{HTML}{CC79A7}
+\definecolor{figSky}{HTML}{56B4E9}
+\definecolor{figGray}{HTML}{8C8C8C}
+\tikzset{
+  figaxis/.style={draw=figInk, line width=0.9pt, ->, >=Stealth},
+  figcurve/.style={line width=1.2pt},
+  fighelp/.style={draw=figGray, line width=0.6pt, dashed},
+  fignode/.style={rounded corners=2pt, line width=0.8pt, inner sep=4pt},
+  figlead/.style={draw=figGray, line width=0.5pt, ->, >=Stealth, shorten >=1.5pt},
+  figtick/.style={font=\footnotesize, text=figInk},
+}
+% ---- 真实图像配图（2026-10-16 起）：开放许可照片/机构示意图的排版约定 ----
+% 只用 CC0 / 公有领域 / CC BY / CC BY-SA 的图像；每张实拍图随图署名，
+% 在 \caption 之后用 \figsource{作者｜许可｜来源} 写一行灰色小字（作者与许可以 CREDITS.md 为准）。
+% 排版宽度：单栏整幅不超过 0.86\textwidth，双图并排各 0.42\textwidth；
+% 正文里的图一律 figure[htbp] + \centering，图注首句点题（这一条从 v1.27.0 起用于新增配图）。
+\newcommand{\figsource}[1]{\par\vspace{1pt}{\footnotesize\color{figGray}图片来源：#1}}
+\newcommand{\predict}[1]{\par\smallskip{\footnotesize\color{figGray}\textbf{先猜再看}：#1}\par\smallskip}
+\newtcbtheorem[number within=chapter]{theorem}{定理}{
+  colback=thmblue!5,colframe=thmblue,fonttitle=\bfseries,breakable,
+  left=4pt,right=4pt,top=4pt,bottom=4pt}{thm}
+\newtcbtheorem[number within=chapter]{definition}{定义}{
+  colback=defgreen!5,colframe=defgreen,fonttitle=\bfseries,breakable,
+  left=4pt,right=4pt,top=4pt,bottom=4pt}{def}
+\newtcbtheorem[number within=chapter]{corollary}{推论}{
+  colback=cororange!5,colframe=cororange,colbacktitle=cororange!62!black,fonttitle=\bfseries,breakable,
+  left=4pt,right=4pt,top=4pt,bottom=4pt}{cor}
+\newtcbtheorem[number within=chapter]{example}{例题}{
+  colback=exampurple!5,colframe=exampurple,fonttitle=\bfseries,breakable,
+  left=4pt,right=4pt,top=4pt,bottom=4pt}{ex}
+\newtcbtheorem[number within=chapter]{insight}{物理洞见}{
+  colback=insightred!5,colframe=insightred!80,fonttitle=\bfseries,breakable,
+  left=4pt,right=4pt,top=4pt,bottom=4pt}{ins}
+\newtcbtheorem[number within=chapter]{warning}{常见误区}{
+  colback=warnyellow!8,colframe=warnyellow,colbacktitle=warnyellow!55!black,fonttitle=\bfseries,breakable,
+  left=4pt,right=4pt,top=4pt,bottom=4pt}{warn}
+\newtcbtheorem[number within=chapter]{history}{物理史话}{
+  colback=historybrown!5,colframe=historybrown,fonttitle=\bfseries,breakable,
+  left=4pt,right=4pt,top=4pt,bottom=4pt}{hist}
+\newtcbtheorem[number within=chapter]{review}{本节要点}{
+  colback=reviewblue!5,colframe=reviewblue,fonttitle=\bfseries,breakable,
+  left=4pt,right=4pt,top=4pt,bottom=4pt}{rev}
+\newtcbtheorem[number within=chapter]{tip}{学习提示}{
+  colback=tipgreen!5,colframe=tipgreen,colbacktitle=tipgreen!62!black,fonttitle=\bfseries,breakable,
+  left=4pt,right=4pt,top=4pt,bottom=4pt}{tip}
+\newtcolorbox{miniquiz}[1][]{
+  colback=reviewblue!3,colframe=reviewblue,fonttitle=\bfseries,
+  title={随堂自测},breakable,
+  left=4pt,right=4pt,top=4pt,bottom=4pt,#1}
+% 随堂自测的参考要点（2026-10-16 起）：先自己答，再看这一行
+\newcommand{\quizans}[1]{\par\medskip{\color{figGray}\rule{\linewidth}{0.3pt}}\par\smallskip
+  {\footnotesize\textbf{参考要点：}#1}}
+% 章末概念图（2026-10-16 起，借鉴 Novak & Gowin 的概念图与 OpenStax 的「概念小结」）
+\tikzset{
+  cmnode/.style={draw,rounded corners=2pt,align=center,inner sep=3pt,font=\footnotesize,minimum height=7mm},
+  cmedge/.style={-{Latex[length=1.6mm]},draw=figGray,line width=0.7pt},
+  cmA/.style={cmnode,draw=figBlue,fill=figBlue!8},
+  cmB/.style={cmnode,draw=figOrange,fill=figOrange!10},
+  cmC/.style={cmnode,draw=figGreen,fill=figGreen!10},
+  cmD/.style={cmnode,draw=figVerm,fill=figVerm!8},
+  cmE/.style={cmnode,draw=figGray,fill=figGray!8},
+  rmnode/.style={cmnode,fill=white,minimum width=25mm},
+  rmedge/.style={-{Latex[length=1.6mm]},draw=figGray,line width=0.7pt},
+  rmABC/.style={rmnode,draw=figGreen,very thick},
+  rmAB/.style={rmnode,draw=figBlue,very thick},
+  rmBC/.style={rmnode,draw=figOrange,very thick},
+  nxchip/.style={draw=figInk!70,rounded corners=1.5pt,minimum width=1.05cm,minimum height=0.95cm,font=\scriptsize,inner sep=1pt},
+}
+\newtcolorbox{chapterreview}[1][]{
+  colback=tipgreen!5,colframe=tipgreen,fonttitle=\bfseries,
+  title={本章要点回顾},breakable,
+  left=4pt,right=4pt,top=4pt,bottom=4pt,#1}
+\newtcolorbox{formula}[1][]{
+  colback=blue!5,colframe=blue!60,fonttitle=\bfseries,
+  title={核心公式速查},breakable,
+  left=4pt,right=4pt,top=4pt,bottom=4pt,#1}
+% 兼容两参数签名的速查卡（{标题}{key}）：key 不再掉入正文
+\NewTColorBox{formulabox}{m m}{%
+  colback=blue!5,colframe=blue!60,fonttitle=\bfseries,breakable,
+  title={核心公式速查：#1},
+  phantomlabel={frml:#2},
+  left=4pt,right=4pt,top=4pt,bottom=4pt}
+\newtcolorbox{checklist}[1][]{
+  colback=green!5,colframe=green!60,fonttitle=\bfseries,
+  title={自学检查清单},breakable,
+  left=4pt,right=4pt,top=4pt,bottom=4pt,#1}
+% 兼容两参数签名的检查清单（{标题}{key}）：key 不再掉入正文
+\NewTColorBox{checklistbox}{m m}{%
+  colback=green!5,colframe=green!60,fonttitle=\bfseries,breakable,
+  title={#1},
+  phantomlabel={ckl:#2},
+  left=4pt,right=4pt,top=4pt,bottom=4pt}
+\newtcolorbox{strategy}[1][]{
+  colback=figOrange!5,colframe=figOrange,fonttitle=\bfseries,
+  title={解题策略},breakable,
+  left=4pt,right=4pt,top=4pt,bottom=4pt,#1}
+% ---- 统一色块样式：必须在上面 16 个定义之后，否则被各自的 left=4pt 反压 ----
+% v1.9.0：内边距 5/3pt -> 4.5/2.5pt，块前后间距 5pt -> 3.5pt，标题上下 2pt -> 1.5pt。
+\tcbset{
+  boxsep=0pt,
+  left=4.5pt,right=4.5pt,top=2.5pt,bottom=2.5pt,
+  before skip=3.5pt plus 1.5pt minus 1pt,
+  after skip=3.5pt plus 1.5pt minus 1pt,
+  fonttitle=\heiti\small,
+  toptitle=1.5pt,bottomtitle=1.5pt,
+  titlerule=0.4pt,
+  sharp corners=southwest,
+  enhanced
+}
+\newcommand{\diff}{\mathrm{d}}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\ee}{\mathrm{e}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\vect}[1]{\bm{#1}}
+\newcommand{\unitvec}[1]{\hat{\vect{#1}}}
+\newcommand{\grad}{\nabla}
+\newcommand{\curl}{\nabla\times}
+\newcommand{\divg}{\nabla\cdot}
+\newcommand{\lap}{\nabla^2}
+\newcommand{\tens}[1]{\bm{#1}}
+\newenvironment{chapterintro}{%
+  \begin{quotation}\itshape\small\setlength{\topsep}{2pt}\setlength{\parskip}{1.2pt}%
+}{%
+  \end{quotation}%
+}
+% 附录编号进入两位数后（AA...AM），目录 \numberline 的 2.3em 数字列不够宽，
+% 每个附录小节目录行会溢出约 1.1 pt；把数字列加宽到 2.5em（缩进与正文不变）。
+\makeatletter
+\renewcommand*\l@section{\@dottedtocline{1}{1.5em}{2.5em}}
+\makeatother
+\begin{document}
+
+% ======================= 封面 =======================
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[coverDeep] (current page.north west) rectangle (current page.south east);
+  \begin{pgfonlayer}{bg}
+    \fill[path fading=warmFade, color=coverGlow!55!white]
+      ([xshift=-6.2cm,yshift=3.2cm]current page.north west) circle (13cm);
+    \fill[path fading=warmFade, color=coverGlow!32!white]
+      ([xshift=-7.0cm,yshift=4.2cm]current page.north west) circle (8cm);
+    \fill[path fading=glowFade, color=black]
+      ([xshift=1.2cm,yshift=-1.2cm]current page.south east) circle (14cm);
+  \end{pgfonlayer}
+  % 三条横线：示意「书单—例题—题库」三件事
+  \fill[white!22] ([xshift=2.6cm,yshift=-3.7cm]current page.north west) rectangle ++(9.6cm,0.9pt);
+  \fill[white!16] ([xshift=2.6cm,yshift=-4.5cm]current page.north west) rectangle ++(7.4cm,0.9pt);
+  \fill[white!10] ([xshift=2.6cm,yshift=-5.3cm]current page.north west) rectangle ++(5.2cm,0.9pt);
+\end{tikzpicture}
+
+\vspace*{2.6cm}
+\begin{flushleft}
+\hspace*{1.6cm}{\color{white}\heiti\fontsize{16}{20}\selectfont 等离子体物理自学教材\quad 配套手册}\\[1.4em]
+\hspace*{1.6cm}{\color{white}\heiti\fontsize{40}{46}\selectfont 从书单到题库}\\[0.8em]
+\hspace*{1.6cm}{\color{white!82!coverGlow}\heiti\fontsize{20}{26}\selectfont 经典教材逐章对照 · 跨教材例题 · 分章自测}\\[2.6em]
+\hspace*{1.6cm}{\color{white!78}\large 主册（635 页，12 章正文 + 49 个专题附录）的配套读物}\\[0.5em]
+\hspace*{1.6cm}{\color{white!78}\large 主册附录 J、K、L 的完整内容，单独成册，便于边读边查}
+\end{flushleft}
+
+\vfill
+\hspace*{1.6cm}{\color{white!72}\large Han \& Kimi}\hfill
+{\color{white!72}\large v1.27.5}\hfill
+{\color{white!60}\large 2026 年 10 月}\hspace*{1.6cm}
+\vspace*{1.2cm}
+
+\clearpage
+\thispagestyle{empty}
+\frontchapter{这本手册怎么用}
+
+主册把三件事从正文里拿了出来，单独收在这里：
+
+\begin{itemize}
+\item \textbf{附录 J（经典教材逐章对照与延伸阅读）}：本书每一章对应 Chen、Fitzpatrick 等经典教材的哪一章，以及想继续深入时该读哪本专著。查书时用它，不用翻正文。
+\item \textbf{附录 K（跨教材经典例题精选）}：八道跨教材例题，覆盖德拜屏蔽、磁镜、漂移、Alfv\'en 波、Langmuir 探针等，每题有完整解答。它是主册例题的补充，不是习题集。
+\item \textbf{附录 L（分章自测题库）}：12 章 $\times$ 6 题的题库（每题都带答案），按章刷题时用它。
+\end{itemize}
+
+\textbf{为什么单独成册。}这三篇是"边读边查"的材料：读者查书单时通常不在读正文，刷题时也不想被正文的推导带走。主册因此保持在 640 页以内，可以一口气从头读到尾；需要查的时候再翻开这本手册。
+
+\textbf{字母为什么从 J 开始。}主册的附录字母没有重排：附录 J、K、L 的位置留给这本手册，主册附录 A--I 之后直接接 M，两边字母一一对应，引用时不会错位。
+
+\textbf{版本与许可。}本手册与主册同版本（v1.27.5），许可同为 CC BY-NC-SA 4.0；源码与三篇 \texttt{.tex} 都在仓库 \texttt{src/} 下，正文引用的脚本在 \texttt{tools/calc/} 与 \texttt{code/} 下。
+
+\clearpage
+\tableofcontents
+
+\clearpage
+\setcounter{chapter}{0}
+
+\appchapter{附录J：经典教材逐章对照与延伸阅读}
+\input{appendix_j_textbook_map}
+
+\appchapter{附录K：跨教材经典例题精选}
+\input{appendix_k_problems}
+
+\appchapter{附录L：分章自测题库（含答案与提示）}
+\input{appendix_l_problems}
+
+\end{document}

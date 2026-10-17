@@ -44,7 +44,7 @@ appendix_pages = sum(r['pages'] for r in rows)
 top10 = sorted(rows, key=lambda r: -r['pages'])[:10]
 
 lines = []
-lines.append('# 附录体检：52 个附录的体量与可动空间')
+lines.append('# 附录体检：%d 个附录的体量与可动空间' % len(rows))
 lines.append('')
 lines.append('> 这份表回答一个问题：**书已经很薄了，还想再薄，能动哪里？**'
              '结论先说：能动的地方不多，而且都在「学习辅助」类附录里，不在物理正文里。')
@@ -57,9 +57,9 @@ front_pages = toc[1][2] - 1                     # 封面到前言结束
 ch_pages = sum(c[2] for c in chapters)
 tail_pages = total - front_pages - ch_pages - appendix_pages
 lines.append('- 全 **%d 页**：封面与目录 %d 页，前言 %d 页，正文 12 章 %d 页，'
-             '附录 52 个 **%d 页（%.0f%%）**，结语与索引 %d 页。'
+             '附录 %d 个 **%d 页（%.0f%%）**，结语与索引 %d 页。'
              % (total, toc[0][2] - 1, front_pages - (toc[0][2] - 1), ch_pages,
-                appendix_pages, 100.0 * appendix_pages / total, tail_pages))
+                len(rows), appendix_pages, 100.0 * appendix_pages / total, tail_pages))
 lines.append('- 专题附录（M–AZ）体量非常均匀：**多数 7–12 页**，每篇 7–8 张表、1–3 张图、6–7 个语义盒——'
              '这是模板化的结果，也意味着单篇里没有明显的水分。')
 lines.append('- 体量最大的五个：%s。'
@@ -74,7 +74,7 @@ lines.append('|---|---:|---:|')
 for title, page, n in chapters:
     lines.append('| %s | %d | %d |' % (title, page, n))
 lines.append('')
-lines.append('## 三、52 个附录逐个体检')
+lines.append('## 三、%d 个附录逐个体检（附录 J／K／L 已移入配套手册）' % len(rows))
 lines.append('')
 for gname, letters in GROUPS:
     lines.append('### %s' % gname)
@@ -99,20 +99,27 @@ for gname, letters in GROUPS:
                      % (letter, r['title'], r['pages'], r['figures'], r['tables'],
                         r['boxes'], advice))
     lines.append('')
-lines.append('## 四、想再减页，实际可动的四处')
-lines.append('')
-lines.append('1. **附录 I（学习策略手册，%d 页）**——全书最大的单篇，讲的是怎么学，不是物理。'
-             '可以把 6 篇核心方法留成 6–8 页，其余（论文三遍法、复习排程、同伴教学等）'
-             '移到仓库文档里，需要的人按链接查。'
-             % by_letter['I']['pages'])
-lines.append('2. **附录 J + K（%d + %d 页）**——书单与跨教材例题汇编可以合并成一册「延伸阅读」，'
-             '作为单独的 PDF 附在 release 里，不占教材页数。'
-             % (by_letter['J']['pages'], by_letter['K']['pages']))
-lines.append('3. **附录 L（分章自测题库，%d 页）**——题库本来就是"做题时翻"的材料，'
-             '做成独立 PDF 对读者更顺手。' % by_letter['L']['pages'])
-lines.append('4. **主题相近的专题附录**——例如 AC（数值方法）与 AE（动理学）的数值部分、'
-             'AQ（干涉诊断）与 AN（偏振诊断）。合并每对大约省 6–8 页，但会打乱"一附录一主题"的查阅习惯。')
-lines.append('')
+    lines.append('## 四、已经做完的一刀，以及还能动的四处')
+    lines.append('')
+    lines.append('**已经做完（v1.27.5）**：附录 J（经典教材逐章对照）、K（跨教材经典例题）、'
+                 'L（分章自测题库）移出主册，编成 26 页的配套手册'
+                 '（`pdf/plasma_physics_handbook.pdf`），主册 657 → 635 页；'
+                 '主册附录字母保留 J／K／L 空位，A–I 之后直接接 M。')
+    lines.append('')
+    lines.append('还能动的四处（都要同步改断言，见下一节）：')
+    lines.append('')
+    lines.append('1. **附录 I（学习策略手册，%d 页）**——主册最大的单篇，讲的是怎么学、不是物理。'
+                 '可以把 6 篇核心方法留成 6–8 页，其余（论文三遍法、复习排程、同伴教学等）'
+                 '移到仓库文档里，需要的人按链接查。'
+                 % by_letter['I']['pages'])
+    lines.append('2. **主题相近的专题附录合并**——例如 AC（数值方法）与 AE（动理学）的数值部分、'
+                 'AQ（干涉诊断）与 AN（偏振诊断）。合并每对大约省 6–8 页，'
+                 '但会打乱"一附录一主题"的查阅习惯。')
+    lines.append('3. **细排范围再扩一档**——把各附录开头「与相邻附录的分工」段也改成小一号字，'
+                 '只影响观感，大约省 2–4 页。')
+    lines.append('4. **图片再收一档**——竖幅照片已按高度定尺，横幅还可以从 0.72 页宽收到 0.68；'
+                 '省页有限（约 3–5 页），但会牺牲一点视觉冲击。')
+
 lines.append('## 五、动页数的代价（必须知道的一条）')
 lines.append('')
 lines.append('- 书里的每个数字都被 `check/physics_regression.py`（7195 项断言）'

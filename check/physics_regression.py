@@ -5844,7 +5844,7 @@ def check_P33_appendix_i_paper():
          '表 1 第三遍行（能复现其中一个数）'),
         ('我能算出同一个数吗？ & \\textbf{读懂的判据} & 附录 M--AA 的 \\texttt{calc} 脚本 \\\\',
          '表 2 「我能算出同一个数吗」行'),
-        ('我不同意哪一点？ & 从「读者」变成「同行」 & 附录 K 的例题与解答对照 \\\\',
+        ('我不同意哪一点？ & 从「读者」变成「同行」 & 配套手册 K 的例题与解答对照 \\\\',
          '表 2 最后一行'),
         ('\\textbf{能用本书的脚本复现出论文里的一个数，', '「读懂」的可操作定义句'),
         ('用 \\texttt{tools/\\allowbreak{}calc/\\allowbreak{}app\\_\\_calc.py} 代入', '文献笔记模板的可复现步骤'),
@@ -5861,7 +5861,7 @@ def check_P33_appendix_i_paper():
         ('\\begin{tip}{「读懂」的可操作定义}{tip-app-i-paper}', '语义盒标题（可操作定义）'),
         ('第二遍 & 图、表、坐标轴、误差棒、关键公式的\\textbf{结构}（不追推导） & 三到五个关键量级 + 一份「没看懂的术语」清单 & 能说出每个图的横纵轴是什么、结论靠哪张图支撑 \\\\',
          '表 1 第二遍行（三到五个关键量级）'),
-        ('它解决什么问题？ & 判断与自己的目标是否相关 & 附录 J 的逐章对照表 \\\\',
+        ('它解决什么问题？ & 判断与自己的目标是否相关 & 配套手册 J 的逐章对照表 \\\\',
          '表 2 第一行（它解决什么问题）'),
         ('三遍法最重要的性质是\\textbf{可以随时停止}：', '「可以随时停止」的口径句'),
     ]
@@ -9500,7 +9500,7 @@ def check_P43_appendix_ak_safety():
         ('声明级 & 脚本顶部的输入 & 剂量系数 $1.8\\times10^{-11}$ Sv/Bq、比活度 $10^{6}$ Bq/kg、PRF $=100$ & 改输入即可 \\\\', '表格数据行'),
         ('文献级 & 只作量级对照 & 年释放目标 1 g/年、场址因子 $20$ $\\mu$Sv/g、豁免水平 $10^{4}$ Bq/kg & 不参与计算 \\\\', '表格数据行'),
         ('\\begin{tip}{本附录不给什么}{tip-app-ak-honest}', '语义盒标题'),
-        ('\\textbf{出处：}本附录的三级口径与版权处理沿用附录 K、L、N、Z 的约定；', '出处声明整行'),
+        ('\\textbf{出处：}本附录的三级口径与版权处理沿用配套手册 K、L 与附录 N、Z 的约定；', '出处声明整行'),
     ):
         has(text, lit, 'src/%s（整行绑定：%s）' % (APP_FILES['AK'], why))
 
@@ -16307,25 +16307,42 @@ def check_P04_new_appendix_wiring():
     读者看不到；② ``\\appchapter`` 写进被 ``\\input`` 的文件——LaTeX 没问题，
     但按主文件判定附录字母的检查套件会漏掉它（v1.8.0 首稿正是这么写的，
     本轮修正后加此项防回归）。
+
+    v1.27.5 起：附录 J/K/L 移入配套手册。主文件用一行注释声明移出集合，这几个
+    附录必须**不在**主文件里，而是挂进 ``src/companion_handbook.tex``。
     """
     t = read(os.path.join(SRC, MAIN))
     letters = re.findall(r'\\appchapter\{附录([A-Z]{1,2})[：:]', t)
+    moved = set()
+    mm = re.search(r'%+ *appendix-moved-to-handbook: *([A-Z,\s]+)', t)
+    if mm:
+        moved = set(x.strip() for x in mm.group(1).split(',') if x.strip())
     # 附录字母方案：A--Z 用完后接 AA、AB…（第 27 个不再是 chr(ord('A')+26)='['）
     want = [(chr(ord('A') + i) if i < 26 else 'A' + chr(ord('A') + i - 26))
             for i in range(len(APP_FILES) + 8)]
+    want = [w for w in want if w not in moved]
     if letters != want:
-        rec('FAIL', 'P', '主文件附录字母不是 A--%s 连续：%s（共 %d 个）'
-            % (want[-1], ''.join(letters), len(letters)))
+        rec('FAIL', 'P', '主文件附录字母不是 A--%s 连续（已声明移出 %s）：%s（共 %d 个）'
+            % (want[-1], '/'.join(sorted(moved)), ''.join(letters), len(letters)))
     else:
-        rec('PASS', 'P', '主文件附录字母连续 A--%s（共 %d 个，含 %s）'
-            % (want[-1], len(letters), '/'.join(sorted(APP_FILES))))
+        rec('PASS', 'P', '主文件附录字母连续 A--%s（共 %d 个；%s 已移入配套手册）'
+            % (want[-1], len(letters), '/'.join(sorted(moved))))
 
+    handbook_path = os.path.join(SRC, 'companion_handbook.tex')
+    handbook = read(handbook_path) if os.path.exists(handbook_path) else ''
     problems = []
     for letter, fname in sorted(APP_FILES.items()):
         stem = fname[:-4]
         path = os.path.join(SRC, fname)
         if not os.path.exists(path):
             problems.append('%s 文件缺失' % fname)
+            continue
+        if letter in moved:
+            if re.search(r'\\input\{%s\}' % re.escape(stem), t):
+                problems.append('附录%s 已声明移出，却仍挂在主文件' % letter)
+            if not re.search(r'\\appchapter\{附录%s[：:][^\n]*\}\s*\n\s*\\input\{%s\}'
+                             % (letter, re.escape(stem)), handbook):
+                problems.append('附录%s 未挂进配套手册 src/companion_handbook.tex' % letter)
             continue
         if not re.search(r'\\appchapter\{附录%s[：:][^\n]*\}\s*\n\s*\\input\{%s\}'
                          % (letter, re.escape(stem)), t):
@@ -16335,12 +16352,13 @@ def check_P04_new_appendix_wiring():
             problems.append('%s 里又写了一次 \\appchapter（会与主文件重复计字母）' % fname)
         if body.count('\\section{') < 4:
             problems.append('%s 的小节少于 4 个（内容疑似被截断）' % fname)
+    if not handbook:
+        problems.append('配套手册 src/companion_handbook.tex 缺失')
     if problems:
         rec('FAIL', 'P', '新增附录挂载有问题：%s' % problems)
     else:
-        rec('PASS', 'P', '附录 %s 均已 \\input 挂载、章标题在主文件、各含 ≥4 小节'
+        rec('PASS', 'P', '附录 %s 均已挂载（主文件或配套手册），各含 ≥4 小节'
             % '/'.join(sorted(APP_FILES)))
-
 
 def check_P09_tcbtheorem_arity():
     r"""两参数语义盒不得裸调用：``\begin{tip}`` 会**吃掉正文头两个字符**。

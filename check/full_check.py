@@ -785,7 +785,10 @@ def check_K_roadmap():
 
 
 def check_L_appendixmap():
-    """附录导航图（v1.26.40 起）：52 个附录字母、10 个主题簇、图例与附录数一致。"""
+    """附录导航图（v1.26.40 起）：49 个附录字母、10 个主题簇、图例与附录数一致。
+
+    v1.27.5 起附录 J/K/L 移入配套手册，主册航图只画留下的 49 个。
+    """
     text = strip_comments(read(os.path.join(SRC, MAIN)))
     n_chip = text.count('\\node[nxchip')
     n_app = len(re.findall(r'\\appchapter\{', text))
@@ -794,7 +797,7 @@ def check_L_appendixmap():
         rec('FAIL', 'L', u'缺少附录导航图（fig:appendix-map）')
     elif 'nxchip/.style' not in text:
         rec('FAIL', 'L', u'附录导航图样式定义缺失（nxchip/.style）')
-    elif n_chip != n_app or n_chip != 52:
+    elif n_chip != n_app or n_app != 49:
         rec('FAIL', 'L', u'附录导航图芯片数应与附录数一致：附录 %d 个、芯片 %d 个'
                          % (n_app, n_chip))
     elif n_legend != 10:

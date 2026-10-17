@@ -8,7 +8,7 @@
 
 第 10 章讲了劳森判据、点火条件与托卡马克/仿星器两条路线，但把等离子体\textbf{加热到 10 keV}、\textbf{非感应地驱动电流}、以及装置\textbf{能跑到多大密度与多大比压}这三件事，全书只在正文里零星提到。本附录把这条"从物理到装置"的链条补齐。
 
-与相邻附录的分工：附录 J 回答"这个主题该读哪本书的哪一章"；附录 K 是完整解答的\textbf{范例}；附录 L 是\textbf{自测}题库；本附录是\textbf{专题深挖}——只讲一件事，但讲透，并把每个公式的出处标出来。
+与相邻附录的分工：配套手册 J 回答"这个主题该读哪本书的哪一章"；配套手册 K 是完整解答的\textbf{范例}；配套手册 L 是\textbf{自测}题库；本附录是\textbf{专题深挖}——只讲一件事，但讲透，并把每个公式的出处标出来。
 
 \begin{tip}{单位错位自查}{tip-appm-units}
 若你的结果与文中差一个量级，先检查四种单位错位：$\mathrm{eV}$ 与 $\mathrm{keV}$、$\mathrm{A/m^2}$ 与 $\mathrm{MA/m^2}$、$\mathrm{GHz}$ 与 $\mathrm{Hz}$、以及 $\mathrm{10^{20}\ m^{-3}}$ 这一密度单位（托卡马克文献习惯用它）。
@@ -58,14 +58,14 @@ P_\Omega=\eta_\parallel j^2,\qquad
 \eta_\parallel=5.2\times10^{-5}\,\frac{\ln\Lambda}{T_e[\mathrm{eV}]^{3/2}}\ \Omega\cdot\mathrm{m}
 \label{eq:app-m-spitzer}
 \end{equation}
-（Spitzer 纵向电阻率；$\ln\Lambda$ 为库仑对数，见第 8 章与附录 L 第 8 章）。
+（Spitzer 纵向电阻率；$\ln\Lambda$ 为库仑对数，见第 8 章与配套手册 L 第 8 章）。
 
 \textbf{数字例（$T_e=1\ \mathrm{keV}$、$\ln\Lambda=17$、$j=10^6\ \mathrm{A/m^2}$）：}
 \begin{align*}
 \eta_\parallel&=\frac{5.2\times10^{-5}\times17}{(10^3)^{3/2}}=2.80\times10^{-8}\ \Omega\cdot\mathrm{m},\\
 P_\Omega&=2.80\times10^{-8}\times(10^6)^2\approx2.8\times10^4\ \mathrm{W/m^3}=28\ \mathrm{kW/m^3}.
 \end{align*}
-把它与附录 L 第 10 章算出的 $\alpha$ 自加热功率密度 $P_\alpha\approx6.2\times10^5\ \mathrm{W/m^3}$ 相比，\textbf{差 22 倍}——这一句话就解释了为什么托卡马克必须外加加热。
+把它与配套手册 L 第 10 章算出的 $\alpha$ 自加热功率密度 $P_\alpha\approx6.2\times10^5\ \mathrm{W/m^3}$ 相比，\textbf{差 22 倍}——这一句话就解释了为什么托卡马克必须外加加热。
 
 \textbf{标度才是要害：}$\eta_\parallel\propto T_e^{-3/2}$，温度从 $1\ \mathrm{keV}$ 升到 $10\ \mathrm{keV}$ 时电阻率降为 $10^{-3/2}=3.2\times10^{-2}$ 倍，同电流下的欧姆功率只剩 $884\ \mathrm{W/m^3}$（附录 M.6 练习 1）。与此同时，轫致辐射与杂质辐射损失却随温度上升——欧姆加热因此\textbf{只适合启动与爬升阶段}。
 
@@ -247,7 +247,7 @@ f_{\mathrm{bs}}+f_{\mathrm{CD}}\approx1,
 \end{warning}
 
 {\footnotesize
-\textbf{出处：}Wesson《Tokamaks》运行极限与 H 模章节；Greenwald 等（1988）密度极限；Troyon 等（1984）比压极限；Martin 等（2008）H 模阈值标度。完整书目见附录 E 与附录 J。
+\textbf{出处：}Wesson《Tokamaks》运行极限与 H 模章节；Greenwald 等（1988）密度极限；Troyon 等（1984）比压极限；Martin 等（2008）H 模阈值标度。完整书目见附录 E 与配套手册 J。
 }
 
 
@@ -285,9 +285,9 @@ $\lambda_\parallel=2\pi v_\varphi/\omega=v_\varphi/f=1.78\times10^{8}/2.45\times
 
 \textbf{答案：}$n_G=15/(\pi\times4)\approx1.19\times10^{20}\ \mathrm{m^{-3}}$；
 $f_{pe}=8.98\times10^{9}\sqrt{n_e/10^{18}}\approx9.8\times10^{10}\ \mathrm{Hz}=98\ \mathrm{GHz}$。
-不能：$2.45\ \mathrm{GHz}$ 的截止密度只有 $n_c\approx7.4\times10^{16}\ \mathrm{m^{-3}}$（附录 L 第 6 章），比 $n_G$ 低约 $1600$ 倍，波根本进不去。要测这个密度必须用 $100\ \mathrm{GHz}$ 量级（工程上用 $140\ \mathrm{GHz}$ 干涉仪）。
+不能：$2.45\ \mathrm{GHz}$ 的截止密度只有 $n_c\approx7.4\times10^{16}\ \mathrm{m^{-3}}$（配套手册 L 第 6 章），比 $n_G$ 低约 $1600$ 倍，波根本进不去。要测这个密度必须用 $100\ \mathrm{GHz}$ 量级（工程上用 $140\ \mathrm{GHz}$ 干涉仪）。
 
-\item \textbf{（功率账与点火距离）}用附录 L 第 10 章的堆芯数字（$P_{\mathrm{fus}}=3.1\times10^{6}\ \mathrm{W/m^3}$，$P_\alpha=P_{\mathrm{fus}}/5$）。若损失功率是 $P_{\mathrm{loss}}=1.2P_\alpha$，需要多少外部加热功率密度？折算到 $V\approx840\ \mathrm{m^3}$ 的装置是多少兆瓦？
+\item \textbf{（功率账与点火距离）}用配套手册 L 第 10 章的堆芯数字（$P_{\mathrm{fus}}=3.1\times10^{6}\ \mathrm{W/m^3}$，$P_\alpha=P_{\mathrm{fus}}/5$）。若损失功率是 $P_{\mathrm{loss}}=1.2P_\alpha$，需要多少外部加热功率密度？折算到 $V\approx840\ \mathrm{m^3}$ 的装置是多少兆瓦？
 
 \textbf{答案：}$P_\alpha=6.2\times10^{5}\ \mathrm{W/m^3}$，
 $P_{\mathrm{ext}}=P_{\mathrm{loss}}-P_\alpha=0.2P_\alpha\approx1.24\times10^{5}\ \mathrm{W/m^3}$，
@@ -296,8 +296,8 @@ $P_{\mathrm{ext}}=P_{\mathrm{loss}}-P_\alpha=0.2P_\alpha\approx1.24\times10^{5}\
 
 \end{enumerate}
 
-\begin{tip}{与附录 L 串联}{tip-appm-chain}
-把这六题与附录 L 第 10 章的六道题连起来做，就是一条完整的"聚变工程量级链"：先算 $P_{\mathrm{fus}}$，再算 $\tau_E$ 门槛，再算加热与电流驱动的功率，最后用 $n_G$、$\beta_N$、$P_{\mathrm{LH}}$ 检查装置能不能跑到那个工作点。
+\begin{tip}{与配套手册 L 串联}{tip-appm-chain}
+把这六题与配套手册 L 第 10 章的六道题连起来做，就是一条完整的"聚变工程量级链"：先算 $P_{\mathrm{fus}}$，再算 $\tau_E$ 门槛，再算加热与电流驱动的功率，最后用 $n_G$、$\beta_N$、$P_{\mathrm{LH}}$ 检查装置能不能跑到那个工作点。
 \end{tip}
 
 
@@ -311,7 +311,7 @@ $P_{\mathrm{ext}}=P_{\mathrm{loss}}-P_\alpha=0.2P_\alpha\approx1.24\times10^{5}\
 
 {\small
 \begin{longtable}{@{}p{1.5cm}p{5.2cm}p{5.3cm}p{3.6cm}@{}}
-\caption{附录 M 各节的借鉴来源与独立性说明（与附录 J 的逐章对照表 \ref{tab:app-j-map}、附录 L 的题库来源表 \ref{tab:app-l-source} 配套使用）}\label{tab:app-m-source}\\
+\caption{附录 M 各节的借鉴来源与独立性说明（与配套手册 J 的逐章对照表、L 的题库来源表配套使用）}\label{tab:app-m-source}\\
 \toprule
 本书节 & 借鉴的教材与文献 & 借鉴的内容（不是文字） & 独立性说明 \\
 \midrule
@@ -340,6 +340,6 @@ M.6 & 本书自拟 & 六道估算练习 & 题目、参数与答案全部自拟�
 \end{itemize}
 
 \begin{tip}{下一步}{tip-appm-next}
-附录 M 是"从物理到装置"的最后一环：把这里的功率账、运行极限与第 10 章的劳森判据拼在一起，你就能对一个聚变装置做\textbf{完整的一次量级评估}——这既是附录 L 第 10 章自测题的目的，也是本书全书量级方法（附录 I 第 4 节）的终点。若想继续深入，附录 J 的进阶专著清单里给出了 Wesson 与 Freidberg 的入口。
+附录 M 是"从物理到装置"的最后一环：把这里的功率账、运行极限与第 10 章的劳森判据拼在一起，你就能对一个聚变装置做\textbf{完整的一次量级评估}——这既是配套手册 L 第 10 章自测题的目的，也是本书全书量级方法（附录 I 第 4 节）的终点。若想继续深入，配套手册 J 的进阶专著清单里给出了 Wesson 与 Freidberg 的入口。
 \end{tip}
 \endgroup

@@ -479,12 +479,20 @@ def check_J_symbol_table(files, main_text):
 
 # ---------------------------------------------------------------- K 结构完整性
 
-def check_K_structure(files, main_text):
+def check_K_structure(files, main_text, main_raw=''):
     t = strip_comments(main_text)
     letters = re.findall(r'\\appchapter\{附录([A-Z]{1,2})[：:]', t)
+    # v1.27.5 起：附录 J/K/L 移入配套手册，主文件用一行注释声明；
+    # 除声明集合外，字母仍须连续。
+    moved = set()
+    mm = re.search(r'%+ *appendix-moved-to-handbook: *([A-Z,\s]+)',
+                  main_raw or main_text)
+    if mm:
+        moved = set(x.strip() for x in mm.group(1).split(',') if x.strip())
     # A--Z 用完后接 AA、AB…（与 physics_regression 的 P04 同一套字母方案）
-    expect = [(chr(ord('A') + i) if i < 26 else 'A' + chr(ord('A') + i - 26))
-              for i in range(len(letters))]
+    full = [(chr(ord('A') + i) if i < 26 else 'A' + chr(ord('A') + i - 26))
+            for i in range(len(letters) + len(moved))]
+    expect = [x for x in full if x not in moved]
     if letters != expect:
         rec('FAIL', 'K', '附录章编号不连续或重复：%s（应为 %s）'
             % (''.join(letters), ''.join(expect)))
@@ -574,12 +582,13 @@ def main():
 
     files = tex_files()
     main_path = os.path.join(SRC, MAIN)
-    main_text = strip_comments(read(main_path)) if os.path.exists(main_path) else ''
+    main_raw = read(main_path) if os.path.exists(main_path) else ''
+    main_text = strip_comments(main_raw)
 
     check_H_terms(files)
     check_I_cards(files)
     check_J_symbol_table(files, main_text)
-    check_K_structure(files, main_text)
+    check_K_structure(files, main_text, main_raw)
     check_L_readme(main_text)
 
     if args.json:

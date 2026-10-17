@@ -8,10 +8,10 @@
 
 | | |
 |---|---|
-| 规模 | **657 页**：12 章正文 176 页 + 52 个专题附录 449 页，另有封面目录 18 页、前言 5 页、结语与索引 9 页 |
+| 规模 | **635 页**：12 章正文 176 页 + 49 个专题附录 427 页，另有封面目录 18 页、前言 5 页、结语与索引 9 页 |
 | 配图 | **95 张图**，全部是实拍照片或公开示意图，逐张登记作者、许可与来源页（[`figures/CREDITS.md`](../figures/CREDITS.md)） |
-| 交付 | 三个 PDF：[完整本 657 页](../pdf/plasma_physics_textbook_v2.pdf)、[卷一 208 页](../pdf/plasma_physics_textbook_v2_vol1_chapters.pdf)、[卷二 449 页](../pdf/plasma_physics_textbook_v2_vol2_appendices.pdf) |
-| 版本 | v1.27.3；每版都发到 [Gitea releases](http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases) |
+| 交付 | 四个 PDF：[完整本 635 页](../pdf/plasma_physics_textbook_v2.pdf)、[卷一 208 页](../pdf/plasma_physics_textbook_v2_vol1_chapters.pdf)、[卷二 427 页](../pdf/plasma_physics_textbook_v2_vol2_appendices.pdf) |
+| 版本 | v1.27.5；每版都发到 [Gitea releases](http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases) |
 | 动手 | 正文不印程序，需要动手的地方只给路径：[`code/`](../code/)、[`tools/calc/`](../tools/calc/) |
 
 ## 版面是怎么变的

@@ -8,7 +8,7 @@
 
 第 3 章讲了 $\mathbf{E}\times\mathbf{B}$ 漂移，第 6 章讲了波与加热，第 11 章讲了鞘层与玻姆判据——这三块知识在航天领域有一个直接的去处：\textbf{电推进}（electric propulsion）。它的想法很朴素：与其用化学燃烧的热速度排气，不如\textbf{用电场把离子加速到几十千米每秒}。代价也同样朴素：同样的功率下，排气越快，推力越小。本附录把这条"把等离子体当发动机"的链条算一遍。
 
-与相邻附录的分工：附录 J 回答"这个主题该读哪本书的哪一章"；附录 K 是完整解答的\textbf{范例}；附录 L 是\textbf{自测}题库；附录 M 是加热与运行极限；附录 N 是边界与壁；本附录换到\textbf{应用侧}：让等离子体飞出去。
+与相邻附录的分工：配套手册 J 回答"这个主题该读哪本书的哪一章"；配套手册 K 是完整解答的\textbf{范例}；配套手册 L 是\textbf{自测}题库；附录 M 是加热与运行极限；附录 N 是边界与壁；本附录换到\textbf{应用侧}：让等离子体飞出去。
 
 \begin{tip}{单位与口径自查}{tip-appo-units}
 若结果差一个量级，先查三种口径错位：
@@ -150,7 +150,7 @@ P_{\mathrm{jet}}=\frac12\dot mv^2=I_bV_b .
 
 \textbf{数值例：}取 $V_b=1000\ \mathrm{V}$、$I_b=2\ \mathrm{A}$，则 $T=0.104\ \mathrm{N}$、$P_{\mathrm{jet}}=I_bV_b=2.00\ \mathrm{kW}$、$\dot m=I_bm_{\mathrm{Xe}}/q=2.72\ \mathrm{mg/s}$；取整机效率 $\eta=0.65$，输入功率 $P_{\mathrm{in}}=3.08\ \mathrm{kW}$。
 
-\textbf{真正的限制是空间电荷。}离子束自身的电荷会削弱外加电场，束流密度有上限——这就是附录 K.7 推导过的 Child--Langmuir 律（本附录不重复推导）：
+\textbf{真正的限制是空间电荷。}离子束自身的电荷会削弱外加电场，束流密度有上限——这就是配套手册 K.7 推导过的 Child--Langmuir 律（本附录不重复推导）：
 \begin{equation}
 j=\frac{4\varepsilon_0}{9}\sqrt{\frac{2q}{m_i}}\,\frac{V^{3/2}}{d^2}.
 \label{eq:app-o-cl}
@@ -160,7 +160,7 @@ j=\frac{4\varepsilon_0}{9}\sqrt{\frac{2q}{m_i}}\,\frac{V^{3/2}}{d^2}.
 结论：\textbf{推力不是靠"更高的电压"，而是靠"更大的束流面积"}。把电压从 $1000\ \mathrm{V}$ 提到 $1500\ \mathrm{V}$，比冲只涨 $22\%$，而空间电荷限制电流涨 $84\%$（$\propto V^{3/2}$）——离子推力器做大的关键在栅极面积与间距，而不在电源电压。
 
 {\footnotesize
-\textbf{出处：}附录 K.7 的 Child--Langmuir 推导（Child 1911；Langmuir 1913 原始文献）；Goebel \& Katz 的离子光学与栅极章节。
+\textbf{出处：}配套手册 K.7 的 Child--Langmuir 推导（Child 1911；Langmuir 1913 原始文献）；Goebel \& Katz 的离子光学与栅极章节。
 }
 
 
@@ -292,7 +292,7 @@ CEX 侵蚀 & $1.5\%$（$n_n=10^{17}$）到 $15\%$（$n_n=10^{18}$） & 快离子
 \item \textbf{（静电加速）} 氙离子束 $V_b=1200\ \mathrm{V}$、$I_b=4\ \mathrm{A}$。求离子速度、比冲、推力与射流功率。\\
 \textbf{答案：}$v=\sqrt{2(1.602\times10^{-19})(1200)/2.180\times10^{-25}}\approx4.20\times10^{4}\ \mathrm{m/s}=42.0\ \mathrm{km/s}$，$I_{\mathrm{sp}}=4282\ \mathrm{s}$；$T=I_b\sqrt{2m_iV_b/q}=4\times0.05715\approx0.229\ \mathrm{N}$；$P_{\mathrm{jet}}=I_bV_b=4800\ \mathrm{W}$（验证：$\frac12Tv=0.5(0.229)(4.20\times10^{4})\approx4.8\times10^{3}\ \mathrm{W}$）。
 
-\item \textbf{（空间电荷限制）} 用附录 K.7 的 Child--Langmuir 律，取 $V=1200\ \mathrm{V}$、$d=1\ \mathrm{mm}$、氙离子。求最大束流密度；若要引出 $3\ \mathrm{A}$，栅极面积至少多大？\\
+\item \textbf{（空间电荷限制）} 用配套手册 K.7 的 Child--Langmuir 律，取 $V=1200\ \mathrm{V}$、$d=1\ \mathrm{mm}$、氙离子。求最大束流密度；若要引出 $3\ \mathrm{A}$，栅极面积至少多大？\\
 \textbf{答案：}$j=\frac{4\varepsilon_0}{9}\sqrt{2q/m_i}\,V^{3/2}/d^2\approx198\ \mathrm{A/m^2}$；面积 $A=I_b/j=3/198\approx1.51\times10^{-2}\ \mathrm{m^2}=151\ \mathrm{cm^2}$。注意电压只涨 $20\%$（$1000\to1200\ \mathrm{V}$），电流密度涨 $31\%$。
 
 \item \textbf{（霍尔推力器）} 通道内 $n_n=5\times10^{18}\ \mathrm{m^{-3}}$、$\sigma=3\times10^{-19}\ \mathrm{m^2}$、$T_e=25\ \mathrm{eV}$、$B=0.015\ \mathrm{T}$。求 $\omega_{ce}\tau_e$；再求放电电压 $250\ \mathrm{V}$ 时的比冲。\\
@@ -320,7 +320,7 @@ CEX 侵蚀 & $1.5\%$（$n_n=10^{17}$）到 $15\%$（$n_n=10^{18}$） & 快离子
 \midrule
 O.1 & Sutton \& Biblarz《Rocket Propulsion Elements》第 9 版（火箭方程、比冲）；Jahn《Physics of Electric Propulsion》第 1 章 & 齐奥尔科夫斯基公式、比冲定义、推进方式分类 & 用四个自拟比冲值（$450$/$1800$/$3000$/$5000\ \mathrm{s}$）算同一 $\Delta v=10\ \mathrm{km/s}$ 的质量比表 \\
 O.2 & Goebel \& Katz《Fundamentals of Electric Propulsion》的推力器指标章节 & $T=\dot mv_{\mathrm{ex}}$、$P_{\mathrm{jet}}=\frac12Tv_{\mathrm{ex}}$、效率与 $T/P$ 的关系 & 推出与推力无关的 $T/P_{\mathrm{in}}=2\eta/(g_0I_{\mathrm{sp}})$，并用公开级指标反算校核 \\
-O.3 & 附录 K.7 的 Child--Langmuir 推导；Child (1911)、Langmuir (1913)；Goebel \& Katz 的离子光学章 & 单离子能量方程、束流推力 $T=I_b\sqrt{2m_iV_b/q}$、空间电荷限制 & 指出恒等式 $P_{\mathrm{jet}}=I_bV_b$，并用 $V^{3/2}$ 说明"面积比电压更重要" \\
+O.3 & 配套手册 K.7 的 Child--Langmuir 推导；Child (1911)、Langmuir (1913)；Goebel \& Katz 的离子光学章 & 单离子能量方程、束流推力 $T=I_b\sqrt{2m_iV_b/q}$、空间电荷限制 & 指出恒等式 $P_{\mathrm{jet}}=I_bV_b$，并用 $V^{3/2}$ 说明"面积比电压更重要" \\
 O.4 & Choueiri 的电推进等离子体物理综述；Jahn 的 $\mathbf{E}\times\mathbf{B}$ 推力器章 & 磁化判据、霍尔电流、$\mathbf{E}\times\mathbf{B}$ 漂移、放电电压定比冲 & 用自拟参数（$B=0.02\ \mathrm{T}$、$n_n=10^{19}$、$V_d=300\ \mathrm{V}$）重算磁化程度与推力 \\
 O.5 & Ahedo 的磁喷嘴与空间推进综述；Chang D\'iaz 等的 VASIMR 论文 & 磁喷嘴膨胀与脱磁、离子回旋加热、可调比冲 & 把"功率-推力-比冲"写成一条交换关系并制成同一电源的三档表 \\
 O.6 & Goebel \& Katz 的效率、空心阴极与羽流章；附录 N \S N.4 的溅射口径 & 中和器、CEX 侵蚀、羽流发散损失 & 用一台 $200\ \mathrm{kW}$ 级的损失清单替代笼统的"效率"数字 \\
@@ -336,10 +336,10 @@ O.6 & Goebel \& Katz 的效率、空心阴极与羽流章；附录 N \S N.4 的�
 \item 本附录只给出可自行检索的书名、作者与年份，\textbf{不写无法核实的 DOI 与卷页}。
 \end{itemize}
 
-\begin{tip}{与附录 K、M、N 串联使用}{tip-appo-chain}
+\begin{tip}{与配套手册 K、M、N 串联使用}{tip-appo-chain}
 建议的用法：
 \begin{enumerate}[nosep,leftmargin=1.6em]
-  \item 先在附录 K 里把 Child--Langmuir 律（K.7）与鞘层加速（K.3）做一遍，那是本附录 \S O.3 的地基；
+  \item 先在配套手册 K 里把 Child--Langmuir 律（K.7）与鞘层加速（K.3）做一遍，那是本附录 \S O.3 的地基；
   \item 再读附录 M 的离子回旋加热，理解 \S O.5 的功率是怎么放进离子的；
   \item 最后做本附录的 6 道估算题，并把 \S O.6 的损失清单与附录 N 的溅射侵蚀对照着看——两边算的都是"离子撞壁"，只是一个要推力、一个怕寿命。
 \end{enumerate}
