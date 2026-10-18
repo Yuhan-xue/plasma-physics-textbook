@@ -51,28 +51,28 @@
 \usepackage{array}
 \usepackage{longtable}
 \usepackage{caption}
-% ---- 封面与全书主题色 ----
+% ---- 封面与全书主题色（深蓝 + 金；规范与对比度见 docs/palette.md）----
 \definecolor{coverDeep}{RGB}{6, 10, 32}        % 深空藏青（渐变锚点）
-\definecolor{coverMid}{RGB}{28, 42, 96}        % 中段藏青蓝（全文标题主色）
-\definecolor{coverGlow}{RGB}{196, 92, 42}      % 太阳风暖辉
-\definecolor{imfLine}{RGB}{120, 190, 235}      % IMF 磁力线青
-\definecolor{swFlow}{RGB}{255, 186, 96}        % 太阳风流线琥珀
-\definecolor{magnetopause}{RGB}{120, 232, 190} % 磁层顶青绿
-\definecolor{reconX}{RGB}{255, 238, 140}       % X 点高亮
-\definecolor{earthBlue}{RGB}{42, 104, 176}     % 地球盘面
+\definecolor{coverMid}{RGB}{27, 46, 82}        % 深藏青（全文标题主色）
+\definecolor{coverGlow}{RGB}{194, 161, 77}     % 曦金（封面暖辉）
+\definecolor{imfLine}{RGB}{108, 134, 174}      % 雾蓝：IMF 磁力线
+\definecolor{swFlow}{RGB}{227, 205, 155}       % 浅金：太阳风流线
+\definecolor{magnetopause}{RGB}{78, 140, 132}  % 暗青：磁层顶
+\definecolor{reconX}{RGB}{240, 223, 168}       % 浅金：X 点高亮
+\definecolor{earthBlue}{RGB}{47, 82, 134}      % 钢蓝：地球盘面
 % ---- 封面示意图配色（语义化命名，便于逐元素调整）----
 \colorlet{shockC}{magnetopause}                % 弓形激波（虚线）
 \colorlet{mpC}{magnetopause}                   % 磁层顶
 \colorlet{tailC}{imfLine}                      % 磁尾尾瓣磁场
 \colorlet{lineC}{imfLine}                      % 磁力线（同 IMF 青）
 \colorlet{cuspC}{swFlow}                       % 极尖区标记
-\definecolor{plasmaC}{RGB}{46, 40, 96}         % 等离子体片（深紫）
-\definecolor{neutralC}{RGB}{10, 10, 20}        % 中性片（近黑）
-\definecolor{bLineC}{RGB}{120, 190, 235}       % 封面磁力线
-\definecolor{orbC}{RGB}{255, 186, 96}         % 封面回旋轨迹
-\definecolor{torusC}{RGB}{96, 168, 224}       % 封面环向磁场
-\definecolor{glowC}{RGB}{86, 196, 236}        % 封面电离辉光
-\definecolor{filC}{RGB}{150, 226, 255}        % 封面放电丝
+\definecolor{plasmaC}{RGB}{27, 46, 82}         % 等离子体片（深藏青）
+\definecolor{neutralC}{RGB}{6, 10, 32}         % 中性片（近黑蓝）
+\definecolor{bLineC}{RGB}{108, 134, 174}       % 封面磁力线（雾蓝）
+\definecolor{orbC}{RGB}{194, 161, 77}          % 封面回旋轨迹（曦金）
+\definecolor{torusC}{RGB}{74, 111, 165}        % 封面环向磁场（中钢蓝）
+\definecolor{glowC}{RGB}{110, 143, 184}        % 封面电离辉光（雾蓝）
+\definecolor{filC}{RGB}{169, 192, 218}         % 封面放电丝（浅雾蓝）
 \colorlet{sheetC}{swFlow}                      % 等离子体片 / 电流片
 \colorlet{earthC}{earthBlue}                   % 地球盘面
 % ---- 封面柔光淡出（必须声明在导言区，放进 picture 会扰乱 overlay 定位）----
@@ -205,33 +205,42 @@
 \setlength{\epigraphwidth}{0.62\textwidth}
 \renewcommand{\epigraphsize}{\small\kaishu}
 \setlength{\epigraphrule}{0pt}
-\definecolor{thmblue}{RGB}{41, 98, 255}
-\definecolor{defgreen}{RGB}{46, 125, 50}
-\definecolor{cororange}{RGB}{230, 81, 0}
-\definecolor{exampurple}{RGB}{106, 27, 154}
-\definecolor{insightred}{RGB}{183, 28, 28}
-\definecolor{warnyellow}{RGB}{255, 160, 0}
-\definecolor{historybrown}{RGB}{121, 85, 72}
-\definecolor{reviewblue}{RGB}{25, 118, 210}
-\definecolor{tipgreen}{RGB}{56, 142, 60}
-% ---- 插图统一视觉语言（2026-10-13 插图重画轮立下的规矩，新图与改图一律遵守）----
-% 色板取 Okabe--Ito 色盲安全八色；同一物理量在全书各图里用同一色：
-%   电子/快/束流 = figVerm（朱）；离子/慢/背景 = figBlue（蓝）；
-%   磁场/磁力线  = figGreen（绿）；区域填充 = 同色 !12 并配同色 0.8pt 边；
-%   判据/阈值    = figPurple（紫）；辅助线/包络 = figGray（灰）虚线。
+% ---- 语义盒配色：九种盒子按「蓝为主、金为辅」分配（docs/palette.md §6）----
+% 每种都压到低明度，白字标题对比度 ≥ 4.5:1（check/ui_readability.py 的 G 类强制）。
+\definecolor{thmblue}{RGB}{27, 46, 82}
+\definecolor{defgreen}{RGB}{47, 82, 134}
+\definecolor{cororange}{RGB}{138, 92, 27}
+\definecolor{exampurple}{RGB}{88, 58, 99}
+\definecolor{insightred}{RGB}{143, 59, 51}
+\definecolor{warnyellow}{RGB}{168, 132, 44}
+\definecolor{historybrown}{RGB}{110, 86, 56}
+\definecolor{reviewblue}{RGB}{55, 86, 127}
+\definecolor{tipgreen}{RGB}{36, 107, 102}
+% ---- 插图统一视觉语言（2026-10-19 改按「深蓝 + 金」重锚，规范见 docs/palette.md）----
+% 旧名保留为语义别名，所以既有图不必改代码就会换成新色；新图请直接用新名。
+%   电子/快/束流 = figGold（亮金，只作线与填充）；离子/慢/背景 = figBlue（钢蓝）；
+%   磁场/磁力线  = figGreen（深青）；阈值/警示 = figVerm（赭红）；第三分类 = figPurple；
+%   区域填充 = 同色 !10～!14 并配同色 0.8pt 边；辅助线/包络 = figGray（灰）虚线。
+%   **金色文字一律用 figAmber**：亮金 figGold 在白纸上只有 2.5:1，印不清。
 % 线宽：坐标轴 0.9pt、数据曲线 1.2pt、辅助虚线 0.6pt；箭头统一 Stealth。
 % 字号：图内主标签 \small、次标签与刻度 \footnotesize；内容标签全书禁用 \tiny。
 % 标签永不压线：必须靠近曲线时用 fill=white, inner sep=1.5pt 的光环；
 % 区域标签若放不进色块（留不出约 3mm 边）就移到块外，用 figlead 引线点指。
 % 图例一律放在绘图区外（下方或右侧），带线型样本。
-\definecolor{figInk}{HTML}{2B2B2B}
-\definecolor{figBlue}{HTML}{0072B2}
-\definecolor{figOrange}{HTML}{E69F00}
-\definecolor{figGreen}{HTML}{009E73}
-\definecolor{figVerm}{HTML}{D55E00}
-\definecolor{figPurple}{HTML}{CC79A7}
-\definecolor{figSky}{HTML}{56B4E9}
-\definecolor{figGray}{HTML}{8C8C8C}
+\definecolor{figInk}{HTML}{12203A}      % 墨蓝：坐标轴、图内标签
+\definecolor{figNavy}{HTML}{1B2E52}     % 深藏青：主色
+\definecolor{figBlue}{HTML}{2F5286}     % 钢蓝：离子、慢粒子、背景
+\definecolor{figSky}{HTML}{6C86AE}      % 雾蓝：浅填充、次要曲线（不作文字）
+\definecolor{figGreen}{HTML}{2A7373}    % 深青：磁场、磁力线
+\definecolor{figGold}{HTML}{C2A14D}     % 亮金：电子、高能、关键路径（只作线与填充）
+\definecolor{figAmber}{HTML}{8A6520}    % 暗金：金色文字与边框
+\definecolor{figVerm}{HTML}{9C443A}     % 赭红：损失、阈值、不稳定性
+\definecolor{figPurple}{HTML}{5F4066}   % 暗紫：第三分类
+\definecolor{figGray}{HTML}{6B7280}     % 中性灰：辅助虚线、图注小字
+\definecolor{figPaper}{HTML}{F6F2E7}    % 纸白：浅底填充
+% ---- 旧名别名（不要再在新图里用；保留只为既有图不改代码即换色）----
+\colorlet{figOrange}{figGold}
+\colorlet{figGoldDeep}{figAmber}
 \tikzset{
   figaxis/.style={draw=figInk, line width=0.9pt, ->, >=Stealth},
   figcurve/.style={line width=1.2pt},
@@ -302,27 +311,27 @@
   title={本章要点回顾},breakable,
   left=4pt,right=4pt,top=4pt,bottom=4pt,#1}
 \newtcolorbox{formula}[1][]{
-  colback=blue!5,colframe=blue!60,fonttitle=\bfseries,
+  colback=figNavy!4,colframe=figNavy!75,fonttitle=\bfseries,
   title={核心公式速查},breakable,
   left=4pt,right=4pt,top=4pt,bottom=4pt,#1}
 % 兼容两参数签名的速查卡（{标题}{key}）：key 不再掉入正文
 \NewTColorBox{formulabox}{m m}{%
-  colback=blue!5,colframe=blue!60,fonttitle=\bfseries,breakable,
+  colback=figNavy!4,colframe=figNavy!75,fonttitle=\bfseries,breakable,
   title={核心公式速查：#1},
   phantomlabel={frml:#2},
   left=4pt,right=4pt,top=4pt,bottom=4pt}
 \newtcolorbox{checklist}[1][]{
-  colback=green!5,colframe=green!60,fonttitle=\bfseries,
+  colback=figGreen!4,colframe=figGreen!80,fonttitle=\bfseries,
   title={自学检查清单},breakable,
   left=4pt,right=4pt,top=4pt,bottom=4pt,#1}
 % 兼容两参数签名的检查清单（{标题}{key}）：key 不再掉入正文
 \NewTColorBox{checklistbox}{m m}{%
-  colback=green!5,colframe=green!60,fonttitle=\bfseries,breakable,
+  colback=figGreen!4,colframe=figGreen!80,fonttitle=\bfseries,breakable,
   title={#1},
   phantomlabel={ckl:#2},
   left=4pt,right=4pt,top=4pt,bottom=4pt}
 \newtcolorbox{strategy}[1][]{
-  colback=figOrange!5,colframe=figOrange,fonttitle=\bfseries,
+  colback=figAmber!6,colframe=figAmber,fonttitle=\bfseries,
   title={解题策略},breakable,
   left=4pt,right=4pt,top=4pt,bottom=4pt,#1}
 % ---- 统一色块样式：必须在上面 16 个定义之后，否则被各自的 left=4pt 反压 ----
