@@ -33,8 +33,8 @@ for i, (lvl, title, page) in enumerate(toc):
         chapters.append((title, page, (nxt or total + 1) - page))
 
 LAYOUT = {'I': '研究', 'J': '研究', 'K': '研究', 'L': '研究'}
-GROUPS = [('工具型附录 A–I', [r['letter'] for r in rows if len(r['letter']) == 1
-                            and r['letter'] <= 'L']),
+GROUPS = [('工具型附录 A–H', [r['letter'] for r in rows if len(r['letter']) == 1
+                            and r['letter'] <= 'H']),
           ('专题附录 M–Z', [r['letter'] for r in rows if len(r['letter']) == 1
                           and r['letter'] > 'L']),
           ('专题附录 AA–AZ', [r['letter'] for r in rows if len(r['letter']) == 2])]
@@ -74,7 +74,7 @@ lines.append('|---|---:|---:|')
 for title, page, n in chapters:
     lines.append('| %s | %d | %d |' % (title, page, n))
 lines.append('')
-lines.append('## 三、%d 个附录逐个体检（附录 J／K／L 已移入配套手册）' % len(rows))
+lines.append('## 三、%d 个附录逐个体检（附录 I／J／K／L 已移入配套手册）' % len(rows))
 lines.append('')
 for gname, letters in GROUPS:
     lines.append('### %s' % gname)
@@ -87,10 +87,6 @@ for gname, letters in GROUPS:
             continue
         if letter in 'ABCDEFGH':
             advice = '参考表·建议保持'
-        elif letter == 'I':
-            advice = '**可以瘦身**：非物理内容占多数'
-        elif letter in ('J', 'K', 'L'):
-            advice = '可考虑独立成册'
         elif r['pages'] >= 12:
             advice = '偏长·可微调'
         else:
@@ -99,25 +95,25 @@ for gname, letters in GROUPS:
                      % (letter, r['title'], r['pages'], r['figures'], r['tables'],
                         r['boxes'], advice))
     lines.append('')
-lines.append('## 四、已经做完的一刀，以及还能动的四处')
+lines.append('## 四、已经做完的两刀，以及还能动的三处')
 lines.append('')
 lines.append('**已经做完（v1.27.5）**：附录 J（经典教材逐章对照）、K（跨教材经典例题）、'
              'L（分章自测题库）移出主册，编成 26 页的配套手册'
              '（`pdf/plasma_physics_handbook.pdf`），主册 657 → 635 页；'
              '主册附录字母保留 J／K／L 空位，A–I 之后直接接 M。')
 lines.append('')
-lines.append('还能动的四处（都要同步改断言，见下一节）：')
+lines.append('**又做完一刀（v1.27.8）**：附录 I（学习策略与刻意练习手册）也移进同一本手册——'
+             '手册定稿 49 页，收齐 I／J／K／L；主册在附录 H 之后直接接 M，'
+             '正文 9 处引用改为「配套手册 I」，页数 634 → 604。')
 lines.append('')
-lines.append('1. **附录 I（学习策略手册，%d 页）**——主册最大的单篇，讲的是怎么学、不是物理。'
-             '可以把 6 篇核心方法留成 6–8 页，其余（论文三遍法、复习排程、同伴教学等）'
-             '移到仓库文档里，需要的人按链接查。'
-             % by_letter['I']['pages'])
-lines.append('2. **主题相近的专题附录合并**——例如 AC（数值方法）与 AE（动理学）的数值部分、'
+lines.append('还能动的三处：')
+lines.append('')
+lines.append('1. **主题相近的专题附录合并**——例如 AC（数值方法）与 AE（动理学）的数值部分、'
              'AQ（干涉诊断）与 AN（偏振诊断）。合并每对大约省 6–8 页，'
              '但会打乱「一附录一主题」的查阅习惯。')
-lines.append('3. **细排范围再扩一档**——v1.27.3 已把「来源、分级与版权说明」小节与出处段改成细排；'
+lines.append('2. **细排范围再扩一档**——v1.27.3 已把「来源、分级与版权说明」小节与出处段改成细排；'
              '各附录开头的「与相邻附录的分工」段还没动，改小一号字大约省 2–4 页。')
-lines.append('4. **图片再收一档**——竖幅照片已按高度定尺、横幅已收到 0.72 页宽；'
+lines.append('3. **图片再收一档**——竖幅照片已按高度定尺、横幅已收到 0.72 页宽；'
              '再收到 0.68 大约省 3–5 页，但会牺牲一点视觉冲击。')
 
 lines.append('## 五、动页数的代价（必须知道的一条）')

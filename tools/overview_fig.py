@@ -66,13 +66,13 @@ fig = plt.figure(figsize=(13.6, 8.6), dpi=140)
 fig.patch.set_facecolor(BG)
 fig.text(0.035, 0.955, '等离子体物理自学教材 · 项目一览', fontsize=24, color=INK, weight='bold')
 fig.text(0.035, 0.915,
-         '%s ｜ %d 页 ｜ 12 章正文 + 49 附录 + 一册配套手册 ｜ %d 张实拍图 ｜ 六套检查全绿'
+         '%s ｜ %d 页 ｜ 12 章正文 + 48 附录 + 一册配套手册 ｜ %d 张实拍图 ｜ 六套检查全绿'
          % (VERSION, PAGES, NF), fontsize=13, color=MUTED)
 
 # ── 左上：篇幅构成
 ax1 = fig.add_axes([0.05, 0.635, 0.42, 0.165])
 ax1.set_facecolor(BG)
-parts = [('49 个附录', APX_PAGES, ACCENT), ('12 章正文', CH_PAGES, LIGHT),
+parts = [('48 个附录', APX_PAGES, ACCENT), ('12 章正文', CH_PAGES, LIGHT),
          ('符号与前言', FRONT, PALE), ('结语与索引', TAIL, FAINT)]
 left = 0
 for label, val, color in parts:
@@ -86,24 +86,25 @@ ax1.set_ylim(-0.55, 0.62)
 ax1.axis('off')
 ax1.set_title('%d 页怎么分：三分之二在附录，正文 %d 页' % (PAGES, CH_PAGES), fontsize=13,
               color=INK, loc='left', pad=8)
-ax1.text(0, -0.50, '49 个附录共 %d 页；前 10 大附录只占其中 27%%，最大一个 22 页' % APX_PAGES,
+ax1.text(0, -0.50, '48 个附录共 %d 页；前 10 大附录只占其中 27%%，最大一个 11 页' % APX_PAGES,
          fontsize=10.3, color=MUTED)
 
 # ── 右上：版本演进
 ax2 = fig.add_axes([0.545, 0.655, 0.40, 0.175])
 ax2.set_facecolor('white')
-vers = ['v1.26.31', 'v1.27.0', 'v1.27.1', 'v1.27.2', 'v1.27.3', 'v1.27.5', 'v1.27.6', 'v1.27.7']
-pages = [676, 674, 664, 668, 657, 635, 635, PAGES]
-figs = [70, 87, 87, 95, 95, 95, 95, NF]
+vers = ['v1.26.31', 'v1.27.0', 'v1.27.1', 'v1.27.2', 'v1.27.3', 'v1.27.5', 'v1.27.6', 'v1.27.7',
+        'v1.27.8']
+pages = [676, 674, 664, 668, 657, 635, 635, 634, PAGES]
+figs = [70, 87, 87, 95, 95, 95, 95, 95, NF]
 xs = list(range(len(vers)))
 ax2.plot(xs, pages, marker='o', color=ACCENT, linewidth=2.4)
-offsets = [(0, 9), (0, 9), (0, 9), (0, 9), (-2, -18), (8, 8), (8, 8), (8, 8)]
+offsets = [(0, 9), (0, 9), (0, 9), (0, 9), (-2, -18), (8, 8), (8, 8), (8, 8), (8, -16)]
 for x, p, off in zip(xs, pages, offsets):
     ax2.annotate(str(p), (x, p), textcoords='offset points', xytext=off,
                  ha='center', fontsize=10.2, color=ACCENT, weight='bold')
 ax2.set_xticks(xs)
-ax2.set_xticklabels(vers, fontsize=8.6, color=INK, rotation=22, ha='right')
-ax2.set_ylim(628, 692)
+ax2.set_xticklabels(vers, fontsize=8.2, color=INK, rotation=22, ha='right')
+ax2.set_ylim(592, 692)
 ax2.set_ylabel('页数', fontsize=10.2, color=ACCENT)
 ax2.tick_params(axis='y', colors=ACCENT, labelsize=9.8)
 ax2.tick_params(axis='x', length=0)
@@ -158,8 +159,8 @@ ax5.set_xlim(0, 1)
 ax5.set_ylim(0, 1)
 items = [('pdf/…v2.pdf', '%d 页完整教材' % PAGES),
          ('…vol1_chapters.pdf', '%d 页：前言 + 12 章' % P1),
-         ('…vol2_appendices.pdf', '%d 页：49 个附录' % P2),
-         ('…handbook.pdf', '%d 页：配套手册 J/K/L' % PH),
+         ('…vol2_appendices.pdf', '%d 页：48 个附录' % P2),
+         ('…handbook.pdf', '%d 页：配套手册 I–L' % PH),
          ('figures/CREDITS.md', '%d 张图的作者与许可' % NF),
          ('docs/figures.md', '图册：一页看完全部插图')]
 for i, (a, b) in enumerate(items):

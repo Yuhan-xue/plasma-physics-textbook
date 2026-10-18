@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.27.7},
+  pdftitle={等离子体物理自学教材 v1.27.8},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -463,7 +463,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.27.7}}
+  {\small\textcolor{white!45}{v1.27.8}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -1018,11 +1018,11 @@ Physics LibreTexts 的自学教材惯例（见配套手册 J 的对照说明）�
 随堂自测＋参考要点 & 16 & 章内 & 读完一节立刻自测，要点就在盒子里 \\
 易错点提示 & 48 & 章内 & 先看别人怎么错，再自己动手（汇总见附录 F） \\
 物理洞见 & 91 & 章内 & 把公式背后的物理图像讲清楚 \\
-习题精选 & 24 & 各章末与附录 I & 独立练习，配参考答案 \\
+习题精选 & 24 & 各章末与配套手册 I & 独立练习，配参考答案 \\
 自测题库 & 1 & 配套手册 L & 按难度刷题，配答案与提示 \\
 符号与术语总表（附录 H） & 1 & 附录 H & 查符号、查中英对照、查易混写法 \\
 一分钟估算 & 1 & 附录 B & 四个数摸清一个没见过的等离子体 \\
-附录导航图 & 1 & 前言 & 49 个附录按 10 个主题簇定位（J K L 在配套手册里） \\
+附录导航图 & 1 & 前言 & 48 个附录按 10 个主题簇定位（I J K L 在配套手册里） \\
 正文实拍图 & 42 & 正文与附录 & 每张都署作者与许可，见 \texttt{figures/\allowbreak{}CREDITS.md} \\
 \bottomrule
 \end{tabular}
@@ -5630,8 +5630,7 @@ OES发射光谱 & $10^{12}$--$10^{19}$ & $0.1$--$10$ & cm & ms & 工业/空间 \
 \node[nxchip,fill=figGray!25] at (5.80,0.00) {F};
 \node[nxchip,fill=figGray!25] at (6.96,0.00) {H};
 \node[nxchip,fill=figGreen!25] at (8.12,0.00) {G};
-\node[nxchip,fill=figGreen!25] at (9.28,0.00) {I};
-\node[nxchip,fill=figBlue!25] at (10.44,0.00) {M};
+\node[nxchip,fill=figBlue!25] at (9.28,0.00) {M};
 \node[nxchip,fill=figBlue!25] at (0.00,-1.10) {S};
 \node[nxchip,fill=figBlue!25] at (1.16,-1.10) {T};
 \node[nxchip,fill=figBlue!25] at (2.32,-1.10) {AE};
@@ -5673,7 +5672,7 @@ OES发射光谱 & $10^{12}$--$10^{19}$ & $0.1$--$10$ & cm & ms & 工业/空间 \
 \node[nxchip,fill=figBlue!45] at (13.92,-3.30) {U};
 \node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (0,-4.05) {\textbf{主题簇}（字母为附录编号）:};
 \node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (0.00,-4.55) {\textcolor{figGray}{\rule{2.2mm}{2.2mm}} 工具与速查（A B C D E F H）};
-\node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (0.00,-5.07) {\textcolor{figGreen}{\rule{2.2mm}{2.2mm}} 学习与练习（G I；J K L 见配套手册）};
+\node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (0.00,-5.07) {\textcolor{figGreen}{\rule{2.2mm}{2.2mm}} 学习与练习（G；I J K L 见配套手册）};
 \node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (0.00,-5.59) {\textcolor{figBlue}{\rule{2.2mm}{2.2mm}} 加热·电流·输运（M S T AE AF AG AL）};
 \node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (0.00,-6.11) {\textcolor{figVerm}{\rule{2.2mm}{2.2mm}} 稳定性·位形·边界（V AD AA）};
 \node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (0.00,-6.63) {\textcolor{figOrange}{\rule{2.2mm}{2.2mm}} 壁·加料·真空·尘埃（N R AO AJ）};
@@ -5683,7 +5682,7 @@ OES发射光谱 & $10^{12}$--$10^{19}$ & $0.1$--$10$ & cm & ms & 工业/空间 \
 \node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (7.60,-6.11) {\textcolor{figGreen}{\rule{2.2mm}{2.2mm}} 工业·空间·数值（O P AB AC）};
 \node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (7.60,-6.63) {\textcolor{figBlue}{\rule{2.2mm}{2.2mm}} 聚变工程与系统（Z AM AR AP AV AK AY AZ U）};
 \end{tikzpicture}
-\caption{附录导航图：49 个附录按主题分成 10 簇。每个字母是一个附录，颜色是它所属的主题簇，图例给出每簇的字母清单。要找某一类内容的附录时，先按主题定位颜色，再按字母翻到对应附录。配套手册 J、K、L（经典教材逐章对照、跨教材经典例题、分章自测题库）是"边查边用"的材料，已单独成册为配套手册，不在图中。}
+\caption{附录导航图：48 个附录按主题分成 10 簇。每个字母是一个附录，颜色是它所属的主题簇，图例给出每簇的字母清单。要找某一类内容的附录时，先按主题定位颜色，再按字母翻到对应附录。配套手册 I、J、K、L（学习策略手册、经典教材逐章对照、跨教材经典例题、分章自测题库）是"边查边用"的材料，已单独成册，不在图中。}
 \label{fig:appendix-map}
 \end{figure}
 
@@ -7085,7 +7084,7 @@ Landau 阻尼 & Landau damping & 无碰撞相混导致的波阻尼 \\
 \end{insight}
 
 %======================================================================
-% 附录I/J/K/L/M/N/O：学习策略、教材对照、跨教材例题、分章自测题库与专题深挖
+% 附录 I/J/K/L 已移入配套手册；M/N/O 及以后是专题深挖
 % （I/J/K 为 v1.8.0 新增；L 为 v1.9.0 新增；M 为 v1.10.0 新增；N 为 v1.11.0 新增；
 %   O 为 v1.12.0 新增：应用侧的电推进专题；P 为 v1.13.0 新增：应用侧的低温等离子体；
 %   Q 为 v1.14.0 新增：测量侧的诊断专题，与 P 构成「应用 + 怎么测」一对；
@@ -7104,12 +7103,15 @@ Landau 阻尼 & Landau damping & 无碰撞相混导致的波阻尼 \\
 % 章标题（\appchapter）留在主文件：检查套件按主文件的 \appchapter 判定
 % 附录字母连续性与 README 附录清单，写进 \input 文件里会被漏掉。
 %======================================================================
-\appchapter{附录I：学习策略与刻意练习手册}
-\input{appendix_i_learning}
-% appendix-moved-to-handbook: J,K,L
-% 配套手册 J、K、L（经典教材逐章对照／跨教材经典例题／分章自测题库）已单独成册：
+% 附录 I–L（学习策略、教材对照、跨教材例题、分章题库）已整体移入配套手册：
 %   pdf/plasma_physics_handbook.pdf（源码 src/companion_handbook.tex）
-% 正文附录字母保留 J、K、L 的空位（附录 I 之后直接接附录 M），与手册一一对应。
+% 主文件在附录 H 之后直接接附录 M；字母保留空位，与手册一一对应。
+% 学习装置索引与附录导航图里对这四个附录的引用写成「配套手册 I／J／K／L」。
+%======================================================================
+% appendix-moved-to-handbook: I,J,K,L
+% 附录字母由 chapter 计数器经 \appendixAlph 生成；H 之后直接接 M，
+% 故把计数器抬到 12，使附录 M 在编号上仍对应字母 M（小节号也是 M.x）。
+\setcounter{chapter}{12}
 \appchapter{附录M：聚变等离子体加热、电流驱动与运行极限}
 \input{appendix_m_heating}
 \appchapter{附录N：等离子体-壁相互作用与偏滤器物理}

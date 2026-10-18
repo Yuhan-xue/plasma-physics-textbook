@@ -6,8 +6,8 @@
 | --- | --- |
 | [`overview.md`](overview.md) ＋ [`overview.png`](overview.png) | 项目一页看完：规模、配图、交付物、六套检查、版面演进 |
 | [`figures.md`](figures.md) | 图册：95 张插图按章/附录排开，含缩略图、中文说明、作者、许可与来源页 |
-| [`appendix-audit.md`](appendix-audit.md) | 49 个附录逐个体检（页数、图表数）＋"还想再薄能动哪里"的四处候选 |
-| [`self-study-audit.md`](self-study-audit.md) | 自学标准全量审计：12 章、49 个附录（另含配套手册 J／K／L 源文件）逐项对照自学要素 |
+| [`appendix-audit.md`](appendix-audit.md) | 48 个附录逐个体检（页数、图表数）＋"还想再薄能动哪里"的四处候选 |
+| [`self-study-audit.md`](self-study-audit.md) | 自学标准全量审计：12 章、48 个附录（另含配套手册 I／J／K／L 源文件）逐项对照自学要素 |
 
 ## 怎么重生成
 
