@@ -3,7 +3,7 @@
 > 这本书用图讲物理：全书 95 张插图，全部是实拍照片或公开示意图，逐张登记了作者、许可与来源页。
 > 下面按「章 / 附录」把它们排开，点击任意一张可看原图；完整清单与来源链接见 [`figures/CREDITS.md`](../figures/CREDITS.md)。
 
-合计 **117 张**。若想按来源查看（NASA、ITER、LLNL、EUROfusion…），见文末统计。
+合计 **118 张**。若想按来源查看（NASA、ITER、LLNL、EUROfusion…），见文末统计。
 
 ## 第 1 章（1 张）
 
@@ -164,11 +164,12 @@
 | <img src="figures-thumbs/nif_laser_bay.jpg" width="230"> | 激光驱动器阵列：192 束光要在靶上对准 | Lawrence Livermore National Laboratory | Public domain（[来源页](https://commons.wikimedia.org/wiki/File:NIF_Laser_Bay.jpg)） |
 | <img src="figures-thumbs/ai_nif_target_assembly.jpg" width="230"> | NIF 靶装配体：黑腔与燃料靶丸 | Lawrence Livermore National Laboratory | CC BY-SA 3.0（[来源页](https://commons.wikimedia.org/wiki/File:NIF_ignition_target_assembly.jpg)） |
 
-## 附录 AJ（1 张）
+## 附录 AJ（2 张）
 
 | 图 | 说明 | 作者 | 许可与来源 |
 |---|---|---|---|
 | <img src="figures-thumbs/pellet_injector.jpg" width="230"> | 弹丸注入器：把燃料冻成弹丸打进去 | Oak Ridge National Laboratory | CC BY 2.0（[来源页](https://commons.wikimedia.org/wiki/File:ITER_Prototype_3-barrel_shattered_pellet_injector_(14132373814).jpg)） |
+| <img src="figures-thumbs/aj_w7x_vessel.jpg" width="230"> | W7-X 真空室的扇段与接口法兰 | Siarhei Besarab | CC BY-SA 4.0（[来源页](https://commons.wikimedia.org/wiki/File:A_segment_of_the_Wendelstein_7-X_vacuum_vessel.jpg)） |
 
 ## 附录 AK（2 张）
 
@@ -385,7 +386,7 @@
 ## 来源统计
 
 - 政府机构、国家实验室与大学/研究所：**45 张**（NASA、ESA/SDO、ITER、LLNL、INL、EUROfusion、USAF、KSTAR 等）
-- 个人摄影师、企业与开放社区：**72 张**
+- 个人摄影师、企业与开放社区：**73 张**
 
 许可只用两种：**公有领域**与 **CC BY / CC BY-SA**（可商用、可改、需署名）。
 

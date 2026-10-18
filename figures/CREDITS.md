@@ -1,6 +1,6 @@
 # 配图来源与许可（figures/）
 
-本目录收录正文使用的**真实图像**：装置照片、天文观测与机构示意图，共 117 张。
+本目录收录正文使用的**真实图像**：装置照片、天文观测与机构示意图，共 118 张。
 全部采用开放许可（CC0 / 公有领域 / CC BY / CC BY-SA），并按许可要求署名：
 
 - 正文中每张图都在图注下方用 `\figsource{作者｜许可｜来源页}` 署名；
@@ -67,6 +67,7 @@
 | `nif_laser_bay.jpg` | 激光驱动器阵列：192 束光要在靶上对准 | Lawrence Livermore National Laboratory | Public domain | https://commons.wikimedia.org/wiki/File:NIF_Laser_Bay.jpg | 附录AI |
 | `ai_nif_target_assembly.jpg` | NIF 靶装配体：黑腔与燃料靶丸 | Lawrence Livermore National Laboratory | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:NIF_ignition_target_assembly.jpg | 附录 AI |
 | `pellet_injector.jpg` | 弹丸注入器：把燃料冻成弹丸打进去 | Oak Ridge National Laboratory | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:ITER_Prototype_3-barrel_shattered_pellet_injector_(14132373814).jpg | 附录AJ |
+| `aj_w7x_vessel.jpg` | W7-X 真空室的扇段与接口法兰 | Siarhei Besarab | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:A_segment_of_the_Wendelstein_7-X_vacuum_vessel.jpg | 附录AJ |
 | `dry_cask.jpg` | 干式贮存罐：活化废物最后的去处 | Nuclear Regulatory Commission from US | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Massive_containers_hold_spent_nuclear_fuel_(15420175144).jpg | 附录AK |
 | `ak_manipulator_arm.jpg` | 热室里的远程操作机械臂 | Idaho National Laboratory | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Manipulator_Arm.jpg | 附录AK |
 | `al_gibraltar_soliton.jpg` | 直布罗陀海峡的内孤立波 | NASA / 国际空间站宇航员（2004） | Public domain | https://commons.wikimedia.org/wiki/File:Solitons,_Strait_of_Gibraltar_(4585).jpg | 附录AL |

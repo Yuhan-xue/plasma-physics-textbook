@@ -27,7 +27,7 @@
 
 ## 先看几张图
 
-教材正文有 117 张插图，多数是实拍照片而非示意图。随手挑几张：
+教材正文有 118 张插图，多数是实拍照片而非示意图。随手挑几张：
 
 | | |
 |---|---|
@@ -146,7 +146,7 @@
 - 来源包括 Wikimedia Commons、NASA / ESA / JET / EUROfusion / NIFS / PPPL / ORNL / CEA 等，
   逐一标注作者与许可，清单见 [`figures/CREDITS.md`](figures/CREDITS.md)。
 - 许可以公有领域（PD）与 CC BY / CC BY-SA 为主；使用时按 CREDITS 中的署名要求注明。
-- 全部 117 张图按章 / 附录排成一册：[`docs/figures.md`](docs/figures.md)（缩略图 + 中文说明 + 作者 + 许可 + 来源页）。
+- 全部 118 张图按章 / 附录排成一册：[`docs/figures.md`](docs/figures.md)（缩略图 + 中文说明 + 作者 + 许可 + 来源页）。
 - 少量示意图（曲线、能级图、流程）由本仓库脚本生成，同样可在 `figures/` 下找到。
 
 ---
@@ -166,7 +166,7 @@ README.md   本文件
 ```
 
 想先看全貌，直接点 [`docs/overview.md`](docs/overview.md)（一页图看完这本书与这个仓库）；
-想知道"还想再薄能动哪里"，看 [`docs/appendix-audit.md`](docs/appendix-audit.md)；想把 117 张图一次看个够，看 [`docs/figures.md`](docs/figures.md)。
+想知道"还想再薄能动哪里"，看 [`docs/appendix-audit.md`](docs/appendix-audit.md)；想把 118 张图一次看个够，看 [`docs/figures.md`](docs/figures.md)。
 
 正文与附录里**不贴整段程序**：需要动手的地方只给脚本路径、运行方式和预期输出，
 脚本本体都在 [`code/`](code/)。
@@ -214,6 +214,7 @@ python check/consistency_audit.py   # 符号、单位、附录与正文的交叉
 | 版本 | 主要变化 |
 |------|----------|
 | v1.27.5 | 把附录 J（经典教材逐章对照）、K（跨教材经典例题）、L（分章自测题库）从主册移出，单独编成 26 页的[配套手册](pdf/plasma_physics_handbook.pdf)；主册附录字母保留 J／K／L 空位、A–I 之后直接接 M；正文里 62 处指向它们的说法改为「配套手册」；页数 657 → 635 |
+| v1.27.19 | 给附录 AJ 补上第二张图：W7-X 真空室扇段与接口法兰（加料口、抽气口、诊断窗口都在这些法兰上），画册 117 → 118 张；48 个附录全部达到「至少两张图」。页数保持 615 |
 | v1.27.18 | 配图来源与许可全量复核：把 117 张图的作者、许可与来源页与 Wikimedia Commons 元数据逐条比对（117/117 一致），修正两处作者字段——landau_damping.jpg 改为 Rwbest、az_iter_complex.jpg 改为 Oak Ridge National Laboratory；正文图下来源行同步，页数保持 615 |
 | v1.27.17 | 补上最后 4 张实拍图：Alcator C-Mod 机厅（W）、辐射热计（X）、Orion 激光大厅（Y）、K-DEMO 堆芯设计剖面（AZ）；画册 113 → 117 张，页数 612 → 615。到这里，48 个附录里除 AJ 外每篇都有至少两张图 |
 | v1.27.16 | 再补 6 张实拍图（第三批）：托卡马克真空室与第一壁（AD）、Huygens 超算机柜（AC）、NIF 氘氚内爆（U）、早期氚实验室 HAER 档案（AV）、ITER 建设现场（Z）、HELEN 激光靶区（AS）；画册 107 → 113 张，页数 609 → 612 |
