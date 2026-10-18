@@ -3,7 +3,7 @@
 > 这本书用图讲物理：全书 95 张插图，全部是实拍照片或公开示意图，逐张登记了作者、许可与来源页。
 > 下面按「章 / 附录」把它们排开，点击任意一张可看原图；完整清单与来源链接见 [`figures/CREDITS.md`](../figures/CREDITS.md)。
 
-合计 **107 张**。若想按来源查看（NASA、ITER、LLNL、EUROfusion…），见文末统计。
+合计 **113 张**。若想按来源查看（NASA、ITER、LLNL、EUROfusion…），见文末统计。
 
 ## 第 1 章（1 张）
 
@@ -115,17 +115,19 @@
 | <img src="figures-thumbs/solar_flare_sdo.jpg" width="230"> | 太阳耀斑（SDO 四波段）：日冕里的磁重联 | NASA/SDO | Public domain（[来源页](https://commons.wikimedia.org/wiki/File:X3.2_Solar_flare_on_2013-05-14_at_four_wavelengths.jpg)） |
 | <img src="figures-thumbs/ab_comet_ion_tail.jpg" width="230"> | 西村彗星的离子尾：太阳风把彗尾吹成一条直线 | STEREO/NASA（内日球成像仪 HI-1） | Public domain（[来源页](https://commons.wikimedia.org/wiki/File:Cometnishimura.png)） |
 
-## 附录 AC（1 张）
+## 附录 AC（2 张）
 
 | 图 | 说明 | 作者 | 许可与来源 |
 |---|---|---|---|
 | <img src="figures-thumbs/summit_supercomputer.jpg" width="230"> | 超级计算机：粒子步总账最终要在这里付 | Carlos Jones/ORNL | CC BY 2.0（[来源页](https://commons.wikimedia.org/wiki/File:Summit_(supercomputer).jpg)） |
+| <img src="figures-thumbs/ac_huygens_cluster.jpg" width="230"> | Huygens 超算机柜 | Dennis van Zuijlekom | CC BY-SA 2.0（[来源页](https://commons.wikimedia.org/wiki/File:Dutch_national_supercomputer_%22Huygens%22.png)） |
 
-## 附录 AD（1 张）
+## 附录 AD（2 张）
 
 | 图 | 说明 | 作者 | 许可与来源 |
 |---|---|---|---|
 | <img src="figures-thumbs/ad_cmod_interior.jpg" width="230"> | 托卡马克真空室内壁与限制器 | Mike Garrett | CC BY 3.0（[来源页](https://commons.wikimedia.org/wiki/File:Alcator_C-Mod_Tokamak_Interior.jpg)） |
+| <img src="figures-thumbs/ad_tocamac_chamber.jpg" width="230"> | 托卡马克真空室与第一壁 | Rswilcox | CC BY-SA 4.0（[来源页](https://commons.wikimedia.org/wiki/File:2017_TOCAMAC_Fusion_Chamber_N0689.jpg)） |
 
 ## 附录 AE（2 张）
 
@@ -225,11 +227,12 @@
 | <img src="figures-thumbs/flywheel_20mw.jpg" width="230"> | 20 MW 飞轮储能电站：能量存在转子里 | Z22 | CC BY-SA 4.0（[来源页](https://commons.wikimedia.org/wiki/File:Beacon_Power_New_York_-_20_MW_Flywheel_Energy_Storage.jpg)） |
 | <img src="figures-thumbs/ar_capacitor_bank.jpg" width="230"> | 电容储能组 | Rubin Observatory/NSF/AURA | CC BY 4.0（[来源页](https://commons.wikimedia.org/wiki/File:Capacitor_Banks_(rubin-photo-oct-04-9-38-25-am).jpg)） |
 
-## 附录 AS（1 张）
+## 附录 AS（2 张）
 
 | 图 | 说明 | 作者 | 许可与来源 |
 |---|---|---|---|
 | <img src="figures-thumbs/optics_lab_inrim.jpg" width="230"> | 光学台：射线方程在这里被验证 | Giorgio Brida from Torino, Italy | CC BY 2.0（[来源页](https://commons.wikimedia.org/wiki/File:Femtosecond_Laser_and_Pulse_Compressor_-_Optics_Lab_-_INRIM.jpg)） |
+| <img src="figures-thumbs/as_helen_target.jpg" width="230"> | HELEN 激光靶区 | Colin N. Danson 等 | CC BY 4.0（[来源页](https://commons.wikimedia.org/wiki/File:HELEN_target_area.jpg)） |
 
 ## 附录 AT（2 张）
 
@@ -245,11 +248,12 @@
 | <img src="figures-thumbs/blackbody_carlo.jpg" width="230"> | 黑体辐射源：误差棒的另一端是标准 | Luminforum | CC BY 4.0（[来源页](https://commons.wikimedia.org/wiki/File:Black_body_radiator_at_CARLO_laboratory_in_Poland.jpg)） |
 | <img src="figures-thumbs/au_oscilloscope.jpg" width="230"> | 示波器上的波形 | Pittigrilli | CC BY-SA 4.0（[来源页](https://commons.wikimedia.org/wiki/File:Tektronix_Oscilloscope_475A.jpg)） |
 
-## 附录 AV（1 张）
+## 附录 AV（2 张）
 
 | 图 | 说明 | 作者 | 许可与来源 |
 |---|---|---|---|
 | <img src="figures-thumbs/tritium_glowring.jpg" width="230"> | 氚发光环：半衰期与活度摸得着的样子 | Cgommel | CC BY-SA 2.0 de（[来源页](https://commons.wikimedia.org/wiki/File:Tritium-Glowring_-_320s.jpg)） |
+| <img src="figures-thumbs/av_tritium_lab.jpg" width="230"> | 早期氚实验室（HAER 档案） | Mike Crane / HAER | Public domain（[来源页](https://commons.wikimedia.org/wiki/File:TRITIUM_LABORATORY,_TRA-666,_INTERIOR._CAMERA_IS_IN_DOORWAY_MENTIONED_IN_ID-33-G-175_AND_LOOKS_EAST_INTO_ANNEX,_BUILT_AS_A_SPECIAL_TRITIUM_LAB._INL_NEGATIVE_NO._HD46-25-2.;_Mike_Crane_HAER_ID-33-G-176.tif)） |
 
 ## 附录 AW（2 张）
 
@@ -335,11 +339,12 @@
 | <img src="figures-thumbs/t_lhd_heliotron.jpg" width="230"> | LHD 大型螺旋装置：旋转变换由线圈给出 | National Institute for Fusion Science (NIFS) | CC BY-SA 4.0（[来源页](https://commons.wikimedia.org/wiki/File:Large_Helical_Device_2014.jpg)） |
 | <img src="figures-thumbs/t_coronal_loops.jpg" width="230"> | 太阳表面的磁环：磁通量管在自然界的样子 | NASA/Goddard Space Flight Center/SDO | CC BY 2.0（[来源页](https://commons.wikimedia.org/wiki/File:Magnetic_loops_on_the_sun.jpg)） |
 
-## 附录 U（1 张）
+## 附录 U（2 张）
 
 | 图 | 说明 | 作者 | 许可与来源 |
 |---|---|---|---|
 | <img src="figures-thumbs/u_nova_chamber.jpg" width="230"> | NOVA 靶室 | Lawrence Livermore National Laboratory | Public domain（[来源页](https://commons.wikimedia.org/wiki/File:Nova_target_chamber.jpg)） |
+| <img src="figures-thumbs/u_nif_dt_implosion.jpg" width="230"> | NIF 的氘氚内爆 | Lawrence Livermore National Laboratory | Public domain（[来源页](https://commons.wikimedia.org/wiki/File:NIF_deuterium_tritium_implosion.jpg)） |
 
 ## 附录 V（2 张）
 
@@ -366,16 +371,17 @@
 |---|---|---|---|
 | <img src="figures-thumbs/y_shiva_chamber.jpg" width="230"> | Shiva 激光靶室 | Lawrence Livermore National Laboratory | Public domain（[来源页](https://commons.wikimedia.org/wiki/File:Shiva_target_chamber_1978.jpg)） |
 
-## 附录 Z（1 张）
+## 附录 Z（2 张）
 
 | 图 | 说明 | 作者 | 许可与来源 |
 |---|---|---|---|
 | <img src="figures-thumbs/iter_plant.jpg" width="230"> | 堆与厂：主机之外还有一整套系统 | Oak Ridge National Laboratory | CC BY 2.0（[来源页](https://commons.wikimedia.org/wiki/File:ITER_Tokamak_and_Plant_Systems_(2016)_(41783636452).jpg)） |
+| <img src="figures-thumbs/z_iter_construction.jpg" width="230"> | ITER 建设现场 | Johannes Reimer | CC BY 4.0（[来源页](https://commons.wikimedia.org/wiki/File:ITER_construction_site_from_the_distance.jpg)） |
 
 ## 来源统计
 
-- 政府机构、国家实验室与大学/研究所：**44 张**（NASA、ESA/SDO、ITER、LLNL、INL、EUROfusion、USAF、KSTAR 等）
-- 个人摄影师、企业与开放社区：**63 张**
+- 政府机构、国家实验室与大学/研究所：**45 张**（NASA、ESA/SDO、ITER、LLNL、INL、EUROfusion、USAF、KSTAR 等）
+- 个人摄影师、企业与开放社区：**68 张**
 
 许可只用两种：**公有领域**与 **CC BY / CC BY-SA**（可商用、可改、需署名）。
 

@@ -300,6 +300,7 @@ PIC 的成本估算与超级粒子概念参照 Birdsall \& Langdon（1985/1991�
 \figsource{Carlos Jones/ORNL，CC BY 2.0（Wikimedia Commons）}
 \end{figure}
 
+
 \section{粒子噪声：超级粒子的代价}
 \label{sec:app-ac-noise}
 
@@ -307,6 +308,13 @@ AC.3 结尾那笔账还有一个隐形成本。用 $2\times10^{7}$ 个超级粒�
 $8.322\times10^{22}$ 个真实粒子，省下的是算力，付出的是\textbf{噪声}。
 粒子是离散地撒在相空间里的，任何一点的密度估计都带统计误差：
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/ac_huygens_cluster.jpg}
+\caption{荷兰国家超算 Huygens 的机柜：PIC 与 MHD 这类计算把时间切成纳秒、把空间切成德拜长度，靠的就是成排机柜同时推进粒子。本节的“分辨率与成本”，换算是 CPU 小时。}
+\label{fig:photo-appac3}
+\figsource{Dennis van Zuijlekom，CC BY-SA 2.0（Wikimedia Commons）}
+\end{figure}
 \begin{equation}
 \frac{\delta n}{n}\approx\frac{1}{\sqrt{N_p}},
 \qquad

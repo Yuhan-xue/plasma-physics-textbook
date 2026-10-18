@@ -1,6 +1,6 @@
 # 配图来源与许可（figures/）
 
-本目录收录正文使用的**真实图像**：装置照片、天文观测与机构示意图，共 107 张。
+本目录收录正文使用的**真实图像**：装置照片、天文观测与机构示意图，共 113 张。
 全部采用开放许可（CC0 / 公有领域 / CC BY / CC BY-SA），并按许可要求署名：
 
 - 正文中每张图都在图注下方用 `\figsource{作者｜许可｜来源页}` 署名；
@@ -53,7 +53,9 @@
 | `solar_flare_sdo.jpg` | 太阳耀斑（SDO 四波段）：日冕里的磁重联 | NASA/SDO | Public domain | https://commons.wikimedia.org/wiki/File:X3.2_Solar_flare_on_2013-05-14_at_four_wavelengths.jpg | 附录AB |
 | `ab_comet_ion_tail.jpg` | 西村彗星的离子尾：太阳风把彗尾吹成一条直线 | STEREO/NASA（内日球成像仪 HI-1） | Public domain | https://commons.wikimedia.org/wiki/File:Cometnishimura.png | 附录AB |
 | `summit_supercomputer.jpg` | 超级计算机：粒子步总账最终要在这里付 | Carlos Jones/ORNL | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Summit_(supercomputer).jpg | 附录AC |
+| `ac_huygens_cluster.jpg` | Huygens 超算机柜 | Dennis van Zuijlekom | CC BY-SA 2.0 | https://commons.wikimedia.org/wiki/File:Dutch_national_supercomputer_%22Huygens%22.png | 附录AC |
 | `ad_cmod_interior.jpg` | 托卡马克真空室内壁与限制器 | Mike Garrett | CC BY 3.0 | https://commons.wikimedia.org/wiki/File:Alcator_C-Mod_Tokamak_Interior.jpg | 附录AD |
+| `ad_tocamac_chamber.jpg` | 托卡马克真空室与第一壁 | Rswilcox | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:2017_TOCAMAC_Fusion_Chamber_N0689.jpg | 附录AD |
 | `ae_gyrotron.jpg` | 回旋管：用电子回旋运动产生毫米波 | Rama | CC BY-SA 2.5 | https://commons.wikimedia.org/wiki/File:Gyrotron_plateforme.jpg | 附录AE |
 | `ae_asdex_section.jpg` | ASDEX Upgrade 的极向截面 | Nico Kaiser | CC BY-SA 2.0 | https://commons.wikimedia.org/wiki/File:ASDEX_Upgrade_section_(1567515317).jpg | 附录AE |
 | `magnetic_turbulence.jpg` | 磁湍流：输运由哪一段波数贡献 | Giannandrea Inchingolo | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Magnetic_turbulence.jpg | 附录AF |
@@ -83,11 +85,13 @@
 | `flywheel_20mw.jpg` | 20 MW 飞轮储能电站：能量存在转子里 | Z22 | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Beacon_Power_New_York_-_20_MW_Flywheel_Energy_Storage.jpg | 附录AR |
 | `ar_capacitor_bank.jpg` | 电容储能组 | Rubin Observatory/NSF/AURA | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:Capacitor_Banks_(rubin-photo-oct-04-9-38-25-am).jpg | 附录AR |
 | `optics_lab_inrim.jpg` | 光学台：射线方程在这里被验证 | Giorgio Brida from Torino, Italy | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Femtosecond_Laser_and_Pulse_Compressor_-_Optics_Lab_-_INRIM.jpg | 附录AS |
+| `as_helen_target.jpg` | HELEN 激光靶区 | Colin N. Danson 等 | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:HELEN_target_area.jpg | 附录AS |
 | `gyrotron_ecrh.jpg` | 回旋管：电子回旋共振加热的功率源 | Siarhei Besarab | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Gyrotron_for_electron_cyclotron_resonance_heating_of_the_Wendelstein_7-X_stellarator.jpg | 附录AT |
 | `at_iter_ecrh_mirrors.jpg` | ITER 的 ECRH 转向镜 | Anastasia Xydou | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:ITER_ECRH_Steering_mirrors.jpg | 附录AT |
 | `blackbody_carlo.jpg` | 黑体辐射源：误差棒的另一端是标准 | Luminforum | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:Black_body_radiator_at_CARLO_laboratory_in_Poland.jpg | 附录AU |
 | `au_oscilloscope.jpg` | 示波器上的波形 | Pittigrilli | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Tektronix_Oscilloscope_475A.jpg | 附录AU |
 | `tritium_glowring.jpg` | 氚发光环：半衰期与活度摸得着的样子 | Cgommel | CC BY-SA 2.0 de | https://commons.wikimedia.org/wiki/File:Tritium-Glowring_-_320s.jpg | 附录AV |
+| `av_tritium_lab.jpg` | 早期氚实验室（HAER 档案） | Mike Crane / HAER | Public domain | https://commons.wikimedia.org/wiki/File:TRITIUM_LABORATORY,_TRA-666,_INTERIOR._CAMERA_IS_IN_DOORWAY_MENTIONED_IN_ID-33-G-175_AND_LOOKS_EAST_INTO_ANNEX,_BUILT_AS_A_SPECIAL_TRITIUM_LAB._INL_NEGATIVE_NO._HD46-25-2.;_Mike_Crane_HAER_ID-33-G-176.tif | 附录AV |
 | `aw_z_machine.jpg` | 桑迪亚 Z 装置 | ENERGY.GOV | Public domain | https://commons.wikimedia.org/wiki/File:The_Z_Machine_(8056998596).jpg | 附录AW |
 | `aw_orion_chamber.jpg` | Orion 激光装置的靶室 | Colin N. Danson 等 | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:Orion_target_chamber.jpg | 附录AW |
 | `ax_awake_wakefield.jpg` | AWAKE：质子束驱动的等离子体尾场 | E. Adli 等（AWAKE 合作组，Nature 561, 363） | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:41586_2018_485_Fig1_HTML.webp | 附录AX |
@@ -113,12 +117,14 @@
 | `t_lhd_heliotron.jpg` | LHD 大型螺旋装置：旋转变换由线圈给出 | National Institute for Fusion Science (NIFS) | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Large_Helical_Device_2014.jpg | 附录T |
 | `t_coronal_loops.jpg` | 太阳表面的磁环：磁通量管在自然界的样子 | NASA/Goddard Space Flight Center/SDO | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Magnetic_loops_on_the_sun.jpg | 附录T |
 | `u_nova_chamber.jpg` | NOVA 靶室 | Lawrence Livermore National Laboratory | Public domain | https://commons.wikimedia.org/wiki/File:Nova_target_chamber.jpg | 附录U |
+| `u_nif_dt_implosion.jpg` | NIF 的氘氚内爆 | Lawrence Livermore National Laboratory | Public domain | https://commons.wikimedia.org/wiki/File:NIF_deuterium_tritium_implosion.jpg | 附录U |
 | `v_pfc_erosion.jpg` | 面向等离子体部件的侵蚀与再沉积 | Christophe Roux / CEA IRFM | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:Composant_face_au_plasma.jpg | 附录V |
 | `v_spi_test_stand.jpg` | 碎裂弹丸试验台 | Oak Ridge National Laboratory | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Shattered_pellet_test_stand_(41809719871).jpg | 附录V |
 | `w_jet_1991.jpg` | JET 装置（1991） | EFDA JET | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:The_JET_magnetic_fusion_experiment_in_1991.jpg | 附录W |
 | `x_storage_ring.jpg` | 同步辐射储存环 | CLS Research Office from Saskatoon, Canada | CC BY-SA 2.0 | https://commons.wikimedia.org/wiki/File:Storage_ring_(13390679434).jpg | 附录X |
 | `y_shiva_chamber.jpg` | Shiva 激光靶室 | Lawrence Livermore National Laboratory | Public domain | https://commons.wikimedia.org/wiki/File:Shiva_target_chamber_1978.jpg | 附录Y |
 | `iter_plant.jpg` | 堆与厂：主机之外还有一整套系统 | Oak Ridge National Laboratory | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:ITER_Tokamak_and_Plant_Systems_(2016)_(41783636452).jpg | 附录Z |
+| `z_iter_construction.jpg` | ITER 建设现场 | Johannes Reimer | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:ITER_construction_site_from_the_distance.jpg | 附录Z |
 
 ## 采集与校验
 
