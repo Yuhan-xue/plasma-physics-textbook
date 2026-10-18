@@ -64,7 +64,7 @@
 \tcblower
 \textbf{解答：}
 
-\textbf{第 0 步：先想清楚"和谁比"。} 广义欧姆定律的所有项都是 $\mathrm{V/m}$，但拿什么当分母决定了结论。本题统一以 $uB=10^4\times5=5\times10^4\,\mathrm{V/m}$ 为\textbf{参考尺度}（reference scale），即把方程写成
+\textbf{第 0 步：先想清楚“和谁比”。} 广义欧姆定律的所有项都是 $\mathrm{V/m}$，但拿什么当分母决定了结论。本题统一以 $uB=10^4\times5=5\times10^4\,\mathrm{V/m}$ 为\textbf{参考尺度}（reference scale），即把方程写成
 \[
 \frac{\vect{E} + \vect{u}\times\vect{B}}{uB}
 = \underbrace{\frac{\eta\vect{j}}{uB}}_{\epsilon_\eta}
@@ -72,7 +72,7 @@
 - \underbrace{\frac{\grad p_e}{enuB}}_{\epsilon_p}
 + \underbrace{\frac{m_e}{ne^2uB}\frac{\partial\vect{j}}{\partial t}}_{\epsilon_I}
 \]
-再逐项算无量纲比值。\textbf{注意 $uB$ 只是参考尺度，不等于左端的真实大小}：理想极限下 $\vect{E}+\vect{u}\times\vect{B}\to0$，左端比 $uB$ 小得多。所以下面报出的比值是"相对 $uB$"的，用它判断能否删项时必须同时说明所求精度。
+再逐项算无量纲比值。\textbf{注意 $uB$ 只是参考尺度，不等于左端的真实大小}：理想极限下 $\vect{E}+\vect{u}\times\vect{B}\to0$，左端比 $uB$ 小得多。所以下面报出的比值是“相对 $uB$”的，用它判断能否删项时必须同时说明所求精度。
 
 \textbf{1. 电阻项 $\eta\vect{j}$：}
 Spitzer 电阻率（近似公式 $\eta \approx 5\times 10^{-5} Z\ln\Lambda / T_e^{3/2}\,[\Omega\mathrm{m}]$，$T_e$ 单位为 $\mathrm{eV}$）：
@@ -117,8 +117,8 @@ Spitzer 电阻率（近似公式 $\eta \approx 5\times 10^{-5} Z\ln\Lambda / T_e
 
 \textbf{结论：}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
-\item \textbf{电阻项与惯性项}：$\epsilon_\eta,\epsilon_I\sim10^{-9}$，比参考尺度小 9 个数量级。要在 $10^{-6}$ 相对精度内描述电场，它们确实可以删；但这来自"精度要求"，不是"必然可忽略"。
-\item \textbf{霍尔项与压强项}：$\epsilon_H\approx0.62$、$\epsilon_p\approx0.2$。\textbf{两者都不满足"小修正"的渐近条件（$\epsilon\ll1$）}——霍尔项甚至与参考尺度同量级。把它们当作修正项删掉，会丢掉 $O(1)$ 的物理。
+\item \textbf{电阻项与惯性项}：$\epsilon_\eta,\epsilon_I\sim10^{-9}$，比参考尺度小 9 个数量级。要在 $10^{-6}$ 相对精度内描述电场，它们确实可以删；但这来自“精度要求”，不是“必然可忽略”。
+\item \textbf{霍尔项与压强项}：$\epsilon_H\approx0.62$、$\epsilon_p\approx0.2$。\textbf{两者都不满足“小修正”的渐近条件（$\epsilon\ll1$）}——霍尔项甚至与参考尺度同量级。把它们当作修正项删掉，会丢掉 $O(1)$ 的物理。
 \item \textbf{理想MHD}：$\vect{E}+\vect{u}\times\vect{B}=0$ 要求右端四项全部远小于左端。本题只有电阻项与惯性项满足；保留霍尔项即为\textbf{Hall MHD}，保留压强项即需要\textbf{电子压强闭合}。请先报告所需的相对精度，再决定删哪几项。
 \end{itemize}
 \end{example}
@@ -300,7 +300,7 @@ n_{i1} = \frac{\ee n_0 k^2\phi_1}{m_i(\omega^2 - \gamma_i k^2 v_{ti}^2)}
 这正是离子声波的标准形式，相速度 $\omega/k=\sqrt{(k_{\!B}T_e+\gamma_i k_{\!B}T_i)/m_i}=c_s\sqrt{1+\gamma_i T_i/T_e}$。
 
 \smallskip
-\textbf{两者如何衔接：} 当 $k\lambda_{De}\to0$ 时 $\dfrac{1}{1+k^2\lambda_{De}^2}\to1$，(A) 式精确退化为 (B) 式。所以\textbf{准中性闭合不是独立假设，而是泊松闭合的长波极限}——$k\lambda_{De}\ll1$ 时等离子体尺度远大于屏蔽尺度，"净电荷为零"才成立。
+\textbf{两者如何衔接：} 当 $k\lambda_{De}\to0$ 时 $\dfrac{1}{1+k^2\lambda_{De}^2}\to1$，(A) 式精确退化为 (B) 式。所以\textbf{准中性闭合不是独立假设，而是泊松闭合的长波极限}——$k\lambda_{De}\ll1$ 时等离子体尺度远大于屏蔽尺度，“净电荷为零”才成立。
 
 \textbf{极限讨论：}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
@@ -309,7 +309,7 @@ n_{i1} = \frac{\ee n_0 k^2\phi_1}{m_i(\omega^2 - \gamma_i k^2 v_{ti}^2)}
 \item \textbf{离子热贡献}：$T_i$ 不可忽略时恢复力增加，色散关系中的 $\gamma_i k^2v_{ti}^2=3k^2k_{\!B}T_i/m_i$ 项使波速变为 $\omega/k=\sqrt{(k_{\!B}T_e/\text{屏蔽因子}+3k_{\!B}T_i)/m_i}$，长波下即 $c_s=\sqrt{(T_e+3T_i)/m_i}$（一维 $\gamma_i=3$）。若 $T_i\sim T_e$，离子热运动导致强 Landau 阻尼（第7章），波难以传播。
 \end{itemize}
 
-\textbf{关于 $v_{ti}$ 的定义：} 本题统一采用 $v_{ti}^2=k_{\!B}T_i/m_i$（与 $\lambda_{De}$ 的定义一致），故一维离子绝热项写作 $\gamma_i k^2v_{ti}^2=3k^2k_{\!B}T_i/m_i$。注意这与"热速度"的另一种常见定义 $v_{th}=\sqrt{2k_{\!B}T/m}$ 相差 $\sqrt2$，见上面的离子热速度例题；在同一题内必须只用一种定义。
+\textbf{关于 $v_{ti}$ 的定义：} 本题统一采用 $v_{ti}^2=k_{\!B}T_i/m_i$（与 $\lambda_{De}$ 的定义一致），故一维离子绝热项写作 $\gamma_i k^2v_{ti}^2=3k^2k_{\!B}T_i/m_i$。注意这与“热速度”的另一种常见定义 $v_{th}=\sqrt{2k_{\!B}T/m}$ 相差 $\sqrt2$，见上面的离子热速度例题；在同一题内必须只用一种定义。
 \end{example}
 
 \begin{formulabox}{第 4 章}{ch4-formulas}

@@ -6,14 +6,14 @@
 % 版权约定：只借鉴经典教材与文献的物理结论、公式形式与题型，文字与数值由本书自拟并独立复算。
 % 数值来源：tools/calc/appO_calc.py（本附录每一节的关键数字都能由它复现）。
 
-第 3 章讲了 $\mathbf{E}\times\mathbf{B}$ 漂移，第 6 章讲了波与加热，第 11 章讲了鞘层与玻姆判据——这三块知识在航天领域有一个直接的去处：\textbf{电推进}（electric propulsion）。它的想法很朴素：与其用化学燃烧的热速度排气，不如\textbf{用电场把离子加速到几十千米每秒}。代价也同样朴素：同样的功率下，排气越快，推力越小。本附录把这条"把等离子体当发动机"的链条算一遍。
+第 3 章讲了 $\mathbf{E}\times\mathbf{B}$ 漂移，第 6 章讲了波与加热，第 11 章讲了鞘层与玻姆判据——这三块知识在航天领域有一个直接的去处：\textbf{电推进}（electric propulsion）。它的想法很朴素：与其用化学燃烧的热速度排气，不如\textbf{用电场把离子加速到几十千米每秒}。代价也同样朴素：同样的功率下，排气越快，推力越小。本附录把这条“把等离子体当发动机”的链条算一遍。
 
 这一篇换到\textbf{应用侧}：不让等离子体待在容器里，而是让它喷出去产生推力：电推进、VASIMR 与磁喷嘴。想读书单、范例与自测题，翻配套手册 J、K、L；加热与运行极限在附录 M，边界与壁在附录 N。
 
 \begin{tip}{单位与口径自查}{tip-appo-units}
 若结果差一个量级，先查三种口径错位：
 \begin{enumerate}[nosep,leftmargin=1.6em]
-  \item 比冲 $I_{\mathrm{sp}}$ 的单位是"秒"（$I_{\mathrm{sp}}=v_{\mathrm{ex}}/g_0$）还是"$\mathrm{m/s}$"（那就是排气速度本身），两者差 $g_0=9.80665\ \mathrm{m/s^2}$；
+  \item 比冲 $I_{\mathrm{sp}}$ 的单位是“秒”（$I_{\mathrm{sp}}=v_{\mathrm{ex}}/g_0$）还是“$\mathrm{m/s}$”（那就是排气速度本身），两者差 $g_0=9.80665\ \mathrm{m/s^2}$；
   \item 推力是\textbf{束流推力} $T=I_b\sqrt{2m_iV_b/q}$ 还是含中性损失与羽流发散的\textbf{实测推力}（后者更小）；
   \item 功率是\textbf{束功率} $P_{\mathrm{jet}}=I_bV_b$ 还是\textbf{输入功率} $P_{\mathrm{in}}=P_{\mathrm{jet}}/\eta$（后者更大，$\eta$ 常只有 $0.5$--$0.7$）。
 \end{enumerate}
@@ -30,7 +30,7 @@
 I_{\mathrm{sp}}\equiv\frac{v_{\mathrm{ex}}}{g_0},
 \label{eq:app-o-rocket}
 \end{equation}
-其中 $v_{\mathrm{ex}}$ 是排气速度，$m_0/m_f$ 是初末质量比，$I_{\mathrm{sp}}$ 就是\textbf{比冲}——它把"排气多快"折算成一个以秒为单位的数。化学发动机的排气速度受化学键能限制，最高约 $4.5\ \mathrm{km/s}$（$I_{\mathrm{sp}}\approx450\ \mathrm{s}$）；而电推进先电离、再用电场加速，离子的动能 $\frac12m_iv^2=qV$ 只受电压限制，$1000\ \mathrm{V}$ 就能给出 $38\ \mathrm{km/s}$。
+其中 $v_{\mathrm{ex}}$ 是排气速度，$m_0/m_f$ 是初末质量比，$I_{\mathrm{sp}}$ 就是\textbf{比冲}——它把“排气多快”折算成一个以秒为单位的数。化学发动机的排气速度受化学键能限制，最高约 $4.5\ \mathrm{km/s}$（$I_{\mathrm{sp}}\approx450\ \mathrm{s}$）；而电推进先电离、再用电场加速，离子的动能 $\frac12m_iv^2=qV$ 只受电压限制，$1000\ \mathrm{V}$ 就能给出 $38\ \mathrm{km/s}$。
 
 \begin{table}[htbp]
 \centering
@@ -94,13 +94,13 @@ NSTAR 级 & 0.092 & 3.03 & 1398 & 2293 & 40.1 \\
 \end{tabular}
 \end{table}
 
-第三行是用公开报道的指标（约 $92\ \mathrm{mN}$、$2.3\ \mathrm{kW}$、$3100\ \mathrm{s}$、$61\%$）反算的，得到的 $P_{\mathrm{in}}=2293\ \mathrm{W}$ 与"$2.3\ \mathrm{kW}$"对得上，说明这套口径没有错位。要把 $10\ \mathrm{N}$ 的推力连续推一整年，需要
+第三行是用公开报道的指标（约 $92\ \mathrm{mN}$、$2.3\ \mathrm{kW}$、$3100\ \mathrm{s}$、$61\%$）反算的，得到的 $P_{\mathrm{in}}=2293\ \mathrm{W}$ 与“$2.3\ \mathrm{kW}$”对得上，说明这套口径没有错位。要把 $10\ \mathrm{N}$ 的推力连续推一整年，需要
 \begin{equation}
 \dot m\times1\ \mathrm{yr}=3.40\times10^{-4}\times3.156\times10^{7}\approx1.07\times10^{4}\ \mathrm{kg}=10.7\ \mathrm{t/yr}.
 \end{equation}
-（注意这里用的是\textbf{日历秒}：推进剂的消耗按日历时间计；附录 N 里的"每年"指的是每年约 $10^{5}\ \mathrm{s}$ 的等离子体放电时间，两者口径不同，不能混用。）
+（注意这里用的是\textbf{日历秒}：推进剂的消耗按日历时间计；附录 N 里的“每年”指的是每年约 $10^{5}\ \mathrm{s}$ 的等离子体放电时间，两者口径不同，不能混用。）
 
-结论：\textbf{推力与功率成正比（$40\ \mathrm{mN/kW}$）：想要 $1\ \mathrm{N}$ 就得准备 $24.5\ \mathrm{kW}$，想要 $100\ \mathrm{N}$ 需要 $2.45\ \mathrm{MW}$}——电推进因此只能做"长期小推力"，用时间换速度增量。
+结论：\textbf{推力与功率成正比（$40\ \mathrm{mN/kW}$）：想要 $1\ \mathrm{N}$ 就得准备 $24.5\ \mathrm{kW}$，想要 $100\ \mathrm{N}$ 需要 $2.45\ \mathrm{MW}$}——电推进因此只能做“长期小推力”，用时间换速度增量。
 
 {\footnotesize
 \textbf{出处：}Goebel \& Katz《Fundamentals of Electric Propulsion》的推力/功率/效率关系与推力器指标章节。
@@ -158,7 +158,7 @@ j=\frac{4\varepsilon_0}{9}\sqrt{\frac{2q}{m_i}}\,\frac{V^{3/2}}{d^2}.
 \end{equation}
 取 $V=1500\ \mathrm{V}$、栅极间距 $d=1.5\ \mathrm{mm}$，得 $j=123\ \mathrm{A/m^2}$；要引出 $3\ \mathrm{A}$ 就需要 $243\ \mathrm{cm^2}$ 的栅极面积。
 
-结论：\textbf{推力不是靠"更高的电压"，而是靠"更大的束流面积"}。把电压从 $1000\ \mathrm{V}$ 提到 $1500\ \mathrm{V}$，比冲只涨 $22\%$，而空间电荷限制电流涨 $84\%$（$\propto V^{3/2}$）——离子推力器做大的关键在栅极面积与间距，而不在电源电压。
+结论：\textbf{推力不是靠“更高的电压”，而是靠“更大的束流面积”}。把电压从 $1000\ \mathrm{V}$ 提到 $1500\ \mathrm{V}$，比冲只涨 $22\%$，而空间电荷限制电流涨 $84\%$（$\propto V^{3/2}$）——离子推力器做大的关键在栅极面积与间距，而不在电源电压。
 
 {\footnotesize
 \textbf{出处：}配套手册 K.7 的 Child--Langmuir 推导（Child 1911。
@@ -167,9 +167,9 @@ Goebel \& Katz 的离子光学与栅极章节。
 }
 
 
-\section{霍尔推力器：用磁场"挡住"电子}
+\section{霍尔推力器：用磁场“挡住”电子}
 
-静电栅极的电流上限可以用"把电子挡住"来绕开：加一个径向磁场，让电子绕磁力线打转，离子因为太重几乎不受影响。判据是\textbf{磁化程度}：
+静电栅极的电流上限可以用“把电子挡住”来绕开：加一个径向磁场，让电子绕磁力线打转，离子因为太重几乎不受影响。判据是\textbf{磁化程度}：
 \begin{equation}
 \omega_{ce}\tau_e\gg1\ \text{（电子被磁化）},
 \qquad
@@ -189,8 +189,8 @@ v_E=\frac{E}{B}=6.0\times10^{5}\ \mathrm{m/s}.
 
 数值例：$V_d=300\ \mathrm{V}$ 定出 $v_i=21.0\ \mathrm{km/s}$（即 $I_{\mathrm{sp}}=2141\ \mathrm{s}$）；取 $I_b=5\ \mathrm{A}$，则 $T=0.143\ \mathrm{N}$、$P_{\mathrm{jet}}=I_bV_d=1.50\ \mathrm{kW}$，取 $\eta=0.5$ 得 $P_{\mathrm{in}}=3.00\ \mathrm{kW}$、$T/P_{\mathrm{in}}=47.6\ \mathrm{mN/kW}$。
 
-\begin{warning}{霍尔推力器不是"电离越多越好"}{warn:appo-hall}
-通道内的\textbf{电离}与\textbf{加速}共用同一个电压。中性密度太低，束流不够；中性密度太高，电压被电离与激发吃掉，束流反而下降，而且更多中性气体直接逃逸浪费。更关键的是：霍尔推力器的比冲由放电电压定（$300$--$600\ \mathrm{V}$ 给出 $2000$--$3000\ \mathrm{s}$），\textbf{天生低于离子推力器}——它换来的是更大的电流密度与更简单的电源。工程上从来没有"全面更好"的推力器，只有"对某个任务更好"的推力器。
+\begin{warning}{霍尔推力器不是“电离越多越好”}{warn:appo-hall}
+通道内的\textbf{电离}与\textbf{加速}共用同一个电压。中性密度太低，束流不够；中性密度太高，电压被电离与激发吃掉，束流反而下降，而且更多中性气体直接逃逸浪费。更关键的是：霍尔推力器的比冲由放电电压定（$300$--$600\ \mathrm{V}$ 给出 $2000$--$3000\ \mathrm{s}$），\textbf{天生低于离子推力器}——它换来的是更大的电流密度与更简单的电源。工程上从来没有“全面更好”的推力器，只有“对某个任务更好”的推力器。
 \end{warning}
 
 结论：\textbf{只用一块磁场，就让比冲从化学的 $450\ \mathrm{s}$ 抬到 $2100\ \mathrm{s}$，而且不需要栅极}——代价是效率（$\eta\approx0.5$）与通道壁的寿命。
@@ -211,7 +211,7 @@ Jahn《Physics of Electric Propulsion》的 $\mathbf{E}\times\mathbf{B}$ 推力�
 
 \section{磁喷嘴与 VASIMR：让比冲可调}
 
-不用栅极也能加速：让等离子体在\textbf{发散磁场}（磁喷嘴）中膨胀，平行速度增加、垂直速度减小，最后由等离子体与磁场的"脱磁"把推力交出来。这类装置（如 VASIMR）通常用离子回旋共振加热（附录 M 的 ICRH）把功率交给离子，因此\textbf{比冲可以调}。
+不用栅极也能加速：让等离子体在\textbf{发散磁场}（磁喷嘴）中膨胀，平行速度增加、垂直速度减小，最后由等离子体与磁场的“脱磁”把推力交出来。这类装置（如 VASIMR）通常用离子回旋共振加热（附录 M 的 ICRH）把功率交给离子，因此\textbf{比冲可以调}。
 
 把 $P_{\mathrm{jet}}=\frac12Tv_{\mathrm{ex}}$ 与 $v_{\mathrm{ex}}=g_0I_{\mathrm{sp}}$ 联立，得到电推进的基本交换关系：
 \begin{equation}
@@ -237,9 +237,9 @@ $I_{\mathrm{sp}}$（$\mathrm{s}$） & $v_{\mathrm{ex}}$（$\mathrm{km/s}$） & $
 \end{tabular}
 \end{table}
 
-与化学上面级对照：一台 $100\ \mathrm{kN}$ 量级的化学发动机推力是它的上万倍，但比冲只有 $1/10$。所以电推进的用法从来不是"起飞"，而是\textbf{入轨后的长期加速}：先把比冲调低换取推力（快速变轨），进入巡航后再把比冲调高（省推进剂）。
+与化学上面级对照：一台 $100\ \mathrm{kN}$ 量级的化学发动机推力是它的上万倍，但比冲只有 $1/10$。所以电推进的用法从来不是“起飞”，而是\textbf{入轨后的长期加速}：先把比冲调低换取推力（快速变轨），进入巡航后再把比冲调高（省推进剂）。
 
-结论：\textbf{同一个电源，比冲调高一倍，推力就减半}——$T\propto1/I_{\mathrm{sp}}$ 是电推进无法回避的交换，也正是"可调比冲"的价值所在。
+结论：\textbf{同一个电源，比冲调高一倍，推力就减半}——$T\propto1/I_{\mathrm{sp}}$ 是电推进无法回避的交换，也正是“可调比冲”的价值所在。
 
 {\footnotesize
 \textbf{出处：}Ahedo 的磁喷嘴与空间推进综述。
@@ -277,7 +277,7 @@ CEX 侵蚀 & $1.5\%$（$n_n=10^{17}$）到 $15\%$（$n_n=10^{18}$） & 快离子
 \end{tabular}
 \end{table}
 
-结论：\textbf{电推进的效率天花板不在加速原理，而在损失清单}——放电损耗 $35$--$50\%$ 才是主项，其余所有工程努力都是围绕"把它压下去、同时不让寿命掉下来"。
+结论：\textbf{电推进的效率天花板不在加速原理，而在损失清单}——放电损耗 $35$--$50\%$ 才是主项，其余所有工程努力都是围绕“把它压下去、同时不让寿命掉下来”。
 
 {\footnotesize
 \textbf{出处：}Goebel \& Katz 的推力器效率、空心阴极与羽流章节。
@@ -326,10 +326,10 @@ CEX 侵蚀 & $1.5\%$（$n_n=10^{17}$）到 $15\%$（$n_n=10^{18}$） & 快离子
 \midrule
 O.1 & Sutton \& Biblarz《Rocket Propulsion Elements》第 9 版（火箭方程、比冲）；Jahn《Physics of Electric Propulsion》第 1 章 & 齐奥尔科夫斯基公式、比冲定义、推进方式分类 & 用四个自拟比冲值（$450$/$1800$/$3000$/$5000\ \mathrm{s}$）算同一 $\Delta v=10\ \mathrm{km/s}$ 的质量比表 \\
 O.2 & Goebel \& Katz《Fundamentals of Electric Propulsion》的推力器指标章节 & $T=\dot mv_{\mathrm{ex}}$、$P_{\mathrm{jet}}=\frac12Tv_{\mathrm{ex}}$、效率与 $T/P$ 的关系 & 推出与推力无关的 $T/P_{\mathrm{in}}=2\eta/(g_0I_{\mathrm{sp}})$，并用公开级指标反算校核 \\
-O.3 & 配套手册 K.7 的 Child--Langmuir 推导；Child (1911)、Langmuir (1913)；Goebel \& Katz 的离子光学章 & 单离子能量方程、束流推力 $T=I_b\sqrt{2m_iV_b/q}$、空间电荷限制 & 指出恒等式 $P_{\mathrm{jet}}=I_bV_b$，并用 $V^{3/2}$ 说明"面积比电压更重要" \\
+O.3 & 配套手册 K.7 的 Child--Langmuir 推导；Child (1911)、Langmuir (1913)；Goebel \& Katz 的离子光学章 & 单离子能量方程、束流推力 $T=I_b\sqrt{2m_iV_b/q}$、空间电荷限制 & 指出恒等式 $P_{\mathrm{jet}}=I_bV_b$，并用 $V^{3/2}$ 说明“面积比电压更重要” \\
 O.4 & Choueiri 的电推进等离子体物理综述；Jahn 的 $\mathbf{E}\times\mathbf{B}$ 推力器章 & 磁化判据、霍尔电流、$\mathbf{E}\times\mathbf{B}$ 漂移、放电电压定比冲 & 用自拟参数（$B=0.02\ \mathrm{T}$、$n_n=10^{19}$、$V_d=300\ \mathrm{V}$）重算磁化程度与推力 \\
-O.5 & Ahedo 的磁喷嘴与空间推进综述；Chang D\'iaz 等的 VASIMR 论文 & 磁喷嘴膨胀与脱磁、离子回旋加热、可调比冲 & 把"功率-推力-比冲"写成一条交换关系并制成同一电源的三档表 \\
-O.6 & Goebel \& Katz 的效率、空心阴极与羽流章；附录 N \S N.4 的溅射口径 & 中和器、CEX 侵蚀、羽流发散损失 & 用一台 $200\ \mathrm{kW}$ 级的损失清单替代笼统的"效率"数字 \\
+O.5 & Ahedo 的磁喷嘴与空间推进综述；Chang D\'iaz 等的 VASIMR 论文 & 磁喷嘴膨胀与脱磁、离子回旋加热、可调比冲 & 把“功率-推力-比冲”写成一条交换关系并制成同一电源的三档表 \\
+O.6 & Goebel \& Katz 的效率、空心阴极与羽流章；附录 N \S N.4 的溅射口径 & 中和器、CEX 侵蚀、羽流发散损失 & 用一台 $200\ \mathrm{kW}$ 级的损失清单替代笼统的“效率”数字 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -338,7 +338,7 @@ O.6 & Goebel \& Katz 的效率、空心阴极与羽流章；附录 N \S N.4 的�
 \begin{itemize}
 \item 本附录\textbf{不复制}任何教材或文献的题目原文、解答、图表与数据表；表格中的参数区间与物理结论属于教科书公共知识，文字表述与全部数值由本书自拟。
 \item 表中列出的教材与文献是\textbf{取材来源}（说明该主题在哪本书里讲、按什么顺序讲），不是逐句引用；读者若要系统学习，请直接阅读原书。
-\item 本附录所用的一切"文献量级输入"（$m_{\mathrm{Xe}}=131.29\ \mathrm{u}$、$B=0.02\ \mathrm{T}$、$n_n$ 与 $\sigma$ 的取值、$\eta=0.5$--$0.7$、$\sigma_{\mathrm{CEX}}=5\times10^{-19}\ \mathrm{m^2}$、发散角）都在正文中\textbf{显式标出}，便于读者替换成自己装置的数据重算；结论中依赖这些输入的倍数关系（如"霍尔电流是束流的 $28.6$ 倍"）会随输入变化，但量级结论稳定。
+\item 本附录所用的一切“文献量级输入”（$m_{\mathrm{Xe}}=131.29\ \mathrm{u}$、$B=0.02\ \mathrm{T}$、$n_n$ 与 $\sigma$ 的取值、$\eta=0.5$--$0.7$、$\sigma_{\mathrm{CEX}}=5\times10^{-19}\ \mathrm{m^2}$、发散角）都在正文中\textbf{显式标出}，便于读者替换成自己装置的数据重算；结论中依赖这些输入的倍数关系（如“霍尔电流是束流的 $28.6$ 倍”）会随输入变化，但量级结论稳定。
 \item 本附录只给出可自行检索的书名、作者与年份，\textbf{不写无法核实的 DOI 与卷页}。
 \end{itemize}
 
@@ -347,7 +347,7 @@ O.6 & Goebel \& Katz 的效率、空心阴极与羽流章；附录 N \S N.4 的�
 \begin{enumerate}[nosep,leftmargin=1.6em]
   \item 先在配套手册 K 里把 Child--Langmuir 律（K.7）与鞘层加速（K.3）做一遍，那是本附录 \S O.3 的地基；
   \item 再读附录 M 的离子回旋加热，理解 \S O.5 的功率是怎么放进离子的；
-  \item 最后做本附录的 6 道估算题，并把 \S O.6 的损失清单与附录 N 的溅射侵蚀对照着看——两边算的都是"离子撞壁"，只是一个要推力、一个怕寿命。
+  \item 最后做本附录的 6 道估算题，并把 \S O.6 的损失清单与附录 N 的溅射侵蚀对照着看——两边算的都是“离子撞壁”，只是一个要推力、一个怕寿命。
 \end{enumerate}
 \end{tip}
 \endgroup

@@ -501,7 +501,7 @@ def check_M07_eedf():
     main = strip_comments(read(os.path.join(SRC, MAIN)))
     has(main, r'F(\eps) = \frac{2\sqrt{2 m_e \eps}}{A e^3}', 'src/%s（Druyvesteyn 公式）' % MAIN)
     has(main, r'\int_0^\infty F\diff\eps=n_e', 'src/%s（EEDF 归一化）' % MAIN)
-    has(main, '没有"固定偏差"这回事', 'src/%s（EEDF 警告框）' % MAIN)
+    has(main, '没有“固定偏差”这回事', 'src/%s（EEDF 警告框）' % MAIN)
     has(main, r'\diff v/\diff\eps=1/\sqrt{2m_e\eps}', 'src/%s（EEDF 雅可比）' % MAIN)
     has(main, r'EEDF $F(\eps)$ & $\int_0^\infty F\diff\eps=n_e$ & $\mathrm{m^{-3}(eV)^{-1}}$',
         'src/%s（三种记法表：EEDF）' % MAIN)
@@ -3700,7 +3700,7 @@ def check_P24_appendix_u_gain():
              '表 U.3 的收敛步（第 12 步）整行'),
             ('5.0  & $6.1983\\times10^{20}$ & 低温端 $\\langle\\sigma v\\rangle\\propto T^2$ 使要求偏高 \\\\',
              '表 U.4 的 5 keV 整行（低温端要求偏高）'),
-            ('10.0 & $3.0992\\times10^{20}$ & 本书 $\\langle\\sigma v\\rangle$ 拟合的"甜点"附近 \\\\',
+            ('10.0 & $3.0992\\times10^{20}$ & 本书 $\\langle\\sigma v\\rangle$ 拟合的“甜点”附近 \\\\',
              '表 U.4 的 10 keV 整行（甜点）'),
             ('150.0 & 2.4762  & 9.194 & 371.4 & 556.5 & 3.710 \\\\',
              '表 U.5 的 P_aux=150 MW 整行'),
@@ -4006,13 +4006,13 @@ def check_P25_appendix_i_expanding():
              '小节的 label（供交叉引用）'),
             ('\\textbf{扩张式}（expanding）指间隔越拉越长，如 $1,2,4,8,12$ 天；\\textbf{均匀式}（uniform）指每次都隔同样长，如 $6,6,6,6,6$ 天。',
              '扩张式与均匀式的定义与示例间隔（两个具体数列）'),
-            ('\\textbf{（1）扩张式的理由成立，但推不出"必须递增"。}',
+            ('\\textbf{（1）扩张式的理由成立，但推不出“必须递增”。}',
              '第 1 条结论的标题句'),
             ('\\textbf{（2）形状是第二位的，比例是第一位的。}',
              '第 2 条结论的标题句'),
-            ('\\textbf{（3）稳得住的那条规律是"分散优于集中"。}',
+            ('\\textbf{（3）稳得住的那条规律是“分散优于集中”。}',
              '第 3 条结论的标题句'),
-            ('\\textbf{（4）那本书为什么仍用"先翻倍、后等间隔"？}',
+            ('\\textbf{（4）那本书为什么仍用“先翻倍、后等间隔”？}',
              '第 4 条结论的标题句'),
             ('\\textbf{（5）用软件也建议自己算一遍。}',
              '第 5 条结论的标题句'),

@@ -121,7 +121,7 @@ def norm(s):
     # 否则书签侧会被剥成「-D 功率平衡」而目录侧（前缀 AZ.2 先被剥掉）保留 0-D，产生假不匹配。
     s = re.sub(r'^(?:[A-Za-z]{1,2}[.．])?\d+(?:[.．]\d+)*[.．]?(?![-\u2010-\u2015])', '', s or '')
     s = re.sub(r'[\s\u200b]+', '', s)
-    s = (s.replace('“', '"').replace('”', '"').replace('″', '"')
+    s = (s.replace('“', '“').replace('”', '“').replace('″', '“')
           .replace('‘', "'").replace('’', "'"))
     return re.sub(r'[^0-9A-Za-z\u4e00-\u9fff"\'()（）,，、:：;；.。!！?？\-–—/]', '', s)
 

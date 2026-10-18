@@ -8,7 +8,7 @@
 \addcontentsline{toc}{section}{习题精选}
 
 \begin{example}{瑞利--泰勒不稳定性的增长率估算}{rayleigh-taylor-calc}
-在磁约束聚变装置的"坏曲率"区域，等效重力加速度约为 $g \approx 10^{5}\,\mathrm{m/s^2}$（由曲率漂移产生），密度梯度对应的Atwood数 $A = 0.3$。界面处波长为 $\lambda = 2\,\mathrm{cm}$ 的扰动被激发。求：
+在磁约束聚变装置的“坏曲率”区域，等效重力加速度约为 $g \approx 10^{5}\,\mathrm{m/s^2}$（由曲率漂移产生），密度梯度对应的Atwood数 $A = 0.3$。界面处波长为 $\lambda = 2\,\mathrm{cm}$ 的扰动被激发。求：
 \begin{enumerate}[label=(\arabic*)]
 \item 该扰动的增长率 $\gamma$；
 \item 振幅\textbf{增长 10 倍}所需的时间，以及振幅增长 $\ee^{10}$ 倍（即 $10$ 个 e-folding）所需的时间；
@@ -52,7 +52,7 @@ t_{10e} = \frac{10}{\gamma} = \frac{10}{3.07\times 10^{3}} \approx 3.3\times 10^
 
 两者相差 $\dfrac{10}{\ln10}\approx4.34$ 倍（$t_{10e}=\dfrac{10}{\ln10}\,t_{10\times}$，\textbf{不是 $\ln10\approx2.3$ 倍}），\textbf{不能互换}。一个 e-folding 的时间为 $\tau=1/\gamma\approx0.33\,\mathrm{ms}$。
 
-\textbf{约定提醒：} 本书全程用 $\exp[\ii(\vect{k}\cdot\vect{r}-\omega t)]$，因此 $\gamma=\Im\omega>0$ 对应振幅 $\propto\ee^{\gamma t}$\emph{增长}。凡涉及"增长多少倍""多少个 e-folding"，含义必须写明，因为十倍与十个 e-folding 是不同的事。
+\textbf{约定提醒：} 本书全程用 $\exp[\ii(\vect{k}\cdot\vect{r}-\omega t)]$，因此 $\gamma=\Im\omega>0$ 对应振幅 $\propto\ee^{\gamma t}$\emph{增长}。凡涉及“增长多少倍”“多少个 e-folding”，含义必须写明，因为十倍与十个 e-folding 是不同的事。
 
 \textbf{(3) 波长缩短为 $\lambda = 0.5\,\mathrm{cm}$：}
 
@@ -73,7 +73,7 @@ k' = \frac{2\pi}{0.005} = 1257\,\mathrm{m}^{-1}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
 \item 瑞利--泰勒增长率与 $\sqrt{k}$ 成正比，短波扰动增长更快。
 \item 但极短波扰动（$k$ 很大）可能受到其他效应稳定（如表面张力、粘性、或磁场沿界面的张力）。在理想MHD中，没有这些截断机制，短波会无限增长。
-\item 在托卡马克中，气球模（瑞利--泰勒型）在"坏曲率"区（外中平面）发展最快，是限制压强比 $\beta$ 的主要因素之一。
+\item 在托卡马克中，气球模（瑞利--泰勒型）在“坏曲率”区（外中平面）发展最快，是限制压强比 $\beta$ 的主要因素之一。
 \item 约 $0.75\,\mathrm{ms}$ 内振幅增长 $10$ 倍（$3.3\,\mathrm{ms}$ 内增长 $\ee^{10}$ 倍），说明该不稳定性非常剧烈，若不加以控制（如通过理想导体壁或优化位形），等离子体会迅速损失。
 \end{itemize}
 \end{example}
@@ -83,7 +83,7 @@ k' = \frac{2\pi}{0.005} = 1257\,\mathrm{m}^{-1}
 (2) 不稳定波数范围。
 (3) 最大增长率及对应波数。
 
-\textbf{注意：} 这与"电子束穿过可动离子"（Buneman 模型，见正文 \S9.3 模型 B）是\textbf{两个不同的模型}，不可混用；本题只用对称双流模型 A。离子平衡速度为零\emph{不等于}离子扰动响应为零，但本模型里确实令离子只作背景——这个假设必须写明，不能悄悄换。
+\textbf{注意：} 这与“电子束穿过可动离子”（Buneman 模型，见正文 \S9.3 模型 B）是\textbf{两个不同的模型}，不可混用；本题只用对称双流模型 A。离子平衡速度为零\emph{不等于}离子扰动响应为零，但本模型里确实令离子只作背景——这个假设必须写明，不能悄悄换。
 \tcblower
 \textbf{解答：}
 
@@ -152,7 +152,7 @@ k_{\text{opt}}=\frac{\sqrt{3/2}\,\omega_{pe}}{u}=\frac{1.2247\times5\times10^{10
 
 想象一根载流等离子体柱，在某一位置受到径向压缩，柱半径略微减小。根据电流连续性 $I = \int j_z \diff S$，如果压缩是均匀的，电流密度 $j_z$ 在该处增加，环向磁场 $B_\theta = \mu_0 I(r)/(2\pi r)$ 的梯度增大。
 
-磁压 $p_B = B_\theta^2/(2\mu_0)$ 在柱表面处增大，产生额外的向内磁压。如果等离子体压强不足以抵抗，该处会被进一步压缩——像香肠被绳子勒紧一样，形成周期性的"细腰"和"鼓胀"。
+磁压 $p_B = B_\theta^2/(2\mu_0)$ 在柱表面处增大，产生额外的向内磁压。如果等离子体压强不足以抵抗，该处会被进一步压缩——像香肠被绳子勒紧一样，形成周期性的“细腰”和“鼓胀”。
 
 \textbf{ sausage模不稳定的条件：}
 \[
@@ -237,7 +237,7 @@ f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
 
 \textbf{步骤3：这一步\emph{到此为止}——不能由 $\omega_*$ 推出增长率。}
 
-上面的 $\omega_*\sim5\times10^{3}\,\mathrm{rad/s}$ 是\textbf{实频率}（波的振荡快慢），\textbf{不}是增长率。$\omega_*=k_yv_{de}$ 只告诉你有梯度时存在一个以逆磁速度传播的模，\textbf{它本身不含任何关于稳定性的信息}。"有梯度"与"该模一定增长"之间还差一整套机制。
+上面的 $\omega_*\sim5\times10^{3}\,\mathrm{rad/s}$ 是\textbf{实频率}（波的振荡快慢），\textbf{不}是增长率。$\omega_*=k_yv_{de}$ 只告诉你有梯度时存在一个以逆磁速度传播的模，\textbf{它本身不含任何关于稳定性的信息}。“有梯度”与“该模一定增长”之间还差一整套机制。
 
 \textbf{要判断是否增长，必须给出非绝热的电子响应。} 漂移波不稳定的标准图景是：电子沿磁力线的响应若\emph{恰好}是绝热的（$n_{e1}/n_0=e\phi_1/k_BT_e$，即响应瞬时、无相位延迟），则密度涨落与电势涨落\emph{同相}，$\vect{E}\times\vect{B}$ 漂移只把等离子体来回搬运，净输运为零——\textbf{不增长}。只有当电子响应\emph{非绝热}、产生一个相位差 $\delta$ 时，输运才与密度涨落同相，才能把能量喂给波。产生相位差的机制包括：
 \begin{itemize}[leftmargin=*,itemsep=0pt]
@@ -246,7 +246,7 @@ f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
 \item \textbf{曲率/坏曲率与 $\nabla T$}（ITG/TEM 等）：需要这些额外自由能源才能致不稳定。
 \end{itemize}
 
-\textbf{结论：} 本题应读作"\textbf{实频率尺度的估算}"，到此为止。$\gamma$ 必须来自具体的非绝热模型，\textbf{不能写成 $\gamma\sim\omega_*$}。请把本章漂移波例题的模型假设写清楚（哪个非绝热机制？$k_\parallel$ 多大？有无碰撞？）之后再求虚部。
+\textbf{结论：} 本题应读作“\textbf{实频率尺度的估算}”，到此为止。$\gamma$ 必须来自具体的非绝热模型，\textbf{不能写成 $\gamma\sim\omega_*$}。请把本章漂移波例题的模型假设写清楚（哪个非绝热机制？$k_\parallel$ 多大？有无碰撞？）之后再求虚部。
 
 \textbf{物理分析：}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
@@ -376,14 +376,14 @@ f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
 \tcblower
 \textbf{解答：}
 
-\textbf{坏曲率与好曲率：} 托卡马克磁场由环向场 $B_\varphi$ 与极向场 $B_\theta$ 合成，磁力线绕环螺旋前进。环内侧（内中平面）磁场强、磁力线曲率指向等离子体内部（\textbf{好曲率}）——磁张力对扰动起稳定作用。环外侧（外中平面）磁场弱、曲率离心向外（\textbf{坏曲率}）——扰动"鼓包"向外鼓时，磁张力反而做正功。
+\textbf{坏曲率与好曲率：} 托卡马克磁场由环向场 $B_\varphi$ 与极向场 $B_\theta$ 合成，磁力线绕环螺旋前进。环内侧（内中平面）磁场强、磁力线曲率指向等离子体内部（\textbf{好曲率}）——磁张力对扰动起稳定作用。环外侧（外中平面）磁场弱、曲率离心向外（\textbf{坏曲率}）——扰动“鼓包”向外鼓时，磁张力反而做正功。
 
 \textbf{能量原理定性分析：} 理想 MHD 能量原理把扰动能量写成 $\delta W = \delta W_{\text{磁张力}} + \delta W_{\text{压强}}$。在坏曲率区：
 \begin{itemize}[leftmargin=*,itemsep=0pt]
 \item 磁张力项：扰动沿磁力线拉伸磁场，消耗能量（稳定贡献），但在坏曲率区被离心效应部分抵消；
 \item 压强项：扰动把高压等离子体推到低磁压区（外中平面），释放膨胀能（不稳定贡献 $\propto \nabla p\cdot\xi$）。
 \end{itemize}
-当压强梯度足够大时，坏曲率区压强项的不稳定贡献超过磁张力项的稳定贡献，$\delta W<0$，气球模增长——扰动像"气球"一样从外中平面鼓出，故得此名。
+当压强梯度足够大时，坏曲率区压强项的不稳定贡献超过磁张力项的稳定贡献，$\delta W<0$，气球模增长——扰动像“气球”一样从外中平面鼓出，故得此名。
 
 \textbf{与比压 $\beta$ 的关系：} 压强项正比于 $\beta = 2\mu_0 p/B^2$（热压与磁压之比）。$\beta$ 升高意味着热压相对磁压增大，压强驱动增强而磁场稳定能力相对减弱。当 $\beta$ 超过临界值 $\beta_c$（工程上通常 $\beta_c\sim3\%$ 量级，取决于位形与剪切断面）时，气球模被触发——这正是托卡马克比压极限（Troyon 极限）的物理根源：$\beta$ 不能无限提高，否则压强梯度驱动的气球模立即破坏约束。
 
