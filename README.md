@@ -214,6 +214,7 @@ python check/consistency_audit.py   # 符号、单位、附录与正文的交叉
 | 版本 | 主要变化 |
 |------|----------|
 | v1.27.5 | 把附录 J（经典教材逐章对照）、K（跨教材经典例题）、L（分章自测题库）从主册移出，单独编成 26 页的[配套手册](pdf/plasma_physics_handbook.pdf)；主册附录字母保留 J／K／L 空位、A–I 之后直接接 M；正文里 62 处指向它们的说法改为「配套手册」；页数 657 → 635 |
+| v1.27.20 | 配图署名修正：附录 AG 的 KSTAR 装置图下署名与追溯不一致（原文误写 Eye Steel Film / CC BY 2.0），改为与 figures/CREDITS.md 一致（Michel Maccagnan / CC BY-SA 3.0）；正文、页数（615）与图数（118）均不变 |
 | v1.27.19 | 给附录 AJ 补上第二张图：W7-X 真空室扇段与接口法兰（加料口、抽气口、诊断窗口都在这些法兰上），画册 117 → 118 张；48 个附录全部达到「至少两张图」。页数保持 615 |
 | v1.27.18 | 配图来源与许可全量复核：把 117 张图的作者、许可与来源页与 Wikimedia Commons 元数据逐条比对（117/117 一致），修正两处作者字段——landau_damping.jpg 改为 Rwbest、az_iter_complex.jpg 改为 Oak Ridge National Laboratory；正文图下来源行同步，页数保持 615 |
 | v1.27.17 | 补上最后 4 张实拍图：Alcator C-Mod 机厅（W）、辐射热计（X）、Orion 激光大厅（Y）、K-DEMO 堆芯设计剖面（AZ）；画册 113 → 117 张，页数 612 → 615。到这里，48 个附录里除 AJ 外每篇都有至少两张图 |
