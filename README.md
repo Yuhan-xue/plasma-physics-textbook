@@ -214,6 +214,7 @@ python check/consistency_audit.py   # 符号、单位、附录与正文的交叉
 | 版本 | 主要变化 |
 |------|----------|
 | v1.27.5 | 把附录 J（经典教材逐章对照）、K（跨教材经典例题）、L（分章自测题库）从主册移出，单独编成 26 页的[配套手册](pdf/plasma_physics_handbook.pdf)；主册附录字母保留 J／K／L 空位、A–I 之后直接接 M；正文里 62 处指向它们的说法改为「配套手册」；页数 657 → 635 |
+| v1.27.18 | 配图来源与许可全量复核：把 117 张图的作者、许可与来源页与 Wikimedia Commons 元数据逐条比对（117/117 一致），修正两处作者字段——landau_damping.jpg 改为 Rwbest、az_iter_complex.jpg 改为 Oak Ridge National Laboratory；正文图下来源行同步，页数保持 615 |
 | v1.27.17 | 补上最后 4 张实拍图：Alcator C-Mod 机厅（W）、辐射热计（X）、Orion 激光大厅（Y）、K-DEMO 堆芯设计剖面（AZ）；画册 113 → 117 张，页数 612 → 615。到这里，48 个附录里除 AJ 外每篇都有至少两张图 |
 | v1.27.16 | 再补 6 张实拍图（第三批）：托卡马克真空室与第一壁（AD）、Huygens 超算机柜（AC）、NIF 氘氚内爆（U）、早期氚实验室 HAER 档案（AV）、ITER 建设现场（Z）、HELEN 激光靶区（AS）；画册 107 → 113 张，页数 609 → 612 |
 | v1.27.15 | 再补 6 张实拍图（第二批发）：ITER 的 ECRH 转向镜（AT）、Orion 激光靶室（AW）、尘埃等离子体颗粒（R）、电容储能组（AR）、LISA 精密干涉光学台（AQ）、WEST 装置新扇区集成（AP）；画册 101 → 107 张，页数 607 → 609 |

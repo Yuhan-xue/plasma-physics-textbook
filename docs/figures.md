@@ -55,7 +55,7 @@
 
 | 图 | 说明 | 作者 | 许可与来源 |
 |---|---|---|---|
-| <img src="figures-thumbs/landau_damping.jpg" width="230"> | 朗道阻尼：共振粒子把波的能量带走 | Ramin Rahimi / Commons 贡献者 | CC BY-SA 3.0（[来源页](https://commons.wikimedia.org/wiki/File:Landau-damp.png)） |
+| <img src="figures-thumbs/landau_damping.jpg" width="230"> | 朗道阻尼：共振粒子把波的能量带走 | Rwbest | CC BY-SA 3.0（[来源页](https://commons.wikimedia.org/wiki/File:Landau-damp.png)） |
 | <img src="figures-thumbs/vlasiator.jpg" width="230"> | 太阳风与地球磁层的全球动理学模拟（Vlasiator） | Space Travel Blog / Rute Marta Jansone | CC BY 4.0（[来源页](https://commons.wikimedia.org/wiki/File:Sun-Earth_Interaction.jpg)） |
 
 ## 第 8 章（2 张）
@@ -281,7 +281,7 @@
 
 | 图 | 说明 | 作者 | 许可与来源 |
 |---|---|---|---|
-| <img src="figures-thumbs/az_iter_complex.jpg" width="230"> | ITER 主机厂房建设实景（2018） | Cedarstrand / ITER Organization | CC BY 2.0（[来源页](https://commons.wikimedia.org/wiki/File:ITER_construction_in_2018_(41809718461).jpg)） |
+| <img src="figures-thumbs/az_iter_complex.jpg" width="230"> | ITER 主机厂房建设实景（2018） | Oak Ridge National Laboratory | CC BY 2.0（[来源页](https://commons.wikimedia.org/wiki/File:ITER_construction_in_2018_(41809718461).jpg)） |
 | <img src="figures-thumbs/az_kdemo_core.jpg" width="230"> | K-DEMO 的堆芯设计剖面 | K. Kim 等 | CC BY 3.0（[来源页](https://commons.wikimedia.org/wiki/File:K-DEMO_device_core_design_features.jpg)） |
 
 ## 附录 M（2 张）

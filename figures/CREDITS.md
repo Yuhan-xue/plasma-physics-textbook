@@ -28,7 +28,7 @@
 | `solar_corona.jpg` | 日冕与日珥（白光日冕仪，等离子体沿磁力线成环） | NASA Johnson Space Center | Public domain | https://commons.wikimedia.org/wiki/File:Solar_corona-prominence_seen_through_the_White_Light_Coronograph_(s74-15697).jpg | 第 5 章 |
 | `sun_earth_interaction.jpg` | 太阳风与磁层耦合：波把能量从太阳风送进磁层 | Space Travel Blog / Rute Marta Jansone | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:Sun-Earth_Interaction.jpg | 第 6 章 |
 | `whistler_spectrogram.jpg` | VLF 频谱图：哨声波的下降调谐色散曲线 | drdan14 | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Whistler_radio_palmer_2004-07-23_T035528.png | 第 6 章 |
-| `landau_damping.jpg` | 朗道阻尼：共振粒子把波的能量带走 | Ramin Rahimi / Commons 贡献者 | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Landau-damp.png | 第 7 章 |
+| `landau_damping.jpg` | 朗道阻尼：共振粒子把波的能量带走 | Rwbest | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Landau-damp.png | 第 7 章 |
 | `vlasiator.jpg` | 太阳风与地球磁层的全球动理学模拟（Vlasiator） | Space Travel Blog / Rute Marta Jansone | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:Sun-Earth_Interaction.jpg | 第 7 章 |
 | `icp_torch.jpg` | 电感耦合等离子体炬：欧姆加热的可见结果 | Superchilum | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:ICP_quartz_torch_1.JPG | 第 8 章 |
 | `plasma_cutting.jpg` | 等离子弧切割：电流被电阻率限制 | Loffredo | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:STEP-NC_plasma_cutting.jpg | 第 8 章 |
@@ -99,7 +99,7 @@
 | `ay_w7x_tiles.jpg` | W7-X 偏滤器碳瓦安装 | Christopher Roux / EUROfusion | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:W7-X_tile_installation.jpg | 附录AY |
 | `ion_irradiation.jpg` | 离子辐照实验：dpa 是怎么被制造出来的 | BibMak | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:The_irradiation_experiments_at_the_ion_accelerator_DC-60._Astana,_Kazakhstan.JPG | 附录AY |
 | `plasma_spray.jpg` | 等离子体喷涂：给面向等离子体部件做涂层 | Student-julia-pwr | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Plasma_spraying_process.jpg | 附录AY |
-| `az_iter_complex.jpg` | ITER 主机厂房建设实景（2018） | Cedarstrand / ITER Organization | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:ITER_construction_in_2018_(41809718461).jpg | 附录 AZ |
+| `az_iter_complex.jpg` | ITER 主机厂房建设实景（2018） | Oak Ridge National Laboratory | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:ITER_construction_in_2018_(41809718461).jpg | 附录 AZ |
 | `az_kdemo_core.jpg` | K-DEMO 的堆芯设计剖面 | K. Kim 等 | CC BY 3.0 | https://commons.wikimedia.org/wiki/File:K-DEMO_device_core_design_features.jpg | 附录 AZ |
 | `gyrotron_140ghz.jpg` | 140 GHz / 1 MW 回旋管：射频加热三件套里的一件 | Z6ehswhha5HGRTd | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Wendelstein_7-X,_Gyrotron,140Ghz,_1MW.jpg | 附录M |
 | `ion_source_fermilab.jpg` | 离子源：中性束注入的第一步 | Z22 | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Ion_source_at_used_in_the_Cockcroft-Walton_accelerators_at_Fermilab.jpg | 附录M |
