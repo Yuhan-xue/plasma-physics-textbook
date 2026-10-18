@@ -675,7 +675,7 @@ $q_{95}$ 越高，同样的 $n=3$ 共振面越靠里，RMP 对台基的作用越
 
 \begin{enumerate}
 \item \textbf{现算级}：由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAD\_calc.py} 当场打印，
-输入写在脚本顶部，正文与脚本可以逐位核对。绝大多数数字属于这一级。
+输入写在计算脚本开头，正文与脚本可以逐位核对。绝大多数数字属于这一级。
 \item \textbf{声明级}：物理上依赖具体装置或模型选择、不能从更基本的量推出的输入，
 例如 $\alpha_{\mathrm{crit}}=2.5/4.0$、$H_{98}=1.0$、$\tau_E=65.765\ \mathrm{ms}$、
 密度剖面系数 $1.5$ 与 $0.076$、$n/n_G=0.85$、$\Delta W_{\mathrm{ELM}}/W_{\mathrm{th}}=0.07$、
@@ -697,7 +697,7 @@ RMP 抑制的适用条件。这些数只出现在这一节，不在正文计算�
 等级 & 例子 & 来源 & 在本书里怎么用 \\
 \midrule
 现算级 & $P_{\mathrm{SOL}}=103.468\ \mathrm{MW}$、$\lambda_q=0.388859\ \mathrm{mm}$ & \texttt{tools/\allowbreak{}calc/\allowbreak{}appAD\_calc.py} & 逐节核对 \\
-声明级 & $\alpha_{\mathrm{crit}}$、$H_{98}$、$0.07$、$1\ \mathrm{MJ\,m^{-2}}$ & 脚本顶部注释 & 整行核对 \\
+声明级 & $\alpha_{\mathrm{crit}}$、$H_{98}$、$0.07$、$1\ \mathrm{MJ\,m^{-2}}$ & 计算脚本注释 & 整行核对 \\
 文献级 & ELM 上升时间范围、$\lambda_q$ 定标散布 & 本节的文献条目 & 不参与计算 \\
 \bottomrule
 \end{tabular}
@@ -712,7 +712,7 @@ RMP 抑制的适用条件。这些数只出现在这一节，不在正文计算�
 \item \textbf{不复制}任何原书的文字段落、公式编号、插图与数据表。正文的中文表述、
 表格版式、练习题与解答全部自拟。
 \item \textbf{不复制}任何实验装置的实测曲线或数据点。本附录的图外数值都来自
-\texttt{tools/\allowbreak{}calc/\allowbreak{}appAD\_calc.py} 的现算值或脚本顶部的声明值。
+\texttt{tools/\allowbreak{}calc/\allowbreak{}appAD\_calc.py} 的现算值或计算脚本里声明的值。
 \item \textbf{不复制}文献中的定标系数表。$\lambda_q\propto B_\theta^{-1.19}$ 只借用
 其函数形式与指数，系数 $0.63$ 与适用范围在正文里明确标为「声明 + 文献级」，
 并说明它不是从本附录的数据推出来的。

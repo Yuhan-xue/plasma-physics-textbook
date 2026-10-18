@@ -93,12 +93,12 @@ ax1.text(0, -0.50, '48 个附录共 %d 页；前 10 大附录只占其中 27%%�
 ax2 = fig.add_axes([0.545, 0.655, 0.40, 0.175])
 ax2.set_facecolor('white')
 vers = ['v1.26.31', 'v1.27.0', 'v1.27.1', 'v1.27.2', 'v1.27.3', 'v1.27.5', 'v1.27.6', 'v1.27.7',
-        'v1.27.8', 'v1.27.9']
-pages = [676, 674, 664, 668, 657, 635, 635, 634, 605, PAGES]
-figs = [70, 87, 87, 95, 95, 95, 95, 95, NF, NF]
+        'v1.27.8', 'v1.27.9', 'v1.27.10']
+pages = [676, 674, 664, 668, 657, 635, 635, 634, 605, PAGES, PAGES]
+figs = [70, 87, 87, 95, 95, 95, 95, 95, NF, NF, NF]
 xs = list(range(len(vers)))
 ax2.plot(xs, pages, marker='o', color=ACCENT, linewidth=2.4)
-offsets = [(0, 9), (0, 9), (0, 9), (0, 9), (-2, -18), (8, 8), (8, 8), (8, 8), (8, -16), (8, -16)]
+offsets = [(0, 9), (0, 9), (0, 9), (0, 9), (-2, -18), (8, 8), (8, 8), (8, 8), (8, -16), (8, -16), (8, -16)]
 for x, p, off in zip(xs, pages, offsets):
     ax2.annotate(str(p), (x, p), textcoords='offset points', xytext=off,
                  ha='center', fontsize=10.2, color=ACCENT, weight='bold')
