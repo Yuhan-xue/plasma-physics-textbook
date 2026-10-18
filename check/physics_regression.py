@@ -7034,7 +7034,7 @@ def check_P37_appendix_ae_kinetics():
         ('Helander \\& Sigmar (2002) & 输运系数与张量闭合的口径 & 原书公式编号与数据 \\\\', '表格数据行'),
         ('Wesson (2011) & 工作点参数、快粒子与 alpha 的地位 & 原书表格与数值 \\\\', '表格数据行'),
         ('Bosch \\& Hale (1992) & D-T 反应率对温度的依赖 & 拟合公式与系数 \\\\', '表格数据行'),
-        ('\\begin{tip}{诚实地说清「本附录不给什么」}{tip-app-ae-honest}', '语义盒标题'),
+        ('\\begin{tip}{诚实地说清「本附录没有涵盖什么」}{tip-app-ae-honest}', '语义盒标题'),
         ('\\textbf{出处：}本节的文献清单与版权口径参照本教材其他附录的惯例', '出处声明整行'),
     ):
         has(text, lit, 'src/%s（%s）' % (APP_FILES['AE'], why))
@@ -7353,7 +7353,7 @@ def check_P38_appendix_af_turbulence():
         ('现算级 & 由 \\texttt{tools/\\allowbreak{}calc/\\allowbreak{}appAF\\_calc.py} 从工作点算出 & $\\rho_s=2.92274$ mm、$\\chi_{\\mathrm{mix}}=16.9004$ m$^2$s$^{-1}$ & 可逐位复算 \\\\', '表格数据行'),
         ('声明级 & 计算脚本给定的输入或文献量级 & $L_n=1.0$ m、$\\eta_{i,\\mathrm{crit}}=1.5$、谱指数 $-3/-5/3$ & 可改输入重算 \\\\', '表格数据行'),
         ('文献级 & 定标系数的适用范围 & 回旋玻姆系数、混合长饱和因子 & 需查原文 \\\\', '表格数据行'),
-        ('\\begin{tip}{诚实地说清「本附录不给什么」}{tip-app-af-honest}', '语义盒标题'),
+        ('\\begin{tip}{诚实地说清「本附录没有涵盖什么」}{tip-app-af-honest}', '语义盒标题'),
         ('\\textbf{出处：}回旋玻姆定标与 $\\rho_s$ 口径参照 Wesson \\emph{Tokamaks}（第 4 版，2011，第 ', '出处声明整行'),
     ):
         has(text, lit, 'src/%s（%s）' % (APP_FILES['AF'], why))
@@ -7717,7 +7717,7 @@ def check_P39_appendix_ag_equilibrium():
         ('现算级 & 磁面几何、$\\beta$ 三种口径、位移、电流极限 & 可作结论，句尾注明脚本 \\\\', '表格数据行'),
         ('声明级 & $\\kappa$、$\\delta$、$l_i$、$q_0$、$\\beta_N$ 上限、形状增益 & 只作输入，正文写明「声明值」 \\\\', '表格数据行'),
         ('文献级 & Troyon 散布、ITER 水平、平衡程序 & 只作量级对照，不作结论 \\\\', '表格数据行'),
-        ('\\begin{tip}{本附录不给什么}{tip-app-ag-honest}', '语义盒标题'),
+        ('\\begin{tip}{本附录没有涵盖什么}{tip-app-ag-honest}', '语义盒标题'),
         ('\\textbf{出处：}本附录的写法参照 Freidberg \\emph{Ideal MHD}（2014，第 5--6、11--12 章）。\n', '出处声明整行'),
     ):
         has(text, lit, 'src/%s（%s）' % (APP_FILES['AG'], why))
@@ -8131,7 +8131,7 @@ def check_P40_appendix_ah_atomic():
         ('现算级 & 由 \\texttt{tools/\\allowbreak{}calc/\\allowbreak{}appAH\\_calc.py} 从常数与输入现算 & Saha 常数、各电离度、跃迁波长、多普勒线宽、塞曼分裂、$\\sigma_{12}$、$\\tau$、练习解答 \\\\', '表格数据行'),
         ('声明级 & 计算脚本写入的输入或文献值，不参与推导 & D-$\\alpha$ 波长 $656.28$ nm、He II $468.57$ nm、$A_{21}=4.41\\times10^{7}$ s$^{-1}$、仪器展宽 $0.02$ nm、Stark FWHM $0.053$ nm、日冕极限 $10^{20}$ m$^{-3}$ \\\\', '表格数据行'),
         ('文献级 & 只作定性对照或公式出处，不进入任何计算 & Griem 的谱线展宽理论、Saha 方程的原始文献、NIST 波长表的量级 \\\\', '表格数据行'),
-        ('\\begin{tip}{本附录不给什么}{tip-app-ah-honest}', '语义盒标题'),
+        ('\\begin{tip}{本附录没有涵盖什么}{tip-app-ah-honest}', '语义盒标题'),
         ('\\textbf{出处：}本节的分级与版权口径沿用全书统一约定，', '出处声明整行'),
     ):
         has(text, lit, 'src/%s（%s）' % (APP_FILES['AH'], why))
@@ -8582,7 +8582,7 @@ def check_P41_appendix_ai_icf():
         ('级别 & 定义 & 本附录的例子 & 复算途径 \\\\', '表格数据行'),
         ('$G = 160.033$ & \\texttt{tools/\\allowbreak{}calc/\\allowbreak{}appAI\\_calc.py} \\\\', '表格数据行'),
         ('$\\alpha$ 射程 $0.3$ g cm$^{-2}$ & 脚本内 \\texttt{[DECLARED]} 段 \\\\', '表格数据行'),
-        ('\\begin{tip}{本附录不给什么}{tip-app-ai-honest}', '语义盒标题'),
+        ('\\begin{tip}{本附录没有涵盖什么}{tip-app-ai-honest}', '语义盒标题'),
         ('\\textbf{出处：}本附录的间接驱动、内爆、不稳定性与点火图像分别参照', '出处声明整行'),
     ):
         has(text, lit, 'src/%s（%s）' % (APP_FILES['AI'], why))
@@ -9046,7 +9046,7 @@ def check_P42_appendix_aj_fuelling():
         ('\\textbf{出处：}Greenwald 密度极限参照 Greenwald 等（1988，\\emph{Nucl. Fusion} \\tex', '出处声明整行'),
         ('\\textbf{出处：}本题参数与公式分别来自 Milora 等（1995）。\nParks \\& Turnbull（1978）。\n', '出处声明整行'),
         ('级别 & 含义 & 本附录的例子 \\\\', '表格数据行'),
-        ('\\begin{tip}{本附录不给什么}{tip-app-aj-honest}', '语义盒标题'),
+        ('\\begin{tip}{本附录没有涵盖什么}{tip-app-aj-honest}', '语义盒标题'),
         ('\\textbf{出处：}本附录借鉴的框架主要来自 Wesson \\emph{Tokamaks}（第 4 版，2011）。\n', '出处声明整行'),
     ):
         has(text, lit, 'src/%s（%s）' % (APP_FILES['AJ'], why))
@@ -9499,7 +9499,7 @@ def check_P43_appendix_ak_safety():
         ('现算级 & 由脚本按公式算出 & $3.55978\\times10^{14}$ Bq/g、$6407.61$ Sv、$35.0204$ 年、$25000$ 倍 & 可以 \\\\', '表格数据行'),
         ('声明级 & 计算脚本给定的输入 & 剂量系数 $1.8\\times10^{-11}$ Sv/Bq、比活度 $10^{6}$ Bq/kg、PRF $=100$ & 改输入即可 \\\\', '表格数据行'),
         ('文献级 & 只作量级对照 & 年释放目标 1 g/年、场址因子 $20$ $\\mu$Sv/g、豁免水平 $10^{4}$ Bq/kg & 不参与计算 \\\\', '表格数据行'),
-        ('\\begin{tip}{本附录不给什么}{tip-app-ak-honest}', '语义盒标题'),
+        ('\\begin{tip}{本附录没有涵盖什么}{tip-app-ak-honest}', '语义盒标题'),
         ('\\textbf{出处：}本附录的三级口径与版权处理沿用配套手册 K、L 与附录 N、Z 的约定。\n', '出处声明整行'),
     ):
         has(text, lit, 'src/%s（整行绑定：%s）' % (APP_FILES['AK'], why))
@@ -9963,7 +9963,7 @@ def check_P44_appendix_al_nonlinear():
         ('现算级 & 抖动速度、有质动力势、阈值、孤子宽度、$P_c$、$E_{WB}$、$\\omega_b$、$E^{*}$、双电层场强 & 全部由 \\texttt{tools/\\allowbreak{}calc/\\allowbreak{}appAL\\_calc.py} 用 $n_e = 10^{20}$ m$^{-3}$、$T_e = 9194$ eV、$B = 5.3$ T 与声速 $c_s = 593524$ m s$^{-1}$（与附录 AE 同口径）算出 \\\\', '表格数据行'),
         ('声明级 & 自聚焦系数 $17.4$、孤子形状因子、双电层厚度 $100\\,\\lambda_{De}$、冕区 $0.35$ $\\mu$m 与 $500$ TW 驱动器参数 & 量级或工程典型值，正文中已逐处标为「声明」或「量级」 \\\\', '表格数据行'),
         ("文献级 & 孤子解（KdV）、三波耦合方程形式、O'Neil 阻尼振荡图景、BGK 平衡、扎哈罗夫方程 & 只引用方程形式与结论，不作数值比对 \\\\", '表格数据行'),
-        ('\\begin{tip}{本附录不给什么}{tip-app-al-honest}', '语义盒标题'),
+        ('\\begin{tip}{本附录没有涵盖什么}{tip-app-al-honest}', '语义盒标题'),
     ):
         has(text, lit, 'src/%s（整行绑定：%s）' % (APP_FILES['AL'], why))
 
@@ -10417,7 +10417,7 @@ def check_P45_appendix_am_magnets():
         ('Mitchell 等（\\emph{IEEE Trans. Appl. Supercond.} 21，2011） & ITER 磁体的力量级与保护时间常数 & 工程设计图、材料牌号数据 \\\\', '表格数据行'),
         ('Freidberg（2007）、Wesson（2011） & 磁压与线圈受力的物理图像 & 习题与插图 \\\\', '表格数据行'),
         ('ITER Physics Basis（\\emph{Nuclear Fusion} 39，1999） & 装置级参数的量级对照 & 表格与图 \\\\', '表格数据行'),
-        ('\\begin{tip}{本附录不给什么}{tip-app-am-honest}', '语义盒标题'),
+        ('\\begin{tip}{本附录没有涵盖什么}{tip-app-am-honest}', '语义盒标题'),
     ):
         has(text, lit, 'src/%s（%s）' % (APP_FILES['AM'], why))
 
@@ -10883,7 +10883,7 @@ def check_P46_appendix_an_polarimetry():
         ('MSE 原理与首次实现 & Levinton 等, Phys. Rev. Lett. 63, 2060 (1989) & 只引用其原理结论，不复制装置细节 \\\\', '表格数据行'),
         ('MSE 数据分析与定标 & Wróblewski 与 Lao, Rev. Sci. Instrum. 63, 5140 (1992) & 只引用定标思路 \\\\', '表格数据行'),
         ('原子物理与谱线展宽 & Salzmann《Atomic Physics in Hot Plasmas》1998 & 与附录 AH 同源，不重复 \\\\', '表格数据行'),
-        ('\\begin{tip}{本附录不给什么}{tip-app-an-honest}', '语义盒标题'),
+        ('\\begin{tip}{本附录没有涵盖什么}{tip-app-an-honest}', '语义盒标题'),
     ):
         has(text, lit, 'src/%s（%s）' % (APP_FILES['AN'], why))
 
@@ -11262,7 +11262,7 @@ def check_P47_appendix_ao_vacuum():
         ('溅射与侵蚀寿命 & Roth 等（\\textit{PPCF} \\textbf{50}, 2008） & 只取产额量级，题型自拟 \\\\', '表格数据行'),
         ('共沉积与氚滞留 & Federici 等（\\textit{Nuclear Fusion} \\textbf{41}, 2001） & 只取 D/C 比与层厚量级 \\\\', '表格数据行'),
         ('库存与去氚约束 & Dolan（编）《Magnetic Fusion Technology》（2013）第 6 章 & 与附录 Z/AJ/AK 同口径，改写为 1.22911 年这笔账 \\\\', '表格数据行'),
-        ('\\begin{tip}{本附录不给什么}{tip-app-ao-honest}', '语义盒标题'),
+        ('\\begin{tip}{本附录没有涵盖什么}{tip-app-ao-honest}', '语义盒标题'),
     ):
         has(text, lit, 'src/%s（%s）' % (APP_FILES['AO'], why))
 
@@ -11670,7 +11670,7 @@ def check_P48_appendix_ap_maintenance():
         ('教材 & 剂量、屏蔽与累积剂量的算法 \\\\', '表格数据行'),
         ('Gilbert 与 Sublet 活化计算综述（2010 年代） & 综述 & 活化与剂量率的量级 \\\\', '表格数据行'),
         ('IAEA 远程处理与热室技术文件（2000 年代） & 技术文件 & cask 与热室流转口径 \\\\', '表格数据行'),
-        ('\\begin{tip}{本附录不给什么}{tip-app-ap-honest}', '语义盒标题'),
+        ('\\begin{tip}{本附录没有涵盖什么}{tip-app-ap-honest}', '语义盒标题'),
     ):
         has(text, lit, 'src/%s（%s）' % (APP_FILES['AP'], why))
 
@@ -12066,7 +12066,7 @@ def check_P49_appendix_aq_interferometry():
         ('Donné 等, \\textit{Nuclear Fusion} \\textbf{47} (2007) S337 & ITER 密度诊断的精度要求与工程口径 & 二级（工程综述） \\\\', '表格数据行'),
         ('Abel (1826) 的积分变换 & 阿贝尔正反变换与层析思想 & 三级（史料） \\\\', '表格数据行'),
         ('本书 \\texttt{tools/\\allowbreak{}calc/\\allowbreak{}appAQ\\_calc.py} & 全部数值（可由脚本复算） & 自算（一级） \\\\', '表格数据行'),
-        ('\\begin{tip}{本附录不给什么}{tip-app-aq-honest}', '语义盒标题'),
+        ('\\begin{tip}{本附录没有涵盖什么}{tip-app-aq-honest}', '语义盒标题'),
     ):
         has(text, lit, 'src/%s（%s）' % (APP_FILES['AQ'], why))
 
@@ -12539,7 +12539,7 @@ def check_P50_appendix_ar_power():
         ('Kundur 1994 & 频率变化率与惯性常数的关系 & 教科书 & 只取关系式，不复制 \\\\', '表格数据行'),
         ('Genta 1985 / Bolund 2007 & 飞轮的应力限制与比能量 & 专著/综述 & 只取 $\\sigma=\\rho v^2$ 与量级，不复制 \\\\', '表格数据行'),
         ('ITER Physics Basis 1999 & 电源与破裂缓解的时间尺度 & 文献 & 只引时间尺度，不复制 \\\\', '表格数据行'),
-        ('\\begin{tip}{本附录不给什么}{tip-app-ar-honest}', '语义盒标题'),
+        ('\\begin{tip}{本附录没有涵盖什么}{tip-app-ar-honest}', '语义盒标题'),
         ('\\textbf{出处：}来源表所列文献。\n分级与不复制口径沿用本书附录 AM/AO/AP 的同一约定。本附录不复制', '出处声明整行'),
     ):
         has(text, lit, 'src/%s（%s）' % (APP_FILES['AR'], why))
@@ -13028,7 +13028,7 @@ def check_P51_appendix_as_rays():
         ('Hutchinson 2002 & AS.4--AS.5 & 反射计与 ECE 原理 & 不复制公式表与图 \\\\', '表格数据行'),
         ('Tracy 等 2014 & AS.2 & 射线方程与波迹 & 只借用形式 \\\\', '表格数据行'),
         ('ITER Physics Basis 1999 & AS.6 & 多普勒共振与沉积 & 不复制剖面图 \\\\', '表格数据行'),
-        ('\\begin{tip}{本附录不给什么}{tip-app-as-honest}', '语义盒标题'),
+        ('\\begin{tip}{本附录没有涵盖什么}{tip-app-as-honest}', '语义盒标题'),
         ('\\textbf{出处：}本附录的「不复制」口径与全书一致：凡引用原书结论处只写结论与出处，', '出处声明整行'),
     ):
         has(text, lit, 'src/%s（%s）' % (APP_FILES['AS'], why))
@@ -13506,7 +13506,7 @@ def check_P52_appendix_at_waves():
         ('Laqua 等（1997）& 隧穿与 O--X--B & EBW 加热实验背景；不复制实验图 \\\\', '表格数据行'),
         ('Wesson, \\emph{Tokamaks}（2011）第 11 章 & 加热落点 & 共振条件与加热方案的表述；不复制原书图 \\\\', '表格数据行'),
         ('ITER Physics Basis（1999）第 6 章 & 加热落点 & ECRH/ICRH 参数口径的对照；不复制原书表格 \\\\', '表格数据行'),
-        ('\\begin{tip}{本附录不给什么}{tip-app-at-honest}', '语义盒标题'),
+        ('\\begin{tip}{本附录没有涵盖什么}{tip-app-at-honest}', '语义盒标题'),
         ('\\textbf{出处：}来源分级与版权口径沿用本套教材的统一约定（只复算、不复制）。\n', '出处声明整行'),
     ):
         has(text, lit, 'src/%s（%s）' % (APP_FILES['AT'], why))
@@ -13977,7 +13977,7 @@ def check_P53_appendix_au_data():
         ('Cowan 1998 & 统计推断与一致性检验 & 教材 \\\\', '表格数据行'),
         ('Nyquist 1928 / Shannon 1949 & 采样定理与混叠 & 原始文献 \\\\', '表格数据行'),
         ('Efron \\& Tibshirani 1993 & bootstrap 与重采样 & 专著 \\\\', '表格数据行'),
-        ('\\begin{tip}{本附录不给什么}{tip-app-au-honest}', '语义盒标题'),
+        ('\\begin{tip}{本附录没有涵盖什么}{tip-app-au-honest}', '语义盒标题'),
     ):
         has(text, lit, 'src/%s（%s）' % (APP_FILES['AU'], why))
 

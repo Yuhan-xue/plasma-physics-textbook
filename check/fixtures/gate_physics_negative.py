@@ -1533,7 +1533,7 @@ PATCHES = [
     (APPAAQ, r'\begin{tip}{剥皮法的权重写在壳层厚度里}',
            r'\begin{tip}{剥皮法的权重写在壳层厚里}'),
     # 522. 语义盒标题改字（不给什么→不提供什么）
-    (APPAAQ, r'\begin{tip}{本附录不给什么}',
+    (APPAAQ, r'\begin{tip}{本附录没有涵盖什么}',
            r'\begin{tip}{本附录不提供什么}'),
     # 523. 数据：中心弦线积分密度
     (APPAAQ, r'$y = 0$ 弦 & $2.66667\times10^{20}\ \mathrm{m^{-2}}$',
