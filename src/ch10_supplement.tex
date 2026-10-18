@@ -374,7 +374,7 @@ E_{\text{laser}} = \frac{0.35\,\mathrm{MJ}}{0.1} \approx 3.5\,\mathrm{MJ}
         \node[text=figGray,font=\footnotesize,anchor=north] at (2,-3.05) {环向轴};
 
         \draw[draw=figBlue,line width=0.9pt,fill=figBlue!10] (4.5,0) ellipse (1.5 and 2.5);
-        \node[text=figInk,font=\footnotesize] at (4.5,-2.10) {等离子体};
+        \node[text=figInk,font=\footnotesize,fill=white,inner sep=1.5pt] at (5.00,-1.15) {等离子体};
 
         % 大半径 R 与小半径 a（灰色量标注，不占用语义色）
         \draw[figGray,line width=0.6pt,<->,>=Stealth] (2,2.85) -- (4.5,2.85);
@@ -388,9 +388,9 @@ E_{\text{laser}} = \frac{0.35\,\mathrm{MJ}}{0.1} \approx 3.5\,\mathrm{MJ}
           {$B_{\theta}$};
         \draw[figlead] (3.45,0.50) -- (3.62,0.42);
 
-        % 环向场与等离子体电流均垂直纸面
-        \node[text=figGreen,font=\footnotesize] at (5.35,1.75) {$\odot\ B_{\phi}$};
-        \node[text=figPurple,font=\footnotesize] at (5.35,-1.45) {$\odot\ I_p$};
+        % 环向场与等离子体电流均垂直纸面（I_p 只用符号，文字见图例，避免压住“等离子体”）
+        \node[text=figGreen,font=\footnotesize,fill=white,inner sep=1.5pt,anchor=west] at (4.85,1.75) {$\odot\ B_{\phi}$};
+        \node[text=figPurple,font=\footnotesize] at (5.20,-1.80) {$\odot$};
 
         % 图例（绘图区外右侧）
         \node[text=figGreen,font=\footnotesize,anchor=west] at (6.90,1.55) {$B_{\phi}$：环向磁场};

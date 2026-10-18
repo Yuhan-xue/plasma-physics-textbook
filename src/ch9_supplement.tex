@@ -302,7 +302,7 @@ f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
   resist2/.style={draw=figAmber!70,line width=0.7pt,rounded corners=2pt,fill=figGold!5,align=center,inner sep=2.5pt},
   micro/.style={draw=figGreen,line width=0.8pt,rounded corners=2pt,fill=figGreen!8,align=center,inner sep=3pt,minimum height=0.7cm},
   micro2/.style={draw=figGreen!70,line width=0.7pt,rounded corners=2pt,fill=figGreen!5,align=center,inner sep=2.5pt},
-  leaf/.style={draw=figGray!55,line width=0.6pt,rounded corners=1.5pt,fill=figPaper,align=center,inner sep=0.6pt},
+  leaf/.style={draw=figGray!55,line width=0.6pt,rounded corners=1.5pt,fill=figPaper,align=center,inner sep=2pt},
   edge/.style={draw=figGray,line width=0.6pt,->,>=Stealth}]
 % 手工排布四列，逐列指定 y，避免自动森林算法在 10 个叶片时纵向相撞。
 \node[draw=figNavy,line width=0.9pt,rounded corners=2pt,fill=figNavy!10,
@@ -353,7 +353,7 @@ f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
 \begin{tikzpicture}[scale=1.05,font=\small]
 % 重流体在上、轻流体在下；界面扰动被放大：尖峰处重流体下沉，谷处轻流体上升。
 \fill[figBlue!10] (-4.5,2.0) rectangle (4.5,4.0);
-\node[text=figInk,font=\small] at (0,3.25) {重流体 $\rho_2$};
+\node[text=figInk,font=\small] at (0,3.62) {重流体 $\rho_2$};
 \fill[figGold!10] (-4.5,-1.6) rectangle (4.5,2.0);
 \node[text=figInk,font=\small] at (0,0.20) {轻流体 $\rho_1$};
 

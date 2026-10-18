@@ -278,37 +278,46 @@ $f = 20\,\mathrm{MHz} \ll f_{pe}$，远低于截止频率，\textbf{不能传播
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[
-  font=\footnotesize,
+\begin{tikzpicture}[font=\footnotesize,
   root/.style={draw=figNavy,line width=0.9pt,fill=figNavy!10,rounded corners=2pt,inner sep=3pt,font=\small},
   lv1/.style={draw=figBlue,line width=0.8pt,fill=figBlue!10,rounded corners=2pt,inner sep=3pt,font=\small},
   lv2/.style={draw=figGreen,line width=0.8pt,fill=figGreen!10,rounded corners=2pt,inner sep=3pt},
   leaf/.style={draw=figGray!55,line width=0.6pt,fill=figPaper,rounded corners=1.5pt,inner sep=2pt},
-  level 1/.style={sibling distance=3.0cm, level distance=1.6cm},
-  level 2/.style={sibling distance=1.5cm, level distance=1.9cm},
-  level 3/.style={sibling distance=0.80cm, level distance=2.9cm},
-  grow'=right]
-\node[root] {等离子体中的波}
-  child {node[lv1] {无磁场 $B_0=0$}
-    child {node[lv2] {静电波（纵波）}
-      child {node[leaf] {Langmuir 波}}
-      child {node[leaf] {离子声波}}
-    }
-    child {node[lv2] {电磁波（横波）}
-      child {node[leaf] {O 波}}
-    }
-  }
-  child {node[lv1] {有磁场 $B_0\neq 0$}
-    child {node[lv2] {$\vect{k}\parallel\vect{B}_0$}
-      child {node[leaf] {哨声波}}
-      child {node[leaf] {阿尔芬波}}
-      child {node[leaf] {离子回旋波}}
-    }
-    child {node[lv2] {$\vect{k}\perp\vect{B}_0$}
-      child {node[leaf] {低混杂波}}
-      child {node[leaf] {高混杂波}}
-    }
-  };
+  edge/.style={draw=figGray,line width=0.6pt,->,>=Stealth}]
+% 手工四列排布：叶片逐一定 y，避免自动森林算法把两个子树的叶子挤在一起。
+\node[root] (root) at (0,0.95) {等离子体中的波};
+
+\node[lv1] (b0) at (4.2,2.55) {无磁场 $B_0=0$};
+\node[lv1] (b1) at (4.2,-0.65) {有磁场 $B_0\neq0$};
+
+\node[lv2] (el) at (8.2,3.15) {静电波（纵波）};
+\node[lv2] (em) at (8.2,1.95) {电磁波（横波）};
+\node[lv2] (par) at (8.2,0.35) {$\vect{k}\parallel\vect{B}_0$};
+\node[lv2] (perp) at (8.2,-1.60) {$\vect{k}\perp\vect{B}_0$};
+
+\node[leaf] (l1) at (12.2,3.55) {Langmuir 波};
+\node[leaf] (l2) at (12.2,2.75) {离子声波};
+\node[leaf] (l3) at (12.2,1.95) {O 波};
+\node[leaf] (l4) at (12.2,1.15) {哨声波};
+\node[leaf] (l5) at (12.2,0.35) {阿尔芬波};
+\node[leaf] (l6) at (12.2,-0.45) {离子回旋波};
+\node[leaf] (l7) at (12.2,-1.25) {低混杂波};
+\node[leaf] (l8) at (12.2,-2.05) {高混杂波};
+
+\draw[edge] (root.east) -- (b0.west);
+\draw[edge] (root.east) -- (b1.west);
+\draw[edge] (b0.east) -- (el.west);
+\draw[edge] (b0.east) -- (em.west);
+\draw[edge] (b1.east) -- (par.west);
+\draw[edge] (b1.east) -- (perp.west);
+\draw[edge] (el.east) -- (l1.west);
+\draw[edge] (el.east) -- (l2.west);
+\draw[edge] (em.east) -- (l3.west);
+\draw[edge] (par.east) -- (l4.west);
+\draw[edge] (par.east) -- (l5.west);
+\draw[edge] (par.east) -- (l6.west);
+\draw[edge] (perp.east) -- (l7.west);
+\draw[edge] (perp.east) -- (l8.west);
 \end{tikzpicture}
 \caption{等离子体波分类分支图。按有无磁场、波矢与磁场的方向关系以及偏振特性进行划分。注意实际等离子体中可能存在混合模式。}
     \label{fig:wave-branches}
@@ -321,13 +330,13 @@ $f = 20\,\mathrm{MHz} \ll f_{pe}$，远低于截止频率，\textbf{不能传播
 \draw[draw=figBlue,line width=0.9pt,fill=figBlue!15] (0,0) circle (1.30);
 \node[text=figInk,font=\footnotesize] at (0,0) {地球};
 
-% 电离层 D/E/F：三条虚线圆，标签沿右上角依次外移
+% 电离层 D/E/F：三条虚线圆，标签统一放在右下方的空区（避开磁力线与波箭头）
 \draw[fighelp] (0,0) circle (1.80);
 \draw[fighelp] (0,0) circle (2.30);
 \draw[fighelp] (0,0) circle (3.00);
-\node[text=figGray,font=\footnotesize,anchor=west,fill=white,inner sep=1.5pt] at (1.47,1.03) {D 层};
-\node[text=figGray,font=\footnotesize,anchor=west,fill=white,inner sep=1.5pt] at (1.63,1.63) {E 层};
-\node[text=figGray,font=\footnotesize,anchor=west,fill=white,inner sep=1.5pt] at (1.90,2.35) {F 层};
+\node[text=figGray,font=\footnotesize,anchor=west] at (1.69,-0.62) {D 层};
+\node[text=figGray,font=\footnotesize,anchor=west] at (1.88,-1.32) {E 层};
+\node[text=figGray,font=\footnotesize,anchor=west] at (1.95,-2.30) {F 层};
 
 % 磁力线：从南半球经高空回到北半球
 \draw[figGreen,line width=1.2pt]
@@ -347,9 +356,11 @@ $f = 20\,\mathrm{MHz} \ll f_{pe}$，远低于截止频率，\textbf{不能传播
 
 % 闪电与地面站
 \fill[figAmber] (-0.92,-0.92) circle (3pt);
-\node[text=figAmber,font=\footnotesize,anchor=east,fill=white,inner sep=1.5pt] at (-1.05,-0.95) {闪电};
+\node[text=figAmber,font=\footnotesize,anchor=east] at (-1.50,-1.30) {闪电};
+\draw[figlead] (-1.00,-0.98) -- (-1.42,-1.22);
 \fill[figInk] (0.92,0.92) circle (3pt);
-\node[text=figInk,font=\footnotesize,anchor=north west] at (1.02,0.82) {地面站};
+\node[text=figInk,font=\footnotesize,anchor=west] at (2.30,0.95) {地面站};
+\draw[figlead] (1.00,0.98) -- (2.22,1.00);
 \end{tikzpicture}
 \caption{哨声波传播路径示意图。闪电激发的电磁脉冲沿地球磁力线传播，在电离层D/E/F层中穿过，到达另一半球的地面站。}
     \label{fig:whistler-path}

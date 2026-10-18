@@ -2170,8 +2170,8 @@ m\dot{\vect{v}'} = q(\vect{E} + (\vect{v}' + \vect{v}_E)\times\vect{B}) = q\vect
   \node[cmA] (n00) at (0.00,0.00) {洛伦兹力};
   \node[cmB] (n10) at (3.15,0.47) {回旋运动};
   \node[cmC] (n11) at (3.15,-0.47) {平行加速};
-  \node[cmD] (n20) at (6.30,0.00) {漂移：$E\times B$／$\nabla B$／曲率};
-  \node[cmE] (n30) at (9.45,0.00) {磁镜与绝热不变量};
+  \node[cmD] (n20) at (5.90,0.00) {漂移：\\$E\times B$／$\nabla B$／曲率};
+  \node[cmE] (n30) at (9.35,0.00) {磁镜与绝热不变量};
   \draw[cmedge] (n00) -- (n10);
   \draw[cmedge] (n00) -- (n11);
   \draw[cmedge] (n10) -- (n20);
@@ -4812,13 +4812,13 @@ P_{\text{abs}} \propto n_e \cdot E_{\text{loss}} \propto \frac{1}{3.75} \times \
 
     % Region labels
     \node[font=\small, figVerm] at (-2.1, -0.85) {离子饱和区};
-    % 过渡区标签上移离开曲线：旧版字身压在曲线最陡的一段上
-    \node[font=\small, figOrange] at (0.62, 1.62) {过渡区};
+    % 过渡区标签上移并加白环，箭头缩短，避免箭头尖压到字
+    \node[font=\small, figAmber, fill=white, inner sep=1.5pt] at (0.62, 1.75) {过渡区};
     \node[font=\small, figGreen!50!black] at (2.05, 1.9) {电子饱和区};
 
     % Annotations
     \draw[->, thick, figVerm] (-2.0,-0.65) -- (-2.0,-0.48);
-    \draw[->, thick, figOrange] (0.6,1.42) -- (0.52,1.02);
+    \draw[->, thick, figAmber, shorten <=1pt] (0.6,1.36) -- (0.52,1.02);
     \draw[->, thick, figGreen!50!black] (2.2,1.75) -- (2.25,1.58);
 \end{tikzpicture}
 \caption{朗缪尔探针典型 $I$-$V$ 特性曲线。横轴为探针电压 $V$，纵轴为收集电流 $I$。$V_p$ 为等离子体电位，$V_f$ 为悬浮电位（净电流 $I=0$ 处）。曲线分为三个主要区域：离子饱和区（$V \ll V_p$）、过渡区（$V_f \lesssim V \lesssim V_p$）和电子饱和区（$V \gg V_p$）。}
@@ -5538,13 +5538,13 @@ OES发射光谱 & $10^{12}$--$10^{19}$ & $0.1$--$10$ & cm & ms & 工业/空间 \
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[node distance=6mm]
-  \node[cmE] (n00) at (0.00,0.00) {内部参数 $n$、$T$、$B$};
-  \node[cmA] (n10) at (3.15,1.42) {探针};
-  \node[cmB] (n11) at (3.15,0.47) {光谱};
-  \node[cmC] (n12) at (3.15,-0.48) {微波};
-  \node[cmD] (n13) at (3.15,-1.42) {汤姆孙散射};
-  \node[cmA] (n20) at (6.30,0.00) {可测外部信号};
-  \node[cmB] (n30) at (9.45,0.00) {反演与误差};
+  \node[cmE] (n00) at (0.00,0.00) {内部参数\\$n$、$T$、$B$};
+  \node[cmA] (n10) at (2.95,1.42) {探针};
+  \node[cmB] (n11) at (2.95,0.47) {光谱};
+  \node[cmC] (n12) at (2.95,-0.48) {微波};
+  \node[cmD] (n13) at (2.95,-1.42) {汤姆孙散射};
+  \node[cmA] (n20) at (5.90,0.00) {可测外部信号};
+  \node[cmB] (n30) at (8.60,0.00) {反演与误差};
   \draw[cmedge] (n00) -- (n10);
   \draw[cmedge] (n00) -- (n11);
   \draw[cmedge] (n00) -- (n12);
@@ -5639,6 +5639,7 @@ OES发射光谱 & $10^{12}$--$10^{19}$ & $0.1$--$10$ & cm & ms & 工业/空间 \
 
 \begin{figure}[htbp]
 \centering
+\resizebox{0.86\textwidth}{!}{%
 \begin{tikzpicture}[x=1cm,y=1cm]
 \node[nxchip,fill=figGray!25] at (0.00,0.00) {A};
 \node[nxchip,fill=figGray!25] at (1.16,0.00) {B};
@@ -5699,7 +5700,7 @@ OES发射光谱 & $10^{12}$--$10^{19}$ & $0.1$--$10$ & cm & ms & 工业/空间 \
 \node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (7.60,-5.59) {\textcolor{figVerm}{\rule{2.2mm}{2.2mm}} 惯性约束·强场（AI AW Y W）};
 \node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (7.60,-6.11) {\textcolor{figGreen}{\rule{2.2mm}{2.2mm}} 工业·空间·数值（O P AB AC）};
 \node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (7.60,-6.63) {\textcolor{figBlue}{\rule{2.2mm}{2.2mm}} 聚变工程与系统（Z AM AR AP AV AK AY AZ U）};
-\end{tikzpicture}
+\end{tikzpicture}}
 \caption{附录导航图：48 个附录按主题分成 10 簇。每个字母是一个附录，颜色是它所属的主题簇，图例给出每簇的字母清单。要找某一类内容的附录时，先按主题定位颜色，再按字母翻到对应附录。配套手册 I、J、K、L（学习策略手册、经典教材逐章对照、跨教材经典例题、分章自测题库）是“边查边用”的材料，已单独成册，不在图中。}
 \label{fig:appendix-map}
 \end{figure}
