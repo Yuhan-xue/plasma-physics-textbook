@@ -90,7 +90,7 @@ v_A = \frac{10^{-3}}{\sqrt{4\pi\times 10^{-7}\times 1.673\times 10^{-13}}} = \fr
 \]
 声速（$T\sim 10^6\,\mathrm{K}\sim 86\,\mathrm{eV}$）：$c_s = \sqrt{\gamma k_{\!B}T/m_i} \approx 1.5\times 10^5\,\mathrm{m/s}$。
 
-\textbf{结论：} 在三种环境中均有 $v_A \gg c_s$，说明磁场在等离子体动力学中占绝对主导地位。太阳日冕中阿尔芬波速度高达 $2200\,\mathrm{km/s}$，且阿尔芬波可携带大量能量从光球层向上输运，是日冕加热（百万度高温）最有希望的能量来源之一。
+\textbf{结论：} 三种环境均有 $v_A \gg c_s$，磁场主导等离子体动力学。太阳日冕中阿尔芬速度高达 $2200\,\mathrm{km/s}$，阿尔芬波可把大量能量从光球层向上输运，是日冕加热的主要候选机制之一。
 \end{example}
 
 \begin{example}{磁雷诺数与磁力线冻结的数值判断}{magnetic-reynolds}
@@ -101,7 +101,7 @@ v_A = \frac{10^{-3}}{\sqrt{4\pi\times 10^{-7}\times 1.673\times 10^{-13}}} = \fr
 \end{enumerate}
 Spitzer 电阻率近似公式：$\eta \approx 5\times 10^{-5} Z\ln\Lambda / T_e^{3/2}\,[\Omega\mathrm{m}]$，$T_e$ 单位为 $\mathrm{eV}$，取 $\ln\Lambda=10$。
 
-\textbf{模型的适用性提示：} Spitzer 公式\emph{只计入电子--离子库仑碰撞}。下面第 (2) 问的“氩气放电”题面没有给电离度与中性气体密度，因此\textbf{这里只研究一个假设库仑碰撞主导的假想氩等离子体}；真实低温放电中电子--中性碰撞常使 $\eta$ 高出若干个数量级，绝不能把下面的 $R_m$ 直接当成实际装置的数值。这是“选模型”这一步的意义所在，请对照正文\S5.1 的“MHD 适用条件：三道独立的门槛”。
+\textbf{模型的适用性提示：} Spitzer 公式\emph{只计入电子--离子库仑碰撞}。下面第 (2) 问的“氩气放电”题面没有给电离度与中性气体密度，因此\textbf{这里只研究一个假设库仑碰撞主导的假想氩等离子体}；真实低温放电中电子--中性碰撞常使 $\eta$ 高出若干个数量级，绝不能把下面的 $R_m$ 直接当成实际装置的数值。用量级结论前，先对照正文\S5.1 的三道门槛。
 \tcblower
 \textbf{解答：}
 
@@ -219,7 +219,7 @@ $\vect{u}\cdot(\vect{j}\times\vect{B})$ 是磁能与动能之间的\textbf{转�
 \]
 其中 $K=\tfrac12\rho_mu^2$、$U=p/(\gamma-1)$、$U_B=B^2/(2\mu_0)$。请自行验证：$\vect{u}(K+U+p)$ 是随流体带走的对流焓流，$\vect{S}$ 是坡印廷能流。
 
-\textbf{三层含义要分清：}
+\textbf{三层含义：}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
 \item \textbf{局域交换}：$\vect{u}\cdot(\vect{j}\times\vect{B})$ 与 $-\vect{u}\cdot\grad p$ 是同一空间点上不同能量库之间的转移，不进出系统；
 \item \textbf{边界能流}：散度项 $\divg\{\cdots\}$ 描述能量跨越控制面的输运；
@@ -230,39 +230,26 @@ $\vect{u}\cdot(\vect{j}\times\vect{B})$ 是磁能与动能之间的\textbf{转�
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[scale=1.0]
-% 左侧：流体元和磁力线（标签加同色底：旧版中间那条磁力线从字里穿过）
-\draw[thick,fill=figOrange!10] (-2,0) rectangle (0,1.5);
-\node[fill=figOrange!10] at (-1,0.75) {\small 流体元};
+\begin{tikzpicture}[scale=1.1,font=\small]
+% 流体元在 $\Delta t$ 内被平流带走；穿过它的磁力线跟着一起走，磁通量不变。
+% t 时刻的流体元
+\draw[fill=figGold!12,draw=figAmber,line width=0.9pt] (-3.2,0.5) rectangle (-0.4,2.4);
+\node[text=figInk,font=\footnotesize,fill=white,inner sep=1.5pt] at (-1.8,2.15) {流体元};
+% t+dt 时刻的同一流体元
+\draw[fill=figGold!6,draw=figAmber,dashed,line width=0.9pt] (0.4,0.5) rectangle (3.2,2.4);
+\node[text=figAmber,font=\footnotesize,fill=white,inner sep=1.5pt] at (1.8,2.15) {同一流体元};
 
-% 磁力线穿过流体元
-\foreach \y in {0.3,0.75,1.2} {
-  \draw[->,figBlue,thick] (-3,\y) -- (-2,\y);
-  \draw[figBlue,thick] (-2,\y) -- (0,\y);
-  \draw[->,figBlue,thick] (0,\y) -- (1,\y);
+% 三条磁力线贯穿两个时刻的流体元
+\foreach \y in {0.85,1.40,1.95} {
+  \draw[figGreen,line width=1.2pt,->,>=Stealth] (-4.4,\y) -- (3.9,\y);
 }
-\node[figBlue] at (1.4,0.75) {$\vect{B}$};
+\node[text=figGreen,font=\footnotesize,anchor=west] at (3.95,1.40) {$\vect{B}$};
 
-% 速度箭头（抬到虚线框上方：旧版箭头头部正好扎在虚线框的顶边上）
-\draw[->,figVerm,very thick] (-1,2.2) -- (1,2.2);
-\node[figVerm,above] at (0,2.3) {$\vect{u}$};
-
-% 右侧：移动后的流体元（虚线）
-\draw[thick,fill=figOrange!10,dashed] (0.5,0.3) rectangle (2.5,1.8);
-\node[fill=figOrange!10,text=figOrange!80!black] at (1.5,1.05) {\small 流体元};
-
-% 移动后的磁力线（虚线）
-\foreach \y in {0.6,1.05,1.5} {
-  \draw[->,figBlue,thick,dashed] (0.5,\y) -- (2.5,\y);
-  \draw[->,figBlue,thick] (2.5,\y) -- (3.5,\y);
-}
-\node[figBlue,dashed] at (3.9,1.05) {$\vect{B}$};
-
-% 标注
-\draw[<->,figGray] (-2,-0.3) -- (0.5,-0.3);
-\node[figGray] at (-0.75,-0.6) {$\vect{u}\,\diff t$};
-
-\node at (0,-1.2) {\small 理想MHD：流体元带着磁力线一起运动，穿过任意回路的磁通量不变};
+% 平流速度与位移
+\draw[figVerm,line width=1.4pt,->,>=Stealth] (-1.8,2.75) -- (1.8,2.75);
+\node[text=figVerm,font=\footnotesize,anchor=south] at (0,2.80) {$\vect{u}$};
+\draw[figGray,line width=0.6pt,<->,>=Stealth] (-1.8,0.10) -- (1.8,0.10);
+\node[text=figGray,font=\footnotesize,anchor=north] at (0,0.02) {$\vect{u}\,\Delta t$};
 \end{tikzpicture}
 \caption{磁力线冻结示意图。在理想导电流体（$R_m\gg 1$）中，磁通量随流体元守恒，磁力线仿佛被“冻结”在流体中。}
     \label{fig:flux-freezing}
@@ -270,38 +257,34 @@ $\vect{u}\cdot(\vect{j}\times\vect{B})$ 是磁能与动能之间的\textbf{转�
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[scale=1.0]
-% 弯曲磁力线（向上凸起）
-\draw[figBlue,very thick,domain=-3:3,samples=100] plot(\x,{0.5*cos(30*\x)});
-\draw[figBlue,->,very thick] (-2,0.43) -- (-1.9,0.42);
-\draw[figBlue,->,very thick] (0,0.5) -- (0.1,0.49);
-\draw[figBlue,->,very thick] (2,0.43) -- (2.1,0.42);
-\node[figBlue] at (3.2,0.5) {$\vect{B}$};
+\begin{tikzpicture}[scale=0.95,font=\small]
+% 弯曲磁力线：曲率中心在上方，磁张力指向曲率中心，磁压把等离子体推向低场侧。
+\draw[figGreen,line width=1.2pt,->,>=Stealth,domain=-3.4:3.4,samples=80]
+  plot(\x,{1.30-0.1125*\x*\x});
+\node[text=figGreen,font=\footnotesize,anchor=west] at (3.45,0.05) {$\vect{B}$};
 
-% 曲率中心
-\fill[figInk] (0,6) circle (2pt);
-\node at (0,6.5) {曲率中心};
-\draw[dashed] (0,6) -- (-1,0.43);
-\draw[dashed] (0,6) -- (1,0.43);
+% 曲率中心与两条半径（灰色辅助线）
+\fill[figInk] (0,4.60) circle (2pt);
+\node[text=figInk,font=\footnotesize,anchor=west] at (0.15,4.60) {曲率中心};
+\draw[fighelp] (0,4.60) -- (-1.4,1.08);
+\draw[fighelp] (0,4.60) -- (1.4,1.08);
 
-% 张力恢复力（指向曲率中心；两个标签沿各自箭头外移：旧版并排挤在中间读成一团）
-\draw[->,figVerm,very thick] (-1,0.43) -- (-0.8,1.5);
-\node[figVerm,left] at (-0.95,1.6) {$\vect{F}_\text{张力}$};
-\draw[->,figVerm,very thick] (1,0.43) -- (0.8,1.5);
-\node[figVerm,right] at (0.95,1.6) {$\vect{F}_\text{张力}$};
+% 磁张力：沿半径指向曲率中心
+\draw[figVerm,line width=1.4pt,->,>=Stealth] (-1.4,1.08) -- (-1.02,2.15);
+\draw[figVerm,line width=1.4pt,->,>=Stealth] (1.4,1.08) -- (1.02,2.15);
+\node[text=figVerm,font=\footnotesize,anchor=east] at (-1.52,2.30) {$\vect{F}_T$};
+\node[text=figVerm,font=\footnotesize,anchor=west] at (1.52,2.30) {$\vect{F}_T$};
 
-% 磁压方向（向下，推向B弱区；箭头外移到 ±2.2，∇ 标签改右锚：
-% 旧版 ∇ 符号正好压在绿色箭头上，且左侧箭头没有标签）
-\draw[->,figGreen!60!black,very thick] (-2.2,2.5) -- (-2.2,1.5);
-\draw[->,figGreen!60!black,very thick] (2.2,2.5) -- (2.2,1.5);
-\node[figGreen!60!black,left] at (-2.35,2) {磁压};
-\node[figGreen!60!black,right] at (2.35,2) {$\grad(B^2/2\mu_0)$};
+% 磁压：由强场侧推向弱场侧（向下）
+\draw[figPurple,line width=1.4pt,->,>=Stealth] (-2.60,2.05) -- (-2.60,1.05);
+\draw[figPurple,line width=1.4pt,->,>=Stealth] (2.60,2.05) -- (2.60,1.05);
+\node[text=figPurple,font=\footnotesize,anchor=east] at (-2.75,1.55) {磁压};
+\node[text=figPurple,font=\footnotesize,anchor=west] at (2.75,1.55) {$\grad(B^2/2\mu_0)$};
 
-% 等离子体区域
-\fill[figOrange!10] (-3,-1) rectangle (3,-0.2);
-\node at (0,-0.6) {等离子体};
-
-\node at (0,-1.8) {\small 磁张力像拉紧的橡皮筋，将弯曲磁力线拉直；磁压将等离子体推离高场区};
+% 等离子体（低场区）
+\fill[figBlue!8] (-3.4,-1.70) rectangle (3.4,-0.55);
+\draw[figBlue,line width=0.8pt] (-3.4,-1.70) rectangle (3.4,-0.55);
+\node[text=figInk,font=\footnotesize] at (0,-1.12) {等离子体（低场区）};
 \end{tikzpicture}
 \caption{磁压与磁张力示意图。弯曲磁力线产生指向曲率中心的张力恢复力，磁压梯度将等离子体推向磁场较弱的区域。}
     \label{fig:magnetic-pressure-tension}

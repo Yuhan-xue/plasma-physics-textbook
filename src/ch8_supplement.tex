@@ -18,7 +18,7 @@
 \tcblower
 \textbf{解答：}
 
-\textbf{先统一约定，再谈“等价”。} 库仑对数的不同写法\emph{不}都相等，必须明确所用约定。本书采用：
+\textbf{先统一约定。} 库仑对数的不同写法\emph{不}都相等，必须明确所用约定。本书采用：
 \[
 \boxed{\;\ln\Lambda = \ln\!\left(\frac{\lambda_D}{b_0}\right),\qquad b_0 = \frac{e^2}{4\pi\eps_0 k_{\!B}T_e}\;}
 \]
@@ -146,9 +146,9 @@ Spitzer 电阻率的数值公式（平行方向）为：
 
 \textbf{分析：}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
-\item 在 $T_e = 2\,\mathrm{keV}$ 时，聚变等离子体的电阻率已与铜相当！这说明Spitzer 电阻率随温度下降极快：$\eta \propto T_e^{-3/2}$。
+\item 在 $T_e = 2\,\mathrm{keV}$ 时，聚变等离子体的电阻率已与铜相当。Spitzer 电阻率随温度下降极快：$\eta \propto T_e^{-3/2}$。
 \item 若温度升高到 $10\,\mathrm{keV}$，电阻率将下降为 $(10/2)^{3/2} = 11.2$ 倍，即约 $1.4\times 10^{-9}\,\Omega\cdot\mathrm{m}$，仅为铜的约 $1/12$。
-\item 海水的电阻率比等离子体高约 $10^{10}$ 倍，这说明即使是“高温”等离子体，其导电能力也远非日常生活中的盐水可比。
+\item 海水的电阻率比等离子体高约 $10^{10}$ 倍。高温等离子体虽然导电，但远不如金属。
 \item 电阻率与密度无关：若将密度加倍，载流子数加倍，但碰撞频率也加倍，两者抵消。
 \end{itemize}
 \end{example}
@@ -273,38 +273,32 @@ T_e & \nu_{ei} & \tau_{ei} \\ \hline
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[scale=1.1,font=\small]
-% 重画：旧版把 b 画成两条入射线折点之间的竖虚线、θ 的辅助虚线反向延长，
-% 读者无法把 b 读成「入射渐近线到靶的垂直距离」。现改为单条参考线 + 两条轨迹对照。
-% 过靶的水平参考线（b 的测量基准）
-\draw[figGray,dashed] (-4.5,0) -- (3.6,0);
+\begin{tikzpicture}[scale=1.20,font=\small]
+% 两条轨迹对照：碰撞参数 b 越大，偏转角 θ 越小。
+\draw[fighelp] (-4.8,0) -- (3.6,0);
 
-% 轨迹 1（小 b）：入射渐近线 y=0.9，近靶处折转，出射支抬高
-\draw[->,thick,figBlue] (-4.5,0.9) -- (-0.8,0.9) -- (3.2,1.55);
-\draw[figGray,dashed] (-0.8,0.9) -- (3.6,0.9);
-% 轨迹 2（大 b）：偏折更小，用淡色对照
-\draw[->,thick,figBlue!55] (-4.5,2.0) -- (-0.8,2.0) -- (3.2,2.25);
-\draw[figGray!70,dashed] (-0.8,2.0) -- (3.6,2.0);
+% 小 b：偏折明显
+\draw[figBlue,figcurve,->,>=Stealth] (-4.8,0.85) -- (-0.60,0.85) -- (3.40,1.55);
+\draw[fighelp] (-0.60,0.85) -- (3.60,0.85);
+% 大 b：偏折更小
+\draw[figBlue!55,figcurve,->,>=Stealth] (-4.8,1.90) -- (-0.60,1.90) -- (3.40,2.20);
+\draw[fighelp] (-0.60,1.90) -- (3.60,1.90);
 
-% 靶粒子
-\fill[figVerm] (0,0) circle (4pt);
-\node[figVerm,above] at (0,0.22) {$q_2$};
-\node[figBlue,left] at (-4.5,0.9) {$q_1$, $v$};
-\node[figGray,above] at (-3.0,2.0) {\footnotesize 更大的 $b$};
+% 靶粒子与入射粒子
+\fill[figVerm] (0,0) circle (3.2pt);
+\node[text=figVerm,font=\footnotesize,anchor=west] at (0.18,0.10) {$q_2$};
+\node[text=figBlue,font=\footnotesize,anchor=west] at (-4.70,1.10) {$q_1$，$v$};
 
-% 碰撞参数 b：入射渐近线到参考线的垂直距离
-\draw[<->,thick,figGray] (-2.6,0) -- (-2.6,0.9);
-\node[figGray,left] at (-2.75,0.45) {$b$};
+% 碰撞参数 b（入射渐近线到过靶参考线的垂直距离）
+\draw[figGray,line width=0.6pt,<->,>=Stealth] (-3.20,0) -- (-3.20,0.85);
+\node[text=figGray,font=\footnotesize,anchor=east] at (-3.30,0.43) {$b$};
 
-% 偏转角：出射支与未偏折渐近线之间的夹角
-\draw[->,thick,figVerm] (0.8,0.9) arc (0:9:1.6);
-\node[figVerm] at (2.0,1.12) {$\theta$};
-\draw[->,thick,figVerm!60] (0.8,2.0) arc (0:3.6:1.6);
-\node[figVerm!70!black] at (2.0,2.09) {\footnotesize $\theta'$};
-
-% 小角度示意
-\node[align=center] at (0,-1.5) {\footnotesize 单次散射偏转角很小：$\theta \ll 1$};
-\node[align=center] at (0,-2.0) {\footnotesize 多次小角度散射累积等效于一次大角度偏转};
+% 偏转角：出射支与未偏折渐近线的夹角
+\draw[figVerm,line width=0.8pt,->,>=Stealth] (1.30,0.85) arc (0:12:1.9);
+\node[text=figVerm,font=\footnotesize,fill=white,inner sep=1.5pt] at (2.35,1.28) {$\theta$};
+\draw[figVerm!55,line width=0.8pt,->,>=Stealth] (1.30,1.90) arc (0:5:1.9);
+\node[text=figVerm,font=\footnotesize,fill=white,inner sep=1.5pt] at (2.35,2.08) {$\theta'$};
+\node[text=figGray,font=\footnotesize,anchor=west] at (0.10,2.45) {大 $b$：$\theta$ 更小};
 \end{tikzpicture}
 \caption{库仑碰撞小角度散射示意图。带电粒子 $q_1$ 以速度 $v$ 经过靶粒子 $q_2$ 附近，由于长程库仑力，轨迹发生轻微偏折。偏转角 $\theta$ 很小，但远距离碰撞频繁发生，累积效应主导了动量输运。}
     \label{fig:coulomb-small-angle}
@@ -312,35 +306,31 @@ T_e & \nu_{ei} & \tau_{ei} \\ \hline
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[scale=1.0, >=Stealth, font=\small]
-    % 角扩散随机游走：入射束经多次小角散射逐渐展宽
-    % 初始准直束
-    \draw[->, very thick, figBlue] (-4.5,0) -- (-2.5,0);
-    \node[figBlue, above] at (-3.5,0.15) {入射束 $\theta=0$};
+\begin{tikzpicture}[scale=1.05,>=Stealth,font=\small]
+% 角扩散：入射束经多次小角散射，方向做随机游走，角宽度按 sqrt(N) 增长。
+\draw[figGold,line width=1.4pt,->,>=Stealth] (-4.8,0) -- (-2.60,0);
+\node[text=figAmber,font=\footnotesize,anchor=south] at (-3.70,0.05) {入射束};
 
-    % 多次小角偏折的轨迹（随机游走）
-    \draw[->, thick, figVerm] (-2.5,0) -- (-1.2,0.3) -- (0.1,0.15) -- (1.4,0.75) -- (2.7,0.5) -- (4.2,1.2);
-    % 每个折点 = 一次小角散射（旧版在三处折点画角弧，其中两处的弧开在偏折的反侧）
-    \foreach \p in {(-1.2,0.3),(0.1,0.15),(1.4,0.75),(2.7,0.5)} {
-      \fill[figOrange] \p circle (1.6pt);
-    }
-    % 展宽包络
-    \draw[dashed, figGray] (-2.5,0) -- (4.2,1.55);
-    \draw[dashed, figGray] (-2.5,0) -- (4.2,-1.55);
-    \node[figGray, right] at (4.2,1.55) {展宽包络};
+\draw[figGold,line width=1.2pt,->,>=Stealth]
+  (-2.60,0) -- (-1.40,0.22) -- (-0.20,0.10) -- (1.00,0.58) -- (2.20,0.36) -- (3.60,0.95);
+\foreach \p in {(-1.40,0.22),(-0.20,0.10),(1.00,0.58),(2.20,0.36)} {
+  \fill[figAmber] \p circle (1.6pt);
+}
 
-    % 单处偏折角标注（入射延长线与出射支之间：第二折点偏折向上，弧开向上）
-    \draw[figGray, dashed] (0.1,0.15) -- (1.0,0.045);
-    \draw[->, thick, figOrange] (0.895,0.058) arc (-6.6:24.8:0.8);
-    \node[figOrange, font=\footnotesize] at (1.25,0.42) {$\delta\theta$};
+% 展宽包络
+\draw[fighelp] (-2.60,0) -- (3.60,1.35);
+\draw[fighelp] (-2.60,0) -- (3.60,-1.35);
+\node[text=figGray,font=\footnotesize,anchor=west] at (3.70,1.35) {展宽包络};
 
-    % 方均根角扩散标注
-    \draw[<->, thick, figPurple!80!black] (4.7,0) -- (4.7,1.2);
-    \node[figPurple!80!black, right, font=\footnotesize, align=left] at (4.75,0.6) {方均根偏转角\\ $\theta_{\mathrm{rms}}\approx\sqrt{N}\,\delta\theta$};
+% 单次偏折角 δθ：入射延长线与出射支之间
+\draw[fighelp] (1.00,0.58) -- (2.10,1.02);
+\draw[figVerm,line width=0.8pt,->,>=Stealth] (1.00,0.58) ++(-10.4:0.70) arc (-10.4:21.8:0.70);
+\node[text=figVerm,font=\footnotesize,fill=white,inner sep=1.5pt] at (1.95,1.15) {$\delta\theta$};
 
-    % 说明
-    \node[align=center, font=\footnotesize] at (0,-2.3) {单次偏折 $\delta\theta\ll1$（随机方向），$N$ 次累积后方均根偏转角 $\theta_{\mathrm{rms}}=\sqrt{N}\,\delta\theta$\\
-    偏转角达到 $90°$（速度“记忆”完全丢失）所需碰撞数 $N_{90}\sim1/\delta\theta^2$，即动量弛豫时间 $\tau\sim N_{90}/\nu$};
+% 方均根偏转角
+\draw[figGray,line width=0.6pt,<->,>=Stealth] (3.95,0) -- (3.95,0.95);
+\node[text=figInk,font=\footnotesize,anchor=west,align=left] at (4.10,0.48)
+  {方均根偏转角\\ $\theta_{\mathrm{rms}}\approx\sqrt{N}\,\delta\theta$};
 \end{tikzpicture}
 \caption{库仑碰撞的角扩散（速度空间随机游走）。带电粒子经历大量小角偏折，每次偏折 $\delta\theta\ll1$ 且方向随机；累积 $N$ 次后方均根偏转角按 $\sqrt{N}$ 增长。这正是库仑碰撞“小角散射累积主导动量输运”的定量含义，也是库仑对数 $\ln\Lambda$ 的物理来源。}
 \label{fig:coulomb-angle-diffusion}
@@ -380,9 +370,9 @@ P = \eta j^2 = 4.5\times10^{-5}\times(10^4)^2 = 4.5\times10^3\,\mathrm{W/m^3}
 \quad\Longrightarrow\quad
 T_e^{5/2} = \frac{5\times10^{-5}Z\ln\Lambda\,j^2\,\tau_E}{3nk_{\!B}}
 \]
-\textbf{上限完全由 $j$、$n$、$\tau_E$ 决定，不是一个普适的数。} 若把 $\tau_E$ 换成轫致辐射损失（$\propto n^2T_e^{1/2}$），平衡点又会移动。这正是本题不给 $\tau_E$、不给 $n$ 之外信息时\textbf{不能断言“约 100 eV 达到平衡”}的原因。
+\textbf{上限完全由 $j$、$n$、$\tau_E$ 决定，不是一个普适的数。} 若把 $\tau_E$ 换成轫致辐射损失（$\propto n^2T_e^{1/2}$），平衡点又会移动。没有损失模型，就说不清温度停在哪里。
 
-\textbf{正确的结论表述：} 欧姆加热在高温下被 $T_e^{-3/2}$ 强烈抑制，所以在给定电流下它能达到的温区\emph{量级上}偏低；要把它推到聚变温度（keV 量级），要么大幅提高 $j$（工程上受不稳定性限制），要么换用中性束注入、ICRF/ECRH 等辅助加热。\textbf{这不等于“欧姆加热一定停在 100 eV”}——那需要针对具体装置的 $j,n,\tau_E$ 逐个计算。请把这一条读成“标度分析 + 需要闭合”的例子，而不是一个普适常数。
+\textbf{正确的结论表述：} 欧姆加热在高温下被 $T_e^{-3/2}$ 强烈抑制，给定电流下能达到的温区\emph{量级上}偏低。要把它推到聚变温度（keV 量级），要么大幅提高 $j$（工程上受不稳定性限制），要么换用中性束注入、ICRF/ECRH 等辅助加热。温度上限取决于具体装置的 $j,n,\tau_E$，不是普适常数。
 \end{example}
 
 \begin{formulabox}{第 8 章}{ch8-formulas}

@@ -8,8 +8,6 @@
 
 第 3 章讲了 $\mathbf{E}\times\mathbf{B}$ 漂移，第 6 章讲了波与加热，第 11 章讲了鞘层与玻姆判据——这三块知识在航天领域有一个直接的去处：\textbf{电推进}（electric propulsion）。它的想法很朴素：与其用化学燃烧的热速度排气，不如\textbf{用电场把离子加速到几十千米每秒}。代价也同样朴素：同样的功率下，排气越快，推力越小。本附录把这条“把等离子体当发动机”的链条算一遍。
 
-这一篇换到\textbf{应用侧}：不让等离子体待在容器里，而是让它喷出去产生推力：电推进、VASIMR 与磁喷嘴。想读书单、范例与自测题，翻配套手册 J、K、L；加热与运行极限在附录 M，边界与壁在附录 N。
-
 \begin{tip}{单位与口径自查}{tip-appo-units}
 若结果差一个量级，先查三种口径错位：
 \begin{enumerate}[nosep,leftmargin=1.6em]
@@ -30,7 +28,7 @@
 I_{\mathrm{sp}}\equiv\frac{v_{\mathrm{ex}}}{g_0},
 \label{eq:app-o-rocket}
 \end{equation}
-其中 $v_{\mathrm{ex}}$ 是排气速度，$m_0/m_f$ 是初末质量比，$I_{\mathrm{sp}}$ 就是\textbf{比冲}——它把“排气多快”折算成一个以秒为单位的数。化学发动机的排气速度受化学键能限制，最高约 $4.5\ \mathrm{km/s}$（$I_{\mathrm{sp}}\approx450\ \mathrm{s}$）；而电推进先电离、再用电场加速，离子的动能 $\frac12m_iv^2=qV$ 只受电压限制，$1000\ \mathrm{V}$ 就能给出 $38\ \mathrm{km/s}$。
+其中 $v_{\mathrm{ex}}$ 是排气速度，$m_0/m_f$ 是初末质量比，$I_{\mathrm{sp}}$ 就是\textbf{比冲}——它把“排气多快”折算成一个以秒为单位的数。化学发动机的排气速度受化学键能限制，最高约 $4.5\ \mathrm{km/s}$（$I_{\mathrm{sp}}\approx450\ \mathrm{s}$）。电推进先电离、再用电场加速，离子的动能 $\frac12m_iv^2=qV$ 只受电压限制，$1000\ \mathrm{V}$ 就能给出 $38\ \mathrm{km/s}$。
 
 \begin{table}[htbp]
 \centering
@@ -51,7 +49,7 @@ I_{\mathrm{sp}}\equiv\frac{v_{\mathrm{ex}}}{g_0},
 
 \textbf{一个具体例子。} $1000\ \mathrm{kg}$ 的卫星要拿到 $\Delta v=3\ \mathrm{km/s}$：用 $I_{\mathrm{sp}}=300\ \mathrm{s}$ 的化学发动机需要 $639\ \mathrm{kg}$ 推进剂（占起飞质量的 $64\%$）；换成 $I_{\mathrm{sp}}=3000\ \mathrm{s}$ 的电推进只需要 $97\ \mathrm{kg}$，省下的 $542\ \mathrm{kg}$ 可以换成载荷。
 
-结论：\textbf{同样的 $\Delta v$，化学发动机要带走 $9.6$ 倍于自身的初始质量，而 $5000\ \mathrm{s}$ 的电推进只要 $1.23$ 倍}——这就是电推进存在的理由，也是它必须付出的代价：推力极小（下一节量化）。
+结论：\textbf{同样的 $\Delta v$，化学发动机要带走 $9.6$ 倍于自身的初始质量，而 $5000\ \mathrm{s}$ 的电推进只要 $1.23$ 倍}。这就是电推进存在的理由，代价则是推力极小（下一节量化）。
 
 {\footnotesize
 \textbf{出处：}Sutton \& Biblarz《Rocket Propulsion Elements》（第 9 版）的火箭方程与比冲章节。
@@ -131,7 +129,7 @@ T=I_b\sqrt{\frac{2m_iV_b}{q}},
 P_{\mathrm{jet}}=\frac12\dot mv^2=I_bV_b .
 \label{eq:app-o-ibeam}
 \end{equation}
-最后那个等式很漂亮：\textbf{单能、单电荷的束，其射流功率恰好等于束电压乘束电流}——不需要再乘 $1/2$。
+\textbf{单能、单电荷的束，其射流功率恰好等于束电压乘束电流}，不需要再乘 $1/2$。
 
 \begin{table}[htbp]
 \centering
@@ -151,14 +149,14 @@ P_{\mathrm{jet}}=\frac12\dot mv^2=I_bV_b .
 
 \textbf{数值例：}取 $V_b=1000\ \mathrm{V}$、$I_b=2\ \mathrm{A}$，则 $T=0.104\ \mathrm{N}$、$P_{\mathrm{jet}}=I_bV_b=2.00\ \mathrm{kW}$、$\dot m=I_bm_{\mathrm{Xe}}/q=2.72\ \mathrm{mg/s}$；取整机效率 $\eta=0.65$，输入功率 $P_{\mathrm{in}}=3.08\ \mathrm{kW}$。
 
-\textbf{真正的限制是空间电荷。}离子束自身的电荷会削弱外加电场，束流密度有上限——这就是配套手册 K.7 推导过的 Child--Langmuir 律（本附录不重复推导）：
+\textbf{真正的限制是空间电荷。}离子束自身的电荷会削弱外加电场，束流密度因此有上限。这就是配套手册 K.7 推导过的 Child--Langmuir 律（本附录不重复推导）：
 \begin{equation}
 j=\frac{4\varepsilon_0}{9}\sqrt{\frac{2q}{m_i}}\,\frac{V^{3/2}}{d^2}.
 \label{eq:app-o-cl}
 \end{equation}
 取 $V=1500\ \mathrm{V}$、栅极间距 $d=1.5\ \mathrm{mm}$，得 $j=123\ \mathrm{A/m^2}$；要引出 $3\ \mathrm{A}$ 就需要 $243\ \mathrm{cm^2}$ 的栅极面积。
 
-结论：\textbf{推力不是靠“更高的电压”，而是靠“更大的束流面积”}。把电压从 $1000\ \mathrm{V}$ 提到 $1500\ \mathrm{V}$，比冲只涨 $22\%$，而空间电荷限制电流涨 $84\%$（$\propto V^{3/2}$）——离子推力器做大的关键在栅极面积与间距，而不在电源电压。
+结论：\textbf{推力不是靠“更高的电压”，而是靠“更大的束流面积”}。把电压从 $1000\ \mathrm{V}$ 提到 $1500\ \mathrm{V}$，比冲只涨 $22\%$，而空间电荷限制电流涨 $84\%$（$\propto V^{3/2}$）。离子推力器做大的关键在栅极面积与间距，而不在电源电压。
 
 {\footnotesize
 \textbf{出处：}配套手册 K.7 的 Child--Langmuir 推导（Child 1911。
@@ -277,7 +275,7 @@ CEX 侵蚀 & $1.5\%$（$n_n=10^{17}$）到 $15\%$（$n_n=10^{18}$） & 快离子
 \end{tabular}
 \end{table}
 
-结论：\textbf{电推进的效率天花板不在加速原理，而在损失清单}——放电损耗 $35$--$50\%$ 才是主项，其余所有工程努力都是围绕“把它压下去、同时不让寿命掉下来”。
+结论：\textbf{电推进的效率天花板不在加速原理，而在损失清单}：放电损耗 $35$--$50\%$ 才是主项。
 
 {\footnotesize
 \textbf{出处：}Goebel \& Katz 的推力器效率、空心阴极与羽流章节。
@@ -313,7 +311,7 @@ CEX 侵蚀 & $1.5\%$（$n_n=10^{17}$）到 $15\%$（$n_n=10^{18}$） & 快离子
 \section{来源、分级与版权说明}
 
 \begingroup\small
-本附录的数字都可以用 \texttt{tools/\allowbreak{}calc/\allowbreak{}appO\_calc.py} 重算一遍；脚本与当时的输出记录都在仓库里。
+本附录的数字都可以用 \texttt{tools/\allowbreak{}calc/\allowbreak{}appO\_calc.py} 重算一遍。
 
 \begin{table}[htbp]
 \centering
@@ -339,7 +337,6 @@ O.6 & Goebel \& Katz 的效率、空心阴极与羽流章；附录 N \S N.4 的�
 \item 本附录\textbf{不复制}任何教材或文献的题目原文、解答、图表与数据表；表格中的参数区间与物理结论属于教科书公共知识，文字表述与全部数值由本书自拟。
 \item 表中列出的教材与文献是\textbf{取材来源}（说明该主题在哪本书里讲、按什么顺序讲），不是逐句引用；读者若要系统学习，请直接阅读原书。
 \item 本附录所用的一切“文献量级输入”（$m_{\mathrm{Xe}}=131.29\ \mathrm{u}$、$B=0.02\ \mathrm{T}$、$n_n$ 与 $\sigma$ 的取值、$\eta=0.5$--$0.7$、$\sigma_{\mathrm{CEX}}=5\times10^{-19}\ \mathrm{m^2}$、发散角）都在正文中\textbf{显式标出}，便于读者替换成自己装置的数据重算；结论中依赖这些输入的倍数关系（如“霍尔电流是束流的 $28.6$ 倍”）会随输入变化，但量级结论稳定。
-\item 本附录只给出可自行检索的书名、作者与年份，\textbf{不写无法核实的 DOI 与卷页}。
 \end{itemize}
 
 \begin{tip}{与配套手册 K、M、N 串联使用}{tip-appo-chain}

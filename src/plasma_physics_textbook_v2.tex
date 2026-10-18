@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.27.20},
+  pdftitle={等离子体物理自学教材 v1.28.0},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -472,7 +472,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.27.20}}
+  {\small\textcolor{white!45}{v1.28.0}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -954,36 +954,45 @@ $\star\star\star$ & 挑战 & 涉及较深的数学技巧或前沿问题。供科
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[scale=0.9,every node/.style={transform shape}]
-\node[rmABC] (c1) at (0.0,0.0) {第 1 章\\\scriptsize 数学预备};
-\node[rmABC] (c2) at (3.3,2.2) {第 2 章\\\scriptsize 等离子体判据};
-\node[rmABC] (c3) at (3.3,0.8) {第 3 章\\\scriptsize 单粒子运动};
-\node[rmABC] (c4) at (3.3,-0.8) {第 4 章\\\scriptsize 流体描述};
-\node[rmBC] (c7) at (3.3,-2.2) {第 7 章\\\scriptsize 动理学};
-\node[rmBC] (c5) at (6.6,1.4) {第 5 章\\\scriptsize MHD};
-\node[rmBC] (c6) at (6.6,0.0) {第 6 章\\\scriptsize 等离子体波};
-\node[rmABC] (c8) at (6.6,-1.4) {第 8 章\\\scriptsize 碰撞与输运};
-\node[rmAB] (c11) at (6.6,-2.8) {第 11 章\\\scriptsize 工业等离子体};
-\node[rmBC] (c9) at (9.9,0.7) {第 9 章\\\scriptsize 不稳定性};
-\node[rmAB] (c12) at (9.9,-2.1) {第 12 章\\\scriptsize 诊断};
-\node[rmBC] (c10) at (13.2,0.7) {第 10 章\\\scriptsize 聚变约束};
-\draw[rmedge] (c1) -- (c2);
-\draw[rmedge] (c1) -- (c3);
-\draw[rmedge] (c1) -- (c4);
-\draw[rmedge] (c1) -- (c7);
-\draw[rmedge] (c4) -- (c5);
-\draw[rmedge] (c1) -- (c6);
-\draw[rmedge] (c4) -- (c6);
-\draw[rmedge] (c4) -- (c8);
-\draw[rmedge] (c2) -- (c11);
-\draw[rmedge] (c4) -- (c11);
-\draw[rmedge] (c5) -- (c9);
-\draw[rmedge] (c6) -- (c9);
-\draw[rmedge] (c2) -- (c12);
-\draw[rmedge] (c6) -- (c12);
-\draw[rmedge] (c5) -- (c10);
-\draw[rmedge] (c9) -- (c10);
-\node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (-0.3,-3.05) {边框颜色：\\ \textcolor{figGreen}{$\blacksquare$} 三条路线都读\\ \textcolor{figBlue}{$\blacksquare$} 路线 A、B\\ \textcolor{figOrange}{$\blacksquare$} 路线 B、C};
+\begin{tikzpicture}[
+  every node/.style={text=figInk},
+  cbox/.style={draw,rounded corners=2pt,line width=0.8pt,align=center,
+    inner sep=2pt,minimum width=2.3cm,minimum height=0.85cm,font=\footnotesize},
+  all3/.style={cbox,draw=figGreen,fill=figGreen!10},
+  ab/.style={cbox,draw=figBlue,fill=figBlue!10},
+  bc/.style={cbox,draw=figAmber,fill=figGold!16},
+  dep/.style={-{Latex[length=1.5mm]},draw=figGray,line width=0.7pt},
+  lane/.style={dep,rounded corners=3pt}]
+% 五列＝五个依赖层级：1｜2,3,4,7｜6,5,8,11｜12,9｜10
+\node[all3] (c1)  at (0.0,0.0)   {\textbf{第 1 章}\\数学预备};
+\node[all3] (c2)  at (2.9,1.8)   {\textbf{第 2 章}\\等离子体判据};
+\node[all3] (c3)  at (2.9,0.6)   {\textbf{第 3 章}\\单粒子运动};
+\node[all3] (c4)  at (2.9,-0.6)  {\textbf{第 4 章}\\流体描述};
+\node[all3] (c7)  at (2.9,-1.8)  {\textbf{第 7 章}\\动理学};
+\node[bc]   (c6)  at (5.8,1.8)   {\textbf{第 6 章}\\等离子体波};
+\node[bc]   (c5)  at (5.8,0.6)   {\textbf{第 5 章}\\MHD};
+\node[all3] (c8)  at (5.8,-0.6)  {\textbf{第 8 章}\\碰撞与输运};
+\node[ab]   (c11) at (5.8,-1.8)  {\textbf{第 11 章}\\工业等离子体};
+\node[ab]   (c12) at (8.7,1.8)   {\textbf{第 12 章}\\诊断};
+\node[bc]   (c9)  at (8.7,-1.8)  {\textbf{第 9 章}\\不稳定性};
+\node[bc]   (c10) at (11.6,0.0)  {\textbf{第 10 章}\\聚变约束};
+% 相邻层的直接依赖：箭头只在两列之间的空档里走
+\draw[dep] (c1) -- (c2);  \draw[dep] (c1) -- (c3);
+\draw[dep] (c1) -- (c4);  \draw[dep] (c1) -- (c7);
+\draw[dep] (c2) -- (c11);
+\draw[dep] (c4) -- (c6);  \draw[dep] (c4) -- (c5);
+\draw[dep] (c4) -- (c8);  \draw[dep] (c4) -- (c11);
+\draw[dep] (c6) -- (c9);  \draw[dep] (c6) -- (c12);
+\draw[dep] (c5) -- (c9);  \draw[dep] (c9) -- (c10);
+% 跨层依赖：走图顶／图底的空行，绕开中间那一列，不穿节点
+\draw[lane] (c1.north) -- (0.0,2.65) -- (5.8,2.65) -- (c6.north);
+\draw[lane] (c2.north) -- (2.9,3.0)  -- (8.7,3.0)  -- (c12.north);
+\draw[lane] (c5.east)  -- (7.25,0.6) -- (7.25,-2.6) -- (11.6,-2.6) -- (c10.south);
+% 图例放在图下方一行，不压节点
+\node[anchor=west,font=\footnotesize,align=left] at (-1.15,-2.95) {%
+  \textcolor{figGreen}{\rule{2.4mm}{2.4mm}} 三条路线都读\quad
+  \textcolor{figBlue}{\rule{2.4mm}{2.4mm}} 路线 A、B\quad
+  \textcolor{figAmber}{\rule{2.4mm}{2.4mm}} 路线 B、C};
 \end{tikzpicture}
 \caption{全书学习路径图：12 章的依赖关系与三条路线的覆盖面。箭头是\textbf{直接依赖}（与下一节「各章前置依赖关系」表逐条一致），边框颜色表示哪几条路线需要读到这一章。拿到这张图就不必背「先读哪章」：顺着箭头走，缺哪块补哪块。}
 \label{fig:roadmap}

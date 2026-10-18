@@ -6,9 +6,7 @@
 % 版权约定：只借鉴经典教材与文献的物理结论与公式形式，文字与数值由本书自拟并独立复算。
 % 数值来源：tools/calc/appM_calc2.py（每一节的关键数字都能由它复现）。
 
-第 10 章讲了劳森判据、点火条件与托卡马克/仿星器两条路线，但把等离子体\textbf{加热到 10 keV}、\textbf{非感应地驱动电流}、以及装置\textbf{能跑到多大密度与多大比压}这三件事，全书只在正文里零星提到。本附录把这条“从物理到装置”的链条补齐。
-
-这一篇只讲一件事：聚变等离子体怎么加热、怎么驱动电流、运行极限卡在哪里。想找某个主题该读哪本书的哪一章，翻配套手册 J；想看完整解答的范例，翻 K；想自测，翻 L。每一节的公式都标了出处，数字都能重算。
+第 10 章讲了劳森判据、点火条件与托卡马克/仿星器两条路线。但它把三件事留在了正文之外：把等离子体\textbf{加热到 10 keV}、\textbf{非感应地驱动电流}、装置\textbf{能跑到多大密度与多大比压}。本附录把这条“从物理到装置”的链条补齐。
 
 \begin{tip}{单位错位自查}{tip-appm-units}
 若你的结果与文中差一个量级，先检查四种单位错位：$\mathrm{eV}$ 与 $\mathrm{keV}$、$\mathrm{A/m^2}$ 与 $\mathrm{MA/m^2}$、$\mathrm{GHz}$ 与 $\mathrm{Hz}$、以及 $\mathrm{10^{20}\ m^{-3}}$ 这一密度单位（托卡马克文献习惯用它）。
@@ -69,7 +67,7 @@ P_\Omega&=2.80\times10^{-8}\times(10^6)^2\approx2.8\times10^4\ \mathrm{W/m^3}=28
 \end{align*}
 把它与配套手册 L 第 10 章算出的 $\alpha$ 自加热功率密度 $P_\alpha\approx6.2\times10^5\ \mathrm{W/m^3}$ 相比，\textbf{差 22 倍}——这一句话就解释了为什么托卡马克必须外加加热。
 
-\textbf{标度才是要害：}$\eta_\parallel\propto T_e^{-3/2}$，温度从 $1\ \mathrm{keV}$ 升到 $10\ \mathrm{keV}$ 时电阻率降为 $10^{-3/2}=3.2\times10^{-2}$ 倍，同电流下的欧姆功率只剩 $884\ \mathrm{W/m^3}$（附录 M.6 练习 1）。与此同时，轫致辐射与杂质辐射损失却随温度上升——欧姆加热因此\textbf{只适合启动与爬升阶段}。
+\textbf{标度才是要害：}$\eta_\parallel\propto T_e^{-3/2}$，温度从 $1\ \mathrm{keV}$ 升到 $10\ \mathrm{keV}$ 时电阻率降为 $10^{-3/2}=3.2\times10^{-2}$ 倍，同电流下的欧姆功率只剩 $884\ \mathrm{W/m^3}$（附录 M.6 练习 1）。而轫致辐射与杂质辐射损失随温度上升。欧姆加热因此\textbf{只适合启动与爬升阶段}。
 
 \textbf{另一个时间尺度：}电流在导体中扩散（趋肤）的时间为
 \begin{equation}
@@ -85,7 +83,7 @@ Wesson《Tokamaks》等离子体电阻相关章节。
 
 \begin{warning}{把欧姆加热当成主力}{warn:m-ohm}
 \textbf{误区：}“有电流就有加热，所以托卡马克不需要外加加热。”
-\textbf{纠正：}欧姆功率 $\propto T_e^{-3/2}$ 而损失 $\propto T_e^{1/2}$（轫致）或更陡（输运），两者必然在某温度交叉；托卡马克的这个交叉点约在 $1$--$2\ \mathrm{keV}$，远低于聚变所需的 $10$--$20\ \mathrm{keV}$。\textbf{欧姆加热是点火路上的“起步档”，不是“高速档”。}
+\textbf{纠正：}欧姆功率 $\propto T_e^{-3/2}$ 而损失 $\propto T_e^{1/2}$（轫致）或更陡（输运），两者必然在某温度交叉。托卡马克的这个交叉点约在 $1$--$2\ \mathrm{keV}$，远低于聚变所需的 $10$--$20\ \mathrm{keV}$。\textbf{欧姆加热只是起步档。}
 \end{warning}
 
 
@@ -186,13 +184,13 @@ ECRH & $\omega=\omega_{ce}$ 或 $2\omega_{ce}$ & $100$--$170\ \mathrm{GHz}$ & $f
 \[
 B_{\mathrm{res}}=\frac{2\pi f\,m_i}{q},
 \]
-即\textbf{同一频率下，不同离子的共振磁场不同}——这正是“少数离子加热”的原理：在氘等离子体中掺入少量氢（或 $^3\mathrm{He}$），把频率对准\textbf{氢}的回旋层，波在氢上被强烈吸收，再通过碰撞把能量转交给氘背景。$40\ \mathrm{MHz}$ 对氘是 $5.24\ \mathrm{T}$、对氢只有 $2.62\ \mathrm{T}$（附录 M.6 会练习用电子的 $170\ \mathrm{GHz}$ 反推磁场）。
+即\textbf{同一频率下，不同离子的共振磁场不同}。这正是“少数离子加热”的原理：在氘等离子体中掺入少量氢（或 $^3\mathrm{He}$），把频率对准\textbf{氢}的回旋层，波在氢上被强烈吸收，再通过碰撞把能量转交给氘背景。$40\ \mathrm{MHz}$ 对氘是 $5.24\ \mathrm{T}$、对氢只有 $2.62\ \mathrm{T}$（附录 M.6 会练习用电子的 $170\ \mathrm{GHz}$ 反推磁场）。
 
 \textbf{电子回旋共振加热（ECRH）。}$\omega_{ce}=eB/m_e$，数值上
 \[
 \frac{f_{ce}}{B}=28.0\ \mathrm{GHz/T},
 \]
-所以 $B=5.3\ \mathrm{T}$ 时基频为 $148\ \mathrm{GHz}$，而 $170\ \mathrm{GHz}$ 对应 $6.07\ \mathrm{T}$——这正是 ITER（$B_0\approx5.3\ \mathrm{T}$）选 $170\ \mathrm{GHz}$ 的原因：它落在 $2\omega_{ce}$ 附近，且这个频段有成熟的兆瓦级回旋管。ECRH 的共振层极薄，因此\textbf{沉积位置最可控}，常用来抑制新经典撕裂模（第 9 章）与做局域输运实验；代价是设备昂贵、单管功率有限。
+所以 $B=5.3\ \mathrm{T}$ 时基频为 $148\ \mathrm{GHz}$，而 $170\ \mathrm{GHz}$ 对应 $6.07\ \mathrm{T}$。这正是 ITER（$B_0\approx5.3\ \mathrm{T}$）选 $170\ \mathrm{GHz}$ 的原因：它落在 $2\omega_{ce}$ 附近，且这个频段有成熟的兆瓦级回旋管。ECRH 的共振层极薄，因此\textbf{沉积位置最可控}，常用来抑制新经典撕裂模（第 9 章）与做局域输运实验；代价是设备昂贵、单管功率有限。
 
 \textbf{低杂波电流驱动（LHCD）。}低杂波频率介于离子与电子回旋频率之间，
 \[
@@ -303,7 +301,7 @@ $f_{pe}=8.98\times10^{9}\sqrt{n_e/10^{18}}\approx9.8\times10^{10}\ \mathrm{Hz}=9
 \textbf{答案：}$P_\alpha=6.2\times10^{5}\ \mathrm{W/m^3}$，
 $P_{\mathrm{ext}}=P_{\mathrm{loss}}-P_\alpha=0.2P_\alpha\approx1.24\times10^{5}\ \mathrm{W/m^3}$，
 折合 $P_{\mathrm{ext}}V\approx1.24\times10^{5}\times840\approx1.04\times10^{8}\ \mathrm{W}$，即 $100\ \mathrm{MW}$ 量级——与 ITER 的辅助加热（$73\ \mathrm{MW}$）同量级。
-\textbf{注意口径：}这里“$P_{\mathrm{loss}}=1.2P_\alpha$”是假设，功率密度与体积两处数量级误差会相乘，所以这个结果只用于\textbf{判断“离点火还有多远”}：需要百兆瓦级辅助加热的装置，正好处在“$\alpha$ 自加热即将接管”的门槛附近。
+\textbf{注意口径：}这里“$P_{\mathrm{loss}}=1.2P_\alpha$”是假设，功率密度与体积两处数量级误差会相乘。这个结果只用于\textbf{判断“离点火还有多远”}：需要百兆瓦级辅助加热的装置，正好处在“$\alpha$ 自加热即将接管”的门槛附近。
 
 \end{enumerate}
 
@@ -315,10 +313,8 @@ $P_{\mathrm{ext}}=P_{\mathrm{loss}}-P_\alpha=0.2P_\alpha\approx1.24\times10^{5}\
 \section{来源、分级与版权说明}
 
 \begingroup\small
-本附录的数字都可以用 \texttt{tools/\allowbreak{}calc/\allowbreak{}appM\_calc.py} 重算一遍；脚本与当时的输出记录都在仓库里。
+本附录的数字都可以用 \texttt{tools/\allowbreak{}calc/\allowbreak{}appM\_calc.py} 重算一遍。
 \label{sec:app-m-source}
-
-下表逐节说明借鉴范围。
 
 {\small
 \begin{longtable}{@{}p{1.5cm}p{5.2cm}p{5.3cm}p{3.6cm}@{}}
@@ -346,11 +342,10 @@ M.6 & 本书自拟 & 六道估算练习 & 题目、参数与答案全部自拟�
 \item 上表的“借鉴”仅指\textbf{物理内容、公式形式与结论的组织方式}（例如“用欧姆功率与 $\alpha$ 自加热对比说明高温加热的必要性”这类公认的讲法）；
 \item 本附录的\textbf{文字表述、算例参数与全部数值}均由本书自拟，并可用仓库脚本 \texttt{appM\_{}calc2.py} 或手算逐条复现（正文保留三位有效数字）；
 \item 经验标度律（Greenwald、Troyon、Martin）的\textbf{原始出处按作者与年份标注}；
-\item 本附录\textbf{不复制}任何教材或文献的题目原文、解答、图表与数据表，引用它们只为说明物理结论的来源；
-\item 与前几个附录一致：只给作者、年份与书名/期刊名，\textbf{不写无法核实的 DOI}。
+\item 本附录\textbf{不复制}任何教材或文献的题目原文、解答、图表与数据表，引用它们只为说明物理结论的来源。
 \end{itemize}
 
 \begin{tip}{下一步}{tip-appm-next}
-附录 M 是“从物理到装置”的最后一环：把这里的功率账、运行极限与第 10 章的劳森判据拼在一起，你就能对一个聚变装置做\textbf{完整的一次量级评估}——这既是配套手册 L 第 10 章自测题的目的，也是本书全书量级方法（配套手册 I 第 4 节）的终点。若想继续深入，配套手册 J 的进阶专著清单里给出了 Wesson 与 Freidberg 的入口。
+附录 M 是“从物理到装置”的最后一环：把这里的功率账、运行极限与第 10 章的劳森判据拼在一起，你就能对一个聚变装置做\textbf{完整的一次量级评估}。若想继续深入，配套手册 J 给出了 Wesson 与 Freidberg 的入口。
 \end{tip}
 \endgroup

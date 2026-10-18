@@ -70,7 +70,7 @@ v_{te} = \sqrt{\frac{k_{\!B}T_e}{m_e}} = \sqrt{\frac{6.408\times 10^{-19}}{9.109
 \[
 \omega = 5.640\times 10^{10}\times 1.000131 = 5.6407\times 10^{10}\,\mathrm{rad/s}
 \]
-按三位有效数字仍记作 $\boxed{5.64\times 10^{10}\,\mathrm{rad/s}}$——\textbf{不是 $5.65\times 10^{10}$}。修正量 $7.4\times10^6\,\mathrm{rad/s}$ 落在第四位有效数字上，所以“$\omega$ 与 $\omega_{pe}$ 在三位有效数字下相等”正是热修正很小的正确表述；千万不要写成 $\omega$ 变了、更不要靠相减去“发现”它。这也正是本题要教的点：\textbf{小量修正必须用相对量报告，不能靠大数相减}。
+按三位有效数字仍记作 $\boxed{5.64\times 10^{10}\,\mathrm{rad/s}}$——\textbf{不是 $5.65\times 10^{10}$}。修正量 $7.4\times10^6\,\mathrm{rad/s}$ 落在第四位有效数字上，所以“$\omega$ 与 $\omega_{pe}$ 在三位有效数字下相等”正是热修正很小的正确表述。不要靠大数相减去“发现”这一修正：小量必须用相对量报告。
 
 \textbf{(3) 德拜长度验证：}
 \[
@@ -84,7 +84,7 @@ k\lambda_{De} = 628.3\times 1.49\times 10^{-5} \approx 9.35\times 10^{-3} \ll 1
 \end{example}
 
 \begin{example}{截止频率与电磁波传播判断}{cutoff-calculation}
-\textbf{模型说明（先读）：} 本题使用\emph{均匀、无磁场}的冷等离子体模型，只考虑垂直入射。判据只有一条：\textbf{载频 $f$ 与当地电子等离子体频率 $f_{pe}$ 的大小关系}——与信号用幅度调制（AM）还是频率调制（FM）\emph{毫无关系}。AM/FM 只是三个频率恰好对应的常见业务名称，不是物理分类。
+\textbf{模型说明：} 本题使用\emph{均匀、无磁场}的冷等离子体模型，只考虑垂直入射。判据只有一条：\textbf{载频 $f$ 与当地电子等离子体频率 $f_{pe}$ 的大小关系}——与信号用幅度调制（AM）还是频率调制（FM）\emph{毫无关系}。AM/FM 只是三个频率恰好对应的常见业务名称，不是物理分类。
 
 给定电离层典型电子密度 $n_e=10^{12}\,\mathrm{m}^{-3}$，有三个不同载频的信号：$f=5,\,20,\,30\,\mathrm{MHz}$。判断各能否在该均匀层中传播，若能传播则计算波数和波长。
 \tcblower
@@ -130,7 +130,7 @@ k = \frac{2\pi\sqrt{(30)^2 - (8.97)^2}\times 10^6}{3\times 10^8} = \frac{2\pi\ti
 \lambda = \frac{2\pi}{k} \approx 10.5\,\mathrm{m}
 \]
 
-\textbf{物理解释（局限在本模型内）：} 在这个均匀层里，只有一条规则——\textbf{载频低于 $f_{pe}$ 的被反射，高于 $f_{pe}$ 的穿透}。所以 $5\,\mathrm{MHz}$ 被反射，$20$ 和 $30\,\mathrm{MHz}$ 穿透。请注意这是一个\emph{均匀、垂直入射}模型，它能回答的只有“该频率在该密度处能否传播”。
+\textbf{物理解释：} 在这个均匀、垂直入射的模型里只有一条规则——载频低于 $f_{pe}$ 的被反射，高于 $f_{pe}$ 的穿透。本模型只回答“该频率在该密度处能否传播”；分层与斜入射见下一则误区。
 
 \end{example}
 
@@ -278,38 +278,35 @@ $f = 20\,\mathrm{MHz} \ll f_{pe}$，远低于截止频率，\textbf{不能传播
 
 \begin{figure}[htbp]
 \centering
-% v1.26.0：原版是自顶向下的树，level 2 的 sibling distance=2.5cm 装不下三个叶片，
-% 结果「静电波（纵波）」与「电磁波（横波）」相压、底层六个叶片标签压成一团（看图发现）。
-% 改为自左向右生长：每个叶片独占一行，标签不再互相碰撞，整图仍在版心宽度内。
 \begin{tikzpicture}[
-  scale=1.0,
-  every node/.style={font=\small},
-  root/.style={draw,thick,fill=figBlue!15,rounded corners,inner sep=3pt},
-  lv1/.style={draw,thick,fill=figGreen!15,rounded corners,inner sep=3pt},
-  lv2/.style={draw,thick,fill=figOrange!15,rounded corners,inner sep=3pt},
-  level 1/.style={sibling distance=3.2cm, level distance=1.7cm},
-  level 2/.style={sibling distance=1.6cm, level distance=2.0cm},
-  level 3/.style={sibling distance=0.72cm, level distance=3.1cm},
+  font=\footnotesize,
+  root/.style={draw=figNavy,line width=0.9pt,fill=figNavy!10,rounded corners=2pt,inner sep=3pt,font=\small},
+  lv1/.style={draw=figBlue,line width=0.8pt,fill=figBlue!10,rounded corners=2pt,inner sep=3pt,font=\small},
+  lv2/.style={draw=figGreen,line width=0.8pt,fill=figGreen!10,rounded corners=2pt,inner sep=3pt},
+  leaf/.style={draw=figGray!55,line width=0.6pt,fill=figPaper,rounded corners=1.5pt,inner sep=2pt},
+  level 1/.style={sibling distance=3.0cm, level distance=1.6cm},
+  level 2/.style={sibling distance=1.5cm, level distance=1.9cm},
+  level 3/.style={sibling distance=0.80cm, level distance=2.9cm},
   grow'=right]
 \node[root] {等离子体中的波}
   child {node[lv1] {无磁场 $B_0=0$}
     child {node[lv2] {静电波（纵波）}
-      child {node {Langmuir 波}}
-      child {node {离子声波}}
+      child {node[leaf] {Langmuir 波}}
+      child {node[leaf] {离子声波}}
     }
     child {node[lv2] {电磁波（横波）}
-      child {node {O 波}}
+      child {node[leaf] {O 波}}
     }
   }
   child {node[lv1] {有磁场 $B_0\neq 0$}
     child {node[lv2] {$\vect{k}\parallel\vect{B}_0$}
-      child {node {哨声波}}
-      child {node {阿尔芬波}}
-      child {node {离子回旋波}}
+      child {node[leaf] {哨声波}}
+      child {node[leaf] {阿尔芬波}}
+      child {node[leaf] {离子回旋波}}
     }
     child {node[lv2] {$\vect{k}\perp\vect{B}_0$}
-      child {node {低混杂波}}
-      child {node {高混杂波}}
+      child {node[leaf] {低混杂波}}
+      child {node[leaf] {高混杂波}}
     }
   };
 \end{tikzpicture}
@@ -319,46 +316,40 @@ $f = 20\,\mathrm{MHz} \ll f_{pe}$，远低于截止频率，\textbf{不能传播
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[scale=1.0]
-% 地球（旧版白字压浅蓝底，对比度不够几乎看不见）
-\draw[thick,fill=figBlue!20] (0,0) circle (1.5);
-\node[figBlue!50!black] at (0,0) {\small 地球};
+\begin{tikzpicture}[scale=1.1,font=\small]
+% 地球
+\draw[draw=figBlue,line width=0.9pt,fill=figBlue!15] (0,0) circle (1.30);
+\node[text=figInk,font=\footnotesize] at (0,0) {地球};
 
-% 电离层（D/E/F 标签旧版三个灰字悬在圆外一排、指不清各自是哪层；
-% 现在各自贴到对应虚线圆外侧并沿角度错开）
-\draw[dashed,figGray] (0,0) circle (2.0);
-\draw[dashed,figGray] (0,0) circle (2.5);
-\draw[dashed,figGray] (0,0) circle (3.2);
-\node[figGray!70!black,right] at (1.95,-0.75) {\small D};
-\node[figGray!70!black,right] at (2.42,-0.92) {\small E};
-\node[figGray!70!black,right] at (3.08,-1.16) {\small F};
+% 电离层 D/E/F：三条虚线圆，标签沿右上角依次外移
+\draw[fighelp] (0,0) circle (1.80);
+\draw[fighelp] (0,0) circle (2.30);
+\draw[fighelp] (0,0) circle (3.00);
+\node[text=figGray,font=\footnotesize,anchor=west,fill=white,inner sep=1.5pt] at (1.47,1.03) {D 层};
+\node[text=figGray,font=\footnotesize,anchor=west,fill=white,inner sep=1.5pt] at (1.63,1.63) {E 层};
+\node[text=figGray,font=\footnotesize,anchor=west,fill=white,inner sep=1.5pt] at (1.90,2.35) {F 层};
 
-% 磁力线（从南半球到北半球）
-\draw[figVerm,thick] (-1.06,-1.06) .. controls (-2.5,0) and (-2.5,2) .. (0,3.5) .. controls (2.5,2) and (2.5,0) .. (1.06,-1.06);
-\node[figVerm] at (0,4) {磁力线};
+% 磁力线：从南半球经高空回到北半球
+\draw[figGreen,line width=1.2pt]
+  (-0.92,-0.92) .. controls (-3.20,0.00) and (-2.20,3.00) .. (0,3.30)
+                .. controls (2.20,3.00) and (3.20,0.00) .. (0.92,0.92);
+\node[text=figGreen,font=\footnotesize] at (0,3.55) {磁力线};
 
-% 闪电源（南半球；旧版黄字压白底，对比度不够）
-\fill[figOrange] (-1.06,-1.06) circle (3pt);
-\node[figOrange!50!black] at (-1.4,-1.4) {闪电};
+% 哨声波：沿磁力线的金色传播箭头
+\draw[figGold,line width=1.2pt,->,>=Stealth] (-2.30,-0.15) -- (-2.18,0.28);
+\draw[figGold,line width=1.2pt,->,>=Stealth] (-1.92,0.88) -- (-1.70,1.30);
+\draw[figGold,line width=1.2pt,->,>=Stealth] (-1.18,2.10) -- (-0.86,2.46);
+\draw[figGold,line width=1.2pt,->,>=Stealth] (-0.36,2.92) -- (0.12,3.03);
+\draw[figGold,line width=1.2pt,->,>=Stealth] (0.46,2.90) -- (0.90,2.64);
+\draw[figGold,line width=1.2pt,->,>=Stealth] (1.24,2.00) -- (1.49,1.64);
+\draw[figGold,line width=1.2pt,->,>=Stealth] (1.88,0.80) -- (1.98,0.38);
+\node[text=figAmber,font=\footnotesize,fill=white,inner sep=1.5pt] at (-0.75,1.45) {哨声波};
 
-% 波传播箭头
-\draw[->,figOrange,very thick] (-1.5,-0.5) -- (-1.3,0.5);
-\draw[->,figOrange,very thick] (-1.2,1.5) -- (-0.8,2.2);
-\draw[->,figOrange,very thick] (-0.3,2.9) -- (0.3,2.9);
-\draw[->,figOrange,very thick] (0.8,2.2) -- (1.2,1.5);
-\draw[->,figOrange,very thick] (1.3,0.5) -- (1.5,-0.5);
-% 哨声波标签移进磁力线环内的空处：旧版压在第二支传播箭头的起点上
-\node[figOrange] at (-0.35,1.75) {哨声波};
-
-% 地面站（北半球）
-\fill[figInk] (1.06,-1.06) circle (3pt);
-\node at (1.4,-1.4) {地面站};
-
-% 卫星
-\fill[figGreen] (0,2.5) circle (3pt);
-\node[figGreen] at (0.6,2.7) {卫星};
-
-\node at (0,-2.2) {\small 闪电产生的宽频脉冲沿磁力线传播，高频先到、低频后到};
+% 闪电与地面站
+\fill[figAmber] (-0.92,-0.92) circle (3pt);
+\node[text=figAmber,font=\footnotesize,anchor=east,fill=white,inner sep=1.5pt] at (-1.05,-0.95) {闪电};
+\fill[figInk] (0.92,0.92) circle (3pt);
+\node[text=figInk,font=\footnotesize,anchor=north west] at (1.02,0.82) {地面站};
 \end{tikzpicture}
 \caption{哨声波传播路径示意图。闪电激发的电磁脉冲沿地球磁力线传播，在电离层D/E/F层中穿过，到达另一半球的地面站。}
     \label{fig:whistler-path}

@@ -10,7 +10,7 @@
 
 第 10 章讲过 Lawson 判据与三重积，附录 S 把约束写成一个数 $\tau_E$。但工程上最先被问到的
 问题不是“能不能点着”，而是“投进去一份加热功率，能换回几份聚变功率”。这个比值就是增益
-$Q$。本附录把 $Q$ 拆成三本能量账，看它怎样决定自加热、点火与电厂的账。
+$Q$。
 
 \begin{equation}
 Q \equiv \frac{P_{\mathrm{fus}}}{P_{\mathrm{aux}}}
@@ -49,9 +49,9 @@ P_{\mathrm{fus}} = \frac{n^2}{4}\,\langle\sigma v\rangle_{\mathrm{DT}}\,E_{\math
 \end{equation}
 
 其中 $T$ 以 keV 计，$E_{\mathrm{fus}} = 17.6\ \mathrm{MeV} = 2.819831\times10^{-12}\ \mathrm{J}$，
-$V$ 是等离子体体积。$\langle\sigma v\rangle$ 用第 10 章卡片上的两参数拟合：它在
-$10\ \mathrm{keV}$ 附近给出 $1.1\times10^{-22}\ \mathrm{m^3/s}$，与 Bosch-Hale 数据相符；
-但 $T<5\ \mathrm{keV}$ 时这个拟合会高估约 2 倍，本附录所有低温行只当趋势看，绝对值不可当真。
+$V$ 是等离子体体积。$\langle\sigma v\rangle$ 用第 10 章卡片上的两参数拟合。它在
+$10\ \mathrm{keV}$ 附近给出 $1.1\times10^{-22}\ \mathrm{m^3/s}$，与 Bosch-Hale 数据相符。
+但 $T<5\ \mathrm{keV}$ 时这个拟合会高估约 2 倍；本附录所有低温行只当趋势看，绝对值不可当真。
 
 把附录 S 表 S.2 的三个工作点代进式 \eqref{eq:app-u-q} 与式 \eqref{eq:app-u-pfus}，
 得到表 \ref{tab:app-u-accounts}。$\tau_E$、$T$、$W$ 三列与附录 S 逐字一致——两个附录用的是
@@ -77,7 +77,7 @@ $P$ 是同一个量（口径差别见 U.3）。}
 D1 一行的细节值得拆开看：$P_{\mathrm{fus}}=556.5\ \mathrm{MW}$ 中，
 $P_\alpha = 111.3\ \mathrm{MW}$ 留在等离子体里，$P_{\mathrm{n}} = 445.2\ \mathrm{MW}$ 去包层；
 按 $V=832.2\ \mathrm{m^3}$ 摊开，$\alpha$ 加热的功率密度是 $1.337\times10^{5}\ \mathrm{W/m^3}$。
-D2、D3 的 $Q$ 只有 $0.058$ 与 $0.014$，不是装置“差”，而是温度太低：$T=2.336$ 与
+D2、D3 的 $Q$ 只有 $0.058$ 与 $0.014$，不是装置“差”，而是温度太低。$T=2.336$ 与
 $1.649\ \mathrm{keV}$ 时 $\langle\sigma v\rangle \propto T^2$ 给出的反应率比 D1 小两个量级，
 聚变功率自然只有 $0.9$ 与 $0.1\ \mathrm{MW}$。
 
@@ -109,9 +109,8 @@ f_\alpha \equiv \frac{P_\alpha}{P_\alpha + P_{\mathrm{aux}}}
 \label{eq:app-u-falpha}
 \end{equation}
 
-这个式子的形式值得记住：$f_\alpha$ 只与 $Q$ 有关，不含 $n$、$T$、$\tau_E$、装置尺寸。
-也就是说，一旦知道一台装置的 $Q$，自加热份额就定了，与它多大、多强无关。
-表 \ref{tab:app-u-falpha} 给出几个节点的值。
+$f_\alpha$ 只与 $Q$ 有关，不含 $n$、$T$、$\tau_E$、装置尺寸。知道 $Q$，自加热份额就定了，
+与装置多大、多强无关。表 \ref{tab:app-u-falpha} 给出几个节点的值。
 
 \begin{table}[htbp]
 \centering
@@ -135,10 +134,10 @@ $\infty$ & 1.0000 & 点火：外部加热可以关掉 \\
 \label{tab:app-u-falpha}
 \end{table}
 
-两个反直觉之处。第一，$Q=1$ 听起来像“够了”，但此时 $f_\alpha$ 只有 $1/6$，外部加热一停，
-$P_{\mathrm{loss}}$ 里六分之五的来源消失，温度会迅速掉下去。第二，$f_\alpha$ 增长得比想象
-慢：从 $Q=10$ 提到 $Q=20$，自加热份额只从 $0.6667$ 升到 $0.8000$，代价却是把
-$P_{\mathrm{fus}}$ 与等离子体参数同时推高一大截。
+$Q=1$ 听起来像“够了”，但此时 $f_\alpha$ 只有 $1/6$。外部加热一停，$P_{\mathrm{loss}}$ 里
+六分之五的来源消失，温度会迅速掉下去。$f_\alpha$ 也涨得比想象慢：从 $Q=10$ 到 $Q=20$，
+自加热份额只从 $0.6667$ 升到 $0.8000$，代价却是把 $P_{\mathrm{fus}}$ 与等离子体参数同时
+推高一大截。
 
 \begin{tip}{为什么门槛是 Q=5 而不是 Q=1}{tip-app-u-loop2}
 把 $Q=5$ 代进式 \eqref{eq:app-u-falpha} 得 $f_\alpha=0.5$：自加热与外部加热等量。再往下
@@ -209,11 +208,7 @@ T^{(k)} = \frac{\tau_E\!\left(P_{\mathrm{tot}}^{(k)}\right)P_{\mathrm{tot}}^{(k)
 \label{tab:app-u-iter}
 \end{table}
 
-收敛点是 $P_{\mathrm{tot}}=332.2\ \mathrm{MW}$、$\tau_E=1.4306\ \mathrm{s}$、
-$T=11.764\ \mathrm{keV}$、$P_{\mathrm{fus}}=911.0\ \mathrm{MW}$、
-$P_\alpha=182.2\ \mathrm{MW}$、$Q=6.073$。
-
-注意这里出现的两个口径，混起来就会算出矛盾的数字：
+表中的两个口径混起来就会算出矛盾的数字：
 \begin{itemize}
   \item \textbf{口径一（附录 S 与表 \ref{tab:app-u-accounts}）}：$P$ 取\textbf{外部加热功率}
         $P_{\mathrm{aux}}$。它回答“给定加热系统，能得到多少聚变功率”，三个装置都停在这一步，
@@ -301,12 +296,11 @@ nT\tau_E > 3.0992\times10^{21}\ \mathrm{keV\,s\,m^{-3}}
 \label{eq:app-u-triple}
 \end{equation}
 
-这个结果有两层意思。第一层是有用的：点火条件可以用一个乘积来记，量级约
-$3\times10^{21}$ $\mathrm{keV\,s\,m^{-3}}$，与教科书常引的数字一致。第二层必须声明：
-\textbf{$T$ 被消掉是 $\langle\sigma v\rangle \propto T^2$ 这个拟合的产物}。真实反应率在
-$15\ \mathrm{keV}$ 附近有一个极小值（Bosch-Hale 曲线），所以在低温端与高温端门槛会抬高，
-不会像式 \eqref{eq:app-u-triple} 那样与 $T$ 完全无关。表 \ref{tab:app-u-triple} 列出几个温度
-上的 $n\tau_E$ 要求，可以看出低温端要求更高。
+点火条件因此可以记成一个乘积，量级约 $3\times10^{21}$ $\mathrm{keV\,s\,m^{-3}}$，与教科书
+常引的数字一致。但\textbf{$T$ 被消掉是 $\langle\sigma v\rangle \propto T^2$ 这个拟合的产物}。
+真实反应率在 $15\ \mathrm{keV}$ 附近有极小值（Bosch-Hale 曲线），低温端与高温端的门槛
+因此抬高，不会像式 \eqref{eq:app-u-triple} 那样与 $T$ 完全无关。表 \ref{tab:app-u-triple}
+列出几个温度上的要求，低温端更高。
 
 \begin{table}[htbp]
 \centering
@@ -395,11 +389,11 @@ $P_{\mathrm{aux}}$ [MW] & $\tau_E$ [s] & $T$ [keV] & $W$ [MJ] & $P_{\mathrm{fus}
 \end{table}
 
 这张表藏着一个陷阱。若只盯 $Q$，会得到“$P_{\mathrm{aux}}$ 越小越好”的结论：要在 D1 上做出
-$Q=10$，只需 $P_{\mathrm{aux}} = 11.035\ \mathrm{MW}$——听起来比 ITER 的 $50\ \mathrm{MW}$
+$Q=10$，只需 $P_{\mathrm{aux}} = 11.035\ \mathrm{MW}$，听起来比 ITER 的 $50\ \mathrm{MW}$
 还厉害。但同一行给出 $\tau_E = 14.9894\ \mathrm{s}$、$T = 4.094\ \mathrm{keV}$、
 $P_{\mathrm{fus}} = 110.3\ \mathrm{MW}$：这是一台“加热很省、聚变功率也很小”的装置，
 $110\ \mathrm{MW}$ 的聚变功率离电厂差得远。所以 $Q$ 必须与 $P_{\mathrm{fus}}$（或最终的电功率）
-一起看，单看 $Q$ 会被“少加热”刷出来的高值骗过去。
+一起看。
 
 这就引出工程增益。把电厂的热与电连起来（教学简化：只计加热功率，忽略电流驱动、包层增殖、
 泵循环与占空比）：
@@ -441,11 +435,11 @@ ITER 设计点      & 500.0 & 50.0  & 550.0  & 220.0 & 125.0 & 1.760 \\
 \label{tab:app-u-qeng}
 \end{table}
 
-三点结论。第一，$Q=3.710$ 的 D1 外部加热点 $Q_{\mathrm{eng}}=0.754$：聚变是“做出来了”，
-但电厂账还是亏的。第二，$Q_{\mathrm{eng}}$ 的盈亏平衡在 $Q=5.250$，比“得失相当”的 $Q=1$
-高得多——差在热效率与加热效率两个 $0.40$ 上。第三，ITER 设计点 $Q=10$ 对应
-$Q_{\mathrm{eng}}=1.760$，这才是“聚变电站”意义上的正增益。教学简化必须标明：真实电厂账还要
-减掉电流驱动功率、包层与氚循环的功耗、以及占空比造成的停机时间。
+$Q=3.710$ 的 D1 外部加热点 $Q_{\mathrm{eng}}=0.754$：聚变是做出来了，电厂账还亏。
+$Q_{\mathrm{eng}}$ 的盈亏平衡在 $Q=5.250$，比“得失相当”的 $Q=1$ 高得多，差在热效率与
+加热效率两个 $0.40$ 上。ITER 设计点 $Q=10$ 对应 $Q_{\mathrm{eng}}=1.760$，才是“聚变电站”
+意义上的正增益。教学简化必须标明：真实电厂账还要减掉电流驱动、包层与氚循环的功耗，
+以及占空比造成的停机时间。
 
 {\footnotesize
 \textbf{出处：} $Q$ 随 $P_{\mathrm{aux}}$ 下降的指数关系由本节用 IPB98(y,2) 的指数自行推导。
@@ -556,7 +550,7 @@ $\alpha$ 加热份额与自加热闭环 & Wesson 第 1 章；ITER Physics Basis�
         （只计加热功率）都在正文中显式标明。
 \end{itemize}
 
-\textbf{与前后附录的关系：} 附录 S 回答“约束有多好”（$\tau_E$ 与 IPB98(y,2)），
-附录 T 回答“磁面什么时候不再是磁面”（拓扑与磁岛），本附录回答“这些约束能换来多少聚变功率、
-离自持与电厂还有多远”。三者的三个装置工作点完全一致，可以互相代入验算。
+\textbf{与前后附录的关系：} 附录 S 回答“约束有多好”（$\tau_E$ 与 IPB98(y,2)）。
+附录 T 回答“磁面什么时候不再是磁面”（拓扑与磁岛）。本附录回答“这些约束能换来多少聚变功率、
+离自持与电厂还有多远”。三者共用三个装置工作点，可以互相代入验算。
 \endgroup

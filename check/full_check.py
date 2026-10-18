@@ -769,14 +769,26 @@ def check_J_predicts():
 
 
 def check_K_roadmap():
-    """全书学习路径图（v1.26.39 起）：12 个节点、16 条直接依赖边、样式齐全。"""
+    """全书学习路径图：12 个节点、16 条直接依赖边、样式齐全。
+
+    2026-10-19 起图改用语义色样式：节点 all3/ab/bc（三条路线都读／A、B／B、C），
+    边 dep（直接依赖）与 lane（绕行车道，同样是一条直接依赖）。
+    旧样式 rmABC/rmAB/rmBC 与 rmedge 仍认，避免历史版本误报。
+    """
     text = strip_comments(read(os.path.join(SRC, MAIN)))
-    n_node = sum(text.count('\\node[%s]' % s) for s in ('rmABC', 'rmAB', 'rmBC'))
-    n_edge = text.count('\\draw[rmedge]')
+    nodes = ('all3', 'ab', 'bc')
+    old_nodes = ('rmABC', 'rmAB', 'rmBC')
+    n_node = sum(text.count('\\node[%s]' % s) for s in nodes)
+    if n_node == 0:
+        n_node = sum(text.count('\\node[%s]' % s) for s in old_nodes)
+    n_edge = text.count('\\draw[dep]') + text.count('\\draw[lane]')
+    if n_edge == 0:
+        n_edge = text.count('\\draw[rmedge]')
+    has_style = ('cbox/.style' in text) or ('rmnode/.style' in text)
     if '\\label{fig:roadmap}' not in text:
         rec('FAIL', 'K', u'缺少学习路径图（fig:roadmap）')
-    elif 'rmnode/.style' not in text:
-        rec('FAIL', 'K', u'学习路径图样式定义缺失（rmnode/.style）')
+    elif not has_style:
+        rec('FAIL', 'K', u'学习路径图样式定义缺失（cbox/.style 或 rmnode/.style）')
     elif n_node != 12 or n_edge != 16:
         rec('FAIL', 'K', u'学习路径图应为 12 个节点 / 16 条直接依赖边，实际 %d / %d'
                          % (n_node, n_edge))

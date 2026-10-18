@@ -1,4 +1,4 @@
-# 配图从哪里来（image-research/）
+# 配图从哪里来
 
 这本书的插图有两条来源：**手绘示意图**（TikZ，随正文编译）与**真实图像**（装置照片、天文观测、
 机构示意图，放在 `figures/`）。这份文档只讲后者是怎么选出来的。
@@ -42,5 +42,5 @@ IAEA《Fusion Physics》（保留所有权利）同样不用。
   与请求频率无关；必须用 `客户端名/版本 (联系方式)` 形式的 UA。
 - 用 `urllib` 取任意尺寸缩略图会被拒（HTTP 400），需选 Commons 列出的标准档位；
   稳定做法是用 `Special:FilePath/<文件名>?width=1500`。
-- 检索与下载脚本在 `tools/`（`commons_pick.py`、`fetch_figure.py`），
-  候选池表格可用 `tools/gen_table.py` 从 `tools/verified.json` 重新生成。
+- 检索与下载脚本在 `tools/`（`commons_pick.py`、`fetch_figure.py`）；候选池明细见 `tools/verified.json`
+  （作者、许可、分辨率与直链验证结果）。

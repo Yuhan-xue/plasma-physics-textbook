@@ -52,7 +52,7 @@ t_{10e} = \frac{10}{\gamma} = \frac{10}{3.07\times 10^{3}} \approx 3.3\times 10^
 
 两者相差 $\dfrac{10}{\ln10}\approx4.34$ 倍（$t_{10e}=\dfrac{10}{\ln10}\,t_{10\times}$，\textbf{不是 $\ln10\approx2.3$ 倍}），\textbf{不能互换}。一个 e-folding 的时间为 $\tau=1/\gamma\approx0.33\,\mathrm{ms}$。
 
-\textbf{约定提醒：} 本书全程用 $\exp[\ii(\vect{k}\cdot\vect{r}-\omega t)]$，因此 $\gamma=\Im\omega>0$ 对应振幅 $\propto\ee^{\gamma t}$\emph{增长}。凡涉及“增长多少倍”“多少个 e-folding”，含义必须写明，因为十倍与十个 e-folding 是不同的事。
+\textbf{约定：} 本书全程用 $\exp[\ii(\vect{k}\cdot\vect{r}-\omega t)]$，因此 $\gamma=\Im\omega>0$ 对应振幅 $\propto\ee^{\gamma t}$\emph{增长}。凡涉及“增长多少倍”“多少个 e-folding”，含义必须写明，因为十倍与十个 e-folding 是不同的事。
 
 \textbf{(3) 波长缩短为 $\lambda = 0.5\,\mathrm{cm}$：}
 
@@ -79,7 +79,7 @@ k' = \frac{2\pi}{0.005} = 1257\,\mathrm{m}^{-1}
 \end{example}
 
 \begin{example}{双流不稳定性的色散关系与不稳定性条件}{two-stream-calc}
-\textbf{模型声明（先读）：} 本题研究\textbf{对称双流模型}——两束等密度的冷电子以 $\pm u/2$ 相向运动，净电荷中和由静止离子背景提供（离子只作电中性背景，不参与振荡）。相对漂移速度为 $u = 2\times 10^{7}\,\mathrm{m/s}$。设\textbf{总}电子密度对应的等离子体频率为 $\omega_{pe} = 5\times 10^{10}\,\mathrm{rad/s}$（每束为 $\omega_{pe}^2/2$）。求：(1) 色散关系。
+\textbf{模型声明：} 本题研究\textbf{对称双流模型}——两束等密度的冷电子以 $\pm u/2$ 相向运动，净电荷中和由静止离子背景提供（离子只作电中性背景，不参与振荡）。相对漂移速度为 $u = 2\times 10^{7}\,\mathrm{m/s}$。设\textbf{总}电子密度对应的等离子体频率为 $\omega_{pe} = 5\times 10^{10}\,\mathrm{rad/s}$（每束为 $\omega_{pe}^2/2$）。求：(1) 色散关系。
 (2) 不稳定波数范围。
 (3) 最大增长率及对应波数。
 
@@ -235,18 +235,18 @@ v_{de} = \frac{1.602\times 10^{-17}}{1.602\times 10^{-19}\times 2\times 0.1}
 f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
 \]
 
-\textbf{步骤3：这一步\emph{到此为止}——不能由 $\omega_*$ 推出增长率。}
+\textbf{步骤3：$\omega_*$ 只是实频率，不能由此推出增长率。}
 
 上面的 $\omega_*\sim5\times10^{3}\,\mathrm{rad/s}$ 是\textbf{实频率}（波的振荡快慢），\textbf{不}是增长率。$\omega_*=k_yv_{de}$ 只告诉你有梯度时存在一个以逆磁速度传播的模，\textbf{它本身不含任何关于稳定性的信息}。“有梯度”与“该模一定增长”之间还差一整套机制。
 
-\textbf{要判断是否增长，必须给出非绝热的电子响应。} 漂移波不稳定的标准图景是：电子沿磁力线的响应若\emph{恰好}是绝热的（$n_{e1}/n_0=e\phi_1/k_BT_e$，即响应瞬时、无相位延迟），则密度涨落与电势涨落\emph{同相}，$\vect{E}\times\vect{B}$ 漂移只把等离子体来回搬运，净输运为零——\textbf{不增长}。只有当电子响应\emph{非绝热}、产生一个相位差 $\delta$ 时，输运才与密度涨落同相，才能把能量喂给波。产生相位差的机制包括：
+\textbf{要判断是否增长，必须给出非绝热的电子响应。} 漂移波的标准图景是：电子沿磁力线的响应若\emph{恰好}绝热（$n_{e1}/n_0=e\phi_1/k_BT_e$，响应瞬时、无相位延迟），则密度涨落与电势涨落\emph{同相}。此时 $\vect{E}\times\vect{B}$ 漂移只把等离子体来回搬运，净输运为零，\textbf{不增长}。只有当电子响应\emph{非绝热}、产生一个相位差 $\delta$ 时，输运才与密度涨落同相，才能把能量喂给波。产生相位差的机制包括：
 \begin{itemize}[leftmargin=*,itemsep=0pt]
 \item \textbf{碰撞}（耗散型漂移波）：$\delta\sim\nu_{ei}/\omega_*$，增长率 $\gamma\propto\nu_{ei}$；
 \item \textbf{有限 $k_\parallel$}（朗道型/平板漂移波）：沿磁力线的波数使电子不能瞬时平衡，$\gamma\sim k_\parallel v_{te}\sqrt{\pi/2}$；
 \item \textbf{曲率/坏曲率与 $\nabla T$}（ITG/TEM 等）：需要这些额外自由能源才能致不稳定。
 \end{itemize}
 
-\textbf{结论：} 本题应读作“\textbf{实频率尺度的估算}”，到此为止。$\gamma$ 必须来自具体的非绝热模型，\textbf{不能写成 $\gamma\sim\omega_*$}。请把本章漂移波例题的模型假设写清楚（哪个非绝热机制？$k_\parallel$ 多大？有无碰撞？）之后再求虚部。
+\textbf{结论：} $\omega_*\sim k_yv_{de}$ 给出实频率尺度。$\gamma$ 必须来自具体的非绝热模型：先写清机制（碰撞、有限 $k_\parallel$ 还是曲率驱动），再求虚部，\textbf{不能写成 $\gamma\sim\omega_*$}。
 
 \textbf{物理分析：}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
@@ -259,27 +259,35 @@ f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[scale=1.0, >=Stealth, font=\small,
-  box/.style={draw, rounded corners, fill=figBlue!10, minimum width=3.2cm, minimum height=0.9cm, align=center}]
-    % 四个环节的正反馈回路（横向加宽到 8.2cm，给回路内部的相位框和标签留出净空）
-    \node[box, fill=figOrange!15] (dn) at (0,2.6) {密度涨落 $\delta n$};
-    \node[box, fill=figBlue!15] (dp) at (8.2,2.6) {电势涨落 $\delta\phi$};
-    \node[box, fill=figGreen!15] (exb) at (8.2,-0.9) {$\vect{E}\times\vect{B}$ 漂移\\（扰动对流）};
-    \node[box, fill=figVerm!15] (amp) at (0,-0.9) {密度涨落被放大};
+\begin{tikzpicture}[scale=1.0,>=Stealth,font=\small,
+  box/.style={draw=figBlue!70,line width=0.8pt,rounded corners=2pt,fill=figBlue!8,
+              minimum width=3.1cm,minimum height=0.95cm,align=center,inner sep=3pt}]
+    % 正反馈回路：密度涨落 -> 电势涨落 -> E×B 输运 -> 放大
+    \node[box] (dn) at (0,2.60) {密度涨落 $\delta n$};
+    \node[box] (dp) at (8.20,2.60) {电势涨落 $\delta\phi$};
+    \node[box,draw=figGreen!75,fill=figGreen!8] (exb) at (8.20,-0.90)
+      {$\vect{E}\times\vect{B}$ 漂移\\（扰动对流）};
+    \node[box,draw=figVerm!75,fill=figVerm!8] (amp) at (0,-0.90) {密度涨落被放大};
 
-    \draw[->, very thick] (dn) -- (dp);
-    \draw[->, very thick] (dp) -- node[right] {$\delta\vect{E}\perp\vect{B}$} (exb);
-    \draw[->, very thick] (exb) -- node[above=0.18cm, align=center, font=\footnotesize] {把高密度区输运到低密度区} (amp);
-    \draw[->, very thick, dashed] (amp) -- node[left] {正反馈} (dn);
+    \draw[figInk,line width=1.2pt,->] (dn) -- (dp);
+    \draw[figInk,line width=1.2pt,->] (dp) -- (exb);
+    \node[text=figInk,font=\footnotesize,anchor=west] at (8.35,0.85) {$\delta\vect{E}\perp\vect{B}$};
+    \draw[figInk,line width=1.2pt,->] (exb) -- (amp);
+    \node[text=figInk,font=\footnotesize,fill=white,inner sep=1.5pt] at (4.10,-0.42)
+      {把高密度区输运到低密度区};
+    \draw[figVerm,line width=1.2pt,->,dashed] (amp) -- (dn);
+    \node[text=figVerm,font=\footnotesize,anchor=east] at (-0.20,0.85) {正反馈};
 
-    % 相位差（驱动增长的必需条件）：放在回路正中，用 text width 限制宽度，避免溢出压住两侧标签
-    \node[box, fill=figOrange!25, text width=5.2cm, font=\footnotesize] (ph) at (4.1,0.85)
-      {驱动增长必需：$\delta n$ 与 $\delta\phi$\\之间的\textbf{相位差} $\delta\neq0$\\（非绝热电子响应：碰撞或有限 $k_\parallel$）};
-    \draw[->, dashed, thick, figOrange!80!black] (ph.west) -- (amp.east);
-    \draw[->, dashed, thick, figOrange!80!black] (ph.east) -- (exb.west);
+    % 相位差：回路闭合的必需条件
+    \node[draw=figAmber,line width=0.9pt,rounded corners=2pt,fill=figGold!12,
+          text width=4.6cm,font=\footnotesize,align=center,inner sep=3pt] (ph) at (4.10,0.95)
+      {驱动增长必需：$\delta n$ 与 $\delta\phi$ 之间的\textbf{相位差} $\delta\neq0$\\[1pt]
+       （非绝热电子响应：碰撞或有限 $k_\parallel$）};
+    \draw[figAmber,line width=0.8pt,->,dashed] (ph.west) -- (amp.east);
+    \draw[figAmber,line width=0.8pt,->,dashed] (ph.east) -- (exb.west);
 
-    % 背景说明（放在回路外侧上方，不与连线重叠）
-    \node[font=\small, align=center] at (4.1,3.5) {背景：$\nabla n$ 沿 $-x$ 方向，$\vect{B}$ 垂直纸面向外，涨落波矢沿 $y$ 方向};
+    \node[text=figGray,font=\footnotesize,align=center] at (4.10,3.50)
+      {背景：$\nabla n$ 沿 $-x$ 方向，$\vect{B}$ 垂直纸面向外，涨落波矢沿 $y$ 方向};
 \end{tikzpicture}
 \caption{漂移波（可能）不稳定性的正反馈回路。密度梯度（沿 $-x$ 方向）中的密度涨落产生电势涨落，电势涨落的 $\vect{E}\times\vect{B}$ 漂移把高密度等离子体输运到低密度区，进一步放大密度涨落。\textbf{但回路闭合还差一环}：只有 $\delta n$ 与 $\delta\phi$ 之间存在相位差 $\delta\neq0$（即电子响应非绝热，由碰撞或有限 $k_\parallel$ 提供）时，输运才与密度涨落同相、才能把能量喂给波；若相位差为零，$\vect{E}\times\vect{B}$ 漂移只来回搬运、净输运为零，是中性振荡而非增长。磁场 $\vect{B}$ 垂直纸面向外。}
 \label{fig:drift-wave-feedback}
@@ -287,39 +295,54 @@ f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[
-  scale=1.0, font=\small, grow'=right,
-  level 1/.style={sibling distance=6.4cm, level distance=3.4cm},
-  level 2/.style={sibling distance=3.4cm, level distance=2.6cm},
-  level 3/.style={sibling distance=1.5cm, level distance=2.2cm, font=\footnotesize},
-  every node/.style={align=center, draw, rounded corners, fill=figBlue!10,
-                     inner sep=3pt, minimum height=0.75cm}
-]
-% 向右生长：每一层占用一条独立的纵向通道，兄弟间距按子树宽度给定，
-% 保证 10 个叶节点标签互不遮挡（向下生长时 16.3cm 版心放不下）。
-\node[fill=figBlue!20] {等离子体不稳定性}
-  child { node[fill=figVerm!15] {宏观 MHD\\不稳定性}
-    child { node[fill=figVerm!10] {理想 MHD}
-      child { node[fill=figVerm!5] {sausage\\模} }
-      child { node[fill=figVerm!5] {kink\\扭曲模} }
-      child { node[fill=figVerm!5] {气球模} }
-    }
-    child { node[fill=figOrange!10] {电阻\\不稳定性}
-      child { node[fill=figOrange!5] {撕裂模} }
-      child { node[fill=figOrange!5] {磁重联} }
-    }
-  }
-  child { node[fill=figGreen!15] {微观\\动理学不稳定性}
-    child { node[fill=figGreen!10] {速度空间}
-      child { node[fill=figGreen!5] {bump-on-tail} }
-      child { node[fill=figGreen!5] {loss-cone} }
-    }
-    child { node[fill=figGreen!10] {漂移波}
-      child { node[fill=figGreen!5] {ITG} }
-      child { node[fill=figGreen!5] {ETG} }
-      child { node[fill=figGreen!5] {TEM} }
-    }
-  };
+\begin{tikzpicture}[font=\footnotesize,
+  macro/.style={draw=figVerm,line width=0.8pt,rounded corners=2pt,fill=figVerm!8,align=center,inner sep=3pt,minimum height=0.7cm},
+  macro2/.style={draw=figVerm!70,line width=0.7pt,rounded corners=2pt,fill=figVerm!5,align=center,inner sep=2.5pt},
+  resist/.style={draw=figAmber,line width=0.8pt,rounded corners=2pt,fill=figGold!8,align=center,inner sep=3pt,minimum height=0.7cm},
+  resist2/.style={draw=figAmber!70,line width=0.7pt,rounded corners=2pt,fill=figGold!5,align=center,inner sep=2.5pt},
+  micro/.style={draw=figGreen,line width=0.8pt,rounded corners=2pt,fill=figGreen!8,align=center,inner sep=3pt,minimum height=0.7cm},
+  micro2/.style={draw=figGreen!70,line width=0.7pt,rounded corners=2pt,fill=figGreen!5,align=center,inner sep=2.5pt},
+  leaf/.style={draw=figGray!55,line width=0.6pt,rounded corners=1.5pt,fill=figPaper,align=center,inner sep=0.6pt},
+  edge/.style={draw=figGray,line width=0.6pt,->,>=Stealth}]
+% 手工排布四列，逐列指定 y，避免自动森林算法在 10 个叶片时纵向相撞。
+\node[draw=figNavy,line width=0.9pt,rounded corners=2pt,fill=figNavy!10,
+      align=center,inner sep=3pt,minimum height=0.7cm,font=\footnotesize\bfseries] (root) at (0,0) {等离子体不稳定性};
+
+\node[macro] (macro) at (4.2,1.95) {宏观 MHD\\不稳定性};
+\node[micro] (micro) at (4.2,-2.00) {微观\\动理学不稳定性};
+
+\node[macro2] (ideal) at (8.2,3.00) {理想 MHD};
+\node[resist] (resist) at (8.2,0.95) {电阻\\不稳定性};
+\node[micro2] (vel) at (8.2,-1.00) {速度空间};
+\node[micro2] (drift) at (8.2,-3.00) {漂移波};
+
+\node[leaf] (s1) at (12.2,3.75) {sausage 模};
+\node[leaf] (s2) at (12.2,3.00) {kink 扭曲模};
+\node[leaf] (s3) at (12.2,2.25) {气球模};
+\node[leaf] (r1) at (12.2,1.35) {撕裂模};
+\node[leaf] (r2) at (12.2,0.55) {磁重联};
+\node[leaf] (v1) at (12.2,-0.55) {bump-on-tail};
+\node[leaf] (v2) at (12.2,-1.45) {loss-cone};
+\node[leaf] (d1) at (12.2,-2.25) {ITG};
+\node[leaf] (d2) at (12.2,-3.00) {ETG};
+\node[leaf] (d3) at (12.2,-3.75) {TEM};
+
+\draw[edge] (root.east) -- (macro.west);
+\draw[edge] (root.east) -- (micro.west);
+\draw[edge] (macro.east) -- (ideal.west);
+\draw[edge] (macro.east) -- (resist.west);
+\draw[edge] (micro.east) -- (vel.west);
+\draw[edge] (micro.east) -- (drift.west);
+\draw[edge] (ideal.east) -- (s1.west);
+\draw[edge] (ideal.east) -- (s2.west);
+\draw[edge] (ideal.east) -- (s3.west);
+\draw[edge] (resist.east) -- (r1.west);
+\draw[edge] (resist.east) -- (r2.west);
+\draw[edge] (vel.east) -- (v1.west);
+\draw[edge] (vel.east) -- (v2.west);
+\draw[edge] (drift.east) -- (d1.west);
+\draw[edge] (drift.east) -- (d2.west);
+\draw[edge] (drift.east) -- (d3.west);
 \end{tikzpicture}
 \caption{等离子体不稳定性分类树状图。宏观 MHD 不稳定性由压强和磁场的整体配置驱动；微观动理学不稳定性由速度空间或位形空间分布的非热力学平衡驱动。ITG = 离子温度梯度模，ETG = 电子温度梯度模，TEM = 捕获电子模。}
     \label{fig:instability-tree}
@@ -327,44 +350,35 @@ f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[scale=1.1,font=\small]
-% 背景盒子：重流体在上
-\fill[figBlue!30] (-4,2) rectangle (4,4);
-\node[figBlue!50!black] at (0,3) {\large 重流体 ($\rho_2$)};
+\begin{tikzpicture}[scale=1.05,font=\small]
+% 重流体在上、轻流体在下；界面扰动被放大：尖峰处重流体下沉，谷处轻流体上升。
+\fill[figBlue!10] (-4.5,2.0) rectangle (4.5,4.0);
+\node[text=figInk,font=\small] at (0,3.25) {重流体 $\rho_2$};
+\fill[figGold!10] (-4.5,-1.6) rectangle (4.5,2.0);
+\node[text=figInk,font=\small] at (0,0.20) {轻流体 $\rho_1$};
 
-% 背景盒子：轻流体在下
-\fill[figOrange!30] (-4,-2) rectangle (4,2);
-\node[figOrange!50!black] at (0,0) {\large 轻流体 ($\rho_1$)};
+% 界面：中间一段正弦扰动，两侧平直
+\draw[figInk,line width=1.2pt] (-4.5,2.0) -- (-3.0,2.0);
+\draw[figInk,line width=1.2pt,domain=-3:3,samples=80] plot(\x,{2.0+0.45*sin(2*\x r)});
+\draw[figInk,line width=1.2pt] (3.0,2.0) -- (4.5,2.0);
 
-% 界面
-\draw[thick] (-4,2) -- (-2.5,2);
-\draw[thick,domain=-2.5:2.5,samples=50] plot({\x},{2+0.5*sin(2*\x r)});
-\draw[thick] (2.5,2) -- (4,2);
+% 重力
+\draw[figVerm,line width=1.2pt,->,>=Stealth] (-3.70,3.55) -- (-3.70,2.75);
+\node[text=figVerm,font=\footnotesize,anchor=west] at (-3.55,3.15) {$\vect{g}$};
 
-% 重力（放在左侧空白处：原先画在 x=0 会与“重流体 ($\rho_2$)”区域标签叠字）
-\draw[->,very thick,figVerm] (-3.0,3.5) -- (-3.0,2.5);
-\node[figVerm,right] at (-2.85,3) {$\vect{g}$};
+% 扰动增长：尖峰下沉、谷上升
+\draw[figVerm,line width=1.2pt,->,>=Stealth] (-0.79,1.95) -- (-0.79,1.05);
+\draw[figVerm,line width=1.2pt,->,>=Stealth] (0.79,2.45) -- (0.79,3.30);
+\node[text=figVerm,font=\footnotesize,anchor=east,fill=white,inner sep=1.5pt] at (-1.10,1.55)
+  {重流体下沉};
+\draw[figlead] (-1.18,1.60) -- (-0.86,1.62);
+\node[text=figVerm,font=\footnotesize,anchor=west,fill=white,inner sep=1.5pt] at (1.05,3.45)
+  {轻流体上升};
+\draw[figlead] (1.05,3.38) -- (0.86,3.25);
 
-% 扰动增长箭头（尖峰=界面谷处重流体下沉、谷=界面峰处轻流体上升：
-% 旧版两支箭头画在斜坡上，方向与位置都对不上尖峰/谷）
-\draw[->,thick,figGreen!50!black] (-0.785,2.1) -- (-0.785,1.0);
-\draw[->,thick,figGreen!50!black] (0.785,1.5) -- (0.785,2.55);
-\draw[->,thick,figGreen!50!black] (2.356,1.9) -- (2.356,0.9);
-\node[figGreen!50!black,right] at (2.55,1.4) {\footnotesize 扰动增长};
-
-% 尖峰处标注
-\node[align=center] at (-1.85,1.3) {\footnotesize 尖峰处重流体\\\footnotesize 下沉};
-\node[align=center] at (2.1,2.6) {\footnotesize 谷处轻流体\\\footnotesize 上升};
-
-% 波数标注
-\draw[<->,thick] (-1.57,4.3) -- (1.57,4.3);
-\node[above] at (0,4.3) {$\lambda = 2\pi/k$};
-
-% 说明框
-\node[draw,fill=white,align=left,rounded corners] at (0,-1.2) {
-\footnotesize 瑞利--泰勒判据：$\gamma = \sqrt{A k g}$\\
-\footnotesize Atwood数：$A = (\rho_2 - \rho_1)/(\rho_2 + \rho_1)$
-};
+% 扰动波长
+\draw[figGray,line width=0.6pt,<->,>=Stealth] (-1.57,4.15) -- (1.57,4.15);
+\node[text=figGray,font=\footnotesize,anchor=south] at (0,4.20) {$\lambda=2\pi/k$};
 \end{tikzpicture}
 \caption{瑞利--泰勒不稳定性物理图像。重流体在轻流体上方，在有效重力 $g$ 作用下，界面扰动（尖峰和谷）被放大。尖峰处重流体下沉，谷处轻流体上升，形成反馈循环，扰动指数增长。}
     \label{fig:rayleigh-taylor}
@@ -385,7 +399,7 @@ f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
 \end{itemize}
 当压强梯度足够大时，坏曲率区压强项的不稳定贡献超过磁张力项的稳定贡献，$\delta W<0$，气球模增长——扰动像“气球”一样从外中平面鼓出，故得此名。
 
-\textbf{与比压 $\beta$ 的关系：} 压强项正比于 $\beta = 2\mu_0 p/B^2$（热压与磁压之比）。$\beta$ 升高意味着热压相对磁压增大，压强驱动增强而磁场稳定能力相对减弱。当 $\beta$ 超过临界值 $\beta_c$（工程上通常 $\beta_c\sim3\%$ 量级，取决于位形与剪切断面）时，气球模被触发——这正是托卡马克比压极限（Troyon 极限）的物理根源：$\beta$ 不能无限提高，否则压强梯度驱动的气球模立即破坏约束。
+\textbf{与比压 $\beta$ 的关系：} 压强项正比于 $\beta = 2\mu_0 p/B^2$（热压与磁压之比）。$\beta$ 升高意味着热压相对磁压增大，压强驱动增强而磁场稳定能力相对减弱。当 $\beta$ 超过临界值 $\beta_c$（工程上通常 $\beta_c\sim3\%$ 量级，取决于位形与剪切断面）时，气球模被触发。这正是托卡马克比压极限（Troyon 极限）的物理根源：$\beta$ 不能无限提高，否则压强梯度驱动的气球模立即破坏约束。
 
 \textbf{工程对策：} 提高磁场剪切断面（优化极向场位形）、降低边缘压强梯度（H模台地）、或使用导体壁靠近等离子体（ resistive wall 稳定低频模）。现代托卡马克通过这些手段把 $\beta$ 推到 $\sim3\%--5\%$，接近磁约束聚变堆的经济运行区间。
 \end{example}

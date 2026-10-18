@@ -43,7 +43,7 @@ v_{th,D} = \sqrt{\frac{2\times 1.602\times 10^{-15}}{3.34\times 10^{-27}}} \appr
 \omega_{cD} = \frac{eB}{m_D} \approx 2.40\times 10^{8}\,\mathrm{rad/s},\quad f_{cD}\approx 38.2\,\mathrm{MHz},\quad r_{cD}\approx 4.08\,\mathrm{mm}
 \]
 
-\textbf{对比：} 电子回旋频率比离子高约 $10^3$ 倍，回旋半径则小约 $10^2$ 倍。这就是为什么在磁约束中，电子通常被很好约束，而离子轨道半径较大，需更大的装置尺寸。
+\textbf{对比：} 电子回旋频率比质子高约 $10^3$ 倍，回旋半径小约 $10^2$ 倍。磁约束中电子因此更容易被约束；离子轨道大，装置尺寸由离子决定。
 \end{example}
 
 \begin{example}{$E\times B$ 漂移速度计算}{exb-drift-calc}
@@ -65,7 +65,7 @@ $E\times B$ 漂移速度公式为
 \vect{v}_E = \frac{10^3\times 5}{5^2}\,\unitvec{x} = \frac{5\times 10^3}{25}\,\unitvec{x} = 200\,\mathrm{m/s}\,\unitvec{x}
 \]
 
-\textbf{讨论：} 结果 $200\,\mathrm{m/s}$ 与粒子质量、电荷量、速度大小均无关。这意味着等离子体中所有粒子（正离子、电子、不同质量离子）都以相同速度向 $+x$ 方向漂移。这是 $E\times B$ 漂移的重要特征，也是磁约束装置中粒子输运的基础之一。
+\textbf{讨论：} 结果与粒子质量、电荷量、速度大小都无关。等离子体中所有粒子——正离子、电子、不同质量的离子——都以 $200\,\mathrm{m/s}$ 向 $+x$ 漂移。这是 $E\times B$ 漂移的特征，也是磁约束中粒子输运的基础。
 \end{example}
 
 \begin{example}{磁镜损失锥与粒子反射判断}{mirror-loss-cone}
@@ -147,39 +147,41 @@ v_{\text{drift},D} = \frac{2\times 1.602\times 10^{-15}}{(1.602\times 10^{-19})\
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[scale=1.0,font=\small]
-% 单面板：两种摆线画在同一坐标系里，直接对比「回旋方向相反、漂移相同」。
-% 旧版是左右两个小面板：⊙ 点阵盖不住轨迹、电子圆缩在原点成一团、标签只能塞在轴下。
-\draw[figaxis] (-0.6,0) -- (10.6,0) node[right] {$x$};
-\draw[figaxis] (0,-2.3) -- (0,2.7) node[above] {$y$};
+% 同一时间窗内的两条摆线：回旋方向相反，引导中心沿 +x 同速漂移。
+\draw[figaxis] (-0.4,0) -- (9.0,0) node[right,font=\footnotesize] {$x$};
+\draw[figaxis] (0,-2.2) -- (0,2.6) node[above,font=\footnotesize] {$y$};
 
-% 磁场出纸面（点阵铺满绘图区；B 的说明放左上，给右上留给粒子标签）
-\foreach \x in {0.6,1.6,...,9.6} {
-  \foreach \y in {-1.6,-0.6,0.4,1.4} {
-    \node[figGreen!70!black,font=\scriptsize] at (\x,\y) {$\odot$};
+% 磁场出纸面：淡青点阵只作背景，不再用 ⊙ 字形（避免与轨迹抢视线）
+\foreach \x in {0.8,2.2,3.6,5.0,6.4,7.8} {
+  \foreach \y in {-1.7,-0.5,0.7,1.9} {
+    \fill[figGreen!45] (\x,\y) circle (0.8pt);
   }
 }
-\node[figGreen!40!black,anchor=west,fill=white,inner sep=1.5pt] at (0.5,2.45) {$\vect{B}\parallel +\unitvec{z}$（出纸面）};
+\node[figGreen!55!black,fill=white,inner sep=1.5pt,font=\footnotesize,anchor=west] at (0.10,2.40)
+  {$\vect{B}\parallel+\unitvec{z}$（出纸面）};
 
-% 电场（画在左侧空列，避免与 y 轴标签挤在一起）
-\draw[figPurple,figcurve,->] (-0.35,-2.0) -- (-0.35,2.3) node[above,fill=white,inner sep=1.5pt] {$\vect{E}$};
+% 电场沿 +y，画在 y 轴右侧的空白列
+\draw[figPurple,figcurve,->] (0.25,-2.00) -- (0.25,2.05)
+  node[above,fill=white,inner sep=1.5pt,font=\footnotesize] {$\vect{E}$};
 
-% 正离子摆线：顺时针回旋 + 向右漂移（半径大、画满两圈；引导中心在 x 轴上方）
-% （B 出纸面、初速向右时，F=qv×B 指向下方，故正离子顺时针）
-\draw[figBlue,figcurve,domain=0:720,samples=320,smooth]
-  plot({0.8*cos(-\x)+0.85*\x/180+1.2},{0.8*sin(-\x)+1.1});
-% 电子摆线：逆时针回旋 + 同速漂移（半径小、圈数多；引导中心在 x 轴下方）
-\draw[figVerm,figcurve,domain=0:1440,samples=700,smooth]
-  plot({0.26*cos(\x)+0.85*\x/180+1.4},{0.26*sin(\x)-0.7});
+% 正离子：大半径、慢回旋、顺时针
+\draw[figBlue,figcurve,domain=0:1,samples=240,smooth]
+  plot({1.6+4.6*\x+0.68*cos(-390*\x)},{1.15+0.68*sin(-390*\x)});
+% 电子：小半径、快回旋、逆时针；漂移量与离子相同
+\draw[figGold,figcurve,domain=0:1,samples=600,smooth]
+  plot({1.6+4.6*\x+0.20*cos(1560*\x)},{-1.05+0.20*sin(1560*\x)});
 
-% 标签：引线点指 + 白光环，绝不压线
-\draw[figlead] (5.3,2.32) -- (4.5,1.95);
-\node[figBlue!50!black,fill=white,inner sep=1.5pt] at (6.5,2.45) {正离子：顺时针、$\rho_{Li}$ 大};
-\draw[figlead] (7.0,-1.45) -- (7.2,-0.98);
-\node[figVerm!50!black,fill=white,inner sep=1.5pt] at (6.2,-1.65) {电子：逆时针、$\rho_{Le}$ 小};
+% 标签加 white 光环并用引线点指，不压曲线
+\node[figBlue,fill=white,inner sep=1.5pt,font=\footnotesize,anchor=west] at (4.60,2.28)
+  {正离子：顺时针回旋};
+\draw[figlead] (4.60,2.18) -- (4.55,1.72);
+\node[figAmber,fill=white,inner sep=1.5pt,font=\footnotesize,anchor=west] at (4.20,-1.82)
+  {电子：逆时针回旋};
+\draw[figlead] (4.20,-1.72) -- (4.35,-1.12);
 
-% 漂移（两者同向，与电荷符号无关）
-\draw[figInk,line width=1.4pt,->] (8.6,-1.9) -- (9.9,-1.9)
-  node[right,fill=white,inner sep=1.5pt] {$\vect{v}_E$};
+% 漂移方向：两种电荷一致
+\draw[figInk,line width=1.4pt,->] (7.60,-2.05) -- (8.80,-2.05);
+\node[figInk,right,fill=white,inner sep=1.5pt,font=\footnotesize] at (8.85,-2.05) {$\vect{v}_E$};
 \end{tikzpicture}
 \caption{$E\times B$ 漂移的摆线轨迹。磁场垂直纸面向外（$+\unitvec{z}$），电场沿 $+y$ 方向。取初速度方向向右：正电荷受力 $q\vect{v}\times\vect{B}$ 指向下方，故\textbf{正离子顺时针回旋}；电子受力反向，故\textbf{电子逆时针回旋}。两者回旋方向相反，但漂移方向相同（均沿 $+\unitvec{x}$，因 $\vect{v}_E=\vect{E}\times\vect{B}/B^2$ 与电荷符号无关）。}
     \label{fig:exb-cycloid}
@@ -187,53 +189,56 @@ v_{\text{drift},D} = \frac{2\times 1.602\times 10^{-15}}{(1.602\times 10^{-19})\
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[scale=0.80,font=\small]
-% 双面板：(a) 实空间的磁瓶与两类轨道，(b) 速度空间的损失锥。
-% 旧版把实空间磁镜轮廓与速度空间损失锥画在同一张图上，四条线在中心交成一个 X，
-% 既读不出瓶子形状，也读不出锥是速度空间的概念。
-% ---- (a) 实空间：磁瓶与两类轨道 ----
-\begin{scope}[xshift=-5.4cm]
-% 磁瓶（填充的通量管）
-\fill[figGreen!8]
-  plot[domain=-3:3,samples=60] (\x,{0.5+0.13*\x*\x}) --
-  plot[domain=3:-3,samples=60] (\x,{-0.5-0.13*\x*\x}) -- cycle;
-\draw[figGreen!50!black,figcurve] plot[domain=-3:3,samples=60] (\x,{0.5+0.13*\x*\x});
-\draw[figGreen!50!black,figcurve] plot[domain=-3:3,samples=60] (\x,{-0.5-0.13*\x*\x});
-% 被反射轨道：上半程向镜点、下半程折回（两腿拉开，读得出「去—回」）
-\draw[figBlue,figcurve,->] (-2.3,0.16) .. controls (-1.0,0.44) and (1.0,0.44) .. (2.0,0.14)
-  .. controls (1.0,-0.20) and (-1.0,-0.20) .. (-2.2,-0.16);
-% 逃逸轨道：穿过右镜点
-\draw[figVerm,figcurve,->] (-1.8,-0.06) .. controls (-0.5,-0.03) and (1.0,0.02) .. (2.2,0.06)
-  .. controls (2.8,0.08) and (3.2,0.10) .. (3.7,0.12);
-% 标签：B 在瓶体外上下；两个 θ 判据标签移到面板左右两侧的白处（旧版压在瓶体与 B_max 上）
-\node[figGreen!40!black,fill=white,inner sep=1.5pt] at (-2.3,1.5) {$B_{\max}$};
-\node[figGreen!40!black,fill=white,inner sep=1.5pt] at (2.3,1.5) {$B_{\max}$};
-\node[figGreen!40!black,fill=white,inner sep=1.5pt] at (0,-1.45) {$B_{\min}$（喉部）};
-\draw[figlead] (-3.1,1.15) -- (-1.7,0.36);
-\node[figBlue!50!black,anchor=east,fill=white,inner sep=1.5pt] at (-3.15,1.25) {$\theta>\theta_m$：被反射};
-\draw[figlead] (2.7,-1.35) -- (3.0,0.06);
-\node[figVerm!50!black,anchor=west,fill=white,inner sep=1.5pt] at (2.75,-1.5) {$\theta<\theta_m$：逃逸};
-\node[figInk,anchor=north,font=\footnotesize] at (0,-2.0) {(a) 实空间：磁瓶与两类轨道};
+\begin{tikzpicture}[scale=0.82,font=\small]
+% (a) 实空间：磁瓶中心宽（B_min）、两端收窄（B_max），通量管截面与 B 成反比。
+\begin{scope}
+  \fill[figGreen!10]
+    plot[domain=-3:3,samples=60] (\x,{1.55-0.12*\x*\x}) --
+    plot[domain=3:-3,samples=60] (\x,{-1.55+0.12*\x*\x}) -- cycle;
+  \draw[figGreen,figcurve] plot[domain=-3:3,samples=60] (\x,{1.55-0.12*\x*\x});
+  \draw[figGreen,figcurve] plot[domain=-3:3,samples=60] (\x,{-1.55+0.12*\x*\x});
+
+  % 反射轨道：两端镜点前折返
+  \draw[figBlue,figcurve,->]
+    (-2.0,0) .. controls (-1.0,0.62) and (1.0,0.62) .. (2.0,0)
+             .. controls (1.0,-0.55) and (-1.0,-0.55) .. (-2.0,0);
+  % 逃逸轨道：径直穿过右喉部
+  \draw[figVerm,figcurve,->] (-2.5,-0.12) -- (3.40,-0.12);
+
+  % 场强与轨道标注（全部放在管外白处，引线点指）
+  \node[figGreen!55!black,font=\footnotesize,fill=white,inner sep=1.5pt] at (-3.15,-0.60) {$B_{\max}$};
+  \node[figGreen!55!black,font=\footnotesize,fill=white,inner sep=1.5pt] at (3.15,-0.60) {$B_{\max}$};
+  \node[figGreen!55!black,font=\footnotesize,fill=white,inner sep=1.5pt] at (0,-1.95) {$B_{\min}$};
+  \draw[figlead] (0,-1.85) -- (0,-1.56);
+
+  \node[figBlue,font=\footnotesize,fill=white,inner sep=1.5pt] at (-1.10,1.95) {$\theta>\theta_m$：反射};
+  \draw[figlead] (-1.10,1.80) -- (-1.10,1.44);
+  \node[figVerm,font=\footnotesize,fill=white,inner sep=1.5pt] at (1.80,1.85) {$\theta<\theta_m$：逃逸};
+  \draw[figlead] (1.80,1.70) -- (1.80,1.20);
+  \node[text=figInk,font=\footnotesize,anchor=north] at (0,-2.45) {(a) 实空间};
 \end{scope}
-% ---- (b) 速度空间：损失锥 ----
-\begin{scope}[xshift=4.4cm]
-\draw[figaxis] (-3.4,0) -- (3.6,0) node[right] {$v_\parallel$};
-\draw[figaxis] (0,-2.3) -- (0,2.6) node[above] {$v_\perp$};
-% 损失锥楔形（|v_perp/v| < sin θ_m 的方向）
-\fill[figVerm!15] (0,0) -- (3.2,1.5) -- (3.2,-1.5) -- cycle;
-\fill[figVerm!15] (0,0) -- (-3.2,1.5) -- (-3.2,-1.5) -- cycle;
-\draw[figVerm,figcurve] (0,0) -- (3.2,1.5) (0,0) -- (3.2,-1.5) (0,0) -- (-3.2,1.5) (0,0) -- (-3.2,-1.5);
-% θ_m 角弧
-\draw[figVerm,line width=0.8pt,->] (1.15,0) arc (0:25:1.15);
-\node[figVerm!50!black,fill=white,inner sep=1.5pt] at (1.75,0.5) {$\theta_m$};
-% 两个代表粒子：锥外被约束、锥内逃逸
-\fill[figBlue] (1.5,1.5) circle (2.6pt);
-\draw[figlead] (2.35,2.05) -- (1.66,1.62);
-\node[figBlue!50!black,fill=white,inner sep=1.5pt] at (2.85,2.2) {约束区};
-\fill[figVerm] (2.2,0.5) circle (2.6pt);
-\draw[figlead] (2.55,-1.7) -- (2.24,0.34);
-\node[figVerm!50!black,anchor=west,fill=white,inner sep=1.5pt] at (2.6,-1.85) {锥内：逃逸};
-\node[figInk,anchor=north,font=\footnotesize] at (0,-2.75) {(b) 速度空间：损失锥};
+
+% (b) 速度空间：损失锥（两端的锥内方向都逃逸）
+\begin{scope}[xshift=7.4cm]
+  \draw[figaxis] (-3.2,0) -- (3.4,0) node[right,font=\footnotesize] {$v_\parallel$};
+  \draw[figaxis] (0,-2.2) -- (0,2.4) node[above,font=\footnotesize] {$v_\perp$};
+
+  \fill[figVerm!12] (0,0) -- (2.9,1.35) -- (2.9,-1.35) -- cycle;
+  \fill[figVerm!12] (0,0) -- (-2.9,1.35) -- (-2.9,-1.35) -- cycle;
+  \draw[figVerm,figcurve] (0,0) -- (2.9,1.35) (0,0) -- (2.9,-1.35)
+                                   (0,0) -- (-2.9,1.35) (0,0) -- (-2.9,-1.35);
+  \draw[figVerm,line width=0.8pt,->] (1.0,0) arc (0:25:1.0);
+  \node[figVerm,font=\footnotesize,fill=white,inner sep=1.5pt] at (1.38,0.34) {$\theta_m$};
+
+  \fill[figBlue] (1.15,1.85) circle (2.6pt);
+  \draw[figlead] (1.30,2.00) -- (1.22,1.92);
+  \node[figBlue,font=\footnotesize,fill=white,inner sep=1.5pt,anchor=west] at (1.55,2.05) {约束区};
+
+  \fill[figVerm] (2.0,0.55) circle (2.6pt);
+  \draw[figlead] (2.05,-1.55) -- (2.02,0.42);
+  \node[figVerm,font=\footnotesize,fill=white,inner sep=1.5pt,anchor=west] at (1.55,-1.78) {锥内：逃逸};
+
+  \node[text=figInk,font=\footnotesize,anchor=north] at (0,-2.45) {(b) 速度空间};
 \end{scope}
 \end{tikzpicture}
 \caption{磁镜损失锥示意图。粒子在强场区被反射的条件是 $\sin^2\theta\ge1/R_m$：投掷角 $\theta>\theta_m$ 的粒子垂直速度分量足够大，向镜点运动时 $v_\perp$ 随 $B$ 增大而增大，最终 $v_\parallel$ 降为零并被反射；而 $\theta<\theta_m$ 的粒子 $v_\perp$ 太小，磁矩不变性不足以在其抵达镜点前反转 $v_\parallel$，因而穿过磁镜逃逸。这些 $\theta<\theta_m$ 的方向构成损失锥。}
@@ -276,7 +281,7 @@ f_{\text{两端}}=1-\cos\theta_{lc}\approx 10.6\% .
 \]
 \textbf{注意：} 常见简写 $1/(2R_m)$（$-10\%$）是 $R_m\gg1$ 时对两端总数的近似，\textbf{不能}用于单端计数；精确值须用 $1-\cos\theta_{lc}$ 计算。
 
-以上是\textbf{初始}角分布中落在锥内的比例，并不自动等于每个反弹周期的持续损失率：理想无碰撞磁镜中，锥内粒子一旦耗空便不再补充，只有靠碰撞或其他散射机制重新填充损失锥，才会继续按此通量损失。这正是磁镜约束时间受限于碰撞填充率的原因。此外磁镜对静电与湍流散射（使粒子扩散进损失锥）也很敏感。因此单纯磁镜难以稳定约束热等离子体，现代磁镜实验需辅以中性束注入、偶极场或 ECRH 填充等手段。
+以上是\textbf{初始}角分布中落在锥内的比例，不等于每个反弹周期的持续损失率。理想无碰撞磁镜中，锥内粒子一旦耗空便不再补充；只有碰撞或其他散射把粒子重新填进损失锥，损失才会继续。约束时间因此受限于碰撞填充率，磁镜对静电与湍流散射也很敏感。单纯磁镜难以稳定约束热等离子体，现代磁镜需辅以中性束注入、偶极场或 ECRH 填充。
 \end{example}
 
 \begin{formulabox}{第 3 章}{ch3-formulas}

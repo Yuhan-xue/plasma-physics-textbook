@@ -6,9 +6,7 @@
 % 版权约定：只借鉴经典教材与文献的物理结论、公式形式与题型，文字与数值由本书自拟并独立复算。
 % 数值来源：tools/calc/appN_calc2.py（本附录每一节的关键数字都能由它复现）。
 
-第 10 章讲了芯部怎么点火，第 11 章讲了鞘层与低温等离子体的壁面附近，但两者之间最大的一块空白是：\textbf{芯部产生的功率最终怎么落到壁上、壁能承受多久、燃料会不会被壁吃掉}。这就是磁约束聚变的\textbf{边界物理}（edge physics），也是决定装置能否连续运行的瓶颈——国际热核聚变实验堆（ITER）的设计难点里有相当一部分不在芯部，而在偏滤器靶板与氚滞留上。本附录把这条链条补上。
-
-这一篇接着讲\textbf{边界与壁}：刮削层里的热量和粒子怎么走、偏滤器怎么把它们接住、壁材料挨了打之后变成什么样。想读书单、范例与自测题，翻配套手册 J、K、L；加热与运行极限在附录 M，这里只讲边界这一侧。
+第 10 章讲芯部怎么点火，第 11 章讲鞘层与低温等离子体的壁面附近，两者之间还留着一块空白：\textbf{芯部产生的功率最终怎么落到壁上、壁能承受多久、燃料会不会被壁吃掉}。这就是磁约束聚变的\textbf{边界物理}（edge physics），它决定装置能否连续运行。国际热核聚变实验堆（ITER）的设计难点有相当一部分不在芯部，而在偏滤器靶板与氚滞留上。本附录把这条链条补上。
 
 \begin{tip}{单位与口径自查}{tip-appn-units}
 若结果差一个量级，先查三种口径错位：
@@ -41,7 +39,7 @@ A_{\mathrm{wall}}\simeq4\pi^2R_0a\kappa\approx979\ \mathrm{m^2},
 \qquad
 q_{\mathrm{wall}}\simeq\frac{70\ \mathrm{MW}}{979\ \mathrm{m^2}}\approx71.5\ \mathrm{kW/m^2}.
 \end{equation}
-这个数本身不算大，但它是\textbf{均匀分布}的假设——而磁力线把功率集中到极窄的一条带上，真实壁面承受的不是 $71.5\ \mathrm{kW/m^2}$，而是下面这个数。
+这个数本身不算大，但它来自\textbf{均匀分布}的假设。磁力线把功率集中到极窄的一条带上，真实壁面承受的远不止 $71.5\ \mathrm{kW/m^2}$。
 
 \textbf{第二步估算：功率落在多窄的带上？} 刮削层里功率沿磁力线流出，在靶板处沉积的宽度由\textbf{热流宽度} $\lambda_q$ 描述（托卡马克上 $\lambda_q\sim1$--$5\ \mathrm{mm}$，由湍流输运与磁通膨胀共同决定）。设 $\lambda_q=5\ \mathrm{mm}$、磁通膨胀因子 $f_x=5$（偏滤器把磁力线“摊开”的倍数）、内外靶各分一半功率，则单靶湿面积
 \begin{equation}
@@ -152,14 +150,14 @@ Wesson 偏滤器章。
 
 \section{脱靶：让杂质把功率“辐射掉”}
 
-上一节末尾留下一笔账：功率账要求 $q_\parallel=35.9\ \mathrm{MW/m^2}$，而倾角只能把它降到 $1.88\ \mathrm{MW/m^2}$；如果靶面允许的上限取 $q_\perp^{\max}=5\ \mathrm{MW/m^2}$（钨单块靶板的稳态量级），则\textbf{还不满足}，差额必须靠\textbf{体辐射}在到达靶板之前卸掉：
+上一节留下一笔账：功率账要求 $q_\parallel=35.9\ \mathrm{MW/m^2}$，倾角只能把它降到 $1.88\ \mathrm{MW/m^2}$。靶面允许的上限取 $q_\perp^{\max}=5\ \mathrm{MW/m^2}$（钨单块靶板的稳态量级），\textbf{仍不满足}。差额必须靠\textbf{体辐射}在到达靶板之前卸掉：
 \begin{equation}
 f_{\mathrm{rad}}=1-\frac{q_\perp^{\max}}{q_\parallel}=1-\frac{5}{35.9}\approx0.861
 \qquad\Longrightarrow\qquad
 P_{\mathrm{rad}}^{\mathrm{div}}=f_{\mathrm{rad}}\times35\ \mathrm{MW}\approx30.1\ \mathrm{MW}.
 \label{eq:app-n-frad}
 \end{equation}
-也就是说，偏滤器必须把\textbf{单靶 $86\%$ 的入射功率变成光子}，只让剩下 $14\%$ 打到靶板上——这就是\textbf{脱靶}（detachment）运行点的定义：靶板前的等离子体温度降到几 $\mathrm{eV}$，杂质（氮、氖、氩）在这个低温区辐射极强，把能量以线辐射与轫致辐射的形式散布到整面壁上。
+也就是说，偏滤器必须把\textbf{单靶 $86\%$ 的入射功率变成光子}，只让剩下 $14\%$ 打到靶板上。这就是\textbf{脱靶}（detachment）运行点的定义：靶板前的等离子体温度降到几 $\mathrm{eV}$，杂质（氮、氖、氩）在这个低温区辐射极强，把能量以线辐射与轫致辐射的形式散布到整面壁上。
 
 \textbf{需要多少杂质？} 体辐射功率为
 \begin{equation}
@@ -251,7 +249,7 @@ Wesson 偏滤器章。
 
 \section{边缘局域模（ELM）与瞬态热负荷}
 
-\textbf{什么是 ELM。} 高约束模式（H 模）边缘存在一个输运垒（“台基”，pedestal），它把边缘压强梯度抬到\textbf{剥离-气球模}（peeling-ballooning）稳定性边界；一旦越界，边缘就会周期性地失稳，把台基储存能量的一小部分在亚毫秒内抛到偏滤器上，这就是 I 型 ELM。
+\textbf{什么是 ELM。} 高约束模式（H 模）边缘有一个输运垒（“台基”，pedestal），它把边缘压强梯度抬到\textbf{剥离-气球模}（peeling-ballooning）稳定性边界。一旦越界，边缘就会周期性失稳，把台基储存能量的一小部分在亚毫秒内抛到偏滤器上，这就是 I 型 ELM。
 
 \textbf{第一步：台基里存了多少能量？} 用零维能量内容
 \begin{equation}
@@ -336,7 +334,7 @@ Stangeby 第 1 章（共沉积与燃料滞留的机制综述）。
 
 \section{六道估算练习（含答案）}
 
-以下六题全部只用到本附录的公式与量级，建议\textbf{先自己算到量级，再对答案}；答案里的每一步都能在仓库脚本 \texttt{appN\_{}calc2.py} 中复现。
+以下六题只用到本附录的公式与量级。建议\textbf{先自己算到量级，再对答案}。
 
 \begin{enumerate}
 \item \textbf{（边界功率账）} 某装置 $P_{\mathrm{fus}}=300\ \mathrm{MW}$、$P_{\mathrm{ext}}=40\ \mathrm{MW}$、芯部辐射 $30\%$。求 $P_{\mathrm{SOL}}$；再取 $\lambda_q=5\ \mathrm{mm}$、$f_x=5$、内外靶各半，求 $q_\parallel$ 与 $\theta=3^\circ$ 时的 $q_\perp$。\\

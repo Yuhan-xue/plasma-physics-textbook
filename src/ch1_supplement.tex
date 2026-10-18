@@ -34,7 +34,7 @@
 \[
 \curl\vect{A} = \vect{0}
 \]
-\textbf{要点：} $r,\theta,z$ 是三个\textbf{相互独立}的坐标，因此 $\partial r/\partial z = 0$、$\partial z/\partial r = 0$——不要把 $\partial z/\partial r$ 误当作 1。此处 $\vect{A}=r\unitvec{r}+z\unitvec{z}=\nabla\!\left[\frac{1}{2}(r^2+z^2)\right]$ 恰是一个梯度场，而梯度场的旋度必为零，可用来交叉检验结果：
+\textbf{要点：} $r,\theta,z$ 是三个\textbf{相互独立}的坐标，所以 $\partial r/\partial z = 0$、$\partial z/\partial r = 0$，不要把后者误当作 1。此处 $\vect{A}=r\unitvec{r}+z\unitvec{z}=\nabla\!\left[\frac{1}{2}(r^2+z^2)\right]$ 恰是一个梯度场，而梯度场的旋度必为零，可用来交叉检验：
 \[
 \nabla\times\nabla\psi = \vect{0}
 \]
@@ -101,7 +101,7 @@ f(v_x) = n\sqrt{\frac{m}{2\pi k_{\!B}T}}\,\exp\!\left(-\frac{mv_x^2}{2k_{\!B}T}\
 \[
 \tilde{f}(k) = \exp\!\left(-\frac{k^2\sigma^2}{2}\right)\int_{-\infty}^{+\infty} \exp\!\left(-\frac{u^2}{2\sigma^2}\right)\diff u = \sqrt{2\pi}\,\sigma\,\exp\!\left(-\frac{k^2\sigma^2}{2}\right)
 \]
-\textbf{结论：} 高斯函数的傅里叶变换仍为高斯函数；空间域越窄（$\sigma$ 越小），波数域越宽（$k$ 展布越宽），体现了量子/波动中的不确定性关系。
+\textbf{结论：} 高斯函数的傅里叶变换仍为高斯函数；空间域越窄（$\sigma$ 越小），波数域越宽（$k$ 展布越宽）。
 \end{example}
 
 \begin{example}{球坐标下的梯度与拉普拉斯}{spherical-gradient}
@@ -175,7 +175,7 @@ v_{\mathrm{rms}} = \sqrt{\frac{k_{\!B}T}{m}} = \frac{v_t}{\sqrt{2}}
 \[
 v_p = 0 \;<\; \langle|v|\rangle = \frac{v_t}{\sqrt{\pi}} \;\approx\; 0.564\,v_t \;<\; v_{\mathrm{rms}} = \frac{v_t}{\sqrt{2}} \;\approx\; 0.707\,v_t .
 \]
-注意\textbf{不要}把上式与三维结果混为一谈。三维速率分布（$f\propto v^2\ee^{-mv^2/2k_BT}$）才给出 $v_p : \bar v : v_{\mathrm{rms}} = 1 : 1.128 : 1.225$，其中 $v_p=\sqrt{2k_BT/m}$。分布右偏故 $\bar v > v_p$；均方速率对高速尾部敏感故 $v_{\mathrm{rms}} > \bar v$。在等离子体物理中 $v_{\mathrm{rms}}$（本书热速度定义之一）最常用，因为它直接通过能量均分定理与温度联系。
+注意\textbf{不要}把上式与三维结果混为一谈。三维速率分布（$f\propto v^2\ee^{-mv^2/2k_BT}$）才给出 $v_p : \bar v : v_{\mathrm{rms}} = 1 : 1.128 : 1.225$，其中 $v_p=\sqrt{2k_BT/m}$。分布右偏故 $\bar v > v_p$；均方速率对高速尾部敏感故 $v_{\mathrm{rms}} > \bar v$。等离子体物理中最常用 $v_{\mathrm{rms}}$，因为它通过能量均分定理直接与温度联系。
 \end{example}
 
 \begin{formulabox}{第 1 章}{ch1-formulas}

@@ -563,14 +563,23 @@ def check_L_readme(main_text):
         else:
             rec('PASS', 'L', 'README %s 与正文一致：%d' % (name, n))
 
+    # 附录清单：v1.28.0 起 README 精简，不再逐条列 48 个附录，改为按类概述并
+    # 指向 docs/appendix-audit.md。所以两处都认：README 的 `- **附录X**` 清单，
+    # 或体检表 docs/appendix-audit.md 里 `| X |` 的 48 行。两处都没有才算缺。
     listed = re.findall(r'^\s*-\s*\*\*附录\s*([A-Z]{1,2})\*\*', rd, re.M)
+    source = 'README 附录清单'
+    if not listed:
+        audit = os.path.join(ROOT, 'docs', 'appendix-audit.md')
+        if os.path.exists(audit):
+            listed = re.findall(r'^\s*\|\s*([A-Z]{1,2})\s*\|', read(audit), re.M)
+            source = 'docs/appendix-audit.md 附录表'
     missing = [c for c in letters if c not in listed]
     extra = [c for c in listed if c not in letters]
     if missing or extra:
-        rec('FAIL', 'L', 'README 附录清单与正文不符：缺 %s，多 %s'
-            % (''.join(missing) or '无', ''.join(extra) or '无'))
+        rec('FAIL', 'L', '%s 与正文不符：缺 %s，多 %s'
+            % (source, ''.join(missing) or '无', ''.join(extra) or '无'))
     else:
-        rec('PASS', 'L', 'README 附录清单与正文逐一对应：%s' % ''.join(listed))
+        rec('PASS', 'L', '%s 与正文逐一对应：%s' % (source, ''.join(listed)))
 
 
 # ---------------------------------------------------------------- 主流程

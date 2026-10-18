@@ -40,7 +40,7 @@ Lawson 判据的核心思想是：聚变反应产生的\textbf{可自持}功率�
     \boxed{\;n\tau_E \ge \frac{3k_BT}{\dfrac{E_\alpha}{4}\langle\sigma v\rangle - \dfrac{P_{\rm rad}}{n^2}}\;}
 \label{eq:ch10-lawson-full-solved}
 \end{equation}
-\textbf{分母必须为正}——这本身就是一条物理要求：若 $\tfrac{E_\alpha}{4}\langle\sigma v\rangle<\tfrac{P_{\rm rad}}{n^2}$，$\alpha$ 加热根本压不住辐射，无论 $n\tau_E$ 多大都无法点火（这就是存在“最低点火温度”的原因，约 $4\,\mathrm{keV}$ 以下 D-T 无法点火）。
+\textbf{分母必须为正}，这是一条物理要求。若 $\tfrac{E_\alpha}{4}\langle\sigma v\rangle<\tfrac{P_{\rm rad}}{n^2}$，$\alpha$ 加热压不住辐射，无论 $n\tau_E$ 多大都无法点火。这就是“最低点火温度”的来源：约 $4\,\mathrm{keV}$ 以下 D-T 无法点火。
 
 \textbf{忽略辐射时的简化式：} 令 $P_{\rm rad}\to0$，得
 \begin{equation}
@@ -76,11 +76,11 @@ Lawson 判据的核心思想是：聚变反应产生的\textbf{可自持}功率�
     = \frac{4.806\times10^{-15}}{1.373\times10^{-35}} \approx \boxed{3.5\times10^{20}\,\mathrm{m^{-3}\,s}}
 \]
 
-\textbf{核对方向：} 忽略辐射给 $3.12\times10^{20}$，加入辐射后升到 $3.5\times10^{20}$。加入一项\emph{损失}\textbf{只能让门槛更高}——把门槛从 $3.12$ 降到 $2$（原稿的错误结论）在能量收支上是反向的。
+\textbf{核对方向：} 忽略辐射给 $3.12\times10^{20}$，加入辐射后升到 $3.5\times10^{20}$。加入一项\emph{损失}\textbf{只能让门槛更高}——把门槛从 $3.12$ 降到 $2$ 在能量收支上是反向的。
 
-\textbf{与文献值的差别来自模型选择，不是矛盾：} 常见的“$n\tau_E\approx1.5\text{--}2\times10^{20}$”是\emph{不同约定}下的数（例如把 $n$ 取为纯 D-T 燃料密度而非 $n_e$、或只要求 $P_\alpha\ge P_{\rm loss}$ 而把辐射单列、或 $\eta$ 的吸收因子分摊方式不同），模型一变阈值就变。\textbf{必须连同模型假设一起引用}，不能把不同约定下的数当成同一个“标准值”混比。此外，$\eta=0.3$ 在本模型里对应“$\alpha$ 能量的 30\% 真正沉积”这一修正——若采用它，应把 $P_\alpha$ 乘以 0.3（阈值升高约 3.3 倍），\textbf{不能列出后不使用}。
+\textbf{与文献值的差别来自模型选择，不是矛盾。} 常见的“$n\tau_E\approx1.5\text{--}2\times10^{20}$”是\emph{不同约定}下的数：例如把 $n$ 取为纯 D-T 燃料密度而非 $n_e$，或只要求 $P_\alpha\ge P_{\rm loss}$ 而把辐射单列，或 $\eta$ 的吸收因子分摊方式不同。模型一变阈值就变，\textbf{必须连同模型假设一起引用}，不能把不同约定下的数当成同一个“标准值”。此外，$\eta=0.3$ 在本模型里对应“$\alpha$ 能量的 30\% 真正沉积”这一修正；若采用它，应把 $P_\alpha$ 乘以 0.3（阈值升高约 3.3 倍），\textbf{不能列出后不使用}。
 
-\textbf{温度依赖：} 随温度升高，$\langle\sigma v\rangle$ 增大而 $\sqrt{T_e}$ 增大得慢，故分母中的“净加热”变强，$n\tau_E$ 门槛下降；D-T 在 $15\text{--}25\,\mathrm{keV}$ 附近门槛最低（约 $1.5\times10^{20}\,\mathrm{m^{-3}s}$ 量级），温度更高时因轫致辐射增加又回升。
+\textbf{温度依赖：} 随温度升高，$\langle\sigma v\rangle$ 增大而 $\sqrt{T_e}$ 增大得慢，分母中的“净加热”变强，$n\tau_E$ 门槛下降。D-T 在 $15\text{--}25\,\mathrm{keV}$ 附近门槛最低（约 $1.5\times10^{20}\,\mathrm{m^{-3}s}$ 量级）；温度更高时，轫致辐射增加，门槛又回升。
 
 % ------------------------------------------------------------------------
 
@@ -151,7 +151,7 @@ D-T反应的点火条件（考虑了能量自持和辐射损失）通常要求�
 
 \textbf{解答：}
 
-\textbf{模型说明（先读）：} 下面的定标式都是\emph{教学用简化式}，不是真实装置的定标律。为避免“算出一个数后又挑一个更顺眼的数替代”，这里\textbf{只用一个假设的定标式比较两类装置}，并把计算结果与模型偏差一起保留。真实托卡马克与仿星器有各自的定标数据库（ITER89-P/98y2、ISS04 等），幂次、单位、运行模式与拟合范围都不同，不能由这一例推出“托卡马克一定优于仿星器”。
+\textbf{模型说明：} 下面的定标式都是\emph{教学用简化式}，不是真实装置的定标律。为避免“算出一个数后又挑一个更顺眼的数替代”，这里\textbf{只用一个假设的定标式比较两类装置}，并把计算结果与模型偏差一起保留。真实托卡马克与仿星器有各自的定标数据库（ITER89-P/98y2、ISS04 等），幂次、单位、运行模式与拟合范围都不同。不能由这一例推出“托卡马克一定优于仿星器”。
 
 \textbf{统一假设的定标式（本书教学用，非真实定标）：}
 \begin{equation}
@@ -330,7 +330,7 @@ r = \frac{r_0}{10} = 0.1\,\mathrm{mm} = 100\,\mu\mathrm{m}, \qquad \rho = 1000\,
 \]
 密度 $250\,\mathrm{g/cm^3}$ 约为固体密度的 1000 倍——这正是 ICF“把燃料压缩到极端密度”的含义。
 
-\textbf{几何假设（先声明）：} 为把质量与几何分开，下面\textbf{只用给定的质量 $m=0.3\,\mathrm{mg}$} 与压缩后密度算体积，不把外半径当实心球（外半径与冰层体积本就不是一个均匀实心球）。
+\textbf{几何假设：} 为把质量与几何分开，下面\textbf{只用给定的质量 $m=0.3\,\mathrm{mg}$} 与压缩后密度算体积。不把外半径当实心球——外半径与冰层体积本就不是一个均匀实心球。
 \textbf{(2) 燃料内能与驱动激光：} 压缩后的粒子数密度
 \[
 n = \frac{\rho}{m_i} = \frac{2.5\times10^{5}}{4.15\times10^{-27}} \approx 6.0\times10^{31}\,\mathrm{m^{-3}}
@@ -354,7 +354,7 @@ E_{\text{fuel}} = uV \approx 2.9\times10^{17}\times1.2\times10^{-12} \approx 3.5
 \[
 E_{\text{laser}} = \frac{0.35\,\mathrm{MJ}}{0.1} \approx 3.5\,\mathrm{MJ}
 \]
-这比实际 ICF 装置（NIF 单发到靶 $\approx1.8$--$2.05\,\mathrm{MJ}$）的驱动能量同一量级、略偏大——简化估算用的是“整块燃料均匀加热到 $10\,\mathrm{keV}$”，而真实的中心热斑模型只需点燃一小部分燃料、其余靠 $\alpha$ 自加热与激波压缩，故把需求高估数倍是预期的。\textbf{量级判断合理}；但题目算出的 $35\,\mathrm{MJ}$（原稿）是把 $u$ 的指数多写了一位所致，必须改正。
+这比实际 ICF 装置（NIF 单发到靶 $\approx1.8$--$2.05\,\mathrm{MJ}$）的驱动能量同一量级、略偏大。简化估算用的是“整块燃料均匀加热到 $10\,\mathrm{keV}$”，而真实的中心热斑模型只需点燃一小部分燃料，其余靠 $\alpha$ 自加热与激波压缩。因此把需求高估数倍是预期的。\textbf{量级判断合理}；若把 $u$ 的指数多写一位，就会得到 $35\,\mathrm{MJ}$，高估 $100$ 倍，所以这类算例必须核对指数。
 
 \textbf{(3) 约束时间的本质区别：} 惯性约束没有外场约束，靠燃料自身的\textbf{惯性}维持：约束时间 $\tau \sim r/c_s \approx 100\,\mu\mathrm{m}/(10^6\,\mathrm{m/s}) \sim 100\,\mathrm{ps}$——极短。磁约束则用磁场把低密度（$10^{20}\,\mathrm{m^{-3}}$）等离子体约束数秒；惯性约束用极高密度（$\sim10^{31}\,\mathrm{m^{-3}}$，固体千倍）把反应时间压缩到纳秒以下。Lawson 判据 $n\tau$ 的两种满足方式：磁约束 $n$ 低 $\tau$ 长，惯性约束 $n$ 极高 $\tau$ 极短——这正是两种约束策略的物理根源。
 \end{example}
@@ -366,47 +366,37 @@ E_{\text{laser}} = \frac{0.35\,\mathrm{MJ}}{0.1} \approx 3.5\,\mathrm{MJ}
 % ------------------------------------------------------------------------
 \begin{figure}[htbp]
     \centering
-    \begin{tikzpicture}[scale=1.0,>=Stealth]
-        % 坐标轴（R 的标签改到轴端下方：旧版 node[right] 落在右侧图例文字中间，
-        % 印出来是「等 R 子体电流产生」）
-        \draw[->] (-0.5,0) -- (6.1,0) node[below] {$R$};
-        \draw[->] (0,-3.5) -- (0,3.5) node[above] {$Z$};
-        
-        % 环向轴（中心轴）
-        \draw[dashed, figGray] (2,0) -- (2,3);
-        \draw[dashed, figGray] (2,0) -- (2,-3);
-        \node[figGray] at (2,-3.3) {环向轴};
-        
-        % 等离子体截面（拉长椭圆）
-        \draw[thick, figBlue, fill=figBlue!10] (4.5,0) ellipse (1.5 and 2.5);
-        \node[figBlue] at (4.2,-1.9) {\small 等离子体};
+    \begin{tikzpicture}[scale=1.0,>=Stealth,font=\small]
+        % 极向截面（R--Z 面）：环向轴在 R=2，等离子体截面中心在 R=4.5
+        \draw[figaxis] (-0.4,0) -- (6.4,0) node[below,font=\footnotesize] {$R$};
+        \draw[figaxis] (0,-3.5) -- (0,3.5) node[above,font=\footnotesize] {$Z$};
+        \draw[fighelp] (2,3.0) -- (2,-3.0);
+        \node[text=figGray,font=\footnotesize,anchor=north] at (2,-3.05) {环向轴};
 
-        % 大半径 R
-        \draw[<->, thick, figVerm] (2,2.8) -- (4.5,2.8);
-        \node[figVerm, above] at (3.25,2.9) {$R$};
+        \draw[draw=figBlue,line width=0.9pt,fill=figBlue!10] (4.5,0) ellipse (1.5 and 2.5);
+        \node[text=figInk,font=\footnotesize] at (4.5,-2.10) {等离子体};
 
-        % 小半径 a（竖直半高；旧版与 I_p 箭头挤在同一条竖线上、两个标签叠在一起）
-        \draw[<->, thick, figVerm] (4.5,0) -- (4.5,2.5);
-        \node[figVerm, right] at (4.6,1.2) {$a$};
+        % 大半径 R 与小半径 a（灰色量标注，不占用语义色）
+        \draw[figGray,line width=0.6pt,<->,>=Stealth] (2,2.85) -- (4.5,2.85);
+        \node[text=figGray,font=\footnotesize,fill=white,inner sep=1.5pt] at (3.25,2.85) {$R$};
+        \draw[figGray,line width=0.6pt,<->,>=Stealth] (4.5,0) -- (5.95,0);
+        \node[text=figGray,font=\footnotesize,anchor=south] at (5.22,0.03) {$a$};
 
-        % 极向磁场 B_theta：贴着截面内侧的环行箭头（旧版的面内小弧与图例区重叠，
-        % 第一版改到等离子体外侧又离得太远、读不出绕截面环行）
-        \draw[->, thick, figOrange] (3.37,-0.68) .. controls (3.05,-0.3) and (3.05,0.3) .. (3.37,0.68);
-        \node[figOrange] at (3.62,0.35) {$B_{\theta}$};
+        % 极向磁场：沿截面左半侧环行（与 I_p 出纸面满足右手螺旋）
+        \draw[figGold,line width=1.1pt,->,>=Stealth] (4.5,2.35) arc (90:270:0.95 and 2.35);
+        \node[text=figAmber,font=\footnotesize,fill=white,inner sep=1.5pt,anchor=east] at (3.35,0.55)
+          {$B_{\theta}$};
+        \draw[figlead] (3.45,0.50) -- (3.62,0.42);
 
-        % 环向磁场与等离子体电流：在极向截面（R--Z 面）里两者都垂直纸面，
-        % 用圆点符号表示。旧版用面内弯曲箭头表示环向场，方向是错的。
-        \node[figGreen!60!black] at (5.15,1.75) {$\odot\ B_{\phi}$};
-        \node[figPurple] at (5.15,-1.35) {$\odot\ I_p$};
-        
-        % 图例说明（整体右移下移，避开 R 轴标签）
-        \node[anchor=west] at (6.6,1.6) {\color{figGreen!60!black}\small 环向磁场 $B_{\phi}$：};
-        \node[anchor=west] at (6.6,1.1) {\color{figGreen!60!black}\small 外部线圈产生（垂直纸面）};
-        
-        \node[anchor=west] at (6.6,0.4) {\color{figOrange}\small 极向磁场 $B_{\theta}$：};
-        \node[anchor=west] at (6.6,-0.1) {\color{figOrange}\small 等离子体电流产生（截面内）};
-        
-        \node[anchor=west] at (6.6,-0.9) {\color{figPurple}\small $I_p$：等离子体电流（垂直纸面）};
+        % 环向场与等离子体电流均垂直纸面
+        \node[text=figGreen,font=\footnotesize] at (5.35,1.75) {$\odot\ B_{\phi}$};
+        \node[text=figPurple,font=\footnotesize] at (5.35,-1.45) {$\odot\ I_p$};
+
+        % 图例（绘图区外右侧）
+        \node[text=figGreen,font=\footnotesize,anchor=west] at (6.90,1.55) {$B_{\phi}$：环向磁场};
+        \node[text=figAmber,font=\footnotesize,anchor=west] at (6.90,0.85) {$B_{\theta}$：极向磁场};
+        \node[text=figPurple,font=\footnotesize,anchor=west] at (6.90,0.15) {$I_p$：等离子体电流};
+        \node[text=figGray,font=\footnotesize,anchor=west] at (6.90,-0.55) {$\odot$ 表示垂直纸面向外};
     \end{tikzpicture}
     \caption{托卡马克位形示意图（$R$为大半径，$a$为小半径，$B_{\phi}$为环向磁场，$B_{\theta}$为极向磁场，$I_p$为等离子体电流）。}
     \label{fig:tokamak}
@@ -417,51 +407,47 @@ E_{\text{laser}} = \frac{0.35\,\mathrm{MJ}}{0.1} \approx 3.5\,\mathrm{MJ}
     % v1.26.0：原图把灰色区域标签、D-T/D-D 曲线标签、四个装置标签全挤在图中央，
     % 文字互相咬（看图发现）。重排：判据三点移到左侧并左置标签；装置标签统一置上；
     % 曲线标签贴线端；去掉与图题重复的阴影框。
-    \begin{tikzpicture}[scale=1.0,>=Stealth]
-        % 坐标轴
-        \draw[->] (0,0) -- (10,0) node[right] {$T\,\mathrm{(keV)}$};
-        \draw[->] (0,0) -- (0,6) node[above] {$\log_{10}(n\tau)\;\mathrm{(m^{-3}\cdot s)}$};
+    \begin{tikzpicture}[scale=1.0,>=Stealth,font=\small]
+        % Lawson 参数空间：纵轴 log10(n tau)，横轴 T(keV)
+        \draw[figaxis] (0,0) -- (9.6,0) node[right,font=\footnotesize] {$T\,(\mathrm{keV})$};
+        \draw[figaxis] (0,0) -- (0,5.8) node[above,font=\footnotesize] {$\log_{10}(n\tau)$};
         \foreach \x in {1,2,3,4,5,6,7,8,9} {
-            \draw (\x,0.1) -- (\x,-0.1) node[below] {\x};
+            \draw[figInk,line width=0.9pt] (\x,0.08) -- (\x,-0.08) node[below,figtick] {\x};
         }
-        \foreach \y in {19,20,21,22} {
-            \pgfmathsetmacro{\yp}{\y-18}
-            \draw (0.1,\yp) -- (-0.1,\yp) node[left] {\y};
+        \foreach \y/\l in {1/19,2/20,3/21,4/22} {
+            \draw[figInk,line width=0.9pt] (0.08,\y) -- (-0.08,\y) node[left,figtick] {\l};
         }
 
-        % D-D 点火线（更高要求）
-        \draw[thick, figBlue, dashed, domain=2:9, samples=50] plot (\x, {2+4/(\x^0.5)});
-        \node[figBlue, anchor=west] at (4.2,4.55) {D-D 点火线};
+        % D-D 点火线（更高要求，灰色辅助线）与 D-T 点火线（阈值）
+        \draw[figGray,line width=0.9pt,dashed,domain=2:9,samples=50] plot (\x,{2+4/(\x^0.5)});
+        \node[text=figGray,font=\footnotesize,anchor=west] at (4.35,4.50) {D-D 点火线};
+        \draw[figVerm,figcurve,domain=2.2:9,samples=60] plot (\x,{1+4/(\x^0.5)});
+        \node[text=figVerm,font=\footnotesize,anchor=west] at (6.55,2.00) {D-T 点火线};
+        \node[text=figVerm,font=\footnotesize,anchor=west] at (6.55,1.63) {$n\tau\sim T^{1/2}$};
 
-        % D-T 点火线（左端从②临界点起笔：旧版 domain 从 1.5 起，线头穿过③满足标签）
-        \draw[thick, figVerm, domain=2.2:9, samples=50] plot (\x, {1+4/(\x^0.5)});
-        \node[figVerm, anchor=west] at (6.6,1.98) {D-T 点火线};
-        \node[figVerm, anchor=west] at (6.6,1.60) {$n\tau \sim T^{1/2}$};
+        % 判据三点：①在阈值线下，②恰在线上，③在线上方
+        \filldraw[figVerm] (2.2,2.30) circle (2.4pt);
+        \node[text=figVerm,font=\footnotesize,anchor=east] at (2.08,2.30) {\cnum{1}不满足};
+        \filldraw[figAmber] (2.2,3.70) circle (2.4pt);
+        \node[text=figAmber,font=\footnotesize,anchor=east] at (2.08,3.70) {\cnum{2}临界};
+        \filldraw[figGreen] (2.2,4.35) circle (2.4pt);
+        \node[text=figGreen,font=\footnotesize,anchor=east] at (2.08,4.35) {\cnum{3}满足};
 
-        % 判据三点（固定 T，比较 n tau 与阈值）：D-T 线在 T=2.2 处 y=1+4/sqrt(2.2)=3.70，
-        % ②必须恰落在线上（旧版三点全在线下，与图注「②恰在线上」矛盾）
-        \filldraw[figVerm] (2.2,2.30) circle (2.5pt);
-        \node[figVerm,left,font=\footnotesize] at (2.10,2.30) {\cnum{1}不满足};
-        \filldraw[figOrange] (2.2,3.70) circle (2.5pt);
-        \node[figOrange,left,font=\footnotesize] at (2.10,3.70) {\cnum{2}临界};
-        \filldraw[figGreen!50!black] (2.2,4.35) circle (2.5pt);
-        \node[figGreen!50!black,left,font=\footnotesize] at (2.10,4.35) {\cnum{3}满足};
+        % 现有磁约束装置区域
+        \draw[figGray,line width=0.7pt,dotted] (3.0,2.0) -- (6.5,2.4) -- (7.0,3.4) -- (3.0,3.0) -- cycle;
+        \node[text=figGray,font=\footnotesize,align=center] at (4.35,1.40) {现有磁约束\\装置区域};
 
-        % 现有磁约束装置区域（虚线框 + 框下方标注）
-        \draw[dotted, figGray, thick] (3.0,2.0) -- (6.5,2.4) -- (7.0,3.4) -- (3.0,3.0) -- cycle;
-        \node[figGray, align=center] at (4.1,1.32) {\small 现有磁约束\\ 装置区域};
-
-        % 装置工作点（标签统一置上，横向间距 >= 1.6）
-        \filldraw[figInk] (3.6,2.30) circle (3pt);
-        \node[above, font=\footnotesize] at (3.6,2.42) {TFTR};
-        \filldraw[figInk] (5.2,2.95) circle (3pt);
-        \node[above, font=\footnotesize] at (5.2,3.07) {JET};
-        \filldraw[figInk] (6.4,2.55) circle (3pt);
-        \node[above, font=\footnotesize] at (6.4,2.67) {DIII-D};
-        \filldraw[figBlue] (2.9,4.30) circle (3pt);
-        \node[above, figBlue, font=\footnotesize] at (2.9,4.42) {NIF};
-        \filldraw[figVerm] (8.4,4.60) circle (4pt);
-        \node[above, figVerm, font=\footnotesize] at (8.4,4.74) {ITER（设计目标）};
+        % 装置工作点
+        \filldraw[figInk] (3.6,2.30) circle (2.6pt);
+        \node[text=figInk,font=\footnotesize,anchor=south] at (3.6,2.44) {TFTR};
+        \filldraw[figInk] (5.2,2.95) circle (2.6pt);
+        \node[text=figInk,font=\footnotesize,anchor=south] at (5.2,3.09) {JET};
+        \filldraw[figInk] (6.4,2.55) circle (2.6pt);
+        \node[text=figInk,font=\footnotesize,anchor=south] at (6.4,2.69) {DIII-D};
+        \filldraw[figPurple] (2.9,4.30) circle (2.6pt);
+        \node[text=figPurple,font=\footnotesize,anchor=west] at (3.02,4.42) {NIF};
+        \filldraw[figGold] (8.4,4.60) circle (3.2pt);
+        \node[text=figAmber,font=\footnotesize,anchor=south] at (8.4,4.76) {ITER（设计目标）};
     \end{tikzpicture}
     \caption{Lawson 参数空间图：$n\tau$ 对温度 $T$ 的依赖关系。图中标注了若干代表性装置（TFTR、JET、DIII-D、NIF）以及 ITER 的设计目标。\textbf{判据方向：固定温度时，必须 $n\tau$ 高于点火线才满足点火条件，所以能量自持区在点火线\emph{上方}；线下方为不满足区。}三点示意：\cnum{1}在阈值线下（不满足）、\cnum{2}恰在线上（临界）、\cnum{3}在线上方（满足）。}
     \label{fig:lawson}

@@ -29,14 +29,15 @@ for name in ('Microsoft YaHei', 'SimHei', 'DengXian'):
         break
 plt.rcParams['axes.unicode_minus'] = False
 
-INK = '#1d2433'
-MUTED = '#5b6675'
-ACCENT = '#2f6fb5'
-LIGHT = '#6f9fd8'
-PALE = '#a9c4e4'
-FAINT = '#cfdcf0'
-WARN = '#c1622a'
-BG = '#f7f5f0'
+INK = '#12203A'
+MUTED = '#6B7280'
+ACCENT = '#1B2E52'
+LIGHT = '#2F5286'
+PALE = '#6C86AE'
+FAINT = '#DCE3EE'
+GOLD = '#C2A14D'
+AMBER = '#8A6520'
+BG = '#F6F2E7'
 
 # ── 数据
 pdf_dir = os.path.join(ROOT, 'pdf')
@@ -70,27 +71,28 @@ fig.text(0.035, 0.915,
          % (VERSION, PAGES, NF), fontsize=13, color=MUTED)
 
 # ── 左上：篇幅构成
-ax1 = fig.add_axes([0.05, 0.635, 0.42, 0.165])
+ax1 = fig.add_axes([0.05, 0.65, 0.42, 0.145])
 ax1.set_facecolor(BG)
-parts = [('48 个附录', APX_PAGES, ACCENT), ('12 章正文', CH_PAGES, LIGHT),
-         ('符号与前言', FRONT, PALE), ('结语与索引', TAIL, FAINT)]
+parts = [('48 个附录', APX_PAGES, ACCENT), ('正文', CH_PAGES, LIGHT),
+         ('前言等', FRONT, PALE), ('索引', TAIL, FAINT)]
 left = 0
 for label, val, color in parts:
     ax1.barh([0], [val], left=left, color=color, height=0.5)
-    if val > 100:
+    if val > 150:
         ax1.text(left + val / 2, 0, '%s · %d 页' % (label, val), ha='center', va='center',
-                 fontsize=11.5, color='white' if color == ACCENT else INK, weight='bold')
+                 fontsize=10.5, color='white' if color in (ACCENT, LIGHT) else INK, weight='bold')
     left += val
 ax1.set_xlim(0, PAGES)
 ax1.set_ylim(-0.55, 0.62)
 ax1.axis('off')
 ax1.set_title('%d 页怎么分：三分之二在附录，正文 %d 页' % (PAGES, CH_PAGES), fontsize=13,
               color=INK, loc='left', pad=8)
-ax1.text(0, -0.50, '48 个附录共 %d 页；前 10 大附录只占其中 27%%，最大一个 11 页' % APX_PAGES,
-         fontsize=10.3, color=MUTED)
+ax1.text(0, -0.50, '48 个附录 %d 页｜正文 %d 页｜前言等 %d 页｜结语索引 %d 页'
+         % (APX_PAGES, CH_PAGES, FRONT, TAIL),
+         fontsize=9.6, color=MUTED)
 
 # ── 右上：版本演进
-ax2 = fig.add_axes([0.545, 0.655, 0.40, 0.175])
+ax2 = fig.add_axes([0.545, 0.66, 0.40, 0.17])
 ax2.set_facecolor('white')
 vers = ['v1.26.31', 'v1.27.0', 'v1.27.1', 'v1.27.2', 'v1.27.3', 'v1.27.5', 'v1.27.6', 'v1.27.7',
         'v1.27.8', 'v1.27.9', 'v1.27.10', 'v1.27.11', 'v1.27.12', 'v1.27.13', 'v1.27.14', 'v1.27.15', 'v1.27.16', 'v1.27.17', 'v1.27.18', 'v1.27.19', 'v1.27.20']
@@ -98,29 +100,32 @@ pages = [676, 674, 664, 668, 657, 635, 635, 634, 605, PAGES, PAGES, PAGES, PAGES
 figs = [70, 87, 87, 95, 95, 95, 95, 95, NF, NF, NF, NF, NF, NF, NF, NF, NF, NF, NF, NF, NF]
 xs = list(range(len(vers)))
 ax2.plot(xs, pages, marker='o', color=ACCENT, linewidth=2.4)
-offsets = [(0, 9), (0, 9), (0, 9), (0, 9), (-2, -18), (8, 8), (8, 8), (8, 8), (8, -16), (8, -16), (8, -16), (8, -16), (8, -16), (8, -16), (8, -16), (8, -16), (8, -16), (8, -16), (8, -16), (8, -16), (8, -16)]
-for x, p, off in zip(xs, pages, offsets):
-    ax2.annotate(str(p), (x, p), textcoords='offset points', xytext=off,
-                 ha='center', fontsize=10.2, color=ACCENT, weight='bold')
-ax2.set_xticks(xs)
-ax2.set_xticklabels(vers, fontsize=8.2, color=INK, rotation=22, ha='right')
+notes = {0: (0, 9), 3: (0, 9), 4: (0, -16), 7: (0, 9), 8: (0, -16), 20: (0, -16)}
+for x, p in zip(xs, pages):
+    if x in notes:
+        ox, oy = notes[x]
+        ax2.annotate(str(p), (x, p), textcoords='offset points', xytext=(ox, oy),
+                     ha='center', fontsize=9.6, color=ACCENT, weight='bold')
+show = list(range(0, len(vers), 2)) + [len(vers) - 1]
+ax2.set_xticks(show)
+ax2.set_xticklabels([vers[i] for i in show], fontsize=7.4, color=INK, rotation=45, ha='right')
 ax2.set_ylim(592, 692)
 ax2.set_ylabel('页数', fontsize=10.2, color=ACCENT)
 ax2.tick_params(axis='y', colors=ACCENT, labelsize=9.8)
 ax2.tick_params(axis='x', length=0)
 ax2b = ax2.twinx()
-ax2b.plot(xs, figs, marker='s', color=WARN, linewidth=2.2, linestyle='--')
+ax2b.plot(xs, figs, marker='s', color=GOLD, linewidth=2.2, linestyle='--')
 ax2b.set_ylim(52, 122)
-ax2b.set_ylabel('实拍图（张）', fontsize=10.2, color=WARN)
-ax2b.tick_params(axis='y', colors=WARN, labelsize=9.8)
-ax2.set_title('一边减页、一边加图（蓝=页数，橙=实拍图 70 → %d）' % NF, fontsize=13, color=INK,
-              loc='left', pad=8)
+ax2b.set_ylabel('实拍图（张）', fontsize=10.2, color=AMBER)
+ax2b.tick_params(axis='y', colors=AMBER, labelsize=9.8)
+ax2.set_title('一边减页、一边加图（蓝=页数，金=实拍图 70 → %d）' % NF, fontsize=13, color=INK,
+              loc='left', pad=12)
 
 # ── 左中：六套检查
-ax3 = fig.add_axes([0.05, 0.315, 0.28, 0.205])
+ax3 = fig.add_axes([0.05, 0.30, 0.28, 0.24])
 ax3.set_facecolor('white')
 ax3.axis('off')
-ax3.set_title('六套检查：失败 0 项', fontsize=13, color=INK, loc='left', pad=22)
+ax3.set_title('六套检查：失败 0 项', fontsize=13, color=INK, loc='left', pad=16)
 checks = [('数字独立复算', NCHK[0]), ('结构完整性', NCHK[1]), ('前后一致性', NCHK[2]),
           ('正文可读性', NCHK[3]), ('插图与来源', NCHK[4]), ('书签与页码', NCHK[5])]
 for i, (name, n) in enumerate(checks):
@@ -129,32 +134,33 @@ for i, (name, n) in enumerate(checks):
     ax3.text(0.95, y, '%d 项' % n, fontsize=11, color=ACCENT, va='center', ha='right',
              weight='bold')
     if i < len(checks) - 1:
-        ax3.plot([0.03, 0.95], [y - 0.062, y - 0.062], color='#e6e2da', linewidth=0.9)
+        ax3.plot([0.03, 0.95], [y - 0.062, y - 0.062], color='#E5E0D2', linewidth=0.9)
 
 # ── 中中：图形来源
-ax4 = fig.add_axes([0.365, 0.315, 0.27, 0.205])
+ax4 = fig.add_axes([0.365, 0.30, 0.27, 0.24])
 ax4.set_facecolor('white')
 ax4.axis('off')
-ax4.set_title('%d 张图的出处' % NF, fontsize=13, color=INK, loc='left', pad=22)
+ax4.set_title('%d 张图的出处' % NF, fontsize=13, color=INK, loc='left', pad=16)
 ax4.set_xlim(0, 1)
 ax4.set_ylim(0, 1)
 srcs = [('政府 / 国家实验室 / 大学', src['inst'], ACCENT),
         ('个人摄影师 / 企业 / 社区', src['person'], LIGHT)]
 for i, (name, n, color) in enumerate(srcs):
-    y = 0.66 - i * 0.38
-    ax4.text(0.03, y + 0.145, name, fontsize=10.8, color=INK, va='center')
-    ax4.add_patch(FancyBboxPatch((0.03, y - 0.075), 0.60 * n / float(max(src['inst'], 1)), 0.13,
+    y = 0.68 - i * 0.34
+    ax4.text(0.03, y + 0.13, name, fontsize=10.8, color=INK, va='center')
+    ax4.add_patch(FancyBboxPatch((0.03, y - 0.06),
+                                 0.60 * n / float(max(src['inst'], src['person'], 1)), 0.12,
                                  boxstyle='round,pad=0.004', facecolor=color,
                                  edgecolor='none'))
     ax4.text(0.96, y, '%d 张' % n, fontsize=10.8, color=MUTED, ha='right', va='center')
-ax4.text(0.03, 0.04, 'NASA / ESA / ITER / LLNL / INL / EUROfusion / ASDEX / KSTAR / NIF …',
+ax4.text(0.03, 0.03, 'NASA / ESA / ITER / LLNL / INL / EUROfusion / ASDEX / KSTAR / NIF …',
          fontsize=8.8, color=MUTED, va='center')
 
 # ── 右中：交付物
-ax5 = fig.add_axes([0.675, 0.315, 0.28, 0.205])
+ax5 = fig.add_axes([0.675, 0.285, 0.30, 0.255])
 ax5.set_facecolor('white')
 ax5.axis('off')
-ax5.set_title('读者拿得到的东西', fontsize=13, color=INK, loc='left', pad=12)
+ax5.set_title('读者拿得到的东西', fontsize=13, color=INK, loc='left', pad=16)
 ax5.set_xlim(0, 1)
 ax5.set_ylim(0, 1)
 items = [('pdf/…v2.pdf', '%d 页完整教材' % PAGES),
@@ -164,9 +170,9 @@ items = [('pdf/…v2.pdf', '%d 页完整教材' % PAGES),
          ('figures/CREDITS.md', '%d 张图的作者与许可' % NF),
          ('docs/figures.md', '图册：一页看完全部插图')]
 for i, (a, b) in enumerate(items):
-    y = 0.86 - i * 0.165
-    ax5.text(0.03, y, a, fontsize=10.4, color=ACCENT, va='center')
-    ax5.text(0.03, y - 0.082, b, fontsize=9.3, color=MUTED, va='center')
+    y = 0.88 - i * 0.15
+    ax5.text(0.03, y, a, fontsize=9.8, color=ACCENT, va='center')
+    ax5.text(0.03, y - 0.060, b, fontsize=8.7, color=MUTED, va='center')
 
 # ── 脚注
 fig.text(0.035, 0.132,
@@ -182,7 +188,7 @@ fig.text(0.035, 0.064,
          fontsize=10.1, color=MUTED)
 fig.text(0.035, 0.026,
          '数据来源：pdf/ 四个 PDF 实测页数与元数据、figures/CREDITS.md、check/ 六套检查输出'
-         '（2026-10-18，%s）。' % VERSION,
+         '（2026-10-19，%s）。' % VERSION,
          fontsize=9.4, color='#8b8577')
 
 out = os.path.join(ROOT, 'docs', 'overview.png')

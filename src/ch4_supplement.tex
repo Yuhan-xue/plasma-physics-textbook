@@ -52,7 +52,7 @@
 \frac{\partial n}{\partial t} + \divg(n\vect{u}) = 0
 \]
 
-\textbf{要点：} 连续性方程是质量守恒的局域表达，其推导不依赖于力的具体形式，只要求碰撞项守恒粒子数。它是从微观动理学到宏观流体的第一座桥梁。
+\textbf{要点：} 连续性方程是质量守恒的局域表达。推导只要求碰撞项守恒粒子数，与力的具体形式无关。
 \end{example}
 
 \begin{example}{广义欧姆定律各项的量级估算}{ohms-law-estimate}
@@ -64,7 +64,7 @@
 \tcblower
 \textbf{解答：}
 
-\textbf{第 0 步：先想清楚“和谁比”。} 广义欧姆定律的所有项都是 $\mathrm{V/m}$，但拿什么当分母决定了结论。本题统一以 $uB=10^4\times5=5\times10^4\,\mathrm{V/m}$ 为\textbf{参考尺度}（reference scale），即把方程写成
+\textbf{第 0 步：确定参考尺度。} 广义欧姆定律的所有项都是 $\mathrm{V/m}$，但拿什么当分母决定了结论。本题统一以 $uB=10^4\times5=5\times10^4\,\mathrm{V/m}$ 为\textbf{参考尺度}（reference scale），即把方程写成
 \[
 \frac{\vect{E} + \vect{u}\times\vect{B}}{uB}
 = \underbrace{\frac{\eta\vect{j}}{uB}}_{\epsilon_\eta}
@@ -119,7 +119,7 @@ Spitzer 电阻率（近似公式 $\eta \approx 5\times 10^{-5} Z\ln\Lambda / T_e
 \begin{itemize}[leftmargin=*,itemsep=0pt]
 \item \textbf{电阻项与惯性项}：$\epsilon_\eta,\epsilon_I\sim10^{-9}$，比参考尺度小 9 个数量级。要在 $10^{-6}$ 相对精度内描述电场，它们确实可以删；但这来自“精度要求”，不是“必然可忽略”。
 \item \textbf{霍尔项与压强项}：$\epsilon_H\approx0.62$、$\epsilon_p\approx0.2$。\textbf{两者都不满足“小修正”的渐近条件（$\epsilon\ll1$）}——霍尔项甚至与参考尺度同量级。把它们当作修正项删掉，会丢掉 $O(1)$ 的物理。
-\item \textbf{理想MHD}：$\vect{E}+\vect{u}\times\vect{B}=0$ 要求右端四项全部远小于左端。本题只有电阻项与惯性项满足；保留霍尔项即为\textbf{Hall MHD}，保留压强项即需要\textbf{电子压强闭合}。请先报告所需的相对精度，再决定删哪几项。
+\item \textbf{理想MHD}：$\vect{E}+\vect{u}\times\vect{B}=0$ 要求右端四项全部远小于左端。本题只有电阻项与惯性项满足；保留霍尔项即为\textbf{Hall MHD}，保留压强项即需要\textbf{电子压强闭合}。删项之前先定相对精度。
 \end{itemize}
 \end{example}
 
@@ -213,34 +213,23 @@ v_{ti} = \sqrt{\frac{2\times 0.1\times 1.602\times 10^{-19}}{1.673\times 10^{-27
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[scale=1.0]
-% 等离子体区域（标签移到框顶外：旧版放在框心，被一支蓝色离子箭头穿过）
-\draw[thick,fill=figBlue!5] (-3,-2) rectangle (3,2);
-\node[figBlue!60] at (0,2.35) {\large 等离子体};
+\begin{tikzpicture}[scale=1.0,font=\small]
+% 同一空间里两套速度场：金=电子（快），蓝=离子（慢）。箭头长度本身即速度大小。
+\draw[fill=figBlue!4,draw=figBlue!45,line width=0.8pt] (-4,-1.8) rectangle (4,1.8);
+\node[text=figInk,font=\footnotesize,anchor=south] at (0,1.9) {同一空间中的两种流体};
 
-% 电子速度场（红色，较快，较密）
-\foreach \x in {-2,-1,0,1,2} {
-  \foreach \y in {-1.5,-0.5,0.5,1.5} {
-    \draw[->,figVerm,thick] (\x,\y) -- ++(0.8,0.2);
+\foreach \x in {-2.9,-0.9,1.1,2.9} {
+  \foreach \y in {-0.9,0.6} {
+    \draw[figGold,line width=1.2pt,->,>=Stealth] (\x,\y) -- ++(1.05,0.18);
+    \draw[figBlue,line width=1.2pt,->,>=Stealth] (\x,\y) -- ++(0.42,-0.10);
   }
 }
 
-% 离子速度场（蓝色，较慢，较疏）
-\foreach \x in {-2.5,-1.5,0.5,1.5} {
-  \foreach \y in {-1,0,1} {
-    \draw[->,figBlue,thick] (\x,\y) -- ++(0.3,-0.1);
-  }
-}
-
-% 坐标轴
-\draw[->,thick] (-3.5,-2) -- (-3.5,2) node[above] {$y$};
-\draw[->,thick] (-3.5,-2) -- (3.5,-2) node[right] {$x$};
-
-% 标注说明（符号并进图例：旧版框内的 u_e/u_i 标签离异色箭头更近，指代是反的）
-\draw[figVerm,->,very thick] (-4.5,-1) -- (-3.8,-1);
-\node[figVerm,left] at (-4.5,-1) {电子速度快 $\vect{u}_e$};
-\draw[figBlue,->,very thick] (-4.5,-1.5) -- (-3.8,-1.5);
-\node[figBlue,left] at (-4.5,-1.5) {离子速度慢 $\vect{u}_i$};
+% 图例放绘图区外（右侧），同时用颜色与箭头长度区分两种流体
+\draw[figGold,line width=1.2pt,->,>=Stealth] (4.45,0.55) -- (5.55,0.73);
+\node[text=figAmber,font=\footnotesize,anchor=west] at (5.70,0.64) {电子 $\vect{u}_e$（快）};
+\draw[figBlue,line width=1.2pt,->,>=Stealth] (4.45,-0.70) -- (4.95,-0.80);
+\node[text=figBlue,font=\footnotesize,anchor=west] at (5.70,-0.75) {离子 $\vect{u}_i$（慢）};
 \end{tikzpicture}
 \caption{双流体模型示意图。电子和离子作为两种独立的流体，可以具有不同的宏观流速 $\vect{u}_e$ 和 $\vect{u}_i$。由于 $m_e\ll m_i$，电子的响应远快于离子。}
     \label{fig:two-fluid-model}

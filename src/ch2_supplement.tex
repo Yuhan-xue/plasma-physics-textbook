@@ -117,7 +117,7 @@ $\lambda_D\approx 14.9\,\mu\mathrm{m}$，$\omega_{pe}\approx 5.64\times 10^{10}\
 N_D = \frac{4}{3}\pi\times 10^{20}\times (7.4\times 10^{-5})^3 \approx 1.7\times 10^{8}
 \]
 
-\textbf{对比总结：} 星际介质虽密度极低，但德拜长度巨大、德拜球内粒子数极多，集体效应仍成立；实验室等离子体参数适中；聚变等离子体密度最高、温度最高，德拜长度最短，但德拜球内粒子数依然庞大，屏蔽效应极强。
+\textbf{对比：} 三种环境的德拜长度相差近五个数量级，但 $N_D$ 都在 $10^{4}$ 以上，集体屏蔽始终成立。密度越高，德拜长度越短，屏蔽越局部。
 \end{example}
 
 \begin{example}{德拜屏蔽势的数值计算}{debye-potential-calc}
@@ -144,49 +144,43 @@ $1\,\mathrm{mm}$ & $1.44\times 10^{-6}\,\mathrm{V}$ & $67.1$ & $1.3\times 10^{-2
 \end{tabular}
 \end{center}
 
-\textbf{分析：} 在 $r\approx\lambda_D$ 处，电势衰减为裸库仑势的一半；当 $r\sim 3\lambda_D$ 时，屏蔽因子已小于 $5\%$；到 $r\sim 7\lambda_D$ 时，势能被压制到裸势的千分之一以下。这直观地说明了德拜屏蔽是短程效应。
+\textbf{分析：} 在 $r\approx\lambda_D$ 处，电势衰减为裸库仑势的一半；$r\sim 3\lambda_D$ 时屏蔽因子小于 $5\%$；$r\sim 7\lambda_D$ 时势能被压制到裸势的千分之一以下。德拜屏蔽是短程效应。
 \end{example}
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[scale=0.95,font=\small]
-% 坐标轴（对数尺度；密度轴补到 10^30 以容纳 ICF）
-\draw[figaxis] (0,0) -- (10.2,0) node[right] {$T\;(\mathrm{eV})$};
-\draw[figaxis] (0,0) -- (0,9.4) node[above] {$n\;(\mathrm{m}^{-3})$};
+\begin{tikzpicture}[scale=0.92,font=\small]
+% 双对数坐标：横轴 log10 T(eV) 由 -2 到 4，纵轴 log10 n(m^-3) 由 6 到 32。
+% 五个区域各占一块；名称与参数收进块内，块与块之间留白 ≥ 4 mm。
+\draw[figaxis] (0,0) -- (10.2,0) node[right,font=\footnotesize] {$T\;(\mathrm{eV})$};
+\draw[figaxis] (0,0) -- (0,8.0) node[above,font=\footnotesize] {$n\;(\mathrm{m}^{-3})$};
 
-% 温度刻度（对数示意）
-\foreach \x/\lab in {1/{$10^{-2}$},3/{$10^{0}$},5/{$10^{2}$},7/{$10^{4}$}}
+\foreach \x/\lab in {1.0/{$10^{-2}$},3.67/{$10^{0}$},6.33/{$10^{2}$},9.0/{$10^{4}$}}
   \draw[figInk,line width=0.9pt] (\x,0.09) -- (\x,-0.09) node[below,figtick] {\lab};
-
-% 密度刻度（对数示意）
-\foreach \y/\lab in {1/{$10^{6}$},2.5/{$10^{12}$},4/{$10^{18}$},5.5/{$10^{24}$},7/{$10^{30}$}}
+\foreach \y/\lab in {0.90/{$10^{6}$},2.40/{$10^{12}$},3.90/{$10^{18}$},5.40/{$10^{24}$},6.90/{$10^{30}$}}
   \draw[figInk,line width=0.9pt] (0.09,\y) -- (-0.09,\y) node[left,figtick] {\lab};
 
-% 五个区域：名称一行放在色块上方白处，n/T 两行放在色块内；
-% 块高 1.15 以容纳两行 \footnotesize（块太矮时第二行会压在下边框上）
-\draw[fignode,draw=figSky,fill=figSky!12] (0.6,0.55) rectangle (2.6,1.7);
-\node[figSky!50!black,align=center,font=\footnotesize] at (1.6,1.12) {$n\sim10^{6}$\\[1pt]$T\sim10^{4}\,\mathrm{K}$};
-\node[figSky!40!black,anchor=south,font=\footnotesize] at (1.6,1.82) {星际介质};
+% 非聚变环境：钢蓝细框（背景/慢粒子语义）
+\draw[fignode,draw=figBlue,fill=figBlue!8] (2.20,0.55) rectangle (4.60,2.25);
+\node[text=figInk,font=\footnotesize,align=center] at (3.40,1.40)
+  {\textbf{星际介质}\\[1pt]$n\sim10^{6}$\\[1pt]$T\sim10^{4}\,\mathrm{K}$};
 
-\draw[fignode,draw=figOrange,fill=figOrange!12] (2.6,2.05) rectangle (4.6,3.2);
-\node[figOrange!50!black,align=center,font=\footnotesize] at (3.6,2.62) {$n\sim10^{12}$\\[1pt]$T\sim10^{2}\,\mathrm{eV}$};
-\node[figOrange!40!black,anchor=south,font=\footnotesize] at (3.6,3.32) {太阳日冕};
+\draw[fignode,draw=figBlue,fill=figBlue!8] (5.60,1.95) rectangle (8.00,3.65);
+\node[text=figInk,font=\footnotesize,align=center] at (6.80,2.80)
+  {\textbf{太阳日冕}\\[1pt]$n\sim10^{12}$\\[1pt]$T\sim10^{2}\,\mathrm{eV}$};
 
-\draw[fignode,draw=figGreen,fill=figGreen!12] (4.3,4.15) rectangle (6.3,5.3);
-\node[figGreen!40!black,align=center,font=\footnotesize] at (5.3,4.72) {$n\sim10^{18}$\\[1pt]$T\sim 1$--$10\,\mathrm{eV}$};
-\node[figGreen!30!black,anchor=south,font=\footnotesize] at (5.3,5.42) {实验室低温};
+\draw[fignode,draw=figBlue,fill=figBlue!8] (3.10,3.75) rectangle (5.50,5.45);
+\node[text=figInk,font=\footnotesize,align=center] at (4.30,4.60)
+  {\textbf{实验室低温}\\[1pt]$n\sim10^{18}$\\[1pt]$T\sim1$--$10\,\mathrm{eV}$};
 
-\draw[fignode,draw=figVerm,fill=figVerm!12] (6.6,4.5) rectangle (8.6,5.65);
-\node[figVerm!50!black,align=center,font=\footnotesize] at (7.6,5.07) {$n\sim10^{20}$\\[1pt]$T\sim10\,\mathrm{keV}$};
-\node[figVerm!40!black,anchor=south,font=\footnotesize] at (7.6,5.77) {磁约束聚变};
+% 聚变两项：暗金框 + 浅金底（关键路径语义；金色文字用 figAmber）
+\draw[fignode,draw=figAmber,fill=figGold!12] (6.40,4.10) rectangle (8.80,5.80);
+\node[text=figInk,font=\footnotesize,align=center] at (7.60,4.95)
+  {\textbf{磁约束聚变}\\[1pt]$n\sim10^{20}$\\[1pt]$T\sim10\,\mathrm{keV}$};
 
-\draw[fignode,draw=figPurple,fill=figPurple!12] (7.6,7.0) rectangle (9.4,8.15);
-\node[figPurple!50!black,align=center,font=\footnotesize] at (8.5,7.57) {$n\sim10^{32}$\\[1pt]$T\sim10\,\mathrm{keV}$};
-\node[figPurple!40!black,anchor=south,font=\footnotesize] at (8.5,8.27) {ICF};
-
-% 辅助虚线（走在太阳日冕名称行与实验室色块之间的空档；标签收进图内）
-\draw[fighelp] (0,3.9) -- (9.6,3.9);
-\node[figGray,anchor=north east,font=\footnotesize] at (9.6,3.8) {$N_D=1$（示意）};
+\draw[fignode,draw=figAmber,fill=figGold!12] (7.40,6.20) rectangle (9.80,7.90);
+\node[text=figInk,font=\footnotesize,align=center] at (8.60,7.05)
+  {\textbf{ICF}\\[1pt]$n\sim10^{32}$\\[1pt]$T\sim10\,\mathrm{keV}$};
 \end{tikzpicture}
 \caption{五种典型等离子体在 $n$--$T$ 参数空间中的分布。图中位置仅为示意，纵轴与横轴均为对数尺度。}
     \label{fig:nT-space}
@@ -221,7 +215,7 @@ N_D = 4.19\times10^{20}\times(7.4\times10^{-5})^3 \approx 1.7\times10^8 \gg 1 \q
 
 两种等离子体都满足 $N_D\gg1$（理想等离子体判据），集体行为良好。
 
-\textbf{(B) 中的屏蔽效应：} 放入测试电荷后，其电场在 $\lambda_D\approx74\,\mu\mathrm{m}$ 之外被指数压制：$\phi(r)\sim (Q/4\pi\eps_0 r)\ee^{-r/\lambda_D}$。在 $r=1\,\mathrm{cm}$ 处，$r/\lambda_D \approx 135$，屏蔽因子 $\ee^{-135}\sim10^{-59}$——电场被德拜屏蔽完全抹平，任何探针在 $1\,\mathrm{cm}$ 外都只能感受到准中性的集体响应，而非该电荷的裸电场。这正是德拜屏蔽“等离子体名片”的含义：等离子体内部的长程库仑力被集体响应改造为短程屏蔽相互作用。
+\textbf{(B) 中的屏蔽效应：} 放入测试电荷后，其电场在 $\lambda_D\approx74\,\mu\mathrm{m}$ 之外被指数压制：$\phi(r)\sim (Q/4\pi\eps_0 r)\ee^{-r/\lambda_D}$。在 $r=1\,\mathrm{cm}$ 处，$r/\lambda_D \approx 135$，屏蔽因子 $\ee^{-135}\sim10^{-59}$——电场被德拜屏蔽完全抹平，任何探针在 $1\,\mathrm{cm}$ 外都只能感受到准中性的集体响应，而非该电荷的裸电场。德拜屏蔽是等离子体最直接的标志：内部的长程库仑力被集体响应改造成短程屏蔽相互作用。
 \end{example}
 
 \begin{formulabox}{第 2 章}{ch2-formulas}

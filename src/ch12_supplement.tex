@@ -99,7 +99,7 @@ $\ln I_e$ & $-2.303$ & $-1.386$ & $-0.598$ & $0.049$ \\
     \boxed{n_e \approx 1\times10^{16}\,\mathrm{m^{-3}}}
 \]
 
-\textbf{模型与假设清单（必须随结果一并报告）：}
+\textbf{模型与假设清单：}
 \begin{itemize}
     \item 稀薄数据（每区仅若干点）只能给量级，不能宣称高精度；
     \item 离子饱和电流假定为常数 $-0.5\,\mathrm{mA}$，且未随 $V$ 缓慢变化；
@@ -389,7 +389,7 @@ n_e = 10^{23}\times\left(\frac{\Delta\lambda_S}{0.549}\right)^{3/2}
 = 10^{23}\times\left(\frac{0.8}{0.549}\right)^{3/2}
 \approx 1.8\times10^{23}\,\mathrm{m^{-3}}.
 \]
-这一密度对应高电流密度电弧芯部或聚变边缘——量级合理。\textbf{注意}：$\Delta\lambda_S$ 与系数都必须用 $\mathrm{nm}$ 为单位；若把系数写成带 $\mathrm{m^2}$ 的量纲再代入 $\mathrm{nm}$ 数值，会得到 $64\,\mathrm{m^{-3}}$ 之类的荒谬结果，这正是必须核对量纲的原因。本例未做任何“再乘 $10^{19}$ 修正”的凑数——反演结果直接来自标定式，且须在给定的温度适应区间内。
+这一密度对应高电流密度电弧芯部或聚变边缘——量级合理。\textbf{注意}：$\Delta\lambda_S$ 与系数都必须用 $\mathrm{nm}$ 为单位；若把系数写成带 $\mathrm{m^2}$ 的量纲再代入 $\mathrm{nm}$ 数值，会得到 $64\,\mathrm{m^{-3}}$ 之类的荒谬结果。反演结果直接来自标定式，前提是温度落在标定的适应区间内。
 
 \textbf{(2) 为什么高密度下首选：} Stark 展宽 $\propto n_e^{2/3}$，由\textbf{带电粒子微场}直接决定，对密度敏感（温度依赖较弱）。按本节的 $H_\alpha$ 标定 $\Delta\lambda=0.549(n_e/10^{23})^{2/3}\,\mathrm{nm}$：在 $n_e\sim10^{23}\,\mathrm{m^{-3}}$ 时 Stark 展宽约 $0.5\,\mathrm{nm}$，在 $n_e\sim10^{21}\,\mathrm{m^{-3}}$ 时约 $0.025\,\mathrm{nm}$。作为对比，$H_\alpha$ 的 Doppler 展宽在离子温度 $T_i\sim10\,\mathrm{eV}$ 时只有 $\sim7\times10^{-4}\,\mathrm{nm}$——比同密度下的 Stark 展宽小两三个数量级，故在高密度下 Stark 完全主导谱线形状，测形状即可反演密度。
 
@@ -408,55 +408,50 @@ n_e = 10^{23}\times\left(\frac{\Delta\lambda_S}{0.549}\right)^{3/2}
 
 \begin{figure}[htbp]
     \centering
-    \begin{tikzpicture}[scale=1.0, >=Stealth]
-        % 微波源（频率标注移到框外下方：旧版压在框的底边上，印出来像删除线）
-        \draw[thick, fill=figOrange!20] (-6,0) rectangle (-4,1);
-        \node at (-5,0.5) {微波源};
-        \node[below] at (-5,-0.15) {\small $f=60\,\mathrm{GHz}$};
-        
-        % 出射波
-        \draw[->, ultra thick, figVerm] (-4,0.5) -- (-2.7,0.5);
-        \node[figVerm] at (-3.35,0.85) {$\omega$};
-        
-        % 喇叭天线（标签移到上方空处：旧版落在波导框里，被两条竖边夹住）
-        \draw[thick] (-2.7,0.2) -- (-2.2,0) -- (-2.2,1) -- (-2.7,0.8);
-        \node[above] at (-2.45,1.1) {\scriptsize 喇叭};
-        
-        % 分束器（标签移到上方空处：旧版三字比菱形宽，压住左右两个顶点）
-        \draw[thick, fill=figBlue!20] (-1.3,0) -- (-0.8,0.5) -- (-1.3,1) -- (-1.8,0.5) -- cycle;
-        \node[figBlue, above] at (-1.3,1.1) {\scriptsize 分束器};
-        
-        % 参考臂：向右到反射镜再返回（去/回两条线上下错开，避免叠印）
-        \draw[->, thick, figGreen!60!black] (-0.8,0.42) -- (2.1,0.42);
-        \draw[thick, fill=figGray!40] (2.1,0.2) -- (2.3,0.2) -- (2.3,0.8) -- (2.1,0.8);
-        \draw[->, thick, figGreen!60!black] (2.1,0.62) -- (-0.8,0.62);
-        \node[figGreen!60!black] at (0.6,1.0) {参考臂};
-        
-        % 测量臂：向下穿过等离子体到反射镜再返回（去/回左右错开；
-        % 旧版测量臂从分束器往左下走，穿过了波导框，光路读不出走向）
-        \draw[->, thick, figPurple] (-1.38,0) -- (-1.38,-3.1);
-        \draw[thick, fill=figSky!15] (-3.2,-2.6) rectangle (-0.2,-1.5);
-        \node[figSky!70!black] at (-2.3,-2.05) {等离子体};
-        \draw[thick, fill=figGray!40] (-1.6,-3.1) -- (-0.8,-3.1) -- (-0.8,-3.3) -- (-1.6,-3.3);
-        \draw[->, thick, figPurple] (-0.98,-3.1) -- (-0.98,-0.15);
-        \node[figPurple] at (-2.3,-2.95) {测量臂};
-        
-        % 合束后单支箭头进探测器（旧版画成两支方向相反的箭头叠在同一条竖廊里）
-        \draw[->, thick, figVerm] (-0.95,0.15) -- (0.5,-1.3);
-        \draw[thick, fill=figOrange!20] (0.3,-2.3) rectangle (1.9,-1.3);
-        \node at (1.1,-1.8) {探测器};
-        % 信号从探测器右侧水平引出：旧版向下引出，黑色箭头穿过 Δφ 公式
-        \draw[->, thick] (1.9,-1.8) -- (2.7,-1.8);
-        \node[right] at (2.8,-1.8) {干涉信号 $I(\phi)$};
-        
-        % 相位差标注（贴在测量臂右侧空处）
-        \draw[<->, thick, figBlue] (-0.3,-1.6) -- (-0.3,-2.6);
-        \node[figBlue, right] at (-0.15,-2.6) {$\Delta\phi = \frac{\omega}{c}(N-1)L$};
-        
-        % 图例
-        \node[anchor=west] at (3.0,1.2) {\color{figGreen!60!black}\small 参考波};
-        \node[anchor=west] at (3.0,0.75) {\color{figPurple}\small 测量波};
-        \node[anchor=west] at (3.0,0.3) {\color{figVerm}\small 干涉信号};
+    \begin{tikzpicture}[scale=1.0,>=Stealth,font=\small]
+        % 微波源
+        \draw[draw=figAmber,line width=0.8pt,fill=figGold!12] (-6.4,0.30) rectangle (-4.6,1.10);
+        \node[text=figInk,font=\footnotesize] at (-5.50,0.78) {微波源};
+        \node[text=figGray,font=\footnotesize,anchor=north] at (-5.50,0.22) {$f=60\,\mathrm{GHz}$};
+
+        % 出射波与喇叭
+        \draw[figGold,line width=1.2pt,->,>=Stealth] (-4.6,0.70) -- (-3.15,0.70);
+        \node[text=figAmber,font=\footnotesize,anchor=south] at (-3.90,0.72) {$\omega$};
+        \draw[draw=figGray!70,line width=0.8pt] (-3.15,0.30) -- (-2.55,0.10) -- (-2.55,1.30) -- (-3.15,1.10);
+        \node[text=figInk,font=\footnotesize,anchor=south] at (-2.85,1.32) {喇叭};
+
+        % 分束器
+        \draw[draw=figBlue,line width=0.8pt,fill=figBlue!12]
+          (-2.05,0.70) -- (-1.50,0.20) -- (-0.95,0.70) -- (-1.50,1.20) -- cycle;
+        \node[text=figInk,font=\footnotesize,anchor=south] at (-1.50,1.22) {分束器};
+
+        % 参考臂：向右到反射镜再返回
+        \draw[figGold,line width=1.2pt,->,>=Stealth] (-0.95,0.86) -- (2.10,0.86);
+        \draw[draw=figGray!80,line width=0.9pt] (2.10,0.36) -- (2.10,1.06);
+        \draw[figGold,line width=1.2pt,->,>=Stealth] (2.10,0.56) -- (-0.95,0.56);
+        \node[text=figAmber,font=\footnotesize,fill=white,inner sep=1.5pt] at (0.65,1.15) {参考臂};
+
+        % 测量臂：向下穿过等离子体到反射镜再返回
+        \draw[figGold,line width=1.2pt,->,>=Stealth] (-1.55,0.20) -- (-1.55,-3.00);
+        \draw[draw=figGray!80,line width=0.9pt] (-1.85,-3.00) -- (-1.15,-3.00);
+        \draw[figGold,line width=1.2pt,->,>=Stealth] (-1.30,-3.00) -- (-1.30,0.20);
+        \node[text=figAmber,font=\footnotesize,fill=white,inner sep=1.5pt,anchor=east] at (-2.20,-0.25) {测量臂};
+
+        % 等离子体（测量臂穿过）
+        \draw[draw=figBlue!55,line width=0.8pt,fill=figBlue!6] (-3.40,-2.40) rectangle (-0.40,-1.40);
+        \node[text=figInk,font=\footnotesize,anchor=north] at (-1.90,-2.48) {等离子体};
+
+        % 合束后进入探测器
+        \draw[figGold,line width=1.2pt,->,>=Stealth] (-1.20,0.30) -- (0.20,-0.62);
+        \draw[draw=figGray!70,line width=0.8pt,fill=figGray!18] (0.20,-1.42) rectangle (1.60,-0.62);
+        \node[text=figInk,font=\footnotesize] at (0.90,-1.02) {探测器};
+        \draw[figInk,line width=0.9pt,->,>=Stealth] (1.60,-1.02) -- (2.40,-1.02);
+        \node[text=figInk,font=\footnotesize,anchor=west] at (2.45,-1.02) {干涉信号 $I(\phi)$};
+
+        % 相位差标注（测量臂右侧）
+        \draw[figVerm,line width=0.8pt,<->,>=Stealth] (-0.20,-1.40) -- (-0.20,-2.40);
+        \node[text=figVerm,font=\footnotesize,anchor=west] at (-0.05,-1.90)
+          {$\Delta\phi=\dfrac{\omega}{c}(N-1)L$};
     \end{tikzpicture}
     \caption{微波干涉仪光路示意图。微波源经分束器分为参考臂和测量臂，测量臂穿过等离子体后产生相位移动 $\Delta\phi$，两束波在分束器处重新汇合产生干涉，由探测器记录。}
     \label{fig:interferometer}

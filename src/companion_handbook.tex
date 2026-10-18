@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材·配套手册 v1.27.20},
+  pdftitle={等离子体物理自学教材·配套手册 v1.28.0},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -214,24 +214,29 @@
 \definecolor{historybrown}{RGB}{121, 85, 72}
 \definecolor{reviewblue}{RGB}{25, 118, 210}
 \definecolor{tipgreen}{RGB}{56, 142, 60}
-% ---- 插图统一视觉语言（2026-10-13 插图重画轮立下的规矩，新图与改图一律遵守）----
-% 色板取 Okabe--Ito 色盲安全八色；同一物理量在全书各图里用同一色：
-%   电子/快/束流 = figVerm（朱）；离子/慢/背景 = figBlue（蓝）；
-%   磁场/磁力线  = figGreen（绿）；区域填充 = 同色 !12 并配同色 0.8pt 边；
-%   判据/阈值    = figPurple（紫）；辅助线/包络 = figGray（灰）虚线。
+% ---- 插图统一视觉语言（2026-10-19 按 docs/palette.md 的「深蓝 + 金」重锚）----
+% 同一物理量在全书各图里用同一色：
+%   电子/快/束流 = figGold（亮金，只作线与填充）；离子/慢/背景 = figBlue（钢蓝）；
+%   磁场/磁力线  = figGreen（深青）；判据/阈值 = figVerm（赭红）；第三分类 = figPurple；
+%   辅助线/包络 = figGray（灰）虚线；金色文字一律用 figAmber（暗金）。
 % 线宽：坐标轴 0.9pt、数据曲线 1.2pt、辅助虚线 0.6pt；箭头统一 Stealth。
-% 字号：图内主标签 \small、次标签与刻度 \footnotesize；内容标签全书禁用 \tiny。
+% 字号：图内主标签 \small、次标签与刻度 \footnotesize；内容标签全书禁用极小字号。
 % 标签永不压线：必须靠近曲线时用 fill=white, inner sep=1.5pt 的光环；
 % 区域标签若放不进色块（留不出约 3mm 边）就移到块外，用 figlead 引线点指。
 % 图例一律放在绘图区外（下方或右侧），带线型样本。
-\definecolor{figInk}{HTML}{2B2B2B}
-\definecolor{figBlue}{HTML}{0072B2}
-\definecolor{figOrange}{HTML}{E69F00}
-\definecolor{figGreen}{HTML}{009E73}
-\definecolor{figVerm}{HTML}{D55E00}
-\definecolor{figPurple}{HTML}{CC79A7}
-\definecolor{figSky}{HTML}{56B4E9}
-\definecolor{figGray}{HTML}{8C8C8C}
+\definecolor{figInk}{HTML}{12203A}
+\definecolor{figNavy}{HTML}{1B2E52}
+\definecolor{figBlue}{HTML}{2F5286}
+\definecolor{figSky}{HTML}{6C86AE}
+\definecolor{figGreen}{HTML}{2A7373}
+\definecolor{figGold}{HTML}{C2A14D}
+\definecolor{figAmber}{HTML}{8A6520}
+\definecolor{figVerm}{HTML}{9C443A}
+\definecolor{figPurple}{HTML}{5F4066}
+\definecolor{figGray}{HTML}{6B7280}
+\definecolor{figPaper}{HTML}{F6F2E7}
+\colorlet{figOrange}{figGold}
+\colorlet{figGoldDeep}{figAmber}
 \tikzset{
   figaxis/.style={draw=figInk, line width=0.9pt, ->, >=Stealth},
   figcurve/.style={line width=1.2pt},
@@ -295,7 +300,7 @@
   rmABC/.style={rmnode,draw=figGreen,very thick},
   rmAB/.style={rmnode,draw=figBlue,very thick},
   rmBC/.style={rmnode,draw=figOrange,very thick},
-  nxchip/.style={draw=figInk!70,rounded corners=1.5pt,minimum width=1.05cm,minimum height=0.95cm,font=\scriptsize,inner sep=1pt},
+  nxchip/.style={draw=figInk!70,rounded corners=1.5pt,minimum width=1.05cm,minimum height=0.95cm,font=\footnotesize,inner sep=1pt},
 }
 \newtcolorbox{chapterreview}[1][]{
   colback=tipgreen!5,colframe=tipgreen,fonttitle=\bfseries,
@@ -390,7 +395,7 @@
 
 \vfill
 \hspace*{1.6cm}{\color{white!72}\large Han \& Kimi}\hfill
-{\color{white!72}\large v1.27.20}\hfill
+{\color{white!72}\large v1.28.0}\hfill
 {\color{white!60}\large 2026 年 10 月}\hspace*{1.6cm}
 \vspace*{1.2cm}
 
@@ -398,20 +403,20 @@
 \thispagestyle{empty}
 \frontchapter{这本手册怎么用}
 
-主册把四件“边读边查”的事从正文里拿了出来，单独收在这里：
+四件“边读边查”的事单收在这里：
 
 \begin{itemize}
-\item \textbf{附录 I（学习策略与刻意练习手册）}：怎么读、怎么练、怎么复习——合书复述、间隔重复、交错练习、错题本、十二周节奏、读论文三遍法。它是学习方法的总入口，建议在读正文之前先翻一遍。
-\item \textbf{附录 J（经典教材逐章对照与延伸阅读）}：本书每一章对应 Chen、Fitzpatrick 等经典教材的哪一章，以及想继续深入时该读哪本专著。查书时用它，不用翻正文。
-\item \textbf{附录 K（跨教材经典例题精选）}：八道跨教材例题，覆盖德拜屏蔽、磁镜、漂移、Alfv\'en 波、Langmuir 探针等，每题有完整解答。它是主册例题的补充，不是习题集。
+\item \textbf{附录 I（学习策略与刻意练习手册）}：怎么读、怎么练、怎么复习。合书复述、间隔重复、交错练习、错题本、十二周节奏、读论文三遍法。它是学习方法的总入口，建议在读正文之前先翻一遍。
+\item \textbf{附录 J（经典教材逐章对照与延伸阅读）}：本书每一章对应 Chen、Fitzpatrick 等经典教材的哪一章。想继续深入时该读哪本专著，也在这里查。查书时用它，不用翻正文。
+\item \textbf{附录 K（跨教材经典例题精选）}：八道跨教材例题，覆盖德拜屏蔽、磁镜、漂移、Alfv\'en 波、Langmuir 探针。每题有完整解答。它是主册例题的补充，不是习题集。
 \item \textbf{附录 L（分章自测题库）}：12 章 $\times$ 6 题的题库（每题都带答案），按章刷题时用它。
 \end{itemize}
 
-\textbf{为什么单独成册。}这四篇是“边读边查”的材料：读者查书单时通常不在读正文，刷题时也不想被正文的推导带走。主册因此能更薄，可以一口气从头读到尾；需要查的时候再翻开这本手册。
+\textbf{为什么单独成册。}这四篇是“边读边查”的材料：读者查书单时通常不在读正文，刷题时也不想被正文的推导带走。主册因此更薄，能一口气读完；要查时再翻开这本手册。
 
-\textbf{字母为什么跳过 I--L。}主册的附录字母没有重排：附录 I、J、K、L 的位置留给这本手册，主册附录 H 之后直接接 M，两边字母一一对应，引用时不会错位。
+\textbf{字母为什么跳过 I--L。}主册的附录字母没有重排：I、J、K、L 的位置留给这本手册。主册附录 H 之后直接接 M，两边字母一一对应，引用时不会错位。
 
-\textbf{版本与许可。}本手册与主册同版本（v1.27.20），许可同为 CC BY-NC-SA 4.0；源码与四篇 \texttt{.tex} 都在仓库 \texttt{src/} 下，正文引用的脚本在 \texttt{tools/calc/} 与 \texttt{code/} 下。
+\textbf{版本与许可。}本手册与主册同版本（v1.28.0），许可同为 CC BY-NC-SA 4.0。源码与四篇 \texttt{.tex} 都在仓库 \texttt{src/} 下；正文引用的脚本在 \texttt{tools/calc/} 与 \texttt{code/} 下。
 
 \clearpage
 \tableofcontents
