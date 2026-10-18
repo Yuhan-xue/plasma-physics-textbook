@@ -3,7 +3,7 @@
 > 这本书用图讲物理：全书 95 张插图，全部是实拍照片或公开示意图，逐张登记了作者、许可与来源页。
 > 下面按「章 / 附录」把它们排开，点击任意一张可看原图；完整清单与来源链接见 [`figures/CREDITS.md`](../figures/CREDITS.md)。
 
-合计 **95 张**。若想按来源查看（NASA、ITER、LLNL、EUROfusion…），见文末统计。
+合计 **101 张**。若想按来源查看（NASA、ITER、LLNL、EUROfusion…），见文末统计。
 
 ## 第 1 章（1 张）
 
@@ -234,11 +234,12 @@
 |---|---|---|---|
 | <img src="figures-thumbs/gyrotron_ecrh.jpg" width="230"> | 回旋管：电子回旋共振加热的功率源 | Siarhei Besarab | CC BY-SA 4.0（[来源页](https://commons.wikimedia.org/wiki/File:Gyrotron_for_electron_cyclotron_resonance_heating_of_the_Wendelstein_7-X_stellarator.jpg)） |
 
-## 附录 AU（1 张）
+## 附录 AU（2 张）
 
 | 图 | 说明 | 作者 | 许可与来源 |
 |---|---|---|---|
 | <img src="figures-thumbs/blackbody_carlo.jpg" width="230"> | 黑体辐射源：误差棒的另一端是标准 | Luminforum | CC BY 4.0（[来源页](https://commons.wikimedia.org/wiki/File:Black_body_radiator_at_CARLO_laboratory_in_Poland.jpg)） |
+| <img src="figures-thumbs/au_oscilloscope.jpg" width="230"> | 示波器上的波形 | Pittigrilli | CC BY-SA 4.0（[来源页](https://commons.wikimedia.org/wiki/File:Tektronix_Oscilloscope_475A.jpg)） |
 
 ## 附录 AV（1 张）
 
@@ -280,11 +281,12 @@
 | <img src="figures-thumbs/gyrotron_140ghz.jpg" width="230"> | 140 GHz / 1 MW 回旋管：射频加热三件套里的一件 | Z6ehswhha5HGRTd | CC BY-SA 4.0（[来源页](https://commons.wikimedia.org/wiki/File:Wendelstein_7-X,_Gyrotron,140Ghz,_1MW.jpg)） |
 | <img src="figures-thumbs/ion_source_fermilab.jpg" width="230"> | 离子源：中性束注入的第一步 | Z22 | CC BY-SA 4.0（[来源页](https://commons.wikimedia.org/wiki/File:Ion_source_at_used_in_the_Cockcroft-Walton_accelerators_at_Fermilab.jpg)） |
 
-## 附录 N（1 张）
+## 附录 N（2 张）
 
 | 图 | 说明 | 作者 | 许可与来源 |
 |---|---|---|---|
 | <img src="figures-thumbs/sputter_gun.jpg" width="230"> | 磁控溅射枪：受控的溅射侵蚀 | Tavoromann | CC BY-SA 4.0（[来源页](https://commons.wikimedia.org/wiki/File:Magnetron_sputtering_gun.jpg)） |
+| <img src="figures-thumbs/n_jet_subdivertor.jpg" width="230"> | JET 的下偏滤器结构 | X. Litaudon 等（JET 团队） | CC BY 3.0（[来源页](https://commons.wikimedia.org/wiki/File:Joint_European_Torus_sub-divertor_structure.jpg)） |
 
 ## 附录 O（2 张）
 
@@ -293,17 +295,19 @@
 | <img src="figures-thumbs/o_ion_thruster.jpg" width="230"> | NASA NEXT 离子推力器 | NASA | Public domain（[来源页](https://commons.wikimedia.org/wiki/File:NASA_NEXT_Ion_thruster.712983main_NEXT_LDT_Thrusterhi-res_full.jpg)） |
 | <img src="figures-thumbs/o_pppl_fusion_rocket.jpg" width="230"> | 磁喷嘴推进概念图（PPPL） | Elle Starkman / PPPL | Public domain（[来源页](https://commons.wikimedia.org/wiki/File:PPPL_physicist_Fatima_Ebrahimi_in_front_of_an_artist%27s_conception_of_a_fusion_rocket.jpg)） |
 
-## 附录 P（1 张）
+## 附录 P（2 张）
 
 | 图 | 说明 | 作者 | 许可与来源 |
 |---|---|---|---|
 | <img src="figures-thumbs/p_corona_tube.jpg" width="230"> | 电晕放电管 | BentaxGermany | CC BY-SA 3.0（[来源页](https://commons.wikimedia.org/wiki/File:Ionization_tube_with_corona.jpg)） |
+| <img src="figures-thumbs/p_plasma_spray_coating.jpg" width="230"> | 等离子体喷涂陶瓷涂层 | Optimi3e | CC BY-SA 4.0（[来源页](https://commons.wikimedia.org/wiki/File:Plasma_spray_ceramic_coating_on_aluminium_tube.jpg)） |
 
-## 附录 Q（1 张）
+## 附录 Q（2 张）
 
 | 图 | 说明 | 作者 | 许可与来源 |
 |---|---|---|---|
 | <img src="figures-thumbs/q_rf_probe.jpg" width="230"> | 射频补偿朗缪尔探针 | Vadmalis | CC BY-SA 3.0（[来源页](https://commons.wikimedia.org/wiki/File:RF_Probe_2.jpg)） |
+| <img src="figures-thumbs/q_west_diag_alignment.jpg" width="230"> | WEST 上的诊断准直 | Christophe Roux / CEA IRFM | CC BY 4.0（[来源页](https://commons.wikimedia.org/wiki/File:WEST_Tokamak_diagnostic_alignement.jpg)） |
 
 ## 附录 R（1 张）
 
@@ -311,11 +315,12 @@
 |---|---|---|---|
 | <img src="figures-thumbs/dust_plasma_lab.jpg" width="230"> | 尘埃等离子体诊断实验台：第三个尺度 | Stanislav Liubauskas | CC BY 4.0（[来源页](https://commons.wikimedia.org/wiki/File:Laboratory_of_Dust_Plasma_Diagnostics.jpg)） |
 
-## 附录 S（1 张）
+## 附录 S（2 张）
 
 | 图 | 说明 | 作者 | 许可与来源 |
 |---|---|---|---|
 | <img src="figures-thumbs/s_tcv_vessel.jpg" width="230"> | TCV 托卡马克真空室 | TCV 团队（Commons 页面未署名） | CC BY-SA 2.5（[来源页](https://commons.wikimedia.org/wiki/File:TCV-img1502-0006.jpg)） |
+| <img src="figures-thumbs/s_east_plasma.jpg" width="230"> | EAST 托卡马克的等离子体 | Xiang Gao 等（EAST 团队） | CC BY 3.0（[来源页](https://commons.wikimedia.org/wiki/File:EAST_Tokamak_plasma_images.jpg)） |
 
 ## 附录 T（2 张）
 
@@ -330,11 +335,12 @@
 |---|---|---|---|
 | <img src="figures-thumbs/u_nova_chamber.jpg" width="230"> | NOVA 靶室 | Lawrence Livermore National Laboratory | Public domain（[来源页](https://commons.wikimedia.org/wiki/File:Nova_target_chamber.jpg)） |
 
-## 附录 V（1 张）
+## 附录 V（2 张）
 
 | 图 | 说明 | 作者 | 许可与来源 |
 |---|---|---|---|
 | <img src="figures-thumbs/v_pfc_erosion.jpg" width="230"> | 面向等离子体部件的侵蚀与再沉积 | Christophe Roux / CEA IRFM | CC BY 4.0（[来源页](https://commons.wikimedia.org/wiki/File:Composant_face_au_plasma.jpg)） |
+| <img src="figures-thumbs/v_spi_test_stand.jpg" width="230"> | 碎裂弹丸试验台 | Oak Ridge National Laboratory | CC BY 2.0（[来源页](https://commons.wikimedia.org/wiki/File:Shattered_pellet_test_stand_(41809719871).jpg)） |
 
 ## 附录 W（1 张）
 
@@ -362,8 +368,8 @@
 
 ## 来源统计
 
-- 政府机构、国家实验室与大学/研究所：**38 张**（NASA、ESA/SDO、ITER、LLNL、INL、EUROfusion、USAF、KSTAR 等）
-- 个人摄影师、企业与开放社区：**57 张**
+- 政府机构、国家实验室与大学/研究所：**42 张**（NASA、ESA/SDO、ITER、LLNL、INL、EUROfusion、USAF、KSTAR 等）
+- 个人摄影师、企业与开放社区：**59 张**
 
 许可只用两种：**公有领域**与 **CC BY / CC BY-SA**（可商用、可改、需署名）。
 
