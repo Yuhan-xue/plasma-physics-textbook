@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.27.11},
+  pdftitle={等离子体物理自学教材 v1.27.12},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -463,7 +463,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.27.11}}
+  {\small\textcolor{white!45}{v1.27.12}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -808,7 +808,7 @@ $\star\star\star$ & 挑战 & 涉及较深的数学技巧或前沿问题。供科
 相对论等离子体 & 仅在高能粒子束、同步辐射等小节中提及，不作系统展开。 \\
 强耦合/量子等离子体 & 简并等离子体、费米气体等仅在附录中给出简要说明。 \\
 尘埃等离子体 & 涉及固体颗粒荷电的复杂等离子体，本书不单独成章。 \\
-数值模拟方法 & 第 12 章仅作诊断与实验方法介绍，粒子模拟（PIC）/磁流体动力学（MHD）代码实现移至附录。 \\
+数值模拟方法 & 第 12 章仅作诊断与实验方法介绍，粒子模拟（PIC）/磁流体力学（MHD）代码实现移至附录。 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -2464,7 +2464,7 @@ c_{s,\text{绝热}}=\sqrt{\frac{\gamma_sk_BT_e}{m_i}}
 % 第5章：磁流体力学
 % ============================================================
 \chapter{磁流体力学}\label{ch:5}
-\epigraph{磁流体动力学：让磁力线像橡皮筋一样流动。}{--- 汉尼斯·阿尔芬}
+\epigraph{磁流体力学：让磁力线像橡皮筋一样流动。}{--- 汉尼斯·阿尔芬}
 
 \begin{insight}{本章核心目标}{ch5-goal}
 将等离子体视为单种导电流体，推导磁流体力学（MHD）方程组。理解磁力线冻结、阿尔芬波和磁压的概念，建立 MHD 平衡的直观图像。
@@ -2814,7 +2814,7 @@ v_p = \frac{\omega}{k} = \frac{\omega_{pe}}{k}
 \begin{insight}{为什么离子声波需要 $T_e \gg T_i$？}{ion-sound-insight}
 离子声波的恢复力来自电子热压（通过维持准中性的电场传递）。如果 $T_i \sim T_e$，离子的热运动同样剧烈，会破坏波的相干性——离子 Landau 阻尼会变得非常强（第7章）。
 
-条件 $T_e \gg T_i$ 在实验室等离子体和空间等离子体中经常满足，因为电子通常比离子更容易被加热（例如通过欧姆加热或波加热），且电子的能量损失机制（如韧致辐射）较慢。
+条件 $T_e \gg T_i$ 在实验室等离子体和空间等离子体中经常满足，因为电子通常比离子更容易被加热（例如通过欧姆加热或波加热），且电子的能量损失机制（如轫致辐射）较慢。
 \end{insight}
 
 \section{冷等离子体中的电磁波}
@@ -3604,7 +3604,7 @@ n T \tau_E \gtrsim 3\times 10^{21}\,\mathrm{keV}\cdot\mathrm{m}^{-3}\cdot\mathrm
 Lawson 判据的核心是\textbf{能量收支平衡}：
 \begin{itemize}
 \item 聚变产生的$\alpha$粒子必须在等离子体中停留足够长时间，将其能量传递给燃料
-\item 同时，等离子体因辐射（主要是韧致辐射）和输运不断损失能量
+\item 同时，等离子体因辐射（主要是轫致辐射）和输运不断损失能量
 \item 若 $\tau_E$ 太短，$\alpha$粒子还没来得及加热等离子体，能量就已经跑掉了
 \end{itemize}
 
@@ -4710,7 +4710,7 @@ P_{\text{abs}} \propto n_e \cdot E_{\text{loss}} \propto \frac{1}{3.75} \times \
 \end{quotation}
 
 \begin{insight}{本章核心目标}{ch12-goal}
-理解等离子体诊断的共性逻辑——把不可直接观测的内部参数转化为可测量的外部信号。掌握四种基础手段的原理与适用范围：朗缪尔探针给出\emph{局部} $n_e$ 与 $T_e$，微波干涉给出\emph{线平均}密度，汤姆逊散射是 $T_e$ 的"黄金标准"，光谱与磁探针则分别给出成分/温度与磁场/电流。学完后应能判断在给定参数范围内，哪种诊断手段可行、精度如何。
+理解等离子体诊断的共性逻辑——把不可直接观测的内部参数转化为可测量的外部信号。掌握四种基础手段的原理与适用范围：朗缪尔探针给出\emph{局部} $n_e$ 与 $T_e$，微波干涉给出\emph{线平均}密度，汤姆孙散射是 $T_e$ 的"黄金标准"，光谱与磁探针则分别给出成分/温度与磁场/电流。学完后应能判断在给定参数范围内，哪种诊断手段可行、精度如何。
 \end{insight}
 
 \begin{tip}{前置依赖：等离子体诊断}{ch12-preq}
@@ -4742,7 +4742,7 @@ P_{\text{abs}} \propto n_e \cdot E_{\text{loss}} \propto \frac{1}{3.75} \times \
     \item \textbf{粒子与磁探针诊断}：测量逃逸粒子或感应磁场，反推等离子体电流与压强。
 \end{enumerate}
 
-本章将介绍这四种方法中最基础、最经典的原理，为后续学习更高级的诊断技术（如汤姆逊散射成像、电荷交换复合光谱、偏振干涉仪等）奠定物理图像基础。
+本章将介绍这四种方法中最基础、最经典的原理，为后续学习更高级的诊断技术（如汤姆孙散射成像、电荷交换复合光谱、偏振干涉仪等）奠定物理图像基础。
 
 \begin{tip}{诊断学习的两把尺子}{tip-ch12-two-scales}
 \textbf{学习提示：}
@@ -5108,17 +5108,17 @@ n_e = r_e\lambda_0\,\frac{\Delta\phi}{L}
 \end{example}
 
 
-\section{激光汤姆逊散射（Laser Thomson Scattering）}
+\section{激光汤姆孙散射（Laser Thomson Scattering）}
 \label{sec:12.4}
 
-如果说朗缪尔探针是"电接触式"的局部测量，微波干涉是"电磁波积分式"的线测量，那么激光汤姆逊散射（Laser Thomson Scattering, LTS）则是一种\emph{非接触、局域、可分辨}的精密诊断。它被誉为等离子体诊断的"黄金标准"，尤其适用于高温聚变等离子体。
+如果说朗缪尔探针是"电接触式"的局部测量，微波干涉是"电磁波积分式"的线测量，那么激光汤姆孙散射（Laser Thomson Scattering, LTS）则是一种\emph{非接触、局域、可分辨}的精密诊断。它被誉为等离子体诊断的"黄金标准"，尤其适用于高温聚变等离子体。
 
 \subsection{基本物理图像}
 
-当一束强激光（波长通常为 $\mathrm{nm}$ 到 $\mu\mathrm{m}$ 量级）照射到等离子体上时，激光电场驱动自由电子做受迫振荡，电子再以偶极辐射的形式向各个方向散射电磁波。此即汤姆逊散射。
+当一束强激光（波长通常为 $\mathrm{nm}$ 到 $\mu\mathrm{m}$ 量级）照射到等离子体上时，激光电场驱动自由电子做受迫振荡，电子再以偶极辐射的形式向各个方向散射电磁波。此即汤姆孙散射。
 
-\begin{definition}{汤姆逊散射微分截面}{}{}
-单个自由电子对非偏振入射光的汤姆逊散射微分截面为
+\begin{definition}{汤姆孙散射微分截面}{}{}
+单个自由电子对非偏振入射光的汤姆孙散射微分截面为
 \begin{equation}
 \frac{\diff\sigma}{\diff\Omega} = r_e^2 \sin^2\theta_p,
 \label{eq:thomson-cross-section}
@@ -5133,9 +5133,9 @@ n_e = r_e\lambda_0\,\frac{\Delta\phi}{L}
 
 \subsection{非相干散射与电子温度测量}
 
-汤姆逊散射的核心诊断价值在于：\textbf{散射光谱的宽度直接反映电子的热运动速度分布}。
+汤姆孙散射的核心诊断价值在于：\textbf{散射光谱的宽度直接反映电子的热运动速度分布}。
 
-\begin{theorem}{非相干汤姆逊散射光谱}{}{}
+\begin{theorem}{非相干汤姆孙散射光谱}{}{}
 当电子密度满足 $n_e \ll n_{\mathrm{co}} \sim 10^{23}\,\mathrm{m}^{-3}$（非相干散射条件，见下文）时，不同电子的散射波相位随机，总散射强度为各电子贡献的非相干叠加。对于麦克斯韦分布的电子，散射光谱呈高斯形：
 \begin{equation}
 S(\omega_s) \propto \exp\!\left[-\frac{(\omega_s - \omega_i)^2}{2\sigma_\omega^2}\right],
@@ -5159,24 +5159,24 @@ S(\omega_s) \propto \exp\!\left[-\frac{(\omega_s - \omega_i)^2}{2\sigma_\omega^2
 \end{theorem}
 
 \begin{insight}{为什么散射光谱的宽度就是温度？}{}
-这是汤姆逊散射最优美的物理图像。电子以热速度 $v$ 随机运动，对入射激光产生多普勒频移：频率偏移 $\Delta\omega = \vect{k}_s\cdot\vect{v} - \vect{k}_i\cdot\vect{v} = \vect{q}\cdot\vect{v}$，其中 $\vect{q} = \vect{k}_s - \vect{k}_i$ 为散射波矢。由于 $|\vect{q}| = 2k_i\sin(\theta/2)$，而电子速度服从麦克斯韦分布（见第7章），速度投影 $q\cdot v$ 的分布也是高斯型，其宽度正比于热速度 $v_{th} = \sqrt{2T_e/m_e}$。因此，\textbf{测量散射光谱就是测量电子速度分布}，光谱宽度就是温度，光谱形状偏离高斯就是分布偏离麦克斯韦。这直接将动理学理论（第7章）的抽象分布函数 $f(\vect{v})$，转化为光谱仪上一条可测量的谱线。
+这是汤姆孙散射最优美的物理图像。电子以热速度 $v$ 随机运动，对入射激光产生多普勒频移：频率偏移 $\Delta\omega = \vect{k}_s\cdot\vect{v} - \vect{k}_i\cdot\vect{v} = \vect{q}\cdot\vect{v}$，其中 $\vect{q} = \vect{k}_s - \vect{k}_i$ 为散射波矢。由于 $|\vect{q}| = 2k_i\sin(\theta/2)$，而电子速度服从麦克斯韦分布（见第7章），速度投影 $q\cdot v$ 的分布也是高斯型，其宽度正比于热速度 $v_{th} = \sqrt{2T_e/m_e}$。因此，\textbf{测量散射光谱就是测量电子速度分布}，光谱宽度就是温度，光谱形状偏离高斯就是分布偏离麦克斯韦。这直接将动理学理论（第7章）的抽象分布函数 $f(\vect{v})$，转化为光谱仪上一条可测量的谱线。
 \end{insight}
 
 \subsection{为什么不测量离子？}
 
-离子同样会受到激光电场作用，也会散射光。但汤姆逊散射诊断中几乎只观测电子散射信号，原因在于：
+离子同样会受到激光电场作用，也会散射光。但汤姆孙散射诊断中几乎只观测电子散射信号，原因在于：
 
 \begin{corollary}{离子与电子散射截面之比}{}{}
-汤姆逊散射截面与粒子质量平方成反比：
+汤姆孙散射截面与粒子质量平方成反比：
 \begin{equation}
 \frac{\sigma_i}{\sigma_e} = \left(\frac{m_e}{m_i}\right)^2.
 \label{eq:ion-electron-ratio}
 \end{equation}
-对于氢等离子体，$m_i/m_e \approx 1836$，因此\textbf{单个离子}的汤姆逊散射截面仅为电子的 $3\times 10^{-7}$。此外，离子热速度低，其无规多普勒展宽极小。不过\textbf{不能由此说"离子只是背景噪音"}：在集体散射（$\alpha\gtrsim1$，见下）中，光谱会出现由离子声波决定的\textbf{离子成分峰}，它的位置与宽度正是测量离子温度 $T_i$、离子成分（杂质浓度）与等离子体流动的常规手段——托卡马克上的集体汤姆逊散射就是这么用的。所以正确的说法是：在\textbf{非相干}极限（$\alpha\ll1$）下电子成分主导、谱形给出 $T_e$；一旦进入集体区，离子成分峰本身携带不可替代的离子信息。
+对于氢等离子体，$m_i/m_e \approx 1836$，因此\textbf{单个离子}的汤姆孙散射截面仅为电子的 $3\times 10^{-7}$。此外，离子热速度低，其无规多普勒展宽极小。不过\textbf{不能由此说"离子只是背景噪音"}：在集体散射（$\alpha\gtrsim1$，见下）中，光谱会出现由离子声波决定的\textbf{离子成分峰}，它的位置与宽度正是测量离子温度 $T_i$、离子成分（杂质浓度）与等离子体流动的常规手段——托卡马克上的集体汤姆孙散射就是这么用的。所以正确的说法是：在\textbf{非相干}极限（$\alpha\ll1$）下电子成分主导、谱形给出 $T_e$；一旦进入集体区，离子成分峰本身携带不可替代的离子信息。
 \end{corollary}
 
 \begin{insight}{质量优势的极端性}{}
-式\eqref{eq:ion-electron-ratio}揭示了自然界中一个深刻的数量级规律：由于电子质量远小于离子，电子在相同电场下的加速度大 $(m_i/m_e)$ 倍，辐射振幅大 $(m_i/m_e)$ 倍，辐射功率（正比于振幅平方）大 $(m_i/m_e)^2$ 倍。因此在\textbf{非相干}极限下汤姆逊散射几乎是电子的"独角戏"：电子成分峰的形状只依赖电子速度分布，几乎不受离子成分、杂质或电荷态的影响，这正是它成为\emph{最纯净的电子温度诊断}的原因。但要注意适用范围——一旦进入集体区（$\alpha\gtrsim1$），离子声峰出现并携带 $T_i$ 与成分信息，"只有电子"的图像就不再成立。
+式\eqref{eq:ion-electron-ratio}揭示了自然界中一个深刻的数量级规律：由于电子质量远小于离子，电子在相同电场下的加速度大 $(m_i/m_e)$ 倍，辐射振幅大 $(m_i/m_e)$ 倍，辐射功率（正比于振幅平方）大 $(m_i/m_e)^2$ 倍。因此在\textbf{非相干}极限下汤姆孙散射几乎是电子的"独角戏"：电子成分峰的形状只依赖电子速度分布，几乎不受离子成分、杂质或电荷态的影响，这正是它成为\emph{最纯净的电子温度诊断}的原因。但要注意适用范围——一旦进入集体区（$\alpha\gtrsim1$），离子声峰出现并携带 $T_i$ 与成分信息，"只有电子"的图像就不再成立。
 \end{insight}
 
 \begin{warning}{相干散射与非相干散射的界限}{}
@@ -5229,15 +5229,15 @@ $A_{ji}$、$A_{lk}$ 为爱因斯坦自发辐射系数。
 
 此外，不同元素和电离态有其独特的指纹谱线。通过辨认谱线波长，可以诊断等离子体的\textbf{化学成分}和\textbf{电离度}——这对杂质控制（聚变装置）和工艺监控（等离子体刻蚀）至关重要。
 
-\subsection{连续光谱：韧致辐射与电子温度}
+\subsection{连续光谱：轫致辐射与电子温度}
 
 {\emergencystretch=3em
 除了线光谱，等离子体还产生连续光谱（Continuum），
-其主要来源是\textbf{韧致辐射}（Bremsstrahlung，德文 ``制动辐射''）：
+其主要来源是\textbf{轫致辐射}（Bremsstrahlung，德文 ``制动辐射''）：
 即自由电子经过离子附近时被库仑场偏转，从而产生加速辐射。\par}
 
-\begin{theorem}{韧致辐射功率谱}{}{}
-对于非相对论性麦克斯韦电子分布，单位体积、单位频率、单位立体角的韧致辐射功率谱为
+\begin{theorem}{轫致辐射功率谱}{}{}
+对于非相对论性麦克斯韦电子分布，单位体积、单位频率、单位立体角的轫致辐射功率谱为
 \begin{equation}
 \frac{\diff P}{\diff V\,\diff\omega\,\diff\Omega} = \frac{e^6}{12\pi^3\eps_0^3 c^3 m_e^2}\sqrt{\frac{2m_e}{3\pi T_e}}\,n_e n_i Z^2\,\exp\!\left(-\frac{\hbar\omega}{T_e}\right) \bar{g}(\omega, T_e),
 \label{eq:bremsstrahlung}
@@ -5245,8 +5245,8 @@ $A_{ji}$、$A_{lk}$ 为爱因斯坦自发辐射系数。
 其中 $Z$ 为离子电荷数，$\bar{g}$ 为冈特因子（Gaunt factor，量级为1的修正因子）。在光学薄等离子体中，连续谱强度的指数衰减特征 $\propto \exp(-\hbar\omega/T_e)$ 直接给出电子温度。
 \end{theorem}
 
-\begin{insight}{韧致辐射是"温度计"还是"密度计"？}{}
-式\eqref{eq:bremsstrahlung}表明，韧致辐射功率同时正比于 $n_e n_i$（密度信息）和 $T_e^{-1/2}\exp(-\hbar\omega/T_e)$（温度信息）。但在不同频率区间，诊断侧重不同：在低频区（$\hbar\omega \ll T_e$），指数因子接近1，辐射强度主要取决于密度；在高频区（$\hbar\omega \sim T_e$），指数衰减敏感地依赖于温度。因此，通过测量连续谱的"斜率"（对数强度对频率的导数），可以提取 $T_e$，而绝对强度则与密度有关。这再次体现了诊断的多参数耦合特性——单一的测量通常无法同时确定所有参数，需要结合多个诊断手段。
+\begin{insight}{轫致辐射是"温度计"还是"密度计"？}{}
+式\eqref{eq:bremsstrahlung}表明，轫致辐射功率同时正比于 $n_e n_i$（密度信息）和 $T_e^{-1/2}\exp(-\hbar\omega/T_e)$（温度信息）。但在不同频率区间，诊断侧重不同：在低频区（$\hbar\omega \ll T_e$），指数因子接近1，辐射强度主要取决于密度；在高频区（$\hbar\omega \sim T_e$），指数衰减敏感地依赖于温度。因此，通过测量连续谱的"斜率"（对数强度对频率的导数），可以提取 $T_e$，而绝对强度则与密度有关。这再次体现了诊断的多参数耦合特性——单一的测量通常无法同时确定所有参数，需要结合多个诊断手段。
 \end{insight}
 
 \subsection{斯塔克展宽：谱线里的密度信息}
@@ -5379,13 +5379,13 @@ Rogowski 线圈的一个重要优点是：它只测量\emph{穿过环中心的�
     
     \item 微波干涉诊断中，如果选择过高频率（如 $f = 300\,\mathrm{GHz}$）测量低密度辉光放电（$n_e \sim 10^{16}\,\mathrm{m}^{-3}$），会面临什么主要困难？
     
-    \item 汤姆逊散射中，离子散射截面为什么可以忽略？如果离子质量突然变为 $m_i = 100\,m_e$（如某种假想粒子），散射信号会发生什么变化？
+    \item 汤姆孙散射中，离子散射截面为什么可以忽略？如果离子质量突然变为 $m_i = 100\,m_e$（如某种假想粒子），散射信号会发生什么变化？
     
     \item 某光谱仪测得等离子体中两条谱线的强度比为 $I_1/I_2 = 5$，对应的能级差为 $\Delta E = 2\,\mathrm{eV}$，统计权重比 $g_1/g_2 = 2$。估算激发温度 $T_{\mathrm{exc}}$。（提示：利用式\eqref{eq:line-ratio}）
     
     \item 磁探针直接测量的是 $B$、$\dot{B}$ 还是 $\ddot{B}$？如果要测量静态磁场，需要增加什么处理步骤？
 \end{enumerate}
-\quizans{（1） 电子热速度高、通量大，探针必须降到负电位才能把电子流压到与离子流相等，故 $V_f<V_p$。\par （2） $n_c(300\,\mathrm{GHz})=1.1\times10^{21}\,\mathrm{m^{-3}}$ 比 $n_e\sim10^{16}\,\mathrm{m^{-3}}$ 高五个量级，相移 $\propto n_e/n_c$ 小到测不出来。\par （3） 汤姆逊截面 $\sigma_T\propto1/m^2$，离子比电子小 $(m_e/m_i)^2\sim10^{-7}$，可以忽略；若 $m_i=100m_e$，离子截面涨到现在的 $(1836/100)^2\approx337$ 倍，仍只有电子信号的 $10^{-4}$。\par （4） $I_1/I_2=(g_1/g_2)\ee^{-\Delta E/T}$：取能级 1 低于能级 2（$\Delta E=-2\,\mathrm{eV}$）才自洽，得 $T_{\mathrm{exc}}=2/\ln2.5\approx2.2\,\mathrm{eV}$——符号约定反了会得到无解。\par （5） 磁探针测的是 $\dot B$（感应电压），要得到静态磁场必须先积分并做零点漂移补偿。}
+\quizans{（1） 电子热速度高、通量大，探针必须降到负电位才能把电子流压到与离子流相等，故 $V_f<V_p$。\par （2） $n_c(300\,\mathrm{GHz})=1.1\times10^{21}\,\mathrm{m^{-3}}$ 比 $n_e\sim10^{16}\,\mathrm{m^{-3}}$ 高五个量级，相移 $\propto n_e/n_c$ 小到测不出来。\par （3） 汤姆孙截面 $\sigma_T\propto1/m^2$，离子比电子小 $(m_e/m_i)^2\sim10^{-7}$，可以忽略；若 $m_i=100m_e$，离子截面涨到现在的 $(1836/100)^2\approx337$ 倍，仍只有电子信号的 $10^{-4}$。\par （4） $I_1/I_2=(g_1/g_2)\ee^{-\Delta E/T}$：取能级 1 低于能级 2（$\Delta E=-2\,\mathrm{eV}$）才自洽，得 $T_{\mathrm{exc}}=2/\ln2.5\approx2.2\,\mathrm{eV}$——符号约定反了会得到无解。\par （5） 磁探针测的是 $\dot B$（感应电压），要得到静态磁场必须先积分并做零点漂移补偿。}
 \end{miniquiz}
 
 \input{ch12_supplement}
@@ -5491,8 +5491,8 @@ Rogowski 线圈的一个重要优点是：它只测量\emph{穿过环中心的�
     \item 等离子体诊断的本质是将理论预言（德拜长度、等离子体频率、分布函数等）转化为可测量信号。
     \item 朗缪尔探针通过 $I$-$V$ 曲线测量局部 $T_e$ 和 $n_e$；过渡区 $\ln I$-$V$ 斜率给出 $T_e$，饱和电流给出 $n_e$。
     \item 微波干涉通过相位移动 $\Delta\phi \propto n_e L$ 测量线平均密度；截止密度 $n_{\mathrm{cut}} \propto f^2$ 限制了可测密度上限。
-    \item 汤姆逊散射光谱宽度直接反映电子热速度分布，是测量 $T_e$ 的"黄金标准"；离子散射可忽略因为 $(m_e/m_i)^2$ 极小。
-    \item 光谱诊断通过线光谱（激发温度、成分）、连续谱（韧致辐射温度）和斯塔克展宽（密度）提供丰富的参数信息。
+    \item 汤姆孙散射光谱宽度直接反映电子热速度分布，是测量 $T_e$ 的"黄金标准"；离子散射可忽略因为 $(m_e/m_i)^2$ 极小。
+    \item 光谱诊断通过线光谱（激发温度、成分）、连续谱（轫致辐射温度）和斯塔克展宽（密度）提供丰富的参数信息。
     \item 磁探针和Rogowski 线圈基于法拉第感应，测量磁场变化和等离子体电流，是MHD宏观参数的主要诊断手段。
 \item \textbf{量纲自检}：探针特性的指数 $\exp(eV/k_BT_e)$ 必须无量纲（$T_e$ 用 eV 时等价于 $V/T_e$）；干涉相移 $\phi=\frac{e^2}{2\varepsilon_0m_ec^2}\int n_eB\,\mathrm{d}l$ 的单位是 rad。
 \end{itemize}
@@ -5510,7 +5510,7 @@ Rogowski 线圈的一个重要优点是：它只测量\emph{穿过环中心的�
 \midrule
 朗缪尔探针 & $10^{14}$--$10^{20}$ & $0.1$--$100$ & mm & ms & 实验室/工业 \\
 微波干涉 & $10^{15}$--$10^{22}$ & $0.1$--$100$ & cm & $\mu$s & 聚变/工业 \\
-汤姆逊散射 & $10^{14}$--$10^{21}$ & $0.1$--$1000$ & mm & ns & 实验室/聚变 \\
+汤姆孙散射 & $10^{14}$--$10^{21}$ & $0.1$--$1000$ & mm & ns & 实验室/聚变 \\
 OES发射光谱 & $10^{12}$--$10^{19}$ & $0.1$--$10$ & cm & ms & 工业/空间 \\
 磁探针 & $10^{14}$--$10^{20}$ & $0.1$--$100$ & cm & $\mu$s & 聚变/工业 \\
 \bottomrule
@@ -5524,7 +5524,7 @@ OES发射光谱 & $10^{12}$--$10^{19}$ & $0.1$--$10$ & cm & ms & 工业/空间 \
   \node[cmA] (n10) at (3.15,1.42) {探针};
   \node[cmB] (n11) at (3.15,0.47) {光谱};
   \node[cmC] (n12) at (3.15,-0.48) {微波};
-  \node[cmD] (n13) at (3.15,-1.42) {汤姆逊散射};
+  \node[cmD] (n13) at (3.15,-1.42) {汤姆孙散射};
   \node[cmA] (n20) at (6.30,0.00) {可测外部信号};
   \node[cmB] (n30) at (9.45,0.00) {反演与误差};
   \draw[cmedge] (n00) -- (n10);
@@ -5553,15 +5553,15 @@ OES发射光谱 & $10^{12}$--$10^{19}$ & $0.1$--$10$ & cm & ms & 工业/空间 \
 
 \begin{chapterreview}[title={第12章要点回顾：诊断——理论落地的桥梁}]
 \begin{enumerate}
-    \item \textbf{诊断的分类与选择}：按原理分为电探针、电磁波、光学和粒子/磁探针四大类；按空间特性分为点测量（朗缪尔探针、汤姆逊散射）和线/面积分测量（微波干涉、光谱线积分）；按时间特性分为稳态和瞬态诊断。
+    \item \textbf{诊断的分类与选择}：按原理分为电探针、电磁波、光学和粒子/磁探针四大类；按空间特性分为点测量（朗缪尔探针、汤姆孙散射）和线/面积分测量（微波干涉、光谱线积分）；按时间特性分为稳态和瞬态诊断。
     
     \item \textbf{朗缪尔探针}：单探针、双探针和发射探针的结构差异；$I$-$V$ 曲线的四个区域（离子饱和、过渡、电子饱和、悬浮）；电子温度 $T_e = [\diff(\ln I)/\diff V]^{-1}$；电子密度 $n_e \propto I_{\mathrm{e,sat}}/\sqrt{T_e}$；悬浮电位为负的本质原因；Druyvesteyn公式通过二阶导数求EEDF；磁化等离子体中需修正鞘层理论。
     
     \item \textbf{微波干涉}：相位移动 $\Delta\phi = (e^2/2\eps_0 m_e c\omega) \int n_e\,\diff l$；截止密度 $n_{\mathrm{cut}} = \eps_0 m_e \omega^2/e^2$；适用于 $n_e \gtrsim 10^{18}\,\mathrm{m}^{-3}$ 的高密度测量；频率选择需兼顾穿透能力与相位灵敏度。
     
-    \item \textbf{激光汤姆逊散射}：非相干散射条件 $n_e \ll 10^{23}\,\mathrm{m}^{-3}$；散射光谱高斯宽度 $\Delta\omega/\omega_i \propto \sqrt{T_e}$；直接测量电子速度分布；离子散射截面可忽略；是聚变装置芯部 $T_e$ 测量的标准手段。
+    \item \textbf{激光汤姆孙散射}：非相干散射条件 $n_e \ll 10^{23}\,\mathrm{m}^{-3}$；散射光谱高斯宽度 $\Delta\omega/\omega_i \propto \sqrt{T_e}$；直接测量电子速度分布；离子散射截面可忽略；是聚变装置芯部 $T_e$ 测量的标准手段。
     
-    \item \textbf{光谱诊断}：玻尔兹曼图法求激发温度；韧致辐射斜率求 $T_e$；斯塔克展宽 $\Delta\lambda \propto n_e^{2/3}$ 求密度；$H_\alpha$ 线常用于边界密度监测；需要精确原子物理数据支持定量反演。
+    \item \textbf{光谱诊断}：玻尔兹曼图法求激发温度；轫致辐射斜率求 $T_e$；斯塔克展宽 $\Delta\lambda \propto n_e^{2/3}$ 求密度；$H_\alpha$ 线常用于边界密度监测；需要精确原子物理数据支持定量反演。
     
     \item \textbf{磁探针与Rogowski 线圈}：基于法拉第电磁感应 $\mathcal{E} = -N A\,\dot{B}$；Rogowski 线圈测量总电流，具有外部电流自屏蔽特性；积分电路或数字积分用于从 $\dot{B}$ 恢复 $B$；是MHD平衡和稳定性分析的数据来源。
     
@@ -6348,7 +6348,7 @@ v_{te} [\text{m/s}] \approx 4.19\times 10^5\sqrt{T_e [\text{eV}]}
 
 \begin{enumerate}
 \item \textbf{Per Helander \& Dieter J. Sigmar, \textit{Collisional Transport in Magnetized Plasmas}, Cambridge University Press, 2002, DOI: 10.1017/CBO9780511599950.}\\
-磁化等离子体碰撞输运的权威参考书。\textbf{解决：}第 8 章输运系数的完整推导——新经典输运（香蕉轨道、Pfirsch--Schlüter 流、靴带电流），是理解托卡马克输运瓶颈的必读之作。
+磁化等离子体碰撞输运的权威参考书。\textbf{解决：}第 8 章输运系数的完整推导——新经典输运（香蕉轨道、Pfirsch--Schlüter 流、自举电流），是理解托卡马克输运瓶颈的必读之作。
 
 \item \textbf{Thomas H. Stix, \textit{Waves in Plasmas}, AIP Press, 1992.}\\
 等离子体波理论的经典专著。\textbf{解决：}第 6--7 章波理论的全貌——冷等离子体波、热波、动力学波（包括 Bernstein 波、漂移波）的色散关系、极化、阻尼的统一处理。阅读门槛较高，需熟悉复变函数与 Landau 围道。
@@ -6851,9 +6851,9 @@ $n\tau$ & 劳森判据中的密度--时间乘积 & $\mathrm{s/m^3}$ & \S 10.1、
 $nT\tau_E$ & 三重乘积 & $\mathrm{keV\cdot s/m^3}$ & \S 10.1、\S 10.8，D--T 点火约需 $nT\tau_E \geq 3\times10^{21}$ \\
 $Q$ & 聚变增益因子 & 无量纲 & \S 10.5，$Q = P_{\text{fus}}/P_{\text{heat}}$；第2章的 $Q$ 为源电荷量 \\
 $E_\alpha$ & $\alpha$ 粒子能量 & J（常用 MeV） & \S 10.1、\S 10.8，D--T 反应中 $E_\alpha = 3.5\ \mathrm{MeV}$ \\
-$P_{rad}$ & 韧致辐射功率密度 & $\mathrm{W/m^3}$ & \S 10.6、\S 10.8，$P_{rad} \propto n_e^2\sqrt{T_e}$ \\
+$P_{rad}$ & 轫致辐射功率密度 & $\mathrm{W/m^3}$ & \S 10.6、\S 10.8，$P_{rad} \propto n_e^2\sqrt{T_e}$ \\
 $\bar g$ & 冈特因子（Gaunt factor） & 无量纲 & \S 10.8，量级 1，书中取 $2.5$ \\
-$C_B$ & 韧致辐射系数 & $\mathrm{W\cdot m^3/\sqrt{eV}}$ & \S 10.6、\S 10.8，$C_B \approx 1.69\times10^{-38}$（$T_e$ 以 eV 计） \\
+$C_B$ & 轫致辐射系数 & $\mathrm{W\cdot m^3/\sqrt{eV}}$ & \S 10.6、\S 10.8，$C_B \approx 1.69\times10^{-38}$（$T_e$ 以 eV 计） \\
 \multicolumn{4}{l}{\textit{六、鞘层、放电与工业等离子体}} \\
 \midrule
 $\alpha$ & Townsend 第一电离系数 & $\mathrm{m^{-1}}$ & \S 11.1、\S 11.8，$\alpha = Ap\exp(-Bp/E)$ \\
@@ -6891,7 +6891,7 @@ $\omega_p$ & 等离子体频率（诊断用记号） & $\mathrm{s^{-1}}$ & \S 12
 $n_{cut}$ & 截止密度 & $\mathrm{m^{-3}}$ & \S 12.3，$n_{\mathrm{cut}} = \eps_0m_e\omega^2/e^2$ \\
 $f$ & 探测波频率 & Hz & \S 12.2，$f = \omega/2\pi$；与分布函数 $f$ 同名 \\
 $\Delta\phi$ & 相位差 & rad & \S 12.3，干涉仪测量量 \\
-$\sigma_T$ & 汤姆逊散射截面 & $\mathrm{m^2}$ & \S 12.4，$\sigma_T = 8\pi r_e^2/3$ \\
+$\sigma_T$ & 汤姆孙散射截面 & $\mathrm{m^2}$ & \S 12.4，$\sigma_T = 8\pi r_e^2/3$ \\
 $r_e$ & 经典电子半径 & m & \S 12.4，$r_e = e^2/(4\pi\eps_0m_ec^2)$ \\
 $\alpha$（散射参数） & 散射参数 & 无量纲 & \S 12.4，$\alpha = 1/(k\lambda_D)$；$\alpha\ll1$ 为\textbf{非集体（非相干）散射}，$\alpha\gtrsim1$ 才需集体散射理论 \\
 $\Delta\lambda_N$ & 自然展宽 & m & \S 12.9，$\Delta\lambda_N \sim 10^{-5}\ \mathrm{nm}$ \\
@@ -7045,7 +7045,7 @@ Landau 阻尼 & Landau damping & 无碰撞相混导致的波阻尼 \\
 轨道运动限制 & orbital motion limited (OML) & 细探针的收集电流理论 \\
 微波干涉仪 & microwave interferometer & 由相位差测线积分密度 \\
 截止密度 & cutoff density & 干涉仪可测的密度上限 \\
-汤姆逊散射 & Thomson scattering & 激光被电子散射测 $T_e$、$n_e$ \\
+汤姆孙散射 & Thomson scattering & 激光被电子散射测 $T_e$、$n_e$ \\
 集体散射 & collective scattering & $\alpha \gtrsim 1$ 时的散射 regime（探测尺度大于德拜长度） \\
 磁探针 & magnetic probe & 测量局部磁场的时间导数 \\
 罗戈夫斯基线圈 & Rogowski coil & 测量等离子体电流 \\
@@ -7075,7 +7075,7 @@ Landau 阻尼 & Landau damping & 无碰撞相混导致的波阻尼 \\
 刮削层 & scrape-off layer & 最外闭合磁面之外的区域 \\
 中性束注入 & neutral beam injection & 加热与驱动电流的手段 \\
 射频加热 & radio-frequency heating & 利用波加热等离子体 \\
-韧致辐射 & bremsstrahlung & 电子被离子减速产生的辐射损失 \\
+轫致辐射 & bremsstrahlung & 电子被离子减速产生的辐射损失 \\
 \end{longtable}
 }
 

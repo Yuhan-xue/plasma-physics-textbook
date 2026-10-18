@@ -27,7 +27,7 @@ Lawson 判据的核心思想是：聚变反应产生的\textbf{可自持}功率�
 \begin{itemize}
     \item 等离子体内能密度：$u=3nk_BT$（电子与离子各 $\tfrac32nk_BT$）
     \item $\alpha$ 粒子自加热：$P_\alpha=\dfrac{n^2}{4}\langle\sigma v\rangle E_\alpha$（$\tfrac{n}{2}$ 个 D 与 $\tfrac{n}{2}$ 个 T，反应率 $\propto \tfrac{n^2}{4}\langle\sigma v\rangle$；仅 $\alpha$ 留在等离子体中）
-    \item 韧致辐射损失：$P_{\rm rad}=C_B n^2\sqrt{T_e}$（$T_e$ 以 eV 计，$C_B\approx1.69\times10^{-38}\,\mathrm{W\,m^3\,eV^{-1/2}}$，$Z_{\rm eff}=1$）
+    \item 轫致辐射损失：$P_{\rm rad}=C_B n^2\sqrt{T_e}$（$T_e$ 以 eV 计，$C_B\approx1.69\times10^{-38}\,\mathrm{W\,m^3\,eV^{-1/2}}$，$Z_{\rm eff}=1$）
     \item 由输运造成的能量损失：$P_{\rm loss}=\dfrac{3nk_BT}{\tau_E}$（$\tau_E$ 定义为\textbf{非辐射}输运约束时间）
 \end{itemize}
 点火条件是 $P_\alpha\ge P_{\rm rad}+P_{\rm loss}$，即
@@ -80,7 +80,7 @@ Lawson 判据的核心思想是：聚变反应产生的\textbf{可自持}功率�
 
 \textbf{与文献值的差别来自模型选择，不是矛盾：} 常见的"$n\tau_E\approx1.5\text{--}2\times10^{20}$"是\emph{不同约定}下的数（例如把 $n$ 取为纯 D-T 燃料密度而非 $n_e$、或只要求 $P_\alpha\ge P_{\rm loss}$ 而把辐射单列、或 $\eta$ 的吸收因子分摊方式不同），模型一变阈值就变。\textbf{必须连同模型假设一起引用}，不能把不同约定下的数当成同一个"标准值"混比。此外，$\eta=0.3$ 在本模型里对应"$\alpha$ 能量的 30\% 真正沉积"这一修正——若采用它，应把 $P_\alpha$ 乘以 0.3（阈值升高约 3.3 倍），\textbf{不能列出后不使用}。
 
-\textbf{温度依赖：} 随温度升高，$\langle\sigma v\rangle$ 增大而 $\sqrt{T_e}$ 增大得慢，故分母中的"净加热"变强，$n\tau_E$ 门槛下降；D-T 在 $15\text{--}25\,\mathrm{keV}$ 附近门槛最低（约 $1.5\times10^{20}\,\mathrm{m^{-3}s}$ 量级），温度更高时因韧致辐射增加又回升。
+\textbf{温度依赖：} 随温度升高，$\langle\sigma v\rangle$ 增大而 $\sqrt{T_e}$ 增大得慢，故分母中的"净加热"变强，$n\tau_E$ 门槛下降；D-T 在 $15\text{--}25\,\mathrm{keV}$ 附近门槛最低（约 $1.5\times10^{20}\,\mathrm{m^{-3}s}$ 量级），温度更高时因轫致辐射增加又回升。
 
 % ------------------------------------------------------------------------
 
@@ -538,8 +538,8 @@ $q_{95}$ 经验公式：
 \textbf{符号说明：}$\tau_E$ 为能量约束时间；$H$ 为约束改善因子（$H=1$ 为该定标律的基准）；$I_p$ 为等离子体电流（MA）、$B$ 为环向磁场（T）、$n_{19}$ 为线平均密度（$10^{19}\,\mathrm{m^{-3}}$）。$a$ 为小半径、$R$ 为大半径（m），$\epsilon=a/R$ 为反宽高比、$\kappa$ 为拉长比（椭圆度）；$M$ 为离子质量数，$P$ 为加热功率（MW）。
 \end{formulabox}
 
-\begin{formulabox}{韧致辐射功率损失}{f:brems}
-电子韧致辐射（非相对论、光学薄、纯氢 $Z=1$ 近似）：
+\begin{formulabox}{轫致辐射功率损失}{f:brems}
+电子轫致辐射（非相对论、光学薄、纯氢 $Z=1$ 近似）：
 \[
     P_{rad} = \frac{2^{5/2}\pi^{1/2}e^6}{3(4\pi\eps_0)^3 m_e^{3/2}c^3\hbar} \cdot \bar{g} \cdot n_e^2 \sqrt{T_e}
 \]
@@ -549,9 +549,9 @@ $q_{95}$ 经验公式：
 \[
     P_{rad}\;[\mathrm{W\cdot m^{-3}}] \approx 1.69\times10^{-38} \cdot n_e^2\;[\mathrm{m^{-6}}] \cdot \sqrt{T_e\;[\mathrm{eV}]}
 \]
-\textbf{注意系数口径：} 若只取裸的非相对论分子（$\bar g=1$），系数约为 $6.6\times10^{-39}$；文献中另见 $5.3\times10^{-37}$ 一类的值，那是含相对论修正与频率积分的韧致辐射连续谱总量，口径与上式不同。\textbf{同一本书内必须用同一个 $C_B$}——本章的能量收支与 Lawson 推演一律采用带 $\bar g\approx2.5$ 的 $1.69\times10^{-38}$。
+\textbf{注意系数口径：} 若只取裸的非相对论分子（$\bar g=1$），系数约为 $6.6\times10^{-39}$；文献中另见 $5.3\times10^{-37}$ 一类的值，那是含相对论修正与频率积分的轫致辐射连续谱总量，口径与上式不同。\textbf{同一本书内必须用同一个 $C_B$}——本章的能量收支与 Lawson 推演一律采用带 $\bar g\approx2.5$ 的 $1.69\times10^{-38}$。
 
-\textbf{符号说明：}$P_{rad}$ 为单位体积的韧致辐射功率；$\hbar$ 为约化普朗克常数；$\bar g$ 为冈特因子（Gaunt factor，量级为 1，书中取 $\bar g\approx2.5$）；$C_B$ 为韧致辐射系数。$T_e$、$n_e$ 为电子温度与电子密度。
+\textbf{符号说明：}$P_{rad}$ 为单位体积的轫致辐射功率；$\hbar$ 为约化普朗克常数；$\bar g$ 为冈特因子（Gaunt factor，量级为 1，书中取 $\bar g\approx2.5$）；$C_B$ 为轫致辐射系数。$T_e$、$n_e$ 为电子温度与电子密度。
 \end{formulabox}
 
 % ============================================================

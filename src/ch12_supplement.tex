@@ -199,13 +199,13 @@ $\ln I_e$ & $-2.303$ & $-1.386$ & $-0.598$ & $0.049$ \\
 
 % ------------------------------------------------------------------------
 
-\begin{example}{汤姆逊散射光谱展宽与温度关系}{ex:thomson}
-某Nd:YAG（钕掺杂钇铝石榴石）激光汤姆逊散射系统（激光波长 $\lambda_0 = 1064\,\mathrm{nm}$）测得散射光谱的半高全宽（FWHM）$\Delta\lambda_{1/2} = 12\,\mathrm{nm}$。已知散射角 $\theta = 90°$。估算等离子体电子温度 $T_e$。
+\begin{example}{汤姆孙散射光谱展宽与温度关系}{ex:thomson}
+某Nd:YAG（钕掺杂钇铝石榴石）激光汤姆孙散射系统（激光波长 $\lambda_0 = 1064\,\mathrm{nm}$）测得散射光谱的半高全宽（FWHM）$\Delta\lambda_{1/2} = 12\,\mathrm{nm}$。已知散射角 $\theta = 90°$。估算等离子体电子温度 $T_e$。
 \end{example}
 
 \textbf{解答：}
 
-汤姆逊散射中，散射光谱的展宽直接反映电子的热运动速度分布。对于非相干汤姆逊散射（$\alpha = 1/(k\lambda_D) \ll 1$），散射光谱的展宽由电子热运动多普勒效应决定。
+汤姆孙散射中，散射光谱的展宽直接反映电子的热运动速度分布。对于非相干汤姆孙散射（$\alpha = 1/(k\lambda_D) \ll 1$），散射光谱的展宽由电子热运动多普勒效应决定。
 
 散射光谱的FWHM（波长域）与电子温度的关系：
 \[
@@ -393,7 +393,7 @@ n_e = 10^{23}\times\left(\frac{\Delta\lambda_S}{0.549}\right)^{3/2}
 
 \textbf{(2) 为什么高密度下首选：} Stark 展宽 $\propto n_e^{2/3}$，由\textbf{带电粒子微场}直接决定，对密度敏感（温度依赖较弱）。按本节的 $H_\alpha$ 标定 $\Delta\lambda=0.549(n_e/10^{23})^{2/3}\,\mathrm{nm}$：在 $n_e\sim10^{23}\,\mathrm{m^{-3}}$ 时 Stark 展宽约 $0.5\,\mathrm{nm}$，在 $n_e\sim10^{21}\,\mathrm{m^{-3}}$ 时约 $0.025\,\mathrm{nm}$。作为对比，$H_\alpha$ 的 Doppler 展宽在离子温度 $T_i\sim10\,\mathrm{eV}$ 时只有 $\sim7\times10^{-4}\,\mathrm{nm}$——比同密度下的 Stark 展宽小两三个数量级，故在高密度下 Stark 完全主导谱线形状，测形状即可反演密度。
 
-在低密度（$n_e\lesssim10^{18}\,\mathrm{m^{-3}}$）时 Stark 展宽降到 $\sim2.5\times10^{-4}\,\mathrm{nm}$ 量级，与 Doppler 展宽相当并逐渐被其与仪器展宽淹没，反演可靠性迅速下降——此时应改用微波干涉或汤姆逊散射。注意 Stark 宽度\emph{并非严格不依赖温度}，精确反演应使用温度相关的查表系数（如 STARK-B 数据库）而非固定 $0.549$。
+在低密度（$n_e\lesssim10^{18}\,\mathrm{m^{-3}}$）时 Stark 展宽降到 $\sim2.5\times10^{-4}\,\mathrm{nm}$ 量级，与 Doppler 展宽相当并逐渐被其与仪器展宽淹没，反演可靠性迅速下降——此时应改用微波干涉或汤姆孙散射。注意 Stark 宽度\emph{并非严格不依赖温度}，精确反演应使用温度相关的查表系数（如 STARK-B 数据库）而非固定 $0.549$。
 
 \textbf{(3) 展宽成分的扣除：} 实测谱线宽度是三种机制的卷积：
 \begin{itemize}[leftmargin=*,itemsep=0pt]
@@ -526,8 +526,8 @@ n_e = 10^{23}\times\left(\frac{\Delta\lambda_S}{0.549}\right)^{3/2}
 \textbf{符号说明：}$\omega$ 为探测波的角频率（$f$ 为其频率）；$\omega_p$ 为等离子体频率；$N$ 为等离子体折射率；$\Delta\phi$ 为相位差（$\phi$ 为相位）；$L$ 为光在等离子体中的路程。$n_e$ 为电子密度，$n_{cut}$ 为对应探测频率的截止密度。
 \end{formulabox}
 
-\begin{formulabox}{汤姆逊散射}{f:thomson}
-汤姆逊散射截面：
+\begin{formulabox}{汤姆孙散射}{f:thomson}
+汤姆孙散射截面：
 \[
     \sigma_T = \frac{8\pi}{3} r_e^2 = 6.65\times10^{-29}\,\mathrm{m^2}
 \]
@@ -546,7 +546,7 @@ n_e = 10^{23}\times\left(\frac{\Delta\lambda_S}{0.549}\right)^{3/2}
 \[
     T_e\,[\mathrm{eV}] = \frac{m_e c^2}{8k_B \ln 2} \left(\frac{\Delta\lambda_{1/2}}{2\lambda_0 \sin(\theta/2)}\right)^2
 \]
-\textbf{符号说明：}$\sigma_T$ 为汤姆逊散射截面（$r_e$ 为经典电子半径）；$\alpha=1/(k\lambda_D)$ 为散射参数，$k$ 为散射波矢、$\lambda_D$ 为德拜长度；$\lambda_0$ 为入射波长，$\theta$ 为散射角。$\Delta\lambda_{1/2}$ 为谱线的半高全宽（$\Delta\lambda$ 为波长展宽）。
+\textbf{符号说明：}$\sigma_T$ 为汤姆孙散射截面（$r_e$ 为经典电子半径）；$\alpha=1/(k\lambda_D)$ 为散射参数，$k$ 为散射波矢、$\lambda_D$ 为德拜长度；$\lambda_0$ 为入射波长，$\theta$ 为散射角。$\Delta\lambda_{1/2}$ 为谱线的半高全宽（$\Delta\lambda$ 为波长展宽）。
 \end{formulabox}
 
 \begin{formulabox}{磁探针与罗戈夫斯基线圈}{f:magnetic}
@@ -597,8 +597,8 @@ n_e = 10^{23}\times\left(\frac{\Delta\lambda_S}{0.549}\right)^{3/2}
 \item[$\square$] 我知道浮动电位 $V_f$ 和等离子体电位 $V_{pl}$ 的物理含义及它们的关系
 \item[$\square$] 我能解释微波干涉仪的工作原理：为什么相位移动与 $n_e$ 成正比？
 \item[$\square$] 我知道等离子体截止频率的意义，以及为什么微波频率必须高于截止频率
-\item[$\square$] 我能从汤姆逊散射光谱的展宽估算电子温度
-\item[$\square$] 我知道非相干汤姆逊散射（$\alpha \ll 1$）与相干散射（$\alpha \gg 1$）的区别
+\item[$\square$] 我能从汤姆孙散射光谱的展宽估算电子温度
+\item[$\square$] 我知道非相干汤姆孙散射（$\alpha \ll 1$）与相干散射（$\alpha \gg 1$）的区别
 \item[$\square$] 我能解释磁探针（Rogowski coil）如何测量等离子体电流
 \item[$\square$] 我了解光谱诊断中不同展宽机制（多普勒、斯塔克、范德瓦尔斯）的物理来源
 \item[$\square$] 我能区分有源诊断（如探针、微波）与无源诊断（如光谱）的优缺点

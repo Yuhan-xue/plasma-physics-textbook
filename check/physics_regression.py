@@ -1109,7 +1109,7 @@ def check_P06_scattering_alpha():
         'src/%s（附录 H 符号表 α 行）' % MAIN)
     has(main, r'$\alpha \gtrsim 1$ 时的散射 regime', 'src/%s（术语表集体散射行）' % MAIN)
     has(main, r'$\alpha\ll1$ 为\textbf{非相干散射}', 'src/%s（12.4 正文判据）' % MAIN)
-    has(sup12, r'非相干汤姆逊散射（$\alpha \ll 1$）与相干散射（$\alpha \gg 1$）',
+    has(sup12, r'非相干汤姆孙散射（$\alpha \ll 1$）与相干散射（$\alpha \gg 1$）',
         'src/ch12_supplement.tex（自测清单）')
 
     # 正文非表格行：只做 INFO（同一句里两种判据并存时跳过，避免脆性误报）
