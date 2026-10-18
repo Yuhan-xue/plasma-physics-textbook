@@ -3,7 +3,7 @@
 > 这本书用图讲物理：全书 95 张插图，全部是实拍照片或公开示意图，逐张登记了作者、许可与来源页。
 > 下面按「章 / 附录」把它们排开，点击任意一张可看原图；完整清单与来源链接见 [`figures/CREDITS.md`](../figures/CREDITS.md)。
 
-合计 **101 张**。若想按来源查看（NASA、ITER、LLNL、EUROfusion…），见文末统计。
+合计 **107 张**。若想按来源查看（NASA、ITER、LLNL、EUROfusion…），见文末统计。
 
 ## 第 1 章（1 张）
 
@@ -204,23 +204,26 @@
 | <img src="figures-thumbs/thruster_vacuum.jpg" width="230"> | 真空舱里的霍尔推力器：抽气与壁条件决定它能不能点着 | EXOTRAIL SA | CC BY-SA 4.0（[来源页](https://commons.wikimedia.org/wiki/File:Hall_Effect_Thruster_in_a_vacuum_chamber.jpg)） |
 | <img src="figures-thumbs/turbopump.jpg" width="230"> | 涡轮分子泵：抽速是泵与导管一起决定的 | Moxfyre | CC BY-SA 4.0（[来源页](https://commons.wikimedia.org/wiki/File:Edwards_turbopump.jpg)） |
 
-## 附录 AP（1 张）
+## 附录 AP（2 张）
 
 | 图 | 说明 | 作者 | 许可与来源 |
 |---|---|---|---|
 | <img src="figures-thumbs/jet_mascot.jpg" width="230"> | JET 的遥操作机械臂：远距离操作的真实尺度 | Steve Parker from Ash Vale, UK | CC BY 2.0（[来源页](https://commons.wikimedia.org/wiki/File:JET_Mascot_(1466933452).jpg)） |
+| <img src="figures-thumbs/ap_west_sector.jpg" width="230"> | WEST 装置的新扇区集成 | Christophe Roux / IRFM | CC BY 4.0（[来源页](https://commons.wikimedia.org/wiki/File:Intégration_nouveau_secteur_-_Tokamak_WEST.jpg)） |
 
-## 附录 AQ（1 张）
+## 附录 AQ（2 张）
 
 | 图 | 说明 | 作者 | 许可与来源 |
 |---|---|---|---|
 | <img src="figures-thumbs/aq_laser_interferometer.jpg" width="230"> | 激光干涉仪 | Logg Tandy | CC BY 4.0（[来源页](https://commons.wikimedia.org/wiki/File:HP-5518A_Laser_Interferometer.jpg)） |
+| <img src="figures-thumbs/aq_lisa_interferometer.jpg" width="230"> | 精密激光干涉仪的光学台 | NASA | Public domain（[来源页](https://commons.wikimedia.org/wiki/File:NASA_Tests_LISA_Development_Units_(SVS14955_-_LISA_TVAC).jpg)） |
 
-## 附录 AR（1 张）
+## 附录 AR（2 张）
 
 | 图 | 说明 | 作者 | 许可与来源 |
 |---|---|---|---|
 | <img src="figures-thumbs/flywheel_20mw.jpg" width="230"> | 20 MW 飞轮储能电站：能量存在转子里 | Z22 | CC BY-SA 4.0（[来源页](https://commons.wikimedia.org/wiki/File:Beacon_Power_New_York_-_20_MW_Flywheel_Energy_Storage.jpg)） |
+| <img src="figures-thumbs/ar_capacitor_bank.jpg" width="230"> | 电容储能组 | Rubin Observatory/NSF/AURA | CC BY 4.0（[来源页](https://commons.wikimedia.org/wiki/File:Capacitor_Banks_(rubin-photo-oct-04-9-38-25-am).jpg)） |
 
 ## 附录 AS（1 张）
 
@@ -228,11 +231,12 @@
 |---|---|---|---|
 | <img src="figures-thumbs/optics_lab_inrim.jpg" width="230"> | 光学台：射线方程在这里被验证 | Giorgio Brida from Torino, Italy | CC BY 2.0（[来源页](https://commons.wikimedia.org/wiki/File:Femtosecond_Laser_and_Pulse_Compressor_-_Optics_Lab_-_INRIM.jpg)） |
 
-## 附录 AT（1 张）
+## 附录 AT（2 张）
 
 | 图 | 说明 | 作者 | 许可与来源 |
 |---|---|---|---|
 | <img src="figures-thumbs/gyrotron_ecrh.jpg" width="230"> | 回旋管：电子回旋共振加热的功率源 | Siarhei Besarab | CC BY-SA 4.0（[来源页](https://commons.wikimedia.org/wiki/File:Gyrotron_for_electron_cyclotron_resonance_heating_of_the_Wendelstein_7-X_stellarator.jpg)） |
+| <img src="figures-thumbs/at_iter_ecrh_mirrors.jpg" width="230"> | ITER 的 ECRH 转向镜 | Anastasia Xydou | CC BY 4.0（[来源页](https://commons.wikimedia.org/wiki/File:ITER_ECRH_Steering_mirrors.jpg)） |
 
 ## 附录 AU（2 张）
 
@@ -247,11 +251,12 @@
 |---|---|---|---|
 | <img src="figures-thumbs/tritium_glowring.jpg" width="230"> | 氚发光环：半衰期与活度摸得着的样子 | Cgommel | CC BY-SA 2.0 de（[来源页](https://commons.wikimedia.org/wiki/File:Tritium-Glowring_-_320s.jpg)） |
 
-## 附录 AW（1 张）
+## 附录 AW（2 张）
 
 | 图 | 说明 | 作者 | 许可与来源 |
 |---|---|---|---|
 | <img src="figures-thumbs/aw_z_machine.jpg" width="230"> | 桑迪亚 Z 装置 | ENERGY.GOV | Public domain（[来源页](https://commons.wikimedia.org/wiki/File:The_Z_Machine_(8056998596).jpg)） |
+| <img src="figures-thumbs/aw_orion_chamber.jpg" width="230"> | Orion 激光装置的靶室 | Colin N. Danson 等 | CC BY 4.0（[来源页](https://commons.wikimedia.org/wiki/File:Orion_target_chamber.jpg)） |
 
 ## 附录 AX（2 张）
 
@@ -309,11 +314,12 @@
 | <img src="figures-thumbs/q_rf_probe.jpg" width="230"> | 射频补偿朗缪尔探针 | Vadmalis | CC BY-SA 3.0（[来源页](https://commons.wikimedia.org/wiki/File:RF_Probe_2.jpg)） |
 | <img src="figures-thumbs/q_west_diag_alignment.jpg" width="230"> | WEST 上的诊断准直 | Christophe Roux / CEA IRFM | CC BY 4.0（[来源页](https://commons.wikimedia.org/wiki/File:WEST_Tokamak_diagnostic_alignement.jpg)） |
 
-## 附录 R（1 张）
+## 附录 R（2 张）
 
 | 图 | 说明 | 作者 | 许可与来源 |
 |---|---|---|---|
 | <img src="figures-thumbs/dust_plasma_lab.jpg" width="230"> | 尘埃等离子体诊断实验台：第三个尺度 | Stanislav Liubauskas | CC BY 4.0（[来源页](https://commons.wikimedia.org/wiki/File:Laboratory_of_Dust_Plasma_Diagnostics.jpg)） |
+| <img src="figures-thumbs/r_dusty_plasma.jpg" width="230"> | 尘埃等离子体中的颗粒 | Mixxy 2m | CC BY 4.0（[来源页](https://commons.wikimedia.org/wiki/File:Dusty_plasma.jpg)） |
 
 ## 附录 S（2 张）
 
@@ -368,8 +374,8 @@
 
 ## 来源统计
 
-- 政府机构、国家实验室与大学/研究所：**42 张**（NASA、ESA/SDO、ITER、LLNL、INL、EUROfusion、USAF、KSTAR 等）
-- 个人摄影师、企业与开放社区：**59 张**
+- 政府机构、国家实验室与大学/研究所：**44 张**（NASA、ESA/SDO、ITER、LLNL、INL、EUROfusion、USAF、KSTAR 等）
+- 个人摄影师、企业与开放社区：**63 张**
 
 许可只用两种：**公有领域**与 **CC BY / CC BY-SA**（可商用、可改、需署名）。
 
