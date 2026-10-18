@@ -5,7 +5,7 @@
 
 ![托卡马克真空室内部：磁约束聚变要面对的容器](figures/tokamak_interior.jpg)
 
-教材共 **605 页**，涵盖 12 章正文 + 48 附录，内容从单粒子运动一直走到聚变堆系统集成，
+教材共 **604 页**，涵盖 12 章正文 + 48 附录，内容从单粒子运动一直走到聚变堆系统集成，
 并在每一章里都放了自学需要的东西：核心目标、前置依赖、"先猜再看"、例题与答案、
 随堂自测、估算练习。写作目标是**一个人、一支笔、一台能算数的电脑就能读完**。
 
@@ -15,9 +15,9 @@
 
 | 文件 | 页数 | 内容 |
 |------|------|------|
-| [`pdf/plasma_physics_textbook_v2.pdf`](pdf/plasma_physics_textbook_v2.pdf) | 605 页完整教材，可直接阅读 | 正文 + 全部附录，推荐先读这本 |
+| [`pdf/plasma_physics_textbook_v2.pdf`](pdf/plasma_physics_textbook_v2.pdf) | 604 页完整教材，可直接阅读 | 正文 + 全部附录，推荐先读这本 |
 | [`pdf/plasma_physics_textbook_v2_vol1_chapters.pdf`](pdf/plasma_physics_textbook_v2_vol1_chapters.pdf) | 207 页 | 前言 + 第 1–12 章正文 |
-| [`pdf/plasma_physics_textbook_v2_vol2_appendices.pdf`](pdf/plasma_physics_textbook_v2_vol2_appendices.pdf) | 398 页 | 48 个附录 |
+| [`pdf/plasma_physics_textbook_v2_vol2_appendices.pdf`](pdf/plasma_physics_textbook_v2_vol2_appendices.pdf) | 397 页 | 48 个附录 |
 | [`pdf/plasma_physics_handbook.pdf`](pdf/plasma_physics_handbook.pdf) | 49 页 | 配套手册：附录 I／J／K／L（学习策略、逐章对照、跨教材例题、分章题库） |
 
 四个 PDF 都由本仓库源码编译而成，带版本号；历史版本见
@@ -214,6 +214,7 @@ python check/consistency_audit.py   # 符号、单位、附录与正文的交叉
 | 版本 | 主要变化 |
 |------|----------|
 | v1.27.5 | 把附录 J（经典教材逐章对照）、K（跨教材经典例题）、L（分章自测题库）从主册移出，单独编成 26 页的[配套手册](pdf/plasma_physics_handbook.pdf)；主册附录字母保留 J／K／L 空位、A–I 之后直接接 M；正文里 62 处指向它们的说法改为「配套手册」；页数 657 → 635 |
+| v1.27.9 | 读者视角终检：把正文里两处写给机器看的话改成读者话（附录 S 不再点名检查脚本路径、附录 M 的「附录 I」改为「配套手册 I」），全书 11 处「离线环境无法核验 DOI」改成「本书不列 DOI，只给书名、作者、年份与卷期页」，源码注释里 19 处「门禁 Pxx」与 24 处「离线环境」一并改成人话；页数 605 → 604 |
 | v1.27.8 | 附录 I（学习策略与刻意练习手册）也移进配套手册：手册从 26 页扩到 49 页，收齐 I／J／K／L 四篇「边查边用」的材料；主册在附录 H 后直接接 M，正文 9 处引用改为「配套手册 I」，学习装置索引与附录导航图同步（49 → 48 个附录）；页数 634 → 605 |
 | v1.27.7 | 插图与文档收尾：附录 AL 那张又暗又糊的激光丝照片，换成清晰的「Kerr 自聚焦 → 细丝 → 等离子体通道」示意图；新增面向读者的图册 `docs/figures.md`（95 张图按章/附录排开，含缩略图、作者、许可、来源页）；修掉 docs 里几处陈旧数字与重复段落；页数 635 → 634 |
 | v1.27.6 | 可读性收尾：270 段「出处：」文献罗列从分号长句改成一引一句（约 490 处断句，书名与卷期页一处未删）；单句里埋着的（1）（2）（3）枚举全部改成一行一项；正文 >100 字长句 382 → 255 句，可读性检查的枚举类提示归零；页数不变（635 页） |

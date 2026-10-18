@@ -8,15 +8,15 @@
 
 | | |
 |---|---|
-| 规模 | **605 页**：12 章正文 176 页 + 48 个专题附录与结语索引 398 页，另有封面目录与前言 31 页；「边查边用」的附录 I／J／K／L 收在 49 页的配套手册里 |
+| 规模 | **604 页**：12 章正文 176 页 + 48 个专题附录与结语索引 397 页，另有封面目录与前言 31 页；「边查边用」的附录 I／J／K／L 收在 49 页的配套手册里 |
 | 配图 | **95 张图**，全部是实拍照片或公开示意图，逐张登记作者、许可与来源页（[`figures/CREDITS.md`](../figures/CREDITS.md)） |
-| 交付 | 四个 PDF：[完整本 605 页](../pdf/plasma_physics_textbook_v2.pdf)、[卷一 207 页](../pdf/plasma_physics_textbook_v2_vol1_chapters.pdf)、[卷二 398 页](../pdf/plasma_physics_textbook_v2_vol2_appendices.pdf)、[配套手册 49 页](../pdf/plasma_physics_handbook.pdf) |
+| 交付 | 四个 PDF：[完整本 604 页](../pdf/plasma_physics_textbook_v2.pdf)、[卷一 207 页](../pdf/plasma_physics_textbook_v2_vol1_chapters.pdf)、[卷二 397 页](../pdf/plasma_physics_textbook_v2_vol2_appendices.pdf)、[配套手册 49 页](../pdf/plasma_physics_handbook.pdf) |
 | 版本 | v1.27.8；每版都发到 [Gitea releases](http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases) |
 | 动手 | 正文不印程序，需要动手的地方只给路径：[`code/`](../code/)、[`tools/calc/`](../tools/calc/) |
 
 ## 版面是怎么变的
 
-- 页数：**676 → 674 → 664 → 668 → 657 → 635 → 634 → 605**（v1.26.31 → v1.27.8）。其中 657 → 635 是把附录 J／K／L 移进配套手册，634 → 605 是把附录 I 也移了进去；634 是换掉一张坏图后自然少的一页。减页靠的是把"交代来源与版权"
+- 页数：**676 → 674 → 664 → 668 → 657 → 635 → 634 → 605 → 604**（v1.26.31 → v1.27.9）。其中 657 → 635 是把附录 J／K／L 移进配套手册，634 → 605 是把附录 I 也移了进去、605 → 604 是措辞终检时收紧的一页；634 是换掉一张坏图后自然少的一页。减页靠的是把"交代来源与版权"
   的文字改成细排、删掉每节重复的复算交代、收紧间距，**没有删掉任何物理内容**。
 - 图数：**70 → 87 → 95**。图越换越实、越换越新（NET 装置、ITER 主机厂房、NSTX-U 加热束等）。
 - 唯一的例外是 v1.27.2：补了 8 张图，页数从 664 回到 668；v1.27.3 又用版面手段收了回来。
