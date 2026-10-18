@@ -1,6 +1,6 @@
 # 配图来源与许可（figures/）
 
-本目录收录正文使用的**真实图像**：装置照片、天文观测与机构示意图，共 113 张。
+本目录收录正文使用的**真实图像**：装置照片、天文观测与机构示意图，共 117 张。
 全部采用开放许可（CC0 / 公有领域 / CC BY / CC BY-SA），并按许可要求署名：
 
 - 正文中每张图都在图注下方用 `\figsource{作者｜许可｜来源页}` 署名；
@@ -100,6 +100,7 @@
 | `ion_irradiation.jpg` | 离子辐照实验：dpa 是怎么被制造出来的 | BibMak | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:The_irradiation_experiments_at_the_ion_accelerator_DC-60._Astana,_Kazakhstan.JPG | 附录AY |
 | `plasma_spray.jpg` | 等离子体喷涂：给面向等离子体部件做涂层 | Student-julia-pwr | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Plasma_spraying_process.jpg | 附录AY |
 | `az_iter_complex.jpg` | ITER 主机厂房建设实景（2018） | Cedarstrand / ITER Organization | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:ITER_construction_in_2018_(41809718461).jpg | 附录 AZ |
+| `az_kdemo_core.jpg` | K-DEMO 的堆芯设计剖面 | K. Kim 等 | CC BY 3.0 | https://commons.wikimedia.org/wiki/File:K-DEMO_device_core_design_features.jpg | 附录 AZ |
 | `gyrotron_140ghz.jpg` | 140 GHz / 1 MW 回旋管：射频加热三件套里的一件 | Z6ehswhha5HGRTd | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Wendelstein_7-X,_Gyrotron,140Ghz,_1MW.jpg | 附录M |
 | `ion_source_fermilab.jpg` | 离子源：中性束注入的第一步 | Z22 | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Ion_source_at_used_in_the_Cockcroft-Walton_accelerators_at_Fermilab.jpg | 附录M |
 | `sputter_gun.jpg` | 磁控溅射枪：受控的溅射侵蚀 | Tavoromann | CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Magnetron_sputtering_gun.jpg | 附录N |
@@ -121,8 +122,11 @@
 | `v_pfc_erosion.jpg` | 面向等离子体部件的侵蚀与再沉积 | Christophe Roux / CEA IRFM | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:Composant_face_au_plasma.jpg | 附录V |
 | `v_spi_test_stand.jpg` | 碎裂弹丸试验台 | Oak Ridge National Laboratory | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:Shattered_pellet_test_stand_(41809719871).jpg | 附录V |
 | `w_jet_1991.jpg` | JET 装置（1991） | EFDA JET | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:The_JET_magnetic_fusion_experiment_in_1991.jpg | 附录W |
+| `w_cmod_cell.jpg` | Alcator C-Mod 的机厅与加热系统 | Jim Irby / MIT PSFC | CC BY 3.0 | https://commons.wikimedia.org/wiki/File:Alcator_C-Mod_high_angle_cell_overview_2007.jpg | 附录W |
 | `x_storage_ring.jpg` | 同步辐射储存环 | CLS Research Office from Saskatoon, Canada | CC BY-SA 2.0 | https://commons.wikimedia.org/wiki/File:Storage_ring_(13390679434).jpg | 附录X |
+| `x_bolometer.jpg` | 辐射热计（bolometer） | Alkamid | CC BY-SA 3.0 | https://commons.wikimedia.org/wiki/File:Bolometer_for_terahertz_radiation_detection.jpg | 附录X |
 | `y_shiva_chamber.jpg` | Shiva 激光靶室 | Lawrence Livermore National Laboratory | Public domain | https://commons.wikimedia.org/wiki/File:Shiva_target_chamber_1978.jpg | 附录Y |
+| `y_orion_laser_hall.jpg` | Orion 激光大厅 | Colin N. Danson 等 | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:Orion_laser_hall.jpg | 附录Y |
 | `iter_plant.jpg` | 堆与厂：主机之外还有一整套系统 | Oak Ridge National Laboratory | CC BY 2.0 | https://commons.wikimedia.org/wiki/File:ITER_Tokamak_and_Plant_Systems_(2016)_(41783636452).jpg | 附录Z |
 | `z_iter_construction.jpg` | ITER 建设现场 | Johannes Reimer | CC BY 4.0 | https://commons.wikimedia.org/wiki/File:ITER_construction_site_from_the_distance.jpg | 附录Z |
 

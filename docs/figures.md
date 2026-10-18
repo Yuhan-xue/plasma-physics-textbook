@@ -3,7 +3,7 @@
 > 这本书用图讲物理：全书 95 张插图，全部是实拍照片或公开示意图，逐张登记了作者、许可与来源页。
 > 下面按「章 / 附录」把它们排开，点击任意一张可看原图；完整清单与来源链接见 [`figures/CREDITS.md`](../figures/CREDITS.md)。
 
-合计 **113 张**。若想按来源查看（NASA、ITER、LLNL、EUROfusion…），见文末统计。
+合计 **117 张**。若想按来源查看（NASA、ITER、LLNL、EUROfusion…），见文末统计。
 
 ## 第 1 章（1 张）
 
@@ -277,11 +277,12 @@
 | <img src="figures-thumbs/ion_irradiation.jpg" width="230"> | 离子辐照实验：dpa 是怎么被制造出来的 | BibMak | CC BY-SA 4.0（[来源页](https://commons.wikimedia.org/wiki/File:The_irradiation_experiments_at_the_ion_accelerator_DC-60._Astana,_Kazakhstan.JPG)） |
 | <img src="figures-thumbs/plasma_spray.jpg" width="230"> | 等离子体喷涂：给面向等离子体部件做涂层 | Student-julia-pwr | CC BY-SA 4.0（[来源页](https://commons.wikimedia.org/wiki/File:Plasma_spraying_process.jpg)） |
 
-## 附录 AZ（1 张）
+## 附录 AZ（2 张）
 
 | 图 | 说明 | 作者 | 许可与来源 |
 |---|---|---|---|
 | <img src="figures-thumbs/az_iter_complex.jpg" width="230"> | ITER 主机厂房建设实景（2018） | Cedarstrand / ITER Organization | CC BY 2.0（[来源页](https://commons.wikimedia.org/wiki/File:ITER_construction_in_2018_(41809718461).jpg)） |
+| <img src="figures-thumbs/az_kdemo_core.jpg" width="230"> | K-DEMO 的堆芯设计剖面 | K. Kim 等 | CC BY 3.0（[来源页](https://commons.wikimedia.org/wiki/File:K-DEMO_device_core_design_features.jpg)） |
 
 ## 附录 M（2 张）
 
@@ -353,23 +354,26 @@
 | <img src="figures-thumbs/v_pfc_erosion.jpg" width="230"> | 面向等离子体部件的侵蚀与再沉积 | Christophe Roux / CEA IRFM | CC BY 4.0（[来源页](https://commons.wikimedia.org/wiki/File:Composant_face_au_plasma.jpg)） |
 | <img src="figures-thumbs/v_spi_test_stand.jpg" width="230"> | 碎裂弹丸试验台 | Oak Ridge National Laboratory | CC BY 2.0（[来源页](https://commons.wikimedia.org/wiki/File:Shattered_pellet_test_stand_(41809719871).jpg)） |
 
-## 附录 W（1 张）
+## 附录 W（2 张）
 
 | 图 | 说明 | 作者 | 许可与来源 |
 |---|---|---|---|
 | <img src="figures-thumbs/w_jet_1991.jpg" width="230"> | JET 装置（1991） | EFDA JET | CC BY-SA 3.0（[来源页](https://commons.wikimedia.org/wiki/File:The_JET_magnetic_fusion_experiment_in_1991.jpg)） |
+| <img src="figures-thumbs/w_cmod_cell.jpg" width="230"> | Alcator C-Mod 的机厅与加热系统 | Jim Irby / MIT PSFC | CC BY 3.0（[来源页](https://commons.wikimedia.org/wiki/File:Alcator_C-Mod_high_angle_cell_overview_2007.jpg)） |
 
-## 附录 X（1 张）
+## 附录 X（2 张）
 
 | 图 | 说明 | 作者 | 许可与来源 |
 |---|---|---|---|
 | <img src="figures-thumbs/x_storage_ring.jpg" width="230"> | 同步辐射储存环 | CLS Research Office from Saskatoon, Canada | CC BY-SA 2.0（[来源页](https://commons.wikimedia.org/wiki/File:Storage_ring_(13390679434).jpg)） |
+| <img src="figures-thumbs/x_bolometer.jpg" width="230"> | 辐射热计（bolometer） | Alkamid | CC BY-SA 3.0（[来源页](https://commons.wikimedia.org/wiki/File:Bolometer_for_terahertz_radiation_detection.jpg)） |
 
-## 附录 Y（1 张）
+## 附录 Y（2 张）
 
 | 图 | 说明 | 作者 | 许可与来源 |
 |---|---|---|---|
 | <img src="figures-thumbs/y_shiva_chamber.jpg" width="230"> | Shiva 激光靶室 | Lawrence Livermore National Laboratory | Public domain（[来源页](https://commons.wikimedia.org/wiki/File:Shiva_target_chamber_1978.jpg)） |
+| <img src="figures-thumbs/y_orion_laser_hall.jpg" width="230"> | Orion 激光大厅 | Colin N. Danson 等 | CC BY 4.0（[来源页](https://commons.wikimedia.org/wiki/File:Orion_laser_hall.jpg)） |
 
 ## 附录 Z（2 张）
 
@@ -381,7 +385,7 @@
 ## 来源统计
 
 - 政府机构、国家实验室与大学/研究所：**45 张**（NASA、ESA/SDO、ITER、LLNL、INL、EUROfusion、USAF、KSTAR 等）
-- 个人摄影师、企业与开放社区：**68 张**
+- 个人摄影师、企业与开放社区：**72 张**
 
 许可只用两种：**公有领域**与 **CC BY / CC BY-SA**（可商用、可改、需署名）。
 

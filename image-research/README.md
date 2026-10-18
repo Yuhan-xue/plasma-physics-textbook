@@ -12,7 +12,7 @@
 | 内容 | 能说明一个具体的物理事实，而不是装饰性配图 |
 | 来源 | Wikimedia Commons（API 检索，许可与作者取 `extmetadata`，不靠人工推断） |
 
-已采用的图像共 113 张，逐张的作者、许可与来源页见 [`figures/CREDITS.md`](../figures/CREDITS.md)。
+已采用的图像共 117 张，逐张的作者、许可与来源页见 [`figures/CREDITS.md`](../figures/CREDITS.md)。
 正文里每张图都在图注下方署名（`\figsource{作者｜许可｜来源页}`），并由
 `check/figure_layout.py` 强制检查：文件存在、有署名、已登记、单张 ≤ 1.5 MB。
 

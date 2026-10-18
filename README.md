@@ -5,7 +5,7 @@
 
 ![托卡马克真空室内部：磁约束聚变要面对的容器](figures/tokamak_interior.jpg)
 
-教材共 **612 页**，涵盖 12 章正文 + 48 附录，内容从单粒子运动一直走到聚变堆系统集成，
+教材共 **615 页**，涵盖 12 章正文 + 48 附录，内容从单粒子运动一直走到聚变堆系统集成，
 并在每一章里都放了自学需要的东西：核心目标、前置依赖、"先猜再看"、例题与答案、
 随堂自测、估算练习。写作目标是**一个人、一支笔、一台能算数的电脑就能读完**。
 
@@ -15,9 +15,9 @@
 
 | 文件 | 页数 | 内容 |
 |------|------|------|
-| [`pdf/plasma_physics_textbook_v2.pdf`](pdf/plasma_physics_textbook_v2.pdf) | 612 页完整教材，可直接阅读 | 正文 + 全部附录，推荐先读这本 |
+| [`pdf/plasma_physics_textbook_v2.pdf`](pdf/plasma_physics_textbook_v2.pdf) | 615 页完整教材，可直接阅读 | 正文 + 全部附录，推荐先读这本 |
 | [`pdf/plasma_physics_textbook_v2_vol1_chapters.pdf`](pdf/plasma_physics_textbook_v2_vol1_chapters.pdf) | 207 页 | 前言 + 第 1–12 章正文 |
-| [`pdf/plasma_physics_textbook_v2_vol2_appendices.pdf`](pdf/plasma_physics_textbook_v2_vol2_appendices.pdf) | 405 页 | 48 个附录 |
+| [`pdf/plasma_physics_textbook_v2_vol2_appendices.pdf`](pdf/plasma_physics_textbook_v2_vol2_appendices.pdf) | 408 页 | 48 个附录 |
 | [`pdf/plasma_physics_handbook.pdf`](pdf/plasma_physics_handbook.pdf) | 49 页 | 配套手册：附录 I／J／K／L（学习策略、逐章对照、跨教材例题、分章题库） |
 
 四个 PDF 都由本仓库源码编译而成，带版本号；历史版本见
@@ -27,7 +27,7 @@
 
 ## 先看几张图
 
-教材正文有 113 张插图，多数是实拍照片而非示意图。随手挑几张：
+教材正文有 117 张插图，多数是实拍照片而非示意图。随手挑几张：
 
 | | |
 |---|---|
@@ -146,7 +146,7 @@
 - 来源包括 Wikimedia Commons、NASA / ESA / JET / EUROfusion / NIFS / PPPL / ORNL / CEA 等，
   逐一标注作者与许可，清单见 [`figures/CREDITS.md`](figures/CREDITS.md)。
 - 许可以公有领域（PD）与 CC BY / CC BY-SA 为主；使用时按 CREDITS 中的署名要求注明。
-- 全部 113 张图按章 / 附录排成一册：[`docs/figures.md`](docs/figures.md)（缩略图 + 中文说明 + 作者 + 许可 + 来源页）。
+- 全部 117 张图按章 / 附录排成一册：[`docs/figures.md`](docs/figures.md)（缩略图 + 中文说明 + 作者 + 许可 + 来源页）。
 - 少量示意图（曲线、能级图、流程）由本仓库脚本生成，同样可在 `figures/` 下找到。
 
 ---
@@ -166,7 +166,7 @@ README.md   本文件
 ```
 
 想先看全貌，直接点 [`docs/overview.md`](docs/overview.md)（一页图看完这本书与这个仓库）；
-想知道"还想再薄能动哪里"，看 [`docs/appendix-audit.md`](docs/appendix-audit.md)；想把 113 张图一次看个够，看 [`docs/figures.md`](docs/figures.md)。
+想知道"还想再薄能动哪里"，看 [`docs/appendix-audit.md`](docs/appendix-audit.md)；想把 117 张图一次看个够，看 [`docs/figures.md`](docs/figures.md)。
 
 正文与附录里**不贴整段程序**：需要动手的地方只给脚本路径、运行方式和预期输出，
 脚本本体都在 [`code/`](code/)。
@@ -214,6 +214,7 @@ python check/consistency_audit.py   # 符号、单位、附录与正文的交叉
 | 版本 | 主要变化 |
 |------|----------|
 | v1.27.5 | 把附录 J（经典教材逐章对照）、K（跨教材经典例题）、L（分章自测题库）从主册移出，单独编成 26 页的[配套手册](pdf/plasma_physics_handbook.pdf)；主册附录字母保留 J／K／L 空位、A–I 之后直接接 M；正文里 62 处指向它们的说法改为「配套手册」；页数 657 → 635 |
+| v1.27.17 | 补上最后 4 张实拍图：Alcator C-Mod 机厅（W）、辐射热计（X）、Orion 激光大厅（Y）、K-DEMO 堆芯设计剖面（AZ）；画册 113 → 117 张，页数 612 → 615。到这里，48 个附录里除 AJ 外每篇都有至少两张图 |
 | v1.27.16 | 再补 6 张实拍图（第三批）：托卡马克真空室与第一壁（AD）、Huygens 超算机柜（AC）、NIF 氘氚内爆（U）、早期氚实验室 HAER 档案（AV）、ITER 建设现场（Z）、HELEN 激光靶区（AS）；画册 107 → 113 张，页数 609 → 612 |
 | v1.27.15 | 再补 6 张实拍图（第二批发）：ITER 的 ECRH 转向镜（AT）、Orion 激光靶室（AW）、尘埃等离子体颗粒（R）、电容储能组（AR）、LISA 精密干涉光学台（AQ）、WEST 装置新扇区集成（AP）；画册 101 → 107 张，页数 607 → 609 |
 | v1.27.14 | 再补 6 张实拍图：给只有一张照片的 6 个专题附录各补 1 张——JET 下偏滤器结构（N）、等离子体喷涂陶瓷涂层（P）、WEST 诊断准直（Q）、EAST 放电可见光图像（S）、碎裂弹丸试验台（V）、示波器波形（AU）；画册 95 → 101 张，页数 604 → 607 |
