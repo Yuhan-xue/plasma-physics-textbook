@@ -23,6 +23,15 @@ import io
 import os
 import re
 import sys
+# ---- 输出编码守卫（2026-10-19）------------------------------------------------
+# Windows 控制台与管道默认 CP936/GBK，检查报告里的「−」「≥」「×」「≈」一律编不出去，
+# 于是脚本在 print 时抛 UnicodeEncodeError、退出码 1，看起来像「检查失败」。
+# 夹具正是这样被误伤的。强制标准输出走 UTF-8（编不出的字用 ? 代替，不再崩）。
+for _s in (sys.stdout, sys.stderr):
+    try:
+        _s.reconfigure(encoding='utf-8', errors='replace')
+    except Exception:      # 老 Python 或已被替换的流：保持原样
+        pass
 import glob
 import json
 import argparse
@@ -669,10 +678,18 @@ def check_E_consistency():
     # 主文件注释里留着一堆历史版本号（v1.8.0…v1.19.0、v1.25.0），封面与 pdftitle 却还停在
     # v1.25.0，六套件全绿、只飘一条没人当回事的 WARN，已发布的 PDF 封面上就印着上一版的号。
     # 现在三处分别精确取值、分别判定，且一律 FAIL。
+    #
+    # v1.28.0 起 README 精简，删掉了逐版历史表，版本改由「当前 **vX.Y.Z**」一行 + tag + CHANGELOG 承担。
+    # 所以先找历史表，找不到就退到那一行；两处都没有才判 FAIL——不能像旧版那样 WARN 后跳过，
+    # 否则 gate_version_string 夹具注入的错误版本会一路绿灯（那正是 v1.26.0 的事故形态）。
     main = read(os.path.join(SRC, MAIN))
     mreadme = re.findall(r'\|\s*v(\d+\.\d+\.\d+)\s*\|', readme)
     if not mreadme:
-        rec('WARN', 'E', 'README 版本历史表里没读到版本号，跳过版本串一致性检查')
+        mcur = re.search(r'当前\s*\*\*v(\d+\.\d+\.\d+)\*\*', readme)
+        if mcur:
+            mreadme = [mcur.group(1)]
+    if not mreadme:
+        rec('FAIL', 'E', 'README 里既没有版本历史表、也没有「当前 **vX.Y.Z**」，无法核对版本串')
         return
     latest = max(mreadme, key=lambda s: [int(x) for x in s.split('.')])
 

@@ -108,7 +108,7 @@ python -X utf8 check/physics_regression.py        # 重新计算书中印出的�
 
 ## 版本与反馈
 
-当前 **v1.28.0**；版本演进与验收记录见 [`CHANGELOG.md`](CHANGELOG.md)，独立评审结论见 [`docs/review-log.md`](docs/review-log.md)。
+当前 **v1.28.1**；版本演进与验收记录见 [`CHANGELOG.md`](CHANGELOG.md)，独立评审结论见 [`docs/review-log.md`](docs/review-log.md)。
 
 发现数值、单位或推导错误，欢迎开 issue 并附上复算过程；补充内容优先补"能自己算一遍"的例子与练习。
 

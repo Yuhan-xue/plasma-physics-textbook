@@ -27,6 +27,15 @@ import io
 import os
 import re
 import sys
+# ---- 输出编码守卫（2026-10-19）------------------------------------------------
+# Windows 控制台与管道默认 CP936/GBK，检查报告里的「−」「≥」「×」「≈」一律编不出去，
+# 于是脚本在 print 时抛 UnicodeEncodeError、退出码 1，看起来像「检查失败」。
+# 夹具正是这样被误伤的。强制标准输出走 UTF-8（编不出的字用 ? 代替，不再崩）。
+for _s in (sys.stdout, sys.stderr):
+    try:
+        _s.reconfigure(encoding='utf-8', errors='replace')
+    except Exception:      # 老 Python 或已被替换的流：保持原样
+        pass
 import glob
 import json
 import argparse
