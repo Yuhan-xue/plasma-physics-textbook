@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.28.1},
+  pdftitle={等离子体物理自学教材 v1.29.0},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -100,6 +100,7 @@
 \usepackage{cleveref}
 \usepackage{braket}
 \usepackage{float}
+\usepackage{placeins}   % \FloatBarrier：只在需要处吐出浮动体
 \usepackage{multirow}
 \usepackage{marginnote}
 \usepackage{epigraph}
@@ -472,7 +473,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.28.1}}
+  {\small\textcolor{white!45}{v1.29.0}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -1479,16 +1480,22 @@ v_p = \frac{\omega}{k} = \frac{\sqrt{\omega_p^2 + c^2k^2}}{k} = c\sqrt{1 + \frac
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[node distance=6mm]
-  \node[cmA] (n00) at (0.00,0.00) {矢量场论};
-  \node[cmB] (n10) at (3.15,0.47) {分布函数};
-  \node[cmC] (n11) at (3.15,-0.47) {傅里叶分析};
-  \node[cmD] (n20) at (6.30,0.47) {矩方程};
-  \node[cmE] (n21) at (6.30,-0.47) {色散关系};
-  \draw[cmedge] (n00) -- (n10);
-  \draw[cmedge] (n00) -- (n11);
-  \draw[cmedge] (n10) -- (n20);
-  \draw[cmedge] (n11) -- (n21);
+\begin{tikzpicture}[
+  cn/.style={draw,rounded corners=2pt,line width=0.7pt,align=center,inner sep=3pt,
+    text width=2.4cm,minimum height=0.8cm,font=\footnotesize,text=figInk},
+  cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
+  cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
+  ct/.style={cn,draw=figAmber,fill=figGold!16,line width=0.8pt},
+  ce/.style={-{Latex[length=1.5mm]},draw=figGray,line width=0.7pt}]
+  \node[cr]  (n00) at (0.00,0.00)  {矢量场论};
+  \node[cmn] (n10) at (3.40,0.60)  {分布函数};
+  \node[cmn] (n11) at (3.40,-0.60) {傅里叶分析};
+  \node[ct]  (n20) at (6.80,0.60)  {矩方程};
+  \node[ct]  (n21) at (6.80,-0.60) {色散关系};
+  \draw[ce] (n00) -- (n10);
+  \draw[ce] (n00) -- (n11);
+  \draw[ce] (n10) -- (n20);
+  \draw[ce] (n11) -- (n21);
 \end{tikzpicture}
 \caption{第 1 章概念图：描述等离子体需要的三层数学语言。}
 \label{fig:cm-ch1}
@@ -1582,34 +1589,39 @@ v_p = \frac{\omega}{k} = \frac{\sqrt{\omega_p^2 + c^2k^2}}{k} = c\sqrt{1 + \frac
 德拜屏蔽的物理意义是：等离子体中的电荷涨落被屏蔽的特征尺度为德拜长度 $\lambda_D$，大于此尺度的粒子感受不到裸库仑势。
 
 \begin{center}
-\begin{tikzpicture}[scale=0.95,font=\small]
+\begin{tikzpicture}[x=1cm,y=1cm,every node/.style={text=figInk}]
 % 双面板：(a) 屏蔽云的几何图像，(b) 同一件事的定量图像（屏蔽势 vs 裸势）。
-% 旧版只有一团径向渐变色 + 三个悬空标签，既无比例感也无信息量。
 % ---- (a) 试探电荷与屏蔽云 ----
-\begin{scope}[xshift=-4.6cm]
-\shade[inner color=figBlue!30, outer color=figBlue!2] (0,0) circle (2.0);
-\draw[figBlue,figcurve,dashed] (0,0) circle (2.0);
-\fill[figVerm] (0,0) circle (3pt);
-\node[figVerm!50!black,fill=white,inner sep=1.5pt] at (0,0.42) {$+Q$};
-\node[figBlue!40!black,fill=white,inner sep=1.5pt,font=\footnotesize] at (0,-1.15) {电子云：$n_e>n_i$};
-\draw[figlead] (3.0,1.75) -- (2.2,1.2);
-\node[figInk,fill=white,inner sep=1.5pt,font=\footnotesize] at (3.55,1.95) {$\vect{E}\approx 0$};
-% λ_D 尺寸线（带端刻度，旧版是一支裸双箭头）
-\draw[figInk,line width=0.8pt] (0,-2.5) -- (2.0,-2.5);
-\draw[figInk,line width=0.8pt] (0,-2.35) -- (0,-2.65);
-\draw[figInk,line width=0.8pt] (2.0,-2.35) -- (2.0,-2.65);
-\node[figInk,fill=white,inner sep=1.5pt,font=\footnotesize] at (1.0,-2.5) {$\lambda_D$};
-\node[figInk,anchor=north,font=\footnotesize] at (0.6,-3.1) {(a) 试探电荷与屏蔽云};
+\begin{scope}
+  \shade[inner color=figBlue!28, outer color=figBlue!2] (0,0) circle (1.4);
+  \draw[figBlue,dashed,line width=0.6pt] (0,0) circle (1.4);
+  \fill[figVerm] (0,0) circle (2.4pt);
+  \node[figVerm,font=\footnotesize,fill=white,inner sep=1pt] at (0,0.38) {$+Q$};
+  \node[figInk,font=\footnotesize,fill=white,inner sep=1.5pt] at (0,-0.95) {$n_e>n_i$ 的电子云};
+  \draw[figlead] (1.05,1.02) -- (1.95,1.62);
+  \node[figGray,font=\footnotesize,fill=white,inner sep=1.5pt,anchor=west] at (2.0,1.68) {$\vect{E}\approx0$};
+  % λ_D 尺寸线（带端刻度）
+  \draw[figInk,line width=0.8pt] (0,-1.95) -- (1.4,-1.95);
+  \draw[figInk,line width=0.8pt] (0,-1.80) -- (0,-2.10);
+  \draw[figInk,line width=0.8pt] (1.4,-1.80) -- (1.4,-2.10);
+  \node[figInk,font=\footnotesize,fill=white,inner sep=1pt] at (0.7,-1.95) {$\lambda_D$};
+  \node[figInk,font=\footnotesize] at (0.7,-2.55) {(a) 试探电荷与屏蔽云};
 \end{scope}
 % ---- (b) 屏蔽势与裸库仑势 ----
-\begin{scope}[xshift=3.4cm]
-\draw[figaxis] (0,0) -- (5.2,0) node[right] {$r/\lambda_D$};
-\draw[figaxis] (0,-0.3) -- (0,3.4) node[above] {$\phi/\phi_0$};
-\draw[figGray,fighelp,domain=0.8:5,samples=80] plot (\x,{2.6/\x});
-\draw[figBlue,figcurve,domain=0.5:5,samples=140] plot (\x,{2.6*exp(-\x)/\x});
-\node[figGray,fill=white,inner sep=1.5pt,font=\footnotesize] at (3.6,1.15) {裸库仑 $1/r$};
-\node[figBlue!50!black,fill=white,inner sep=1.5pt,font=\footnotesize] at (2.6,0.34) {屏蔽势 $\mathrm{e}^{-r/\lambda_D}/r$};
-\node[figInk,anchor=north,font=\footnotesize] at (2.4,-0.7) {(b) 屏蔽把势压到裸势之下};
+\begin{scope}[xshift=4.6cm]
+  \draw[figaxis] (0,0) -- (4.9,0) node[right,font=\footnotesize] {$r$};
+  \draw[figaxis] (0,0) -- (0,3.15) node[above,font=\footnotesize] {$\phi/\phi_0$};
+  \draw[figGray,fighelp,domain=0.72:4.75,samples=90] plot (\x,{2.1/\x});
+  \draw[figBlue,figcurve,domain=0.6:4.75,samples=160] plot (\x,{2.1*exp(-\x)/\x});
+  % 唯一有意义的刻度：r = λ_D
+  \draw[figInk,line width=0.6pt] (1.0,0) -- (1.0,-0.09);
+  \node[figInk,font=\footnotesize,anchor=north] at (1.0,-0.12) {$\lambda_D$};
+  \node[figInk,font=\footnotesize] at (2.45,-2.55) {(b) 屏蔽把势压到裸势之下};
+  % 图例放在绘图区外（下方），带线型样本
+  \draw[figGray,dashed,line width=0.6pt] (0.0,-1.05) -- (0.7,-1.05);
+  \node[figInk,font=\footnotesize,anchor=west] at (0.8,-1.05) {裸库仑势 $1/r$};
+  \draw[figBlue,line width=1.2pt] (0.0,-1.55) -- (0.7,-1.55);
+  \node[figInk,font=\footnotesize,anchor=west] at (0.8,-1.55) {屏蔽势 $\mathrm{e}^{-r/\lambda_D}/r$};
 \end{scope}
 \end{tikzpicture}
 \end{center}
@@ -1773,6 +1785,7 @@ m_e \ddot{\Delta x} = -\frac{n_e e^2}{\eps_0}\Delta x
 \figsource{U.S. Air Force / Tech. Sgt. Diana Cossaboom，Public domain（Wikimedia Commons）}
 \end{figure}
 
+\FloatBarrier
 \section{等离子体判据}\difficulty{基础}
 \label{sec:ch2-criteria}
 
@@ -1846,17 +1859,23 @@ N_D = \frac{4}{3}\pi n\lambda_D^3 \approx 4.4\times10^{13} \gg 1 .
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[node distance=6mm]
-  \node[cmE] (n00) at (0.00,0.00) {电离气体};
-  \node[cmA] (n10) at (3.15,0.00) {准中性};
-  \node[cmB] (n20) at (6.30,0.47) {德拜屏蔽};
-  \node[cmC] (n21) at (6.30,-0.47) {等离子体频率};
-  \node[cmD] (n30) at (9.45,0.00) {耦合参数 $N_D$};
-  \draw[cmedge] (n00) -- (n10);
-  \draw[cmedge] (n10) -- (n20);
-  \draw[cmedge] (n10) -- (n21);
-  \draw[cmedge] (n20) -- (n30);
-  \draw[cmedge] (n21) -- (n30);
+\begin{tikzpicture}[
+  cn/.style={draw,rounded corners=2pt,line width=0.7pt,align=center,inner sep=3pt,
+    text width=2.4cm,minimum height=0.8cm,font=\footnotesize,text=figInk},
+  cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
+  cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
+  ct/.style={cn,draw=figAmber,fill=figGold!16,line width=0.8pt},
+  ce/.style={-{Latex[length=1.5mm]},draw=figGray,line width=0.7pt}]
+  \node[cr]  (n00) at (0.00,0.00)  {电离气体};
+  \node[cmn] (n10) at (3.40,0.00)  {准中性};
+  \node[cmn] (n20) at (6.80,0.60)  {德拜屏蔽};
+  \node[cmn] (n21) at (6.80,-0.60) {等离子体频率};
+  \node[ct]  (n30) at (10.20,0.00) {耦合参数 $N_D$};
+  \draw[ce] (n00) -- (n10);
+  \draw[ce] (n10) -- (n20);
+  \draw[ce] (n10) -- (n21);
+  \draw[ce] (n20) -- (n30);
+  \draw[ce] (n21) -- (n30);
 \end{tikzpicture}
 \caption{第 2 章概念图：从电离气体到等离子体的四道门槛。}
 \label{fig:cm-ch2}
@@ -1970,23 +1989,24 @@ v_y &= -\frac{q}{|q|} v_\perp \sin(\omega_c t + \phi_0)
 \end{insight}
 
 \begin{center}
-\begin{tikzpicture}[scale=0.95,font=\small]
+\begin{tikzpicture}[x=1cm,y=1cm,every node/.style={text=figInk}]
 % 侧视：引导中心沿 B 滑行，回旋在侧视下就是绕轴的正弦线圈。
-% 旧版用 3D 投影画成两堆互相叠压的圆、背景再铺 25 支绿箭头，完全读不出螺旋。
-% 引导中心轴与磁场方向（轴右端留一段裸尾，放「引导中心」标签，不压线圈）
-\draw[fighelp] (0,0) -- (11.8,0);
-\draw[figGreen,figcurve,->] (0.2,-1.95) -- (2.2,-1.95) node[right,fill=white,inner sep=1.5pt] {$\vect{B}$（沿轴）};
-% 离子线圈：半径大、频率低
-\draw[figBlue,figcurve,domain=0:10.4,samples=300,smooth] plot (\x,{0.95*sin(200*\x)});
-% 电子线圈：半径小、频率高
-\draw[figVerm,figcurve,domain=0:10.4,samples=700,smooth] plot (\x,{0.3*sin(900*\x)});
-% 标签：引线点指 + 白光环
-\draw[figlead] (3.2,1.5) -- (3.35,0.9);
-\node[figBlue!50!black,fill=white,inner sep=1.5pt] at (3.0,1.7) {离子：$\rho_{L}$ 大、$\omega_{c}$ 小};
-\draw[figlead] (7.4,-1.2) -- (7.5,-0.32);
-\node[figVerm!50!black,fill=white,inner sep=1.5pt] at (7.2,-1.45) {电子：$\rho_{L}$ 小、$\omega_{c}$ 大};
-\node[figGray,anchor=north east,fill=white,inner sep=1.5pt,font=\footnotesize] at (11.8,0.34) {引导中心沿 $\vect{B}$ 滑行};
-\node[figInk,font=\footnotesize] at (5.5,-2.5) {（侧视示意；半径与频率比不按真实比例，真实 $\rho_{Li}/\rho_{Le}\sim 60$、$\omega_{ce}/\omega_{ci}\sim 10^3$--$10^5$）};
+% 横轴用真实圈数（离子 5 圈、电子 15 圈），不再用 200/900 这种高频相位造成走样。
+\draw[fighelp] (0,0) -- (9.6,0);
+\draw[figGreen,line width=1.2pt,->,>=Stealth] (0.3,-1.6) -- (2.0,-1.6);
+\node[figGreen,font=\footnotesize,anchor=west,fill=white,inner sep=1.5pt] at (2.1,-1.6) {$\vect{B}$（沿轴）};
+% 离子：半径大、圈数少
+\draw[figBlue,line width=1.2pt,domain=0:9,samples=600,smooth] plot (\x,{0.95*sin(2*pi*5*\x/9)});
+% 电子：半径小、圈数多（相位错开，避免两条曲线处处重合）
+\draw[figGold,line width=1.2pt,domain=0:9,samples=1500,smooth] plot (\x,{0.32*sin(2*pi*15*\x/9+1.0)});
+% 标签：白光环 + 引线点指
+\node[figBlue,font=\footnotesize,fill=white,inner sep=1.5pt] at (1.85,1.42) {离子：$\rho_L$ 大、$\omega_c$ 小};
+\draw[figlead] (2.30,1.24) -- (2.45,0.84);
+\node[figAmber,font=\footnotesize,fill=white,inner sep=1.5pt] at (6.30,-1.00) {电子：$\rho_L$ 小、$\omega_c$ 大};
+\draw[figlead] (5.95,-0.82) -- (5.78,-0.30);
+\node[figGray,font=\footnotesize,anchor=west,fill=white,inner sep=1.5pt] at (9.7,0) {引导中心沿 $\vect{B}$ 滑行};
+\node[figInk,font=\footnotesize,align=center] at (4.5,-2.15)
+  {（侧视示意，半径与频率比不按真实比例：真实 $\rho_{Li}/\rho_{Le}\sim60$、$\omega_{ce}/\omega_{ci}\sim10^3$--$10^5$）};
 \end{tikzpicture}
 \end{center}
 
@@ -2166,17 +2186,23 @@ m\dot{\vect{v}'} = q(\vect{E} + (\vect{v}' + \vect{v}_E)\times\vect{B}) = q\vect
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[node distance=6mm]
-  \node[cmA] (n00) at (0.00,0.00) {洛伦兹力};
-  \node[cmB] (n10) at (3.15,0.47) {回旋运动};
-  \node[cmC] (n11) at (3.15,-0.47) {平行加速};
-  \node[cmD] (n20) at (5.90,0.00) {漂移：\\$E\times B$／$\nabla B$／曲率};
-  \node[cmE] (n30) at (9.35,0.00) {磁镜与绝热不变量};
-  \draw[cmedge] (n00) -- (n10);
-  \draw[cmedge] (n00) -- (n11);
-  \draw[cmedge] (n10) -- (n20);
-  \draw[cmedge] (n11) -- (n20);
-  \draw[cmedge] (n20) -- (n30);
+\begin{tikzpicture}[
+  cn/.style={draw,rounded corners=2pt,line width=0.7pt,align=center,inner sep=3pt,
+    text width=2.4cm,minimum height=0.8cm,font=\footnotesize,text=figInk},
+  cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
+  cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
+  ct/.style={cn,draw=figAmber,fill=figGold!16,line width=0.8pt},
+  ce/.style={-{Latex[length=1.5mm]},draw=figGray,line width=0.7pt}]
+  \node[cr]  (n00) at (0.00,0.00)  {洛伦兹力};
+  \node[cmn] (n10) at (3.40,0.60)  {回旋运动};
+  \node[cmn] (n11) at (3.40,-0.60) {平行加速};
+  \node[cmn] (n20) at (6.80,0.00)  {漂移：\\$E\times B$／$\nabla B$／曲率};
+  \node[ct]  (n30) at (10.20,0.00) {磁镜与绝热不变量};
+  \draw[ce] (n00) -- (n10);
+  \draw[ce] (n00) -- (n11);
+  \draw[ce] (n10) -- (n20);
+  \draw[ce] (n11) -- (n20);
+  \draw[ce] (n20) -- (n30);
 \end{tikzpicture}
 \caption{第 3 章概念图：单粒子轨道的三类运动。}
 \label{fig:cm-ch3}
@@ -2428,18 +2454,24 @@ c_{s,\text{绝热}}=\sqrt{\frac{\gamma_sk_BT_e}{m_i}}
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[node distance=6mm]
-  \node[cmA] (n00) at (0.00,0.00) {玻尔兹曼方程};
-  \node[cmB] (n10) at (3.15,0.00) {取矩};
-  \node[cmC] (n20) at (6.30,0.95) {连续性方程};
-  \node[cmD] (n21) at (6.30,0.00) {动量方程};
-  \node[cmE] (n22) at (6.30,-0.95) {能量方程};
-  \node[cmA] (n30) at (9.45,0.00) {广义欧姆定律};
-  \draw[cmedge] (n00) -- (n10);
-  \draw[cmedge] (n10) -- (n20);
-  \draw[cmedge] (n10) -- (n21);
-  \draw[cmedge] (n10) -- (n22);
-  \draw[cmedge] (n21) -- (n30);
+\begin{tikzpicture}[
+  cn/.style={draw,rounded corners=2pt,line width=0.7pt,align=center,inner sep=3pt,
+    text width=2.4cm,minimum height=0.8cm,font=\footnotesize,text=figInk},
+  cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
+  cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
+  ct/.style={cn,draw=figAmber,fill=figGold!16,line width=0.8pt},
+  ce/.style={-{Latex[length=1.5mm]},draw=figGray,line width=0.7pt}]
+  \node[cr]  (n00) at (0.00,0.00)  {玻尔兹曼方程};
+  \node[cmn] (n10) at (3.40,0.00)  {取矩};
+  \node[cmn] (n20) at (6.80,1.20)  {连续性方程};
+  \node[cmn] (n21) at (6.80,0.00)  {动量方程};
+  \node[cmn] (n22) at (6.80,-1.20) {能量方程};
+  \node[ct]  (n30) at (10.20,0.00) {广义欧姆定律};
+  \draw[ce] (n00) -- (n10);
+  \draw[ce] (n10) -- (n20);
+  \draw[ce] (n10) -- (n21);
+  \draw[ce] (n10) -- (n22);
+  \draw[ce] (n21) -- (n30);
 \end{tikzpicture}
 \caption{第 4 章概念图：从动理学方程到流体方程组。}
 \label{fig:cm-ch4}
@@ -2695,16 +2727,22 @@ v_A = \frac{B}{\sqrt{\mu_0\rho_m}} = \frac{10^{-3}}{\sqrt{(4\pi\times 10^{-7})(1
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[node distance=6mm]
-  \node[cmA] (n00) at (0.00,0.00) {理想 MHD 方程组};
-  \node[cmB] (n10) at (3.15,0.47) {磁冻结};
-  \node[cmC] (n11) at (3.15,-0.47) {磁压与张力};
-  \node[cmD] (n20) at (6.30,0.47) {磁通管随流体};
-  \node[cmE] (n21) at (6.30,-0.47) {阿尔芬波};
-  \draw[cmedge] (n00) -- (n10);
-  \draw[cmedge] (n00) -- (n11);
-  \draw[cmedge] (n10) -- (n20);
-  \draw[cmedge] (n11) -- (n21);
+\begin{tikzpicture}[
+  cn/.style={draw,rounded corners=2pt,line width=0.7pt,align=center,inner sep=3pt,
+    text width=2.4cm,minimum height=0.8cm,font=\footnotesize,text=figInk},
+  cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
+  cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
+  ct/.style={cn,draw=figAmber,fill=figGold!16,line width=0.8pt},
+  ce/.style={-{Latex[length=1.5mm]},draw=figGray,line width=0.7pt}]
+  \node[cr]  (n00) at (0.00,0.00)  {理想 MHD 方程组};
+  \node[cmn] (n10) at (3.40,0.60)  {磁冻结};
+  \node[cmn] (n11) at (3.40,-0.60) {磁压与张力};
+  \node[ct]  (n20) at (6.80,0.60)  {磁通管随流体};
+  \node[ct]  (n21) at (6.80,-0.60) {阿尔芬波};
+  \draw[ce] (n00) -- (n10);
+  \draw[ce] (n00) -- (n11);
+  \draw[ce] (n10) -- (n20);
+  \draw[ce] (n11) -- (n21);
 \end{tikzpicture}
 \caption{第 5 章概念图：MHD 的三条结论。}
 \label{fig:cm-ch5}
@@ -2920,16 +2958,22 @@ c^2 k^2 \approx \frac{\omega_{pe}^2 \omega}{\omega_{ce}}
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[node distance=6mm]
-  \node[cmA] (n00) at (0.00,0.00) {冷等离子体色散};
-  \node[cmB] (n10) at (3.15,0.47) {截止};
-  \node[cmC] (n11) at (3.15,-0.47) {共振};
-  \node[cmD] (n20) at (6.30,0.47) {Langmuir／离子声};
-  \node[cmE] (n21) at (6.30,-0.47) {寻常／异常／阿尔芬};
-  \draw[cmedge] (n00) -- (n10);
-  \draw[cmedge] (n00) -- (n11);
-  \draw[cmedge] (n10) -- (n20);
-  \draw[cmedge] (n11) -- (n21);
+\begin{tikzpicture}[
+  cn/.style={draw,rounded corners=2pt,line width=0.7pt,align=center,inner sep=3pt,
+    text width=2.4cm,minimum height=0.8cm,font=\footnotesize,text=figInk},
+  cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
+  cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
+  ct/.style={cn,draw=figAmber,fill=figGold!16,line width=0.8pt},
+  ce/.style={-{Latex[length=1.5mm]},draw=figGray,line width=0.7pt}]
+  \node[cr]  (n00) at (0.00,0.00)  {冷等离子体色散};
+  \node[cmn] (n10) at (3.40,0.60)  {截止};
+  \node[cmn] (n11) at (3.40,-0.60) {共振};
+  \node[ct]  (n20) at (6.80,0.60)  {Langmuir／离子声};
+  \node[ct]  (n21) at (6.80,-0.60) {寻常／异常／阿尔芬};
+  \draw[ce] (n00) -- (n10);
+  \draw[ce] (n00) -- (n11);
+  \draw[ce] (n10) -- (n20);
+  \draw[ce] (n11) -- (n21);
 \end{tikzpicture}
 \caption{第 6 章概念图：波在哪里传、在哪里停。}
 \label{fig:cm-ch6}
@@ -3108,16 +3152,22 @@ f = f_0(v) + f_1(x,v,t), \qquad E = E_1(x,t)
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[node distance=6mm]
-  \node[cmA] (n00) at (0.00,0.00) {Vlasov 方程};
-  \node[cmB] (n10) at (3.15,0.47) {Landau 阻尼};
-  \node[cmC] (n11) at (3.15,-0.47) {逆 Landau 阻尼};
-  \node[cmD] (n20) at (6.30,0.47) {共振粒子交换能量};
-  \node[cmE] (n21) at (6.30,-0.47) {束流不稳定性};
-  \draw[cmedge] (n00) -- (n10);
-  \draw[cmedge] (n00) -- (n11);
-  \draw[cmedge] (n10) -- (n20);
-  \draw[cmedge] (n11) -- (n21);
+\begin{tikzpicture}[
+  cn/.style={draw,rounded corners=2pt,line width=0.7pt,align=center,inner sep=3pt,
+    text width=2.4cm,minimum height=0.8cm,font=\footnotesize,text=figInk},
+  cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
+  cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
+  ct/.style={cn,draw=figAmber,fill=figGold!16,line width=0.8pt},
+  ce/.style={-{Latex[length=1.5mm]},draw=figGray,line width=0.7pt}]
+  \node[cr]  (n00) at (0.00,0.00)  {Vlasov 方程};
+  \node[cmn] (n10) at (3.40,0.60)  {Landau 阻尼};
+  \node[cmn] (n11) at (3.40,-0.60) {逆 Landau 阻尼};
+  \node[ct]  (n20) at (6.80,0.60)  {共振粒子交换能量};
+  \node[ct]  (n21) at (6.80,-0.60) {束流不稳定性};
+  \draw[ce] (n00) -- (n10);
+  \draw[ce] (n00) -- (n11);
+  \draw[ce] (n10) -- (n20);
+  \draw[ce] (n11) -- (n21);
 \end{tikzpicture}
 \caption{第 7 章概念图：无碰撞等离子体里的波与粒子。}
 \label{fig:cm-ch7}
@@ -3327,17 +3377,23 @@ Spitzer 动力学修正因子（$\gamma_E\approx0.58$ 一类，$1/1.4\approx0.71
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[node distance=6mm]
-  \node[cmA] (n00) at (0.00,0.00) {库仑碰撞};
-  \node[cmB] (n10) at (3.15,0.00) {碰撞频率 $\nu$};
-  \node[cmC] (n20) at (6.30,0.47) {电阻率 $\eta$};
-  \node[cmD] (n21) at (6.30,-0.47) {扩散系数 $D$};
-  \node[cmE] (n30) at (9.45,0.00) {双极扩散};
-  \draw[cmedge] (n00) -- (n10);
-  \draw[cmedge] (n10) -- (n20);
-  \draw[cmedge] (n10) -- (n21);
-  \draw[cmedge] (n20) -- (n30);
-  \draw[cmedge] (n21) -- (n30);
+\begin{tikzpicture}[
+  cn/.style={draw,rounded corners=2pt,line width=0.7pt,align=center,inner sep=3pt,
+    text width=2.4cm,minimum height=0.8cm,font=\footnotesize,text=figInk},
+  cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
+  cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
+  ct/.style={cn,draw=figAmber,fill=figGold!16,line width=0.8pt},
+  ce/.style={-{Latex[length=1.5mm]},draw=figGray,line width=0.7pt}]
+  \node[cr]  (n00) at (0.00,0.00)  {库仑碰撞};
+  \node[cmn] (n10) at (3.40,0.00)  {碰撞频率 $\nu$};
+  \node[cmn] (n20) at (6.80,0.60)  {电阻率 $\eta$};
+  \node[cmn] (n21) at (6.80,-0.60) {扩散系数 $D$};
+  \node[ct]  (n30) at (10.20,0.00) {双极扩散};
+  \draw[ce] (n00) -- (n10);
+  \draw[ce] (n10) -- (n20);
+  \draw[ce] (n10) -- (n21);
+  \draw[ce] (n20) -- (n30);
+  \draw[ce] (n21) -- (n30);
 \end{tikzpicture}
 \caption{第 8 章概念图：碰撞如何决定输运系数。}
 \label{fig:cm-ch8}
@@ -3496,20 +3552,26 @@ x^3\simeq-\frac{\mu}{2}
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[node distance=6mm]
-  \node[cmE] (n00) at (0.00,0.00) {自由能来源};
-  \node[cmA] (n10) at (3.15,0.95) {理想不稳定性};
-  \node[cmB] (n11) at (3.15,0.00) {电阻不稳定性};
-  \node[cmC] (n12) at (3.15,-0.95) {动理学不稳定性};
-  \node[cmD] (n20) at (6.30,0.00) {饱和};
-  \node[cmE] (n30) at (9.45,0.00) {反常输运};
-  \draw[cmedge] (n00) -- (n10);
-  \draw[cmedge] (n00) -- (n11);
-  \draw[cmedge] (n00) -- (n12);
-  \draw[cmedge] (n10) -- (n20);
-  \draw[cmedge] (n11) -- (n20);
-  \draw[cmedge] (n12) -- (n20);
-  \draw[cmedge] (n20) -- (n30);
+\begin{tikzpicture}[
+  cn/.style={draw,rounded corners=2pt,line width=0.7pt,align=center,inner sep=3pt,
+    text width=2.4cm,minimum height=0.8cm,font=\footnotesize,text=figInk},
+  cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
+  cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
+  ct/.style={cn,draw=figAmber,fill=figGold!16,line width=0.8pt},
+  ce/.style={-{Latex[length=1.5mm]},draw=figGray,line width=0.7pt}]
+  \node[cr]  (n00) at (0.00,0.00)  {自由能来源};
+  \node[cmn] (n10) at (3.40,1.20)  {理想不稳定性};
+  \node[cmn] (n11) at (3.40,0.00)  {电阻不稳定性};
+  \node[cmn] (n12) at (3.40,-1.20) {动理学不稳定性};
+  \node[cmn] (n20) at (6.80,0.00)  {饱和};
+  \node[ct]  (n30) at (10.20,0.00) {反常输运};
+  \draw[ce] (n00) -- (n10);
+  \draw[ce] (n00) -- (n11);
+  \draw[ce] (n00) -- (n12);
+  \draw[ce] (n10) -- (n20);
+  \draw[ce] (n11) -- (n20);
+  \draw[ce] (n12) -- (n20);
+  \draw[ce] (n20) -- (n30);
 \end{tikzpicture}
 \caption{第 9 章概念图：不稳定性的分类与归宿。}
 \label{fig:cm-ch9}
@@ -3756,19 +3818,25 @@ $n\tau$ & $\sim 10^{20}\,\mathrm{m}^{-3}\cdot\mathrm{s}$ & $\sim 10^{21}\,\mathr
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[node distance=6mm]
-  \node[cmA] (n00) at (0.00,0.00) {聚变反应率};
-  \node[cmB] (n10) at (3.15,0.47) {磁约束};
-  \node[cmC] (n11) at (3.15,-0.47) {惯性约束};
-  \node[cmD] (n20) at (6.30,0.47) {托卡马克／仿星器};
-  \node[cmE] (n21) at (6.30,-0.47) {黑腔与内爆};
-  \node[cmA] (n30) at (9.45,0.00) {Lawson 判据 $n\tau T$};
-  \draw[cmedge] (n00) -- (n10);
-  \draw[cmedge] (n00) -- (n11);
-  \draw[cmedge] (n10) -- (n20);
-  \draw[cmedge] (n11) -- (n21);
-  \draw[cmedge] (n20) -- (n30);
-  \draw[cmedge] (n21) -- (n30);
+\begin{tikzpicture}[
+  cn/.style={draw,rounded corners=2pt,line width=0.7pt,align=center,inner sep=3pt,
+    text width=2.4cm,minimum height=0.8cm,font=\footnotesize,text=figInk},
+  cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
+  cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
+  ct/.style={cn,draw=figAmber,fill=figGold!16,line width=0.8pt},
+  ce/.style={-{Latex[length=1.5mm]},draw=figGray,line width=0.7pt}]
+  \node[cr]  (n00) at (0.00,0.00)  {聚变反应率};
+  \node[cmn] (n10) at (3.40,0.60)  {磁约束};
+  \node[cmn] (n11) at (3.40,-0.60) {惯性约束};
+  \node[cmn] (n20) at (6.80,0.60)  {托卡马克／仿星器};
+  \node[cmn] (n21) at (6.80,-0.60) {黑腔与内爆};
+  \node[ct]  (n30) at (10.20,0.00) {Lawson 判据 $n\tau T$};
+  \draw[ce] (n00) -- (n10);
+  \draw[ce] (n00) -- (n11);
+  \draw[ce] (n10) -- (n20);
+  \draw[ce] (n11) -- (n21);
+  \draw[ce] (n20) -- (n30);
+  \draw[ce] (n21) -- (n30);
 \end{tikzpicture}
 \caption{第 10 章概念图：两条约束路线与同一个判据。}
 \label{fig:cm-ch10}
@@ -4679,16 +4747,22 @@ P_{\text{abs}} \propto n_e \cdot E_{\text{loss}} \propto \frac{1}{3.75} \times \
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[node distance=6mm]
-  \node[cmA] (n00) at (0.00,0.00) {汤森放电};
-  \node[cmB] (n10) at (3.15,0.00) {帕邢定律};
-  \node[cmC] (n20) at (6.30,0.00) {鞘层与玻姆判据};
-  \node[cmD] (n30) at (9.45,0.47) {CCP／ICP};
-  \node[cmE] (n31) at (9.45,-0.47) {刻蚀与沉积};
-  \draw[cmedge] (n00) -- (n10);
-  \draw[cmedge] (n10) -- (n20);
-  \draw[cmedge] (n20) -- (n30);
-  \draw[cmedge] (n20) -- (n31);
+\begin{tikzpicture}[
+  cn/.style={draw,rounded corners=2pt,line width=0.7pt,align=center,inner sep=3pt,
+    text width=2.4cm,minimum height=0.8cm,font=\footnotesize,text=figInk},
+  cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
+  cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
+  ct/.style={cn,draw=figAmber,fill=figGold!16,line width=0.8pt},
+  ce/.style={-{Latex[length=1.5mm]},draw=figGray,line width=0.7pt}]
+  \node[cr]  (n00) at (0.00,0.00)  {汤森放电};
+  \node[cmn] (n10) at (3.40,0.00)  {帕邢定律};
+  \node[cmn] (n20) at (6.80,0.00)  {鞘层与玻姆判据};
+  \node[ct]  (n30) at (10.20,0.60) {CCP／ICP};
+  \node[ct]  (n31) at (10.20,-0.60){刻蚀与沉积};
+  \draw[ce] (n00) -- (n10);
+  \draw[ce] (n10) -- (n20);
+  \draw[ce] (n20) -- (n30);
+  \draw[ce] (n20) -- (n31);
 \end{tikzpicture}
 \caption{第 11 章概念图：从放电到工艺的三段链条。}
 \label{fig:cm-ch11}
@@ -4794,32 +4868,26 @@ P_{\text{abs}} \propto n_e \cdot E_{\text{loss}} \propto \frac{1}{3.75} \times \
 
 \begin{figure}[H]
 \centering
-\begin{tikzpicture}[scale=1.1]
-    % Axes
-    \draw[->, thick] (-3,0) -- (3,0) node[right] {$V$};
-    \draw[->, thick] (0,-2) -- (0,2.5) node[above] {$I$};
-
-    % Plasma potential line
-    \draw[dashed, figGray] (1,-2) -- (1,2.5) node[above right, font=\small] {$V_p$};
-    % Floating potential line (curve crosses I=0 here)
-    % V_f 标签移到虚线左下空处：旧版 node[below] 落在曲线过零点，字压在曲线上
-    \draw[dashed, figPurple!70!black] (-0.5,-2) -- (-0.5,0);
-    \node[font=\small, figPurple!70!black, left] at (-0.58,-1.2) {$V_f$};
-
-    % I-V curve (safe domain to avoid exp overflow in PGF; zero crossing at V_f = -0.5 < V_p)
-    \draw[figBlue, very thick, domain=-2.8:2.5, samples=100, variable=\x]
-      plot({\x}, {2.0/(1 + exp(-2*(\x-0.118))) - 0.45});
-
-    % Region labels
-    \node[font=\small, figVerm] at (-2.1, -0.85) {离子饱和区};
-    % 过渡区标签上移并加白环，箭头缩短，避免箭头尖压到字
-    \node[font=\small, figAmber, fill=white, inner sep=1.5pt] at (0.62, 1.75) {过渡区};
-    \node[font=\small, figGreen!50!black] at (2.05, 1.9) {电子饱和区};
-
-    % Annotations
-    \draw[->, thick, figVerm] (-2.0,-0.65) -- (-2.0,-0.48);
-    \draw[->, thick, figAmber, shorten <=1pt] (0.6,1.36) -- (0.52,1.02);
-    \draw[->, thick, figGreen!50!black] (2.2,1.75) -- (2.25,1.58);
+\begin{tikzpicture}[x=1.8cm,y=1.5cm,every node/.style={text=figInk}]
+    % 三个区域只用浅底标出范围，语义仍由曲线与标签承担
+    \fill[figBlue!8] (-2.35,-1.12) rectangle (-1.55,1.92);
+    \fill[figGold!10] (1.05,-1.12) rectangle (2.55,1.92);
+    % 坐标轴
+    \draw[figaxis] (-2.35,0) -- (2.60,0) node[right,font=\footnotesize] {$V$};
+    \draw[figaxis] (0,-1.12) -- (0,2.00) node[above,font=\footnotesize] {$I$};
+    % I-V 曲线：过零点在 V_f=-0.5，拐点在 V_p=1.0
+    \draw[figBlue,line width=1.2pt,domain=-2.30:2.50,samples=180,variable=\x]
+      plot({\x},{2.0/(1+exp(-2*(\x-0.118)))-0.45});
+    % 两个特征电位：同一种赭红虚线，标签放在线端外侧
+    \draw[figVerm,dashed,line width=0.8pt] (1.00,-1.12) -- (1.00,1.55);
+    \node[figVerm,font=\footnotesize,anchor=south] at (1.00,1.58) {$V_p$};
+    \draw[figVerm,dashed,line width=0.8pt] (-0.50,-1.12) -- (-0.50,0.20);
+    \node[figVerm,font=\footnotesize,anchor=south,fill=white,inner sep=1pt] at (-0.50,0.24) {$V_f$};
+    % 三个区标签：全部落在曲线之外；靠近曲线处加白环与引线
+    \node[figInk,font=\footnotesize] at (-1.95,-0.85) {离子饱和区};
+    \node[figInk,font=\footnotesize,fill=white,inner sep=1.5pt] at (0.12,1.45) {过渡区};
+    \draw[figlead] (0.12,1.26) -- (0.16,0.66);
+    \node[figInk,font=\footnotesize] at (1.85,1.82) {电子饱和区};
 \end{tikzpicture}
 \caption{朗缪尔探针典型 $I$-$V$ 特性曲线。横轴为探针电压 $V$，纵轴为收集电流 $I$。$V_p$ 为等离子体电位，$V_f$ 为悬浮电位（净电流 $I=0$ 处）。曲线分为三个主要区域：离子饱和区（$V \ll V_p$）、过渡区（$V_f \lesssim V \lesssim V_p$）和电子饱和区（$V \gg V_p$）。}
 \label{fig:langmuir-iv}
@@ -5537,23 +5605,29 @@ OES发射光谱 & $10^{12}$--$10^{19}$ & $0.1$--$10$ & cm & ms & 工业/空间 \
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[node distance=6mm]
-  \node[cmE] (n00) at (0.00,0.00) {内部参数\\$n$、$T$、$B$};
-  \node[cmA] (n10) at (2.95,1.42) {探针};
-  \node[cmB] (n11) at (2.95,0.47) {光谱};
-  \node[cmC] (n12) at (2.95,-0.48) {微波};
-  \node[cmD] (n13) at (2.95,-1.42) {汤姆孙散射};
-  \node[cmA] (n20) at (5.90,0.00) {可测外部信号};
-  \node[cmB] (n30) at (8.60,0.00) {反演与误差};
-  \draw[cmedge] (n00) -- (n10);
-  \draw[cmedge] (n00) -- (n11);
-  \draw[cmedge] (n00) -- (n12);
-  \draw[cmedge] (n00) -- (n13);
-  \draw[cmedge] (n10) -- (n20);
-  \draw[cmedge] (n11) -- (n20);
-  \draw[cmedge] (n12) -- (n20);
-  \draw[cmedge] (n13) -- (n20);
-  \draw[cmedge] (n20) -- (n30);
+\begin{tikzpicture}[
+  cn/.style={draw,rounded corners=2pt,line width=0.7pt,align=center,inner sep=3pt,
+    text width=2.4cm,minimum height=0.8cm,font=\footnotesize,text=figInk},
+  cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
+  cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
+  ct/.style={cn,draw=figAmber,fill=figGold!16,line width=0.8pt},
+  ce/.style={-{Latex[length=1.5mm]},draw=figGray,line width=0.7pt}]
+  \node[cr]  (n00) at (0.00,0.00)  {内部参数\\$n$、$T$、$B$};
+  \node[cmn] (n10) at (2.90,1.55)  {探针};
+  \node[cmn] (n11) at (2.90,0.52)  {光谱};
+  \node[cmn] (n12) at (2.90,-0.52) {微波};
+  \node[cmn] (n13) at (2.90,-1.55) {汤姆孙散射};
+  \node[cmn] (n20) at (5.80,0.00)  {可测外部信号};
+  \node[ct]  (n30) at (8.70,0.00)  {反演与误差};
+  \draw[ce] (n00) -- (n10);
+  \draw[ce] (n00) -- (n11);
+  \draw[ce] (n00) -- (n12);
+  \draw[ce] (n00) -- (n13);
+  \draw[ce] (n10) -- (n20);
+  \draw[ce] (n11) -- (n20);
+  \draw[ce] (n12) -- (n20);
+  \draw[ce] (n13) -- (n20);
+  \draw[ce] (n20) -- (n30);
 \end{tikzpicture}
 \caption{第 12 章概念图：诊断的共性逻辑。}
 \label{fig:cm-ch12}
@@ -5639,68 +5713,72 @@ OES发射光谱 & $10^{12}$--$10^{19}$ & $0.1$--$10$ & cm & ms & 工业/空间 \
 
 \begin{figure}[htbp]
 \centering
-\resizebox{0.86\textwidth}{!}{%
-\begin{tikzpicture}[x=1cm,y=1cm]
-\node[nxchip,fill=figGray!25] at (0.00,0.00) {A};
-\node[nxchip,fill=figGray!25] at (1.16,0.00) {B};
-\node[nxchip,fill=figGray!25] at (2.32,0.00) {C};
-\node[nxchip,fill=figGray!25] at (3.48,0.00) {D};
-\node[nxchip,fill=figGray!25] at (4.64,0.00) {E};
-\node[nxchip,fill=figGray!25] at (5.80,0.00) {F};
-\node[nxchip,fill=figGray!25] at (6.96,0.00) {H};
-\node[nxchip,fill=figGreen!25] at (8.12,0.00) {G};
-\node[nxchip,fill=figBlue!25] at (9.28,0.00) {M};
-\node[nxchip,fill=figBlue!25] at (0.00,-1.10) {S};
-\node[nxchip,fill=figBlue!25] at (1.16,-1.10) {T};
-\node[nxchip,fill=figBlue!25] at (2.32,-1.10) {AE};
-\node[nxchip,fill=figBlue!25] at (3.48,-1.10) {AF};
-\node[nxchip,fill=figBlue!25] at (4.64,-1.10) {AG};
-\node[nxchip,fill=figBlue!25] at (5.80,-1.10) {AL};
-\node[nxchip,fill=figVerm!22] at (6.96,-1.10) {V};
-\node[nxchip,fill=figVerm!22] at (8.12,-1.10) {AD};
-\node[nxchip,fill=figVerm!22] at (9.28,-1.10) {AA};
-\node[nxchip,fill=figOrange!25] at (10.44,-1.10) {N};
-\node[nxchip,fill=figOrange!25] at (11.60,-1.10) {R};
-\node[nxchip,fill=figOrange!25] at (12.76,-1.10) {AO};
-\node[nxchip,fill=figOrange!25] at (13.92,-1.10) {AJ};
-\node[nxchip,fill=figPurple!22] at (0.00,-2.20) {Q};
-\node[nxchip,fill=figPurple!22] at (1.16,-2.20) {AN};
-\node[nxchip,fill=figPurple!22] at (2.32,-2.20) {AQ};
-\node[nxchip,fill=figPurple!22] at (3.48,-2.20) {AU};
-\node[nxchip,fill=figPurple!22] at (4.64,-2.20) {AH};
-\node[nxchip,fill=figPurple!22] at (5.80,-2.20) {AS};
-\node[nxchip,fill=figSky!30] at (6.96,-2.20) {AT};
-\node[nxchip,fill=figSky!30] at (8.12,-2.20) {AX};
-\node[nxchip,fill=figSky!30] at (9.28,-2.20) {X};
-\node[nxchip,fill=figVerm!45] at (10.44,-2.20) {AI};
-\node[nxchip,fill=figVerm!45] at (11.60,-2.20) {AW};
-\node[nxchip,fill=figVerm!45] at (12.76,-2.20) {Y};
-\node[nxchip,fill=figVerm!45] at (13.92,-2.20) {W};
-\node[nxchip,fill=figGreen!45] at (0.00,-3.30) {O};
-\node[nxchip,fill=figGreen!45] at (1.16,-3.30) {P};
-\node[nxchip,fill=figGreen!45] at (2.32,-3.30) {AB};
-\node[nxchip,fill=figGreen!45] at (3.48,-3.30) {AC};
-\node[nxchip,fill=figBlue!45] at (4.64,-3.30) {Z};
-\node[nxchip,fill=figBlue!45] at (5.80,-3.30) {AM};
-\node[nxchip,fill=figBlue!45] at (6.96,-3.30) {AR};
-\node[nxchip,fill=figBlue!45] at (8.12,-3.30) {AP};
-\node[nxchip,fill=figBlue!45] at (9.28,-3.30) {AV};
-\node[nxchip,fill=figBlue!45] at (10.44,-3.30) {AK};
-\node[nxchip,fill=figBlue!45] at (11.60,-3.30) {AY};
-\node[nxchip,fill=figBlue!45] at (12.76,-3.30) {AZ};
-\node[nxchip,fill=figBlue!45] at (13.92,-3.30) {U};
-\node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (0,-4.05) {\textbf{主题簇}（字母为附录编号）:};
-\node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (0.00,-4.55) {\textcolor{figGray}{\rule{2.2mm}{2.2mm}} 工具与速查（A B C D E F H）};
-\node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (0.00,-5.07) {\textcolor{figGreen}{\rule{2.2mm}{2.2mm}} 学习与练习（G；I J K L 见配套手册）};
-\node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (0.00,-5.59) {\textcolor{figBlue}{\rule{2.2mm}{2.2mm}} 加热·电流·输运（M S T AE AF AG AL）};
-\node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (0.00,-6.11) {\textcolor{figVerm}{\rule{2.2mm}{2.2mm}} 稳定性·位形·边界（V AD AA）};
-\node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (0.00,-6.63) {\textcolor{figOrange}{\rule{2.2mm}{2.2mm}} 壁·加料·真空·尘埃（N R AO AJ）};
-\node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (7.60,-4.55) {\textcolor{figPurple}{\rule{2.2mm}{2.2mm}} 诊断与测量（Q AN AQ AU AH AS）};
-\node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (7.60,-5.07) {\textcolor{figSky}{\rule{2.2mm}{2.2mm}} 波·束流·辐射（AT AX X）};
-\node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (7.60,-5.59) {\textcolor{figVerm}{\rule{2.2mm}{2.2mm}} 惯性约束·强场（AI AW Y W）};
-\node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (7.60,-6.11) {\textcolor{figGreen}{\rule{2.2mm}{2.2mm}} 工业·空间·数值（O P AB AC）};
-\node[font=\scriptsize,text=figGray,anchor=north west,align=left] at (7.60,-6.63) {\textcolor{figBlue}{\rule{2.2mm}{2.2mm}} 聚变工程与系统（Z AM AR AP AV AK AY AZ U）};
-\end{tikzpicture}}
+\begin{tikzpicture}[x=1cm,y=1cm,every node/.style={text=figInk},
+  axchip/.style={rounded corners=1.5pt,line width=0.6pt,minimum width=0.66cm,
+    minimum height=0.56cm,font=\footnotesize,inner sep=1pt},
+  axname/.style={anchor=west,font=\footnotesize,align=left,text width=3.05cm}]
+% 一行一簇：左侧色块＋簇名，右侧按编号排列该簇的附录（行距 0.78 cm、块距 2 mm）
+\node[axname] at (0,0) {\textcolor{figGray}{\rule{2.2mm}{2.2mm}}\;工具与速查};
+\node[nxchip,axchip,fill=figGray!28] at (4.00,0) {A};
+\node[nxchip,axchip,fill=figGray!28] at (4.86,0) {B};
+\node[nxchip,axchip,fill=figGray!28] at (5.72,0) {C};
+\node[nxchip,axchip,fill=figGray!28] at (6.58,0) {D};
+\node[nxchip,axchip,fill=figGray!28] at (7.44,0) {E};
+\node[nxchip,axchip,fill=figGray!28] at (8.30,0) {F};
+\node[nxchip,axchip,fill=figGray!28] at (9.16,0) {H};
+\node[axname] at (0,-0.78) {\textcolor{figGreen}{\rule{2.2mm}{2.2mm}}\;学习与练习};
+\node[nxchip,axchip,fill=figGreen!28] at (4.00,-0.78) {G};
+\node[axname] at (0,-1.56) {\textcolor{figBlue}{\rule{2.2mm}{2.2mm}}\;加热·电流·输运};
+\node[nxchip,axchip,fill=figBlue!28] at (4.00,-1.56) {M};
+\node[nxchip,axchip,fill=figBlue!28] at (4.86,-1.56) {S};
+\node[nxchip,axchip,fill=figBlue!28] at (5.72,-1.56) {T};
+\node[nxchip,axchip,fill=figBlue!28] at (6.58,-1.56) {AE};
+\node[nxchip,axchip,fill=figBlue!28] at (7.44,-1.56) {AF};
+\node[nxchip,axchip,fill=figBlue!28] at (8.30,-1.56) {AG};
+\node[nxchip,axchip,fill=figBlue!28] at (9.16,-1.56) {AL};
+\node[axname] at (0,-2.34) {\textcolor{figVerm}{\rule{2.2mm}{2.2mm}}\;稳定性与边界};
+\node[nxchip,axchip,fill=figVerm!24] at (4.00,-2.34) {V};
+\node[nxchip,axchip,fill=figVerm!24] at (4.86,-2.34) {AD};
+\node[nxchip,axchip,fill=figVerm!24] at (5.72,-2.34) {AA};
+\node[axname] at (0,-3.12) {\textcolor{figAmber}{\rule{2.2mm}{2.2mm}}\;壁·加料·真空};
+\node[nxchip,axchip,fill=figAmber!20] at (4.00,-3.12) {N};
+\node[nxchip,axchip,fill=figAmber!20] at (4.86,-3.12) {R};
+\node[nxchip,axchip,fill=figAmber!20] at (5.72,-3.12) {AO};
+\node[nxchip,axchip,fill=figAmber!20] at (6.58,-3.12) {AJ};
+\node[axname] at (0,-3.90) {\textcolor{figPurple}{\rule{2.2mm}{2.2mm}}\;诊断与测量};
+\node[nxchip,axchip,fill=figPurple!24] at (4.00,-3.90) {Q};
+\node[nxchip,axchip,fill=figPurple!24] at (4.86,-3.90) {AN};
+\node[nxchip,axchip,fill=figPurple!24] at (5.72,-3.90) {AQ};
+\node[nxchip,axchip,fill=figPurple!24] at (6.58,-3.90) {AU};
+\node[nxchip,axchip,fill=figPurple!24] at (7.44,-3.90) {AH};
+\node[nxchip,axchip,fill=figPurple!24] at (8.30,-3.90) {AS};
+\node[axname] at (0,-4.68) {\textcolor{figSky}{\rule{2.2mm}{2.2mm}}\;波·束流·辐射};
+\node[nxchip,axchip,fill=figSky!32] at (4.00,-4.68) {AT};
+\node[nxchip,axchip,fill=figSky!32] at (4.86,-4.68) {AX};
+\node[nxchip,axchip,fill=figSky!32] at (5.72,-4.68) {X};
+\node[axname] at (0,-5.46) {\textcolor{figVerm!70}{\rule{2.2mm}{2.2mm}}\;惯性约束·强场};
+\node[nxchip,axchip,fill=figVerm!48] at (4.00,-5.46) {AI};
+\node[nxchip,axchip,fill=figVerm!48] at (4.86,-5.46) {AW};
+\node[nxchip,axchip,fill=figVerm!48] at (5.72,-5.46) {Y};
+\node[nxchip,axchip,fill=figVerm!48] at (6.58,-5.46) {W};
+\node[axname] at (0,-6.24) {\textcolor{figGreen!70}{\rule{2.2mm}{2.2mm}}\;工业·空间·数值};
+\node[nxchip,axchip,fill=figGreen!48] at (4.00,-6.24) {O};
+\node[nxchip,axchip,fill=figGreen!48] at (4.86,-6.24) {P};
+\node[nxchip,axchip,fill=figGreen!48] at (5.72,-6.24) {AB};
+\node[nxchip,axchip,fill=figGreen!48] at (6.58,-6.24) {AC};
+\node[axname] at (0,-7.02) {\textcolor{figBlue!70}{\rule{2.2mm}{2.2mm}}\;聚变工程};
+\node[nxchip,axchip,fill=figBlue!48] at (4.00,-7.02) {Z};
+\node[nxchip,axchip,fill=figBlue!48] at (4.86,-7.02) {AM};
+\node[nxchip,axchip,fill=figBlue!48] at (5.72,-7.02) {AR};
+\node[nxchip,axchip,fill=figBlue!48] at (6.58,-7.02) {AP};
+\node[nxchip,axchip,fill=figBlue!48] at (7.44,-7.02) {AV};
+\node[nxchip,axchip,fill=figBlue!48] at (8.30,-7.02) {AK};
+\node[nxchip,axchip,fill=figBlue!48] at (9.16,-7.02) {AY};
+\node[nxchip,axchip,fill=figBlue!48] at (10.02,-7.02) {AZ};
+\node[nxchip,axchip,fill=figBlue!48] at (10.88,-7.02) {U};
+\node[anchor=west,font=\footnotesize,text=figGray] at (0,-7.62)
+  {每行一簇，共 10 簇 48 个附录；行内色块就是该簇的附录编号};
+\end{tikzpicture}
 \caption{附录导航图：48 个附录按主题分成 10 簇。每个字母是一个附录，颜色是它所属的主题簇，图例给出每簇的字母清单。要找某一类内容的附录时，先按主题定位颜色，再按字母翻到对应附录。配套手册 I、J、K、L（学习策略手册、经典教材逐章对照、跨教材经典例题、分章自测题库）是“边查边用”的材料，已单独成册，不在图中。}
 \label{fig:appendix-map}
 \end{figure}

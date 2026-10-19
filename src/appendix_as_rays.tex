@@ -14,7 +14,7 @@
 \label{sec:app-as-wkb}
 
 波在等离子体里走，最省事的画法是一条线：一条从天线出发、在某个位置拐弯、最后停在
-某个面上的射线。这个画法不是近似得理所当然——它要求波长比等离子体的不均匀尺度小得多。
+某个面上的射线。这个画法要求波长比等离子体的不均匀尺度小得多，不是理所当然的近似。
 
 取 D1 工作点：中心密度 $n_\mathrm{e0}=1.0\times10^{20}$ m$^{-3}$，电子温度
 $T_\mathrm{e}=9.194$ keV，轴上磁场 $B_0=5.3$ T，小半径 $a=2.0$ m。电子回旋加热用
@@ -91,8 +91,7 @@ Scientists and Engineers}（1978）。本附录不复制原书图表。
 \section{射线方程与折射：波为什么会拐弯}
 \label{sec:app-as-ray}
 
-把波画成射线之后，它的路径由一对方程决定：位置的变化率由群速度给，波数的变化率由折射率
-梯度给。
+把波画成射线之后，位置变化率由群速度给，波数变化率由折射率梯度给。
 
 \begin{equation}
 \frac{\mathrm{d}\mathbf{r}}{\mathrm{d}t}=\frac{\partial\omega}{\partial\mathbf{k}},
@@ -215,7 +214,7 @@ E_\mathrm{f}=\sqrt{\frac{2I_\mathrm{f}}{c\epsilon_0}}=3.21312\times10^{6}\ \math
 \label{eq:app-as-intensity}
 \end{equation}
 
-而等离子体中心处只有 $308.314$ kV m$^{-1}$。同一个 1 MW 波束，聚焦前后场强差了十倍——
+而等离子体中心处只有 $308.314$ kV m$^{-1}$。同一个 1 MW 波束，聚焦前后场强差了十倍，
 这就是准光学设计存在的理由。
 
 \begin{table}[htbp]
@@ -387,8 +386,8 @@ P=B_\nu\,\delta f\,\lambda^2=2.94608\ \mu\mathrm{W},
 \label{eq:app-as-ecepow}
 \end{equation}
 
-其中 $\lambda=1.07131$ mm。这个功率不大，但比任何自发的非热辐射都强得多——ECE 之所以
-好用，就是因为它测的是「电子的体温」。
+其中 $\lambda=1.07131$ mm。这个功率不大，但比任何自发的非热辐射都强得多：ECE 测的是
+「电子的体温」。
 
 \begin{table}[htbp]
 \centering
@@ -468,9 +467,8 @@ P_\mathrm{abs}=\eta_\mathrm{abs}P_\mathrm{EC}=0.95\ \mathrm{MW},
 \label{eq:app-as-powerdens}
 \end{equation}
 
-作为对照：如果把同样的功率压进一个焦斑体积（$A_\mathrm{beam}\times2w_\mathrm{f}$），
-密度会到 $6.36475\times10^{9}$ W m$^{-3}$，比实际的沉积密度高两个数量级。这正是
-「射线告诉你落在哪，波束光学告诉你压得多紧」的分工。
+如果把同样的功率压进一个焦斑体积（$A_\mathrm{beam}\times2w_\mathrm{f}$），
+密度会到 $6.36475\times10^{9}$ W m$^{-3}$，比实际的沉积密度高两个数量级。
 
 \begin{table}[htbp]
 \centering

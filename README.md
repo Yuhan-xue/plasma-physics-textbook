@@ -5,16 +5,16 @@
 
 ![托卡马克真空室内部：磁约束聚变要面对的容器](figures/tokamak_interior.jpg)
 
-教材共 **612 页**，四个 PDF 都由本仓库源码编译。写作目标：**一个人、一支笔、一台能算数的电脑就能读完**。
+教材共 **613 页**，四个 PDF 都由本仓库源码编译。写作目标：**一个人、一支笔、一台能算数的电脑就能读完**。
 
 ## 四个 PDF
 
 | 文件 | 页数 | 内容 |
 |---|---|---|
-| [`pdf/plasma_physics_textbook_v2.pdf`](pdf/plasma_physics_textbook_v2.pdf) | 612 页 | 完整本：正文 + 全部附录，推荐先读这本 |
-| [`pdf/plasma_physics_textbook_v2_vol1_chapters.pdf`](pdf/plasma_physics_textbook_v2_vol1_chapters.pdf) | 206 页 | 前言 + 第 1–12 章正文 |
+| [`pdf/plasma_physics_textbook_v2.pdf`](pdf/plasma_physics_textbook_v2.pdf) | 613 页 | 完整本：正文 + 全部附录，推荐先读这本 |
+| [`pdf/plasma_physics_textbook_v2_vol1_chapters.pdf`](pdf/plasma_physics_textbook_v2_vol1_chapters.pdf) | 207 页 | 前言 + 第 1–12 章正文 |
 | [`pdf/plasma_physics_textbook_v2_vol2_appendices.pdf`](pdf/plasma_physics_textbook_v2_vol2_appendices.pdf) | 406 页 | 48 个附录 |
-| [`pdf/plasma_physics_handbook.pdf`](pdf/plasma_physics_handbook.pdf) | 49 页 | 配套手册：附录 I／J／K／L（学习策略、逐章对照、跨教材例题、分章题库） |
+| [`pdf/plasma_physics_handbook.pdf`](pdf/plasma_physics_handbook.pdf) | 48 页 | 配套手册：附录 I／J／K／L（学习策略、逐章对照、跨教材例题、分章题库） |
 
 历史版本见 [Releases](http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases)。
 
@@ -52,7 +52,7 @@
 ### 附录（48 个：12 章正文 + 48 附录）
 
 - **工具型 A–H（8 个）**：矢量公式、特征参数速查、中间数学步骤、常数、书单、易错点、仿真导读、符号术语。
-- **配套手册 I–L（4 个）**：学习策略、经典教材逐章对照、跨教材例题、分章自测题库——单独成册（49 页）。
+- **配套手册 I–L（4 个）**：学习策略、经典教材逐章对照、跨教材例题、分章自测题库——单独成册（48 页）。
 - **专题 M–AZ（40 个）**：从加热、边界、诊断、尘埃等离子体，到强场激光、聚变材料与堆系统集成；
   每篇 7–12 页，自带数值例子与估算练习。
 
@@ -108,7 +108,7 @@ python -X utf8 check/physics_regression.py        # 重新计算书中印出的�
 
 ## 版本与反馈
 
-当前 **v1.28.1**；版本演进与验收记录见 [`CHANGELOG.md`](CHANGELOG.md)，独立评审结论见 [`docs/review-log.md`](docs/review-log.md)。
+当前 **v1.29.0**；版本演进与验收记录见 [`CHANGELOG.md`](CHANGELOG.md)，独立评审结论见 [`docs/review-log.md`](docs/review-log.md)。
 
 发现数值、单位或推导错误，欢迎开 issue 并附上复算过程；补充内容优先补"能自己算一遍"的例子与练习。
 

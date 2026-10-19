@@ -15,8 +15,7 @@
 \section{粒子平衡：加进去的粒子有多少被烧掉}
 \label{sec:app-aj-balance}
 
-聚变堆的第一个不确定数是「要往里灌多少燃料」。这个数不能拍脑袋，
-它由三笔账决定：烧掉多少、漏掉多少、回来多少。
+聚变堆的第一个不确定数是「要往里灌多少燃料」。它由三笔账决定：烧掉多少、漏掉多少、回来多少。
 
 先算烧掉多少。聚变功率 $P_{\mathrm{fus}} = 556.5\ \mathrm{MW}$ 是宏观量，
 每次 D-T 反应放出的总能量是 $17.6\ \mathrm{MeV}$，所以反应率是
@@ -62,7 +61,6 @@ S_{\mathrm{ext}} = (1-R)\,\frac{N_e}{\tau_p} + 2R_{\mathrm{fus}}
 \end{equation}
 
 这个数只有输运损失的 $6.18573\%$，却是燃烧量的 $5.21683$ 倍。
-于是得到本附录最该记住的一句话：
 
 \begin{equation}
 f_{\mathrm{burn}} = \frac{2R_{\mathrm{fus}}}{S_{\mathrm{ext}}}
@@ -208,7 +206,7 @@ L_{\mathrm{pen}} = 300\times4.0\times10^{-4} = 0.12\ \mathrm{m} = 12\ \mathrm{cm
 \label{eq:app-aj-pen}
 \end{equation}
 
-只有小半径 $a = 2.0\ \mathrm{m}$ 的 $6\%$。换句话说，$1.5\ \mathrm{mm}$ 的弹丸
+只有小半径 $a = 2.0\ \mathrm{m}$ 的 $6\%$。$1.5\ \mathrm{mm}$ 的弹丸
 \textbf{在边缘就烧完了}，它的粒子主要沉积在最外面十几厘米——加料效率上不去的原因就在这里。
 
 \begin{equation}
@@ -338,7 +336,6 @@ P_{\mathrm{fus}} \to 556.5\times(0.912256)^{2} = 463.126\ \mathrm{MW}
 \begin{tip}{灰不是杂质，是产物}{tip-app-aj-ash}
 杂质可以靠「少产生」来解决，灰不行——它的产生率被聚变功率锁死。
 所以氦灰问题从来不是「如何不产生」，而是「如何在它稀释燃料之前把它送出去」。
-这也是为什么偏滤器设计对聚变堆是生死问题。
 \end{tip}
 
 {\footnotesize
@@ -372,7 +369,7 @@ Q_{\mathrm{pump}} = \frac{P_{\mathrm{div}}S_{\mathrm{pump}}}{k_BT}
 \label{eq:app-aj-pumpq}
 \end{equation}
 
-是氦产生率的 $611.679$ 倍。换句话说，抽走的气体里只要
+是氦产生率的 $611.679$ 倍。抽走的气体里只要
 
 \begin{equation}
 \frac{R_{\mathrm{fus}}}{Q_{\mathrm{pump}}} = \frac{1.97352\times10^{20}}{1.20716\times10^{23}}
@@ -472,7 +469,7 @@ t_{\mathrm{ramp}} = \frac{N_e}{S_{\mathrm{ext}}}
 \end{equation}
 
 比弹丸周期（$0.506077\ \mathrm{s}$）长两个量级、比粒子约束时间（$2.5\ \mathrm{s}$）
-长一个量级。结论很清楚：\textbf{密度控制是慢回路}，
+长一个量级。\textbf{密度控制是慢回路}，
 弹丸与阀门能改变的是一小部分粒子，反馈设计必须按 $\tau_p$ 的时间尺度来。
 
 \begin{table}[htbp]
@@ -559,7 +556,7 @@ Loarte 等（2007）与 Causey（2002），数值由 \texttt{tools/\allowbreak{}
 \label{sec:app-aj-source}
 
 \begingroup\small
-本附录的数值分三级，读的时候要能分清：
+本附录的数值分三级：
 
 \begin{table}[htbp]
 \centering
