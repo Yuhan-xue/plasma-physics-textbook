@@ -54,12 +54,12 @@ s_{95} = \frac{2(q_{95}-q_0)}{q_{95}} = 1.09783,
 
 几何量同样可以直接点清：环向磁通 $\Phi_{\rm tor}=B_0\pi a^2\kappa = 113.223\ \mathrm{Wb}$，
 极向磁通 $\Phi_{\rm pol}=\Phi_{\rm tor}/q_{95}=51.0731\ \mathrm{Wb}$，两者之比就是
-安全因子的定义；等离子体体积
+安全因子的定义。等离子体体积
 \begin{equation}
 V = 2\pi^2 R a^2 \kappa = 832.205\ \mathrm{m^3},
 \label{eq:app-ag-volume}
 \end{equation}
-与附录 M/S/Z 用的 $832.2\ \mathrm{m^3}$ 是同一个数，来自同一个公式；
+与附录 M/S/Z 用的 $832.2\ \mathrm{m^3}$ 是同一个数，来自同一个公式。
 壁面积按圆柱近似 $S=4\pi^2 R a = 489.532\ \mathrm{m^2}$，也与附录 X 的迎风面积一致。
 最后记住环向场的 $1/R$ 衰减：内中平面 $7.82381\ \mathrm{T}$、外中平面 $4.00732\ \mathrm{T}$，
 相差接近一倍。这个不对称是后面 Shafranov 位移把磁轴往外推的几何背景。
@@ -85,7 +85,7 @@ V = 2\pi^2 R a^2 \kappa = 832.205\ \mathrm{m^3},
 
 \begin{tip}{磁面不是画出来的，是平衡方程的解}{tip-app-ag-surfaces}
 「嵌套磁面」不是设计者的选择，而是压强梯度和极向场在每一点互相抵消的结果。压强越大、
-电流越小，磁面就越会往外挤——第三节的 Shafranov 位移说的就是这件事。
+电流越小，磁面就越会往外挤，第三节的 Shafranov 位移说的就是这件事。
 \end{tip}
 
 {\footnotesize
@@ -133,7 +133,7 @@ $T_e=T_i=9194\ \mathrm{eV}$，两种粒子各半）
 \beta_p = \frac{2\mu_0\langle p\rangle}{B_\theta^2(a)} = 0.329081 = 32.9081\%,
 \label{eq:app-ag-betat}
 \end{equation}
-同一团等离子体，对着环向场算只有 $2.63592\%$，对着极向场算却有 $32.9081\%$——因为极向场
+同一团等离子体，对着环向场算只有 $2.63592\%$，对着极向场算却有 $32.9081\%$，因为极向场
 本来就只有 $1.5\ \mathrm{T}$。工程上更常用归一化比压
 \begin{equation}
 \beta_N = \beta_t[\%]\,\frac{a B_0}{I_p[\mathrm{MA}]} = 1.86272,
@@ -194,7 +194,7 @@ Shafranov（\emph{Reviews of Plasma Physics}
 \label{eq:app-ag-gap}
 \end{equation}
 放在 $R$ 上就是磁轴位置 $R_{\rm axis} = R+\Delta = 6.46745\ \mathrm{m}$，轴心环向场因此
-降到 $B_0R/R_{\rm axis} = 5.08083\ \mathrm{T}$——位移自己又把场降了一点，这是一个
+降到 $B_0R/R_{\rm axis} = 5.08083\ \mathrm{T}$，位移自己又把场降了一点，这是一个
 自洽的小回路。
 
 位移的后果很实在：内外侧的磁面间距不再相等。内侧只剩 $a-\Delta = 1.73255\ \mathrm{m}$，
@@ -206,9 +206,9 @@ Shafranov（\emph{Reviews of Plasma Physics}
 也就是说，同样一圈磁通，在外侧占的地方比内侧多三成。这对偏滤器、射频天线的位置和
 中子壁负载都有影响（附录 N、M、Z 各用一次）。
 
-位移还有一个「安全阀」的读法：$\Delta$ 随 $\beta_p$ 线性增长，而 $\beta_p\propto 1/B_\theta^2
+位移还有一个「安全阀」的读法。$\Delta$ 随 $\beta_p$ 线性增长，而 $\beta_p\propto 1/B_\theta^2
 \propto 1/I_p^2$。要跑到 $\Delta=a/2=1.0\ \mathrm{m}$（磁轴跑到等离子体边缘），需要
-$\beta_p = 2.6$，是本工作点 $0.329081$ 的将近八倍——所以环径比越大、电流越足的装置，
+$\beta_p = 2.6$，是本工作点 $0.329081$ 的将近八倍。所以环径比越大、电流越足的装置，
 越不容易被位移吃掉。反过来，$\beta_p$ 翻倍时 $\Delta$ 从 $0.267445\ \mathrm{m}$ 涨到
 $0.3736\ \mathrm{m}$，代价立刻可见。
 
@@ -233,15 +233,12 @@ $\Delta=a/2$ 所需 $\beta_p$ & $2.6$ & 反解 & 大电流装置更安全 \\
 
 \begin{tip}{位移不是误差，是压强与电流付的账}{tip-app-ag-shift}
 $\Delta\propto(\beta_p+l_i/2)$：压强越大、电流越尖，磁轴越往外跑。$\Delta$ 与
-$1/I_p^2$ 成正比，所以提高电流既压住位移，又顺带抬高 $q$ 的余量——这就是大电流
+$1/I_p^2$ 成正比，所以提高电流既压住位移，又顺带抬高 $q$ 的余量，这就是大电流
 装置在设计上诱人的地方。
 \end{tip}
 
-\textbf{出处：}Shafranov 位移的小 $\epsilon$ 表达式参照 Shafranov（\emph{Reviews of
-Plasma Physics} \textbf{2} (1966) 103）。
-Zakharov \& Shafranov（\emph{Sov. Phys.
-Tech. Phys.} \textbf{18} (1973) 151）与 Wesson \emph{Tokamaks}（第 4 版，2011，
-第 3 章）。
+\textbf{出处：}Shafranov 位移的小 $\epsilon$ 表达式参照 Shafranov（\emph{Reviews of Plasma Physics} \textbf{2} (1966) 103）。
+Zakharov \& Shafranov（\emph{Sov. Phys. Tech. Phys.} \textbf{18} (1973) 151）与 Wesson \emph{Tokamaks}（第 4 版，2011，第 3 章）。
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.72\textwidth]{../figures/ag_kstar_tokamak.jpg}
@@ -271,14 +268,13 @@ I_p^{\max}(\kappa=2.0) = 19.2802\ \mathrm{MA},
 I_p^{\max}(\kappa=1.3) = 10.3728\ \mathrm{MA}.
 \label{eq:app-ag-current}
 \end{equation}
-这条式子解释了一个工程事实：现代托卡马克都是「竖着的椭圆」，不是审美问题，而是
-在 $q_{95}$ 这条安全线以下多要几兆安培的电流。
+这条式子解释了一个工程事实：现代托卡马克都是「竖着的椭圆」。这是在 $q_{95}$ 这条安全线以下多要几兆安培的电流，不是审美问题。
 
 三角形变 $\delta$ 买的是另一样东西。它几乎不影响 $q_{95}$，却改变了磁面的局域曲率，
 把气球模的驱动压低：本工作点取 $\delta=0.4$，稳定性计算（附录 AD）里把比压极限提高了
 $20\%$（声明值，取自文献的经验区间）。面积与体积对形状的响应也能一眼看出：
 体积 $V=2\pi^2 R a^2\kappa$ 对 $a$ 是平方、对 $\kappa$ 是线性。若把 $a$ 放大 $10\%$、
-$R$ 放大 $5\%$，体积从 $832.205\ \mathrm{m^3}$ 涨到 $1057.32\ \mathrm{m^3}$——多出来的
+$R$ 放大 $5\%$，体积从 $832.205\ \mathrm{m^3}$ 涨到 $1057.32\ \mathrm{m^3}$，多出来的
 每一立方米都要靠磁场去约束。
 
 \begin{table}[htbp]
@@ -305,10 +301,8 @@ $\kappa=1.7$ 相对圆截面多要了将近一倍的电流，代价是垂直稳�
 \end{tip}
 
 {\footnotesize
-\textbf{出处：}形状因子与 $\beta_N$ 的三角形变增益参照 Troyon 等（\emph{Plasma Phys.
-Control. Fusion} \textbf{26} (1984) 209）。
-Freidberg \emph{Ideal MHD}（2014，第 6、12 章）
-与 ITER Physics Basis（\emph{Nucl. Fusion} \textbf{39} (1999) 2137）。
+\textbf{出处：}形状因子与 $\beta_N$ 的三角形变增益参照 Troyon 等（\emph{Plasma Phys. Control. Fusion} \textbf{26} (1984) 209）。
+Freidberg \emph{Ideal MHD}（2014，第 6、12 章）与 ITER Physics Basis（\emph{Nucl. Fusion} \textbf{39} (1999) 2137）。
 本节的写法与
 全部数值由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAG\_calc.py} 复算。
 }
@@ -317,7 +311,7 @@ Freidberg \emph{Ideal MHD}（2014，第 6、12 章）
 \label{sec:app-ag-beta}
 
 比压 $\beta$ 是「用磁场换聚变功率」的效率：$\beta$ 越大，同样磁场下能装的压强越多，
-聚变功率密度越高。但它有上限，而这个上限不是材料强度给的，是\textbf{磁场的刚度}给的——
+聚变功率密度越高。但它有上限，而这个上限不是材料强度给的，是\textbf{磁场的刚度}给的：
 磁压 $B^2/2\mu_0$ 必须远大于等离子体压强，否则磁面自己就被推散了。
 
 先看量级上界。由维里定理可以证明，环向比压受 $\epsilon/q^2$ 量级的限制，
@@ -345,7 +339,7 @@ I_p(q_{95}=3.0) = \frac{2\pi a^2 B_0}{\mu_0 R q_{95}}\frac{1+\kappa^2}{2}
 \label{eq:app-ag-alpha}
 \end{equation}
 比现在低 $1.35325$ 倍。电流一降，Greenwald 密度也跟着降：$n_G = 8.82069\times10^{19}\ \mathrm{m^{-3}}$，
-于是 $n_e/n_G = 1.1337>1$——工作点反而\textbf{越过了密度极限}。这组数把聚变堆设计的
+于是 $n_e/n_G = 1.1337>1$，工作点反而\textbf{越过了密度极限}。这组数把聚变堆设计的
 两难说得很清楚：\textbf{$q_{95}$ 的安全线、Greenwald 密度线、以及 $\beta$ 的效率线，
 三条线不能同时舒服地满足}，只能各自留余量。
 
@@ -354,7 +348,7 @@ I_p(q_{95}=3.0) = \frac{2\pi a^2 B_0}{\mu_0 R q_{95}}\frac{1+\kappa^2}{2}
 \alpha = \frac{2\mu_0 q_{95}^2 R \langle p\rangle}{a B_0^2} = 0.401587,
 \label{eq:app-ag-mercier}
 \end{equation}
-与附录 AD 里台基处用的 $\alpha_{\rm crit}=2.5$ 相比只有 $0.160635$——可见芯部的
+与附录 AD 里台基处用的 $\alpha_{\rm crit}=2.5$ 相比只有 $0.160635$，可见芯部的
 气球模驱动远小于台基，稳定性问题主要集中在边上那十几厘米。
 
 \begin{table}[htbp]
@@ -377,18 +371,15 @@ $n_e/n_G$ & $0.85$（附录 AD 口径） & $1.0$ & 降流后变成 $1.1337$ \\
 \end{table}
 
 \begin{tip}{比压的上限不是材料强度，是磁场的刚度}{tip-app-ag-beta}
-$\beta$ 上不去，不是因为容器会被压坏，而是因为磁压不够把等离子体压强箍住。
+$\beta$ 上不去，容器并不会被压坏，真正的原因是磁压不够，箍不住等离子体的压强。
 维里量级 $\epsilon/q_{95}^2$ 与 Troyon 极限 $\beta_N\lesssim3$ 是两把不同的尺子，
 前者是理论量级，后者是实验归纳，用哪一个要说明口径。
 \end{tip}
 
 {\footnotesize
-\textbf{出处：}维里定理与比压量级上界参照 Greene, Johnson \& Weimer（\emph{Phys.
-Fluids} \textbf{14} (1971) 671）与 Freidberg \emph{Ideal MHD}（2014，第 11--12 章）。
-Troyon 型极限与形状增益取自 Troyon 等（\emph{Plasma Phys. Control. Fusion} \textbf{26}
-(1984) 209）。
-Wesson \emph{Tokamaks}（第 4 版，2011，第 3、6 章）与 ITER Physics Basis
-（\emph{Nucl. Fusion} \textbf{39} (1999) 2137）。
+\textbf{出处：}维里定理与比压量级上界参照 Greene, Johnson \& Weimer（\emph{Phys. Fluids} \textbf{14} (1971) 671）与 Freidberg \emph{Ideal MHD}（2014，第 11--12 章）。
+Troyon 型极限与形状增益取自 Troyon 等（\emph{Plasma Phys. Control. Fusion} \textbf{26} (1984) 209）。
+Wesson \emph{Tokamaks}（第 4 版，2011，第 3、6 章）与 ITER Physics Basis（\emph{Nucl. Fusion} \textbf{39} (1999) 2137）。
 本节的写法与全部数值由
 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAG\_calc.py} 复算。
 }
@@ -408,7 +399,7 @@ Wesson \emph{Tokamaks}（第 4 版，2011，第 3、6 章）与 ITER Physics Bas
 \frac{s_{95}^2}{2} = 0.602617\ (\text{Mercier 型}),
 \label{eq:app-ag-suydam}
 \end{equation}
-它们说明：剪切越大，局域判据越容易满足；但剪切太大又会让撕裂模更容易长出来——
+它们说明：剪切越大，局域判据越容易满足；但剪切太大又会让撕裂模更容易长出来，
 这就是为什么 $q$ 剖面要「平一点但不要太平」。
 
 第三组输入是电流剖面的内电感 $l_i=1.0$ 与极向比压的组合
@@ -484,7 +475,7 @@ $\Delta/a=12.9955\%$。注意环径比小了（$R/a=3.66667$），位移占比�
 \textbf{解答 2}$2.5$ 倍。因为 $(1+\kappa^2)/2$ 从 $1.0$ 涨到 $2.5$，而 $q_{95}\propto
 I_p^{-1}$，所以同样 $q_{95}$ 下电流上限按 $2.5$ 倍放大。
 
-\textbf{解答 3}外侧 $1.13372$ 倍、内侧 $0.866277$ 倍——两侧加起来仍是 $2a$，
+\textbf{解答 3}外侧 $1.13372$ 倍、内侧 $0.866277$ 倍，两侧加起来仍是 $2a$，
 但磁通在外侧摊得更开，这就是偏滤器与天线要按外侧设计的原因。
 
 \textbf{解答 4}$V=1117.79\ \mathrm{m^3}$，是 $832.205\ \mathrm{m^3}$ 的 $1.34317$ 倍。
@@ -495,7 +486,7 @@ $2.94608\times10^{5}\ \mathrm{Pa}$ 的 $1.61055$ 倍；由于聚变功率密度�
 $\langle p\rangle^2$ 走，功率密度还能涨到两倍半左右。
 
 \textbf{解答 6}$I_p=11.0844\ \mathrm{MA}$，比现在低 $1.35325$ 倍；$n_G$ 降到
-$8.82069\times10^{19}\ \mathrm{m^{-3}}$，于是 $n_e/n_G=1.1337$——超过了密度极限。
+$8.82069\times10^{19}\ \mathrm{m^{-3}}$，于是 $n_e/n_G=1.1337$，超过了密度极限。
 这正是第五节说的「三条线不能同时满足」。
 
 \section{来源、分级与版权说明}
@@ -554,15 +545,10 @@ EFIT、VMEC、CHEASE 只提及名称与用途，不转载其结果。（3）不�
 
 \textbf{出处：}本附录的写法参照 Freidberg \emph{Ideal MHD}（2014，第 5--6、11--12 章）。
 Wesson \emph{Tokamaks}（第 4 版，2011，第 3、6 章）。
-Grad \& Rubin（1958，第二次日内瓦
-会议论文集 \textbf{31}，190）。
-Shafranov（\emph{Reviews of Plasma Physics} \textbf{2}
-(1966) 103）。
-Troyon 等（\emph{Plasma Phys. Control. Fusion} \textbf{26} (1984) 209）
-与 ITER Physics Basis（\emph{Nucl. Fusion} \textbf{39} (1999) 2137），数值平衡程序的
-名称与用途参照 Lao 等（\emph{Nucl. Fusion} \textbf{25} (1985) 1611）。
-Hirshman \&
-Whitson（\emph{Phys. Fluids} \textbf{26} (1983) 3553）与 Lütjens, Bondeson \& Sauter
-（\emph{Comput. Phys. Commun.} \textbf{97} (1996) 219）。本节的写法与全部数值由
-\texttt{tools/\allowbreak{}calc/\allowbreak{}appAG\_calc.py} 复算。
+Grad \& Rubin（1958，第二次日内瓦会议论文集 \textbf{31}，190）。
+Shafranov（\emph{Reviews of Plasma Physics} \textbf{2} (1966) 103）。
+Troyon 等（\emph{Plasma Phys. Control. Fusion} \textbf{26} (1984) 209）与 ITER Physics Basis（\emph{Nucl. Fusion} \textbf{39} (1999) 2137）。
+数值平衡程序的名称与用途参照 Lao 等（\emph{Nucl. Fusion} \textbf{25} (1985) 1611）。
+Hirshman \& Whitson（\emph{Phys. Fluids} \textbf{26} (1983) 3553）与 Lütjens, Bondeson \& Sauter（\emph{Comput. Phys. Commun.} \textbf{97} (1996) 219）。
+本节的写法与全部数值由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAG\_calc.py} 复算。
 \endgroup

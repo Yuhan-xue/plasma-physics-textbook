@@ -101,7 +101,7 @@ v_A = \frac{10^{-3}}{\sqrt{4\pi\times 10^{-7}\times 1.673\times 10^{-13}}} = \fr
 \end{enumerate}
 Spitzer 电阻率近似公式：$\eta \approx 5\times 10^{-5} Z\ln\Lambda / T_e^{3/2}\,[\Omega\mathrm{m}]$，$T_e$ 单位为 $\mathrm{eV}$，取 $\ln\Lambda=10$。
 
-\textbf{模型的适用性提示：} Spitzer 公式\emph{只计入电子--离子库仑碰撞}。下面第 (2) 问的“氩气放电”题面没有给电离度与中性气体密度，因此\textbf{这里只研究一个假设库仑碰撞主导的假想氩等离子体}；真实低温放电中电子--中性碰撞常使 $\eta$ 高出若干个数量级，绝不能把下面的 $R_m$ 直接当成实际装置的数值。用量级结论前，先对照正文\S5.1 的三道门槛。
+\textbf{模型的适用性提示：} Spitzer 公式\emph{只计入电子--离子库仑碰撞}。下面第 (2) 问的“氩气放电”题面没有给电离度与中性气体密度，因此\textbf{这里只研究一个假设库仑碰撞主导的假想氩等离子体}。真实低温放电中电子--中性碰撞常使 $\eta$ 高出若干个数量级，绝不能把下面的 $R_m$ 直接当成实际装置的数值。用量级结论前，先对照正文\S5.1 的三道门槛。
 \tcblower
 \textbf{解答：}
 
@@ -112,7 +112,7 @@ Spitzer 电阻率近似公式：$\eta \approx 5\times 10^{-5} Z\ln\Lambda / T_e^
 \[
 R_m = \frac{\mu_0 v L}{\eta} = \frac{4\pi\times 10^{-7}\times 10^4\times 1}{5\times 10^{-10}} = \frac{1.257\times 10^{-2}}{5\times 10^{-10}} \approx 2.5\times 10^7
 \]
-$R_m \gg 1$，磁扩散时间 $\tau_\eta = \mu_0 L^2/\eta = R_m L/v \approx 2500\,\mathrm{s}$，远大于对流时间 $\tau_{\text{流}} = L/v = 10^{-4}\,\mathrm{s}$。这\emph{只}说明\textbf{电阻项可以丢掉}（理想 MHD 的第三道门槛）；要谈磁冻结还要过另外两道门槛——流体近似与单流体近似（正文第 5 章“MHD 适用条件：三道独立的门槛，别只看一道”）。本题没有给密度与频率，$d_i$ 与 $\omega/\omega_{ci}$ 无法核对，因此只能说：\textbf{在理想 MHD 模型内}磁力线冻结成立。
+$R_m \gg 1$，磁扩散时间 $\tau_\eta = \mu_0 L^2/\eta = R_m L/v \approx 2500\,\mathrm{s}$，远大于对流时间 $\tau_{\text{流}} = L/v = 10^{-4}\,\mathrm{s}$。这\emph{只}说明\textbf{电阻项可以丢掉}（理想 MHD 的第三道门槛）。要谈磁冻结还要过另外两道门槛——流体近似与单流体近似（正文第 5 章“MHD 适用条件：三道独立的门槛，别只看一道”）。本题没有给密度与频率，$d_i$ 与 $\omega/\omega_{ci}$ 无法核对，因此只能说：\textbf{在理想 MHD 模型内}磁力线冻结成立。
 
 \textbf{(2) 实验室放电：}
 \[
@@ -126,16 +126,16 @@ $R_m \sim 1$（略大于 1），磁扩散时间 $\tau_\eta = \mu_0 L^2/\eta \app
 \textbf{判据总结：}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
 \item $R_m \gg 1$：磁对流主导，磁通冻结（理想MHD，如天体等离子体、托卡马克；三道门槛中的第三道）
-\item $R_m \ll 1$：磁扩散主导，磁力线可滑过流体（如实验室低参数等离子体、固态导体）
-\item $R_m \sim 1$：两者竞争，出现磁重联等有趣现象（如太阳耀斑电流片）
+。\item $R_m \ll 1$：磁扩散主导，磁力线可滑过流体（如实验室低参数等离子体、固态导体）
+。\item $R_m \sim 1$：两者竞争，出现磁重联等有趣现象（如太阳耀斑电流片）。
 \end{itemize}
 \end{example}
 
 \begin{example}{理想MHD中的磁能与动能转换}{mhd-energy-conversion}
-从理想MHD方程组出发，证明：
+从理想MHD方程组出发，证明。
 \begin{enumerate}[label=(\arabic*)]
-\item 磁能演化满足 $\displaystyle\frac{\partial}{\partial t}\left(\frac{B^2}{2\mu_0}\right) = -\divg\vect{S} - \vect{u}\cdot(\vect{j}\times\vect{B})$，其中 $\vect{S} = \vect{E}\times\vect{B}/\mu_0$ 为坡印廷矢量；
-\item 动能演化满足 $\displaystyle\frac{\partial}{\partial t}\left(\frac{1}{2}\rho_m u^2\right) + \divg\left(\frac{1}{2}\rho_m u^2\vect{u}\right) = -\vect{u}\cdot\grad p + \vect{u}\cdot(\vect{j}\times\vect{B})$；
+\item 磁能演化满足 $\displaystyle\frac{\partial}{\partial t}\left(\frac{B^2}{2\mu_0}\right) = -\divg\vect{S} - \vect{u}\cdot(\vect{j}\times\vect{B})$，其中 $\vect{S} = \vect{E}\times\vect{B}/\mu_0$ 为坡印廷矢量。
+\item 动能演化满足 $\displaystyle\frac{\partial}{\partial t}\left(\frac{1}{2}\rho_m u^2\right) + \divg\left(\frac{1}{2}\rho_m u^2\vect{u}\right) = -\vect{u}\cdot\grad p + \vect{u}\cdot(\vect{j}\times\vect{B})$。
 \item 解释 $\vect{u}\cdot(\vect{j}\times\vect{B})$ 的符号的物理意义。
 \end{enumerate}
 \tcblower
@@ -166,7 +166,7 @@ $R_m \sim 1$（略大于 1），磁扩散时间 $\tau_\eta = \mu_0 L^2/\eta \app
 \vect{E}\times\vect{B} = -(\vect{u}\times\vect{B})\times\vect{B}
 = B^2\vect{u} - (\vect{u}\cdot\vect{B})\vect{B}
 \]
-即 $\vect{E}\times\vect{B} = \mathbf{-}(\vect{u}\times\vect{B})\times\vect{B}$——\textbf{两者相差一个负号}，这正是本步最容易写错的地方。验证方式：取 $\vect{u}\perp\vect{B}$，则 $\vect{u}\times\vect{B}$ 垂直于两者，再叉乘 $\vect{B}$ 后方向回到 $\vect{u}$ 的\emph{反}方向，与 $\vect{E}\times\vect{B}$ 同向，大小 $B^2u$，即 $\vect{S}=\vect{E}\times\vect{B}/\mu_0 = B^2\vect{u}/\mu_0$。因此：
+即 $\vect{E}\times\vect{B} = \mathbf{-}(\vect{u}\times\vect{B})\times\vect{B}$——\textbf{两者相差一个负号}，这正是本步最容易写错的地方。验证方式：取 $\vect{u}\perp\vect{B}$，则 $\vect{u}\times\vect{B}$ 垂直于两者，再叉乘 $\vect{B}$ 后方向回到 $\vect{u}$ 的\emph{反}方向，与 $\vect{E}\times\vect{B}$ 同向，大小 $B^2u$，即 $\vect{S}=\vect{E}\times\vect{B}/\mu_0 = B^2\vect{u}/\mu_0$。因此。
 \[
 \divg\bigl((\vect{u}\times\vect{B})\times\vect{B}\bigr) = -\divg(\vect{E}\times\vect{B}) = -\mu_0\divg\vect{S}
 \]
@@ -176,7 +176,7 @@ $R_m \sim 1$（略大于 1），磁扩散时间 $\tau_\eta = \mu_0 L^2/\eta \app
 (\vect{u}\times\vect{B})\cdot\curl\vect{B} = -\mu_0\,\vect{u}\cdot(\vect{j}\times\vect{B})
 \]
 
-综合得：
+综合得。
 \[
 \frac{\partial}{\partial t}\left(\frac{B^2}{2\mu_0}\right) = -\divg\vect{S} - \vect{u}\cdot(\vect{j}\times\vect{B})
 \]
@@ -196,7 +196,7 @@ $R_m \sim 1$（略大于 1），磁扩散时间 $\tau_\eta = \mu_0 L^2/\eta \app
 \]
 
 \textbf{(3) 物理意义：}
-将 (1) 与 (2) 相加，$\vect{u}\cdot(\vect{j}\times\vect{B})$ 项相互抵消：
+将 (1) 与 (2) 相加，$\vect{u}\cdot(\vect{j}\times\vect{B})$ 项相互抵消。
 \[
 \frac{\partial}{\partial t}\left(\frac{1}{2}\rho_m u^2 + \frac{B^2}{2\mu_0}\right) = -\divg\left(\frac{1}{2}\rho_m u^2\vect{u} + \vect{S}\right) - \vect{u}\cdot\grad p
 \]
@@ -204,7 +204,7 @@ $R_m \sim 1$（略大于 1），磁扩散时间 $\tau_\eta = \mu_0 L^2/\eta \app
 $\vect{u}\cdot(\vect{j}\times\vect{B})$ 是磁能与动能之间的\textbf{转换项}（内部交换，不改变两者之和）：
 \begin{itemize}[leftmargin=*,itemsep=0pt]
 \item 当 $\vect{u}\cdot(\vect{j}\times\vect{B}) > 0$：洛伦兹力对等离子体做正功，\textbf{磁能转化为动能}（如磁驱动喷流、等离子体加速）
-\item 当 $\vect{u}\cdot(\vect{j}\times\vect{B}) < 0$：等离子体做功抵抗磁场，\textbf{动能转化为磁能}（如发电机效应、磁场放大）
+。\item 当 $\vect{u}\cdot(\vect{j}\times\vect{B}) < 0$：等离子体做功抵抗磁场，\textbf{动能转化为磁能}（如发电机效应、磁场放大）
 \end{itemize}
 
 \textbf{但这还不是完整的能量守恒}——上式右端仍留着 $-\vect{u}\cdot\grad p$，它把能量交给了\textbf{内能}，而内能没有出现在守恒式里。磁能与动能之和并不单独守恒：压强功会把能量泵入内能，或反过来。\textbf{加上内能才闭合}。
@@ -221,8 +221,8 @@ $\vect{u}\cdot(\vect{j}\times\vect{B})$ 是磁能与动能之间的\textbf{转�
 
 \textbf{三层含义：}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
-\item \textbf{局域交换}：$\vect{u}\cdot(\vect{j}\times\vect{B})$ 与 $-\vect{u}\cdot\grad p$ 是同一空间点上不同能量库之间的转移，不进出系统；
-\item \textbf{边界能流}：散度项 $\divg\{\cdots\}$ 描述能量跨越控制面的输运；
+\item \textbf{局域交换}：$\vect{u}\cdot(\vect{j}\times\vect{B})$ 与 $-\vect{u}\cdot\grad p$ 是同一空间点上不同能量库之间的转移，不进出系统。
+\item \textbf{边界能流}：散度项 $\divg\{\cdots\}$ 描述能量跨越控制面的输运。
 \item \textbf{封闭系统总量}：对全空间积分，散度项化为边界通量。取边界上无能量流出，则 $\frac{\diff}{\diff t}\int(K+U+U_B)\diff V=0$——\textbf{这才是“能量守恒”四个字所指的结论}。
 \end{itemize}
 只把 $K$ 与 $U_B$ 相加就宣称“总能量守恒”，遗漏了内能与之相伴的压强功，是初学者最常见的误读。这一条也直接连到第10章的加热与第11章的输运损失：能量进了内能，究竟是被带走还是被辐射掉，正是那里要回答的问题。
@@ -292,7 +292,7 @@ $\vect{u}\cdot(\vect{j}\times\vect{B})$ 是磁能与动能之间的\textbf{转�
 
 % ch5 新例题：Z-pinch 平衡（Bennett 压缩）
 \begin{example}{Z-pinch 的 Bennett 关系与平衡温度}{bennett-pinch}
-一直圆柱等离子体（Z-pinch）流过轴向电流 $I = 100\,\mathrm{kA}$，线密度（每单位长度粒子数）为 $N = 10^{19}\,\mathrm{m^{-1}}$，离子为氘（$m_i = 2m_p$）。用 Bennett 关系估算维持平衡所需的温度 $T_e + T_i$，并讨论该平衡为何不稳定。
+一直圆柱等离子体（Z-pinch）流过轴向电流 $I = 100\,\mathrm{kA}$。线密度（每单位长度粒子数）为 $N = 10^{19}\,\mathrm{m^{-1}}$，离子为氘（$m_i = 2m_p$）。用 Bennett 关系估算维持平衡所需的温度 $T_e + T_i$，并讨论该平衡为何不稳定。
 \tcblower
 \textbf{解答：}
 
@@ -317,7 +317,7 @@ T_e + T_i = \frac{5.0\times10^{-17}}{1.381\times10^{-23}}\,\mathrm{K} = 3.6\time
 
 即平衡要求 $T_e + T_i \approx 310\,\mathrm{eV}$（电子与离子各约 $155\,\mathrm{eV}$）。这与实际 Z-pinch 实验的温度量级（$100\sim1000\,\mathrm{eV}$）一致，说明 Bennett 关系对 Z-pinch 参数的估计是合理的。反过来，若给定温度 $T\sim100\,\mathrm{eV}$，维持平衡所需的最小电流为 $I \approx 57\,\mathrm{kA}$。
 
-\textbf{不稳定性：} Z-pinch 平衡对 $m=0$（sausage，腊肠模）和 $m=1$（kink，扭曲模）扰动都不稳定（见第9章）：电流产生的角向磁场在截面收窄处增强（磁压更大），进一步压缩——正反馈。稳定 Z-pinch 需要纵向磁场（shear 场）、导电壁或快速等离子体加热。这也是 Z-pinch 至今未成为主流聚变约束方案的核心原因。
+\textbf{不稳定性：} Z-pinch 平衡对 $m=0$（sausage，腊肠模）和 $m=1$（kink，扭曲模）扰动都不稳定（见第9章）。电流产生的角向磁场在截面收窄处增强（磁压更大），进一步压缩——正反馈。稳定 Z-pinch 需要纵向磁场（shear 场）、导电壁或快速等离子体加热。这也是 Z-pinch 至今未成为主流聚变约束方案的核心原因。
 \end{example}
 
 \begin{formulabox}{第 5 章}{ch5-formulas}
@@ -325,26 +325,26 @@ T_e + T_i = \frac{5.0\times10^{-17}}{1.381\times10^{-23}}\,\mathrm{K} = 3.6\time
 \item 理想MHD质量守恒：$\displaystyle\frac{\partial\rho_m}{\partial t} + \divg(\rho_m\vect{u}) = 0$
 \item 理想MHD动量方程：$\displaystyle\rho_m\left(\frac{\partial\vect{u}}{\partial t} + \vect{u}\cdot\grad\vect{u}\right) = -\grad p + \vect{j}\times\vect{B}$
 \item 理想欧姆定律：$\displaystyle\vect{E} + \vect{u}\times\vect{B} = 0$
-\item 磁场演化：$\displaystyle\frac{\partial\vect{B}}{\partial t} = \curl(\vect{u}\times\vect{B})$
+。\item 磁场演化：$\displaystyle\frac{\partial\vect{B}}{\partial t} = \curl(\vect{u}\times\vect{B})$
 \item 磁压：$\displaystyle p_B = \frac{B^2}{2\mu_0}$，磁张力：$\displaystyle\frac{1}{\mu_0}(\vect{B}\cdot\grad)\vect{B}$
 \item 比压：$\displaystyle\beta = \frac{2\mu_0 p}{B^2}$
-\item 阿尔芬速度：$\displaystyle v_A = \frac{B}{\sqrt{\mu_0\rho_m}}$
+。\item 阿尔芬速度：$\displaystyle v_A = \frac{B}{\sqrt{\mu_0\rho_m}}$
 \item 阿尔芬波色散关系：$\displaystyle\omega = k_\parallel v_A$（无色散；群速度 $\vect{v}_g=\pm v_A\unitvec{B}$ 恒沿磁场，相速度 $v_p=v_A\cos\theta$ 仅在 $\vect{k}\parallel\vect{B}$ 时等于 $v_A$）
 \item 磁雷诺数：$\displaystyle R_m = \frac{\mu_0 v L}{\eta} = \frac{\tau_\eta}{\tau_{\text{流}}}$
-\item 静态平衡：$\displaystyle\grad p = \vect{j}\times\vect{B}$（Grad-Shafranov方程的基础）
+。\item 静态平衡：$\displaystyle\grad p = \vect{j}\times\vect{B}$（Grad-Shafranov方程的基础）。
 \end{itemize}
-\textbf{符号说明：}$\rho_m$ 为质量密度；$\vect{u}$ 为流速；$p$ 为热压强，$p_B=B^2/2\mu_0$ 为磁压，$\beta$ 为比压；$\omega$、$k$ 为波角频率与波数（$k_\parallel$ 为其平行分量）。$\vect{v}_g$ 为群速度、$v_p$ 为相速度、$v_A$ 为阿尔芬速度；$\theta$ 为波矢与磁场的夹角；$R_m=\mu_0vL/\eta$ 为磁雷诺数，$L$ 为特征长度，$\eta$ 为电阻率；$\tau_\eta$ 为磁扩散时间、$\tau_{\text{流}}$ 为流动时间。
+\textbf{符号说明：}$\rho_m$ 为质量密度；$\vect{u}$ 为流速；$p$ 为热压强，$p_B=B^2/2\mu_0$ 为磁压，$\beta$ 为比压；$\omega$、$k$ 为波角频率与波数（$k_\parallel$ 为其平行分量）。$\vect{v}_g$ 为群速度、$v_p$ 为相速度、$v_A$ 为阿尔芬速度。$\theta$ 为波矢与磁场的夹角。$R_m=\mu_0vL/\eta$ 为磁雷诺数，$L$ 为特征长度，$\eta$ 为电阻率；$\tau_\eta$ 为磁扩散时间、$\tau_{\text{流}}$ 为流动时间。
 \end{formulabox}
 
 \begin{checklistbox}{第5章自学检查清单}{ch5-checklist}
 \begin{itemize}[leftmargin=*,label=$\square$]
-\item 我能从双流体方程出发，说明MHD近似的适用条件（$\tau\gg 1/\omega_{ci}$，$L\gg\rho_{Li}$）
-\item 我能计算比压 $\beta$、阿尔芬速度 $v_A$ 和磁雷诺数 $R_m$，并判断其物理意义
-\item 我理解了磁压与磁张力的分解：洛伦兹力 = 磁压梯度 + 磁张力
-\item 我能从$R_m$的大小判断磁力线冻结是否成立，并知道电阻会破坏冻结
-\item 我掌握了阿尔芬波的物理图像：磁张力作为恢复力的横波，能量沿磁力线以 $v_A$ 输运（而非沿波矢）
-\item 我能推导理想MHD中磁能与动能转换的方程，并解释$\vect{u}\cdot(\vect{j}\times\vect{B})$的符号含义
-\item 我知道静态平衡$\grad p = \vect{j}\times\vect{B}$是托卡马克和仿星器设计的出发点
+\item 我能从双流体方程出发，说明MHD近似的适用条件（$\tau\gg 1/\omega_{ci}$，$L\gg\rho_{Li}$）。
+\item 我能计算比压 $\beta$、阿尔芬速度 $v_A$ 和磁雷诺数 $R_m$，并判断其物理意义。
+\item 我理解了磁压与磁张力的分解：洛伦兹力 = 磁压梯度 + 磁张力。
+\item 我能从$R_m$的大小判断磁力线冻结是否成立，并知道电阻会破坏冻结。
+\item 我掌握了阿尔芬波的物理图像：磁张力作为恢复力的横波，能量沿磁力线以 $v_A$ 输运（而非沿波矢）。
+\item 我能推导理想MHD中磁能与动能转换的方程，并解释$\vect{u}\cdot(\vect{j}\times\vect{B})$的符号含义。
+\item 我知道静态平衡$\grad p = \vect{j}\times\vect{B}$是托卡马克和仿星器设计的出发点。
 \end{itemize}
 \end{checklistbox}
 

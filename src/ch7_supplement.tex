@@ -8,7 +8,7 @@
 \addcontentsline{toc}{section}{习题精选}
 
 \begin{example}{麦克斯韦分布验证Vlasov 方程的稳态解}{maxwell-vlasov-verify}
-设一维平衡分布为麦克斯韦分布：
+设一维平衡分布为麦克斯韦分布。
 \[
 f_0(v) = n\sqrt{\frac{m}{2\pi k_{\!B}T}}\,\exp\!\left(-\frac{mv^2}{2k_{\!B}T}\right)
 \]
@@ -16,7 +16,7 @@ f_0(v) = n\sqrt{\frac{m}{2\pi k_{\!B}T}}\,\exp\!\left(-\frac{mv^2}{2k_{\!B}T}\ri
 \tcblower
 \textbf{解答：}
 
-一维Vlasov 方程（无电磁场）为：
+一维Vlasov 方程（无电磁场）为。
 \[
 \frac{\partial f}{\partial t} + v\frac{\partial f}{\partial x} + \frac{qE}{m}\frac{\partial f}{\partial v} = 0
 \]
@@ -35,12 +35,12 @@ f_0(v) = n\sqrt{\frac{m}{2\pi k_{\!B}T}}\,\exp\!\left(-\frac{mv^2}{2k_{\!B}T}\ri
 
 \textbf{第三项}：$\frac{qE}{m}\frac{\partial f_0}{\partial v}$。题设 $E=0$，故此项为零。
 
-三项之和为零：
+三项之和为零。
 \[
 0 + 0 + 0 = 0
 \]
 
-因此 $f_0(v)$ 满足Vlasov 方程。\textbf{物理意义}：在没有电磁场和梯度的情况下，任何只依赖 $v$ 的分布都是Vlasov 方程的稳态解——麦克斯韦分布只是其中一员。
+因此 $f_0(v)$ 满足Vlasov 方程。\textbf{物理意义}：在没有电磁场和梯度的情况下，任何只依赖 $v$ 的分布都是Vlasov 方程的稳态解：麦克斯韦分布只是其中一员。
 
 \end{example}
 
@@ -49,7 +49,7 @@ f_0(v) = n\sqrt{\frac{m}{2\pi k_{\!B}T}}\,\exp\!\left(-\frac{mv^2}{2k_{\!B}T}\ri
 \begin{itemize}
 \item \textbf{稳态}：$\partial f_0/\partial t=0$，分布不随时间变。这只需要 $f_0$ 不含 $t$、$x$，\emph{任何} $f_0(v)$ 都满足。
 \item \textbf{热平衡}：需要由\emph{碰撞}（或某种耗散）驱动到麦克斯韦分布。纯 Vlasov 方程（碰撞项为零）里根本没有把分布“拉向”麦克斯韦的机制，所以“代入麦克斯韦分布能验证稳态”\emph{不能}证明无碰撞热化。
-\item \textbf{稳定}：还需要分布满足无自由能的判据。一个稳态分布完全可以是\emph{不稳定}的——见下面的反问题。
+\item \textbf{稳定}：还需要分布满足无自由能的判据。一个稳态分布完全可以是\emph{不稳定}的，见下面的反问题。
 \end{itemize}
 
 \textbf{反问题（请自行验证）：} 取双峰分布 $f_0(v)=n[A_1\ee^{-(v-u)^2/2v_{t1}^2}+A_2\ee^{-(v+u)^2/2v_{t2}^2}]$（两束相向运动的电子），它同样只依赖 $v$，因此\emph{同样}是 Vlasov 方程的稳态解——但它是\textbf{双流不稳定性}的经典不稳定平衡（第9章）。可见“满足 Vlasov 稳态”与“能稳定存在”是两回事。真正决定稳定性的是 $\partial f_0/\partial v$ 的符号结构（第9章、本章末的 bump-on-tail），而不是“是否满足 $\partial_tf=0$”。
@@ -81,20 +81,20 @@ k\lambda_D = 10^{4}\times 1.49\times 10^{-5} \approx 0.149 \ll 1 \quad\checkmark
 落在长波渐近式适用区。
 
 \textbf{步骤3：代入Landau 阻尼率公式。}
-由教材公式：
+由教材公式。
 \[
 \omega_i = -\sqrt{\frac{\pi}{8}}\,\frac{\omega_{pe}}{(k\lambda_D)^3}\,
 \exp\!\left(-\frac{1}{2k^2\lambda_D^2} - \frac{3}{2}\right)
 \]
 
-先计算电子等离子体频率：
+先计算电子等离子体频率。
 \[
 \omega_{pe} = \sqrt{\frac{n_e e^2}{\eps_0 m_e}}
 = \sqrt{\frac{10^{18}\times (1.602\times 10^{-19})^2}{8.854\times 10^{-12}\times 9.109\times 10^{-31}}}
 \approx 5.64\times 10^{10}\,\mathrm{rad/s}
 \]
 
-计算指数部分：
+计算指数部分。
 \[
 \frac{1}{2k^2\lambda_D^2} = \frac{1}{2\times (0.149)^2} = \frac{1}{0.0444} \approx 22.5
 \]
@@ -105,7 +105,7 @@ k\lambda_D = 10^{4}\times 1.49\times 10^{-5} \approx 0.149 \ll 1 \quad\checkmark
 \exp(-24.0) \approx 3.78\times 10^{-11}
 \]
 
-计算前置因子：
+计算前置因子。
 \[
 \sqrt{\frac{\pi}{8}}\,\frac{\omega_{pe}}{(k\lambda_D)^3}
 = 0.627\times \frac{5.64\times 10^{10}}{(0.149)^3}
@@ -118,14 +118,14 @@ k\lambda_D = 10^{4}\times 1.49\times 10^{-5} \approx 0.149 \ll 1 \quad\checkmark
 |\omega_i| = 1.07\times 10^{13}\times 3.78\times 10^{-11} \approx 4.0\times 10^{2}\,\mathrm{rad/s}
 \]
 
-对应的衰减时间：
+对应的衰减时间。
 \[
 \tau = \frac{1}{|\omega_i|} \approx \frac{1}{4.0\times 10^{2}} \approx 2.5\times 10^{-3}\,\mathrm{s} = 2.5\,\mathrm{ms}
 \]
 
 \textbf{分析}：$|\omega_i|/\omega_{pe}\approx7\times10^{-9}$，远小于 $\omega_r$，弱阻尼假设自洽。波在毫秒尺度衰减，说明\textbf{长波} Langmuir 波在热等离子体中几乎无阻尼。这一结果对波诊断有直接意义：想用探针或散射测量 Langmuir 波，必须选 $k\lambda_D\ll1$ 的长波，否则波自身还没传播开就被阻尼掉了。
 
-\textbf{越界会怎样（提高题）：} 把 $k$ 换成 $5\times10^{4}\,\mathrm{m^{-1}}$（$k\lambda_D=0.745$），代入同一公式会得到 $|\omega_i|\approx7.7\times10^{9}\,\mathrm{rad/s}$、$\tau\approx0.13\,\mathrm{ns}$。\textbf{但这个数不可信}——$k\lambda_D=0.745$ 已不在渐近区（要求 $\ll1$），$\exp[-1/(2k^2\lambda_D^2)]$ 的展开前提（相速度落在分布尾部）已被破坏，正确做法是数值求解复色散函数 $Z(\zeta)$ 的根。数值上，$k\lambda_D\to1$ 时渐近式与 $Z$ 函数给出的阻尼率分歧迅速增大；只有 $k\lambda_D\lesssim0.3$ 时两者才吻合。
+\textbf{越界会怎样（提高题）：} 把 $k$ 换成 $5\times10^{4}\,\mathrm{m^{-1}}$（$k\lambda_D=0.745$），代入同一公式会得到 $|\omega_i|\approx7.7\times10^{9}\,\mathrm{rad/s}$、$\tau\approx0.13\,\mathrm{ns}$。\textbf{但这个数不可信}：$k\lambda_D=0.745$ 已不在渐近区（要求 $\ll1$），$\exp[-1/(2k^2\lambda_D^2)]$ 的展开前提（相速度落在分布尾部）已被破坏，正确做法是数值求解复色散函数 $Z(\zeta)$ 的根。数值上，$k\lambda_D\to1$ 时渐近式与 $Z$ 函数给出的阻尼率分歧迅速增大；只有 $k\lambda_D\lesssim0.3$ 时两者才吻合。
 \end{example}
 
 \begin{example}{共振粒子的能量交换——Landau 阻尼的微观机制}{resonant-energy}
@@ -135,7 +135,7 @@ k\lambda_D = 10^{4}\times 1.49\times 10^{-5} \approx 0.149 \ll 1 \quad\checkmark
 \tcblower
 \textbf{解答：}
 
-一维麦克斯韦分布（$v_{te}=\sqrt{k_{\!B}T_e/m_e}$）：
+一维麦克斯韦分布（$v_{te}=\sqrt{k_{\!B}T_e/m_e}$）。
 \[
 f(v) = \frac{n_0}{\sqrt{2\pi}\,v_{te}}\,\exp\!\left(-\frac{v^2}{2v_{te}^2}\right)
 \]
@@ -148,7 +148,7 @@ f'(v_\phi) = -\frac{v_\phi}{v_{te}^2}f(v_\phi) = -\frac{1.5}{v_{te}}f(v_\phi)\cd
 \]
 （注意 $f'$ 的量纲是 $f$ 除以速度：$[f']=[n_0]/[\mathrm{m/s}]^2$，所以斜率里\emph{恰好一个} $1/v_{te}$，不是两个也不是零。）
 
-\textbf{步骤2：慢、快区间的粒子数。} 对窄区间 $\Delta v\ll v_{te}$ 用线性近似 $f(v)\approx f(v_\phi)+f'(v_\phi)(v-v_\phi)$：
+\textbf{步骤2：慢、快区间的粒子数。} 对窄区间 $\Delta v\ll v_{te}$ 用线性近似 $f(v)\approx f(v_\phi)+f'(v_\phi)(v-v_\phi)$。
 \[
 N_{<} = \int_{v_\phi-\Delta v}^{v_\phi}\!\! f\,\diff v \approx f(v_\phi)\Delta v - \tfrac12 f'(v_\phi)\Delta v^2,
 \qquad
@@ -166,16 +166,16 @@ N_{<}-N_{>} = -f'(v_\phi)\Delta v^2 = \frac{v_\phi}{v_{te}^2}f(v_\phi)\Delta v^2
 = \frac{0.15}{2} = \boxed{7.5\%}
 \]
 
-\textbf{关键：} 比例里 $v_{te}^2$ 精确抵消，结果\emph{只}依赖两个无量纲比值 $v_\phi/v_{te}=1.5$ 和 $\Delta v/v_{te}=0.1$，所以\textbf{与选哪种热速度定义无关}——前提是两个比值相对\emph{同一种}定义给出。数值核验：对 $\ee^{-v^2/2}$ 直接在 $[1.4,1.6]$ 上积分，得 $(N_<-N_>)/(N_<+N_>)=0.0748\approx7.5\%$，与线性近似吻合。
+\textbf{关键：} 比例里 $v_{te}^2$ 精确抵消，结果\emph{只}依赖两个无量纲比值 $v_\phi/v_{te}=1.5$ 和 $\Delta v/v_{te}=0.1$，所以\textbf{与选哪种热速度定义无关}：前提是两个比值相对\emph{同一种}定义给出。数值核验：对 $\ee^{-v^2/2}$ 直接在 $[1.4,1.6]$ 上积分，得 $(N_<-N_>)/(N_<+N_>)=0.0748\approx7.5\%$，与线性近似吻合。
 
 \textbf{物理解释：}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
 \item 慢粒子（$v < v_\phi$）在波参考系中向左运动（$v-v_\phi<0$），被波的电场加速，从波获得动能。由于 $\partial f_0/\partial v<0$，慢粒子比快粒子多。
 \item 快粒子（$v > v_\phi$）在波参考系中向右运动，被波的电场减速，把动能交给波。
-\item 因为慢粒子更多，净效应是粒子从波获得能量——波被阻尼。这就是 Landau 阻尼的微观图像：不是碰撞，而是速度空间分布的斜率决定能量流向。
+\item 因为慢粒子更多，净效应是粒子从波获得能量，波被阻尼。这就是 Landau 阻尼的微观图像：不是碰撞，而是速度空间分布的斜率决定能量流向。
 \end{itemize}
 
-若分布有正斜率（$\partial f_0/\partial v>0$，如 bump-on-tail），则快粒子更多，净能量从粒子流向波——波增长，即不稳定性。
+若分布有正斜率（$\partial f_0/\partial v>0$，如 bump-on-tail），则快粒子更多，净能量从粒子流向波，波增长，即不稳定性。
 \end{example}
 
 \begin{example}{bump-on-tail不稳定性条件判断}{bump-on-tail-instability}
@@ -203,13 +203,13 @@ bump-on-tail不稳定性的核心是：在相速度 $v_\phi = \omega/k$ 处，�
 
 定性判据：束流速度 $u$ 应远大于背景热速度，但束流自身热速度 $v_{ts}$ 应足够小，使束流峰不“摊平”分布。
 
-定量上，常用条件是：
+定量上，常用条件是。
 \[
 \frac{u}{v_{tb}} \gtrsim 3\quad\text{且}\quad
 \frac{n_s}{n_b}\left(\frac{u}{v_{tb}}\right)^2 \gtrsim 1
 \]
 
-检查：
+检查。
 \[
 \frac{u}{v_{tb}} = \frac{5\times 10^{7}}{8.4\times 10^{5}} \approx 59.5 \gg 3 \quad\checkmark
 \]
@@ -293,7 +293,7 @@ bump-on-tail不稳定性的核心是：在相速度 $v_\phi = \omega/k$ 处，�
 
 % ch7 新例题：电子等离子体波的Landau 阻尼数值练习
 \begin{example}{Landau 阻尼随波长的变化}{landau-wavelength-dependence}
-氩等离子体（$n_e=10^{18}\,\mathrm{m^{-3}}$，$T_e=4\,\mathrm{eV}$）中，比较波数 $k = 10^4\,\mathrm{m^{-1}}$ 和 $k = 10^5\,\mathrm{m^{-1}}$ 的两列朗缪尔波的Landau 阻尼率，并讨论波长变短时阻尼如何变化。
+氩等离子体（$n_e=10^{18}\,\mathrm{m^{-3}}$，$T_e=4\,\mathrm{eV}$）中，比较波数 $k = 10^4\,\mathrm{m^{-1}}$ 和 $k = 10^5\,\mathrm{m^{-1}}$ 的两列朗缪尔波的Landau 阻尼率。讨论波长变短时阻尼如何变化。
 \tcblower
 \textbf{解答：}
 
@@ -302,7 +302,7 @@ bump-on-tail不稳定性的核心是：在相速度 $v_\phi = \omega/k$ 处，�
 \omega_i = -\sqrt{\frac{\pi}{8}}\,\frac{\omega_{pe}}{(k\lambda_D)^3}\exp\!\left(-\frac{1}{2k^2\lambda_D^2}-\frac{3}{2}\right)
 \]
 
-\textbf{情形 1：$k = 10^4\,\mathrm{m^{-1}}$。} $k\lambda_D = 0.149$：
+\textbf{情形 1：$k = 10^4\,\mathrm{m^{-1}}$。} $k\lambda_D = 0.149$。
 \[
 \frac{1}{2(k\lambda_D)^2} = \frac{1}{2\times0.0222} = 22.5,\qquad \text{指数} = -22.5-1.5 = -24
 \]
@@ -313,34 +313,34 @@ bump-on-tail不稳定性的核心是：在相速度 $v_\phi = \omega/k$ 处，�
 
 \textbf{情形 2：$k = 10^5\,\mathrm{m^{-1}}$。} $k\lambda_D = 1.49$。\textbf{这一情形不能直接套用上面的渐近式}：$k\lambda_D=1.49>1$，公式的展开前提已失效。若强行代入，会得到 $|\omega_i|\approx1.9\times10^{9}\,\mathrm{rad/s}$；这只是把渐近式外推到失效区的产物，仅供定性参考。正确做法是数值求解含 $Z(\zeta)$ 的复色散关系。
 
-\textbf{规律：} 三个波数对应 $k\lambda_D = 0.149,0.745,1.49$。在\emph{渐近式仍可信}的区间内（约 $k\lambda_D\lesssim0.3$），$k\lambda_D$ 从 $0.149$ 略增，指数因子 $\ee^{-24}$ 已经极小，阻尼率随 $k\lambda_D$ 增大而急剧上升——指数中 $1/(2k^2\lambda_D^2)$ 对 $k\lambda_D$ 极为敏感。Landau 阻尼的物理根源是：长波（$k\lambda_D\ll1$）的相速度远大于电子热速度，共振粒子数按 $\exp[-v_\phi^2/(2v_t^2)]$ 指数稀少；波长缩短使相速度落向电子热分布的主体，共振粒子迅速增多，阻尼随之剧增。
+\textbf{规律：} 三个波数对应 $k\lambda_D = 0.149,0.745,1.49$。在\emph{渐近式仍可信}的区间内（约 $k\lambda_D\lesssim0.3$），$k\lambda_D$ 从 $0.149$ 略增，指数因子 $\ee^{-24}$ 已经极小，阻尼率随 $k\lambda_D$ 增大而急剧上升：指数中 $1/(2k^2\lambda_D^2)$ 对 $k\lambda_D$ 极为敏感。Landau 阻尼的物理根源是：长波（$k\lambda_D\ll1$）的相速度远大于电子热速度，共振粒子数按 $\exp[-v_\phi^2/(2v_t^2)]$ 指数稀少；波长缩短使相速度落向电子热分布的主体，共振粒子迅速增多，阻尼随之剧增。
 
 \textbf{两条曲线的分工：} 情形 1 展示长波估算；情形 2 说明 $k\lambda_D\sim1$ 时渐近式失效，须解复色散函数（Fitzpatrick《Plasma Physics》第 5 章有标准处理）。这也是朗缪尔探针测电子分布（Druyvesteyn 法，第12章）与波诊断选波长时的基本限制。
 \end{example}
 
 \begin{formulabox}{第 7 章}{ch7-formulas}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
-\item Vlasov 方程：$\displaystyle\frac{\partial f}{\partial t} + \vect{v}\cdot\grad f + \frac{q}{m}(\vect{E} + \vect{v}\times\vect{B})\cdot\grad_v f = 0$
-\item 线性化色散关系（静电波）：$\displaystyle 1 = \frac{\omega_{pe}^2}{n_0k^2}\int_{-\infty}^{\infty} \frac{\partial f_0/\partial v}{v - \omega/k}\,\diff v$，其中 $\int f_0\diff v=n_0$（数密度分布约定；若用归一化 $\hat f_0=f_0/n_0$ 则去掉 $1/n_0$）
-\item Landau 阻尼率（麦克斯韦分布，\textbf{长波弱阻尼渐近式}，须 $k\lambda_D\ll1$）：$\displaystyle\omega_i = -\sqrt{\frac{\pi}{8}}\,\frac{\omega_{pe}}{(k\lambda_D)^3}\exp\!\left(-\frac{1}{2k^2\lambda_D^2} - \frac{3}{2}\right)$
-\item 波相速度：$\displaystyle v_\phi = \frac{\omega}{k}$
-\item 共振条件：$\displaystyle v_{\text{res}} = v_\phi = \frac{\omega}{k}$
-\item bump-on-tail增长率（估算）：$\displaystyle\gamma_{\max} \sim \frac{n_s}{2n_b}\omega_{pe}$
-\item 德拜长度：$\displaystyle\lambda_D = \sqrt{\frac{\eps_0 k_{\!B}T_e}{n_e e^2}}$
-\item 电子等离子体频率：$\displaystyle\omega_{pe} = \sqrt{\frac{n_e e^2}{\eps_0 m_e}}$
+\item Vlasov 方程：$\displaystyle\frac{\partial f}{\partial t} + \vect{v}\cdot\grad f + \frac{q}{m}(\vect{E} + \vect{v}\times\vect{B})\cdot\grad_v f = 0$。
+\item 线性化色散关系（静电波）：$\displaystyle 1 = \frac{\omega_{pe}^2}{n_0k^2}\int_{-\infty}^{\infty} \frac{\partial f_0/\partial v}{v - \omega/k}\,\diff v$，其中 $\int f_0\diff v=n_0$（数密度分布约定；若用归一化 $\hat f_0=f_0/n_0$ 则去掉 $1/n_0$）。
+\item Landau 阻尼率（麦克斯韦分布，\textbf{长波弱阻尼渐近式}，须 $k\lambda_D\ll1$）：$\displaystyle\omega_i = -\sqrt{\frac{\pi}{8}}\,\frac{\omega_{pe}}{(k\lambda_D)^3}\exp\!\left(-\frac{1}{2k^2\lambda_D^2} - \frac{3}{2}\right)$。
+\item 波相速度：$\displaystyle v_\phi = \frac{\omega}{k}$。
+\item 共振条件：$\displaystyle v_{\text{res}} = v_\phi = \frac{\omega}{k}$。
+\item bump-on-tail增长率（估算）：$\displaystyle\gamma_{\max} \sim \frac{n_s}{2n_b}\omega_{pe}$。
+\item 德拜长度：$\displaystyle\lambda_D = \sqrt{\frac{\eps_0 k_{\!B}T_e}{n_e e^2}}$。
+\item 电子等离子体频率：$\displaystyle\omega_{pe} = \sqrt{\frac{n_e e^2}{\eps_0 m_e}}$。
 \end{itemize}
 \textbf{符号说明：}$f$ 为分布函数，$f_0$ 为未扰动的平衡分布、$\hat f_0=f_0/n_0$ 为其归一化形式；$\omega$、$k$ 为波角频率与波数，$\omega_i$ 为增长率（频率的虚部）；$\lambda_D$ 为德拜长度。$v_\phi=\omega/k$ 为相速度，$v_{\text{res}}$ 为共振速度；$\omega_{pe}$ 为电子等离子体频率，$n_s$、$n_b$ 为束与背景的密度。
 \end{formulabox}
 
 \begin{checklistbox}{第7章自学检查清单}{ch7-checklist}
 \begin{itemize}[leftmargin=*,label=$\square$]
-\item 我能写出Vlasov 方程，并解释其物理意义（相空间不可压缩流、刘维尔定理）
-\item 我能对Vlasov 方程进行线性化，得到色散关系中的极点项
-\item 我理解Landau 围道的必要性：为什么必须从极点下方绕过（因果律）
-\item 我能从速度分布的斜率判断Landau 阻尼（$\partial f_0/\partial v < 0$）或不稳定性（$\partial f_0/\partial v > 0$）
-\item 我能估算给定 $k\lambda_D$ 下的Landau 阻尼率
-\item 我理解bump-on-tail不稳定性的物理机制：束流在速度空间形成凸起，共振粒子向波传递能量
-\item 我知道Landau 阻尼是线性效应，而粒子 trapping 是非线性效应
+\item 我能写出Vlasov 方程，并解释其物理意义（相空间不可压缩流、刘维尔定理）。
+\item 我能对Vlasov 方程进行线性化，得到色散关系中的极点项。
+\item 我理解Landau 围道的必要性：为什么必须从极点下方绕过（因果律）。
+\item 我能从速度分布的斜率判断Landau 阻尼（$\partial f_0/\partial v < 0$）或不稳定性（$\partial f_0/\partial v > 0$）。
+\item 我能估算给定 $k\lambda_D$ 下的Landau 阻尼率。
+\item 我理解bump-on-tail不稳定性的物理机制：束流在速度空间形成凸起，共振粒子向波传递能量。
+\item 我知道Landau 阻尼是线性效应，而粒子 trapping 是非线性效应。
 \end{itemize}
 \end{checklistbox}
 

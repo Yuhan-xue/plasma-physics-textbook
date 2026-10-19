@@ -81,7 +81,7 @@ $X$/$O$ 相位差 & $0.000111775^\circ$ & $0.15755^\circ$ & $\lambda^3 B_\perp^2
 
 表~\ref{tab:app-an-polarization} 里最要紧的一列是「标度」。
 法拉第旋转按 $\lambda^2$ 长，科顿--穆顿按 $\lambda^3$ 长，
-所以在远红外波段（$118.8\ \mu\mathrm{m}$）两者都大得多——
+所以在远红外波段（$118.8\ \mu\mathrm{m}$）两者都大得多，
 代价是法拉第旋转会转过一圈以上，出现 $2\pi$ 模糊（AN.6 节）。
 短波长的 CO$_2$ 激光只有 $2.39411^\circ$，没有模糊，但科顿--穆顿小到 $0.000111775^\circ$，
 两者互补，这就是偏振仪常常同时用两个波长的原因。
@@ -94,7 +94,7 @@ $X$/$O$ 相位差 & $0.000111775^\circ$ & $0.15755^\circ$ & $\lambda^3 B_\perp^2
 \end{tip}
 
 {\footnotesize
-\textbf{出处：}偏振诊断的总体框架与 Stokes 参数口径参照 Hutchinson《Principles of Plasma Diagnostics》2nd ed.（2002）第 6 章与 Wesson《Tokamaks》4th ed.（2011）第 12 章。
+\textbf{出处：}偏振诊断的总体框架与 Stokes 参数口径参照 Hutchinson《Principles of Plasma Diagnostics》2nd ed.（2002）第 6 章。Wesson《Tokamaks》4th ed.（2011）第 12 章给出托卡马克中的位置。
 }
 
 {\footnotesize
@@ -108,7 +108,7 @@ $X$/$O$ 相位差 & $0.000111775^\circ$ & $0.15755^\circ$ & $\lambda^3 B_\perp^2
 }
 
 {\footnotesize
-\textbf{出处：}线性斯塔克效应与 MSE 原理参照 Levinton 等, Phys. Rev. Lett. 63, 2060 (1989) 与 Griem《Principles of Plasma Spectroscopy》（1997）。
+\textbf{出处：}线性斯塔克效应与 MSE 原理参照 Levinton 等, Phys. Rev. Lett. 63, 2060 (1989)。Griem《Principles of Plasma Spectroscopy》（1997）。
 定标思路参照 Wróblewski 与 Lao, Rev. Sci. Instrum. 63, 5140 (1992)。
 }
 
@@ -125,7 +125,7 @@ $X$/$O$ 相位差 & $0.000111775^\circ$ & $0.15755^\circ$ & $\lambda^3 B_\perp^2
 \section{法拉第旋转：把密度和磁场一起称重}
 \label{sec:app-an-faraday}
 
-把式~\eqref{eq:app-an-eigen} 的 $R$、$L$ 两支相减，在小 $X$、小 $Y$ 下展开：
+把式~\eqref{eq:app-an-eigen} 的 $R$、$L$ 两支相减，在小 $X$、小 $Y$ 下展开。
 
 \begin{equation}
 \Delta n_{\mathrm{RL}}\equiv n_{\mathrm{R}}-n_{\mathrm{L}}
@@ -134,8 +134,8 @@ $X$/$O$ 相位差 & $0.000111775^\circ$ & $0.15755^\circ$ & $\lambda^3 B_\perp^2
 \label{eq:app-an-faraday}
 \end{equation}
 
-两支走过的相位差是 $(\omega/c)|\Delta n_{\mathrm{RL}}|L$，而偏振面转过的角度是它的\textbf{一半}——
-因为线偏振本来就是 $R$ 与 $L$ 的等幅叠加，两支的相位差让合成方向转过相位差的一半：
+两支走过的相位差是 $(\omega/c)|\Delta n_{\mathrm{RL}}|L$，而偏振面转过的角度是它的\textbf{一半}，
+因为线偏振本来就是 $R$ 与 $L$ 的等幅叠加，两支的相位差让合成方向转过相位差的一半。
 
 \begin{equation}
 \varphi_{\mathrm{rot}}=\frac12\frac{\omega}{c}|\Delta n_{\mathrm{RL}}|L
@@ -144,7 +144,7 @@ $X$/$O$ 相位差 & $0.000111775^\circ$ & $0.15755^\circ$ & $\lambda^3 B_\perp^2
 \label{eq:app-an-rotation}
 \end{equation}
 
-式中的系数可以纯代数地写出来：
+式中的系数可以纯代数地写出来。
 
 \begin{equation}
 \frac{e^3}{8\pi^2c^3\varepsilon_0m_e^2}=2.63119\times10^{-13},
@@ -152,7 +152,7 @@ $X$/$O$ 相位差 & $0.000111775^\circ$ & $0.15755^\circ$ & $\lambda^3 B_\perp^2
 \end{equation}
 
 它与文献常用的 $2.62\times10^{-13}$ 相差 $0.4\%$，
-差别来自常数表的年代，不是物理。把本工作点代进去：
+差别来自常数表的年代，不是物理。把本工作点代进去。
 
 \begin{equation}
 \int n_e\,dl=\frac{4a}{3}n_{e0}=2.66667\times10^{20}\ \mathrm{m^{-2}},
@@ -189,7 +189,7 @@ $R$/$L$ 相位差 & $4.78823^\circ$ & $603.768^\circ$ & 精确冷等离子体解
 \begin{tip}{旋转角是相位差的一半——这条二分之一年年有人写错}{tip-app-an-faraday}
 $R$ 模与 $L$ 模的相位差是 $(\omega/c)\Delta nL$；
 线偏振的方位角只转过它的一半。
-漏掉这个 $1/2$，有磁场的结论不变，但磁场数值会整整差一倍——
+漏掉这个 $1/2$，有磁场的结论不变，但磁场数值会整整差一倍，
 而这正好落在「看起来仍然合理」的范围内，所以它是最危险的一类错误。
 \end{tip}
 
@@ -214,7 +214,7 @@ $R$ 模与 $L$ 模的相位差是 $(\omega/c)\Delta nL$；
 \label{eq:app-an-cotton}
 \end{equation}
 
-于是相位差（这一回\textbf{不做折半}——$X$ 与 $O$ 是线偏振，两支的相位差直接表现为椭圆率）
+于是相位差（这一回\textbf{不做折半}，$X$ 与 $O$ 是线偏振，两支的相位差直接表现为椭圆率）
 
 \begin{equation}
 \varphi_{\mathrm{CM}}=\frac{\omega}{c}|\Delta n_{\mathrm{XO}}|L
@@ -258,7 +258,7 @@ $\varphi_{\mathrm{CM}}/\varphi_{\mathrm{FR}}$ & $0.000523241$ & $4.66864\times10
 \begin{tip}{同一个 2.45，单位不同差一亿倍}{tip-app-an-cotton}
 $2.45\times10^{-19}$ 里的 $B$ 是高斯，$2.45682\times10^{-11}$ 里的 $B$ 是特斯拉。
 凡是遇到「某个效应大得离谱」的场合，先查公式约定的是哪套单位，
-再查线积分里的 $B$ 是哪个分量——这两个坑占了这个领域一半的「异常」。
+再查线积分里的 $B$ 是哪个分量，这两个坑占了这个领域一半的「异常」。
 \end{tip}
 
 
@@ -276,7 +276,7 @@ E_m=v_bB\sin\theta,
 \label{eq:app-an-em}
 \end{equation}
 
-这个电场（不是实验室的电场）把 $n=3$ 能级按线性斯塔克效应劈开：
+这个电场（不是实验室的电场）把 $n=3$ 能级按线性斯塔克效应劈开。
 
 \begin{equation}
 \Delta E=\frac{3}{2}\,n\,k\,e\,a_0E_m
@@ -285,17 +285,17 @@ E_m=v_bB\sin\theta,
 \label{eq:app-an-stark}
 \end{equation}
 
-对应 $D_\alpha$（$656.28\ \mathrm{nm}$）的波长分裂
+对应 $D_\alpha$（$656.28\ \mathrm{nm}$）的波长分裂。
 
 \begin{equation}
 \Delta\lambda=\frac{\lambda_0^2\Delta E}{hc}=2.71454\ \mathrm{nm},
 \label{eq:app-an-split}
 \end{equation}
 
-而束内原子的热运动给出的多普勒宽度只有 $0.0677692\ \mathrm{nm}$——
+而束内原子的热运动给出的多普勒宽度只有 $0.0677692\ \mathrm{nm}$，
 分裂是它的 $40.0556$ 倍，所以两瓣干净地分开，不需要解卷积。
 分裂的\textbf{方向}（各 $\pi$ 分量相对磁场的方位）由 $\mathbf{E}_m$ 定，
-而 $\mathbf{E}_m\perp\mathbf{B}$，于是测量偏振方位就等于测量\textbf{磁场方向的投影}：
+而 $\mathbf{E}_m\perp\mathbf{B}$，于是测量偏振方位就等于测量\textbf{磁场方向的投影}。
 
 \begin{equation}
 \tan\gamma=\frac{B_p}{B_t},
@@ -333,7 +333,7 @@ MSE 的定标因此比它的光学部分更值钱。
 
 \begin{tip}{MSE 测的是投掷角，不是磁场大小}{tip-app-an-mse}
 分裂的\textbf{大小}正比于 $|\mathbf{E}_m|$，因此在束能量已知时也给出 $B$；
-但真正被用起来的是分裂的\textbf{方位}——
+但真正被用起来的是分裂的\textbf{方位}，
 它是磁场方向沿着束路径的投影，反演出来的就是安全因子 $q$ 的剖面。
 把 MSE 当成「磁强计」会浪费它最值钱的那一半信息。
 \end{tip}
@@ -411,7 +411,7 @@ $0.01^\circ$ 的相位分辨率已经是很好的水平，它折算出的磁场�
 
 偏振角不能直接「读」出来，只能把它调制起来再解调。
 主流做法是\textbf{光弹调制器}（PEM）：一块被周期性挤压的石英，让两个正交方向的相位差按
-$\sin(2\pi f_{\mathrm{PEM}}t)$ 振荡，于是偏振信号被搬到 $f_{\mathrm{PEM}}$ 及其谐波上：
+$\sin(2\pi f_{\mathrm{PEM}}t)$ 振荡，于是偏振信号被搬到 $f_{\mathrm{PEM}}$ 及其谐波上。
 
 \begin{equation}
 S(t)\propto S_1\cos\delta(t)+S_2\sin\delta(t),
@@ -423,8 +423,8 @@ f_{\mathrm{PEM}}=50\ \mathrm{kHz}\ \Rightarrow\ T_{\mathrm{PEM}}=20\ \mu\mathrm{
 \end{equation}
 
 在 $1\ \mathrm{ms}$ 内就有 $50$ 个调制周期，锁相解调后 $S_1$、$S_2$ 都拿到了，
-偏振角 $\psi$ 与椭圆率 $\chi$ 也就同时拿到——
-这正是 AN.3 节里 FR 与 CM 能在一台仪器上分离的原因：
+偏振角 $\psi$ 与椭圆率 $\chi$ 也就同时拿到，
+这正是 AN.3 节里 FR 与 CM 能在一台仪器上分离的原因。
 \textbf{它们分别落在不同的解调通道里}。
 
 \begin{equation}
@@ -447,7 +447,7 @@ f_{\mathrm{PEM}}=50\ \mathrm{kHz}\ \Rightarrow\ T_{\mathrm{PEM}}=20\ \mu\mathrm{
 \end{equation}
 
 而本工作点的线积分已经是 $1.41333\times10^{21}\ \mathrm{T\,m^{-2}}$，
-即 $0.835315$ 圈——\textbf{再高一点密度就会翻过去}。
+即 $0.835315$ 圈，\textbf{再高一点密度就会翻过去}。
 工程上的解法有三条：换短波长（CO$_2$ 只有 $2.39411^\circ$）、
 用两个波长做粗定位、或者把弦分成几段各测一小段。
 三条路都要付出代价（短波长丢 CM、分段丢弦数），
@@ -484,7 +484,7 @@ CO$_2$ 的旋转角 & $2.39411^\circ$ & 无模糊 \\
 \end{table}
 
 \begin{tip}{整圈模糊不是噪声，是设计约束}{tip-app-an-engineering}
-噪声可以让多次测量平均掉，模糊不能——它把「$0.835315$ 圈」和「$1.835315$ 圈」变成同一个读数。
+噪声可以让多次测量平均掉，模糊不能，它把「$0.835315$ 圈」和「$1.835315$ 圈」变成同一个读数。
 凡是按 $\lambda^2$ 或 $\lambda^3$ 标度的诊断量，选波长时都要先问一句：
 \textbf{最坏情况下会不会超过一圈}？
 超过的话，方案要么改，要么补一条独立的粗测量通道。
@@ -527,7 +527,7 @@ CO$_2$ 的旋转角减半为 $1.19702^\circ$。
 $v_b=\sqrt{2E/m_D}=3.79149\times10^{6}\ \mathrm{m\,s^{-1}}$，
 $E_m=v_bB_t=20.0949\ \mathrm{MV\,m^{-1}}$，
 $\Delta\lambda=3.32461\ \mathrm{nm}$，
-相对 $100\ \mathrm{keV}$ 都大 $\sqrt{1.5}=1.22474$ 倍——
+相对 $100\ \mathrm{keV}$ 都大 $\sqrt{1.5}=1.22474$ 倍，
 因为速度按 $\sqrt{E}$ 长，而斯塔克分裂又正比于速度。
 
 \textbf{解答 5}
@@ -581,7 +581,6 @@ MSE 数据分析与定标 & Wróblewski 与 Lao, Rev. Sci. Instrum. 63, 5140 (19
 \begin{tip}{本附录没有涵盖什么}{tip-app-an-honest}
 这一篇不展开偏振仪的工程设计、锁相解调的电路细节、
 也不给真实装置上的误差预算表。
-它只做一件事：把「偏振怎么变成磁场与 $q$」这条链条上的每一步量级算清楚，
-其余的留给专门文献。
+它只把「偏振怎么变成磁场与 $q$」这条链条上的每一步量级算清楚，其余的留给专门文献。
 \end{tip}
 \endgroup

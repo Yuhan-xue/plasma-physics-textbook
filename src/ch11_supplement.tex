@@ -21,50 +21,50 @@
 
 \textbf{解答：}
 
-帕邢定律给出了击穿电压 $V_B$ 与气压 $p$ 和电极间距 $d$ 乘积 $pd$ 的关系：
+帕邢定律给出了击穿电压 $V_B$ 与气压 $p$ 和电极间距 $d$ 乘积 $pd$ 的关系。
 \begin{equation}
     V_B = \frac{B \cdot p d}{\ln(A p d) - \ln\left(\ln\left(1+\frac{1}{\gamma}\right)\right)}
 \label{eq:ch11-paschen-law}
 \end{equation}
 
-为求最小击穿电压，令 $x = pd$。首先计算 $\ln(1+1/\gamma)$：
+为求最小击穿电压，令 $x = pd$。首先计算 $\ln(1+1/\gamma)$。
 \[
     \ln\left(1+\frac{1}{0.1}\right) = \ln(11) = 2.398
 \]
 
-帕邢定律改写为：
+帕邢定律改写为。
 \[
     V_B = \frac{B x}{\ln(A x) - \ln(2.398)} = \frac{B x}{\ln(A x / 2.398)}
 \]
 
-对 $V_B$ 关于 $x$ 求导并令其为零。令 $u = A x / 2.398$，则 $V_B = \frac{B x}{\ln u}$。利用 $x = 2.398 u / A$，得：
+对 $V_B$ 关于 $x$ 求导并令其为零。令 $u = A x / 2.398$，则 $V_B = \frac{B x}{\ln u}$。利用 $x = 2.398 u / A$，得。
 \[
     V_B = \frac{B \cdot 2.398 u}{A \ln u}
 \]
 
 求最小值：令 $f(u) = u / \ln u$，则 $f'(u) = (\ln u - 1) / (\ln u)^2 = 0$，即 $\ln u = 1$，$u = e$。
 
-因此最优条件为：
+因此最优条件为。
 \[
     \frac{A p d}{\ln(1+1/\gamma)} = e \quad\Rightarrow\quad A p d = e \cdot \ln(1+1/\gamma)
 \]
 
-代入数值：
+代入数值。
 \[
     p d = \frac{e \times 2.398}{A} = \frac{2.718 \times 2.398}{12} = \frac{6.518}{12} = 0.543\,\mathrm{kPa\cdot cm}
 \]
 
-因此最优气压（$d=2\,\mathrm{cm}$）：
+因此最优气压（$d=2\,\mathrm{cm}$）。
 \[
     p_{min} = \frac{0.543}{d} = \frac{0.543}{2} = 0.272\,\mathrm{kPa}
 \]
 
-换算为常用单位：
+换算为常用单位。
 \[
     \boxed{p_{min} \approx 0.27\,\mathrm{kPa} \approx 2.0\,\mathrm{Torr}}
 \]
 
-最小击穿电压：
+最小击穿电压。
 \[
     V_{min} = \frac{B \cdot p d}{\ln(e)} = B \cdot p d = B \times 0.543
 \]
@@ -72,7 +72,7 @@
     V_{min} = 180 \times 0.543 = 97.7\,\mathrm{V}
 \]
 
-但注意 $B$ 的单位为 $V\cdot cm^{-1}\cdot kPa^{-1}$，$p d$ 单位为 $kPa\cdot cm$，因此：
+但注意 $B$ 的单位为 $V\cdot cm^{-1}\cdot kPa^{-1}$，$p d$ 单位为 $kPa\cdot cm$，因此。
 \[
     \boxed{V_{min} \approx 98\,\mathrm{V}}
 \]
@@ -96,7 +96,7 @@
 
 \textbf{步骤一：玻姆判据——计算离子进入鞘层的速度}
 
-玻姆速度定义为：
+玻姆速度定义为。
 \begin{equation}
     v_B = \sqrt{\frac{k_B T_e}{m_i}}
 \label{eq:ch11-bohm-criterion-ex}
@@ -114,13 +114,13 @@
 
 \textbf{步骤二：Child--Langmuir 定律——计算鞘层厚度}
 
-Child--Langmuir 定律给出了平面鞘层中电流与鞘层电压的关系。对于离子电流密度 $J_i$：
+Child--Langmuir 定律给出了平面鞘层中电流与鞘层电压的关系。对于离子电流密度 $J_i$。
 \begin{equation}
     J_i = \frac{4}{9}\eps_0 \sqrt{\frac{2e}{m_i}} \frac{V_s^{3/2}}{s^2}
 \label{eq:ch11-child-langmuir}
 \end{equation}
 
-离子电流密度也可由Bohm 通量表示：
+离子电流密度也可由Bohm 通量表示。
 \[
     J_i = e n_s v_B = 0.6 e n_e v_B
 \]
@@ -128,17 +128,17 @@ Child--Langmuir 定律给出了平面鞘层中电流与鞘层电压的关系。�
 其中 $n_s \approx 0.6 n_e$ 为鞘层边缘密度：预鞘电位降约为 $T_e/2e$，
 由玻尔兹曼关系可得 $n_s = n_0 e^{-1/2} \approx 0.607\,n_0$。
 
-因此：
+因此。
 \[
     0.6 e n_e v_B = \frac{4}{9}\eps_0 \sqrt{\frac{2e}{m_i}} \frac{V_s^{3/2}}{s^2}
 \]
 
-解出 $s^2$：
+解出 $s^2$。
 \[
     s^2 = \frac{4\eps_0}{9 \times 0.6 e n_e v_B} \sqrt{\frac{2e}{m_i}} V_s^{3/2}
 \]
 
-将数值代入（使用SI单位）：
+将数值代入（使用SI单位）。
 \begin{align*}
     \eps_0 &= 8.854\times10^{-12}\,\mathrm{F\cdot m^{-1}} \\
     e &= 1.602\times10^{-19}\,\mathrm{C} \\
@@ -148,17 +148,17 @@ Child--Langmuir 定律给出了平面鞘层中电流与鞘层电压的关系。�
     m_i &= 6.644\times10^{-26}\,\mathrm{kg}
 \end{align*}
 
-计算 $\sqrt{2e/m_i}$：
+计算 $\sqrt{2e/m_i}$。
 \[
     \sqrt{\frac{2\times1.602\times10^{-19}}{6.644\times10^{-26}}} = \sqrt{4.82\times10^6} = 2.19\times10^3\,\mathrm{C^{1/2}\cdot kg^{-1/2}}
 \]
 
-计算右侧：
+计算右侧。
 \[
     \frac{4\times8.854\times10^{-12}}{9\times0.6\times1.602\times10^{-19}\times5\times10^{16}\times2.69\times10^3} \times 2.19\times10^3 \times (20)^{1.5}
 \]
 
-先计算分母：
+先计算分母。
 \[
     9\times0.6\times1.602\times10^{-19}\times5\times10^{16}\times2.69\times10^3 = 5.4\times1.602\times10^{-19}\times5\times10^{16}\times2.69\times10^3
 \]
@@ -166,7 +166,7 @@ Child--Langmuir 定律给出了平面鞘层中电流与鞘层电压的关系。�
     = 8.65\times10^{-19}\times5\times10^{16}\times2.69\times10^3 = 4.33\times10^{-2}\times2.69\times10^3 = 116.5
 \]
 
-分子：
+分子。
 \[
     4\times8.854\times10^{-12} = 3.54\times10^{-11}
 \]
@@ -196,7 +196,7 @@ Child--Langmuir 定律给出了平面鞘层中电流与鞘层电压的关系。�
 
 \textbf{步骤三：Debye 长度对比}
 
-Debye 长度：
+Debye 长度。
 \begin{equation}
     \lambda_D = \sqrt{\frac{\eps_0 k_B T_e}{n_e e^2}} = 743\sqrt{\frac{T_e\,[\mathrm{eV}]}{n_e\,[\mathrm{cm^{-3}}]}}\,\mathrm{cm} = 743\sqrt{\frac{3}{5\times10^{10}}}\,\mathrm{cm}
 \label{eq:ch11-debye-length}
@@ -228,13 +228,13 @@ Debye 长度：
 
 \textbf{（1）$\vect{E}\times\vect{B}$ 漂移速度}
 
-对于垂直的 $\vect{E}$ 和 $\vect{B}$ 场（靶面法向 $E$ 与靶面切向 $B$ 互相垂直），漂移速度为：
+对于垂直的 $\vect{E}$ 和 $\vect{B}$ 场（靶面法向 $E$ 与靶面切向 $B$ 互相垂直），漂移速度为。
 \begin{equation}
     v_{E\times B} = \frac{E}{B}
 \label{eq:ch11-exb-drift}
 \end{equation}
 
-代入数值：
+代入数值。
 \[
     v_{E\times B} = \frac{5\times10^4}{0.03} = 1.67\times10^6\,\mathrm{m\cdot s^{-1}}
 \]
@@ -245,7 +245,7 @@ Debye 长度：
 
 \textbf{（2）电子热速度}
 
-电子热速度（最概然速率）为：
+电子热速度（最概然速率）为。
 \begin{equation}
     v_{th,e} = \sqrt{\frac{2 k_B T_e}{m_e}} = 5.93\times10^5 \sqrt{T_e\,[\mathrm{eV}]}
 \label{eq:ch11-thermal-velocity}
@@ -288,12 +288,12 @@ $\vect{E}\times\vect{B}$ 漂移速度与电子热速度量级相近。在磁控�
 
 \textbf{步骤一：计算放电功率与体积}
 
-放电功率：
+放电功率。
 \[
     P = I V = 0.02 \times 500 = 10\,\mathrm{W}
 \]
 
-正柱区体积（近似为圆柱体）：
+正柱区体积（近似为圆柱体）。
 \[
     V_p = \pi r^2 L = \pi \times (0.0125)^2 \times 0.3 = \pi \times 1.56\times10^{-4} \times 0.3
 \]
@@ -305,12 +305,12 @@ $\vect{E}\times\vect{B}$ 漂移速度与电子热速度量级相近。在磁控�
 
 在辉光放电中，电子从电场获得的功率主要用于电离和激发。每产生一个电子-离子对，电子需要克服电离能（氩的电离能 $E_{ion} = 15.76\,\mathrm{eV}$）。
 
-若假设放电功率中约 $50\%$ 用于电离（其余用于激发、辐射等），则有效电离功率：
+若假设放电功率中约 $50\%$ 用于电离（其余用于激发、辐射等），则有效电离功率。
 \[
     P_{ion} = 0.5 P = 5\,\mathrm{W}
 \]
 
-电离速率（每秒产生的离子对数）：
+电离速率（每秒产生的离子对数）。
 \[
     R_{ion} = \frac{P_{ion}}{e E_{ion}} = \frac{5}{1.602\times10^{-19} \times 15.76}
 \]
@@ -318,14 +318,14 @@ $\vect{E}\times\vect{B}$ 漂移速度与电子热速度量级相近。在磁控�
     = \frac{5}{2.52\times10^{-18}} = 1.98\times10^{18}\,\mathrm{s^{-1}}
 \]
 
-在稳态下，电离速率等于复合速率（在较低气压下以壁面复合为主）：
+在稳态下，电离速率等于复合速率（在较低气压下以壁面复合为主）。
 \[
     R_{ion} = n_e n_i \langle\sigma v\rangle_{rec} V_p + \text{壁面损失}
 \]
 
 对于辉光放电正柱区，更简单的估算采用 ambipolar 扩散模型：
 
-正柱区的电子密度可由电流连续性估算。放电电流密度 $J = I / (\pi r^2)$：
+正柱区的电子密度可由电流连续性估算。放电电流密度 $J = I / (\pi r^2)$。
 \[
     J = \frac{0.02}{\pi \times (0.0125)^2} = \frac{0.02}{4.91\times10^{-4}} = 40.7\,\mathrm{A\cdot m^{-2}}
 \]
@@ -337,22 +337,22 @@ $\vect{E}\times\vect{B}$ 漂移速度与电子热速度量级相近。在磁控�
 
 其中电子漂移速度 $v_{dr,e} = -\mu_e E$，电子迁移率 $\mu_e$ 在 $100\,\mathrm{Pa}$ 氩气中约 $0.4\,\mathrm{m^2/(V\cdot s)}$（粗略估计）。
 
-电场强度（正柱区）：
+电场强度（正柱区）。
 \[
     E_{col} = \frac{V_{col}}{L}
 \]
 
-辉光放电中，阴极位降区约占 $200\sim300\,\mathrm{V}$，阳极位降区较小，正柱区电压约 $200\sim300\,\mathrm{V}$。取 $V_{col} = 250\,\mathrm{V}$：
+辉光放电中，阴极位降区约占 $200\sim300\,\mathrm{V}$，阳极位降区较小，正柱区电压约 $200\sim300\,\mathrm{V}$。取 $V_{col} = 250\,\mathrm{V}$。
 \[
     E_{col} = \frac{250}{0.3} = 833\,\mathrm{V\cdot m^{-1}}
 \]
 
-电子漂移速度：
+电子漂移速度。
 \[
     v_{dr,e} = \mu_e E_{col} = 0.4 \times 833 = 333\,\mathrm{m\cdot s^{-1}}
 \]
 
-因此：
+因此。
 \[
     n_e = \frac{J}{e v_{dr,e}} = \frac{40.7}{1.602\times10^{-19} \times 333}
 \]
@@ -383,11 +383,11 @@ $\vect{E}\times\vect{B}$ 漂移速度与电子热速度量级相近。在磁控�
 
 \textbf{(1) 自偏压的形成：} 电子质量小、响应快，能跟随 $13.56\,\mathrm{MHz}$ 的射频场振荡；离子质量大，只响应时间平均场。电极在射频正半周吸收大量电子（电子通量远大于离子通量），充电为负；负半周电子被排斥，离子缓慢中和。稳态下电极自动积累负电荷，直到\textbf{时间平均电子通量等于离子通量}——这就是\textbf{自偏压}（self-bias）。对两极板面积不等的非对称 CCP，自偏压可达数百伏，方向使小电极（放电功率电极）更负，离子在该电极上获得更高的轰击能量。
 
-\textbf{(2) 射频鞘层厚度：} 用 Child--Langmuir 简化式（$n_s\approx n_e$，$V_0 = 200\,\mathrm{V}$，$T_e = 3\,\mathrm{eV}$，氩 $m_i = 40\,\mathrm{amu}$）。注意：下式为\textbf{经验估算式}（由 Child--Langmuir 定律代入玻姆流与射频振荡近似组合而来，量级正确，非严格推导结果）：
+\textbf{(2) 射频鞘层厚度：} 用 Child--Langmuir 简化式（$n_s\approx n_e$，$V_0 = 200\,\mathrm{V}$，$T_e = 3\,\mathrm{eV}$，氩 $m_i = 40\,\mathrm{amu}$）。注意：下式为\textbf{经验估算式}（由 Child--Langmuir 定律代入玻姆流与射频振荡近似组合而来，量级正确，非严格推导结果）。
 \[
 s \approx \frac{\sqrt{2}}{3}\,\lambda_D\left(\frac{2V_0}{T_e}\right)^{3/4}
 \]
-德拜长度（$\lambda_D[\mathrm{m}]\approx7430\sqrt{T[\mathrm{eV}]/n[\mathrm{m^{-3}}]}$）：
+德拜长度（$\lambda_D[\mathrm{m}]\approx7430\sqrt{T[\mathrm{eV}]/n[\mathrm{m^{-3}}]}$）。
 \begin{align*}
 \lambda_D &= 7430\sqrt{\frac{3}{10^{16}}}\,\mathrm{m}
 = 7430\times\sqrt{3}\times10^{-8}\,\mathrm{m} \\
@@ -409,11 +409,11 @@ s \approx \frac{\sqrt2}{3}\times0.13\,\mathrm{mm}\times39
 \]
 鞘层明显薄于极板间距，体等离子区仍有约 $25\,\mathrm{mm}$ 的准中性区，薄鞘近似成立。若提高密度到 $10^{17}\,\mathrm{m^{-3}}$，$\lambda_D$ 缩小 $\sqrt{10}$ 倍，$s$ 也相应缩小到约 $0.75\,\mathrm{mm}$，$s/d\approx0.025$。这就是工业 CCP 在高密度下加工更均匀的原因：鞘层薄，离子加速区窄，入射能量分散小，各向异性刻蚀更好。
 
-\textbf{适用性检查（必须做）：} 上面用的是\emph{平面、无碰撞、高鞘压}的 Child--Langmuir 近似。请核对三点：
+\textbf{适用性检查（必须做）：} 上面用的是\emph{平面、无碰撞、高鞘压}的 Child--Langmuir 近似。请核对三点。
 \begin{itemize}[leftmargin=*,itemsep=0pt]
-\item $s/r_p$——鞘层厚度远小于电极曲率半径时才可当平面；
-\item $s\ll\lambda_{i}$（离子-中性碰撞平均自由程）——否则鞘层内有电荷交换碰撞，须用碰撞鞘层模型；
-\item 离子过鞘时间 $\tau_i\sim s/u_B$ 远大于射频周期——本题 $\tau_i\sim2.4\,\mathrm{mm}/(2\times10^5\,\mathrm{m/s})\sim10^{-8}\,\mathrm{s}$，与 $74\,\mathrm{ns}$ 的射频周期同量级，故严格说要考虑鞘层的时变，此处只用时间平均近似。
+\item $s/r_p$：鞘层厚度远小于电极曲率半径时才可当平面。
+\item $s\ll\lambda_{i}$（离子-中性碰撞平均自由程），否则鞘层内有电荷交换碰撞，须用碰撞鞘层模型。
+\item 离子过鞘时间 $\tau_i\sim s/u_B$ 远大于射频周期。本题 $\tau_i\sim2.4\,\mathrm{mm}/(2\times10^5\,\mathrm{m/s})\sim10^{-8}\,\mathrm{s}$，与 $74\,\mathrm{ns}$ 的射频周期同量级，故严格说要考虑鞘层的时变，此处只用时间平均近似。
 \end{itemize}
 低气压 CCP 通常满足，工业高气压刻蚀机则需修正。
 \end{example}
@@ -490,22 +490,22 @@ s \approx \frac{\sqrt2}{3}\times0.13\,\mathrm{mm}\times39
 \section{核心公式速查卡}
 
 \begin{formulabox}{Townsend 放电与帕邢定律}{f:townsend}
-Townsend 第一电离系数：
+Townsend 第一电离系数。
 \[
     \alpha = A p \exp\left(-\frac{B p}{E}\right)
 \]
 
-击穿条件：
+击穿条件。
 \[
     \gamma\left(e^{\alpha d}-1\right) = 1 \quad\Rightarrow\quad \alpha d = \ln\left(1+\frac{1}{\gamma}\right)
 \]
 
-帕邢定律（击穿电压）：
+帕邢定律（击穿电压）。
 \[
     V_B = \frac{B p d}{\ln(A p d) - \ln\left(\ln(1+1/\gamma)\right)}
 \]
 
-最小击穿电压条件：
+最小击穿电压条件。
 \[
     (pd)_{min} = \frac{e}{A}\ln\left(1+\frac{1}{\gamma}\right), \quad V_{min} = \frac{e B}{A}\ln\left(1+\frac{1}{\gamma}\right)
 \]
@@ -513,24 +513,24 @@ Townsend 第一电离系数：
 \end{formulabox}
 
 \begin{formulabox}{鞘层理论}{f:sheath}
-玻姆判据（鞘层边缘离子速度）：
+玻姆判据（鞘层边缘离子速度）。
 \[
     v_s \geq v_B = \sqrt{\frac{k_B T_e}{m_i}}
 \]
 
-Debye 长度：
+Debye 长度。
 \begin{equation}
     \lambda_D = \sqrt{\frac{\eps_0 k_B T_e}{n_e e^2}} \approx 743\sqrt{\frac{T_e\,[\mathrm{eV}]}{n_e\,[\mathrm{cm^{-3}}]}}\,\mathrm{cm}
 \label{eq:ch11-debye-length-ex}
 \end{equation}
 
-Child--Langmuir 定律（平面鞘层）：
+Child--Langmuir 定律（平面鞘层）。
 \begin{equation}
     J_i = \frac{4}{9}\eps_0 \sqrt{\frac{2e}{m_i}} \frac{V_s^{3/2}}{s^2}
 \label{eq:ch11-child-langmuir-ex}
 \end{equation}
 
-鞘层厚度估算：
+鞘层厚度估算。
 \[
     s \approx \lambda_D \left(\frac{2V_s}{T_e}\right)^{3/4} \quad\text{(高电压鞘层)}
 \]
@@ -538,17 +538,17 @@ Child--Langmuir 定律（平面鞘层）：
 \end{formulabox}
 
 \begin{formulabox}{工业等离子体中的漂移与扩散}{f:industrial}
-$\vect{E}\times\vect{B}$ 漂移速度：
+$\vect{E}\times\vect{B}$ 漂移速度。
 \[
     \vect{v}_{E\times B} = \frac{\vect{E}\times\vect{B}}{B^2}
 \]
 
-电子迁移率（与碰撞频率 $\nu$）：
+电子迁移率（与碰撞频率 $\nu$）。
 \[
     \mu_e = \frac{e}{m_e \nu}
 \]
 
-ambipolar扩散系数：
+ambipolar扩散系数。
 \[
     D_a = \frac{\mu_i D_e + \mu_e D_i}{\mu_i + \mu_e} \approx D_i\left(1+\frac{T_e}{T_i}\right)
 \]
@@ -556,18 +556,18 @@ ambipolar扩散系数：
 \end{formulabox}
 
 \begin{formulabox}{辉光放电正柱区}{f:positive}
-电子密度与电流关系：
+电子密度与电流关系。
 \[
     J = e n_e v_{dr,e} = e n_e \mu_e E
 \]
 
-正柱区电场（维持条件）：
+正柱区电场（维持条件）。
 \[
     E \approx \frac{E_{ion}}{\lambda_i \eta_{ion}}
 \]
 （$\lambda_i$ 为电子的电离平均自由程，$\eta_{ion}$ 为每次电离平均产生的新电子-离子对数，$\sigma_{ion}$ 为电离碰撞截面，$n_g$ 为中性气体密度）
 
-电子温度与气压关系（经验）：
+电子温度与气压关系（经验）。
 \[
     k_B T_e \approx \frac{e E_{ion}}{\ln(n_g \sigma_{ion} L)}
 \]
@@ -582,18 +582,18 @@ ambipolar扩散系数：
 
 \begin{checklistbox}{第11章自学检查清单}{ch11-checklist}
 \begin{itemize}[leftmargin=*,label=$\square$]
-\item[$\square$] 我能解释Townsend 放电的两种电离机制：$\alpha$ 过程和 $\gamma$ 过程
-\item[$\square$] 我能画出帕邢曲线，解释为什么存在最小击穿电压
-\item[$\square$] 我能根据帕邢定律计算给定 $pd$ 条件下的击穿电压
-\item[$\square$] 我知道辉光放电正柱区、负辉光区、阴极暗区的物理成因
-\item[$\square$] 我能用玻姆判据估算离子进入鞘层的速度
-\item[$\square$] 我能计算Debye 长度，并理解鞘层厚度与 $\lambda_D$ 的关系
-\item[$\square$] 我能应用Child--Langmuir 定律估算鞘层厚度
-\item[$\square$] 我了解$\vect{E}\times\vect{B}$漂移在磁控溅射中的作用
-\item[$\square$] 我能解释为什么磁控溅射中电子被束缚在靶面附近（跑道效应）
-\item[$\square$] 我能从放电功率和电流估算辉光放电的电子密度
-\item[$\square$] 我了解ambipolar扩散的物理意义，以及为什么 $D_a \approx D_i(T_e/T_i)$
-\item[$\square$] 我能区分电容耦合（CCP）与电感耦合（ICP）等离子体源的基本原理
+\item[$\square$] 我能解释Townsend 放电的两种电离机制：$\alpha$ 过程和 $\gamma$ 过程。
+\item[$\square$] 我能画出帕邢曲线，解释为什么存在最小击穿电压。
+\item[$\square$] 我能根据帕邢定律计算给定 $pd$ 条件下的击穿电压。
+\item[$\square$] 我知道辉光放电正柱区、负辉光区、阴极暗区的物理成因。
+\item[$\square$] 我能用玻姆判据估算离子进入鞘层的速度。
+\item[$\square$] 我能计算Debye 长度，并理解鞘层厚度与 $\lambda_D$ 的关系。
+\item[$\square$] 我能应用Child--Langmuir 定律估算鞘层厚度。
+\item[$\square$] 我了解$\vect{E}\times\vect{B}$漂移在磁控溅射中的作用。
+\item[$\square$] 我能解释为什么磁控溅射中电子被束缚在靶面附近（跑道效应）。
+\item[$\square$] 我能从放电功率和电流估算辉光放电的电子密度。
+\item[$\square$] 我了解ambipolar扩散的物理意义，以及为什么 $D_a \approx D_i(T_e/T_i)$。
+\item[$\square$] 我能区分电容耦合（CCP）与电感耦合（ICP）等离子体源的基本原理。
 \end{itemize}
 \end{checklistbox}
 

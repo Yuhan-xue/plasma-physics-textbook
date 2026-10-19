@@ -81,6 +81,9 @@ def clean(line):
     s = re.sub(r'(?<!\\)%.*$', '', line)
     s = re.sub(r'\$[^$]*\$', ' ', s)
     s = re.sub(r'\\[a-zA-Z@]+\*?(\[[^\]]*\])?(\{[^{}]*\})?', ' ', s)
+    s = re.sub(r'[\[\]{}]', ' ', s)
+    if not re.search(r'[\u4e00-\u9fff]', s):
+        return ''            # 行里没有中文：多半是选项、编号或公式残渣
     return s.strip()
 
 
@@ -88,7 +91,8 @@ def prose_of(raw):
     """→ (正文字符数, 句子列表)。跳过导言区、绘图区、表格与纯命令行。
 
     表格与 `\\input` 清单不是散文：不剔掉的话，一张二十行的表会被当成
-    一个几百字的"句子"，p90 直接失真。
+    一个几百字的"句子"，p90 直接失真。行间公式 `\\[...\\]` 同理——它们
+    不含中文，留着会把三条公式粘成一句"超长句"。
     """
     if not raw:
         return 0, []
@@ -101,12 +105,16 @@ def prose_of(raw):
                   r'\\end\{\1\*?\}', ' ', body, flags=re.S)
     body = re.sub(r'\\begin\{(verbatim|lstlisting|Verbatim)\}.*?'
                   r'\\end\{\1\}', ' ', body, flags=re.S)
+    body = re.sub(r'\\\[.*?\\\]', ' ', body, flags=re.S)
+    body = re.sub(r'\$\$.*?\$\$', ' ', body, flags=re.S)
+    body = re.sub(r'\\item(?![a-zA-Z])', '。', body)   # 列表项各算一句
     keep = []
     for line in body.split('\n'):
         s = line.strip()
         if re.match(r'^\\(input|include|chapter|section|subsection'
                     r'|subsubsection|label|index|appchapter|addcontentsline'
-                    r'|phantomsection|newpage|clearpage|tableofcontents)\b', s):
+                    r'|phantomsection|newpage|clearpage|tableofcontents'
+                    r'|begin|end|centering|caption|includegraphics)\b', s):
             continue
         if '&' in s or s.endswith('\\\\'):
             continue

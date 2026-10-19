@@ -16,17 +16,17 @@
 \tcblower
 \textbf{解答：}
 
-将玻尔兹曼方程对速度空间积分（即取零阶矩）：
+将玻尔兹曼方程对速度空间积分（即取零阶矩）。
 \[
 \int\frac{\partial f}{\partial t}\,\diff^3 v + \int\vect{v}\cdot\grad f\,\diff^3 v + \int\frac{\vect{F}}{m}\cdot\grad_v f\,\diff^3 v = \int\left(\frac{\partial f}{\partial t}\right)_c\diff^3 v
 \]
 
-\textbf{第一项（时间导数项）：} 由于时空坐标与速度独立，积分与微分可交换：
+\textbf{第一项（时间导数项）：} 由于时空坐标与速度独立，积分与微分可交换。
 \[
 \int\frac{\partial f}{\partial t}\,\diff^3 v = \frac{\partial}{\partial t}\int f\,\diff^3 v = \frac{\partial n}{\partial t}
 \]
 
-\textbf{第二项（对流项）：} 梯度算子 $\grad$ 与速度 $\vect{v}$ 无关，可交换：
+\textbf{第二项（对流项）：} 梯度算子 $\grad$ 与速度 $\vect{v}$ 无关，可交换。
 \[
 \int\vect{v}\cdot\grad f\,\diff^3 v = \grad\cdot\int\vect{v}f\,\diff^3 v = \grad\cdot(n\vect{u}) = \divg(n\vect{u})
 \]
@@ -134,16 +134,16 @@ Spitzer 电阻率（近似公式 $\eta \approx 5\times 10^{-5} Z\ln\Lambda / T_e
 \Gamma_i &= -D_i\frac{\partial n}{\partial x} + \mu_i n E \quad \text{（离子带正电，漂移与电场同向）}
 \end{align*}
 
-\textbf{准中性条件}要求 $\Gamma_e = \Gamma_i = \Gamma_a$（否则电荷积累会产生巨大库仑能，不被允许）。令两式相等：
+\textbf{准中性条件}要求 $\Gamma_e = \Gamma_i = \Gamma_a$（否则电荷积累会产生巨大库仑能，不被允许）。令两式相等。
 \[
 -(D_e - D_i)\frac{\partial n}{\partial x} = (\mu_e + \mu_i)nE
 \]
-解出自建电场（双极电场）：
+解出自建电场（双极电场）。
 \[
 E = -\frac{D_e - D_i}{\mu_e + \mu_i}\,\frac{1}{n}\frac{\partial n}{\partial x}
 \]
 
-将 $E$ 代回 $\Gamma_i$（或 $\Gamma_e$）的表达式，得到统一的双极扩散通量：
+将 $E$ 代回 $\Gamma_i$（或 $\Gamma_e$）的表达式，得到统一的双极扩散通量。
 \[
 \Gamma_a = -\frac{\mu_i D_e + \mu_e D_i}{\mu_e + \mu_i}\,\frac{\partial n}{\partial x} = -D_a\frac{\partial n}{\partial x}
 \]
@@ -241,14 +241,14 @@ v_{ti} = \sqrt{\frac{2\times 0.1\times 1.602\times 10^{-19}}{1.673\times 10^{-27
 \tcblower
 \textbf{解答：}
 
-\textbf{步骤1：线性化流体方程组。} 对离子（绝热指数 $\gamma_i = 3$ 一维）和电子（Boltzmann 响应）：
+\textbf{步骤1：线性化流体方程组。} 对离子（绝热指数 $\gamma_i = 3$ 一维）和电子（Boltzmann 响应）。
 
-离子连续性与动量方程线性化（平衡态静止、均匀）：
+离子连续性与动量方程线性化（平衡态静止、均匀）。
 \[
 \frac{\partial n_{i1}}{\partial t} + n_0\frac{\partial u_{i1}}{\partial x} = 0, \qquad
 m_i\frac{\partial u_{i1}}{\partial t} = -\ee\frac{\partial\phi_1}{\partial x} - \frac{1}{n_0}\frac{\partial p_{i1}}{\partial x}
 \]
-电子为 Boltzmann 分布：$n_{e1} = n_0\ee\phi_1/(k_{\!B}T_e)$。
+电子为 Boltzmann 分布。$n_{e1} = n_0\ee\phi_1/(k_{\!B}T_e)$。
 
 \textbf{步骤2：用平面波 $\propto\ee^{\ii(kx-\omega t)}$ 化简。}
 \[
@@ -306,22 +306,22 @@ n_{i1} = \frac{\ee n_0 k^2\phi_1}{m_i(\omega^2 - \gamma_i k^2 v_{ti}^2)}
 \item 玻尔兹曼方程：$\displaystyle\frac{\partial f}{\partial t} + \vect{v}\cdot\grad f + \frac{\vect{F}}{m}\cdot\grad_v f = \left(\frac{\partial f}{\partial t}\right)_c$
 \item 连续性方程（零阶矩）：$\displaystyle\frac{\partial n}{\partial t} + \divg(n\vect{u}) = 0$
 \item 运动方程（一阶矩）：$\displaystyle nm\left(\frac{\partial\vect{u}}{\partial t} + \vect{u}\cdot\grad\vect{u}\right) = qn(\vect{E}+\vect{u}\times\vect{B}) - \grad p + \vect{R}$
-\item 双流体状态方程：$\displaystyle p_\alpha = n_\alpha k_{\!B}T_\alpha\quad(\alpha=e,i)$
+。\item 双流体状态方程：$\displaystyle p_\alpha = n_\alpha k_{\!B}T_\alpha\quad(\alpha=e,i)$
 \item 广义欧姆定律：$\displaystyle\vect{E} + \vect{u}\times\vect{B} = \eta\vect{j} + \frac{1}{en}\vect{j}\times\vect{B} - \frac{1}{en}\grad p_e + \frac{m_e}{ne^2}\frac{\partial\vect{j}}{\partial t}$
 \item 双极扩散系数：$\displaystyle D_a \approx D_i\left(1 + \frac{T_e}{T_i}\right)$
-\item 离子声速：$\displaystyle c_s = \sqrt{\frac{k_{\!B}T_e}{m_i}}$（当 $T_e\gg T_i$）
+\item 离子声速：$\displaystyle c_s = \sqrt{\frac{k_{\!B}T_e}{m_i}}$（当 $T_e\gg T_i$）。
 \end{itemize}
 \textbf{符号说明：}$f(\vect{r},\vect{v},t)$ 为分布函数；$\vect{F}$ 为外力、$\vect{u}$ 为流体速度、$\vect{j}$ 为电流密度、$\vect{R}$ 为碰撞阻力（摩擦）项；$p$ 为压强（$p_e$ 为电子分压强），下标 $\alpha=e,i$ 标记电子、离子组分。$\eta$ 为电阻率；$D_a$ 为双极扩散系数，$D_i$ 为离子扩散系数；$c_s$ 为离子声速。
 \end{formulabox}
 
 \begin{checklistbox}{第4章自学检查清单}{ch4-checklist}
 \begin{itemize}[leftmargin=*,label=$\square$]
-\item 我能从玻尔兹曼方程出发，取零阶矩和一阶矩推导连续性方程和动量方程
-\item 我理解了双流体模型中电子和离子脱耦的物理根源（$m_e/m_i\sim 1/1836$）
-\item 我能估算广义欧姆定律中各项的量级，并判断在什么近似下可以忽略
-\item 我掌握了双极扩散的物理图像：电荷分离产生自建电场，约束电子和离子一起扩散
-\item 我能计算离子声速，并理解 $T_e\gg T_i$ 是离子声波存在的前提条件
-\item 我知道状态方程的闭合问题：需要额外条件（如等温、绝热）才能使方程组封闭
+\item 我能从玻尔兹曼方程出发，取零阶矩和一阶矩推导连续性方程和动量方程。
+\item 我理解了双流体模型中电子和离子脱耦的物理根源（$m_e/m_i\sim 1/1836$）。
+\item 我能估算广义欧姆定律中各项的量级，并判断在什么近似下可以忽略。
+\item 我掌握了双极扩散的物理图像：电荷分离产生自建电场，约束电子和离子一起扩散。
+\item 我能计算离子声速，并理解 $T_e\gg T_i$ 是离子声波存在的前提条件。
+\item 我知道状态方程的闭合问题：需要额外条件（如等温、绝热）才能使方程组封闭。
 \end{itemize}
 \end{checklistbox}
 

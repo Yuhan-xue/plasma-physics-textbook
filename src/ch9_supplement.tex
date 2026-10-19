@@ -8,7 +8,7 @@
 \addcontentsline{toc}{section}{习题精选}
 
 \begin{example}{瑞利--泰勒不稳定性的增长率估算}{rayleigh-taylor-calc}
-在磁约束聚变装置的“坏曲率”区域，等效重力加速度约为 $g \approx 10^{5}\,\mathrm{m/s^2}$（由曲率漂移产生），密度梯度对应的Atwood数 $A = 0.3$。界面处波长为 $\lambda = 2\,\mathrm{cm}$ 的扰动被激发。求：
+磁约束聚变装置“坏曲率”区的等效重力加速度约为 $g \approx 10^{5}\,\mathrm{m/s^2}$（由曲率漂移产生）。密度梯度对应的 Atwood 数 $A = 0.3$。界面处波长为 $\lambda = 2\,\mathrm{cm}$ 的扰动被激发。求：
 \begin{enumerate}[label=(\arabic*)]
 \item 该扰动的增长率 $\gamma$；
 \item 振幅\textbf{增长 10 倍}所需的时间，以及振幅增长 $\ee^{10}$ 倍（即 $10$ 个 e-folding）所需的时间；
@@ -17,7 +17,7 @@
 \tcblower
 \textbf{解答：}
 
-瑞利--泰勒不稳定性增长率公式为：
+瑞利--泰勒不稳定性增长率公式为。
 \[
 \gamma = \sqrt{A k g}
 \]
@@ -25,12 +25,12 @@
 
 \textbf{(1) 计算增长率：}
 
-波数：
+波数。
 \[
 k = \frac{2\pi}{\lambda} = \frac{2\pi}{0.02} = 314\,\mathrm{m}^{-1}
 \]
 
-代入公式：
+代入公式。
 \[
 \gamma = \sqrt{0.3\times 314\times 10^{5}} = \sqrt{9.42\times 10^{6}}
 \approx 3.07\times 10^{3}\,\mathrm{s}^{-1}
@@ -40,12 +40,12 @@ k = \frac{2\pi}{\lambda} = \frac{2\pi}{0.02} = 314\,\mathrm{m}^{-1}
 
 振幅增长满足 $A(t) = A_0\ee^{\gamma t}$。
 
-\textbf{目标一：振幅增长 10 倍}（即 $\ee^{\gamma t}=10$）：
+\textbf{目标一：振幅增长 10 倍}（即 $\ee^{\gamma t}=10$）。
 \[
 t_{10\times} = \frac{\ln 10}{\gamma} = \frac{2.303}{3.07\times 10^{3}} \approx 7.5\times 10^{-4}\,\mathrm{s} = 0.75\,\mathrm{ms}
 \]
 
-\textbf{目标二：增长 $\ee^{10}$ 倍}（即 $10$ 个 e-folding，$\gamma t=10$）：
+\textbf{目标二：增长 $\ee^{10}$ 倍}（即 $10$ 个 e-folding，$\gamma t=10$）。
 \[
 t_{10e} = \frac{10}{\gamma} = \frac{10}{3.07\times 10^{3}} \approx 3.3\times 10^{-3}\,\mathrm{s} = 3.3\,\mathrm{ms}
 \]
@@ -56,12 +56,12 @@ t_{10e} = \frac{10}{\gamma} = \frac{10}{3.07\times 10^{3}} \approx 3.3\times 10^
 
 \textbf{(3) 波长缩短为 $\lambda = 0.5\,\mathrm{cm}$：}
 
-波数变为：
+波数变为。
 \[
 k' = \frac{2\pi}{0.005} = 1257\,\mathrm{m}^{-1}
 \]
 
-新的增长率：
+新的增长率。
 \[
 \gamma' = \sqrt{0.3\times 1257\times 10^{5}} = \sqrt{3.77\times 10^{7}}
 \approx 6.14\times 10^{3}\,\mathrm{s}^{-1}
@@ -79,7 +79,7 @@ k' = \frac{2\pi}{0.005} = 1257\,\mathrm{m}^{-1}
 \end{example}
 
 \begin{example}{双流不稳定性的色散关系与不稳定性条件}{two-stream-calc}
-\textbf{模型声明：} 本题研究\textbf{对称双流模型}——两束等密度的冷电子以 $\pm u/2$ 相向运动，净电荷中和由静止离子背景提供（离子只作电中性背景，不参与振荡）。相对漂移速度为 $u = 2\times 10^{7}\,\mathrm{m/s}$。设\textbf{总}电子密度对应的等离子体频率为 $\omega_{pe} = 5\times 10^{10}\,\mathrm{rad/s}$（每束为 $\omega_{pe}^2/2$）。求：(1) 色散关系。
+\textbf{模型声明：} 本题研究\textbf{对称双流模型}。两束等密度的冷电子以 $\pm u/2$ 相向运动，净电荷中和由静止离子背景提供（离子只作电中性背景，不参与振荡）。相对漂移速度为 $u = 2\times 10^{7}\,\mathrm{m/s}$。设\textbf{总}电子密度对应的等离子体频率为 $\omega_{pe} = 5\times 10^{10}\,\mathrm{rad/s}$（每束为 $\omega_{pe}^2/2$）。求：(1) 色散关系。
 (2) 不稳定波数范围。
 (3) 最大增长率及对应波数。
 
@@ -87,7 +87,7 @@ k' = \frac{2\pi}{0.005} = 1257\,\mathrm{m}^{-1}
 \tcblower
 \textbf{解答：}
 
-\textbf{(1) 色散关系：} 冷等离子体（$T_e=T_i=0$），每束贡献 $\omega_{pe}^2/2$：
+\textbf{(1) 色散关系：} 冷等离子体（$T_e=T_i=0$），每束贡献 $\omega_{pe}^2/2$。
 \[
 1=\frac{\omega_{pe}^2/2}{(\omega-ku/2)^2}+\frac{\omega_{pe}^2/2}{(\omega+ku/2)^2}
 \]
@@ -132,12 +132,12 @@ k_{\text{opt}}=\frac{\sqrt{3/2}\,\omega_{pe}}{u}=\frac{1.2247\times5\times10^{10
 \item 双流不稳定性将电子的定向漂移动能转化为等离子体振荡能（Langmuir 波）。
 \item 增长时间仅约 $57\,\mathrm{ps}$，说明在强电流等离子体中，这种不稳定性几乎是瞬发的。
 \item 实际等离子体有温度：当相对漂移 $u\lesssim v_{te}$ 时，热展宽会稳定束流。
-\item 束流能量转化为波，波再通过 Landau 阻尼加热电子，等效于电阻耗散——这是反常电阻的来源之一（对应冷束穿过可动离子的 Buneman 模型给出的电流驱动版本）。
+\item 束流能量转化为波，波再通过 Landau 阻尼加热电子，等效于电阻耗散。这是反常电阻的来源之一（对应冷束穿过可动离子的 Buneman 模型给出的电流驱动版本）。
 \end{itemize}
 \end{example}
 
 \begin{example}{sausage模与扭曲模的定性分析}{mhd-modes}
-在柱形等离子体（如Z箍缩或直圆柱 tokamak 简化模型）中，轴向电流 $I$ 产生环向磁场 $B_\theta(r)$。请分别描述 sausage模 和 扭曲模（kink模）的物理图像，并分析：
+在柱形等离子体（如Z箍缩或直圆柱 tokamak 简化模型）中，轴向电流 $I$ 产生环向磁场 $B_\theta(r)$。下面分别描述 sausage模和扭曲模（kink模）的物理图像，并回答以下问题。
 \begin{enumerate}[label=(\arabic*)]
 \item 哪种模在 $m=0$ 时出现？
 \item 哪种模在 $m=1$ 时出现？
@@ -198,7 +198,7 @@ k_{\text{opt}}=\frac{\sqrt{3/2}\,\omega_{pe}}{u}=\frac{1.2247\times5\times10^{10
 
 \textbf{步骤1：计算电子热速度和漂移速度。}
 
-电子热速度：
+电子热速度。
 \[
 v_{te} = \sqrt{\frac{k_{\!B}T_e}{m_e}} = \sqrt{\frac{100\times 1.602\times 10^{-19}}{9.109\times 10^{-31}}}
 = \sqrt{1.76\times 10^{13}} \approx 4.19\times 10^{6}\,\mathrm{m/s}
@@ -206,7 +206,7 @@ v_{te} = \sqrt{\frac{k_{\!B}T_e}{m_e}} = \sqrt{\frac{100\times 1.602\times 10^{-
 
 （注：这里用 $v_{te} = \sqrt{k_{\!B}T_e/m_e}$，而非 $\sqrt{2k_{\!B}T_e/m_e}$。）
 
-电子逆磁漂移速度（$\vect{E}\times\vect{B}$ 漂移的类比，由密度梯度驱动）：
+电子逆磁漂移速度（$\vect{E}\times\vect{B}$ 漂移的类比，由密度梯度驱动）。
 \[
 v_{de} = \frac{k_{\!B}T_e}{eBL_n}
 \]
@@ -220,17 +220,17 @@ v_{de} = \frac{1.602\times 10^{-17}}{1.602\times 10^{-19}\times 2\times 0.1}
 
 \textbf{步骤2：估算漂移波频率。}
 
-漂移波频率的典型量级为：
+漂移波频率的典型量级为。
 \[
 \omega_* \sim k_y v_{de}
 \]
 
-取垂直于磁场和梯度方向的波数 $k_y \sim 1/L_n = 10\,\mathrm{m}^{-1}$：
+取垂直于磁场和梯度方向的波数 $k_y \sim 1/L_n = 10\,\mathrm{m}^{-1}$。
 \[
 \omega_* \sim 10\times 500 = 5\times 10^{3}\,\mathrm{rad/s}
 \]
 
-对应频率：
+对应频率。
 \[
 f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
 \]
@@ -239,10 +239,10 @@ f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
 
 上面的 $\omega_*\sim5\times10^{3}\,\mathrm{rad/s}$ 是\textbf{实频率}（波的振荡快慢），\textbf{不}是增长率。$\omega_*=k_yv_{de}$ 只告诉你有梯度时存在一个以逆磁速度传播的模，\textbf{它本身不含任何关于稳定性的信息}。“有梯度”与“该模一定增长”之间还差一整套机制。
 
-\textbf{要判断是否增长，必须给出非绝热的电子响应。} 漂移波的标准图景是：电子沿磁力线的响应若\emph{恰好}绝热（$n_{e1}/n_0=e\phi_1/k_BT_e$，响应瞬时、无相位延迟），则密度涨落与电势涨落\emph{同相}。此时 $\vect{E}\times\vect{B}$ 漂移只把等离子体来回搬运，净输运为零，\textbf{不增长}。只有当电子响应\emph{非绝热}、产生一个相位差 $\delta$ 时，输运才与密度涨落同相，才能把能量喂给波。产生相位差的机制包括：
+\textbf{要判断是否增长，必须给出非绝热的电子响应。} 漂移波的标准图景是：电子沿磁力线的响应若\emph{恰好}绝热（$n_{e1}/n_0=e\phi_1/k_BT_e$，响应瞬时、无相位延迟），则密度涨落与电势涨落\emph{同相}。此时 $\vect{E}\times\vect{B}$ 漂移只把等离子体来回搬运，净输运为零，\textbf{不增长}。只有当电子响应\emph{非绝热}、产生一个相位差 $\delta$ 时，输运才与密度涨落同相，才能把能量喂给波。产生相位差的机制包括以下三类。
 \begin{itemize}[leftmargin=*,itemsep=0pt]
-\item \textbf{碰撞}（耗散型漂移波）：$\delta\sim\nu_{ei}/\omega_*$，增长率 $\gamma\propto\nu_{ei}$；
-\item \textbf{有限 $k_\parallel$}（朗道型/平板漂移波）：沿磁力线的波数使电子不能瞬时平衡，$\gamma\sim k_\parallel v_{te}\sqrt{\pi/2}$；
+\item \textbf{碰撞}（耗散型漂移波）：$\delta\sim\nu_{ei}/\omega_*$，增长率 $\gamma\propto\nu_{ei}$。
+\item \textbf{有限 $k_\parallel$}（朗道型/平板漂移波）：沿磁力线的波数使电子不能瞬时平衡，$\gamma\sim k_\parallel v_{te}\sqrt{\pi/2}$。
 \item \textbf{曲率/坏曲率与 $\nabla T$}（ITG/TEM 等）：需要这些额外自由能源才能致不稳定。
 \end{itemize}
 
@@ -251,7 +251,7 @@ f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
 \textbf{物理分析：}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
 \item 漂移波的频率远小于离子回旋频率（$\omega_{ci} = eB/m_i \approx 1.9\times 10^{8}\,\mathrm{rad/s}$ for protons），满足低频近似。
-\item 漂移波\emph{可能}不稳定的核心机制：密度涨落引起电势涨落，电势涨落的 $\vect{E}\times\vect{B}$ 漂移进一步放大密度涨落——但这需要上面列出的相位差机制才能真正闭合成正反馈；无相位差时是中性振荡。
+\item 漂移波\emph{可能}不稳定的核心机制：密度涨落引起电势涨落，电势涨落的 $\vect{E}\times\vect{B}$ 漂移进一步放大密度涨落。但这需要上面列出的相位差机制才能真正闭合成正反馈；无相位差时是中性振荡。
 \item 在托卡马克中，漂移波及其非线性发展（漂移波湍流）是粒子反常输运的主要来源之一。
 \item 虽然上述估算非常粗糙（真实色散关系涉及 $k_{\parallel}$、碰撞率、磁剪切等），但它给出了实频率的正确量级：千赫兹到兆赫兹。
 \end{itemize}
@@ -386,7 +386,7 @@ f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
 
 % ch9 新例题：交换不稳定性的物理判断
 \begin{example}{磁流体气球模的物理图像}{ballooning-concept}
-托卡马克中压强梯度驱动的气球模（ballooning mode）为什么在外中平面（坏曲率区）发展最快？用磁流体能量原理定性说明，并解释为什么提高比压 $\beta$ 会触发气球模。
+为什么压强梯度驱动的气球模在外中平面（坏曲率区）发展最快？用磁流体能量原理定性说明，并解释提高比压 $\beta$ 为何会触发气球模。
 \tcblower
 \textbf{解答：}
 
@@ -394,10 +394,10 @@ f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
 
 \textbf{能量原理定性分析：} 理想 MHD 能量原理把扰动能量写成 $\delta W = \delta W_{\text{磁张力}} + \delta W_{\text{压强}}$。在坏曲率区：
 \begin{itemize}[leftmargin=*,itemsep=0pt]
-\item 磁张力项：扰动沿磁力线拉伸磁场，消耗能量（稳定贡献），但在坏曲率区被离心效应部分抵消；
+\item 磁张力项：扰动沿磁力线拉伸磁场，消耗能量（稳定贡献），但在坏曲率区被离心效应部分抵消。
 \item 压强项：扰动把高压等离子体推到低磁压区（外中平面），释放膨胀能（不稳定贡献 $\propto \nabla p\cdot\xi$）。
 \end{itemize}
-当压强梯度足够大时，坏曲率区压强项的不稳定贡献超过磁张力项的稳定贡献，$\delta W<0$，气球模增长——扰动像“气球”一样从外中平面鼓出，故得此名。
+当压强梯度足够大时，坏曲率区压强项的不稳定贡献超过磁张力项的稳定贡献，$\delta W<0$，气球模增长。扰动像“气球”一样从外中平面鼓出，故得此名。
 
 \textbf{与比压 $\beta$ 的关系：} 压强项正比于 $\beta = 2\mu_0 p/B^2$（热压与磁压之比）。$\beta$ 升高意味着热压相对磁压增大，压强驱动增强而磁场稳定能力相对减弱。当 $\beta$ 超过临界值 $\beta_c$（工程上通常 $\beta_c\sim3\%$ 量级，取决于位形与剪切断面）时，气球模被触发。这正是托卡马克比压极限（Troyon 极限）的物理根源：$\beta$ 不能无限提高，否则压强梯度驱动的气球模立即破坏约束。
 
@@ -406,30 +406,30 @@ f_* = \frac{\omega_*}{2\pi} \sim 800\,\mathrm{Hz}
 
 \begin{formulabox}{第 9 章}{ch9-formulas}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
-\item 不稳定性判据：$\text{Im}(\omega) > 0$，增长率 $\gamma = \text{Im}(\omega)$
-\item 瑞利--泰勒增长率：$\displaystyle\gamma = \sqrt{A k g}$，$A = \frac{\rho_2 - \rho_1}{\rho_2 + \rho_1}$
-\item 对称双流（两束等密度冷电子，相对漂移 $u$）：$\displaystyle 1=\frac{1/2}{(w-a)^2}+\frac{1/2}{(w+a)^2}$，即 $\displaystyle w^2=a^2+\frac12\pm\frac12\sqrt{1+8a^2}$（$w=\omega/\omega_{pe}$，$a=ku/2\omega_{pe}$，$\omega_{pe}$ 对应\textbf{总}密度；质心系即实验室系）
-\item 对称双流不稳定条件：$\displaystyle 0<|ku|<2\,\omega_{pe}$（\textbf{不是} $ku<\omega_{pe}$）
-\item 对称双流最大增长率：$\displaystyle\gamma_{\max}=\frac{\omega_{pe}}{\sqrt8}\approx0.354\,\omega_{pe}$，发生在 $\displaystyle|ku|=\sqrt{3/2}\,\omega_{pe}\approx1.225\,\omega_{pe}$（\textbf{不是阈值处}）
-\item Buneman（电子束穿过可动离子）：$\displaystyle 1=\frac{\omega_{pe}^2}{(\omega-ku_e)^2}+\frac{\omega_{pi}^2}{(\omega-ku_i)^2}$，与对称双流是两个模型，不可混用
-\item  sausage模（$m=0$）：轴对称径向收缩，纵向磁场 $B_z$ 提供稳定
-\item 扭曲模（$m=1$）：柱轴螺旋弯曲，导体壁镜像电流提供稳定
-\item 漂移波频率（估算）：$\displaystyle\omega_* \sim k_y v_{de} = k_y \frac{k_{\!B}T_e}{eBL_n}$
-\item 有效重力（曲率漂移）：$\displaystyle g \sim \frac{v_{th}^2}{R_c}$
-\item 反常输运：湍流电场导致随机散射，输运系数远大于经典值
+\item 不稳定性判据：$\text{Im}(\omega) > 0$，增长率 $\gamma = \text{Im}(\omega)$。
+\item 瑞利--泰勒增长率：$\displaystyle\gamma = \sqrt{A k g}$，$A = \frac{\rho_2 - \rho_1}{\rho_2 + \rho_1}$。
+\item 对称双流（两束等密度冷电子，相对漂移 $u$）：$\displaystyle 1=\frac{1/2}{(w-a)^2}+\frac{1/2}{(w+a)^2}$，即 $\displaystyle w^2=a^2+\frac12\pm\frac12\sqrt{1+8a^2}$（$w=\omega/\omega_{pe}$，$a=ku/2\omega_{pe}$，$\omega_{pe}$ 对应\textbf{总}密度；质心系即实验室系）。
+\item 对称双流不稳定条件：$\displaystyle 0<|ku|<2\,\omega_{pe}$（\textbf{不是} $ku<\omega_{pe}$）。
+\item 对称双流最大增长率：$\displaystyle\gamma_{\max}=\frac{\omega_{pe}}{\sqrt8}\approx0.354\,\omega_{pe}$，发生在 $\displaystyle|ku|=\sqrt{3/2}\,\omega_{pe}\approx1.225\,\omega_{pe}$（\textbf{不是阈值处}）。
+\item Buneman（电子束穿过可动离子）：$\displaystyle 1=\frac{\omega_{pe}^2}{(\omega-ku_e)^2}+\frac{\omega_{pi}^2}{(\omega-ku_i)^2}$，与对称双流是两个模型，不可混用。
+\item  sausage模（$m=0$）：轴对称径向收缩，纵向磁场 $B_z$ 提供稳定。
+\item 扭曲模（$m=1$）：柱轴螺旋弯曲，导体壁镜像电流提供稳定。
+\item 漂移波频率（估算）：$\displaystyle\omega_* \sim k_y v_{de} = k_y \frac{k_{\!B}T_e}{eBL_n}$。
+\item 有效重力（曲率漂移）：$\displaystyle g \sim \frac{v_{th}^2}{R_c}$。
+\item 反常输运：湍流电场导致随机散射，输运系数远大于经典值。
 \end{itemize}
 \textbf{符号说明：}$\gamma=\text{Im}(\omega)$ 为增长率，$\omega$、$k$ 为波角频率与波数（$k_y$ 为垂直波数）；$A=(\rho_2-\rho_1)/(\rho_2+\rho_1)$ 为 Atwood 数（$\rho_1$、$\rho_2$ 为界面两侧密度），$g$ 为重力加速度。$u$ 为流速（$u_e$、$u_i$ 为电子、离子流速），$w=\omega/\omega_{pe}$ 为归一化频率，$a=ku/2\omega_{pe}$ 为归一化波数；$\omega_{pe}$、$\omega_{pi}$ 为电子、离子等离子体频率（$\omega_{pe}$ 对应\textbf{总}电子密度）。$L_n$ 为密度梯度尺度，$R_c$ 为曲率半径；$B_z$ 为背景磁场，$v_{de}$ 为电子抗磁漂移速度，$v_{th}$ 为热速度。
 \end{formulabox}
 
 \begin{checklistbox}{第9章自学检查清单}{ch9-checklist}
 \begin{itemize}[leftmargin=*,label=$\square$]
-\item 我能区分宏观MHD不稳定性（压强/磁场配置驱动）和微观动理学不稳定性（速度/位形空间驱动）
-\item 我能从瑞利--泰勒公式估算增长率，并解释为什么短波增长更快
-\item 我能写出双流不稳定性的色散关系，并判断不稳定波数范围
-\item 我能在物理图像上区分 sausage模（$m=0$）和扭曲模（$m=1$），并知道各自的稳定方法
-\item 我理解漂移波的回路：密度涨落 $\to$ 电势涨落 $\to$ $\vect{E}\times\vect{B}$ 漂移 $\to$ 输运，\textbf{并且知道回路闭合还差一环}——必须有相位差 $\delta\neq0$（非绝热电子响应）才能增长；$\omega_*=k_yv_{de}$ 只是实频率，不等于增长率
-\item 我能解释为什么反常输运远大于经典输运，以及它与不稳定性的关系
-\item 我知道抑制不稳定性是磁约束聚变的核心挑战（如气球模限制 $\beta$、扭曲模需要壁稳定）
+\item 我能区分宏观MHD不稳定性（压强/磁场配置驱动）和微观动理学不稳定性（速度/位形空间驱动）。
+\item 我能从瑞利--泰勒公式估算增长率，并解释为什么短波增长更快。
+\item 我能写出双流不稳定性的色散关系，并判断不稳定波数范围。
+\item 我能在物理图像上区分 sausage模（$m=0$）和扭曲模（$m=1$），并知道各自的稳定方法。
+\item 我理解漂移波的回路：密度涨落 $\to$ 电势涨落 $\to$ $\vect{E}\times\vect{B}$ 漂移 $\to$ 输运。回路闭合还差一环：必须有相位差 $\delta\neq0$（非绝热电子响应）才能增长；$\omega_*=k_yv_{de}$ 只是实频率，不等于增长率。
+\item 我能解释为什么反常输运远大于经典输运，以及它与不稳定性的关系。
+\item 我知道抑制不稳定性是磁约束聚变的核心挑战（如气球模限制 $\beta$、扭曲模需要壁稳定）。
 \end{itemize}
 \end{checklistbox}
 

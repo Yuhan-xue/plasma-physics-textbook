@@ -26,7 +26,7 @@
 \textbf{黑腔}，hohlraum），先转成 X 射线，再由 X 射线均匀地烧蚀靶丸。这一步的
 汇率是\textbf{转换效率} $\eta_{\mathrm{ce}}$，本附录取 $0.85$（声明值，量级）。
 
-腔壁吸收 X 射线又再辐射，腔内建立起近似的黑体辐射场。壁面通量由能量守恒给出：
+腔壁吸收 X 射线又再辐射，腔内建立起近似的黑体辐射场。壁面通量由能量守恒给出。
 激光能量 $E_{\mathrm{drv}}$ 在脉宽 $\tau$ 内转成 X 射线，摊在腔壁上：
 
 \begin{equation}
@@ -38,9 +38,8 @@ A_{\mathrm{hohl}} = 2\pi R L + 2\pi R^2 .
 \end{equation}
 
 把 $E_{\mathrm{drv}} = 2.0$ MJ、$\eta_{\mathrm{ce}} = 0.85$、$\tau = 4.0$ ns、
-$R = 1.5$ mm、$L = 5.0$ mm 代进去：$A_{\mathrm{hohl}} = 6.12611\times10^{-5}$ m$^2$
-（$0.612611$ cm$^2$）、$E_X = 1.7$ MJ、$F_X = 6.93752\times10^{18}$ W m$^{-2}$，
-于是
+$R = 1.5$ mm、$L = 5.0$ mm 代进去。$A_{\mathrm{hohl}} = 6.12611\times10^{-5}$ m$^2$
+（$0.612611$ cm$^2$）、$E_X = 1.7$ MJ、$F_X = 6.93752\times10^{18}$ W m$^{-2}$。
 
 \begin{equation}
 T_{\mathrm{rad}} = \left(\frac{F_X}{\sigma}\right)^{1/4}
@@ -95,7 +94,7 @@ Atzeni \& Meyer-ter-Vehn \emph{The Physics of Inertial Fusion}（2004，第 10 �
 \section{内爆：火箭模型与滞止}
 \label{sec:app-ai-implosion}
 
-X 射线烧蚀靶丸外壳，外壳向外喷出的等离子体把剩下的壳层向内推——这就是
+X 射线烧蚀靶丸外壳，外壳向外喷出的等离子体把剩下的壳层向内推，这就是
 \textbf{火箭}。动量守恒给出火箭方程：把烧蚀层当作燃料，把剩下的靶丸当作载荷，
 
 \begin{equation}
@@ -107,7 +106,7 @@ v_{\mathrm{imp}} = v_{\mathrm{ex}} \ln\frac{m_0}{m_f},
 $m_0$ 是靶丸初始质量，$m_f$ 是剩下的载荷质量。本附录的靶：
 燃料冰球半径 $R_{\mathrm{ice}} = 1.38331$ mm、质量 $2.82743$ mg，
 外面包 $150\ \mu$m 的 CH 烧蚀层（$m_{\mathrm{abl}} = 4.21285$ mg），
-于是 $m_0 = 7.04028$ mg、$m_0/m_f = 2.48999$、$\ln(m_0/m_f) = 0.912279$，
+于是 $m_0 = 7.04028$ mg、$m_0/m_f = 2.48999$、$\ln(m_0/m_f) = 0.912279$。
 
 \begin{equation}
 v_{\mathrm{imp}} = 301.052\ \mathrm{km\,s^{-1}},
@@ -118,7 +117,7 @@ E_{\mathrm{kin}} = \tfrac12 m_f v_{\mathrm{imp}}^2 = 128.128\ \mathrm{kJ},
 \label{eq:app-ai-ekin}
 \end{equation}
 
-六兆焦的驱动能量里只有 $128$ kJ 变成内爆动能——这个 $6.4\%$ 就是\textbf{流体力学效率}，
+六兆焦的驱动能量里只有 $128$ kJ 变成内爆动能，这个 $6.4\%$ 就是\textbf{流体力学效率}，
 是惯性约束最硬的约束之一。内爆时间 $t_{\mathrm{imp}} = R_{\mathrm{ice}}/v_{\mathrm{imp}}
 = 4.59493$ ns，与驱动脉宽同量级；平均加速度
 $a = 3.27591\times10^{13}$ m s$^{-2}$（$3.34277\times10^{12}$ 倍地表重力）。
@@ -132,7 +131,7 @@ P_{\mathrm{stag}} \sim \rho v_{\mathrm{imp}}^2 = 1.81265\times10^{16}\ \mathrm{P
 
 比太阳中心的压力还高几个量级。燃料被压到 $R_f = 150\ \mu$m、
 $\rho = 200$ g cm$^{-3}$：半径压缩比 $9.2221$、密度压缩比 $784.314$、
-面密度 $\rho R = 3$ g cm$^{-2}$——这正是附录 Y 第 6 节那个 0-D 工作点，
+面密度 $\rho R = 3$ g cm$^{-2}$，这正是附录 Y 第 6 节那个 0-D 工作点，
 现在它有了过程。
 
 \begin{table}[htbp]
@@ -159,7 +158,7 @@ $\rho = 200$ g cm$^{-3}$：半径压缩比 $9.2221$、密度压缩比 $784.314$�
 \end{table}
 
 \begin{tip}{质量比决定内爆速度}{tip-app-ai-rocket}
-火箭方程里没有压强、没有温度、没有烧蚀率——只有质量比与排出速度。
+火箭方程里只有质量比与排出速度，与压强、温度、烧蚀率都无关。
 压强决定的是\emph{能不能}在给定时间里烧蚀掉那么多质量，而不是直接决定速度。
 把烧蚀层加厚会提高质量比、提高 $v_{\mathrm{imp}}$，但要多花驱动能量：
 这是一个必须一起算的权衡（见练习 2）。
@@ -189,7 +188,7 @@ P_F = \frac{(3\pi^2)^{2/3}\hbar^2}{5 m_e} n_e^{5/3},
 \end{equation}
 
 即热压与\textbf{费米压}（电子简并压）之比。$\alpha_{\mathrm{ad}} \sim 1$ 表示
-燃料已经简并，压力主要来自泡利原理而不是温度——这正是「冷压缩」的意思：
+燃料已经简并，压力主要来自泡利原理而不是温度，这正是「冷压缩」的意思：
 
 \begin{equation}
 P_F(\rho = 200\ \mathrm{g\,cm^{-3}}) = 1.49065\times10^{15}\ \mathrm{Pa}
@@ -199,9 +198,9 @@ P_{\mathrm{th}}(100\ \mathrm{eV}) = 7.71883\times10^{14}\ \mathrm{Pa},
 \label{eq:app-ai-adiabat}
 \end{equation}
 
-于是冷燃料 $\alpha_{\mathrm{ad}} = 0.517816$——它已经被简并压撑住，温度不是主要压力来源。
+于是冷燃料 $\alpha_{\mathrm{ad}} = 0.517816$，它已经被简并压撑住，温度不是主要压力来源。
 热斑完全相反：$\rho = 30$ g cm$^{-3}$ 时 $P_F = 6.3124\times10^{13}$ Pa，
-而 $5$ keV 的热压是 $5.78912\times10^{15}$ Pa，$\alpha_{\mathrm{ad}} = 91.7103$——
+而 $5$ keV 的热压是 $5.78912\times10^{15}$ Pa，$\alpha_{\mathrm{ad}} = 91.7103$，
 热斑是理想气体，必须靠惯性约束住。
 
 激波是熵的敌人。强激波（$\gamma = 5/3$）的压缩比上限是
@@ -256,9 +255,9 @@ Lindl \emph{Physics of Plasmas}（1995，第 2 卷，3933 页）。
 \section{流体不稳定性：瑞利--泰勒与烧蚀稳定化}
 \label{sec:app-ai-rt}
 
-内爆是一层重流体（壳层）被轻流体（烧蚀等离子体）推着加速——这正是
+内爆是一层重流体（壳层）被轻流体（烧蚀等离子体）推着加速，这正是
 \textbf{瑞利--泰勒不稳定性}（RT）的经典位形：加速度指向重流体时，界面上的扰动
-指数增长，
+指数增长。
 
 \begin{equation}
 \gamma_{\mathrm{RT}} = \sqrt{A_T k g},
@@ -282,9 +281,9 @@ k = 628319\ \mathrm{m^{-1}},
 \end{equation}
 
 不加任何稳定化，扰动在 $4.59493$ ns 的内爆时间里会放大
-$e^{33.5798} \approx 4\times10^{14}$ 倍——足以把靶丸撕碎。真实靶没被撕碎，
+$e^{33.5798} \approx 4\times10^{14}$ 倍，足以把靶丸撕碎。真实靶没被撕碎，
 靠的是\textbf{烧蚀稳定化}：烧蚀前沿以 $v_{\mathrm{abl}}$ 扫过界面，把短波扰动
-（波长小于烧蚀层厚度量级）对流走：
+（波长小于烧蚀层厚度量级）对流走。
 
 \begin{equation}
 \gamma^2 = A_T k g - k^2 v_{\mathrm{abl}}^2 ,
@@ -298,7 +297,7 @@ k_{\max} = \frac{k_c}{2}.
 取 $v_{\mathrm{abl}} = 3.0\times10^{4}$ m s$^{-1}$（声明值）：
 $k_c = 94444.4$ m$^{-1}$（截止波长 $\lambda_c = 66.5278\ \mu$m）、
 最不稳定波长 $\lambda_{\max} = 133.056\ \mu$m、
-$\gamma_{\max} = 1.41667\times10^{9}$ s$^{-1}$，内爆期间的最大放大倍数降到
+$\gamma_{\max} = 1.41667\times10^{9}$ s$^{-1}$。
 
 \begin{equation}
 N_{e} = \gamma_{\max} t_{\mathrm{imp}} = 6.50949 ,
@@ -308,7 +307,7 @@ N_{e} = \gamma_{\max} t_{\mathrm{imp}} = 6.50949 ,
 \end{equation}
 
 $\delta_0 = 20$ nm 的种子会长到 $\delta_f = 13.4297\ \mu$m，
-占最终半径 $150\ \mu$m 的 $8.95311\%$——还在可接受范围，但余量不大。
+占最终半径 $150\ \mu$m 的 $8.95311\%$，还在可接受范围，但余量不大。
 反过来问：若要求末期扰动不超过 $5\ \mu$m，则种子必须
 $\delta_0 \le 7.4462$ nm。这就是为什么靶丸表面粗糙度要控制在纳米量级，
 也是为什么内爆的加速度、烧蚀速度与表面质量必须一起设计。
@@ -334,7 +333,7 @@ $\delta_0 \le 7.4462$ nm。这就是为什么靶丸表面粗糙度要控制在�
 \bottomrule
 \end{tabular}
 \caption{瑞利--泰勒账。稳定化把放大倍数从 $10^{14}$ 压到 $e^{6.51} \approx 673$，
-但代价是只有长波被压住、短波被对流扫走——总放大倍数仍必须逐位管理。}
+但代价是只有长波被压住、短波被对流扫走；总放大倍数仍必须逐位管理。}
 \label{tab:app-ai-rt}
 \end{table}
 
@@ -346,15 +345,9 @@ $\delta_0 \le 7.4462$ nm。这就是为什么靶丸表面粗糙度要控制在�
 \end{tip}
 
 {\footnotesize
-\textbf{出处：}本文的瑞利--泰勒不稳定性经典处理见 Rayleigh \emph{Proceedings of the
-London Mathematical Society}（1883，第 14 卷，170 页）与 Taylor \emph{Proceedings of
-the Royal Society A}（1950，第 201 卷，192 页）。
-界面冲击加速的对应结果见
-Richtmyer \emph{Communications on Pure and Applied Mathematics}（1960，第 13 卷，
-297 页）与 Meshkov（1969，第 4 卷，101 页）。
-烧蚀稳定化与内爆不稳定性综述参照
-Kilkenny 等 \emph{Physics of Plasmas}（1994，第 1 卷，1379 页）与 Atzeni \&
-Meyer-ter-Vehn \emph{The Physics of Inertial Fusion}（2004，第 8 章）。
+\textbf{出处：}本文的瑞利--泰勒不稳定性经典处理见 Rayleigh \emph{Proceedings of the London Mathematical Society}（1883，第 14 卷，170 页）与 Taylor \emph{Proceedings of the Royal Society A}（1950，第 201 卷，192 页）。
+界面冲击加速的对应结果见 Richtmyer \emph{Communications on Pure and Applied Mathematics}（1960，第 13 卷，297 页）与 Meshkov（1969，第 4 卷，101 页）。
+烧蚀稳定化与内爆不稳定性综述参照 Kilkenny 等 \emph{Physics of Plasmas}（1994，第 1 卷，1379 页）与 Atzeni \& Meyer-ter-Vehn \emph{The Physics of Inertial Fusion}（2004，第 8 章）。
 }
 
 \begin{figure}[htbp]
@@ -383,8 +376,7 @@ P = 5.78912\times10^{15}\ \mathrm{Pa} = 57.8912\ \mathrm{Gbar}.
 
 $\alpha$ 粒子在 DT 里的射程对应 $\rho R \approx 0.3$ g cm$^{-2}$（声明值），
 在 $200$ g cm$^{-3}$ 的冷燃料里约 $15\ \mu$m、在热斑密度里约 $100\ \mu$m。
-热斑的 $\rho R_{\mathrm{hot}} = 0.12$ g cm$^{-2}$ \textbf{只有阈值的 $2.5$ 分之一}——
-这是一个刻意的设计点：热斑不必自己把 $\alpha$ 全部拦住，它只要点燃，
+热斑的 $\rho R_{\mathrm{hot}} = 0.12$ g cm$^{-2}$ \textbf{只有阈值的 $2.5$ 分之一}，这是一个刻意的设计点：热斑不必自己把 $\alpha$ 全部拦住，它只要点燃，
 剩下的 $\alpha$ 会在外面那层 $\rho R = 3$ g cm$^{-2}$ 的冷燃料里沉积。
 
 热斑靠声速散开，滞止时间
@@ -397,7 +389,7 @@ c_s = \sqrt{\frac{2 k T}{m_i}} = 621.242\ \mathrm{km\,s^{-1}},
 \end{equation}
 
 燃烧的反应率用 $\langle\sigma v\rangle(5\ \mathrm{keV}) = 2.75\times10^{-23}$ m$^3$ s$^{-1}$
-（声明值，DT）：
+（声明值，DT）。
 
 \begin{equation}
 \begin{aligned}
@@ -481,7 +473,7 @@ Wesson \emph{Tokamaks}（第 4 版，2011，第 14 章）。本节凡标出数�
 \section{燃烧与增益：把三本账合起来}
 \label{sec:app-ai-burn}
 
-点火之后是燃烧。燃烧持续的时间由燃料半径与声速给出：
+点火之后是燃烧。燃烧持续的时间由燃料半径与声速给出。
 
 \begin{equation}
 t_{\mathrm{burn}} = \frac{R_f}{c_s} = 0.241452\ \mathrm{ns},
@@ -503,7 +495,7 @@ E_{\mathrm{burn}} = 320.065\ \mathrm{MJ},
 \end{equation}
 
 这里 $E_{\mathrm{burn}}$ 只是 $\alpha$ 带走的那部分（$E_{\mathrm{fus}}/3$ 左右，
-本附录按 $E_\alpha = 63.66$ MJ、份额 $19.89\%$ 计入燃烧账）。靶增益与墙插增益：
+本附录按 $E_\alpha = 63.66$ MJ、份额 $19.89\%$ 计入燃烧账）。靶增益与墙插增益。
 
 \begin{equation}
 G = \frac{E_{\mathrm{burn}}}{E_{\mathrm{drv}}} = 160.033,
@@ -522,7 +514,7 @@ G_{\mathrm{wall}} = \eta_{\mathrm{drv}} G = 16.0033 \quad (\eta_{\mathrm{drv}} =
 \end{equation}
 
 \textbf{内爆动能只有 $128$ kJ，
-而燃烧放能 $320$ MJ——放大了约两千五百倍}。惯性约束用「压缩」这个小输入撬动「聚变」这个大输出；代价是每一步都要
+而燃烧放能 $320$ MJ，放大了约两千五百倍}。惯性约束用「压缩」这个小输入撬动「聚变」这个大输出；代价是每一步都要
 在纳秒尺度上精确到位。
 
 文献对照：美国国家点火装置在 2022 年 12 月
@@ -598,17 +590,16 @@ $\alpha$ 沉积各是多少？$\rho R$ 与 $0.3$ g cm$^{-2}$ 还差多少倍？
 燃耗份额需要多少？对应的面密度是多少？
 
 \textbf{解答 1}：流量减半，$F_X = 3.46876\times10^{18}$ W m$^{-2}$，
-$T_{\mathrm{rad}} = 240.998$ eV。只降了 $1.18921$ 倍——
-因为 $T \propto E^{1/4}$，四分之一次方把能量的变化压得很平。
-这就是为什么「能量多一倍」不等于「温度高很多」。
+$T_{\mathrm{rad}} = 240.998$ eV。只降了 $1.18921$ 倍。因为 $T \propto E^{1/4}$，四分之一次方把能量的变化压得很平。
+「能量多一倍」不等于「温度高很多」。
 
 \textbf{解答 2}：$m_{\mathrm{abl}} = 5.81505$ mg，质量比 $m_0/m_f = 3.05665$，
 $v_{\mathrm{imp}} = 368.716$ km/s，$E_{\mathrm{kin}} = 192.197$ kJ，
 $\eta_{\mathrm{hyd}} = 9.60983\%$。加厚烧蚀层提高速度也提高动能，
-但要多吸收驱动能量——本附录没有算这笔账，这正是 1-D 设计计算做的事。
+但要多吸收驱动能量，本附录没有算这笔账，这正是 1-D 设计计算做的事。
 
 \textbf{解答 3}：$v_{\mathrm{imp}} = 228.07$ km/s，$E_{\mathrm{kin}} = 73.5356$ kJ，
-$\eta_{\mathrm{hyd}} = 3.67678\%$。动能比工作点降 $1.7424$ 倍——
+$\eta_{\mathrm{hyd}} = 3.67678\%$。动能比工作点降 $1.7424$ 倍，
 动能按 $v^2$ 变，$v$ 降 $24\%$ 就损失四成动能。
 
 \textbf{解答 4}：$\delta_0 \le 7.4462$ nm；$20$ nm 的种子在
@@ -622,7 +613,7 @@ $E_{\mathrm{hot}} = 18.6235$ kJ、$\tau_{\mathrm{dwell}} = 128.774$ ps、
 
 \textbf{解答 6}：由 $f = \rho R/(\rho R+6)$ 反解，$f = 0.208291$（$20.8291\%$），
 $\rho R = 1.57854$ g cm$^{-2}$。增益要求降下来，面密度要求也降下来，
-但燃耗份额掉得很快——$\rho R$ 减半，燃耗从三分之一掉到五分之一。
+但燃耗份额掉得很快，$\rho R$ 减半，燃耗从三分之一掉到五分之一。
 
 \textbf{出处：}本节六道题的题型参照 Atzeni \& Meyer-ter-Vehn
 \emph{The Physics of Inertial Fusion}（2004，第 6--8 章的估算题传统）与
@@ -674,6 +665,7 @@ NIF 2022 年 $2.05$ MJ $\to$ 约 $3.15$ MJ（靶增益约 $1.54$） &
 把它当成\emph{判断量级与敏感度}的工具才对。
 \end{tip}
 
+\enlargethispage{\baselineskip}
 \textbf{出处：}本附录的间接驱动、内爆、不稳定性与点火图像分别参照
 Lindl \emph{Physics of Plasmas}（1995，第 2 卷，3933 页，2004，第 11 卷，339 页）。
 Atzeni \& Meyer-ter-Vehn \emph{The Physics of Inertial Fusion}（2004）。

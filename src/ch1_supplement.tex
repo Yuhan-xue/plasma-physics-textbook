@@ -24,7 +24,7 @@
 \[
 \curl\vect{A} = \left(\frac{1}{r}\frac{\partial A_z}{\partial\theta} - \frac{\partial A_\theta}{\partial z}\right)\unitvec{r} + \left(\frac{\partial A_r}{\partial z} - \frac{\partial A_z}{\partial r}\right)\unitvec{\theta} + \frac{1}{r}\left(\frac{\partial(rA_\theta)}{\partial r} - \frac{\partial A_r}{\partial\theta}\right)\unitvec{z}
 \]
-逐项计算：
+逐项计算。
 \begin{itemize}[leftmargin=*,itemsep=0pt]
 \item $r$ 分量：$\frac{1}{r}\frac{\partial A_z}{\partial\theta} - \frac{\partial A_\theta}{\partial z} = \frac{1}{r}\frac{\partial z}{\partial\theta} - \frac{\partial 0}{\partial z} = 0 - 0 = 0$
 \item $\theta$ 分量：$\frac{\partial A_r}{\partial z} - \frac{\partial A_z}{\partial r} = \frac{\partial r}{\partial z} - \frac{\partial z}{\partial r} = 0 - 0 = 0$
@@ -34,7 +34,7 @@
 \[
 \curl\vect{A} = \vect{0}
 \]
-\textbf{要点：} $r,\theta,z$ 是三个\textbf{相互独立}的坐标，所以 $\partial r/\partial z = 0$、$\partial z/\partial r = 0$，不要把后者误当作 1。此处 $\vect{A}=r\unitvec{r}+z\unitvec{z}=\nabla\!\left[\frac{1}{2}(r^2+z^2)\right]$ 恰是一个梯度场，而梯度场的旋度必为零，可用来交叉检验：
+\textbf{要点：} $r,\theta,z$ 是三个\textbf{相互独立}的坐标，所以 $\partial r/\partial z = 0$、$\partial z/\partial r = 0$，不要把后者误当作 1。此处 $\vect{A}=r\unitvec{r}+z\unitvec{z}=\nabla\!\left[\frac{1}{2}(r^2+z^2)\right]$ 恰是一个梯度场，而梯度场的旋度必为零，可用来交叉检验。
 \[
 \nabla\times\nabla\psi = \vect{0}
 \]
@@ -54,7 +54,7 @@ f(v_x) = n\sqrt{\frac{m}{2\pi k_{\!B}T}}\,\exp\!\left(-\frac{mv_x^2}{2k_{\!B}T}\
 \langle v_x\rangle = \frac{1}{n}\int_{-\infty}^{+\infty} v_x f(v_x)\,\diff v_x = 0
 \]
 
-计算 $\langle v_x^2\rangle$，利用高斯积分公式
+计算 $\langle v_x^2\rangle$，利用高斯积分公式。
 \[
 \int_{-\infty}^{+\infty} x^2 \,\mathrm{e}^{-ax^2}\diff x = \frac{\sqrt{\pi}}{2a^{3/2}}
 \]
@@ -79,7 +79,7 @@ f(v_x) = n\sqrt{\frac{m}{2\pi k_{\!B}T}}\,\exp\!\left(-\frac{mv_x^2}{2k_{\!B}T}\
 \[
 \tilde{f}(k) = \int_{-\infty}^{+\infty} f(x)\,\mathrm{e}^{-\mathrm{i} kx}\,\diff x
 \]
-求：\textbf{(1)} $\delta(x)$ 的傅里叶变换；\textbf{(2)} $f(x)=\exp\!\left(-\frac{x^2}{2\sigma^2}\right)$ 的傅里叶变换。
+求：\textbf{(1)} $\delta(x)$ 的傅里叶变换。\textbf{(2)} $f(x)=\exp\!\left(-\frac{x^2}{2\sigma^2}\right)$ 的傅里叶变换。
 \tcblower
 \textbf{解答：}
 
@@ -93,11 +93,11 @@ f(v_x) = n\sqrt{\frac{m}{2\pi k_{\!B}T}}\,\exp\!\left(-\frac{mv_x^2}{2k_{\!B}T}\
 \[
 \tilde{f}(k) = \int_{-\infty}^{+\infty} \exp\!\left(-\frac{x^2}{2\sigma^2}\right)\mathrm{e}^{-\mathrm{i} kx}\,\diff x
 \]
-对指数配方：
+对指数配方。
 \[
 -\frac{x^2}{2\sigma^2} - \mathrm{i}kx = -\frac{1}{2\sigma^2}\left(x^2 + 2\mathrm{i}k\sigma^2 x\right) = -\frac{1}{2\sigma^2}\left[(x+\mathrm{i}k\sigma^2)^2 + k^2\sigma^4\right]
 \]
-利用高斯积分（复平移不改变积分值）：
+利用高斯积分（复平移不改变积分值）。
 \[
 \tilde{f}(k) = \exp\!\left(-\frac{k^2\sigma^2}{2}\right)\int_{-\infty}^{+\infty} \exp\!\left(-\frac{u^2}{2\sigma^2}\right)\diff u = \sqrt{2\pi}\,\sigma\,\exp\!\left(-\frac{k^2\sigma^2}{2}\right)
 \]
@@ -105,7 +105,7 @@ f(v_x) = n\sqrt{\frac{m}{2\pi k_{\!B}T}}\,\exp\!\left(-\frac{mv_x^2}{2k_{\!B}T}\
 \end{example}
 
 \begin{example}{球坐标下的梯度与拉普拉斯}{spherical-gradient}
-求标量场 $f(r)=\frac{1}{r}$ 在球坐标 $(r,\theta,\varphi)$ 下的梯度，并验证其满足拉普拉斯方程 $\lap f=0$（$r\neq 0$）。
+求标量场 $f(r)=\frac{1}{r}$ 在球坐标 $(r,\theta,\varphi)$ 下的梯度。验证其满足拉普拉斯方程 $\lap f=0$（$r\neq 0$）。
 \tcblower
 \textbf{解答：}
 球坐标梯度公式：
@@ -130,7 +130,7 @@ f(v_x) = n\sqrt{\frac{m}{2\pi k_{\!B}T}}\,\exp\!\left(-\frac{mv_x^2}{2k_{\!B}T}\
 
 % ch1 新例题：分布函数矩的计算
 \begin{example}{麦克斯韦分布的矩与最概然速率}{ch1-maxwell-dist}
-一维麦克斯韦分布 $f(v) = \dfrac{n}{\sqrt{\pi}\,v_t}\exp(-v^2/v_t^2)$，其中 $v_t = \sqrt{2k_{\!B}T/m}$（\textbf{注意}：此处 $v_t$ 为一维分布的尺度参数，满足 $v_t = \sqrt{2}\,v_{\mathrm{rms}}$，其中 $v_{\mathrm{rms}}=\sqrt{k_{\!B}T/m}$ 为一维方均根速率；不要与三维最概然速率 $v_p=\sqrt{2k_{\!B}T/m}$ 的数值巧合混淆——两者表达式相同但含义不同）。计算：
+一维麦克斯韦分布 $f(v) = \dfrac{n}{\sqrt{\pi}\,v_t}\exp(-v^2/v_t^2)$，其中 $v_t = \sqrt{2k_{\!B}T/m}$。\textbf{注意}：$v_t$ 是一维分布的尺度参数，满足 $v_t = \sqrt{2}\,v_{\mathrm{rms}}$，其中 $v_{\mathrm{rms}}=\sqrt{k_{\!B}T/m}$ 为一维方均根速率。三维最概然速率 $v_p=\sqrt{2k_{\!B}T/m}$ 与它表达式相同、含义不同，不要混淆。计算：
 \begin{enumerate}[label=(\arabic*)]
 \item 平均速度 $\langle v\rangle$；
 \item 平均速率 $\langle|v|\rangle$；
@@ -183,23 +183,23 @@ v_p = 0 \;<\; \langle|v|\rangle = \frac{v_t}{\sqrt{\pi}} \;\approx\; 0.564\,v_t 
 \item 柱坐标散度：$\displaystyle\divg\vect{A} = \frac{1}{r}\frac{\partial(rA_r)}{\partial r} + \frac{1}{r}\frac{\partial A_\theta}{\partial\theta} + \frac{\partial A_z}{\partial z}$
 \item 柱坐标旋度：$\displaystyle\curl\vect{A} = \left(\frac{1}{r}\frac{\partial A_z}{\partial\theta} - \frac{\partial A_\theta}{\partial z}\right)\unitvec{r} + \left(\frac{\partial A_r}{\partial z} - \frac{\partial A_z}{\partial r}\right)\unitvec{\theta} + \frac{1}{r}\left(\frac{\partial(rA_\theta)}{\partial r} - \frac{\partial A_r}{\partial\theta}\right)\unitvec{z}$
 \item 球坐标梯度：$\displaystyle\grad f = \frac{\partial f}{\partial r}\unitvec{r} + \frac{1}{r}\frac{\partial f}{\partial\theta}\unitvec{\theta} + \frac{1}{r\sin\theta}\frac{\partial f}{\partial\varphi}\unitvec{\varphi}$
-\item 球坐标拉普拉斯：$\displaystyle\lap f = \frac{1}{r^2}\frac{\partial}{\partial r}\!\left(r^2\frac{\partial f}{\partial r}\right) + \frac{1}{r^2\sin\theta}\frac{\partial}{\partial\theta}\!\left(\sin\theta\frac{\partial f}{\partial\theta}\right) + \frac{1}{r^2\sin^2\theta}\frac{\partial^2 f}{\partial\varphi^2}$
+。\item 球坐标拉普拉斯：$\displaystyle\lap f = \frac{1}{r^2}\frac{\partial}{\partial r}\!\left(r^2\frac{\partial f}{\partial r}\right) + \frac{1}{r^2\sin\theta}\frac{\partial}{\partial\theta}\!\left(\sin\theta\frac{\partial f}{\partial\theta}\right) + \frac{1}{r^2\sin^2\theta}\frac{\partial^2 f}{\partial\varphi^2}$
 \item 分布函数矩：$\displaystyle\langle g(\vect{v})\rangle = \frac{1}{n}\int g(\vect{v})f(\vect{v})\,\diff^3v$
 \item 平均动能（麦克斯韦）：$\displaystyle\frac{1}{2}m\langle v^2\rangle = \frac{3}{2}k_{\!B}T$
-\item 傅里叶变换：$\displaystyle\tilde{f}(k) = \int_{-\infty}^{+\infty} f(x)\,\mathrm{e}^{-\mathrm{i} kx}\,\diff x$
+。\item 傅里叶变换：$\displaystyle\tilde{f}(k) = \int_{-\infty}^{+\infty} f(x)\,\mathrm{e}^{-\mathrm{i} kx}\,\diff x$
 \item 逆变换：$\displaystyle f(x) = \frac{1}{2\pi}\int_{-\infty}^{+\infty} \tilde{f}(k)\,\mathrm{e}^{+\mathrm{i} kx}\,\diff k$
-\item $\delta$ 函数筛选性：$\displaystyle\int_{-\infty}^{+\infty} f(x)\delta(x-a)\,\diff x = f(a)$
+\item $\delta$ 函数筛选性：$\displaystyle\int_{-\infty}^{+\infty} f(x)\delta(x-a)\,\diff x = f(a)$。
 \end{itemize}
 \textbf{符号说明：}$\vect{A}$ 为任意矢量场（柱坐标分量 $A_r$、$A_\theta$、$A_z$）；$(r,\theta,z)$、$(r,\theta,\varphi)$ 分别为柱坐标与球坐标。$f(\vect{v})$ 为速度分布函数，$g(\vect{v})$ 为被平均的物理量，$\langle g\rangle$ 表示对分布函数求平均；$k$ 为傅里叶波数（$\tilde f(k)$ 为 $f(x)$ 的傅里叶变换）。$\delta(x-a)$ 为狄拉克 $\delta$ 函数，$a$ 为源点位置。
 \end{formulabox}
 
 \begin{checklistbox}{第1章自学检查清单}{ch1-checklist}
 \begin{itemize}[leftmargin=*,label=$\square$]
-\item 我能在柱坐标和球坐标下正确写出 $\grad$、$\divg$、$\curl$ 和 $\lap$
-\item 我理解了分布函数 $f(\vect{v})$ 的物理意义，并能计算密度、平均速度、压强
-\item 我掌握了傅里叶变换和逆变换的公式，并知道本书的符号约定（指数项 $-\mathrm{i}kx$）
-\item 我能用 $\delta$ 函数表示点电荷和点粒子的密度分布
-\item 我了解二阶张量的基本运算（并矢、缩并、迹）
+\item 我能在柱坐标和球坐标下正确写出 $\grad$、$\divg$、$\curl$ 和 $\lap$。
+\item 我理解了分布函数 $f(\vect{v})$ 的物理意义，并能计算密度、平均速度、压强。
+\item 我掌握了傅里叶变换和逆变换的公式，并知道本书的符号约定（指数项 $-\mathrm{i}kx$）。
+\item 我能用 $\delta$ 函数表示点电荷和点粒子的密度分布。
+\item 我了解二阶张量的基本运算（并矢、缩并、迹）。
 \end{itemize}
 \end{checklistbox}
 

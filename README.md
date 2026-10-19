@@ -1,19 +1,19 @@
 # 等离子体物理自学教材
 
 一本写给自学者看的等离子体物理教材：从德拜屏蔽讲到聚变堆工程，12 章正文 + 48 个附录（另有一册配套手册）。
-每个公式配量纲自检，每道例题配答案，关键数字都能自己复算。
+每道例题配答案，关键公式配量纲自检，书里印出的数字都能用仓库脚本复算。
 
 ![托卡马克真空室内部：磁约束聚变要面对的容器](figures/tokamak_interior.jpg)
 
-教材共 **613 页**，四个 PDF 都由本仓库源码编译。写作目标：**一个人、一支笔、一台能算数的电脑就能读完**。
+教材共 **608 页**，四个 PDF 都由本仓库源码编译。写作目标：**一个人、一支笔、一台能算数的电脑就能读完**。
 
 ## 四个 PDF
 
 | 文件 | 页数 | 内容 |
 |---|---|---|
-| [`pdf/plasma_physics_textbook_v2.pdf`](pdf/plasma_physics_textbook_v2.pdf) | 613 页 | 完整本：正文 + 全部附录，推荐先读这本 |
-| [`pdf/plasma_physics_textbook_v2_vol1_chapters.pdf`](pdf/plasma_physics_textbook_v2_vol1_chapters.pdf) | 207 页 | 前言 + 第 1–12 章正文 |
-| [`pdf/plasma_physics_textbook_v2_vol2_appendices.pdf`](pdf/plasma_physics_textbook_v2_vol2_appendices.pdf) | 406 页 | 48 个附录 |
+| [`pdf/plasma_physics_textbook_v2.pdf`](pdf/plasma_physics_textbook_v2.pdf) | 608 页 | 完整本：正文 + 全部附录，推荐先读这本 |
+| [`pdf/plasma_physics_textbook_v2_vol1_chapters.pdf`](pdf/plasma_physics_textbook_v2_vol1_chapters.pdf) | 205 页 | 前言 + 第 1–12 章正文 |
+| [`pdf/plasma_physics_textbook_v2_vol2_appendices.pdf`](pdf/plasma_physics_textbook_v2_vol2_appendices.pdf) | 403 页 | 48 个附录 |
 | [`pdf/plasma_physics_handbook.pdf`](pdf/plasma_physics_handbook.pdf) | 48 页 | 配套手册：附录 I／J／K／L（学习策略、逐章对照、跨教材例题、分章题库） |
 
 历史版本见 [Releases](http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases)。
@@ -49,7 +49,7 @@
 | 11 | 低温工业等离子体物理 | 会算鞘层、刻蚀与镀膜的工艺窗口 |
 | 12 | 等离子体基础诊断 | 会从探针、光谱与干涉信号里读出密度和温度 |
 
-### 附录（48 个：12 章正文 + 48 附录）
+### 附录（48 个）
 
 - **工具型 A–H（8 个）**：矢量公式、特征参数速查、中间数学步骤、常数、书单、易错点、仿真导读、符号术语。
 - **配套手册 I–L（4 个）**：学习策略、经典教材逐章对照、跨教材例题、分章自测题库——单独成册（48 页）。
@@ -88,6 +88,9 @@ python -X utf8 check/physics_regression.py        # 重新计算书中印出的�
 
 ## 配图与许可
 
+**全书视觉只有一套：深蓝打底、金色点睛，庄重克制。** 色板、用色比例、图内配色语义与版面上限写在
+[`docs/palette.md`](docs/palette.md)；文风硬指标写在 [`docs/style.md`](docs/style.md)，目录约定见 [`docs/layout.md`](docs/layout.md)。
+
 - 118 张实拍与机构图像，逐张登记作者、许可与来源页：[`figures/CREDITS.md`](figures/CREDITS.md)。
 - 全部 118 张按章/附录排成一册：[`docs/figures.md`](docs/figures.md)；选图标准见 [`docs/figures-sourcing.md`](docs/figures-sourcing.md)。
 - 许可以公有领域与 CC BY / CC BY-SA 为主；教材内容采用 **CC BY-NC-SA 4.0**，`code/` 下脚本采用 MIT。
@@ -108,7 +111,7 @@ python -X utf8 check/physics_regression.py        # 重新计算书中印出的�
 
 ## 版本与反馈
 
-当前 **v1.29.0**；版本演进与验收记录见 [`CHANGELOG.md`](CHANGELOG.md)，独立评审结论见 [`docs/review-log.md`](docs/review-log.md)。
+当前 **v1.30.0**；版本演进与验收记录见 [`CHANGELOG.md`](CHANGELOG.md)，独立评审结论见 [`docs/review-log.md`](docs/review-log.md)。
 
 发现数值、单位或推导错误，欢迎开 issue 并附上复算过程；补充内容优先补"能自己算一遍"的例子与练习。
 

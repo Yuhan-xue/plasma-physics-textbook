@@ -50,7 +50,7 @@ n_G=\frac{I_p}{\pi a^2}=1.19366\times10^{20}\ \mathrm{m^{-3}},
 \label{eq:app-ad-greenwald}
 \end{equation}
 
-即工作点坐在密度极限的 $84\%$ 处——这是托卡马克运行的常规区间（$0.7$--$0.9$），
+即工作点坐在密度极限的 $84\%$ 处，这是托卡马克运行的常规区间（$0.7$--$0.9$），
 再往上就要付出边缘冷却的代价。
 
 阈值还有一个细节：回去比进来容易。H 模一旦建立，可以把功率降到 $0.65P_{\mathrm{th}}=41.116\ \mathrm{MW}$
@@ -103,14 +103,14 @@ E_r=v_\theta B_\theta\gtrsim53.2405\ \mathrm{kV\,m^{-1}},
 \end{equation}
 
 用的是极向磁场 $B_\theta=1.5\ \mathrm{T}$（下一节算）。作为对照，若实测 $E_r=30\ \mathrm{kV\,m^{-1}}$，
-剪切率只有 $1.67220\times10^{5}\ \mathrm{s^{-1}}$，即 $\gamma$ 的 $0.563481$——
-\emph{不够}。这解释了为什么 H 模总是「开关式」出现的：剪切率和湍流增长率在同一个量级上咬合，
+剪切率只有 $1.67220\times10^{5}\ \mathrm{s^{-1}}$，即 $\gamma$ 的 $0.563481$，\emph{不够}。
+这解释了为什么 H 模总是「开关式」出现的：剪切率和湍流增长率在同一个量级上咬合，
 谁稍稍占上风，结果就完全不同。
 
 \begin{tip}{阈值不是「加热到多少」，是「输入压过损失」}{tip-app-ad-threshold}
 把 L-H 阈值当成一条工程线是误读。它的物理内容是：边缘的湍流输运有一个损失率，
 输入功率必须先把这部分损失打平，剩下的才能拿去建立剪切。
-所以同一台装置换密度、换磁场、换尺寸，阈值都会变——定标律之所以有 $0.7$ 到 $0.9$ 次方的指数，
+所以同一台装置换密度、换磁场、换尺寸，阈值都会变，定标律之所以有 $0.7$ 到 $0.9$ 次方的指数，
 正是因为损失率本身随这些量变化。
 \end{tip}
 
@@ -119,8 +119,7 @@ E_r=v_\theta B_\theta\gtrsim53.2405\ \mathrm{kV\,m^{-1}},
 阈值定标的形式与指数参照 Martin、Takizuka 与 H 模数据库工作组（2008，
 \emph{J. Phys. Conf. Ser.} \textbf{123}, 012033），系数 $0.0488$ 在脚本里作为声明值写出。
 密度极限参照 Greenwald 等（1988，\emph{Nucl. Fusion} \textbf{28}, 2199）。
-回滞与边缘剪切图像参照 Wesson \emph{Tokamaks}（第 4 版，2011，第 14 章）与
-ITER Physics Basis（1999，\emph{Nucl. Fusion} \textbf{39}, 2137）。
+回滞与边缘剪切图像参照 Wesson \emph{Tokamaks}（第 4 版，2011，第 14 章）与 ITER Physics Basis（1999，\emph{Nucl. Fusion} \textbf{39}, 2137）。
 }
 
 \begin{figure}[htbp]
@@ -171,7 +170,7 @@ p_{\mathrm{ped}}=2n_{\mathrm{ped}}T_{\mathrm{ped}}=57.6784\ \mathrm{kPa},
 \label{eq:app-ad-pped}
 \end{equation}
 
-即台基顶的压强约为平均压强的五分之一——边缘不算太薄。
+即台基顶的压强约为平均压强的五分之一，边缘不算太薄。
 
 宽度本身不是自由参数。经验定标（EPED 类）把它与台基极向 beta 绑在一起：
 
@@ -183,7 +182,7 @@ p_{\mathrm{ped}}=2n_{\mathrm{ped}}T_{\mathrm{ped}}=57.6784\ \mathrm{kPa},
 \end{equation}
 
 也就是 $\Delta_{\mathrm{ped}}=8.18937\,\rho_\theta$。台基总 beta 只有 $0.5161\%$，
-而芯部 beta 约 $3.993\%$——\emph{边缘的 beta 很小，但梯度极大}。
+而芯部 beta 约 $3.993\%$。\emph{边缘的 beta 很小，但梯度极大}。
 
 把压强从台基顶降到零只用了十二厘米，于是梯度是
 
@@ -316,7 +315,7 @@ W_{\mathrm{ped}}&=\frac{3}{2}\cdot\frac{p_{\mathrm{ped}}}{2}V_{\mathrm{ped}}
 \end{table}
 
 \begin{tip}{台基不是「越高越好」}{tip-app-ad-two-branches}
-压强越高，约束越好——这话对芯部成立，对边缘不成立。边缘的压强梯度每提高一点，
+压强越高，约束越好，这话对芯部成立，对边缘不成立。边缘的压强梯度每提高一点，
 气球模和剥离模的驱动力就各涨一点，直到越界。H 模之所以能稳定存在，靠的是把工作点停在稳定区鼻尖附近，再用旋转与剪切压住剩余的增长。
 \end{tip}
 
@@ -358,8 +357,7 @@ q_{\mathrm{ELM}}&=\frac{0.667373\ \mathrm{MJ\,m^{-2}}}{0.3\ \mathrm{ms}}
 \end{equation}
 
 上升时间取 $t_{\mathrm{ELM}}=0.3\ \mathrm{ms}$（声明值）。钨靶板的能量密度阈值按 $1\ \mathrm{MJ\,m^{-2}}$
-估计，那么这一次 ELM 用掉了阈值的 $0.667373$，余量只有 $1.49841$ 倍——
-\emph{一次大 ELM 就够把安全余量吃掉三分之二}。
+估计，那么这一次 ELM 用掉了阈值的 $0.667373$，余量只有 $1.49841$ 倍。\emph{一次大 ELM 就够把安全余量吃掉三分之二}。
 
 ELM 的频率不是可以从外面随便拧的旋钮，它由功率平衡定：稳态下，
 ELM 通道带走的时间平均功率必须等于输入功率，
@@ -374,8 +372,7 @@ T_{\mathrm{ELM}}=\frac{1}{f_{\mathrm{ELM}}}=251.267\ \mathrm{ms}.
 
 自洽性检查：$f_{\mathrm{ELM}}\Delta W_{\mathrm{ELM}}=103.468\ \mathrm{MW}=P_{\mathrm{SOL}}$。
 与能量约束时间对照，$f_{\mathrm{ELM}}\tau_E=14.7254$：每个约束时间里发生约 $15$ 次坍塌，
-而台基壳层自身的恢复功率只有 $W_{\mathrm{ped}}/\tau_E=0.684532\ \mathrm{MW}$——
-\emph{坍塌带走的能量远多于台基壳层里存的那点}，ELM 的扰动深度比台基宽度大。
+而台基壳层自身的恢复功率只有 $W_{\mathrm{ped}}/\tau_E=0.684532\ \mathrm{MW}$。\emph{坍塌带走的能量远多于台基壳层里存的那点}，ELM 的扰动深度比台基宽度大。
 
 \begin{table}[htbp]
 \centering
@@ -404,12 +401,9 @@ ELM 周期 & $251.267\ \mathrm{ms}$ & $1/f_{\mathrm{ELM}}$ & $f_{\mathrm{ELM}}\t
 \end{tip}
 
 {\footnotesize
-\textbf{出处：}ELM 的分类与物理图像参照 Zohm（1996，\emph{Plasma Phys. Control. Fusion}
-\textbf{38}, 105）。
-类型 I ELM 的能量损失份额与上升时间量级参照 Loarte 等（2003，
-\emph{Plasma Phys. Control. Fusion} \textbf{45}, 1549）。
-偏滤器能量沉积与靶板阈值的处理
-参照 Leonard（2014，\emph{Phys. Plasmas} \textbf{21}, 090501）与附录 N 的同一口径。
+\textbf{出处：}ELM 的分类与物理图像参照 Zohm（1996，\emph{Plasma Phys. Control. Fusion} \textbf{38}, 105）。
+类型 I ELM 的能量损失份额与上升时间量级参照 Loarte 等（2003，\emph{Plasma Phys. Control. Fusion} \textbf{45}, 1549）。
+偏滤器能量沉积与靶板阈值的处理参照 Leonard（2014，\emph{Phys. Plasmas} \textbf{21}, 090501）与附录 N 的同一口径。
 }
 
 \section{缓解：把一次大坍塌拆成很多次小坍塌}
@@ -441,7 +435,7 @@ f\ge\frac{P_{\mathrm{SOL}}}{0.3\ \mathrm{MJ\,m^{-2}}\cdot A_{\mathrm{div}}}
 \label{eq:app-ad-fmin}
 \end{equation}
 
-即每 $113\ \mathrm{ms}$ 一次——这个数就是步调系统的工作点。
+即每 $113\ \mathrm{ms}$ 一次。这个数就是步调系统的工作点。
 
 第二条路线是 RMP：用外部线圈在边缘加上一个与等离子体共振的静态扰动场，
 把边缘的输运「打毛」，让台基始终到不了边界，于是不再有大 ELM。
@@ -467,7 +461,7 @@ m_{\mathrm{pel}}=10^{21}\times2.5m_p=4.18155\times10^{-6}\ \mathrm{kg}=4.18155\ 
 \end{equation}
 
 若全部沉积在台基壳层里，密度扰动是 $\Delta n=1.70796\times10^{19}\ \mathrm{m^{-3}}$，
-相当于 $n_{\mathrm{ped}}$ 的 $28.4661\%$——足以把台基推到边界上，强制放一次小 ELM。
+相当于 $n_{\mathrm{ped}}$ 的 $28.4661\%$，足以把台基推到边界上，强制放一次小 ELM。
 
 \begin{table}[htbp]
 \centering
@@ -490,7 +484,7 @@ $n=2$ RMP 共振面 & $1.26491\ \mathrm{m}$ & 同上 & 在台基以里 \\
 \end{table}
 
 \begin{tip}{缓解不是消除}{tip-app-ad-mitigation}
-「消掉 ELM」听起来更彻底，但代价是边缘的粒子与杂质排出通道被一起堵上——
+「消掉 ELM」听起来更彻底，但代价是边缘的粒子与杂质排出通道被一起堵上：
 密度会爬升、杂质会积累。RMP 抑制下常见的是「无大 ELM 但有连续小坍塌」的状态。
 工程上追求的是\textbf{把不可控的大事件换成可控的小事件}，而不是把事件清零。
 \end{tip}
@@ -524,7 +518,7 @@ A_{\mathrm{out}}&=2\pi R\,\lambda_t\times5=0.0757414\ \mathrm{m^2}.
 \label{eq:app-ad-lamq}
 \end{equation}
 
-$\lambda_q$ 只有零点几毫米——比台基宽度（$1.2\ \mathrm{cm}$）小一个数量级以上。
+$\lambda_q$ 只有零点几毫米，比台基宽度（$1.2\ \mathrm{cm}$）小一个数量级以上。
 于是同样的 $P_{\mathrm{SOL}}$ 落在一个极小的面积上：
 
 \begin{equation}
@@ -548,7 +542,7 @@ f_{\mathrm{rad}}=1-\frac{10\ \mathrm{MW\,m^{-2}}}{956.246\ \mathrm{MW\,m^{-2}}}
 \label{eq:app-ad-detach}
 \end{equation}
 
-即 $98.95\%$ 的 $P_{\mathrm{SOL}}$ 都要在 SOL 里以辐射形式放掉——这是「完全脱靶」的口径。
+即 $98.95\%$ 的 $P_{\mathrm{SOL}}$ 都要在 SOL 里以辐射形式放掉，这是「完全脱靶」的口径。
 工程上更常见的组合是「适度展宽 + 部分辐射」：把 $\lambda_q$ 展宽 $5$ 倍、再辐射掉 $90\%$，
 峰值热流降到
 
@@ -558,7 +552,7 @@ q_{\mathrm{peak}}'=\frac{0.7\,P_{\mathrm{SOL}}\times0.10}
 \label{eq:app-ad-broaden}
 \end{equation}
 
-还不够；展宽 $5$ 倍 + 辐射 $95\%$，或展宽 $10$ 倍 + 辐射 $90\%$，才刚好到
+还不够。展宽 $5$ 倍 + 辐射 $95\%$，或展宽 $10$ 倍 + 辐射 $90\%$，才刚好到
 
 \begin{equation}
 q_{\mathrm{peak}}''=\frac{0.7\,P_{\mathrm{SOL}}\times0.05}{2\pi R\,(5\lambda_t)\times5}
@@ -603,7 +597,7 @@ q_{\mathrm{peak}}''=\frac{0.7\,P_{\mathrm{SOL}}\times0.05}{2\pi R\,(5\lambda_t)\
 \begin{tip}{台基决定「有多少」，SOL 决定「多小」}{tip-app-ad-sol}
 初学者常把「$P_{\mathrm{SOL}}$ 太大」当成偏滤器的唯一问题。其实 $P_{\mathrm{SOL}}$ 只是分子，
 $\lambda_q$ 才是分母，而且 $\lambda_q$ 对 $B_\theta$、对 SOL 中的湍流输运都很敏感。
-同一台装置，改变边缘的输运就能让峰值热流变化数倍——这比改材料容易得多。
+同一台装置，改变边缘的输运就能让峰值热流变化数倍，这比改材料容易得多。
 \end{tip}
 
 {\footnotesize
@@ -639,7 +633,7 @@ $P_{\mathrm{SOL}}$ 是多少？与工作点相比是几倍？峰值热流按线�
 
 \textbf{解答 1} $\Delta W=0.10\times371.4\ \mathrm{MJ}=37.14\ \mathrm{MJ}$，
 除以 $A_{\mathrm{div}}=38.9557\ \mathrm{m^2}$ 得 $0.953391\ \mathrm{MJ\,m^{-2}}$，
-是阈值的 $0.953391$——\emph{刚刚卡在阈值以内}，余量约 $1.4$ 倍。
+是阈值的 $0.953391$，\emph{刚刚卡在阈值以内}，余量约 $1.4$ 倍。
 
 \textbf{解答 2} $f_{\mathrm{ELM}}=150\ \mathrm{MW}/25.998\ \mathrm{MJ}=5.76967\ \mathrm{Hz}$，
 对应周期 $173.32\ \mathrm{ms}$，是工作点的 $1.44972$ 倍（与功率之比 $1.44972$ 一致——
@@ -676,8 +670,7 @@ $q_{95}$ 越高，同样的 $n=3$ 共振面越靠里，RMP 对台基的作用越
 \begin{enumerate}
 \item \textbf{现算级}：由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAD\_calc.py} 当场打印，
 输入写在计算脚本开头，正文与脚本可以逐位核对。绝大多数数字属于这一级。
-\item \textbf{声明级}：物理上依赖具体装置或模型选择、不能从更基本的量推出的输入，
-例如 $\alpha_{\mathrm{crit}}=2.5/4.0$、$H_{98}=1.0$、$\tau_E=65.765\ \mathrm{ms}$、
+\item \textbf{声明级}：物理上依赖具体装置或模型选择、不能从更基本的量推出的输入。例如 $\alpha_{\mathrm{crit}}=2.5/4.0$、$H_{98}=1.0$、$\tau_E=65.765\ \mathrm{ms}$、
 密度剖面系数 $1.5$ 与 $0.076$、$n/n_G=0.85$、$\Delta W_{\mathrm{ELM}}/W_{\mathrm{th}}=0.07$、
 $t_{\mathrm{ELM}}=0.3\ \mathrm{ms}$、靶板阈值 $1\ \mathrm{MJ\,m^{-2}}$ 与 $10\ \mathrm{MW\,m^{-2}}$、
 倾角因子 $5$ 与 $0.7$、$\lambda_q$ 定标系数 $0.63$ 与指数 $-1.19$、

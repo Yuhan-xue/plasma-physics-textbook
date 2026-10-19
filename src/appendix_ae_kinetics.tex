@@ -19,7 +19,7 @@
 \textbf{只有碰撞足够频繁，分布函数才会松弛到麦克斯韦分布}，
 流体描述才是动理学方程的一个闭合近似。
 
-把速度空间的尺子摆好。三种速度刻度必须一开始就分清：
+三种速度刻度必须先分清：
 
 \begin{equation}
 v_{the}=\sqrt{\frac{T_e}{m_e}}=4.02127\times10^{7}\ \mathrm{m\,s^{-1}}=0.134135c ,
@@ -57,7 +57,7 @@ $v_{Ti}=\sqrt{2}\,c_s$，两者不是同一个数。
 \label{tab:app-ae-scales}
 \end{table}
 
-德拜长度与德拜立方内粒子数决定了「能不能用统计量说话」：
+德拜长度与德拜立方内粒子数决定了「能不能用统计量说话」。
 
 \begin{equation}
 \lambda_{De}=\sqrt{\frac{\epsilon_0T_e}{n_ee^2}}=71.2806\ \mathrm{\mu m},\qquad
@@ -65,11 +65,11 @@ n_e\lambda_{De}^3=3.62171\times10^{7} .
 \label{eq:app-ae-debye}
 \end{equation}
 
-$3.62171\times10^{7}$ 这个数（与附录 AC 的 $N_D$ 同口径）说明两件事：
-(1) 一个德拜球里粒子足够多，$f$ 的统计解释成立；
-(2) 但它远小于宏观尺度，所以「多少算多」是尺度相对的——本工作点 $a/\lambda_{De}=2.80581\times10^{4}$。
+$3.62171\times10^{7}$ 这个数（与附录 AC 的 $N_D$ 同口径）说明两件事。
+第一，一个德拜球里粒子足够多，$f$ 的统计解释成立。
+第二，它远小于宏观尺度，所以「多少算多」是尺度相对的：本工作点 $a/\lambda_{De}=2.80581\times10^{4}$。
 
-两个回旋半径把电子和离子彻底分开：
+两个回旋半径把电子和离子彻底分开。
 
 \begin{equation}
 \rho_e=\frac{v_{the}}{\omega_{ce}}=43.1386\ \mathrm{\mu m},\qquad
@@ -80,7 +80,7 @@ $3.62171\times10^{7}$ 这个数（与附录 AC 的 $N_D$ 同口径）说明两�
 
 \begin{tip}{分布函数不是「更精确的密度」}{tip-app-ae-distribution}
 $f(\mathbf{x},\mathbf{v},t)$ 不是把 $n(\mathbf{x},t)$ 加一个速度维度那么简单：它多出来的自由度
-恰好承载了流体描述必须\textbf{假设}掉的东西——热流、黏性、各向异性、无碰撞阻尼。
+恰好承载了流体描述必须\textbf{假设}掉的东西：热流、黏性、各向异性、无碰撞阻尼。
 所以凡是「平均自由程与梯度尺度可比」或「有粒子被俘获」的场合，流体方程不是近似得更差，
 而是\textbf{结构性地缺项}。反过来，如果碰撞足够频繁，$f$ 自己会松弛到麦克斯韦分布，
 流体方程不但够用，而且更省。判断用哪一套，靠的是本节的几个刻度，不是偏好。
@@ -162,7 +162,7 @@ p=\frac{m}{3}\int(\mathbf{v}-\mathbf{u})^2f\,d^3v .
 \label{eq:app-ae-moments}
 \end{equation}
 
-下一步的三阶矩就是热流，它出现在压强方程里，而压强方程又会牵出四阶矩——
+下一步的三阶矩就是热流，它出现在压强方程里，而压强方程又会牵出四阶矩，
 这就是闭合问题。附录 S 用的输运系数，就是在这些假设下从 $f$ 里积出来的。
 
 \begin{tip}{无碰撞是个不等式，不是「没有相互作用」}{tip-app-ae-collisionless}
@@ -176,8 +176,7 @@ p=\frac{m}{3}\int(\mathbf{v}-\mathbf{u})^2f\,d^3v .
 {\footnotesize
 \textbf{出处：}弗拉索夫方程与矩展开的写法参照 Nicholson \emph{Introduction to Plasma Physics}
 （1983，第 6 章）与 Krall \& Trivelpiece \emph{Principles of Plasma Physics}（1973，第 3 章）。
-闭合问题与 Braginskii 输运系数参照 Braginskii（1965，\emph{Reviews of Plasma Physics} \textbf{1}, 205）
-与 Helander \& Sigmar \emph{Collisional Transport in Magnetized Plasmas}（2002，第 3--4 章）。
+闭合问题与 Braginskii 输运系数参照 Braginskii（1965，\emph{Reviews of Plasma Physics} \textbf{1}, 205）与 Helander \& Sigmar \emph{Collisional Transport in Magnetized Plasmas}（2002，第 3--4 章）。
 库仑对数与碰撞时间的量级参照 Wesson \emph{Tokamaks}（第 4 版，2011，第 14 章）。
 \section{波粒共振：Landau 阻尼为什么是「无碰撞」的}
 \label{sec:app-ae-landau}
@@ -261,15 +260,10 @@ $\omega=kc_s=8.32659\times10^{8}\ \mathrm{rad\,s^{-1}}$，即 $f=132.522\ \mathr
 \end{tip}
 
 {\footnotesize
-\textbf{出处：}Landau 阻尼的原始结果见 Landau（1946，\emph{Journal of Physics USSR}
-\textbf{10}, 25）。
-「无碰撞阻尼」的物理解释与实验对照见 Jackson（1960，
-\emph{Physics of Fluids} \textbf{3}, 786）与 Malmberg \& Wharton（1964，
-\emph{Physical Review Letters} \textbf{13}, 184）。
-BGK 模式与非线性效应见 Bernstein,
-Greene \& Kruskal（1957，\emph{Physical Review} \textbf{108}, 546）。
-公式形式与量级参照 Nicholson \emph{Introduction to Plasma Physics}（1983，第 6--7 章）
-与 Krall \& Trivelpiece \emph{Principles of Plasma Physics}（1973，第 8 章）。
+\textbf{出处：}Landau 阻尼的原始结果见 Landau（1946，\emph{Journal of Physics USSR} \textbf{10}, 25）。
+「无碰撞阻尼」的物理解释与实验对照见 Jackson（1960，\emph{Physics of Fluids} \textbf{3}, 786）与 Malmberg \& Wharton（1964，\emph{Physical Review Letters} \textbf{13}, 184）。
+BGK 模式与非线性效应见 Bernstein, Greene \& Kruskal（1957，\emph{Physical Review} \textbf{108}, 546）。
+公式形式与量级参照 Nicholson \emph{Introduction to Plasma Physics}（1983，第 6--7 章）与 Krall \& Trivelpiece \emph{Principles of Plasma Physics}（1973，第 8 章）。
 }
 
 \begin{figure}[htbp]
@@ -350,8 +344,7 @@ $f_t$ 决定「有多少粒子在弹跳」，$\Delta_b$ 决定「跳一步有多
 $\sim1/\sqrt{\epsilon}$ 倍，而这个因子在本工作点是 $1.76068$。
 \end{tip}
 
-\textbf{出处：}香蕉轨道与新经典输运的框架见 Galeev \& Sagdeev（1968，
-\emph{Reviews of Plasma Physics} \textbf{7}, 257）。
+\textbf{出处：}香蕉轨道与新经典输运的框架见 Galeev \& Sagdeev（1968，\emph{Reviews of Plasma Physics} \textbf{7}, 257）。
 系统的综述见 Hinton \& Hazeltine
 （1976，\emph{Reviews of Modern Physics} \textbf{48}, 239）与 Helander \& Sigmar
 \emph{Collisional Transport in Magnetized Plasmas}（2002，第 6--8 章）。
@@ -378,14 +371,14 @@ $\sim1/\sqrt{\epsilon}$ 倍，而这个因子在本工作点是 $1.76068$。
 也就是说，离子回旋半径比装置小两个多量级。这就是回旋动理学的\textbf{展开参数}：
 既然回旋又快又小，就把回旋相位当成一个可以平均掉的「内部变量」，
 只留下回旋中心（导心）的运动。平均不是免费的，代价是分布函数降维之后
-出现的有限拉莫尔半径（FLR）效应：
+出现的有限拉莫尔半径（FLR）效应。
 
 \begin{equation}
 \Gamma_0(b)=I_0(b)e^{-b},\qquad b=k_\perp^2\rho_i^2 .
 \label{eq:app-ae-gamma0}
 \end{equation}
 
-取 $k_\perp\rho_i=0.3$（本工作点最典型的湍流尺度）：
+取 $k_\perp\rho_i=0.3$，这是本工作点最典型的湍流尺度。
 
 \begin{equation}
 k_\perp=72.5799\ \mathrm{m^{-1}},\qquad
@@ -439,7 +432,7 @@ $2$ & $4$ & $0.207002$ & $79.2998\%$（短波，几乎完全被平均掉） \\
 
 \begin{tip}{回旋动理学不是「把回旋平均掉就完事」}{tip-app-ae-gyro}
 如果回旋真的可以被完全平均掉，等离子体就退化成一组沿磁场滑动的导心，
-回旋半径会从方程里彻底消失——那也就没有 FLR 效应、没有回旋阻尼、
+回旋半径会从方程里彻底消失，那也就没有 FLR 效应、没有回旋阻尼、
 没有耗散性的潜在机制。回旋动理学\textbf{保留}回旋半径的一阶效应
 （$k_\perp\rho_i$ 的有限值、$\Gamma_0$、回旋黏性），只丢掉回旋相位的快变部分。
 所以它不是一个「近似更差的 Vlasov」，而是一个\textbf{系统降维、保留关键物理}的模型：
@@ -486,7 +479,7 @@ $57\%$ 的电子跑得比「热速度」快——因为热速度是分布的宽�
 但真正决定核反应率的是 $10$ 倍热速度以上的部分。
 $3.5\ \mathrm{MeV}$ 的 alpha 粒子（$v=1.29472\times10^{7}\ \mathrm{m\,s^{-1}}
 =15.4249\,v_{Ti}$）如果硬要当作热尾，它的权重是 $\exp(-u^2)=4.67\times10^{-104}$：
-一个在任何计算机里都等于零的数。\textbf{所以聚变产物必须单独当成一个分量处理}——
+一个在任何计算机里都等于零的数。\textbf{所以聚变产物必须单独当成一个分量处理}，
 这正是附录 W 要做的事。
 
 损失锥是形状问题的另一个侧面。磁镜比 $R_m$ 决定锥角 $\theta_c=\arcsin(R_m^{-1/2})$：
@@ -499,7 +492,7 @@ R_m=5:\ \theta_c=63.4349^\circ,\ 10.5573\% .
 
 括号里的百分数是各向同性分布中落入损失锥的比例
 （$1-\sqrt{1-1/R_m}$）：磁镜比越大，被反射的越多、漏出去的越少。
-$3.5\ \mathrm{MeV}$ alpha 的回旋半径是 $5.10055\ \mathrm{cm}=12.3399\,\rho_i$——
+$3.5\ \mathrm{MeV}$ alpha 的回旋半径是 $5.10055\ \mathrm{cm}=12.3399\,\rho_i$，
 比热离子的轨道大一个量级，所以快粒子不能被当作「更热的背景」。
 
 \begin{table}[htbp]
@@ -545,7 +538,7 @@ alpha 等效 $u$ & $15.4249$（$v_{Ti}$） & $v_\alpha/v_{Ti}$ & 热尾权重 $4
 每次听到「等离子体温度是一亿度」，都值得换算一下尾部：$9.194\ \mathrm{keV}$ 的
 平均能量对应的 D-T 反应率，靠的是 $E>64\ \mathrm{keV}$ 的那 $0.3\%$；
 如果分布只是「平均值对」，形状错了，反应率可以差一个量级。
-反过来，诊断量（中子率、聚变功率）是尾部加权量，而压强、储能是矩加权量——
+反过来，诊断量（中子率、聚变功率）是尾部加权量，而压强、储能是矩加权量，
 两者对 $f$ 的敏感程度完全不同。这就是为什么动理学诊断（中子谱、charge exchange）
 与流体诊断必须一起看。
 \end{tip}
@@ -589,7 +582,7 @@ $\Gamma_0(1)$ 以及被抑制掉的比例。再回答：为什么电子对同一
 （比工作点略长，因为 $T_e$ 低了近一个量级、$n_e$ 低了一个量级）；
 德拜立方内粒子数 $n_e\lambda_{De}^3=4.10826\times10^{6}$（仍远大于 $1$）；
 离子热速度 $v_{Ti}=276822\ \mathrm{m\,s^{-1}}$、$\rho_i=1.36318\ \mathrm{mm}$，
-于是 $a/\rho_i=1467.16$——比工作点小了三倍，回旋动理学的展开仍然很好用。
+于是 $a/\rho_i=1467.16$，比工作点小了三倍，回旋动理学的展开仍然很好用。
 
 \textbf{解答 2} $k_\perp=1/\rho_i=241.933\ \mathrm{m^{-1}}$，
 $\lambda_\perp=2\pi/k_\perp=0.0259708\ \mathrm{m}=2.59708\ \mathrm{cm}$，
@@ -603,11 +596,11 @@ $n_e\times4.3985\times10^{-4}=4.3985\times10^{16}\ \mathrm{m^{-3}}$。
 
 \textbf{解答 4} $\tau_{ei}=8.92144\times10^{-4}\ \mathrm{s}$（密度降十倍，碰撞时间涨十倍），
 $\lambda_{\mathrm{mfp}}=v_{the}\tau_{ei}=35875.5\ \mathrm{m}=35.8755\ \mathrm{km}$，
-$\lambda_{\mathrm{mfp}}/(2\pi R)=920.929$——比工作点的 $92$ 倍又稀了十倍。
+$\lambda_{\mathrm{mfp}}/(2\pi R)=920.929$，比工作点的 $92$ 倍又稀了十倍。
 
 \textbf{解答 5} $\Delta_b=\rho_iq/\sqrt{\epsilon}=0.0123719\ \mathrm{m}=1.23719\ \mathrm{cm}$，
 是 $q_{95}=3.5$ 时 $2.54715\ \mathrm{cm}$ 的 $1/2.05882$。
-安全因子越低，香蕉轨道越窄，新经典输运的步长越小——但 $q$ 也影响稳定性，
+安全因子越低，香蕉轨道越窄，新经典输运的步长越小，但 $q$ 也影响稳定性，
 所以「把 $q$ 压到最低」并不是免费的。
 
 \textbf{解答 6} $v_\alpha=1.29472\times10^{7}\ \mathrm{m\,s^{-1}}=15.4249\,v_{Ti}$，

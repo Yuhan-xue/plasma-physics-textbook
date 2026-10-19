@@ -6,7 +6,7 @@
 % 版权约定：只借鉴经典教材与文献的物理结论、公式形式与题型，文字与数值由本书自拟并独立复算。
 % 数值来源：tools/calc/appO_calc.py（本附录每一节的关键数字都能由它复现）。
 
-第 3 章讲了 $\mathbf{E}\times\mathbf{B}$ 漂移，第 6 章讲了波与加热，第 11 章讲了鞘层与玻姆判据——这三块知识在航天领域有一个直接的去处：\textbf{电推进}（electric propulsion）。它的想法很朴素：与其用化学燃烧的热速度排气，不如\textbf{用电场把离子加速到几十千米每秒}。代价也同样朴素：同样的功率下，排气越快，推力越小。本附录把这条“把等离子体当发动机”的链条算一遍。
+第 3 章讲了 $\mathbf{E}\times\mathbf{B}$ 漂移，第 6 章讲了波与加热，第 11 章讲了鞘层与玻姆判据，这三块知识在航天领域有一个直接的去处：\textbf{电推进}（electric propulsion）。它的想法很朴素：与其用化学燃烧的热速度排气，不如\textbf{用电场把离子加速到几十千米每秒}。代价也同样朴素：同样的功率下，排气越快，推力越小。
 
 \begin{tip}{单位与口径自查}{tip-appo-units}
 若结果差一个量级，先查三种口径错位：
@@ -28,7 +28,7 @@
 I_{\mathrm{sp}}\equiv\frac{v_{\mathrm{ex}}}{g_0},
 \label{eq:app-o-rocket}
 \end{equation}
-其中 $v_{\mathrm{ex}}$ 是排气速度，$m_0/m_f$ 是初末质量比，$I_{\mathrm{sp}}$ 就是\textbf{比冲}——它把“排气多快”折算成一个以秒为单位的数。化学发动机的排气速度受化学键能限制，最高约 $4.5\ \mathrm{km/s}$（$I_{\mathrm{sp}}\approx450\ \mathrm{s}$）。电推进先电离、再用电场加速，离子的动能 $\frac12m_iv^2=qV$ 只受电压限制，$1000\ \mathrm{V}$ 就能给出 $38\ \mathrm{km/s}$。
+其中 $v_{\mathrm{ex}}$ 是排气速度，$m_0/m_f$ 是初末质量比，$I_{\mathrm{sp}}$ 就是\textbf{比冲}，它把“排气多快”折算成一个以秒为单位的数。化学发动机的排气速度受化学键能限制，最高约 $4.5\ \mathrm{km/s}$（$I_{\mathrm{sp}}\approx450\ \mathrm{s}$）。电推进先电离、再用电场加速，离子的动能 $\frac12m_iv^2=qV$ 只受电压限制，$1000\ \mathrm{V}$ 就能给出 $38\ \mathrm{km/s}$。
 
 \begin{table}[htbp]
 \centering
@@ -98,7 +98,7 @@ NSTAR 级 & 0.092 & 3.03 & 1398 & 2293 & 40.1 \\
 \end{equation}
 （注意这里用的是\textbf{日历秒}：推进剂的消耗按日历时间计；附录 N 里的“每年”指的是每年约 $10^{5}\ \mathrm{s}$ 的等离子体放电时间，两者口径不同，不能混用。）
 
-结论：\textbf{推力与功率成正比（$40\ \mathrm{mN/kW}$）：想要 $1\ \mathrm{N}$ 就得准备 $24.5\ \mathrm{kW}$，想要 $100\ \mathrm{N}$ 需要 $2.45\ \mathrm{MW}$}——电推进因此只能做“长期小推力”，用时间换速度增量。
+结论：\textbf{推力与功率成正比（$40\ \mathrm{mN/kW}$）：想要 $1\ \mathrm{N}$ 就得准备 $24.5\ \mathrm{kW}$，想要 $100\ \mathrm{N}$ 需要 $2.45\ \mathrm{MW}$}。电推进因此只能做“长期小推力”，用时间换速度增量。
 
 {\footnotesize
 \textbf{出处：}Goebel \& Katz《Fundamentals of Electric Propulsion》的推力/功率/效率关系与推力器指标章节。
@@ -183,15 +183,15 @@ E=\frac{V_d}{L}=1.2\times10^{4}\ \mathrm{V/m},
 v_E=\frac{E}{B}=6.0\times10^{5}\ \mathrm{m/s}.
 \label{eq:app-o-eb}
 \end{equation}
-这个电子漂移电流（霍尔电流）比束流大得多：$v_E/v_i=6.0\times10^{5}/2.10\times10^{4}\approx28.6$ 倍——\textbf{霍尔推力器靠一股比输出束流大近三十倍的内部电子电流维持电离}。
+这个电子漂移电流（霍尔电流）比束流大得多：$v_E/v_i=6.0\times10^{5}/2.10\times10^{4}\approx28.6$ 倍，\textbf{霍尔推力器靠一股比输出束流大近三十倍的内部电子电流维持电离}。
 
 数值例：$V_d=300\ \mathrm{V}$ 定出 $v_i=21.0\ \mathrm{km/s}$（即 $I_{\mathrm{sp}}=2141\ \mathrm{s}$）；取 $I_b=5\ \mathrm{A}$，则 $T=0.143\ \mathrm{N}$、$P_{\mathrm{jet}}=I_bV_d=1.50\ \mathrm{kW}$，取 $\eta=0.5$ 得 $P_{\mathrm{in}}=3.00\ \mathrm{kW}$、$T/P_{\mathrm{in}}=47.6\ \mathrm{mN/kW}$。
 
 \begin{warning}{霍尔推力器不是“电离越多越好”}{warn:appo-hall}
-通道内的\textbf{电离}与\textbf{加速}共用同一个电压。中性密度太低，束流不够；中性密度太高，电压被电离与激发吃掉，束流反而下降，而且更多中性气体直接逃逸浪费。更关键的是：霍尔推力器的比冲由放电电压定（$300$--$600\ \mathrm{V}$ 给出 $2000$--$3000\ \mathrm{s}$），\textbf{天生低于离子推力器}——它换来的是更大的电流密度与更简单的电源。工程上从来没有“全面更好”的推力器，只有“对某个任务更好”的推力器。
+通道内的\textbf{电离}与\textbf{加速}共用同一个电压。中性密度太低，束流不够；中性密度太高，电压被电离与激发吃掉，束流反而下降，而且更多中性气体直接逃逸浪费。更关键的是：霍尔推力器的比冲由放电电压定（$300$--$600\ \mathrm{V}$ 给出 $2000$--$3000\ \mathrm{s}$），\textbf{天生低于离子推力器}，它换来的是更大的电流密度与更简单的电源。工程上从来没有“全面更好”的推力器，只有“对某个任务更好”的推力器。
 \end{warning}
 
-结论：\textbf{只用一块磁场，就让比冲从化学的 $450\ \mathrm{s}$ 抬到 $2100\ \mathrm{s}$，而且不需要栅极}——代价是效率（$\eta\approx0.5$）与通道壁的寿命。
+结论：\textbf{只用一块磁场，就让比冲从化学的 $450\ \mathrm{s}$ 抬到 $2100\ \mathrm{s}$，而且不需要栅极}。代价是效率（$\eta\approx0.5$）与通道壁的寿命。
 
 {\footnotesize
 \textbf{出处：}Choueiri 的电推进等离子体物理综述。

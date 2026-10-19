@@ -52,13 +52,13 @@ D-$\alpha$（$3\to2$，声明） & $1.88920$ & $656.28$ & 边缘中性氢：可�
 \end{table}
 
 \begin{tip}{谱线是能级差，不是「颜色」}{tip-app-ah-levels}
-谱线的波长只由离子的能级结构决定，与温度、密度都无关——这是诊断能成立的第一块基石。
+谱线的波长只由离子的能级结构决定，与温度、密度都无关。这是诊断能成立的第一块基石。
 温度改变的是「哪个电荷态存在、哪个能级被占据」，不是「这条线在哪里」。
 所以看到 $3.37506$ nm 就知道是类氢碳，看到 $656.28$ nm 就知道是中性氢；
 至于它们各有多少、有多宽，才是环境告诉你的信息。
 \end{tip}
 
-还差一个尺度：电子在这些能级之间跑得多快。类氢离子的基态电子速度是
+电子在能级之间跑得多快？类氢离子的基态电子速度是
 
 \begin{equation}
 v_1 = Z\alpha c = 6\times7.29735\times10^{-3}\times2.99792\times10^{8}
@@ -135,8 +135,7 @@ $n=10^{21}$ m$^{-3}$ & $T=0.5$ eV & $0.180042$\,\% & 密度高十倍，电离度
 \begin{tip}{「全电离」是个不等式，不是一句话}{tip-app-ah-saha}
 教材里常说「芯部等离子体完全电离」。这句话的正确读法是
 $1-n_0/n \approx 1$：在主工作点（$n_e=10^{20}$ m$^{-3}$、$T_e=9.194$ keV），
-式~\eqref{eq:app-ah-saha} 给出的中性份额是 $1.88172\times10^{-14}$——
-不是零，但任何谱线诊断都拿它没办法。
+式~\eqref{eq:app-ah-saha} 给出的中性份额是 $1.88172\times10^{-14}$，不是零，但任何谱线诊断都拿它没办法。
 反过来，边缘的 $0.5$ eV 处中性份额是 $99.4318\%$：同一条 Saha 方程，两个极端。
 \end{tip}
 
@@ -153,8 +152,7 @@ $T=0.5$ eV 时碳的电离度是 $5.77523\%$（氢只有 $0.568235\%$）。
 \label{eq:app-ah-neutral}
 \end{equation}
 
-式~\eqref{eq:app-ah-neutral} 是本节所有百分数的来源；把它写成这个形式，
-就能一眼看出「密度越高越难电离」的原因：分母里的 $n_e$ 把电离的收益（自由电子数）摊薄了。
+式~\eqref{eq:app-ah-neutral} 是本节所有百分数的来源。分母里的 $n_e$ 把电离的收益（自由电子数）摊薄了，所以密度越高越难电离。
 
 {\footnotesize
 \textbf{出处：}Saha 方程及其在恒星与实验室等离子体中的应用，参照 Saha（1920，\emph{Philosophical Magazine} \textbf{40}, 472）。
@@ -166,7 +164,6 @@ Mihalas \emph{Stellar Atmospheres}（第 2 版，1978，第 5 章）
 \section{强度比：为什么日冕平衡能当温度计}
 \label{sec:app-ah-corona}
 
-有了能级（哪条线）与电离度（这个离子有多少），第三个问题是「这条线有多亮」。
 谱线强度正比于上能级的布居数，而布居数由碰撞激发与辐射衰变的竞争决定。
 如果辐射衰变比碰撞退激发快得多，上能级的布居就只由碰撞激发决定，
 两条线的强度比就退化成激发的指数因子之比：
@@ -215,14 +212,13 @@ $1000$ & $0.934234$ & $1.07040$ & 高温端：比值趋于饱和 & \\
 强度比之所以在实验上受欢迎，是因为它抵消了绝对定标、窗口透过率、立体角这些共同的系统误差。
 但它同时把温度信息压缩了：$\mathrm{d}\ln R/\mathrm{d}\ln T = \Delta E/T$，
 温度越高、能级差越小，压缩得越狠。
-在 $9.194$ keV 的芯部，$\Delta E/T = 7.39922\times10^{-3}$——
-两条软 X 射线谱线的强度比几乎不随温度变，这时候要换方法（比如轫致辐射的斜率，见附录 X）。
+在 $9.194$ keV 的芯部，$\Delta E/T = 7.39922\times10^{-3}$，两条软 X 射线谱线的强度比几乎不随温度变，这时候要换方法（比如轫致辐射的斜率，见附录 X）。
 \end{tip}
 
 式~\eqref{eq:app-ah-corona} 成立的前提是「辐射衰变快于碰撞退激发」，也就是日冕平衡。
 它的定量判据是把辐射衰变率 $A_{21}$ 与碰撞退激发率比较，
 得到「电子密度低于某个值时」的界线（本附录按 $n_e<10^{20}$ m$^{-3}$ 的声明口径使用）。
-D-$\alpha$ 的自发辐射系数是 $A_{21}=4.41\times10^{7}$ s$^{-1}$（声明值）：
+D-$\alpha$ 的自发辐射系数是 $A_{21}=4.41\times10^{7}$ s$^{-1}$（声明值）。
 它比典型的碰撞退激发率大得多，所以边缘的 D-$\alpha$ 处在日冕极限附近，
 而芯部的软 X 射线谱线必须用碰撞辐射模型（collisional-radiative）算，不能套式~\eqref{eq:app-ah-corona}。
 
@@ -273,7 +269,7 @@ D-$\alpha$ 的线宽是 C VI 的 $474.862$ 倍：波长长、质量小，两个�
 \begin{tip}{线宽是「温度计」，但先要问「谁在发光」}{tip-app-ah-doppler}
 式~\eqref{eq:app-ah-doppler} 里的 $m_i$ 让同一个 $T_i$ 在不同谱线上给出完全不同的线宽。
 更麻烦的是：一条谱线往往由多个电荷态、多个位置共同贡献，
-测到的线宽是这些贡献的叠加——可能是「不同温度」的叠加，也可能是「不同流速」的叠加。
+测到的线宽是这些贡献的叠加：可能是「不同温度」的叠加，也可能是「不同流速」的叠加。
 所以线宽测温的完整版本是：先确定发光的是哪个离子、在哪个位置，
 再谈线宽里有多少是热运动。
 \end{tip}
@@ -287,7 +283,7 @@ D-$\alpha$ 的线宽是 C VI 的 $474.862$ 倍：波长长、质量小，两个�
 \label{eq:app-ah-dopwidth}
 \end{equation}
 
-对应的速度展宽是 $1.62989\times10^{5}$ m\,s$^{-1}$——约为光速的万分之五。
+对应的速度展宽是 $1.62989\times10^{5}$ m\,s$^{-1}$，约为光速的万分之五。
 仪器本身的展宽 $0.02$ nm 是 C VI 在 $100$ eV 时线宽的 $26.6177$ 倍：
 这意味着\textbf{在软 X 射线波段用普通谱仪测 C VI 线宽，测到的基本上是仪器函数}。
 要么把分辨率提上去，要么换到波长更长的谱线（代价是发光区域不同）。
@@ -411,7 +407,7 @@ $10^{16}$ & $10$ & $0.304304$ & 边缘的典型情形：$\tau$ 接近 $1/3$ \\
 所以「轫致辐射光学薄」与「谱线光学薄」是两件互不推出的事。
 判据很简单：算出 $\tau$ 再决定用不用式~\eqref{eq:app-ah-corona}。
 $\tau\ll1$ 时强度比是温度计；$\tau\gtrsim1$ 时它变成了密度计（自吸收把线心压平），
-再往上走会翻转成吸收线——同一套数据、完全不同的物理解释。
+再往上走会翻转成吸收线：同一套数据、完全不同的物理解释。
 \end{tip}
 
 \begin{equation}
@@ -452,7 +448,7 @@ Lochte-Holtgreven（1968，第 3 章）与 Mihalas（1978，第 10 章）。
 在主工作点 $T_i=9.194$ keV 下它的多普勒线宽是多少？
 与 C VI Ly-$\alpha$ 在同温度下的线宽相比，为什么杂质谱线在高 $Z$ 时反而更窄？
 
-\textbf{解答 1}：$\Delta\lambda = 0.255556$ nm；与 C VI 同温线宽（$1.06261\times10^{-3}$ nm）之比是 $240.498$——
+\textbf{解答 1}：$\Delta\lambda = 0.255556$ nm；与 C VI 同温线宽（$1.06261\times10^{-3}$ nm）之比是 $240.498$。
 氦比碳重、波长又长，所以线宽大两个多量级。
 
 \textbf{解答 2}：$10.692\%$，比 $10^{20}$ m$^{-3}$ 时的 $29.9454\%$ 低了 $2.80074$ 倍。
@@ -503,17 +499,17 @@ $T_i=1$ keV 的多普勒线宽是 $0.00237607$ nm，两者之比 $0.00118621$。
 
 
 \begin{itemize}
-\item Saha, M. N. (1920), \emph{Philosophical Magazine} \textbf{40}, 472——Saha 方程原始文献；
-\item Griem, H. R., \emph{Plasma Spectroscopy}（McGraw-Hill, 1964）第 3、4、6 章——展宽与强度比；
+\item Saha, M. N. (1920), \emph{Philosophical Magazine} \textbf{40}, 472，Saha 方程原始文献；
+\item Griem, H. R., \emph{Plasma Spectroscopy}（McGraw-Hill, 1964）第 3、4、6 章，展宽与强度比；
 \item Griem, H. R., \emph{Principles of Plasma Spectroscopy}（Cambridge, 1997）第 2--5 章；
 \item Unsöld, A., \emph{Physik der Sternatmosphären}（Springer, 1955）第 3 章；
 \item Mihalas, D., \emph{Stellar Atmospheres}（第 2 版, Freeman, 1978）第 5、10 章；
 \item Lochte-Holtgreven, W., \emph{Plasma Diagnostics}（North-Holland, 1968）第 3、4 章；
 \item Salzmann, D., \emph{Atomic Physics in Hot Plasmas}（Oxford, 1998）第 2、3、5、6 章；
-\item Fujimoto, T., \emph{Plasma Spectroscopy}（Oxford, 2004）第 4 章——碰撞辐射模型；
+\item Fujimoto, T., \emph{Plasma Spectroscopy}（Oxford, 2004）第 4 章，碰撞辐射模型；
 \item Hutchinson, I. H., \emph{Principles of Plasma Diagnostics}（第 2 版, Cambridge, 2002）第 6--7 章；
-\item Wesson, J., \emph{Tokamaks}（第 4 版, Oxford, 2011）第 12 章——托卡马克上的谱线诊断；
-\item ITER Physics Basis (1999), \emph{Nuclear Fusion} \textbf{39}, 2137——芯部谱线诊断的需求口径。
+\item Wesson, J., \emph{Tokamaks}（第 4 版, Oxford, 2011）第 12 章，托卡马克上的谱线诊断；
+\item ITER Physics Basis (1999), \emph{Nuclear Fusion} \textbf{39}, 2137，芯部谱线诊断的需求口径。
 \end{itemize}
 
 \subsection*{版权口径}
