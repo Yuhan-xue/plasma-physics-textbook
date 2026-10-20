@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.32.2},
+  pdftitle={等离子体物理自学教材 v1.32.3},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -110,6 +110,7 @@
 \usepackage{braket}
 \usepackage{float}
 \usepackage{placeins}   % \FloatBarrier：只在需要处吐出浮动体
+\usepackage{needspace}  % \needspace：标题贴近页底时先换页，避免孤行标题
 \usepackage{multirow}
 \usepackage{marginnote}
 \usepackage{epigraph}
@@ -486,7 +487,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.32.2}}
+  {\small\textcolor{white!45}{v1.32.3}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -853,7 +854,7 @@ $\star\star\star$ & 挑战 & 涉及较深的数学技巧或前沿问题。供科
 \textbf{前置知识} & \textbf{本书对应回顾位置} & \textbf{若看不懂的影响} \\
 \midrule
 矢量分析（梯度、散度、旋度） & 第 1 章 \S 1.1 & 看不懂后续所有推导 \\
-常微分方程（可分离变量、线性ODE） & 本书未系统复习，建议先修 & 单粒子轨道、波动方程无法求解 \\
+常微分方程（可分离变量、线性 ODE） & 本书未系统复习，建议先修 & 单粒子轨道、波动方程无法求解 \\
 统计力学与分布函数 & 第 1 章 \S 1.2 & 看不懂第 4 章流体方程、第 7 章动理学 \\
 麦克斯韦方程组 & 第 1 章复习 & 看不懂第 2 章德拜屏蔽、第 6 章波 \\
 复变函数基础（留数、围道积分） & 附录 C.2（第 7 章 \S 7.3 用到） & 动理学 Landau 阻尼推导受阻 \\
@@ -3015,7 +3016,7 @@ c^2 k^2 \approx \frac{\omega_{pe}^2 \omega}{\omega_{ce}}
 \begin{miniquiz}
 \begin{enumerate}
 \item 证明冷等离子体中电磁波的相速度 $v_p > c$，而群速度 $v_g < c$。
-\item 为什么电离层能反射短波无线电（$3$--$30\,\mathrm{MHz}$）但无法反射VHF电视信号（$>100\,\mathrm{MHz}$）？
+\item 为什么电离层能反射短波无线电（$3$--$30\,\mathrm{MHz}$）但无法反射 VHF 电视信号（$>100\,\mathrm{MHz}$）？
 \item 给定 $\omega_{pe}/\omega_{ce}=0.1$，取 $\omega/\omega_{ce}=0.3,0.5,0.9$，分别算出 $n_R^2$ 与 $n_L^2$，判断各频率下哪支能传播。再令 $\omega_{pe}/\omega_{ce}=2$ 重做一遍，说明“$\omega<\omega_{ce}$ 时只有 R 波传播”为何不是普遍结论。
 \end{enumerate}
 \quizans{（1） $n^2=1-\omega_{pe}^2/\omega^2<1$，故 $v_p=c/n>c$、$v_g=cn<c$，乘积恒为 $c^2$。\par （2） 短波频率低于电离层峰值 $f_p$（F 层约 9--15 MHz）时 $n^2<0$、波消逝被反射；VHF 高于 $f_p$，直接穿透。\par （3） 用 $n_{R,L}^2=1-X/(1\mp Y)$、$X=(\omega_{pe}/\omega)^2$、$Y=\omega_{ce}/\omega$ 逐点算：$\omega_{pe}/\omega_{ce}=0.1$ 时三个频率都给出 $n_R^2>0$ 且 $n_L^2>0$，两支都能传播；只有把密度提高到 $\omega_{pe}/\omega_{ce}=2$ 才出现 L 支消逝、R 支仍传播。所以「$\omega<\omega_{ce}$ 时只有 R 波」只在密度足够高的参数区成立。}
@@ -3152,7 +3153,7 @@ f = f_0(v) + f_1(x,v,t), \qquad E = E_1(x,t)
 \begin{history}{Landau 阻尼的发现与实验验证}{landau-history}
 1946年，苏联物理学家\textbf{列夫·朗道}（Lev Landau）从 Vlasov 方程出发，通过严格的数学分析预言了这种无碰撞阻尼。当时这一结果极具争议：许多物理学家不相信没有碰撞的系统中波会衰减。费米甚至曾打赌说 Landau 的结果一定是错的。
 
-理论上的关键突破来自对复变函数积分围道的正确处理（Landau 围道）。实验验证则等到1960年代：加州大学伯克利的Malmberg和Wharton在Q装置中激发电子等离子体波，首次直接测量到了与理论预言一致的阻尼率。这是等离子体物理从“理论漂亮”走向“实验验证”的里程碑。
+理论上的关键突破来自对复变函数积分围道的正确处理（Landau 围道）。实验验证则等到1960年代：加州大学伯克利的 Malmberg 和 Wharton 在Q装置中激发电子等离子体波，首次直接测量到了与理论预言一致的阻尼率。这是等离子体物理从“理论漂亮”走向“实验验证”的里程碑。
 \end{history}
 
 \begin{warning}{Landau 阻尼的常见误解}{landau-mistake}
@@ -3227,14 +3228,14 @@ f = f_0(v) + f_1(x,v,t), \qquad E = E_1(x,t)
 \epigraph{碰撞是秩序之父，也是混沌之母。}{--- 路德维希·玻尔兹曼}
 
 \begin{insight}{本章核心目标}{ch8-goal}
-理解等离子体中库仑碰撞的特殊性：小角度偏转主导的Rutherford散射。掌握碰撞频率、Spitzer 电阻率、扩散与双极扩散的物理图像和定量结果。
+理解等离子体中库仑碰撞的特殊性：小角度偏转主导的 Rutherford 散射。掌握碰撞频率、Spitzer 电阻率、扩散与双极扩散的物理图像和定量结果。
 \tcblower
 \textbf{前置依赖：}第4章（流体连续性方程、动量方程）；第7章（Vlasov 方程，理解无碰撞 vs 有碰撞的区别）。重点回顾麦克斯韦分布和平均自由程概念。
 
 \textbf{学习路径建议：}
 
 \begin{itemize}[leftmargin=*]
-\item[\textcolor{red}{$\blacksquare$}] \textbf{必学}：\S8.1 库仑碰撞与Rutherford散射；\S8.2 碰撞频率；\S8.3 扩散与双极扩散
+\item[\textcolor{red}{$\blacksquare$}] \textbf{必学}：\S8.1 库仑碰撞与 Rutherford 散射；\S8.2 碰撞频率；\S8.3 扩散与双极扩散
 \item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：\S8.4 Spitzer 电阻率
 \item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：新经典输运简介——本书未展开，见附录 E 书单。
 \end{itemize}
@@ -3243,7 +3244,7 @@ f = f_0(v) + f_1(x,v,t), \qquad E = E_1(x,t)
 
 等离子体被称为“物质的第四态”，一个重要原因是：在典型的弱耦合等离子体中，粒子之间的\textbf{长程库仑相互作用}远远多于直接碰撞。然而，碰撞并非可以忽略。正是通过碰撞，等离子体才能从非热平衡态弛豫到热平衡（对比第7章 Vlasov 无碰撞图像），才能产生电阻、扩散等输运现象。
 
-\section{库仑碰撞与Rutherford散射}\difficulty{基础}
+\section{库仑碰撞与 Rutherford 散射}\difficulty{基础}
 \label{sec:ch8-collisions}
 
 \begin{definition}{碰撞参数与散射角}{impact-param}
@@ -3425,7 +3426,7 @@ Spitzer 动力学修正因子（$\gamma_E\approx0.58$ 一类，$1/1.4\approx0.71
 
 \begin{chapterreview}
 \begin{itemize}
-\item 等离子体中碰撞以\textbf{小角度Rutherford散射}为主，累积效应等效于大角度偏转。
+\item 等离子体中碰撞以\textbf{小角度 Rutherford 散射}为主，累积效应等效于大角度偏转。
 \item 电子--离子碰撞频率 $\nu_{ei} \propto n T_e^{-3/2} \ln\Lambda$。
 \item \textbf{双极扩散}：电子和离子以相同速率扩散，$D_a \approx D_i(1+T_e/T_i)$。
 \item \textbf{Spitzer 电阻率} $\eta \propto T_e^{-3/2}$，与密度无关。高温等离子体是极好的导体。
@@ -3501,7 +3502,7 @@ Spitzer 动力学修正因子（$\gamma_E\approx0.58$ 一类，$1/1.4\approx0.71
 \[
 \gamma = \sqrt{A k g}
 \]
-其中 $A = (\rho_2 - \rho_1)/(\rho_2 + \rho_1)$ 是\textbf{Atwood数}，$\rho_2 > \rho_1$ 是上层流体密度。
+其中 $A = (\rho_2 - \rho_1)/(\rho_2 + \rho_1)$ 是\textbf{Atwood 数}，$\rho_2 > \rho_1$ 是上层流体密度。
 
 在磁化等离子体中，若 $\vect{g}$ 由曲率漂移等效产生（$\vect{g} \sim v_{th}^2/R_c$），且 $\vect{k}\perp\vect{B}$，则磁场对沿磁力线运动的粒子无约束，不稳定性仍然发展。
 \end{theorem}
@@ -3640,14 +3641,14 @@ x^3\simeq-\frac{\mu}{2}
 \epigraph{如果核聚变能成功，它将一劳永逸地解决人类的能源问题。}{--- 列夫·阿齐莫维奇（Lev Artsimovich）}
 
 \begin{insight}{本章核心目标}{ch10-goal}
-将前9章的知识应用于受控核聚变。理解磁约束和惯性约束的基本原理，掌握Lawson 判据和三重乘积的概念，了解当前聚变研究的进展与挑战。
+将前9章的知识应用于受控核聚变。理解磁约束和惯性约束的基本原理，掌握 Lawson 判据和三重乘积的概念，了解当前聚变研究的进展与挑战。
 \tcblower
 \textbf{前置依赖：}第5章（MHD 平衡与 Grad-Shafranov 方程）。第8章（输运约束，理解双极扩散与能量损失）。第9章（不稳定性，理解磁约束的稳定性极限）。聚变是等离子体物理的集大成应用。
 
 \textbf{学习路径建议：}
 
 \begin{itemize}[leftmargin=*]
-\item[\textcolor{red}{$\blacksquare$}] \textbf{必学}：\S10.1 聚变反应与Lawson 判据；\S10.2 磁约束原理；\S10.3 托卡马克与仿星器
+\item[\textcolor{red}{$\blacksquare$}] \textbf{必学}：\S10.1 聚变反应与 Lawson 判据；\S10.2 磁约束原理；\S10.3 托卡马克与仿星器
 \item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：\S10.4 惯性约束基础；\S10.5 当前进展与展望
 \item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：\S10.6 聚变反应堆工程挑战
 \end{itemize}
@@ -3664,7 +3665,8 @@ x^3\simeq-\frac{\mu}{2}
 \figsource{EUROfusion，CC BY 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
 \end{figure}
 
-\section{聚变反应与Lawson 判据}
+\needspace{6\baselineskip}
+\section{聚变反应与 Lawson 判据}
 \predict{Lawson 判据为什么是 $n$、$T$、$\tau$ 三个量相乘？如果 $T$ 提高一倍，所需 $\tau$ 是变大还是变小？}\difficulty{基础}
 
 \begin{definition}{主要聚变反应}{fusion-reactions}
@@ -3685,7 +3687,7 @@ x^3\simeq-\frac{\mu}{2}
 \begin{theorem}{Lawson 判据}{lawson}
 设聚变等离子体的温度为 $T$，密度为 $n$。能量约束时间为 $\tau_E$，即能量损失的特征时间（参见第8章输运）。自持燃烧（点火）要求$\alpha$粒子加热功率超过能量损失功率：
 
-对D--T反应：
+对 D--T 反应：
 \[
 n\tau_E \gtrsim 1.5\times 10^{20}\,\mathrm{m}^{-3}\cdot\mathrm{s}, \quad T \sim 10\,\mathrm{keV}
 \]
@@ -3738,7 +3740,7 @@ Lawson 判据的核心是\textbf{能量收支平衡}：
 \item 可以稳态运行
 \item 但磁场位形复杂，线圈工程挑战大。
 \end{itemize}
-现代优化仿星器（如德国的Wendelstein 7-X）通过复杂的线圈设计，实现了良好的等离子体约束和 MHD 稳定性。
+现代优化仿星器（如德国的 Wendelstein 7-X）通过复杂的线圈设计，实现了良好的等离子体约束和 MHD 稳定性。
 \end{definition}
 
 \begin{history}{托卡马克的诞生与ITER}{tokamak-history}
@@ -3787,9 +3789,9 @@ $n\tau$ & $\sim 10^{20}\,\mathrm{m}^{-3}\cdot\mathrm{s}$ & $\sim 10^{21}\,\mathr
 \begin{insight}{ICF的两种路线：直接驱动与间接驱动}{icf-routes}
 \textbf{直接驱动}：多束激光直接均匀辐照氘氚靶丸表面，烧蚀产生反冲压强压缩内核。
 
-\textbf{间接驱动}（如美国国家点火装置NIF采用）：激光先照射金或铀制成的\textbf{黑腔}（hohlraum）内壁，产生均匀的X射线辐射，X射线再压缩靶丸。间接驱动的优点是辐照均匀性好，缺点是能量转换效率较低。
+\textbf{间接驱动}（如美国国家点火装置 NIF 采用）：激光先照射金或铀制成的\textbf{黑腔}（hohlraum）内壁，产生均匀的X射线辐射，X射线再压缩靶丸。间接驱动的优点是辐照均匀性好，缺点是能量转换效率较低。
 
-2022年12月5日，NIF首次实现\textbf{靶增益大于 1}：到靶激光能量约 $2.05\,\mathrm{MJ}$，聚变产额约 $3.15\,\mathrm{MJ}$。这是惯性约束聚变的历史性里程碑。
+2022年12月5日，NIF 首次实现\textbf{靶增益大于 1}：到靶激光能量约 $2.05\,\mathrm{MJ}$，聚变产额约 $3.15\,\mathrm{MJ}$。这是惯性约束聚变的历史性里程碑。
 \end{insight}
 
 \begin{warning}{“增益”要说清分子分母——三种增益不能混比}{fusion-gain-definitions}
@@ -3822,7 +3824,7 @@ $n\tau$ & $\sim 10^{20}\,\mathrm{m}^{-3}\cdot\mathrm{s}$ & $\sim 10^{21}\,\mathr
 \section{聚变能源的展望}\difficulty{提高}
 
 \begin{insight}{从实验室到电网：剩余挑战}{fusion-challenges}
-尽管NIF在2022年12月实现了\textbf{靶增益} $Q>1$（到靶激光 $2.05\,\mathrm{MJ}\to$ 聚变产额 $3.15\,\mathrm{MJ}$），ITER 仍处于建设/调试阶段（设计目标 50 MW 加热 $\to$ 500 MW 聚变功率，$Q_{\text{plasma}}=10$）。但商业聚变电站仍面临巨大挑战：
+尽管 NIF 在2022年12月实现了\textbf{靶增益} $Q>1$（到靶激光 $2.05\,\mathrm{MJ}\to$ 聚变产额 $3.15\,\mathrm{MJ}$），ITER 仍处于建设/调试阶段（设计目标 50 MW 加热 $\to$ 500 MW 聚变功率，$Q_{\text{plasma}}=10$）。但商业聚变电站仍面临巨大挑战：
 \begin{enumerate}
 \item \textbf{材料}：14 MeV中子对反应堆壁的损伤、氚增殖包层的设计
 \item \textbf{稳态运行}：托卡马克需要非感应电流驱动，能量提取系统需连续运行
@@ -3871,10 +3873,10 @@ $n\tau$ & $\sim 10^{20}\,\mathrm{m}^{-3}\cdot\mathrm{s}$ & $\sim 10^{21}\,\mathr
 
 \begin{chapterreview}
 \begin{itemize}
-\item D--T聚变是最易实现的反应，要求 $n\tau_E \gtrsim 1.5\times 10^{20}\,\mathrm{m}^{-3}\cdot\mathrm{s}$，$T\sim 10\,\mathrm{keV}$。
+\item D--T 聚变是最易实现的反应，要求 $n\tau_E \gtrsim 1.5\times 10^{20}\,\mathrm{m}^{-3}\cdot\mathrm{s}$，$T\sim 10\,\mathrm{keV}$。
 \item \textbf{磁约束}：低密度、长约束时间；托卡马克和仿星器是主要方案。
 \item \textbf{惯性约束}：极高密度、极短约束时间；激光驱动压缩靶丸。
-\item NIF于2022年首次实现 $Q>1$；ITER 目标 $Q=10$。
+\item NIF 于2022年首次实现 $Q>1$；ITER 目标 $Q=10$。
 \item 商业聚变仍需克服材料、稳态运行和经济性挑战。
 \item \textbf{量纲自检}：Lawson 三重积 $nT\tau_E$ 的单位是 $\mathrm{m^{-3}\cdot keV\cdot s}$。写「$10^{21}$」时必须带单位，三个量的口径一变，这个数字就失去意义。
 \end{itemize}
@@ -3882,7 +3884,7 @@ $n\tau$ & $\sim 10^{20}\,\mathrm{m}^{-3}\cdot\mathrm{s}$ & $\sim 10^{21}\,\mathr
 
 \begin{miniquiz}
 \begin{enumerate}
-\item 为什么Lawson 判据是 $n\tau_E$ 的乘积形式，而非单独要求 $n$ 或 $\tau_E$？
+\item 为什么 Lawson 判据是 $n\tau_E$ 的乘积形式，而非单独要求 $n$ 或 $\tau_E$？
 \item 比较托卡马克和仿星器的优缺点。
 \item 惯性约束中，为什么可以用等离子体物理（辐射、状态方程）来描述靶丸压缩，而不需要磁力线冻结等概念？
 \item ITER 的 $Q=10$ 目标意味着什么？与 $Q>1$ 有什么区别？
@@ -4221,7 +4223,7 @@ E_i \approx e\bar{V} + \frac{1}{2}k_B T_i \approx e\bar{V}
 \end{theorem}
 
 \begin{insight}{离子为何只响应时间平均电位}{}
-射频鞘层的动态行为是：鞘层边界以 $13.56\,\mathrm{MHz}$ 频率往复振荡，电子在该边界附近被周期性地压缩和膨胀。离子由于惯性大，仅响应时间平均电位，以准稳态方式穿过振荡鞘层，最终获得由时间平均鞘层压降决定的动能。这种离子在时变电场中持续加速的机制是RIE（反应离子刻蚀）中离子能量可控的关键。
+射频鞘层的动态行为是：鞘层边界以 $13.56\,\mathrm{MHz}$ 频率往复振荡，电子在该边界附近被周期性地压缩和膨胀。离子由于惯性大，仅响应时间平均电位，以准稳态方式穿过振荡鞘层，最终获得由时间平均鞘层压降决定的动能。这种离子在时变电场中持续加速的机制是 RIE（反应离子刻蚀）中离子能量可控的关键。
 \end{insight}
 
 \subsection{Child--Langmuir 定律：鞘层厚度与电压的关系}
@@ -4311,7 +4313,7 @@ Child--Langmuir 定律的 $V_s^{3/4}$ 依赖关系非常有趣：鞘层厚度不
 
 \begin{theorem}{RIE的协同效应}{}{}
 \label{thm:rie-synergy}
-在RIE中，离子轰击与化学反应的协同使刻蚀速率远大于纯物理和纯化学刻蚀速率之和：
+在 RIE 中，离子轰击与化学反应的协同使刻蚀速率远大于纯物理和纯化学刻蚀速率之和：
 \begin{equation}
 \label{eq:rie-synergy}
 R_{\text{RIE}} \gg R_{\text{phys}} + R_{\text{chem}}
@@ -4320,7 +4322,7 @@ R_{\text{RIE}} \gg R_{\text{phys}} + R_{\text{chem}}
 \end{theorem}
 
 \begin{insight}{RIE 协同效应为何远大于两者之和}{}
-RIE的协同效应是等离子体工艺中典型的离子增强化学反应：纯化学刻蚀（自由基作用）速率较慢且各向同性，纯物理溅射（离子轰击）效率低且选择性差。离子轰击破坏表面化学键、增加反应位点，自由基与表面反应生成挥发性产物，两者协同使刻蚀速率远大于纯物理与纯化学速率之和。这就是RIE中离子增强刻蚀的图像。
+RIE 的协同效应是等离子体工艺中典型的离子增强化学反应：纯化学刻蚀（自由基作用）速率较慢且各向同性，纯物理溅射（离子轰击）效率低且选择性差。离子轰击破坏表面化学键、增加反应位点，自由基与表面反应生成挥发性产物，两者协同使刻蚀速率远大于纯物理与纯化学速率之和。这就是 RIE 中离子增强刻蚀的图像。
 \end{insight}
 
 \begin{example}{手机芯片制造中的等离子体刻蚀}{ch11-etching-app}
@@ -4329,24 +4331,24 @@ RIE的协同效应是等离子体工艺中典型的离子增强化学反应：�
 现代手机芯片（7 nm、5 nm工艺）中，晶体管栅极宽度仅几十纳米，需要刻蚀深宽比 $> 50$ 的硅通孔（TSV）。工艺过程如下：
 \begin{enumerate}
 \item 在硅片上旋涂光刻胶，通过极紫外光刻（EUV）曝光形成图形；
-\item 放入 ICP-RIE刻蚀机：$\mathrm{SF}_6$ 产生 $\mathrm{F}$ 自由基，$\mathrm{C}_4\mathrm{F}_8$ 产生聚合物钝化层；
+\item 放入 ICP-RIE 刻蚀机：$\mathrm{SF}_6$ 产生 $\mathrm{F}$ 自由基，$\mathrm{C}_4\mathrm{F}_8$ 产生聚合物钝化层；
 \item 射频鞘层加速 $\mathrm{SF}_x^+$ 离子垂直轰击底部，移除底部聚合物，同时 $\mathrm{F}$ 自由基化学刻蚀暴露的硅；
 \item 侧壁因无离子轰击而被聚合物保护，实现高度各向异性；
-\item 通过 “Bosch工艺” 循环切换刻蚀与沉积步骤，实现高深宽比刻蚀。
+\item 通过 “Bosch 工艺” 循环切换刻蚀与沉积步骤，实现高深宽比刻蚀。
 \end{enumerate}
 \predict{深宽比 $>50$ 的通孔刻蚀，靠的是纯化学刻蚀、纯物理溅射，还是两者叠加？离子轰击能量在 eV 量级还是 keV 量级？}
-\textbf{数值估算}：ICP 功率 $2\,\mathrm{kW}$，$n_e \sim 10^{17}\,\mathrm{m^{-3}}$，鞘层压降 $200\,\mathrm{V}$，离子能量 $E_i \sim 200\,\mathrm{eV}$，硅的溅射阈值约 $20\,\mathrm{eV}$，化学刻蚀速率约 $1\,\mu\mathrm{m}/\mathrm{min}$，物理溅射速率约 $0.1\,\mu\mathrm{m}/\mathrm{min}$，RIE协同后速率可达 $5\sim 10\,\mu\mathrm{m}/\mathrm{min}$。
+\textbf{数值估算}：ICP 功率 $2\,\mathrm{kW}$，$n_e \sim 10^{17}\,\mathrm{m^{-3}}$，鞘层压降 $200\,\mathrm{V}$，离子能量 $E_i \sim 200\,\mathrm{eV}$，硅的溅射阈值约 $20\,\mathrm{eV}$，化学刻蚀速率约 $1\,\mu\mathrm{m}/\mathrm{min}$，物理溅射速率约 $0.1\,\mu\mathrm{m}/\mathrm{min}$，RIE 协同后速率可达 $5\sim 10\,\mu\mathrm{m}/\mathrm{min}$。
 \end{example}
 
 \begin{warning}{高深宽比刻蚀不只靠离子能量}{}
-认为高深宽比刻蚀只要离子能量足够高就行。侧壁保护和钝化层管理才是关键。纯物理溅射在深孔底部会产生“微沟槽效应”（micro-trenching），因为离子在侧壁反射后汇聚到底部角落。纯化学刻蚀则完全各向同性。Bosch工艺的成功在于精确平衡了刻蚀与钝化的循环，而非简单提高功率。
+认为高深宽比刻蚀只要离子能量足够高就行。侧壁保护和钝化层管理才是关键。纯物理溅射在深孔底部会产生“微沟槽效应”（micro-trenching），因为离子在侧壁反射后汇聚到底部角落。纯化学刻蚀则完全各向同性。Bosch 工艺的成功在于精确平衡了刻蚀与钝化的循环，而非简单提高功率。
 \end{warning}
 
-\subsection{薄膜沉积：PECVD与溅射沉积}
+\subsection{薄膜沉积：PECVD 与溅射沉积}
 
 \begin{definition}{等离子体增强化学气相沉积（PECVD）}{}{}
 \label{def:pecvd}
-PECVD利用等离子体中的电子碰撞将反应气体（如 $\mathrm{SiH}_4$、$\mathrm{NH}_3$）分解为活性自由基。在衬底表面发生化学反应形成薄膜。等离子体的作用是将热激活能 $> 500\,\mathrm{^\circ C}$ 的CVD反应降低到 $200\sim 300\,\mathrm{^\circ C}$，避免高温对已有器件的损伤。
+PECVD 利用等离子体中的电子碰撞将反应气体（如 $\mathrm{SiH}_4$、$\mathrm{NH}_3$）分解为活性自由基。在衬底表面发生化学反应形成薄膜。等离子体的作用是将热激活能 $> 500\,\mathrm{^\circ C}$ 的 CVD 反应降低到 $200\sim 300\,\mathrm{^\circ C}$，避免高温对已有器件的损伤。
 \end{definition}
 
 \begin{definition}{溅射沉积}{}{}
@@ -4355,14 +4357,14 @@ PECVD利用等离子体中的电子碰撞将反应气体（如 $\mathrm{SiH}_4$�
 \end{definition}
 
 \begin{insight}{PECVD 与溅射沉积的本质区别}{}
-PECVD与溅射沉积的物理机制完全不同：PECVD是“化学反应在表面”，等离子体只在气相中生成前驱体。溅射沉积是“物理动量传递”，靶材原子被溅射后沉积。因此PECVD薄膜的化学计量比可以灵活调控（改变气体配比），而溅射沉积薄膜的组分与靶材基本一致。实际工艺中，PECVD用于 $\mathrm{SiO}_2$、$\mathrm{SiN}_x$ 等绝缘层，溅射用于金属互连（Al、Cu、W）。
+PECVD 与溅射沉积的物理机制完全不同：PECVD 是“化学反应在表面”，等离子体只在气相中生成前驱体。溅射沉积是“物理动量传递”，靶材原子被溅射后沉积。因此 PECVD 薄膜的化学计量比可以灵活调控（改变气体配比），而溅射沉积薄膜的组分与靶材基本一致。实际工艺中，PECVD 用于 $\mathrm{SiO}_2$、$\mathrm{SiN}_x$ 等绝缘层，溅射用于金属互连（Al、Cu、W）。
 \end{insight}
 
 \begin{miniquiz}
 \begin{enumerate}
-\item 为什么RIE中离子轰击能增强化学刻蚀速率？列举两种微观机制。
-\item 比较PECVD与热CVD的温度优势：PECVD为什么可以在低温下沉积？
-\item 在Bosch工艺中，侧壁保护靠什么实现？底部刻蚀靠什么实现？
+\item 为什么 RIE 中离子轰击能增强化学刻蚀速率？列举两种微观机制。
+\item 比较 PECVD 与热 CVD 的温度优势：PECVD 为什么可以在低温下沉积？
+\item 在 Bosch 工艺中，侧壁保护靠什么实现？底部刻蚀靠什么实现？
 \end{enumerate}
 \quizans{（1） (a) 离子轰击打断表面键、制造悬键，使化学刻蚀更容易；(b) 把反应产物打走、保持表面新鲜；两者叠加远快于纯化学或纯物理。\par （2） 高能电子把前驱气体解离成活性基团，沉积不再依赖衬底高温。\par （3） 侧壁靠 C$_4$F$_8$ 聚合物钝化保护，底部靠 SF$_6$ 的 F 自由基配合离子轰击去掉钝化层并刻蚀硅。}
 \end{miniquiz}
@@ -4675,7 +4677,7 @@ PECVD（等离子体增强化学气相沉积）腔体中，$\mathrm{SiO}_2$ 沉�
 
     \item \textbf{前驱体解离不足}
 
-    PECVD中，$\mathrm{SiH}_4$ 需经电子碰撞解离产生活性前驱体：
+    PECVD 中，$\mathrm{SiH}_4$ 需经电子碰撞解离产生活性前驱体：
     \[
     \mathrm{SiH}_4 + e^- \rightarrow \mathrm{SiH}_3 + \mathrm{H} + e^- \quad (E_{\text{diss}} \approx 8.3\,\mathrm{eV})
     \]
@@ -4802,7 +4804,7 @@ P_{\text{abs}} \propto n_e \cdot E_{\text{loss}} \propto \frac{1}{3.75} \times \
 
 \item \textbf{鞘层理论}：鞘层是壁面附近的非准中性层，是“离子加速器”+“电子屏障”；绝缘壁面自动达到浮置电位（比等离子体电位低 $4\sim 5\,T_e$）；玻姆判据要求离子进入鞘层的速度 $\ge u_B = \sqrt{k_B T_e/m_i}$；预鞘是尺度远大于鞘层的准中性过渡区，将离子从热速度加速到 $u_B$；射频鞘层时变振荡，离子响应时间平均电位；Child--Langmuir 定律给出鞘层厚度 $s \propto V_s^{3/4}$，\textbf{其倍数随鞘压变化}——低压（$V_s\sim$ 几个 $T_e$）时约 $3\sim 5\,\lambda_D$，高鞘压（如 $1\,\mathrm{kV}$ 偏压）下可达毫米乃至厘米量级，不可一概说成“锁定在几个德拜长度”。
 
-\item \textbf{化学反应与应用}：自由基主导各向同性化学刻蚀，离子主导各向异性物理效应，激发态传递能量；RIE通过离子增强化学刻蚀实现协同效应；PECVD用等离子体降低沉积温度；Bosch工艺通过刻蚀/钝化循环实现高深宽比刻蚀。
+\item \textbf{化学反应与应用}：自由基主导各向同性化学刻蚀，离子主导各向异性物理效应，激发态传递能量；RIE 通过离子增强化学刻蚀实现协同效应；PECVD 用等离子体降低沉积温度；Bosch 工艺通过刻蚀/钝化循环实现高深宽比刻蚀。
 
 \item \textbf{磁控溅射与输运}：磁控溅射利用 $E\times B$ 漂移约束电子（见第3章），提高电离效率；磁场约束电子而非离子；刻蚀腔中粒子通过双极扩散（见第8章）向边界损失，损失通量与体电离率平衡维持稳态。
 
@@ -4881,7 +4883,7 @@ P_{\text{abs}} \propto n_e \cdot E_{\text{loss}} \propto \frac{1}{3.75} \times \
 
 单探针的等效电路极为简单：直流电源通过扫描电路向探针施加电压 $V$，串联电流表测量探针收集电流 $I$。探针通常选用耐高温、低溅射的金属（如钨、钼或铂），直径 $0.1\sim 1\,\mathrm{mm}$，长度 $1\sim 10\,\mathrm{mm}$。
 
-\subsection{I-V特性曲线与四个特征区域}
+\subsection{I-V 特性曲线与四个特征区域}
 
 朗缪尔探针的电流-电压（$I$-$V$）曲线是诊断的\emph{全部信息来源}。其典型形状如图\ref{fig:langmuir-iv}所示，可分为四个特征区域。
 
@@ -5058,7 +5060,7 @@ F_{\mathrm{Maxwell}}(\eps) \propto \sqrt{\eps}\,\exp\!\left(-\frac{\eps}{k_BT_e}
 \end{warning}
 
 \begin{insight}{为什么二阶导数给出分布函数？}{}
-探针收集电流是\emph{所有能量高于势垒}的电子的通量积分：$I \propto \int_{\eps > e(V_p - V)} F(\eps)\, v(\eps) \,\diff\eps$（势垒高度为 $e(V_p - V)$）。对 $V$ 求一阶导数消去了积分下限的被积函数（莱布尼茨法则），再求二阶导数就提取出了分布函数本身。这相当于在说：\emph{电流曲线在某处的“弯曲程度”，正比于具有该能量的电子数量}。这一结果最早由Druyvesteyn在1930年严格导出，是探针诊断从“测温度”到“测分布”的理论飞跃。
+探针收集电流是\emph{所有能量高于势垒}的电子的通量积分：$I \propto \int_{\eps > e(V_p - V)} F(\eps)\, v(\eps) \,\diff\eps$（势垒高度为 $e(V_p - V)$）。对 $V$ 求一阶导数消去了积分下限的被积函数（莱布尼茨法则），再求二阶导数就提取出了分布函数本身。这相当于在说：\emph{电流曲线在某处的“弯曲程度”，正比于具有该能量的电子数量}。这一结果最早由 Druyvesteyn 在1930年严格导出，是探针诊断从“测温度”到“测分布”的理论飞跃。
 \end{insight}
 
 \begin{example}{数值估算：实验室氩等离子体参数}{ch12-argon-est}
@@ -5416,7 +5418,7 @@ $n_e\sim10^{24}\,\mathrm{m}^{-3}$ 对应高电流密度电弧芯部，与 $2.5\,
 \section{磁探针（Magnetic Probe / Rogowski Coil）}
 \label{sec:12.6}
 
-前几节讨论的诊断手段主要测量等离子体的微观参数（$n_e$、$T_e$、分布函数）。但等离子体作为导电流体，其宏观行为（电流、磁场、压强）同样重要。这些正是第5章磁流体力学（MHD）的核心变量。磁探针和Rogowski 线圈就是测量等离子体宏观电磁状态的基础工具。
+前几节讨论的诊断手段主要测量等离子体的微观参数（$n_e$、$T_e$、分布函数）。但等离子体作为导电流体，其宏观行为（电流、磁场、压强）同样重要。这些正是第5章磁流体力学（MHD）的核心变量。磁探针和 Rogowski 线圈就是测量等离子体宏观电磁状态的基础工具。
 
 \subsection{磁探针原理：法拉第感应}
 
@@ -5464,7 +5466,7 @@ $R$ 为\textbf{线圈骨架的}平均半径（\emph{不是}托卡马克的大半
 \end{definition}
 
 \begin{insight}{Rogowski 线圈的“自屏蔽”特性}{}
-Rogowski 线圈的一个重要优点是：它只测量\emph{穿过环中心的净电流}，对环外部电流不敏感。这是因为外部电流产生的磁场在环内部绕行一周时，从不同方向穿过绕组，贡献相互抵消。这一特性使得Rogowski 线圈可以方便地套在真空室或导体棒外部，测量其中的等离子体电流，而不受外部杂散磁场的显著干扰。在托卡马克中，环向等离子体电流 $I_p$ 通常达到 $10^6\,\mathrm{A}$ 量级，Rogowski 线圈缠绕在真空室外围，是监测这一核心 MHD 参数的标准手段。通过与极向磁探针阵列结合，还可以重构等离子体边界和内部的磁通面结构（安全因子 $q$ 分布），为等离子体平衡和稳定性分析提供输入。
+Rogowski 线圈的一个重要优点是：它只测量\emph{穿过环中心的净电流}，对环外部电流不敏感。这是因为外部电流产生的磁场在环内部绕行一周时，从不同方向穿过绕组，贡献相互抵消。这一特性使得 Rogowski 线圈可以方便地套在真空室或导体棒外部，测量其中的等离子体电流，而不受外部杂散磁场的显著干扰。在托卡马克中，环向等离子体电流 $I_p$ 通常达到 $10^6\,\mathrm{A}$ 量级，Rogowski 线圈缠绕在真空室外围，是监测这一核心 MHD 参数的标准手段。通过与极向磁探针阵列结合，还可以重构等离子体边界和内部的磁通面结构（安全因子 $q$ 分布），为等离子体平衡和稳定性分析提供输入。
 \end{insight}
 
 \begin{warning}{磁探针是否扰动等离子体？}{}
@@ -5598,7 +5600,7 @@ Rogowski 线圈的一个重要优点是：它只测量\emph{穿过环中心的�
     \item 微波干涉通过相位移动 $\Delta\phi \propto n_e L$ 测量线平均密度；截止密度 $n_{\mathrm{cut}} \propto f^2$ 限制了可测密度上限。
     \item 汤姆孙散射光谱宽度直接反映电子热速度分布，是测量 $T_e$ 的“黄金标准”；离子散射可忽略因为 $(m_e/m_i)^2$ 极小。
     \item 光谱诊断通过线光谱（激发温度、成分）、连续谱（轫致辐射温度）和斯塔克展宽（密度）提供丰富的参数信息。
-    \item 磁探针和Rogowski 线圈基于法拉第感应，测量磁场变化和等离子体电流，是 MHD 宏观参数的主要诊断手段。
+    \item 磁探针和 Rogowski 线圈基于法拉第感应，测量磁场变化和等离子体电流，是 MHD 宏观参数的主要诊断手段。
 \item \textbf{量纲自检}：探针特性的指数 $\exp(eV/k_BT_e)$ 必须无量纲（$T_e$ 用 eV 时等价于 $V/T_e$）；干涉相移 $\phi=\frac{e^2}{2\varepsilon_0m_ec^2}\int n_eB\,\mathrm{d}l$ 的单位是 rad。
 \end{itemize}
 \end{review}
@@ -5666,7 +5668,7 @@ OES发射光谱 & $10^{12}$--$10^{19}$ & $0.1$--$10$ & cm & ms & 工业/空间 \
 \begin{enumerate}
     \item \textbf{诊断的分类与选择}：按原理分为电探针、电磁波、光学和粒子/磁探针四大类。按空间特性分为点测量（朗缪尔探针、汤姆孙散射）和线/面积分测量（微波干涉、光谱线积分）。按时间特性分为稳态和瞬态诊断。
     
-    \item \textbf{朗缪尔探针}：单探针、双探针和发射探针的结构差异。$I$-$V$ 曲线的四个区域（离子饱和、过渡、电子饱和、悬浮）。电子温度 $T_e = [\diff(\ln I)/\diff V]^{-1}$ 与电子密度 $n_e \propto I_{\mathrm{e,sat}}/\sqrt{T_e}$。悬浮电位为负的本质原因。Druyvesteyn公式通过二阶导数求EEDF。磁化等离子体中需修正鞘层理论。
+    \item \textbf{朗缪尔探针}：单探针、双探针和发射探针的结构差异。$I$-$V$ 曲线的四个区域（离子饱和、过渡、电子饱和、悬浮）。电子温度 $T_e = [\diff(\ln I)/\diff V]^{-1}$ 与电子密度 $n_e \propto I_{\mathrm{e,sat}}/\sqrt{T_e}$。悬浮电位为负的本质原因。Druyvesteyn 公式通过二阶导数求 EEDF。磁化等离子体中需修正鞘层理论。
     
     \item \textbf{微波干涉}：相位移动 $\Delta\phi = (e^2/2\eps_0 m_e c\omega) \int n_e\,\diff l$；截止密度 $n_{\mathrm{cut}} = \eps_0 m_e \omega^2/e^2$；适用于 $n_e \gtrsim 10^{18}\,\mathrm{m}^{-3}$ 的高密度测量；频率选择需兼顾穿透能力与相位灵敏度。
     
@@ -5674,7 +5676,7 @@ OES发射光谱 & $10^{12}$--$10^{19}$ & $0.1$--$10$ & cm & ms & 工业/空间 \
     
     \item \textbf{光谱诊断}：玻尔兹曼图法求激发温度；轫致辐射斜率求 $T_e$；斯塔克展宽 $\Delta\lambda \propto n_e^{2/3}$ 求密度；$H_\alpha$ 线常用于边界密度监测；需要精确原子物理数据支持定量反演。
     
-    \item \textbf{磁探针与Rogowski 线圈}：基于法拉第电磁感应 $\mathcal{E} = -N A\,\dot{B}$；Rogowski 线圈测量总电流，具有外部电流自屏蔽特性；积分电路或数字积分用于从 $\dot{B}$ 恢复 $B$。磁探针数据因此成为 MHD 平衡和稳定性分析的数据来源。
+    \item \textbf{磁探针与 Rogowski 线圈}：基于法拉第电磁感应 $\mathcal{E} = -N A\,\dot{B}$；Rogowski 线圈测量总电流，具有外部电流自屏蔽特性；积分电路或数字积分用于从 $\dot{B}$ 恢复 $B$。磁探针数据因此成为 MHD 平衡和稳定性分析的数据来源。
     
     \item \textbf{贯穿全章的核心思想}：诊断是理论与实验的桥梁。德拜长度（第2章）决定探针鞘层尺度；截止频率（第6章）决定微波传播特性；分布函数（第7章）决定散射光谱形状；碰撞与辐射过程（第8章）决定光谱强度；MHD 方程（第5章）将磁探针数据与等离子体平衡联系起来。没有诊断，等离子体物理学将只是数学模型；没有理论，诊断数据只是无意义的电压和光强。
 \end{enumerate}
