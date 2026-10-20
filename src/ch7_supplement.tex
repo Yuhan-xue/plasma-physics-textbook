@@ -52,7 +52,7 @@ f_0(v) = n\sqrt{\frac{m}{2\pi k_{\!B}T}}\,\exp\!\left(-\frac{mv^2}{2k_{\!B}T}\ri
 \item \textbf{稳定}：还需要分布满足无自由能的判据。一个稳态分布完全可以是\emph{不稳定}的，见下面的反问题。
 \end{itemize}
 
-\textbf{反问题（请自行验证）：} 取双峰分布 $f_0(v)=n[A_1\ee^{-(v-u)^2/2v_{t1}^2}+A_2\ee^{-(v+u)^2/2v_{t2}^2}]$（两束相向运动的电子），它同样只依赖 $v$，因此\emph{同样}是 Vlasov 方程的稳态解——但它是\textbf{双流不稳定性}的经典不稳定平衡（第9章）。可见「满足 Vlasov 稳态」与「能稳定存在」是两回事。真正决定稳定性的是 $\partial f_0/\partial v$ 的符号结构（第9章、本章末的 bump-on-tail），而不是「是否满足 $\partial_tf=0$」。
+\textbf{反问题（请自行验证）：} 取双峰分布 $f_0(v)=n[A_1\ee^{-(v-u)^2/2v_{t1}^2}+A_2\ee^{-(v+u)^2/2v_{t2}^2}]$（两束相向运动的电子），它同样只依赖 $v$，因此\emph{同样}是 Vlasov 方程的稳态解——但它是\textbf{双流不稳定性}的经典不稳定平衡（第 9 章）。可见「满足 Vlasov 稳态」与「能稳定存在」是两回事。真正决定稳定性的是 $\partial f_0/\partial v$ 的符号结构（第 9 章、本章末的 bump-on-tail），而不是「是否满足 $\partial_tf=0$」。
 \end{warning}
 
 \begin{example}{Landau 阻尼率的数值估算}{landau-damping-calc}
@@ -315,7 +315,7 @@ bump-on-tail不稳定性的核心是：在相速度 $v_\phi = \omega/k$ 处，�
 
 \textbf{规律：} 三个波数对应 $k\lambda_D = 0.149,0.745,1.49$。在\emph{渐近式仍可信}的区间内（约 $k\lambda_D\lesssim0.3$），$k\lambda_D$ 从 $0.149$ 略增，指数因子 $\ee^{-24}$ 已经极小，阻尼率随 $k\lambda_D$ 增大而急剧上升：指数中 $1/(2k^2\lambda_D^2)$ 对 $k\lambda_D$ 极为敏感。Landau 阻尼的物理根源是：长波（$k\lambda_D\ll1$）的相速度远大于电子热速度，共振粒子数按 $\exp[-v_\phi^2/(2v_t^2)]$ 指数稀少；波长缩短使相速度落向电子热分布的主体，共振粒子迅速增多，阻尼随之剧增。
 
-\textbf{两条曲线的分工：} 情形 1 展示长波估算；情形 2 说明 $k\lambda_D\sim1$ 时渐近式失效，须解复色散函数（Fitzpatrick《Plasma Physics》第 5 章有标准处理）。这也是朗缪尔探针测电子分布（Druyvesteyn 法，第12章）与波诊断选波长时的基本限制。
+\textbf{两条曲线的分工：} 情形 1 展示长波估算；情形 2 说明 $k\lambda_D\sim1$ 时渐近式失效，须解复色散函数（Fitzpatrick《Plasma Physics》第 5 章有标准处理）。这也是朗缪尔探针测电子分布（Druyvesteyn 法，第 12 章）与波诊断选波长时的基本限制。
 \end{example}
 
 \begin{formulabox}{第 7 章}{ch7-formulas}
@@ -332,7 +332,7 @@ bump-on-tail不稳定性的核心是：在相速度 $v_\phi = \omega/k$ 处，�
 \textbf{符号说明：}$f$ 为分布函数，$f_0$ 为未扰动的平衡分布、$\hat f_0=f_0/n_0$ 为其归一化形式；$\omega$、$k$ 为波角频率与波数，$\omega_i$ 为增长率（频率的虚部）；$\lambda_D$ 为德拜长度。$v_\phi=\omega/k$ 为相速度，$v_{\text{res}}$ 为共振速度；$\omega_{pe}$ 为电子等离子体频率，$n_s$、$n_b$ 为束与背景的密度。
 \end{formulabox}
 
-\begin{checklistbox}{第7章自学检查清单}{ch7-checklist}
+\begin{checklistbox}{第 7 章自学检查清单}{ch7-checklist}
 \begin{itemize}[leftmargin=*,label=$\square$]
 \item 我能写出 Vlasov 方程，并解释其物理意义（相空间不可压缩流、刘维尔定理）。
 \item 我能对 Vlasov 方程进行线性化，得到色散关系中的极点项。

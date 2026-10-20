@@ -275,13 +275,13 @@ def analyze(doc, aux_path):
         rec('WARN', 'O4', '找不到主源文件 %s，跳过附录 F 引用语义检查' % MAIN_TEX)
     else:
         src = open(MAIN_TEX, encoding='utf-8', errors='replace').read()
-        m = re.search(r'\\appchapter\{附录F.*?(?=\\appchapter\{附录G)', src, re.S)
+        m = re.search(r'\\appchapter\{附录\s*F.*?(?=\\appchapter\{附录\s*G)', src, re.S)
         if not m:
             rec('FAIL', 'O4', '主源文件中找不到「附录F」区段（附录被改名或删除）')
         else:
             labels = re.findall(r'\\S\\ref\{([^}]+)\}', m.group(0))
-            f_pages = [i for i, (_lvl, t, _p) in enumerate(toc) if norm(t).startswith('附录F')]
-            g_pages = [i for i, (_lvl, t, _p) in enumerate(toc) if norm(t).startswith('附录G')]
+            f_pages = [i for i, (_lvl, t, _p) in enumerate(toc) if re.sub(r'\s+', '', norm(t)).startswith('附录F')]
+            g_pages = [i for i, (_lvl, t, _p) in enumerate(toc) if re.sub(r'\s+', '', norm(t)).startswith('附录G')]
             start = toc[f_pages[0]][2] if f_pages else None
             # 附录 F 自己的页范围：F 首页 → G 首页 − 1（G 不存在时退化为 6 页窗口）。
             # 早先按「start-1 起 6 页」扫，版面重排后窗口会溢出到附录 G，

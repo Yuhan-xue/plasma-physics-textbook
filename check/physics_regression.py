@@ -581,7 +581,8 @@ def check_M08_timescale():
 
 def check_O01_appendix_f():
     t = read(os.path.join(SRC, MAIN))
-    i0 = t.find(r'\appchapter{附录F')
+    m0 = re.search(r'\\appchapter\{附录\s*F', t)
+    i0 = m0.start() if m0 else -1
     i1 = t.find('% 附录G：Python仿真入门')
     if i0 < 0 or i1 < 0 or i1 <= i0:
         rec('FAIL', 'O', 'src/%s 中找不到附录 F 区块（锚点缺失）' % MAIN)
@@ -642,7 +643,8 @@ def check_O03_appendix_f_chapters():
     指向的小节号首段必须落在 {X, Y} 内；反过来每个声明的章都要有真实入口。
     """
     t = read(os.path.join(SRC, MAIN))
-    i0 = t.find(r'\appchapter{附录F')
+    m0 = re.search(r'\\appchapter\{附录\s*F', t)
+    i0 = m0.start() if m0 else -1
     i1 = t.find('% 附录G：Python仿真入门')
     if i0 < 0 or i1 < 0 or i1 <= i0:
         rec('FAIL', 'O', 'src/%s 中找不到附录 F 区块（锚点缺失）' % MAIN)
@@ -16321,7 +16323,7 @@ def check_P04_new_appendix_wiring():
     附录必须**不在**主文件里，而是挂进 ``src/companion_handbook.tex``。
     """
     t = read(os.path.join(SRC, MAIN))
-    letters = re.findall(r'\\appchapter\{附录([A-Z]{1,2})[：:]', t)
+    letters = re.findall(r'\\appchapter\{附录\s*([A-Z]{1,2})\s*[：:]', t)
     moved = set()
     mm = re.search(r'%+ *appendix-moved-to-handbook: *([A-Z,\s]+)', t)
     if mm:
@@ -16349,11 +16351,11 @@ def check_P04_new_appendix_wiring():
         if letter in moved:
             if re.search(r'\\input\{%s\}' % re.escape(stem), t):
                 problems.append('附录%s 已声明移出，却仍挂在主文件' % letter)
-            if not re.search(r'\\appchapter\{附录%s[：:][^\n]*\}\s*\n\s*\\input\{%s\}'
+            if not re.search(r'\\appchapter\{附录\s*%s\s*[：:][^\n]*\}\s*\n\s*\\input\{%s\}'
                              % (letter, re.escape(stem)), handbook):
                 problems.append('附录%s 未挂进配套手册 src/companion_handbook.tex' % letter)
             continue
-        if not re.search(r'\\appchapter\{附录%s[：:][^\n]*\}\s*\n\s*\\input\{%s\}'
+        if not re.search(r'\\appchapter\{附录\s*%s\s*[：:][^\n]*\}\s*\n\s*\\input\{%s\}'
                          % (letter, re.escape(stem)), t):
             problems.append('附录%s 的 \\appchapter 未紧接 \\input{%s}' % (letter, stem))
         body = read(path)

@@ -386,7 +386,8 @@ def check_I_cards(files):
 
 # ---------------------------------------------------------------- J 符号总表
 
-APPENDIX_H_MARK = r'\appchapter{附录H'
+APPENDIX_H_MARK = r'\\appchapter\{附录\s*H[：:]'
+APPENDIX_H_RE = re.compile(APPENDIX_H_MARK)
 
 
 def _lt_rows(block):
@@ -409,7 +410,8 @@ def _lt_rows(block):
 
 
 def check_J_symbol_table(files, main_text):
-    pos = main_text.find(APPENDIX_H_MARK)
+    _m = APPENDIX_H_RE.search(main_text)
+    pos = _m.start() if _m else -1
     if pos < 0:
         rec('WARN', 'J', '附录H（符号与术语总表）尚未加入主文件——本轮待补')
         return
@@ -490,7 +492,7 @@ def check_J_symbol_table(files, main_text):
 
 def check_K_structure(files, main_text, main_raw=''):
     t = strip_comments(main_text)
-    letters = re.findall(r'\\appchapter\{附录([A-Z]{1,2})[：:]', t)
+    letters = re.findall(r'\\appchapter\{附录\s*([A-Z]{1,2})\s*[：:]', t)
     # v1.27.5 起：附录 J/K/L 移入配套手册，主文件用一行注释声明；
     # 除声明集合外，字母仍须连续。
     moved = set()
@@ -538,8 +540,8 @@ def check_K_structure(files, main_text, main_raw=''):
     has_printindex = r'\printindex' in t
     rec('INFO', 'K', '索引条目 %d 个，\\printindex %s'
         % (n_idx, '存在' if has_printindex else '不存在'))
-    rec('PASS' if APPENDIX_H_MARK in t else 'WARN', 'K',
-        '附录H（符号与术语总表）%s' % ('已就位' if APPENDIX_H_MARK in t else '未就位'))
+    rec('PASS' if APPENDIX_H_RE.search(t) else 'WARN', 'K',
+        '附录H（符号与术语总表）%s' % ('已就位' if APPENDIX_H_RE.search(t) else '未就位'))
 
 
 # ---------------------------------------------------------------- L README 对齐
@@ -558,7 +560,7 @@ def check_L_readme(main_text):
         return
     rd = read(README)
     t = strip_comments(main_text)
-    letters = re.findall(r'\\appchapter\{附录([A-Z]{1,2})[：:]', t)
+    letters = re.findall(r'\\appchapter\{附录\s*([A-Z]{1,2})\s*[：:]', t)
     n = len(letters)
 
     for pat, name in ((r'12\s*章正文\s*\+\s*(\d+)\s*个?\s*附录', '「12 章正文 + N 附录」'),

@@ -237,8 +237,8 @@ PATCHES = [
     (APPT, r'\textbf{解答}：$\rho=\sqrt{', r'解答：$\rho=\sqrt{'),
     (APPT, r'\label{tab:app-t-w}', r'\label{tab:app-t-wx}'),
     # ④ 主文件：附录字母连续性（\appchapter 的 T 被改成 U）
-    (MAIN, r'\appchapter{附录T：磁面、磁岛与磁通量管：拓扑如何决定约束}',
-     r'\appchapter{附录U：磁面、磁岛与磁通量管：拓扑如何决定约束}'),
+    (MAIN, r'\appchapter{附录 T：磁面、磁岛与磁通量管：拓扑如何决定约束}',
+     r'\appchapter{附录 U：磁面、磁岛与磁通量管：拓扑如何决定约束}'),
     # v1.17.0：附录 I「学习目标与笔记结构」——表标签、康奈尔笔记的复习动作、参考文献表条目
     (APPI, r'\label{tab:app-i-bloom}', r'\label{tab:app-i-bloomx}'),
     (APPI, r'遮住右栏，只看左栏', r'遮住左栏，只看右栏'),
