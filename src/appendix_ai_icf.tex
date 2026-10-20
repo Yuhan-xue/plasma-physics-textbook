@@ -58,6 +58,9 @@ $286.597$ eV 听起来不吓人，但辐射压是 $P_{\mathrm{rad}} = 3.08548\ti
 \begin{table}[htbp]
 \centering
 \small
+\caption{黑腔与辐射场的账。黑腔的温度由\emph{通量}决定，不由\emph{储存的能量}决定：
+这就是为什么 $T_{\mathrm{rad}}$ 只按 $E^{1/4}$ 变。}
+\label{tab:app-ai-drive}
 \begin{tabular}{p{3.4cm}p{3.0cm}p{3.4cm}p{3.6cm}}
 \toprule
 量 & 表达式 & 数值 & 说明 \\
@@ -72,9 +75,7 @@ X 射线能量 & $\eta_{\mathrm{ce}}E_{\mathrm{drv}}$ & $1.7\ \mathrm{MJ}$ & 式
 腔内辐射能 & $uV$ & $3271.49\ \mathrm{J}$ & 只占 $E_X$ 的 $0.19\%$ \\
 \bottomrule
 \end{tabular}
-\caption{黑腔与辐射场的账。黑腔的温度由\emph{通量}决定，不由\emph{储存的能量}决定：
-这就是为什么 $T_{\mathrm{rad}}$ 只按 $E^{1/4}$ 变。}
-\label{tab:app-ai-drive}
+
 \end{table}
 
 \begin{tip}{黑腔不是炉子，是能量中转站}{tip-app-ai-hohlraum}
@@ -137,6 +138,9 @@ $\rho = 200$ g cm$^{-3}$：半径压缩比 $9.2221$、密度压缩比 $784.314$�
 \begin{table}[htbp]
 \centering
 \small
+\caption{内爆账。质量比决定速度，速度平方决定动能：这就是为什么烧蚀层厚度
+与排出速度是设计里最敏感的两个旋钮。}
+\label{tab:app-ai-implosion}
 \begin{tabular}{p{3.4cm}p{2.8cm}p{3.2cm}p{4.0cm}}
 \toprule
 量 & 表达式 & 数值 & 说明 \\
@@ -152,9 +156,7 @@ $\rho = 200$ g cm$^{-3}$：半径压缩比 $9.2221$、密度压缩比 $784.314$�
 压缩结果 & $R_f$, $\rho$, $\rho R$ & $150\ \mu$m, $200$ g cm$^{-3}$, $3$ g cm$^{-2}$ & 与附录 Y 同点 \\
 \bottomrule
 \end{tabular}
-\caption{内爆账。质量比决定速度，速度平方决定动能：这就是为什么烧蚀层厚度
-与排出速度是设计里最敏感的两个旋钮。}
-\label{tab:app-ai-implosion}
+
 \end{table}
 
 \begin{tip}{质量比决定内爆速度}{tip-app-ai-rocket}
@@ -219,6 +221,9 @@ P_{\mathrm{th}}(100\ \mathrm{eV}) = 7.71883\times10^{14}\ \mathrm{Pa},
 \begin{table}[htbp]
 \centering
 \small
+\caption{绝热因子账。同一个词 $\alpha_{\mathrm{ad}}$ 在冷燃料与热斑里差两个数量级，
+这正是「冷压缩、热点火」的分工。}
+\label{tab:app-ai-adiabat}
 \begin{tabular}{p{4.2cm}p{3.2cm}p{3.0cm}p{3.0cm}}
 \toprule
 量 & 表达式 & 数值 & 说明 \\
@@ -233,9 +238,7 @@ P_{\mathrm{th}}(100\ \mathrm{eV}) = 7.71883\times10^{14}\ \mathrm{Pa},
 强激波压缩比上限 & $(\gamma+1)/(\gamma-1)$ & $4$ & 式 \eqref{eq:app-ai-shock} \\
 \bottomrule
 \end{tabular}
-\caption{绝热因子账。同一个词 $\alpha_{\mathrm{ad}}$ 在冷燃料与热斑里差两个数量级，
-这正是「冷压缩、热点火」的分工。}
-\label{tab:app-ai-adiabat}
+
 \end{table}
 
 \begin{tip}{温度不是压缩的障碍，熵才是}{tip-app-ai-adiabat}
@@ -318,6 +321,9 @@ $\delta_0 \le 7.4462$ nm。这就是为什么靶丸表面粗糙度要控制在�
 \begin{table}[htbp]
 \centering
 \small
+\caption{瑞利--泰勒账。稳定化把放大倍数从 $10^{14}$ 压到 $e^{6.51} \approx 673$，
+但代价是只有长波被压住、短波被对流扫走；总放大倍数仍必须逐位管理。}
+\label{tab:app-ai-rt}
 \begin{tabular}{p{3.6cm}p{3.2cm}p{3.0cm}p{3.2cm}}
 \toprule
 量 & 表达式 & 数值 & 说明 \\
@@ -335,9 +341,7 @@ $\delta_0 \le 7.4462$ nm。这就是为什么靶丸表面粗糙度要控制在�
 末期 $5\ \mu$m 对应的种子 & $\delta_0$ & $\le 7.4462\ \mathrm{nm}$ & 表面粗糙度指标 \\
 \bottomrule
 \end{tabular}
-\caption{瑞利--泰勒账。稳定化把放大倍数从 $10^{14}$ 压到 $e^{6.51} \approx 673$，
-但代价是只有长波被压住、短波被对流扫走；总放大倍数仍必须逐位管理。}
-\label{tab:app-ai-rt}
+
 \end{table}
 
 \begin{tip}{不稳定性要按 e 倍增长数管理}{tip-app-ai-rt}
@@ -435,6 +439,9 @@ P_{\mathrm{br}} \propto n_e^2 Z_{\mathrm{eff}} \sqrt{T},
 \begin{table}[htbp]
 \centering
 \small
+\caption{热斑账。点火的关键不是「热斑够大」，而是「$\alpha$ 在热斑散开前
+留下足够的能量，剩下的被外面的冷燃料吸收」。}
+\label{tab:app-ai-ignition}
 \begin{tabular}{p{4.0cm}p{3.0cm}p{3.0cm}p{3.0cm}}
 \toprule
 量 & 表达式 & 数值 & 说明 \\
@@ -453,9 +460,7 @@ $\alpha$ 功率密度 & 式 \eqref{eq:app-ai-alpha} & $2.01333\times10^{26}\ \ma
 $\alpha$ 射程 & $\rho R = 0.3\ \mathrm{g\,cm^{-2}}$ & $15\ \mu$m ($200$ g cm$^{-3}$) & 热斑外由冷燃料拦住 \\
 \bottomrule
 \end{tabular}
-\caption{热斑账。点火的关键不是「热斑够大」，而是「$\alpha$ 在热斑散开前
-留下足够的能量，剩下的被外面的冷燃料吸收」。}
-\label{tab:app-ai-ignition}
+
 \end{table}
 
 \begin{tip}{点火是自加热跑赢损失}{tip-app-ai-ignition}
@@ -532,6 +537,10 @@ G_{\mathrm{wall}} = \eta_{\mathrm{drv}} G = 16.0033 \quad (\eta_{\mathrm{drv}} =
 \begin{table}[htbp]
 \centering
 \small
+\caption{增益账。分母不同，结论完全不同：$G = 160.033$ 是说「靶」，
+$G_{\mathrm{wall}} = 16.0033$ 才轮到「电厂」；再往下要接附录 U 的点火判据与
+附录 Z 的电厂账。}
+\label{tab:app-ai-burn}
 \begin{tabular}{p{4.0cm}p{3.0cm}p{3.0cm}p{3.0cm}}
 \toprule
 量 & 表达式 & 数值 & 说明 \\
@@ -548,10 +557,7 @@ $\alpha$ 能量 & $E_{\mathrm{fus}}/3$ 量级 & $63.66\ \mathrm{MJ}$ & 份额 $1
 文献对照 & NIF 2022 & $2.05$ MJ $\to$ 约 $3.15$ MJ & 靶增益约 $1.54$ \\
 \bottomrule
 \end{tabular}
-\caption{增益账。分母不同，结论完全不同：$G = 160.033$ 是说「靶」，
-$G_{\mathrm{wall}} = 16.0033$ 才轮到「电厂」；再往下要接附录 U 的点火判据与
-附录 Z 的电厂账。}
-\label{tab:app-ai-burn}
+
 \end{table}
 
 \begin{tip}{增益不是效率，是比值}{tip-app-ai-gain}
@@ -636,6 +642,8 @@ Lindl \emph{Physics of Plasmas}（1995，第 2 卷，3933 页）中的标度讨�
 \begin{table}[htbp]
 \centering
 \small
+\caption{三级数值的分工。凡读者要用来做设计的数，必须落在「现算级」并能被脚本复现。}
+\label{tab:app-ai-source}
 \begin{tabular}{p{2.2cm}p{4.6cm}p{3.6cm}p{3.6cm}}
 \toprule
 级别 & 定义 & 本附录的例子 & 复算途径 \\
@@ -652,8 +660,7 @@ NIF 2022 年 $2.05$ MJ $\to$ 约 $3.15$ MJ（靶增益约 $1.54$） &
 按书名/卷期页引用 \\
 \bottomrule
 \end{tabular}
-\caption{三级数值的分工。凡读者要用来做设计的数，必须落在「现算级」并能被脚本复现。}
-\label{tab:app-ai-source}
+
 \end{table}
 
 \textbf{不复制声明}：本附录（1）不复制任何教材的原文文字、章节编号与插图。

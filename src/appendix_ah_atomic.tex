@@ -37,6 +37,8 @@ Lyman-$\alpha$（$n=2\to1$）与 Balmer-$\alpha$（$n=3\to2$）的能量
 \begin{table}[htbp]
 \centering
 \small
+\caption{类氢能级给出的四条代表谱线。D-$\alpha$ 的波长是文献声明值，其余由式~\eqref{eq:app-ah-rydberg} 现算。}
+\label{tab:app-ah-levels}
 \begin{tabular}{p{2.3cm}p{2.2cm}p{2.4cm}p{5.2cm}}
 \toprule
 跃迁 & 能量 / eV & 波长 / nm & 它在哪里重要 \\
@@ -47,8 +49,7 @@ C VI Balmer-$\alpha$（$3\to2$） & $68.0285$ & $18.2253$ & 极紫外，电荷�
 D-$\alpha$（$3\to2$，声明） & $1.88920$ & $656.28$ & 边缘中性氢：可见光，最常被观测的一条线 \\
 \bottomrule
 \end{tabular}
-\caption{类氢能级给出的四条代表谱线。D-$\alpha$ 的波长是文献声明值，其余由式~\eqref{eq:app-ah-rydberg} 现算。}
-\label{tab:app-ah-levels}
+
 \end{table}
 
 \begin{tip}{谱线是能级差，不是「颜色」}{tip-app-ah-levels}
@@ -111,6 +112,9 @@ S(T) = 2\left(\frac{2\pi m_e kT}{h^2}\right)^{3/2}
 \begin{table}[htbp]
 \centering
 \small
+\caption{Saha 方程的两个扫描：温度（上半）与密度（下半）。氢的电离能是 $13.6057$ eV，
+但过渡却发生在 $0.5$--$1$ eV——因为电离的代价要用自由电子的熵来付。}
+\label{tab:app-ah-saha}
 \begin{tabular}{p{2.6cm}p{2.2cm}p{2.3cm}p{5.0cm}}
 \toprule
 扫描量 & 固定量 & 电离度 & 读数 \\
@@ -127,9 +131,7 @@ $n=10^{20}$ m$^{-3}$ & $T=0.5$ eV & $0.568235$\,\% & 基准点 \\
 $n=10^{21}$ m$^{-3}$ & $T=0.5$ eV & $0.180042$\,\% & 密度高十倍，电离度降三倍 \\
 \bottomrule
 \end{tabular}
-\caption{Saha 方程的两个扫描：温度（上半）与密度（下半）。氢的电离能是 $13.6057$ eV，
-但过渡却发生在 $0.5$--$1$ eV——因为电离的代价要用自由电子的熵来付。}
-\label{tab:app-ah-saha}
+
 \end{table}
 
 \begin{tip}{「全电离」是个不等式，不是一句话}{tip-app-ah-saha}
@@ -185,6 +187,9 @@ $R$ 从 $300$ eV 的 $0.797111$ 变到 $1000$ eV 的 $0.934234$：
 \begin{table}[htbp]
 \centering
 \small
+\caption{强度比随温度的变化（$\Delta E=68.0285$ eV）。第三列是相对 $500$ eV 的比值，
+用来读「灵敏度」：$T$ 从 $500$ 降到 $300$ eV（$-40\%$）时 $R$ 只降 $8.67126\%$。}
+\label{tab:app-ah-intensity}
 \begin{tabular}{p{2.4cm}p{2.6cm}p{2.9cm}p{4.3cm}p{0.1cm}}
 \toprule
 $T$ / eV & $R=I_{\beta}/I_{\alpha}$ & 与 $500$ eV 之比 & 读数 & \\
@@ -194,9 +199,7 @@ $500$ & $0.872793$ & $1$ & 基准点：$T$ 变 $20\%$，$R$ 变 $2.72114\%$ & \\
 $1000$ & $0.934234$ & $1.07040$ & 高温端：比值趋于饱和 & \\
 \bottomrule
 \end{tabular}
-\caption{强度比随温度的变化（$\Delta E=68.0285$ eV）。第三列是相对 $500$ eV 的比值，
-用来读「灵敏度」：$T$ 从 $500$ 降到 $300$ eV（$-40\%$）时 $R$ 只降 $8.67126\%$。}
-\label{tab:app-ah-intensity}
+
 \end{table}
 
 把灵敏度写成对数导数更清楚：
@@ -255,6 +258,9 @@ $A_{21}$ 与日冕极限判据为文献声明值。
 \begin{table}[htbp]
 \centering
 \small
+\caption{多普勒线宽：离子质量与波长共同决定线宽。$T_i=100$ eV 时
+D-$\alpha$ 的线宽是 C VI 的 $474.862$ 倍：波长长、质量小，两个因子乘起来就是近五百倍。}
+\label{tab:app-ah-doppler}
 \begin{tabular}{p{2.6cm}p{2.0cm}p{2.6cm}p{4.9cm}}
 \toprule
 谱线 & $T_i$ / eV & $\Delta\lambda_{\mathrm{D}}$ / nm & 读数 \\
@@ -267,9 +273,7 @@ D-$\alpha$ & $100$ & $0.356802$ & 可见光波段就能分辨 \\
 He II（$468.57$ nm） & $200$ & $0.255556$ & 氦的肩上：与 D-$\alpha$ 同量级 \\
 \bottomrule
 \end{tabular}
-\caption{多普勒线宽：离子质量与波长共同决定线宽。$T_i=100$ eV 时
-D-$\alpha$ 的线宽是 C VI 的 $474.862$ 倍：波长长、质量小，两个因子乘起来就是近五百倍。}
-\label{tab:app-ah-doppler}
+
 \end{table}
 
 \begin{tip}{线宽是「温度计」，但先要问「谁在发光」}{tip-app-ah-doppler}
@@ -318,6 +322,9 @@ Lochte-Holtgreven \emph{Plasma Diagnostics}（1968，第 4 章）
 \begin{table}[htbp]
 \centering
 \small
+\caption{磁场与密度都在这条线的宽度里。塞曼分裂不随温度变、只随磁场变；
+斯塔克展宽随密度按 $n_e^{2/3}$ 变（声明系数）。两者在 D-$\alpha$ 上同量级。}
+\label{tab:app-ah-fields}
 \begin{tabular}{p{2.9cm}p{2.4cm}p{2.5cm}p{4.3cm}}
 \toprule
 量 & 数值 & 参考 & 读数 \\
@@ -330,9 +337,7 @@ Lochte-Holtgreven \emph{Plasma Diagnostics}（1968，第 4 章）
 斯塔克/塞曼 & $0.497323$ & D-$\alpha$，$10^{20}$ m$^{-3}$ & 同量级：必须靠模型分离 \\
 \bottomrule
 \end{tabular}
-\caption{磁场与密度都在这条线的宽度里。塞曼分裂不随温度变、只随磁场变；
-斯塔克展宽随密度按 $n_e^{2/3}$ 变（声明系数）。两者在 D-$\alpha$ 上同量级。}
-\label{tab:app-ah-fields}
+
 \end{table}
 
 斯塔克展宽来自带电粒子对发射原子的微场扰动。对氢样离子，
@@ -394,6 +399,10 @@ Hutchinson（2002，第 6 章）
 \begin{table}[htbp]
 \centering
 \small
+\caption{光学深度自检。线心截面 $3.04304\times10^{-18}$ m$^2$，
+在 $n_1=10^{16}$ m$^{-3}$、$L=1$ m 时给出 $\tau=0.0304304$：
+这正是「边缘 D-$\alpha$ 还能当诊断、但不能再假设完全光学薄」的量级。}
+\label{tab:app-ah-opacity}
 \begin{tabular}{p{2.5cm}p{1.9cm}p{2.5cm}p{4.8cm}}
 \toprule
 $n_1$ / m$^{-3}$ & $L$ / m & $\tau$（D-$\alpha$ 线心） & 读数 \\
@@ -405,10 +414,7 @@ $10^{16}$ & $10$ & $0.304304$ & 边缘的典型情形：$\tau$ 接近 $1/3$ \\
 （对照）轫致吸收 & $1$ & $1.46411\times10^{-6}$ & 同路径下线吸收是它的 $20784.2$ 倍 \\
 \bottomrule
 \end{tabular}
-\caption{光学深度自检。线心截面 $3.04304\times10^{-18}$ m$^2$，
-在 $n_1=10^{16}$ m$^{-3}$、$L=1$ m 时给出 $\tau=0.0304304$：
-这正是「边缘 D-$\alpha$ 还能当诊断、但不能再假设完全光学薄」的量级。}
-\label{tab:app-ah-opacity}
+
 \end{table}
 
 \begin{tip}{光学薄是假设，不是事实——每次都要验算}{tip-app-ah-opacity}
@@ -494,6 +500,8 @@ $T_i=1$ keV 的多普勒线宽是 $0.00237607$ nm，两者之比 $0.00118621$。
 \begin{table}[htbp]
 \centering
 \small
+\caption{数值分级。只有「现算级」参与逐节核对，「声明级」是给定的输入，「文献级」只作对照。}
+\label{tab:app-ah-source}
 \begin{tabular}{p{2.2cm}p{4.6cm}p{6.0cm}}
 \toprule
 等级 & 含义 & 本附录中的例子 \\
@@ -503,8 +511,7 @@ $T_i=1$ keV 的多普勒线宽是 $0.00237607$ nm，两者之比 $0.00118621$。
 文献级 & 只作定性对照或公式出处，不进入任何计算 & Griem 的谱线展宽理论、Saha 方程的原始文献、NIST 波长表的量级 \\
 \bottomrule
 \end{tabular}
-\caption{数值分级。只有「现算级」参与逐节核对，「声明级」是给定的输入，「文献级」只作对照。}
-\label{tab:app-ah-source}
+
 \end{table}
 
 \subsection*{借鉴来源}

@@ -71,6 +71,9 @@ $V=832.2\ \mathrm{m^3}$ 是等离子体体积。\textbf{每秒钟有两千亿亿
 
 \begin{table}[htbp]
 \centering
+\caption{一个 alpha 粒子的一生。四行不是四个事件，而是同一笔能量账在四个时间尺度上的
+展开：出生是一瞬间，交出去要一秒，而打到壁上只需要半圈轨道。}
+\label{tab:app-w-life}
 \begin{tabular}{@{}p{2.5cm}p{3.0cm}p{3.6cm}p{3.6cm}@{}}
 \hline
 阶段 & 时间尺度 & 粒子在做什么 & 能量在谁手里 \\
@@ -85,9 +88,7 @@ $V=832.2\ \mathrm{m^3}$ 是等离子体体积。\textbf{每秒钟有两千亿亿
 与背景完全混合，成为杂质与稀释源 \\
 \hline
 \end{tabular}
-\caption{一个 alpha 粒子的一生。四行不是四个事件，而是同一笔能量账在四个时间尺度上的
-展开：出生是一瞬间，交出去要一秒，而打到壁上只需要半圈轨道。}
-\label{tab:app-w-life}
+
 \end{table}
 
 \begin{tip}{慢化是「换手」，不是「刹车」}{tip-app-w-oneway}
@@ -195,6 +196,9 @@ $295\ \mathrm{keV}$ 是 $32.08\,T_e$，也是出生能量的 $8.4\%$。文献里
 
 \begin{table}[htbp]
 \centering
+\caption{慢化的全部关键量。第二行是本节的判据：$x=0.2284$ 把问题从「快离子」改成
+「线性阻力」，只这一处判断就决定后面所有时间尺度。}
+\label{tab:app-w-slowing}
 \begin{tabular}{@{}p{3.0cm}p{2.4cm}p{3.2cm}p{4.0cm}@{}}
 \hline
 量 & 数值 & 公式 & 说明 \\
@@ -217,9 +221,7 @@ $32.08\,T_e$，出生能量的 $8.4\%$ \\
 $4227\ \mathrm{km}$，绕环 $108514$ 圈 \\
 \hline
 \end{tabular}
-\caption{慢化的全部关键量。第二行是本节的判据：$x=0.2284$ 把问题从「快离子」改成
-「线性阻力」，只这一处判断就决定后面所有时间尺度。}
-\label{tab:app-w-slowing}
+
 \end{table}
 
 慢化路径那一行值得单独看一眼：$v_{\alpha 0}\tau_v=4.2272\times10^{6}\ \mathrm{m}$，
@@ -295,6 +297,9 @@ $0.4999\%$ 的 alpha 在第一圈就丢失；换成功率是 $f_{\text{首轨}}P
 
 \begin{table}[htbp]
 \centering
+\caption{轨道宽度与首次轨道损失。第 3 行是「加热落在哪」的答案：$18$ 厘米，
+不是粒子的回旋半径，也不是等离子体半径。}
+\label{tab:app-w-orbit}
 \begin{tabular}{@{}p{2.7cm}p{2.6cm}p{3.0cm}p{4.2cm}@{}}
 \hline
 量 & 数值 & 公式 & 说明 \\
@@ -314,9 +319,7 @@ $\dfrac{0.5564\ \mathrm{MW}}{7.7911\ \mathrm{m^2}}$ &
 落点面积按 $2\pi R\times0.2\ \mathrm{m}$ 估 \\
 \hline
 \end{tabular}
-\caption{轨道宽度与首次轨道损失。第 3 行是「加热落在哪」的答案：$18$ 厘米，
-不是粒子的回旋半径，也不是等离子体半径。}
-\label{tab:app-w-orbit}
+
 \end{table}
 
 \begin{tip}{「沿磁面均匀」与「径向 18 厘米」不冲突}{tip-app-w-locality2}
@@ -395,6 +398,9 @@ $\beta_{\text{tot}}=2.6359\%$ 的同样是 $9.17\%$。\textbf{「alpha 只占百
 
 \begin{table}[htbp]
 \centering
+\caption{快 alpha 的宏观量与尾巴。表里每一行都只依赖上一节的 $\tau_v$ 与 $v_c$，
+没有引入新的自由参数。}
+\label{tab:app-w-tail}
 \begin{tabular}{@{}p{3.2cm}p{2.6cm}p{2.9cm}p{3.6cm}@{}}
 \hline
 量 & 数值 & 公式 & 说明 \\
@@ -411,9 +417,7 @@ $\beta_{\text{fast}}$ & $0.241671\%$ & $2\mu_0p_{\text{fast}}/B^2$ &
 尾巴能量份额 & $74.5395\%$ & $v>2v_c$ & \textbf{四成粒子带七成半能量} \\
 \hline
 \end{tabular}
-\caption{快 alpha 的宏观量与尾巴。表里每一行都只依赖上一节的 $\tau_v$ 与 $v_c$，
-没有引入新的自由参数。}
-\label{tab:app-w-tail}
+
 \end{table}
 
 \begin{tip}{「只占百分之几」不是「可以忽略」}{tip-app-w-fewpercent}
@@ -502,6 +506,10 @@ $\beta_{\text{fast}}/\beta_{\text{tot}}$ 到百分之几就足以激发 TAE）�
 
 \begin{table}[htbp]
 \centering
+\caption{三类快粒子不稳定性与它们对应的共振条件。\textbf{本表不给阈值}：阈值依赖
+$q$ 剖面、快粒子分布的具体形状与阻尼机制，不是本附录的简化模型能定的；能给的是
+「共振在哪里」和「驱动有多强」这两件事。}
+\label{tab:app-w-instability}
 \begin{tabular}{@{}p{2.5cm}p{2.4cm}p{3.1cm}p{3.6cm}@{}}
 \hline
 不稳定性 & 共振条件 & 本附录算出的对应量 & 后果 \\
@@ -516,10 +524,7 @@ $f_b=47.35\ \mathrm{kHz}$（$r=1\ \mathrm{m}$） &
 取决于剖面，可能驱动也可能阻尼 \\
 \hline
 \end{tabular}
-\caption{三类快粒子不稳定性与它们对应的共振条件。\textbf{本表不给阈值}：阈值依赖
-$q$ 剖面、快粒子分布的具体形状与阻尼机制，不是本附录的简化模型能定的；能给的是
-「共振在哪里」和「驱动有多强」这两件事。}
-\label{tab:app-w-instability}
+
 \end{table}
 
 \begin{tip}{先算三个比值，再谈不稳定性}{tip-app-w-ratios}
@@ -595,6 +600,9 @@ $0.0714\ \mathrm{MW/m^2}$ 小两个量级。\textbf{这不是设计驱动量}。
 
 \begin{table}[htbp]
 \centering
+\caption{快粒子损失的三条通道。第 3 行\textbf{故意留空}：本附录的简化模型给不出
+不稳定性驱动的损失份额，宁可写「算不出」也不填一个编造的数字。}
+\label{tab:app-w-loss}
 \begin{tabular}{@{}p{2.4cm}p{2.7cm}p{3.2cm}p{3.5cm}@{}}
 \hline
 通道 & 损失份额 / 功率 & 物理机制 & 可否靠设计改善 \\
@@ -612,9 +620,7 @@ $0.5564\ \mathrm{MW}$ 摊在 $7.7911\ \mathrm{m^2}$ 上 &
 不是总量问题，是分布问题 \\
 \hline
 \end{tabular}
-\caption{快粒子损失的三条通道。第 3 行\textbf{故意留空}：本附录的简化模型给不出
-不稳定性驱动的损失份额，宁可写「算不出」也不填一个编造的数字。}
-\label{tab:app-w-loss}
+
 \end{table}
 
 \begin{tip}{把「算不出」写在表里}{tip-app-w-honest}
@@ -722,6 +728,9 @@ $f_d:f_b:f_{\text{TAE}}=1:34.6:34.4$。\textbf{要点}：$f_b\approx f_{\text{TA
 
 \begin{table}[htbp]
 \centering
+\caption{本附录的借鉴来源与自拟部分对照表。所有量级 1 的精确系数、实验定标与工程设计
+值均为本附录自拟；故只给书名、作者、年份、章节或卷期页。}
+\label{tab:app-w-source}
 \begin{tabular}{@{}p{1.4cm}p{5.4cm}p{4.0cm}p{3.4cm}@{}}
 \hline
 节 & 借鉴了什么（结论 / 公式形式 / 题型） & 出处 & 本附录自拟的部分 \\
@@ -746,9 +755,7 @@ Wesson 第 4 版第 3 章；Hutchinson 2002 第 7、11 章 &
 三条通道的划分、$1\%$--$3\%$ 简化口径、热流与留空的第三行 \\
 \hline
 \end{tabular}
-\caption{本附录的借鉴来源与自拟部分对照表。所有量级 1 的精确系数、实验定标与工程设计
-值均为本附录自拟；故只给书名、作者、年份、章节或卷期页。}
-\label{tab:app-w-source}
+
 \end{table}
 
 \textbf{三条「不复制」约定：}

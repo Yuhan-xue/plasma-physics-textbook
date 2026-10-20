@@ -49,6 +49,8 @@ $\sigma_d$ 是\textbf{标定值}，不是独立测量的物理常数。
 \begin{table}[htbp]
 \centering
 \small
+\caption{安全账的两个自变量都从同一个中子通量出发（数值唯一来源 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAK\_calc.py}）。}
+\label{tab:app-ak-frame}
 \begin{tabular}{p{3.4cm}p{3.3cm}p{3.1cm}p{3.9cm}}
 \toprule
 量 & 表达式 & 数值 & 说明 \\
@@ -60,8 +62,7 @@ $\sigma_d$ 是\textbf{标定值}，不是独立测量的物理常数。
 寿期累计损伤 & $\sigma_d\phi t_{life}$ & $50.001\ \mathrm{dpa}$ & $10.996$ 年 \\
 \bottomrule
 \end{tabular}
-\caption{安全账的两个自变量都从同一个中子通量出发（数值唯一来源 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAK\_calc.py}）。}
-\label{tab:app-ak-frame}
+
 \end{table}
 
 \begin{tip}{安全不是感觉，是数字}{tip-app-ak-frame}
@@ -145,6 +146,8 @@ D_{1\%}=1.11033\times10^{19}\times0.01\times1.8\times10^{-11}
 \begin{table}[htbp]
 \centering
 \small
+\caption{氚的质量、活度与剂量阶梯（剂量系数取 HTO 吸入 $1.8\times10^{-11}$ Sv/Bq，声明值；全吸入是上界口径）。}
+\label{tab:app-ak-tritium}
 \begin{tabular}{p{2.7cm}p{3.6cm}p{3.1cm}p{4.3cm}}
 \toprule
 质量 & 活度 & 全吸入剂量 & 说明 \\
@@ -156,8 +159,7 @@ D_{1\%}=1.11033\times10^{19}\times0.01\times1.8\times10^{-11}
 31.191 kg（年燃耗） & $1.11033\times10^{19}\ \mathrm{Bq}$ & $1.9986\times10^{8}\ \mathrm{Sv}$ & 只算 1\% 也有百万西弗 \\
 \bottomrule
 \end{tabular}
-\caption{氚的质量、活度与剂量阶梯（剂量系数取 HTO 吸入 $1.8\times10^{-11}$ Sv/Bq，声明值；全吸入是上界口径）。}
-\label{tab:app-ak-tritium}
+
 \end{table}
 
 \begin{tip}{氚的危险不在外照射，在摄入}{tip-app-ak-tritium}
@@ -219,6 +221,8 @@ t=\frac{\ln(A_0/A_1)}{k}=\frac{\ln 1000}{1}=6.90776\ \mathrm{h}.
 \begin{table}[htbp]
 \centering
 \small
+\caption{氚的三条出路各有各的量纲，但都能折成「与 1 g/年 目标之比」这一把尺子。}
+\label{tab:app-ak-containment}
 \begin{tabular}{p{2.9cm}p{3.5cm}p{3.2cm}p{4.1cm}}
 \toprule
 出路 & 数值 & 与管理目标之比 & 对策 \\
@@ -228,8 +232,7 @@ t=\frac{\ln(A_0/A_1)}{k}=\frac{\ln 1000}{1}=6.90776\ \mathrm{h}.
 事故释放 & 释放份额 $0.1$ & 见 \S AK.6 & 安全壳 + 纵深防御 \\
 \bottomrule
 \end{tabular}
-\caption{氚的三条出路各有各的量纲，但都能折成「与 1 g/年 目标之比」这一把尺子。}
-\label{tab:app-ak-containment}
+
 \end{table}
 
 \begin{tip}{屏障不是可选项，是设计输入}{tip-app-ak-containment}
@@ -284,6 +287,8 @@ $10^{4}$ Bq/kg（文献量级，声明值）的 $100$ 倍，\textbf{它不能当
 \begin{table}[htbp]
 \centering
 \small
+\caption{活化链的六个量：注量 $\to$ dpa $\to$ 氦 $\to$ 比活度 $\to$ 总活度 $\to$ 与豁免水平之比。}
+\label{tab:app-ak-activation}
 \begin{tabular}{p{3.2cm}p{3.4cm}p{3.2cm}p{3.9cm}}
 \toprule
 量 & 表达式 & 数值 & 说明 \\
@@ -296,8 +301,7 @@ $10^{4}$ Bq/kg（文献量级，声明值）的 $100$ 倍，\textbf{它不能当
 豁免水平之比 & $a_{spec}/a_{clear}$ & $100$ 倍 & 需分级处置 \\
 \bottomrule
 \end{tabular}
-\caption{活化链的六个量：注量 $\to$ dpa $\to$ 氦 $\to$ 比活度 $\to$ 总活度 $\to$ 与豁免水平之比。}
-\label{tab:app-ak-activation}
+
 \end{table}
 
 \begin{tip}{活化是中子的第二份产物}{tip-app-ak-activation}
@@ -359,6 +363,8 @@ $50$ 年后衰变热降到 $69.7419$ W，衰减 $716.929$ 倍。
 \begin{table}[htbp]
 \centering
 \small
+\caption{比活度与衰变热同时衰减，两者共同决定废物的等级与储存时间（Co-60 主导，声明口径）。}
+\label{tab:app-ak-waste}
 \begin{tabular}{p{2.6cm}p{3.4cm}p{3.0cm}p{4.4cm}}
 \toprule
 冷却时间 & 比活度 & 衰变热 & 结论 \\
@@ -369,8 +375,7 @@ $50$ 年 & $1394.84$ Bq/kg & $69.7419$ W & 可申请解控 \\
 $100$ 年 & $1.94557$ Bq/kg & —— & 远低于豁免线 \\
 \bottomrule
 \end{tabular}
-\caption{比活度与衰变热同时衰减，两者共同决定废物的等级与储存时间（Co-60 主导，声明口径）。}
-\label{tab:app-ak-waste}
+
 \end{table}
 
 \begin{tip}{废物的等级不是材料定的，是活度定的}{tip-app-ak-waste}
@@ -429,6 +434,8 @@ D_{contain}=7.11956\times10^{11}\times5.61832\times10^{-20}
 \begin{table}[htbp]
 \centering
 \small
+\caption{事故剂量账的三个乘数：库存、释放份额、包容因子；每减少一个量级，余量就多十倍。}
+\label{tab:app-ak-accident}
 \begin{tabular}{p{2.8cm}p{3.3cm}p{3.1cm}p{4.2cm}}
 \toprule
 环节 & 表达式 & 数值 & 说明 \\
@@ -440,8 +447,7 @@ D_{contain}=7.11956\times10^{11}\times5.61832\times10^{-20}
 余量 & $1\ \mathrm{mSv}/D$ & $25000$ 倍 & 纵深防御的效果 \\
 \bottomrule
 \end{tabular}
-\caption{事故剂量账的三个乘数：库存、释放份额、包容因子；每减少一个量级，余量就多十倍。}
-\label{tab:app-ak-accident}
+
 \end{table}
 
 \begin{tip}{纵深防御是乘法，不是加法}{tip-app-ak-accident}
@@ -514,6 +520,8 @@ $=0.00156065$ g $=1.56065$ mg；比 HTO 宽 $10000$ 倍（正好是两种剂量�
 \begin{table}[htbp]
 \centering
 \small
+\caption{三级数值口径。凡正文未标注「声明」或「文献量级」的数字，都属于现算级。}
+\label{tab:app-ak-source}
 \begin{tabular}{p{2.3cm}p{3.5cm}p{5.2cm}p{2.6cm}}
 \toprule
 级别 & 含义 & 本附录中的例子 & 可否复算 \\
@@ -523,8 +531,7 @@ $=0.00156065$ g $=1.56065$ mg；比 HTO 宽 $10000$ 倍（正好是两种剂量�
 文献级 & 只作量级对照 & 年释放目标 1 g/年、场址因子 $20$ $\mu$Sv/g、豁免水平 $10^{4}$ Bq/kg & 不参与计算 \\
 \bottomrule
 \end{tabular}
-\caption{三级数值口径。凡正文未标注「声明」或「文献量级」的数字，都属于现算级。}
-\label{tab:app-ak-source}
+
 \end{table}
 
 \textbf{不复制}：本附录不复制任何原教材的文字、编号、插图与数据表；

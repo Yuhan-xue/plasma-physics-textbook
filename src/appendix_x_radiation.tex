@@ -47,6 +47,9 @@ $10^{-32}\ \mathrm{W\,m^3}$，这是\textbf{声明}的量级值，理由与适�
 \begin{table}[htbp]
 \centering
 \small
+\caption{三种辐射机制的光学薄量级。第三列是把功率密度乘 $V$ 的结果。
+第二行的数字故意留着不合物理的结论，X.4 会解释它为什么错。}
+\label{tab:app-x-channel}
 \begin{tabular}{p{2.5cm}p{3.1cm}p{2.9cm}p{4.6cm}}
 \toprule
 机制 & 光学薄功率密度 & 全等离子体 & 备注 \\
@@ -56,9 +59,7 @@ $10^{-32}\ \mathrm{W\,m^3}$，这是\textbf{声明}的量级值，理由与适�
 线辐射 & $1\ \mathrm{kW\,m^{-3}}$ & $0.8322\ \mathrm{MW}$ & 只算钨，$n_W/n_e=10^{-5}$ \\
 \bottomrule
 \end{tabular}
-\caption{三种辐射机制的光学薄量级。第三列是把功率密度乘 $V$ 的结果。
-第二行的数字故意留着不合物理的结论，X.4 会解释它为什么错。}
-\label{tab:app-x-channel}
+
 \end{table}
 
 表 \ref{tab:app-x-channel} 第二行给出一个不可能的数：回旋辐射的光学薄估算为
@@ -120,6 +121,9 @@ $1/\alpha_{ff}=6.8301\times10^{5}\ \mathrm{m}$，也就是 $683\ \mathrm{km}$，
 \begin{table}[htbp]
 \centering
 \small
+\caption{两种极限的判据与归属。把这个表当成查表用：遇到任何一条新的辐射通道，
+先判断它落在哪一列，再决定要不要算输运。}
+\label{tab:app-x-opacity}
 \begin{tabular}{p{2.6cm}p{3.4cm}p{3.4cm}p{3.2cm}}
 \toprule
 判据 & 光学薄 $\tau\ll1$ & 光学厚 $\tau\gg1$ & 本工作点归属 \\
@@ -130,9 +134,7 @@ $1/\alpha_{ff}=6.8301\times10^{5}\ \mathrm{m}$，也就是 $683\ \mathrm{km}$，
 可否只看发射率 & 可以 & 不可以 & 回旋：不可以 \\
 \bottomrule
 \end{tabular}
-\caption{两种极限的判据与归属。把这个表当成查表用：遇到任何一条新的辐射通道，
-先判断它落在哪一列，再决定要不要算输运。}
-\label{tab:app-x-opacity}
+
 \end{table}
 
 轫致辐射与回旋辐射的差别不在发射率，而在\textbf{吸收是不是共振的}。
@@ -208,6 +210,9 @@ $55.1547\ \mathrm{kW\,m^{-2}}$，比偏滤器的稳态热流还小，看起来�
 \begin{table}[htbp]
 \centering
 \small
+\caption{轫致辐射的全部关键量。表内数字按脚本打印精度书写，便于逐项复算；
+「相对论修正因子」是声明过的一阶近似。}
+\label{tab:app-x-brems}
 \begin{tabular}{p{4.4cm}p{3.4cm}p{4.8cm}}
 \toprule
 量 & 数值 & 说明 \\
@@ -221,9 +226,7 @@ $55.1547\ \mathrm{kW\,m^{-2}}$，比偏滤器的稳态热流还小，看起来�
 光子波长 & $0.134853\ \mathrm{nm}$ & X 射线波段 \\
 \bottomrule
 \end{tabular}
-\caption{轫致辐射的全部关键量。表内数字按脚本打印精度书写，便于逐项复算；
-「相对论修正因子」是声明过的一阶近似。}
-\label{tab:app-x-brems}
+
 \end{table}
 
 {\footnotesize
@@ -300,6 +303,9 @@ P_{\mathrm{CYC}}^{\mathrm{bb}} = F_{\mathrm{RJ}}\,A = 0.164622\ \mathrm{MW},
 \begin{table}[htbp]
 \centering
 \small
+\caption{回旋辐射的两个边界。真值夹在第七行与第五行之间，
+本附录不给输运方程的解；表的作用是把「不可能」与「可忽略」同时钉住。}
+\label{tab:app-x-cyclotron}
 \begin{tabular}{p{4.4cm}p{3.4cm}p{4.8cm}}
 \toprule
 量 & 数值 & 说明 \\
@@ -315,9 +321,7 @@ P_{\mathrm{CYC}}^{\mathrm{bb}} = F_{\mathrm{RJ}}\,A = 0.164622\ \mathrm{MW},
 黑体上限占轫致辐射 & $0.60971\%$ & 结论：回旋不是主要损失 \\
 \bottomrule
 \end{tabular}
-\caption{回旋辐射的两个边界。真值夹在第七行与第五行之间，
-本附录不给输运方程的解；表的作用是把「不可能」与「可忽略」同时钉住。}
-\label{tab:app-x-cyclotron}
+
 \end{table}
 
 {\footnotesize
@@ -366,6 +370,10 @@ n_W^{*} = \frac{P_\alpha}{V n_e L_W} = 1.3374\times10^{17}\ \mathrm{m^{-3}},
 \begin{table}[htbp]
 \centering
 \small
+\caption{杂质冷却率曲线的形状（\textbf{定性}：只给峰值温度区间与相对高低，
+不给具体数值，因为本附录没有引入原子物理数据库）。本表的用途是判断
+「哪一种杂质在哪一个温度区间最危险」，与表 \ref{tab:app-x-budget} 配合使用。}
+\label{tab:app-x-impurity}
 \begin{tabular}{p{2.8cm}p{3.2cm}p{3.2cm}p{3.4cm}}
 \toprule
 杂质 & $L_z$ 峰值温度 & 峰值相对高低 & 主要影响区 \\
@@ -375,10 +383,7 @@ n_W^{*} = \frac{P_\alpha}{V n_e L_W} = 1.3374\times10^{17}\ \mathrm{m^{-3}},
 钨（高 $Z$） & 千 eV 量级 & 高 & 芯部积累才是威胁 \\
 \bottomrule
 \end{tabular}
-\caption{杂质冷却率曲线的形状（\textbf{定性}：只给峰值温度区间与相对高低，
-不给具体数值，因为本附录没有引入原子物理数据库）。本表的用途是判断
-「哪一种杂质在哪一个温度区间最危险」，与表 \ref{tab:app-x-budget} 配合使用。}
-\label{tab:app-x-impurity}
+
 \end{table}
 
 {\footnotesize
@@ -429,6 +434,9 @@ $173.511$ 倍。\textbf{辐射是慢刀子，破裂是快刀子}：前者决定�
 \begin{table}[htbp]
 \centering
 \small
+\caption{辐射在 D1 功率账里的位置。第三列把每项折算成 $P_\alpha=111.3\ \mathrm{MW}$
+的百分比，便于与附录 U 的自加热账直接对照。}
+\label{tab:app-x-budget}
 \begin{tabular}{p{3.0cm}p{3.0cm}p{3.2cm}p{4.2cm}}
 \toprule
 项目 & 数值 & 与 $P_\alpha$ 之比 & 含义 \\
@@ -441,9 +449,7 @@ $173.511$ 倍。\textbf{辐射是慢刀子，破裂是快刀子}：前者决定�
 壁面轫致热流 & $55.1547\ \mathrm{kW\,m^{-2}}$ & --- & X 射线，需屏蔽而非冷却 \\
 \bottomrule
 \end{tabular}
-\caption{辐射在 D1 功率账里的位置。第三列把每项折算成 $P_\alpha=111.3\ \mathrm{MW}$
-的百分比，便于与附录 U 的自加热账直接对照。}
-\label{tab:app-x-budget}
+
 \end{table}
 
 \begin{tip}{自加热余量 4 倍，不是 100 倍}{tip-app-x-margin}
@@ -518,6 +524,9 @@ X.5 与 X.6 是把辐射放回功率账。练习 1--6 只需要本附录的公�
 \begin{table}[htbp]
 \centering
 \small
+\caption{本附录的借鉴来源与对应位置。只借鉴物理结论、公式形式与题型；
+全部数值、表格与文字自拟并由仓库脚本复算。}
+\label{tab:app-x-source}
 \begin{tabular}{p{3.4cm}p{5.6cm}p{3.6cm}}
 \toprule
 本附录内容 & 借鉴来源 & 在本书里的位置 \\
@@ -542,9 +551,7 @@ Freidberg \emph{Plasma Physics and Fusion Energy}（2007）第 13 章 &
 附录 N、本附录 X.3 \\
 \bottomrule
 \end{tabular}
-\caption{本附录的借鉴来源与对应位置。只借鉴物理结论、公式形式与题型；
-全部数值、表格与文字自拟并由仓库脚本复算。}
-\label{tab:app-x-source}
+
 \end{table}
 
 版权与复现口径，四条：第一，\textbf{不复制}任何教材或论文的表格数值，

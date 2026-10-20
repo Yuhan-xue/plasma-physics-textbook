@@ -64,6 +64,8 @@ W_{carnot}=Q\left(\frac{T_{h}}{T_{c}}-1\right)
 \begin{table}[htbp]
 \centering
 \small
+\caption{同一套安培匝数的两条路：铜的电耗是聚变功率的 $1.26$ 倍，超导的制冷电耗只有千分之二（数值唯一来源 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAM\_calc.py}）。}
+\label{tab:app-am-sc}
 \begin{tabular}{p{3.5cm}p{3.6cm}p{3.4cm}p{3.6cm}}
 \toprule
 量 & 铜方案（$5\ \mathrm{A\,mm^{-2}}$） & 超导方案 & 说明 \\
@@ -75,8 +77,7 @@ W_{carnot}=Q\left(\frac{T_{h}}{T_{c}}-1\right)
 与 $P_{fus}$ 之比 & $1.26142$ & $2.35999\times10^{-3}$ & 铜方案直接出局 \\
 \bottomrule
 \end{tabular}
-\caption{同一套安培匝数的两条路：铜的电耗是聚变功率的 $1.26$ 倍，超导的制冷电耗只有千分之二（数值唯一来源 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAM\_calc.py}）。}
-\label{tab:app-am-sc}
+
 \end{table}
 
 \begin{tip}{超导不是为了「更强」，是为了「不烧电」}{tip-app-am-why}
@@ -148,6 +149,8 @@ T_{cs}=T_c-\left(T_c-T_{op}\right)\frac{J_{op}^{noncu}}{J_c}
 \begin{table}[htbp]
 \centering
 \small
+\caption{临界面上的三个点：场越高，可用的电流密度越小，工作点被迫向 $I_c$ 靠近（$I_c$ 按电缆 $1700\ \mathrm{mm^{2}}$、非铜份额 $0.40$ 折算）。}
+\label{tab:app-am-critical}
 \begin{tabular}{p{2.6cm}p{3.4cm}p{3.2cm}p{3.2cm}}
 \toprule
 磁场 & 临界电流密度 & 电缆临界电流 & 工作点比值 $I/I_c$ \\
@@ -157,8 +160,7 @@ $12\ \mathrm{T}$ & $2370.74\ \mathrm{A\,mm^{-2}}$ & $1.6121\ \mathrm{MA}$ & $0.0
 $20\ \mathrm{T}$ & $665.148\ \mathrm{A\,mm^{-2}}$ & $0.4523\ \mathrm{MA}$ & $0.150343$ \\
 \bottomrule
 \end{tabular}
-\caption{临界面上的三个点：场越高，可用的电流密度越小，工作点被迫向 $I_c$ 靠近（$I_c$ 按电缆 $1700\ \mathrm{mm^{2}}$、非铜份额 $0.40$ 折算）。}
-\label{tab:app-am-critical}
+
 \end{table}
 
 超导体的伏安特性不是阶跃，而是一条幂律：
@@ -229,6 +231,8 @@ CICC 靠的不是表面换热，而是导管里氦的\textbf{焓}：
 \begin{table}[htbp]
 \centering
 \small
+\caption{CICC 的三个数：截面、铜份额、稳定化电流。Stekly 判据在这里失效，恰好说明了强制流氦的必要性。}
+\label{tab:app-am-cicc}
 \begin{tabular}{p{3.4cm}p{3.3cm}p{3.6cm}p{3.6cm}}
 \toprule
 量 & 数值 & 口径 & 说明 \\
@@ -240,8 +244,7 @@ CICC 靠的不是表面换热，而是导管里氦的\textbf{焓}：
 Stekly 电流 & $14.2829\ \mathrm{kA}$ & 判据 & 只到工作电流的 $1/5$ \\
 \bottomrule
 \end{tabular}
-\caption{CICC 的三个数：截面、铜份额、稳定化电流。Stekly 判据在这里失效，恰好说明了强制流氦的必要性。}
-\label{tab:app-am-cicc}
+
 \end{table}
 
 \begin{tip}{铜不是「拖累」，是失超时的救生通道}{tip-app-am-cicc}
@@ -327,6 +330,8 @@ $386.349\ \mathrm{MN}$ 是什么概念？它相当于把 $4$ 万吨的重物挂�
 \begin{table}[htbp]
 \centering
 \small
+\caption{力的传递链：磁压 $\to$ 线载荷 $\to$ 线圈向心力 $\to$ 截面应力。最后一行决定了线圈盒的材料与尺寸。}
+\label{tab:app-am-force}
 \begin{tabular}{p{3.2cm}p{3.5cm}p{3.4cm}p{3.6cm}}
 \toprule
 量 & 表达式 & 数值 & 说明 \\
@@ -338,8 +343,7 @@ $386.349\ \mathrm{MN}$ 是什么概念？它相当于把 $4$ 万吨的重物挂�
 平均应力 & $F/A_{wp}$ & $846.534\ \mathrm{MPa}$ & $0.940594\,\sigma_y$ \\
 \bottomrule
 \end{tabular}
-\caption{力的传递链：磁压 $\to$ 线载荷 $\to$ 线圈向心力 $\to$ 截面应力。最后一行决定了线圈盒的材料与尺寸。}
-\label{tab:app-am-force}
+
 \end{table}
 
 \begin{tip}{磁体是结构件，不是「绕线」}{tip-app-am-force}
@@ -421,6 +425,8 @@ $\int J^{2}\mathrm{d}t=2.22667\times10^{18}$，$\Delta T=7422.22\ \mathrm{K}$，
 \begin{table}[htbp]
 \centering
 \small
+\caption{保护时间常数决定一切：$10\ \mathrm{s}$ 与 $20\ \mathrm{s}$ 之间就跨过了 $150\ \mathrm{K}$ 的安全线。}
+\label{tab:app-am-quench}
 \begin{tabular}{p{3.2cm}p{4.0cm}p{3.2cm}p{3.3cm}}
 \toprule
 泄能时间常数 & $\int J^{2}\mathrm{d}t$ & 热点温升 & 判断 \\
@@ -431,8 +437,7 @@ $20\ \mathrm{s}$ & 由上式 & $162.963\ \mathrm{K}$ & 超过 $150\ \mathrm{K}$ 
 $1000\ \mathrm{s}$ & $2.22667\times10^{18}$ & $7422.22\ \mathrm{K}$ & 导体烧毁 \\
 \bottomrule
 \end{tabular}
-\caption{保护时间常数决定一切：$10\ \mathrm{s}$ 与 $20\ \mathrm{s}$ 之间就跨过了 $150\ \mathrm{K}$ 的安全线。}
-\label{tab:app-am-quench}
+
 \end{table}
 
 \begin{tip}{失超不是故障，是必须被设计进去的事件}{tip-app-am-quench}
@@ -487,6 +492,8 @@ q_{cpl}=\frac{n\tau}{\mu_0}\left(\frac{\mathrm{d}B}{\mathrm{d}t}\right)^{2}
 \begin{table}[htbp]
 \centering
 \small
+\caption{制冷预算：同一条卡诺因子上，交流损耗把电耗从 $1.31333\ \mathrm{MW}$ 抬到 $12.1024\ \mathrm{MW}$。}
+\label{tab:app-am-cryo}
 \begin{tabular}{p{3.6cm}p{3.4cm}p{3.4cm}p{3.3cm}}
 \toprule
 冷负荷项 & 热负荷 & 折算电耗 & 说明 \\
@@ -496,8 +503,7 @@ q_{cpl}=\frac{n\tau}{\mu_0}\left(\frac{\mathrm{d}B}{\mathrm{d}t}\right)^{2}
 合计 & --- & $12.1024\ \mathrm{MW}$ & 占 D-T 功率 $0.0217473$ \\
 \bottomrule
 \end{tabular}
-\caption{制冷预算：同一条卡诺因子上，交流损耗把电耗从 $1.31333\ \mathrm{MW}$ 抬到 $12.1024\ \mathrm{MW}$。}
-\label{tab:app-am-cryo}
+
 \end{table}
 
 \begin{tip}{冷量是最贵的电}{tip-app-am-cryo}
@@ -584,6 +590,8 @@ $n\tau=0.05\ \mathrm{s}$、$\mathrm{d}B/\mathrm{d}t=0.5\ \mathrm{T\,s^{-1}}$、$
 \begin{table}[htbp]
 \centering
 \small
+\caption{借鉴清单：只借鉴结论、公式形式与量级；所有数值、表格与题面由本书自拟并独立复算。}
+\label{tab:app-am-source}
 \begin{tabular}{p{4.2cm}p{4.4cm}p{5.0cm}}
 \toprule
 来源 & 借鉴了什么 & 没有借鉴什么 \\
@@ -596,8 +604,7 @@ Freidberg（2007）、Wesson（2011） & 磁压与线圈受力的物理图像 & 
 ITER Physics Basis（\emph{Nuclear Fusion} 39，1999） & 装置级参数的量级对照 & 表格与图 \\
 \bottomrule
 \end{tabular}
-\caption{借鉴清单：只借鉴结论、公式形式与量级；所有数值、表格与题面由本书自拟并独立复算。}
-\label{tab:app-am-source}
+
 \end{table}
 
 本附录的文字、公式推导、表格、题面与解答都是自拟的。

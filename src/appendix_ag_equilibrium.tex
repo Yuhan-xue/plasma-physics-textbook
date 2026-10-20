@@ -67,6 +67,9 @@ V = 2\pi^2 R a^2 \kappa = 832.205\ \mathrm{m^3},
 \begin{table}[htbp]
 \centering
 \small
+\caption{磁面几何的五个基本量。注意它们全部由 $R$、$a$、$B_0$、$I_p$、$\kappa$ 五个输入
+导出，没有额外自由参数。}
+\label{tab:app-ag-scales}
 \begin{tabular}{p{3.4cm}p{2.9cm}p{4.2cm}p{4.4cm}}
 \toprule
 量 & 本工作点 & 它从哪里来 & 它决定什么 \\
@@ -78,9 +81,7 @@ V = 2\pi^2 R a^2 \kappa = 832.205\ \mathrm{m^3},
 体积 $V$ & $832.205\ \mathrm{m^3}$ & $2\pi^2 R a^2 \kappa$ & 功率密度与总储能 \\
 \bottomrule
 \end{tabular}
-\caption{磁面几何的五个基本量。注意它们全部由 $R$、$a$、$B_0$、$I_p$、$\kappa$ 五个输入
-导出，没有额外自由参数。}
-\label{tab:app-ag-scales}
+
 \end{table}
 
 \begin{tip}{磁面不是画出来的，是平衡方程的解}{tip-app-ag-surfaces}
@@ -150,6 +151,9 @@ $B_\phi\propto 1/R$；一旦比压不可忽略，$F$ 会随磁面变化，正是
 \begin{table}[htbp]
 \centering
 \small
+\caption{Grad--Shafranov 方程右边的两本账。$\beta_t$ 与 $\beta_p$ 相差一个
+$(B_0/B_\theta)^2 = 12.4844$ 的因子，这个因子后面还会以 Shafranov 位移的形式出现。}
+\label{tab:app-ag-gs}
 \begin{tabular}{p{3.8cm}p{3.0cm}p{3.6cm}p{4.5cm}}
 \toprule
 量 & 本工作点 & 表达式 & 物理含义 \\
@@ -161,9 +165,7 @@ $\beta_p$ & $32.9081\%$ & $2\mu_0\langle p\rangle/B_\theta^2$ & 对极向场的�
 $\beta_N$ & $1.86272$ & $\beta_t[\%]aB_0/I_p[\mathrm{MA}]$ & 与极限比较的口径 \\
 \bottomrule
 \end{tabular}
-\caption{Grad--Shafranov 方程右边的两本账。$\beta_t$ 与 $\beta_p$ 相差一个
-$(B_0/B_\theta)^2 = 12.4844$ 的因子，这个因子后面还会以 Shafranov 位移的形式出现。}
-\label{tab:app-ag-gs}
+
 \end{table}
 
 \begin{tip}{Grad--Shafranov 方程不是新物理，是两条账}{tip-app-ag-gs}
@@ -215,6 +217,9 @@ $0.3736\ \mathrm{m}$，代价立刻可见。
 \begin{table}[htbp]
 \centering
 \small
+\caption{Shafranov 位移的四个读数。位移不是误差，而是压强与电流付的账；它把「比压」
+从稳定性问题变成了几何问题。}
+\label{tab:app-ag-shift}
 \begin{tabular}{p{4.0cm}p{3.0cm}p{3.6cm}p{4.2cm}}
 \toprule
 量 & 本工作点 & 表达式 & 后果 \\
@@ -226,9 +231,7 @@ $(a+\Delta)/(a-\Delta)$ & $1.30873$ & 内外间距比 & 偏滤器与壁负载 \\
 $\Delta=a/2$ 所需 $\beta_p$ & $2.6$ & 反解 & 大电流装置更安全 \\
 \bottomrule
 \end{tabular}
-\caption{Shafranov 位移的四个读数。位移不是误差，而是压强与电流付的账；它把「比压」
-从稳定性问题变成了几何问题。}
-\label{tab:app-ag-shift}
+
 \end{table}
 
 \begin{tip}{位移不是误差，是压强与电流付的账}{tip-app-ag-shift}
@@ -280,6 +283,9 @@ $R$ 放大 $5\%$，体积从 $832.205\ \mathrm{m^3}$ 涨到 $1057.32\ \mathrm{m^
 \begin{table}[htbp]
 \centering
 \small
+\caption{伸长比的「汇率」：$(1+\kappa^2)/2$ 就是同样安全因子下能多通多少电流。
+$\kappa$ 不能无限拉——拉得越长，垂直位移不稳定（附录 AA、V）越难控制。}
+\label{tab:app-ag-shaping}
 \begin{tabular}{p{2.4cm}p{2.6cm}p{3.4cm}p{3.6cm}p{2.6cm}}
 \toprule
 伸长比 $\kappa$ & 形状因子 & 同样 $q_{95}$ 允许的 $I_p$ & 相对圆截面 & 说明 \\
@@ -290,9 +296,7 @@ $1.7$ & $1.945$ & $15.0\ \mathrm{MA}$ & $1.945$ 倍 & 本工作点 \\
 $2.0$ & $2.5$ & $19.2802\ \mathrm{MA}$ & $2.5$ 倍 & 形状的极限一侧 \\
 \bottomrule
 \end{tabular}
-\caption{伸长比的「汇率」：$(1+\kappa^2)/2$ 就是同样安全因子下能多通多少电流。
-$\kappa$ 不能无限拉——拉得越长，垂直位移不稳定（附录 AA、V）越难控制。}
-\label{tab:app-ag-shaping}
+
 \end{table}
 
 \begin{tip}{伸长比不是造型，是买电流}{tip-app-ag-shaping}
@@ -355,6 +359,9 @@ I_p(q_{95}=3.0) = \frac{2\pi a^2 B_0}{\mu_0 R q_{95}}\frac{1+\kappa^2}{2}
 \begin{table}[htbp]
 \centering
 \small
+\caption{三条线互相拉扯：比压要效率、安全因子要余量、密度要低于 Greenwald 线。
+本工作点在 $q_{95}$ 上偏紧，在比压上偏松——这正是聚变堆设计的自由度所在。}
+\label{tab:app-ag-beta}
 \begin{tabular}{p{3.4cm}p{3.0cm}p{2.8cm}p{4.4cm}}
 \toprule
 量 & 本工作点 & 极限或对照 & 余量 \\
@@ -366,9 +373,7 @@ $q_{95}$ & $2.21688$ & $3.0$（安全线） & 偏低，需降流 \\
 $n_e/n_G$ & $0.85$（附录 AD 口径） & $1.0$ & 降流后变成 $1.1337$ \\
 \bottomrule
 \end{tabular}
-\caption{三条线互相拉扯：比压要效率、安全因子要余量、密度要低于 Greenwald 线。
-本工作点在 $q_{95}$ 上偏紧，在比压上偏松——这正是聚变堆设计的自由度所在。}
-\label{tab:app-ag-beta}
+
 \end{table}
 
 \begin{tip}{比压的上限不是材料强度，是磁场的刚度}{tip-app-ag-beta}
@@ -418,6 +423,9 @@ $1.2\ \mathrm{cm}$、香蕉宽度 $2.54715\ \mathrm{cm}$ 都是同一批数）�
 \begin{table}[htbp]
 \centering
 \small
+\caption{平衡交给稳定性与输运的五个接口。本附录只负责把它们算准、把口径写清，
+不替后面的附录下结论。}
+\label{tab:app-ag-stability}
 \begin{tabular}{p{3.6cm}p{2.8cm}p{3.2cm}p{4.0cm}}
 \toprule
 平衡输出 & 本工作点 & 交给谁 & 用来判断什么 \\
@@ -429,9 +437,7 @@ $\alpha$ & $0.401587$ & 附录 AD & 气球模驱动 \\
 $\beta_p+l_i/2$ & $0.829081$ & 本附录、附录 AA & Shafranov 位移 \\
 \bottomrule
 \end{tabular}
-\caption{平衡交给稳定性与输运的五个接口。本附录只负责把它们算准、把口径写清，
-不替后面的附录下结论。}
-\label{tab:app-ag-stability}
+
 \end{table}
 
 \begin{tip}{平衡给的是背景，稳定性才说能不能待住}{tip-app-ag-stability}
@@ -528,6 +534,8 @@ EFIT、VMEC、CHEASE 只提及名称与用途，不转载其结果。（3）不�
 \begin{table}[htbp]
 \centering
 \small
+\caption{数值分级。第三级的量在本附录只作量级对照，不作为结论使用。}
+\label{tab:app-ag-source}
 \begin{tabular}{p{3.2cm}p{4.0cm}p{4.4cm}}
 \toprule
 级别 & 典型量 & 使用规则 \\
@@ -537,8 +545,7 @@ EFIT、VMEC、CHEASE 只提及名称与用途，不转载其结果。（3）不�
 文献级 & Troyon 散布、ITER 水平、平衡程序 & 只作量级对照，不作结论 \\
 \bottomrule
 \end{tabular}
-\caption{数值分级。第三级的量在本附录只作量级对照，不作为结论使用。}
-\label{tab:app-ag-source}
+
 \end{table}
 
 \begin{tip}{本附录没有涵盖什么}{tip-app-ag-honest}

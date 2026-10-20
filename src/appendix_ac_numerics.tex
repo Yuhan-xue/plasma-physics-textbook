@@ -82,6 +82,8 @@ N_D=n_e\lambda_{De}^3=3.62171\times10^{7}.
 \begin{table}[htbp]
 \centering
 \small
+\caption{PIC 模拟开工前必须回答的六个问题。前三行是硬判据，后三行是设计选择。}
+\label{tab:app-ac-resolution}
 \begin{tabular}{p{2.4cm}p{3.2cm}p{3.5cm}p{4.2cm}}
 \toprule
 要分辨的 & 判据 & 本工作点的数 & 不满足会怎样 \\
@@ -94,8 +96,7 @@ N_D=n_e\lambda_{De}^3=3.62171\times10^{7}.
 碰撞 & $t_{\mathrm{sim}}\ll\tau_{ei}$ & $t_{\mathrm{sim}}/\tau_{ei}=1.9869\times10^{-5}$ & 需显式加碰撞模块 \\
 \bottomrule
 \end{tabular}
-\caption{PIC 模拟开工前必须回答的六个问题。前三行是硬判据，后三行是设计选择。}
-\label{tab:app-ac-resolution}
+
 \end{table}
 
 \begin{tip}{先算分辨率，再谈算法}{tip-app-ac-resolve}
@@ -172,6 +173,8 @@ v^{n+1/2}=v^{+}+\frac{q\Delta t}{2m}E^n,
 \begin{table}[htbp]
 \centering
 \small
+\caption{粒子推进器对照。Boris 的优势不是「更准」，而是守恒性长在格式里。}
+\label{tab:app-ac-pusher}
 \begin{tabular}{p{2.4cm}p{3.0cm}p{3.2cm}p{4.3cm}}
 \toprule
 推进格式 & 时间精度 & 守恒性质 & 什么时候用 \\
@@ -183,8 +186,7 @@ Boris & 二阶 & 磁场步保 $|v|$ 到机器精度 & 磁化 PIC 的标准 \\
 隐式 / Crank--Nicolson & 任意阶 & 可大步长 & 需要 $\omega_{ce}\Delta t>1$ 时 \\
 \bottomrule
 \end{tabular}
-\caption{粒子推进器对照。Boris 的优势不是「更准」，而是守恒性长在格式里。}
-\label{tab:app-ac-pusher}
+
 \end{table}
 
 \begin{tip}{守恒量不是「算得好」，是格式的性质}{tip-app-ac-conserve}
@@ -261,6 +263,8 @@ $8.322\times10^{22}$，而模拟里只有 $2\times10^{7}$ 个超级粒子，
 \begin{table}[htbp]
 \centering
 \small
+\caption{一个三维静电 PIC 工作点的成本账。所有数字都从 AC.1 的分辨率判据推出，不用额外假设。}
+\label{tab:app-ac-cost}
 \begin{tabular}{p{3.2cm}p{3.4cm}p{3.4cm}p{3.0cm}}
 \toprule
 量 & 表达式 & 本工作点 & 备注 \\
@@ -274,8 +278,7 @@ $8.322\times10^{22}$，而模拟里只有 $2\times10^{7}$ 个超级粒子，
 真实/模拟粒子数 & $N_{\mathrm{real}}/N_{\mathrm{sim}}$ & $4.161\times10^{15}$ & 超级粒子的代价 \\
 \bottomrule
 \end{tabular}
-\caption{一个三维静电 PIC 工作点的成本账。所有数字都从 AC.1 的分辨率判据推出，不用额外假设。}
-\label{tab:app-ac-cost}
+
 \end{table}
 
 \begin{tip}{数值不稳定与物理不稳定是两件事}{tip-app-ac-stability}
@@ -337,6 +340,8 @@ M=100\;\Rightarrow\;2.2361\%,
 \begin{table}[htbp]
 \centering
 \small
+\caption{粒子噪声与粒子数的平方关系。最后一行说明「不做平均也能到 1\%」的代价。}
+\label{tab:app-ac-noise}
 \begin{tabular}{p{2.6cm}p{3.2cm}p{3.4cm}p{3.6cm}}
 \toprule
 每格粒子数 & 单格噪声 & 时间平均 $100$ 步后 & 用途 \\
@@ -348,8 +353,7 @@ $1000$ & $3.1623\%$ & $0.31623\%$ & 定量比较 \\
 $10^{4}$ & $1\%$ & $0.1\%$ & 单步就要 $1\%$ 精度时 \\
 \bottomrule
 \end{tabular}
-\caption{粒子噪声与粒子数的平方关系。最后一行说明「不做平均也能到 1\%」的代价。}
-\label{tab:app-ac-noise}
+
 \end{table}
 
 \begin{tip}{噪声不是误差，是统计}{tip-app-ac-noise}
@@ -408,6 +412,8 @@ $10^{4}$ & $1\%$ & $0.1\%$ & 单步就要 $1\%$ 精度时 \\
 \begin{table}[htbp]
 \centering
 \small
+\caption{四类误差，四种不同的「变好」方式。把它们的量级排个序，就知道该先改哪一条。}
+\label{tab:app-ac-error}
 \begin{tabular}{p{3.0cm}p{3.2cm}p{3.4cm}p{3.2cm}}
 \toprule
 误差来源 & 随什么变 & 本工作点的量级 & 怎么压 \\
@@ -418,8 +424,7 @@ $10^{4}$ & $1\%$ & $0.1\%$ & 单步就要 $1\%$ 精度时 \\
 舍入 & 机器精度 & 约 $10^{-16}$ 相对 & 通常可忽略 \\
 \bottomrule
 \end{tabular}
-\caption{四类误差，四种不同的「变好」方式。把它们的量级排个序，就知道该先改哪一条。}
-\label{tab:app-ac-error}
+
 \end{table}
 
 \begin{tip}{验证与确认是两件事}{tip-app-ac-verify}
@@ -482,6 +487,8 @@ Hockney \& Eastwood \emph{Computer Simulation Using Particles}（1988，第 6 �
 \begin{table}[htbp]
 \centering
 \small
+\caption{四类离散方式的分工。选方法的依据不是精度高低，而是「哪一层物理必须保留」。}
+\label{tab:app-ac-discretization}
 \begin{tabular}{p{2.6cm}p{3.0cm}p{3.2cm}p{4.0cm}}
 \toprule
 离散方式 & 数据结构 & 优势 & 典型用途 \\
@@ -492,8 +499,7 @@ Hockney \& Eastwood \emph{Computer Simulation Using Particles}（1988，第 6 �
 粒子（PIC） & 宏粒子 + 网格 & 动理学、无流体假设 & 加热、尾场、快粒子 \\
 \bottomrule
 \end{tabular}
-\caption{四类离散方式的分工。选方法的依据不是精度高低，而是「哪一层物理必须保留」。}
-\label{tab:app-ac-discretization}
+
 \end{table}
 
 \begin{tip}{守恒律要用守恒格式写}{tip-app-ac-conservative}
@@ -597,6 +603,8 @@ GPU 每秒 $10^{9}$ 粒子步、每个格点 $8$ 个变量 $\times8\ \mathrm{B}$
 \begin{table}[htbp]
 \centering
 \small
+\caption{本附录的借鉴来源与处理边界。全部为方法层面的引用，不含任何原文文字、表格或数值。}
+\label{tab:app-ac-source}
 \begin{tabular}{p{3.4cm}p{4.0cm}p{4.6cm}}
 \toprule
 来源 & 借用的内容 & 本附录的处理 \\
@@ -611,8 +619,7 @@ Godunov（1959）、Van Leer（1979） & 通量形式与限制器 & 只借方法
 Gardiner \& Stone（2005/2008）、Stone 等（2008） & 约束输运 & 只借 $\nabla\cdot\mathbf{B}$ 的处理思路 \\
 \bottomrule
 \end{tabular}
-\caption{本附录的借鉴来源与处理边界。全部为方法层面的引用，不含任何原文文字、表格或数值。}
-\label{tab:app-ac-source}
+
 \end{table}
 
 一、\textbf{不复制}任何原书的文字表述、章节编号、插图与习题；正文全部自拟，

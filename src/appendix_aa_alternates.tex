@@ -48,6 +48,9 @@ D1 的 $\beta = 1.318\%$（$\beta_N = 1.5523$）、
 \begin{table}[htbp]
 \centering
 \small
+\caption{三种位形的一张地图。最后一行是关键差别：
+\textbf{仿星器不需要等离子体电流}，于是没有电流驱动、没有破裂、也没有电流剖面要管。}
+\label{tab:app-aa-map}
 \begin{tabular}{p{3.0cm}p{3.2cm}p{3.2cm}p{3.5cm}}
 \toprule
 量 & D1 托卡马克 & 球形托卡马克 & 仿星器 \\
@@ -60,9 +63,7 @@ D1 的 $\beta = 1.318\%$（$\beta_N = 1.5523$）、
 环向电流 & 有（$9\ \mathrm{MA}$） & 有（$2\ \mathrm{MA}$） & \textbf{没有} \\
 \bottomrule
 \end{tabular}
-\caption{三种位形的一张地图。最后一行是关键差别：
-\textbf{仿星器不需要等离子体电流}，于是没有电流驱动、没有破裂、也没有电流剖面要管。}
-\label{tab:app-aa-map}
+
 \end{table}
 
 \begin{tip}{先问「它拿什么换什么」}{tip-app-aa-map}
@@ -115,6 +116,10 @@ s = \frac{r q'}{q} = 2 - \frac{2q_0}{q},
 \begin{table}[htbp]
 \centering
 \small
+\caption{旋转变换的两个来源。第三行是本节的重点：
+\textbf{托卡马克的 $q$ 剖面是「电学量」，仿星器的 $\iota$ 剖面是「几何量」}——
+前者只能间接调（改电流驱动），后者可以直接设计。}
+\label{tab:app-aa-iota}
 \begin{tabular}{p{3.4cm}p{3.2cm}p{3.2cm}p{3.3cm}}
 \toprule
 量 & D1 托卡马克 & 仿星器 & 含义 \\
@@ -125,10 +130,7 @@ s = \frac{r q'}{q} = 2 - \frac{2q_0}{q},
 磁剪切 $s$ & $1.3$ & 可设计到 $\approx 0$ & 仿星器的独门手段 \\
 \bottomrule
 \end{tabular}
-\caption{旋转变换的两个来源。第三行是本节的重点：
-\textbf{托卡马克的 $q$ 剖面是「电学量」，仿星器的 $\iota$ 剖面是「几何量」}——
-前者只能间接调（改电流驱动），后者可以直接设计。}
-\label{tab:app-aa-iota}
+
 \end{table}
 
 \begin{tip}{电流是「免费的旋转变换」，也是麻烦的来源}{tip-app-aa-iota}
@@ -187,6 +189,9 @@ W7-X 的 $\iota$ 剖面
 \begin{table}[htbp]
 \centering
 \small
+\caption{新经典输运的几何因子。最后一行是本附录最想提醒的一句：
+\textbf{两个数处在不同物理区间时，除出来的倍数没有意义}——要先把区间对齐再比。}
+\label{tab:app-aa-transport}
 \begin{tabular}{p{3.4cm}p{3.2cm}p{3.2cm}p{3.3cm}}
 \toprule
 量 & 数值 & 由什么决定 & 含义 \\
@@ -198,9 +203,7 @@ $\varepsilon_{\mathrm{eff}}^{3/2}$ & $0.00148223$ & $1/\nu$ 区 & 仿星器的�
 两个因子的比 & $383.181$ & 不同区间 & \textbf{不可直接比较} \\
 \bottomrule
 \end{tabular}
-\caption{新经典输运的几何因子。最后一行是本附录最想提醒的一句：
-\textbf{两个数处在不同物理区间时，除出来的倍数没有意义}——要先把区间对齐再比。}
-\label{tab:app-aa-transport}
+
 \end{table}
 
 \begin{tip}{不同区间的数不能直接相除}{tip-app-aa-eps}
@@ -253,6 +256,10 @@ D1 有 $R-a = 4.2\ \mathrm{m}$，而附录 Z 算出中子屏蔽需要 $2.0723\ \
 \begin{table}[htbp]
 \centering
 \small
+\caption{球形托卡马克的账。最后两行是本节的核心：
+\textbf{物理上更优（高 $\beta$、高自举份额），工程上却被 $0.31\ \mathrm{m}$ 卡死}——
+中心柱放不下中子屏蔽，也放不下足够的氚增殖区。}
+\label{tab:app-aa-st}
 \begin{tabular}{p{3.6cm}p{3.0cm}p{3.0cm}p{3.2cm}}
 \toprule
 量 & D1 托卡马克 & 球形托卡马克 & 含义 \\
@@ -265,10 +272,7 @@ D1 有 $R-a = 4.2\ \mathrm{m}$，而附录 Z 算出中子屏蔽需要 $2.0723\ \
 与屏蔽需求之比 & 放得下 & 少 $6.6848$ 倍 & \textbf{堆用不了} \\
 \bottomrule
 \end{tabular}
-\caption{球形托卡马克的账。最后两行是本节的核心：
-\textbf{物理上更优（高 $\beta$、高自举份额），工程上却被 $0.31\ \mathrm{m}$ 卡死}——
-中心柱放不下中子屏蔽，也放不下足够的氚增殖区。}
-\label{tab:app-aa-st}
+
 \end{table}
 
 \begin{tip}{物理的优化可能被几何一票否决}{tip-app-aa-st}
@@ -332,6 +336,10 @@ I = \frac{2\pi r_s B_{\mathrm{ext}}}{\mu_0} = 1\times10^{6}\ \mathrm{A} = 1\ \ma
 \begin{table}[htbp]
 \centering
 \small
+\caption{场反位形的全部账。最后一行是刻意的：
+\textbf{本附录不给倾斜模的阈值数字}——那需要动理学计算，超出本附录的边界
+（与附录 W「明说给不出阈值」同一口径）。}
+\label{tab:app-aa-frc}
 \begin{tabular}{p{3.4cm}p{3.2cm}p{3.2cm}p{3.3cm}}
 \toprule
 量 & 数值 & 由什么决定 & 含义 \\
@@ -344,10 +352,7 @@ I = \frac{2\pi r_s B_{\mathrm{ext}}}{\mu_0} = 1\times10^{6}\ \mathrm{A} = 1\ \ma
 稳定性 & 靠动理学 & 无磁剪切 & \textbf{不给阈值} \\
 \bottomrule
 \end{tabular}
-\caption{场反位形的全部账。最后一行是刻意的：
-\textbf{本附录不给倾斜模的阈值数字}——那需要动理学计算，超出本附录的边界
-（与附录 W「明说给不出阈值」同一口径）。}
-\label{tab:app-aa-frc}
+
 \end{table}
 
 \begin{tip}{比压等于一不是「极限」，是「定义」}{tip-app-aa-frc}
@@ -405,6 +410,9 @@ n\,T\,\tau_E = 2.28774\times10^{19}
 \begin{table}[htbp]
 \centering
 \small
+\caption{把仿星器放进三重积语言。第四行是与 D1（$2.4762\ \mathrm{s}$）的对照，
+但\textbf{两台装置不可直接比}——真正可比的量是最后一行与阈值的距离。}
+\label{tab:app-aa-scaling}
 \begin{tabular}{p{3.4cm}p{3.2cm}p{3.2cm}p{3.3cm}}
 \toprule
 量 & 数值 & 由什么决定 & 含义 \\
@@ -416,9 +424,7 @@ $\tau_E^{\mathrm{ISS04}}$ & $0.142983\ \mathrm{s}$ & 式 \eqref{eq:app-aa-iss04}
 三重积 & $2.28774\times10^{19}$ & $nT\tau_E$ & 差 $135.51$ 倍 \\
 \bottomrule
 \end{tabular}
-\caption{把仿星器放进三重积语言。第四行是与 D1（$2.4762\ \mathrm{s}$）的对照，
-但\textbf{两台装置不可直接比}——真正可比的量是最后一行与阈值的距离。}
-\label{tab:app-aa-scaling}
+
 \end{table}
 
 \begin{tip}{定标律是「代理」，不是物理}{tip-app-aa-honest}
@@ -499,6 +505,9 @@ AA.5 与 AA.6 是极端位形与定标（读完应当能把三种位形放进同
 \begin{table}[htbp]
 \centering
 \small
+\caption{本附录的借鉴来源与对应位置。只借鉴物理结论、公式形式与题型；
+全部数值、表格与文字自拟并由仓库脚本复算。}
+\label{tab:app-aa-source}
 \begin{tabular}{p{3.4cm}p{5.6cm}p{3.6cm}}
 \toprule
 本附录内容 & 借鉴来源 & 在本书里的位置 \\
@@ -523,9 +532,7 @@ Yamada 等（2005）\emph{Nucl.\ Fusion} \textbf{45}, 1684 &
 附录 S 的 IPB98、本附录 AA.6 \\
 \bottomrule
 \end{tabular}
-\caption{本附录的借鉴来源与对应位置。只借鉴物理结论、公式形式与题型；
-全部数值、表格与文字自拟并由仓库脚本复算。}
-\label{tab:app-aa-source}
+
 \end{table}
 
 版权与复现口径，四条：第一，\textbf{不复制}任何教材或论文的表格数值，

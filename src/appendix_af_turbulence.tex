@@ -43,6 +43,9 @@ $B=5.3$ T、$a=2$ m、$\tau_E=3.7$ s），把能量约束时间翻译成扩散�
 \begin{table}[htbp]
 \centering
 \small
+\caption{三个输运系数与实验反推的对比。注意回旋玻姆的两个口径只差一个 $\sqrt{2}$：
+$\rho_s=\rho_i/\sqrt{2}$，所以比值差 $2$ 倍。}
+\label{tab:app-af-scales}
 \begin{tabular}{p{3.0cm}p{3.0cm}p{3.2cm}p{4.0cm}}
 \toprule
 候选 & 本工作点的值 & 对 $B$ 的依赖 & 与实验反推之比 \\
@@ -53,9 +56,7 @@ $B=5.3$ T、$a=2$ m、$\tau_E=3.7$ s），把能量约束时间翻译成扩散�
 实验反推 $\chi_{\mathrm{eff}}$ & $0.540541$ m$^2$s$^{-1}$ & —— & $1$ \\
 \bottomrule
 \end{tabular}
-\caption{三个输运系数与实验反推的对比。注意回旋玻姆的两个口径只差一个 $\sqrt{2}$：
-$\rho_s=\rho_i/\sqrt{2}$，所以比值差 $2$ 倍。}
-\label{tab:app-af-scales}
+
 \end{table}
 
 把这个扩散系数代回功率账，看它是不是「够用」。取梯度长度 $L_T=0.5$ m、迎风面积 $S=489.532$ m$^2$，
@@ -110,6 +111,9 @@ $k_\theta\rho_s$）。把 $k_\theta=k_\theta\rho_s/\rho_s$ 代进去，$\rho_s$ 
 \begin{table}[htbp]
 \centering
 \small
+\caption{漂移波的尺度表。$k_\theta\rho_s$ 是无量纲量，本附录一律取谱峰位置 $0.3$；
+换成别的值只需按比例换算。}
+\label{tab:app-af-driftwave}
 \begin{tabular}{p{4.2cm}p{3.4cm}p{5.2cm}}
 \toprule
 量 & 本工作点的值 & 它由什么决定 \\
@@ -121,9 +125,7 @@ $k_\theta\rho_s$）。把 $k_\theta=k_\theta\rho_s/\rho_s$ 代进去，$\rho_s$ 
 环向涡数 $2\pi R/\lambda_\theta$ & $636.389$ 个 & 装置尺寸 $\div$ 垂直波长 \\
 \bottomrule
 \end{tabular}
-\caption{漂移波的尺度表。$k_\theta\rho_s$ 是无量纲量，本附录一律取谱峰位置 $0.3$；
-换成别的值只需按比例换算。}
-\label{tab:app-af-driftwave}
+
 \end{table}
 
 \begin{tip}{漂移波不是「波」，是梯度与磁场的必然产物}{tip-app-af-driftwave}
@@ -187,6 +189,9 @@ ITG 用离子温度梯度，TEM 用捕获电子对密度与温度梯度的响应
 \begin{table}[htbp]
 \centering
 \small
+\caption{ITG 与 TEM 的阈值表。阈值的两列要分开看：左边是从本工作点算出来的，
+右边是文献量级（声明值），二者相比才有意义。}
+\label{tab:app-af-instability}
 \begin{tabular}{p{3.6cm}p{2.8cm}p{2.6cm}p{4.0cm}}
 \toprule
 判据 & 本工作点 & 阈值（声明） & 结论 \\
@@ -197,9 +202,7 @@ $L_T$ 与临界值之比 & $0.5$ m & $1.24$ m & 陡 $2.48$ 倍 \\
 捕获电子比例 $f_{\mathrm{trap}}$ & $0.69843$ & —— & TEM 有足够驱动 \\
 \bottomrule
 \end{tabular}
-\caption{ITG 与 TEM 的阈值表。阈值的两列要分开看：左边是从本工作点算出来的，
-右边是文献量级（声明值），二者相比才有意义。}
-\label{tab:app-af-instability}
+
 \end{table}
 
 \begin{tip}{临界梯度不是开关，是刚性}{tip-app-af-stiffness}
@@ -259,6 +262,9 @@ Horton \emph{Rev. Mod. Phys.} \textbf{71} (1999) 735 与 Garbet 等
 \begin{table}[htbp]
 \centering
 \small
+\caption{混合长量级链。注意最后一行：只把涨落水平乘进去会算出偏小的扩散系数，
+说明「涨落水平」与「步长」不是两个独立的旋钮——它们是同一个饱和过程的两个侧面。}
+\label{tab:app-af-saturation}
 \begin{tabular}{p{4.4cm}p{3.2cm}p{4.6cm}}
 \toprule
 量 & 值 & 说明 \\
@@ -271,9 +277,7 @@ Horton \emph{Rev. Mod. Phys.} \textbf{71} (1999) 735 与 Garbet 等
 涨落水平（声明）$\delta n/n$ & $0.01$ & $(\delta n/n)^2$ 定标给 $0.00169004$ m$^2$s$^{-1}$ \\
 \bottomrule
 \end{tabular}
-\caption{混合长量级链。注意最后一行：只把涨落水平乘进去会算出偏小的扩散系数，
-说明「涨落水平」与「步长」不是两个独立的旋钮——它们是同一个饱和过程的两个侧面。}
-\label{tab:app-af-saturation}
+
 \end{table}
 
 \begin{tip}{混合长是上界，不是预言}{tip-app-af-mixing}
@@ -320,6 +324,9 @@ $\rho_i$ 作尺度时满足（$13.649$ 倍），但若把尺度放大到 $a/10=0
 \begin{table}[htbp]
 \centering
 \small
+\caption{剪切抑制判据。注意分界尺度 $56.4165$ mm 是 $13.649\,\rho_i$，
+它同时是「$\gamma_E=\gamma_{\max}$」和「$\Delta r_*/\rho_i=\gamma_E/\gamma_{\max}$」两种写法的交点。}
+\label{tab:app-af-zonal}
 \begin{tabular}{p{3.4cm}p{3.4cm}p{3.0cm}p{3.4cm}}
 \toprule
 径向尺度 $\Delta r$ & $\gamma_E$ & $\gamma_E/\gamma_{\max}$ & 是否抑制 \\
@@ -329,9 +336,7 @@ $a/10=0.2$ m & $50226.9$ s$^{-1}$ & $0.282083$ & 否 \\
 分界 $\Delta r_*=56.4165$ mm & $178057$ s$^{-1}$ & $1$ & 临界 \\
 \bottomrule
 \end{tabular}
-\caption{剪切抑制判据。注意分界尺度 $56.4165$ mm 是 $13.649\,\rho_i$，
-它同时是「$\gamma_E=\gamma_{\max}$」和「$\Delta r_*/\rho_i=\gamma_E/\gamma_{\max}$」两种写法的交点。}
-\label{tab:app-af-zonal}
+
 \end{table}
 
 \begin{tip}{带状流是湍流自己长出来的「刹车」}{tip-app-af-zonal}
@@ -381,6 +386,9 @@ k^2S(k)\propto k^{-1},
 \begin{table}[htbp]
 \centering
 \small
+\caption{谱指数与输运权重。第一行的两个比例是 $k^{-1}$ 权重下
+$0.1$--$0.5$ 与 $0.5$--$1.0$ 两段的份额；谱越平，输运越向高波数移动。}
+\label{tab:app-af-spectrum}
 \begin{tabular}{p{3.6cm}p{3.0cm}p{3.4cm}p{3.2cm}}
 \toprule
 谱 & $S(k)$ 指数 & $k^2S(k)$ 权重 & 含义 \\
@@ -390,9 +398,7 @@ k^2S(k)\propto k^{-1},
 三维 Kolmogorov & $-5/3$ & $\propto k^{1/3}$ & 各向同性惯性区 \\
 \bottomrule
 \end{tabular}
-\caption{谱指数与输运权重。第一行的两个比例是 $k^{-1}$ 权重下
-$0.1$--$0.5$ 与 $0.5$--$1.0$ 两段的份额；谱越平，输运越向高波数移动。}
-\label{tab:app-af-spectrum}
+
 \end{table}
 
 \begin{tip}{谱指数不是装饰，它决定输运集中在哪里}{tip-app-af-spectrum}
@@ -459,6 +465,8 @@ $\chi_B=57.4625$ m$^2$s$^{-1}$、$\chi_{\mathrm{gB}}=0.712099$ m$^2$s$^{-1}$，
 \begin{table}[htbp]
 \centering
 \small
+\caption{数值分级。第三级的量在本附录只作量级对照，不作为结论使用。}
+\label{tab:app-af-source}
 \begin{tabular}{p{2.6cm}p{4.2cm}p{2.6cm}p{4.4cm}}
 \toprule
 级别 & 内容 & 例子 & 可核验性 \\
@@ -468,8 +476,7 @@ $\chi_B=57.4625$ m$^2$s$^{-1}$、$\chi_{\mathrm{gB}}=0.712099$ m$^2$s$^{-1}$，
 文献级 & 定标系数的适用范围 & 回旋玻姆系数、混合长饱和因子 & 需查原文 \\
 \bottomrule
 \end{tabular}
-\caption{数值分级。第三级的量在本附录只作量级对照，不作为结论使用。}
-\label{tab:app-af-source}
+
 \end{table}
 
 \textbf{分级说明}：本附录只讲「为什么约束就是这个数」的量级链，不给输运系数的第一性原理求解；

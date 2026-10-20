@@ -65,6 +65,8 @@ n_G=\frac{I_p}{\pi a^2}=1.19366\times10^{20}\ \mathrm{m^{-3}},
 \begin{table}[htbp]
 \centering
 \small
+\caption{L-H 阈值与工作点。阈值是「输入打平边缘损失」的位置，不是某个可调旋钮的最佳值。}
+\label{tab:app-ad-threshold}
 \begin{tabular}{p{3.4cm}p{3.3cm}p{4.2cm}p{4.0cm}}
 \toprule
 量 & 数值 & 表达式 & 说明 \\
@@ -77,8 +79,7 @@ H$\to$L 反向阈值 & $41.116\ \mathrm{MW}$ & $0.65P_{\mathrm{th}}$ & 回滞宽
 格林沃尔德密度 & $1.19366\times10^{20}\ \mathrm{m^{-3}}$ & $I_p/(\pi a^2)$ & $f_G=0.837758$ \\
 \bottomrule
 \end{tabular}
-\caption{L-H 阈值与工作点。阈值是「输入打平边缘损失」的位置，不是某个可调旋钮的最佳值。}
-\label{tab:app-ad-threshold}
+
 \end{table}
 
 那壁垒到底是什么？主流图像是\textbf{径向电场剪切}：边缘的压强梯度把离子推开，
@@ -218,6 +219,8 @@ $I_{\mathrm{bs}}/I_p=0.085077$。边缘十几厘米里长出了总电流的 $8.5
 \begin{table}[htbp]
 \centering
 \small
+\caption{台基的几何与梯度。宽度由 beta 定，梯度由宽度定，自举电流由梯度定——一环扣一环。}
+\label{tab:app-ad-pedestal}
 \begin{tabular}{p{3.5cm}p{3.2cm}p{4.1cm}p{4.1cm}}
 \toprule
 量 & 数值 & 表达式 & 说明 \\
@@ -231,8 +234,7 @@ $I_{\mathrm{bs}}/I_p=0.085077$。边缘十几厘米里长出了总电流的 $8.5
 台基总 beta & $0.5161\%$ & $2\mu_0p_{\mathrm{ped}}/B^2$ & 芯部约 $3.993\%$ \\
 \bottomrule
 \end{tabular}
-\caption{台基的几何与梯度。宽度由 beta 定，梯度由宽度定，自举电流由梯度定——一环扣一环。}
-\label{tab:app-ad-pedestal}
+
 \end{table}
 
 \begin{tip}{台基宽度不是自由参数}{tip-app-ad-width}
@@ -302,6 +304,8 @@ W_{\mathrm{ped}}&=\frac{3}{2}\cdot\frac{p_{\mathrm{ped}}}{2}V_{\mathrm{ped}}
 \begin{table}[htbp]
 \centering
 \small
+\caption{两条稳定性边界。台基之所以「刚好」存在，是因为再高一点就会被模吃掉。}
+\label{tab:app-ad-limits}
 \begin{tabular}{p{3.6cm}p{3.2cm}p{3.9cm}p{4.2cm}}
 \toprule
 量 & 数值 & 表达式 & 说明 \\
@@ -315,8 +319,7 @@ W_{\mathrm{ped}}&=\frac{3}{2}\cdot\frac{p_{\mathrm{ped}}}{2}V_{\mathrm{ped}}
 壳层储能 & $2.53277\ \mathrm{MJ}$ & $3p_{\mathrm{ped}}V_{\mathrm{ped}}/4$ & $<1\%\,W_{\mathrm{th}}$ \\
 \bottomrule
 \end{tabular}
-\caption{两条稳定性边界。台基之所以「刚好」存在，是因为再高一点就会被模吃掉。}
-\label{tab:app-ad-limits}
+
 \end{table}
 
 \begin{tip}{台基不是「越高越好」}{tip-app-ad-two-branches}
@@ -384,6 +387,8 @@ T_{\mathrm{ELM}}=\frac{1}{f_{\mathrm{ELM}}}=251.267\ \mathrm{ms}.
 \begin{table}[htbp]
 \centering
 \small
+\caption{ELM 的能量账。频率不是自由参数，而是「输入功率要被 ELM 通道带走」的结果。}
+\label{tab:app-ad-elm}
 \begin{tabular}{p{3.6cm}p{3.3cm}p{4.0cm}p{4.0cm}}
 \toprule
 量 & 数值 & 表达式 & 说明 \\
@@ -396,8 +401,7 @@ ELM 频率 & $3.97984\ \mathrm{Hz}$ & $P_{\mathrm{SOL}}/\Delta W_{\mathrm{ELM}}$
 ELM 周期 & $251.267\ \mathrm{ms}$ & $1/f_{\mathrm{ELM}}$ & $f_{\mathrm{ELM}}\tau_E=14.7254$ \\
 \bottomrule
 \end{tabular}
-\caption{ELM 的能量账。频率不是自由参数，而是「输入功率要被 ELM 通道带走」的结果。}
-\label{tab:app-ad-elm}
+
 \end{table}
 
 \begin{tip}{ELM 频率不是外部旋钮}{tip-app-ad-elm-power}
@@ -475,6 +479,8 @@ m_{\mathrm{pel}}=10^{21}\times2.5m_p=4.18155\times10^{-6}\ \mathrm{kg}=4.18155\ 
 \begin{table}[htbp]
 \centering
 \small
+\caption{两条缓解路线。目标不是「没有 ELM」，而是让每次 ELM 都落在材料阈值之下。}
+\label{tab:app-ad-mitigation}
 \begin{tabular}{p{3.5cm}p{3.2cm}p{4.1cm}p{4.1cm}}
 \toprule
 量 & 数值 & 表达式 & 说明 \\
@@ -488,8 +494,7 @@ $n=2$ RMP 共振面 & $1.26491\ \mathrm{m}$ & 同上 & 在台基以里 \\
 弹丸质量 & $4.18155\ \mathrm{mg}$ & $10^{21}\times2.5m_p$ & $\Delta n=28.4661\%n_{\mathrm{ped}}$ \\
 \bottomrule
 \end{tabular}
-\caption{两条缓解路线。目标不是「没有 ELM」，而是让每次 ELM 都落在材料阈值之下。}
-\label{tab:app-ad-mitigation}
+
 \end{table}
 
 \begin{tip}{缓解不是消除}{tip-app-ad-mitigation}
@@ -587,6 +592,8 @@ q_{\mathrm{peak}}''=\frac{0.7\,P_{\mathrm{SOL}}\times0.05}{2\pi R\,(5\lambda_t)\
 \begin{table}[htbp]
 \centering
 \small
+\caption{从台基到靶板的热流账。偏滤器的存在理由就写在这一行比值里。}
+\label{tab:app-ad-sol}
 \begin{tabular}{p{3.6cm}p{3.2cm}p{4.0cm}p{4.0cm}}
 \toprule
 量 & 数值 & 表达式 & 说明 \\
@@ -601,8 +608,7 @@ q_{\mathrm{peak}}''=\frac{0.7\,P_{\mathrm{SOL}}\times0.05}{2\pi R\,(5\lambda_t)\
 与壁面韧致之比 & $17337.5$ & $q_{\mathrm{peak}}/q_{\mathrm{brems}}$ & 四个数量级 \\
 \bottomrule
 \end{tabular}
-\caption{从台基到靶板的热流账。偏滤器的存在理由就写在这一行比值里。}
-\label{tab:app-ad-sol}
+
 \end{table}
 
 \begin{tip}{台基决定「有多少」，SOL 决定「多小」}{tip-app-ad-sol}
@@ -698,6 +704,8 @@ RMP 抑制的适用条件。这些数只出现在这一节，不在正文计算�
 \begin{table}[htbp]
 \centering
 \small
+\caption{三级数值的分工。只有前两级参与计算，文献级只作对照。}
+\label{tab:app-ad-source}
 \begin{tabular}{p{2.6cm}p{3.5cm}p{4.2cm}p{4.6cm}}
 \toprule
 等级 & 例子 & 来源 & 在本书里怎么用 \\
@@ -707,8 +715,7 @@ RMP 抑制的适用条件。这些数只出现在这一节，不在正文计算�
 文献级 & ELM 上升时间范围、$\lambda_q$ 定标散布 & 本节的文献条目 & 不参与计算 \\
 \bottomrule
 \end{tabular}
-\caption{三级数值的分工。只有前两级参与计算，文献级只作对照。}
-\label{tab:app-ad-source}
+
 \end{table}
 
 \subsection*{版权口径}

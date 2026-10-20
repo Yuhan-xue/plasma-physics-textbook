@@ -48,6 +48,8 @@
 \centering
 \small
 \setlength{\tabcolsep}{4pt}
+\caption{系统账的起点：本书工作点的功率清单（与相邻附录同口径）。}
+\label{tab:app-az-books}
 \begin{tabular}{p{4.4cm}p{2.8cm}p{4.0cm}}
 \toprule
 项目 & 数值 & 来源口径 \\
@@ -61,8 +63,7 @@ $\alpha$ 自加热功率 & $111.325$ MW & 中子份额 $79.99545\%$ \\
 环流功率 & $71.4157$ MW & $P_\mathrm{CD}+P_\mathrm{cryo}+P_\mathrm{plant}$ \\
 \bottomrule
 \end{tabular}
-\caption{系统账的起点：本书工作点的功率清单（与相邻附录同口径）。}
-\label{tab:app-az-books}
+
 \end{table}
 
 \textbf{系统集成的第一条纪律是「口径一致」}：$P_\mathrm{fus}$ 用的是热功率还是电功率？
@@ -142,6 +143,8 @@ P_\mathrm{CD}^{(\tau_E/2)}=\frac{3nk_BTV}{\tau_E/2}-P_\mathrm{alpha}=211.325\ \m
 \centering
 \small
 \setlength{\tabcolsep}{4pt}
+\caption{0-D 功率平衡的完整换算：从储能到约束时间，再到加热需求。}
+\label{tab:app-az-power}
 \begin{tabular}{p{4.6cm}p{2.8cm}p{3.6cm}}
 \toprule
 量 & 符号 & 数值 \\
@@ -155,8 +158,7 @@ P_\mathrm{CD}^{(\tau_E/2)}=\frac{3nk_BTV}{\tau_E/2}-P_\mathrm{alpha}=211.325\ \m
 点火所需约束时间 & $\tau_E(Q=0)$ & $3.30348$ s \\
 \bottomrule
 \end{tabular}
-\caption{0-D 功率平衡的完整换算：从储能到约束时间，再到加热需求。}
-\label{tab:app-az-power}
+
 \end{table}
 
 \begin{tip}{Q 是定义，不是物理定律}{tip-app-az-q}
@@ -213,6 +215,8 @@ $28.8307$ MW，比 $50$ MW 还少：更差的约束对应更高的加热功率�
 \centering
 \small
 \setlength{\tabcolsep}{4pt}
+\caption{自洽迭代：定标、约束裕度、所需 $H$ 因子与加热需求。}
+\label{tab:app-az-solve}
 \begin{tabular}{p{4.8cm}p{2.8cm}p{3.4cm}}
 \toprule
 量 & 符号 & 数值 \\
@@ -225,8 +229,7 @@ $0.8$ 倍定标时的加热需求 & $P_\mathrm{CD}$ & $28.8307$ MW \\
 迭代收敛（$10$ 倍/步） & --- & 约 $3$ 次 \\
 \bottomrule
 \end{tabular}
-\caption{自洽迭代：定标、约束裕度、所需 $H$ 因子与加热需求。}
-\label{tab:app-az-solve}
+
 \end{table}
 
 \begin{tip}{自洽解没有唯一答案，只有「哪一套假设」}{tip-app-az-solve}
@@ -308,6 +311,8 @@ n T \tau_E&=1.0\times9.194\times2.27962=20.9588\ (10^{20}\ \mathrm{keV\,s\,m^{-3
 \centering
 \small
 \setlength{\tabcolsep}{4pt}
+\caption{工作窗的三条经验极限与三重积：工作点值、限值与裕度。}
+\label{tab:app-az-window}
 \begin{tabular}{p{4.4cm}p{2.6cm}p{2.4cm}p{2.6cm}}
 \toprule
 限制 & 工作点值 & 限值 & 裕度 \\
@@ -318,8 +323,7 @@ Greenwald 密度 & $0.837758\,n_G$ & $n_G$ & $1.19366$ \\
 三重积 & $20.9588$ & $50$ & $4.19176$ \\
 \bottomrule
 \end{tabular}
-\caption{工作窗的三条经验极限与三重积：工作点值、限值与裕度。}
-\label{tab:app-az-window}
+
 \end{table}
 
 \begin{tip}{三重积是三条极限围出来的，不是一条公式}{tip-app-az-triple}
@@ -355,6 +359,8 @@ M>1\ \text{才算可用}.
 \centering
 \small
 \setlength{\tabcolsep}{4pt}
+\caption{七项裕度的汇总：三项工程裕度比四项物理裕度都紧。}
+\label{tab:app-az-margin}
 \begin{tabular}{p{3.8cm}p{3.4cm}p{2.6cm}p{2.2cm}}
 \toprule
 裕度项 & 限值 / 工作点 & 裕度 & 类别 \\
@@ -368,8 +374,7 @@ M>1\ \text{才算可用}.
 可用率 & $0.821918$ / $0.780822$ & $1.05263$ & 工程 \\
 \bottomrule
 \end{tabular}
-\caption{七项裕度的汇总：三项工程裕度比四项物理裕度都紧。}
-\label{tab:app-az-margin}
+
 \end{table}
 
 三个结论值得单独说：
@@ -430,6 +435,8 @@ S_x=\frac{\partial\ln y}{\partial\ln x}
 \centering
 \small
 \setlength{\tabcolsep}{4pt}
+\caption{对数灵敏度一览：哪个旋钮值钱、哪个最贵。}
+\label{tab:app-az-sens}
 \begin{tabular}{p{4.2cm}p{2.4cm}p{5.0cm}}
 \toprule
 旋钮 & 灵敏度 & 说明 \\
@@ -442,8 +449,7 @@ S_x=\frac{\partial\ln y}{\partial\ln x}
 加热功率 $P_\mathrm{CD}$ & $S=-1$ & 同时是分母与电耗，最贵 \\
 \bottomrule
 \end{tabular}
-\caption{对数灵敏度一览：哪个旋钮值钱、哪个最贵。}
-\label{tab:app-az-sens}
+
 \end{table}
 
 几个可以直接引用的例子：
@@ -543,6 +549,8 @@ $44.4976\ \mathrm{MW\,m^{-2}}$ 远高于常规偏滤器的稳态承受能力
 \centering
 \small
 \setlength{\tabcolsep}{4pt}
+\caption{集成检查清单：八项通过、一项不通过（热流），这就是设计需求。}
+\label{tab:app-az-checklist}
 \begin{tabular}{p{4.0cm}p{3.6cm}p{3.8cm}}
 \toprule
 检查项 & 判据 & 本工作点结果 \\
@@ -558,8 +566,7 @@ $44.4976\ \mathrm{MW\,m^{-2}}$ 远高于常规偏滤器的稳态承受能力
 热流 & $q_\mathrm{peak}\le q_\mathrm{limit}$ & $44.4976$ vs $10$ 量级，\textbf{不通过} \\
 \bottomrule
 \end{tabular}
-\caption{集成检查清单：八项通过、一项不通过（热流），这就是设计需求。}
-\label{tab:app-az-checklist}
+
 \end{table}
 
 \begin{tip}{清单全部通过只是及格线}{tip-app-az-checklist}
@@ -638,6 +645,8 @@ $\eta_\mathrm{th}$、辐射损失、TBR 与下限、可用率、5 年剂量、
 \centering
 \small
 \setlength{\tabcolsep}{4pt}
+\caption{本附录的借鉴来源、分级与用途（逐条注明，不复制原文）。}
+\label{tab:app-az-source}
 \begin{tabular}{p{5.0cm}p{5.0cm}p{2.8cm}}
 \toprule
 主题 & 借鉴来源 & 本书用法 \\
@@ -650,8 +659,7 @@ $\eta_\mathrm{th}$、辐射损失、TBR 与下限、可用率、5 年剂量、
 热流与脱靶 & 附录 N 与偏滤器公开设计文件 & 量级判据 \\
 \bottomrule
 \end{tabular}
-\caption{本附录的借鉴来源、分级与用途（逐条注明，不复制原文）。}
-\label{tab:app-az-source}
+
 \end{table}
 
 \textbf{分级说明}：AZ.1--AZ.4 的账目与工作窗计算是\textbf{可复算的量级估算}，

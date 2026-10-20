@@ -75,6 +75,8 @@ f_{\mathrm{burn}} = \frac{2R_{\mathrm{fus}}}{S_{\mathrm{ext}}}
 \begin{table}[htbp]
 \centering
 \small
+\caption{工作点的粒子账。三笔账的顺序不能颠倒：先算燃烧，再算输运，最后才谈加料。}
+\label{tab:app-aj-balance}
 \begin{tabular}{p{3.2cm}p{3.2cm}p{3.1cm}p{3.8cm}}
 \toprule
 量 & 表达式 & 数值 & 说明 \\
@@ -88,8 +90,7 @@ f_{\mathrm{burn}} = \frac{2R_{\mathrm{fus}}}{S_{\mathrm{ext}}}
 净加料燃耗份额 & $2R_{\mathrm{fus}}/S_{\mathrm{ext}}$ & $19.1687\%$ & 注进去只有 $1.91687\%$ \\
 \bottomrule
 \end{tabular}
-\caption{工作点的粒子账。三笔账的顺序不能颠倒：先算燃烧，再算输运，最后才谈加料。}
-\label{tab:app-aj-balance}
+
 \end{table}
 
 \begin{tip}{加料量不是燃烧量}{tip-app-aj-balance}
@@ -149,6 +150,8 @@ $3.43184\times10^{21}\ \mathrm{s^{-1}}$，质量流率
 \begin{table}[htbp]
 \centering
 \small
+\caption{四种加料方式。效率是\textbf{声明值}，只用于量级比较；真实效率取决于穿透深度与边界条件。}
+\label{tab:app-aj-fuelling}
 \begin{tabular}{p{2.8cm}p{3.2cm}p{3.2cm}p{4.2cm}}
 \toprule
 方式 & 加料效率（声明） & 注入量 & 工程口径 \\
@@ -159,8 +162,7 @@ $3.43184\times10^{21}\ \mathrm{s^{-1}}$，质量流率
 紧凑环注入 & 芯部加料 & 与弹丸同量级 & 把等离子体团整体注入 \\
 \bottomrule
 \end{tabular}
-\caption{四种加料方式。效率是\textbf{声明值}，只用于量级比较；真实效率取决于穿透深度与边界条件。}
-\label{tab:app-aj-fuelling}
+
 \end{table}
 
 \begin{tip}{效率低不是浪费，是物理}{tip-app-aj-efficiency}
@@ -231,6 +233,9 @@ f_p = \frac{\dot m_{\mathrm{pel}}}{m_p}
 \begin{table}[htbp]
 \centering
 \small
+\caption{弹丸穿透的标度扫描。$\tau_{\mathrm{abl}} \propto r_p^{5/3}$、$L_{\mathrm{pen}} \propto v_pr_p^{5/3}$，
+所以\textbf{加大弹丸比提速更有效}（体积涨三次方，烧蚀时间只涨 $5/3$ 次方）。}
+\label{tab:app-aj-pellet}
 \begin{tabular}{p{2.6cm}p{2.6cm}p{2.6cm}p{2.6cm}p{3.4cm}}
 \toprule
 $r_p$ & 质量 & $\tau_{\mathrm{abl}}$ & $L_{\mathrm{pen}}$ & 说明 \\
@@ -241,9 +246,7 @@ $3\ \mathrm{mm}$ & $28.8398\ \mathrm{mg}$ & $1.26992\ \mathrm{ms}$ & $0.380976\ 
 $3\ \mathrm{mm}$（$1000\ \mathrm{m\,s^{-1}}$） & $28.8398\ \mathrm{mg}$ & $1.26992\ \mathrm{ms}$ & $1.26992\ \mathrm{m}$ & $L/a = 0.63496$，够到芯部 \\
 \bottomrule
 \end{tabular}
-\caption{弹丸穿透的标度扫描。$\tau_{\mathrm{abl}} \propto r_p^{5/3}$、$L_{\mathrm{pen}} \propto v_pr_p^{5/3}$，
-所以\textbf{加大弹丸比提速更有效}（体积涨三次方，烧蚀时间只涨 $5/3$ 次方）。}
-\label{tab:app-aj-pellet}
+
 \end{table}
 
 要让弹丸打到 $a/2 = 1\ \mathrm{m}$（芯部加料的最低要求），
@@ -314,6 +317,8 @@ P_{\mathrm{fus}} \to 556.5\times(0.912256)^{2} = 463.126\ \mathrm{MW}
 \begin{table}[htbp]
 \centering
 \small
+\caption{氦灰的三笔账：产生、稀释、排出条件。富集因子是声明值，只作量级说明。}
+\label{tab:app-aj-ash}
 \begin{tabular}{p{3.2cm}p{3.0cm}p{3.0cm}p{3.6cm}}
 \toprule
 量 & 表达式 & 数值 & 说明 \\
@@ -327,8 +332,7 @@ P_{\mathrm{fus}} \to 556.5\times(0.912256)^{2} = 463.126\ \mathrm{MW}
 偏滤器处氦密度 & 富集 $5$ 倍（声明） & $2.5\times10^{19}\ \mathrm{m^{-3}}$ & 富集是抽气的必要条件 \\
 \bottomrule
 \end{tabular}
-\caption{氦灰的三笔账：产生、稀释、排出条件。富集因子是声明值，只作量级说明。}
-\label{tab:app-aj-ash}
+
 \end{table}
 
 灰的存在也能看见：氦的谱线（如 He II $468.57\ \mathrm{nm}$，见附录 AH）
@@ -413,6 +417,8 @@ t_{\mathrm{lim}} = \frac{2.0\ \mathrm{kg}}{1.6272\ \text{kg/年}} = 1.22911\ \te
 \begin{table}[htbp]
 \centering
 \small
+\caption{抽气与氚存量。同样的抽气能力，决定库存增长速度的是滞留份额，不是泵速。}
+\label{tab:app-aj-pumping}
 \begin{tabular}{p{3.4cm}p{3.2cm}p{3.0cm}p{3.2cm}}
 \toprule
 量 & 表达式 & 数值 & 说明 \\
@@ -426,8 +432,7 @@ t_{\mathrm{lim}} = \frac{2.0\ \mathrm{kg}}{1.6272\ \text{kg/年}} = 1.22911\ \te
 自持下限 & 燃耗$+$滞留$+$衰变 & $1.05578$ & 附录 Z 只算衰变是 $1.0036$ \\
 \bottomrule
 \end{tabular}
-\caption{抽气与氚存量。同样的抽气能力，决定库存增长速度的是滞留份额，不是泵速。}
-\label{tab:app-aj-pumping}
+
 \end{table}
 
 \begin{tip}{瓶颈不在泵上}{tip-app-aj-pump}
@@ -479,6 +484,8 @@ t_{\mathrm{ramp}} = \frac{N_e}{S_{\mathrm{ext}}}
 \begin{table}[htbp]
 \centering
 \small
+\caption{密度控制的三个时间尺度：弹丸周期、粒子约束时间、爬升时间，依次差一个量级。}
+\label{tab:app-aj-control}
 \begin{tabular}{p{3.4cm}p{3.0cm}p{3.0cm}p{3.4cm}}
 \toprule
 量 & 表达式 & 数值 & 说明 \\
@@ -491,8 +498,7 @@ Greenwald 密度 & $I_p/(\pi a^{2})$ & $8.82069\times10^{19}\ \mathrm{m^{-3}}$ &
 密度爬升时间 & $N_e/S_{\mathrm{ext}}$ & $40.4156\ \mathrm{s}$ & 慢回路的证据 \\
 \bottomrule
 \end{tabular}
-\caption{密度控制的三个时间尺度：弹丸周期、粒子约束时间、爬升时间，依次差一个量级。}
-\label{tab:app-aj-control}
+
 \end{table}
 
 \begin{tip}{密度控制是慢回路}{tip-app-aj-control}
@@ -566,6 +572,8 @@ Loarte 等（2007）与 Causey（2002），数值由 \texttt{tools/\allowbreak{}
 \begin{table}[htbp]
 \centering
 \small
+\caption{三级数值的分工。凡未标注级别又出现在公式里的量，都在脚本的 \texttt{[DECLARED]} 段列出。}
+\label{tab:app-aj-source}
 \begin{tabular}{p{2.2cm}p{4.6cm}p{7.0cm}}
 \toprule
 级别 & 含义 & 本附录的例子 \\
@@ -579,8 +587,7 @@ $\eta_{\mathrm{gas}} = 0.10$、$\eta_{\mathrm{pel}} = 0.60$、$\tau_{\mathrm{abl
 氚滞留的实验范围、Greenwald 极限的经验性质 \\
 \bottomrule
 \end{tabular}
-\caption{三级数值的分工。凡未标注级别又出现在公式里的量，都在脚本的 \texttt{[DECLARED]} 段列出。}
-\label{tab:app-aj-source}
+
 \end{table}
 
 \textbf{不复制}任何原书的文字、编号、插图与数据表：正文文字、表格与数值全部自拟。

@@ -42,6 +42,9 @@ n_G = \frac{I_{\mathrm p}\,[\mathrm{MA}]}{\pi a^2}\times10^{20}\ \mathrm{m^{-3}}
 \begin{table}[htbp]
 \centering
 \small
+\caption{破裂的五条常见路径。五条路径的先兆不同，但结局都是热猝灭加电流猝灭；本附录
+把结局的账算在表 \ref{tab:app-v-timeline}。}
+\label{tab:app-v-limits}
 \begin{tabular}{@{}p{2.6cm}p{3.9cm}p{3.2cm}p{3.4cm}@{}}
 \toprule
 撞破的极限 & 物理机制 & 先兆信号 & 本书哪一节讲过 \\
@@ -53,14 +56,15 @@ $\beta$ 极限 & 理想 MHD 外扭曲模失稳（无壁 2.8 / 理想壁 4.0） &
 垂直位移 & 拉长截面的垂直不稳定，等离子体撞向壁 & 垂直位置漂移、$I_{\mathrm p}$ 变化 & 本附录 V.4（晕电流） \\
 \bottomrule
 \end{tabular}
-\caption{破裂的五条常见路径。五条路径的先兆不同，但结局都是热猝灭加电流猝灭；本附录
-把结局的账算在表 \ref{tab:app-v-timeline}。}
-\label{tab:app-v-limits}
+
 \end{table}
 
 \begin{table}[htbp]
 \centering
 \small
+\caption{一次破裂的时间线。五个阶段不是五个独立事件，而是同一笔能量账在五个时间尺度上的
+展开；表里的数字分别由 V.5、V.4、V.6 的公式复算。}
+\label{tab:app-v-timeline}
 \begin{tabular}{@{}p{2.4cm}p{2.5cm}p{3.8cm}p{4.3cm}@{}}
 \toprule
 阶段 & 时长 & 这一段时间里发生了什么 & 数字 \\
@@ -72,9 +76,7 @@ $\beta$ 极限 & 理想 MHD 外扭曲模失稳（无壁 2.8 / 理想壁 4.0） &
 逃逸平台 & $100\ \mathrm{ms}$--$1\ \mathrm{s}$ & 高能电子尾巴雪崩，束带着几 MA 电流继续跑 & $26.0\ \mathrm{MJ}$，落在 $0.1\ \mathrm{m^2}$ 上是 $259.9\ \mathrm{MJ/m^2}$ \\
 \bottomrule
 \end{tabular}
-\caption{一次破裂的时间线。五个阶段不是五个独立事件，而是同一笔能量账在五个时间尺度上的
-展开；表里的数字分别由 V.5、V.4、V.6 的公式复算。}
-\label{tab:app-v-timeline}
+
 \end{table}
 
 \begin{tip}{破裂是一条时间线，不是一个事件}{tip-app-v-timeline}
@@ -121,6 +123,10 @@ $B_t=5.3\ \mathrm{T}$ 换算就是 $0.795\ \mathrm{mT}$。表 \ref{tab:app-v-err
 \begin{table}[htbp]
 \centering
 \small
+\caption{误差场从壁面到有理面的真空折算（$r_w=2.4\ \mathrm{m}$）。阈值取
+$\delta B/B\approx10^{-4}$（$q=2$ 面上的经验锁模阈值），绝对场按 $B_t=5.3\ \mathrm{T}$
+换算。}
+\label{tab:app-v-errorfield}
 \begin{tabular}{@{}p{2.3cm}p{2.1cm}p{2.5cm}p{3.0cm}p{3.1cm}@{}}
 \toprule
 分量 & $r_s$ [m] & $(r_s/r_w)^{m-1}$ & 折回壁面的 $\delta B/B$ & 绝对场（$B_t=5.3\ \mathrm{T}$） \\
@@ -129,10 +135,7 @@ $m/n=2/1$ & 1.6 & 0.6667 & $1.5\times10^{-4}$ & $0.795\ \mathrm{mT}$ \\
 $m/n=3/1$ & 1.8 & 0.5625 & $1.7778\times10^{-4}$ & $0.9422\ \mathrm{mT}$ \\
 \bottomrule
 \end{tabular}
-\caption{误差场从壁面到有理面的真空折算（$r_w=2.4\ \mathrm{m}$）。阈值取
-$\delta B/B\approx10^{-4}$（$q=2$ 面上的经验锁模阈值），绝对场按 $B_t=5.3\ \mathrm{T}$
-换算。}
-\label{tab:app-v-errorfield}
+
 \end{table}
 
 锁模的下一半是力学。磁岛在旋转的等离子体里被粘性力矩带着转，误差场对它施加电磁力矩；
@@ -190,6 +193,10 @@ $\tau_w=2.18655\ \mathrm{s}$。于是电阻壁模（RWM）只能被延迟，不�
 \begin{table}[htbp]
 \centering
 \small
+\caption{$\beta_N$ 极限折成的压力与温度（固定 $n=10^{20}\ \mathrm{m^{-3}}$）。理想壁极限
+比无壁极限高 $1.4286$ 倍；工作点离无壁极限还有 $33.475\%$ 的裕度，但再往上走就必须靠
+RWM 反馈把电阻壁「补」成理想壁。}
+\label{tab:app-v-beta}
 \begin{tabular}{@{}p{2.9cm}p{1.9cm}p{2.3cm}p{2.6cm}p{2.6cm}@{}}
 \toprule
 $\beta_N$ 极限 & $\beta$ [\%] & $p$ [Pa] & $T$（$n=10^{20}$）[keV] & 与工作点之比 \\
@@ -199,10 +206,7 @@ $\beta_N$ 极限 & $\beta$ [\%] & $p$ [Pa] & $T$（$n=10^{20}$）[keV] & 与工�
 本书工作点 1.8627 & 2.6359 & $2.946\times10^{5}$ & 9.194 & 1.000 \\
 \bottomrule
 \end{tabular}
-\caption{$\beta_N$ 极限折成的压力与温度（固定 $n=10^{20}\ \mathrm{m^{-3}}$）。理想壁极限
-比无壁极限高 $1.4286$ 倍；工作点离无壁极限还有 $33.475\%$ 的裕度，但再往上走就必须靠
-RWM 反馈把电阻壁「补」成理想壁。}
-\label{tab:app-v-beta}
+
 \end{table}
 
 工作点的账是：$\beta_N=1.8627$，距无壁极限 2.8 还有 $33.475\%$ 的裕度，密度用掉 Greenwald
@@ -270,6 +274,9 @@ $259.9\ \mathrm{MJ/m^2}$，比热账的 $0.4642\ \mathrm{MJ/m^2}$ 高两个多�
 \begin{table}[htbp]
 \centering
 \small
+\caption{破裂的三本账。热账决定缓解系统要「摊开」多少面积，力账决定结构设计，电子账决定
+为什么必须避免逃逸束形成。}
+\label{tab:app-v-accounts}
 \begin{tabular}{@{}p{1.9cm}p{3.4cm}p{3.4cm}p{3.4cm}@{}}
 \toprule
 账 & 数字 & 对照 & 结论 \\
@@ -279,9 +286,7 @@ $259.9\ \mathrm{MJ/m^2}$，比热账的 $0.4642\ \mathrm{MJ/m^2}$ 高两个多�
 电子账 & $26.0\ \mathrm{MJ}$；$0.1\ \mathrm{m^2}$ 上 $259.9\ \mathrm{MJ/m^2}$ & 与热账同量级，但落点集中两个量级 & 逃逸束是唯一「点状」的失效模式 \\
 \bottomrule
 \end{tabular}
-\caption{破裂的三本账。热账决定缓解系统要「摊开」多少面积，力账决定结构设计，电子账决定
-为什么必须避免逃逸束形成。}
-\label{tab:app-v-accounts}
+
 \end{table}
 
 \textbf{本节声明：} 力账用的是玩具几何 $F\approx I_{\mathrm{asym}}B_tL$，它假定不对称
@@ -335,6 +340,10 @@ $E_{\mathrm{tor}}/E_D=0.01507$，主体电子仍被碰撞拖住，不会整体�
 \begin{table}[htbp]
 \centering
 \small
+\caption{逃逸电子的三个特征场（$n=10^{20}\ \mathrm{m^{-3}}$、$\ln\Lambda=17$；$E_D$ 按
+$T_e=10\ \mathrm{eV}$ 折算）。$E_c<E_{\mathrm{tor}}\ll E_D$ 正是「尾巴逃逸、主体不动」的
+区间。}
+\label{tab:app-v-fields}
 \begin{tabular}{@{}p{3.4cm}p{2.2cm}p{2.8cm}p{3.6cm}@{}}
 \toprule
 场 & 数值 [V/m] & 与 $E_{\mathrm{tor}}$ 之比 & 含义 \\
@@ -344,10 +353,7 @@ $E_{\mathrm{tor}}$（猝灭期环向场） & 66.74 & 1 & 由 $V_{\mathrm{loop}}=
 $E_D$（Dreicer 场，$10\ \mathrm{eV}$） & 4430 & $E_{\mathrm{tor}}/E_D=0.01507$ & 不到它的 2\%：主体电子仍被拖住 \\
 \bottomrule
 \end{tabular}
-\caption{逃逸电子的三个特征场（$n=10^{20}\ \mathrm{m^{-3}}$、$\ln\Lambda=17$；$E_D$ 按
-$T_e=10\ \mathrm{eV}$ 折算）。$E_c<E_{\mathrm{tor}}\ll E_D$ 正是「尾巴逃逸、主体不动」的
-区间。}
-\label{tab:app-v-fields}
+
 \end{table}
 
 逃逸电子一旦出现，就会\textbf{雪崩}：逃逸电子与背景电子碰撞时，把后者也踢进逃逸区，数目
@@ -389,6 +395,11 @@ $76.99$。更麻烦的是「快」帮不上忙，反而有害：
 \begin{table}[htbp]
 \centering
 \small
+\caption{电流猝灭时间与环向场（$L_p=1.33294\times10^{-5}\ \mathrm{H}$、
+$I_{\mathrm p}=15\ \mathrm{MA}$、$2\pi R=2\pi\times6.2$）。要让
+$E_{\mathrm{tor}}<E_c$ 需要 $\tau_{\mathrm{CQ}}=5.921\ \mathrm{s}$，比工程能接受的
+$50$--$150\ \mathrm{ms}$ 长两个量级。}
+\label{tab:app-v-cq}
 \begin{tabular}{@{}p{2.6cm}p{2.6cm}p{3.0cm}p{3.4cm}@{}}
 \toprule
 $\tau_{\mathrm{CQ}}$ [s] & $E_{\mathrm{tor}}$ [V/m] & $E_{\mathrm{tor}}/E_c$（$n_e=10^{21}$） & 判断 \\
@@ -401,11 +412,7 @@ $\tau_{\mathrm{CQ}}$ [s] & $E_{\mathrm{tor}}$ [V/m] & $E_{\mathrm{tor}}/E_c$（$
 1.00 & 5.133 & 5.921 & 还要慢六倍 \\
 \bottomrule
 \end{tabular}
-\caption{电流猝灭时间与环向场（$L_p=1.33294\times10^{-5}\ \mathrm{H}$、
-$I_{\mathrm p}=15\ \mathrm{MA}$、$2\pi R=2\pi\times6.2$）。要让
-$E_{\mathrm{tor}}<E_c$ 需要 $\tau_{\mathrm{CQ}}=5.921\ \mathrm{s}$，比工程能接受的
-$50$--$150\ \mathrm{ms}$ 长两个量级。}
-\label{tab:app-v-cq}
+
 \end{table}
 
 \begin{tip}{把电流拉得越快，雪崩越猛}{tip-app-v-runaway}
@@ -467,6 +474,9 @@ $3.447\ \mathrm{kPa\,m^3}$ 的 $300\ \mathrm{K}$ 气体。
 \begin{table}[htbp]
 \centering
 \small
+\caption{破裂缓解的两项任务。第二项比第一项大 $672$ 倍，所以工程注入系统的规模是由「抬密度
+压逃逸电子」决定的，而不是由「辐射热储能」决定的。}
+\label{tab:app-v-mitigation}
 \begin{tabular}{@{}p{2.4cm}p{2.8cm}p{2.6cm}p{3.4cm}@{}}
 \toprule
 任务 & 需要的粒子数 & 折成 $300\ \mathrm{K}$ 气体 & 说明 \\
@@ -475,9 +485,7 @@ $3.447\ \mathrm{kPa\,m^3}$ 的 $300\ \mathrm{K}$ 气体。
 把密度抬到 $10^{21}$ & $8.322\times10^{23}$ & $3.447\ \mathrm{kPa\,m^3}$ & 压低 $E_{\mathrm{tor}}/E_c$，是注入量的驱动项 \\
 \bottomrule
 \end{tabular}
-\caption{破裂缓解的两项任务。第二项比第一项大 $672$ 倍，所以工程注入系统的规模是由「抬密度
-压逃逸电子」决定的，而不是由「辐射热储能」决定的。}
-\label{tab:app-v-mitigation}
+
 \end{table}
 
 两项任务的账相差 $672$ 倍，这就解释了缓解系统的设计取向。现代装置用大量气体注入（MGI）
@@ -578,6 +586,9 @@ $18.947\ \mathrm{s^{-1}}$，反馈带宽要按 $\tau_w/10$ 设计，即 $189.47\
 \begin{table}[htbp]
 \centering
 \small
+\caption{本附录的借鉴来源与自拟部分对照表。所有量级 1 的精确系数、实验定标与工程设计值均
+归原始文献，本附录只借用物理结论与公式形式。}
+\label{tab:app-v-source}
 \begin{tabular}{@{}p{1.4cm}p{5.4cm}p{4.0cm}p{3.4cm}@{}}
 \toprule
 小节 & 借鉴来源 & 借鉴内容 & 本书自拟部分 \\
@@ -591,9 +602,7 @@ V.6 & de Vries 等（2011）；Hollmann 等（2015）；Hender 等（2007） & �
 V.7 & 本书自拟 & 六道估算题的题型 & 全部数字来自 \texttt{tools/\allowbreak{}calc/\allowbreak{}appV\_calc.py} \\
 \bottomrule
 \end{tabular}
-\caption{本附录的借鉴来源与自拟部分对照表。所有量级 1 的精确系数、实验定标与工程设计值均
-归原始文献，本附录只借用物理结论与公式形式。}
-\label{tab:app-v-source}
+
 \end{table}
 
 \textbf{三条「不复制」约定：}

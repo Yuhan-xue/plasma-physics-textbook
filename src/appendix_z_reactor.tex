@@ -72,6 +72,9 @@ $Q=11.13$ 而 $Q_{\mathrm{eng}}=4.3518$：\textbf{同一个堆，两个「增益
 \begin{table}[htbp]
 \centering
 \small
+\caption{从聚变功率到电功率的四道关。第三列是每一关的乘子——
+\textbf{任何一道关打折，后面全部按乘法缩水}，这就是工程账与等离子体账的区别。}
+\label{tab:app-z-chain}
 \begin{tabular}{p{3.6cm}p{3.2cm}p{3.2cm}p{3.2cm}}
 \toprule
 环节 & 数值 & 乘子 & 备注 \\
@@ -85,9 +88,7 @@ alpha / 中子分配 & $111.3$ / $445.2\ \mathrm{MW}$ & $1/5$ 与 $4/5$ & 本书
 工程增益 & $Q_{\mathrm{eng}} = 4.3518$ & $P_{\mathrm{net}}/P_{\mathrm{aux}}$ & 对照 $Q = 11.13$ \\
 \bottomrule
 \end{tabular}
-\caption{从聚变功率到电功率的四道关。第三列是每一关的乘子——
-\textbf{任何一道关打折，后面全部按乘法缩水}，这就是工程账与等离子体账的区别。}
-\label{tab:app-z-chain}
+
 \end{table}
 
 \begin{tip}{工程账是乘法，不是加法}{tip-app-z-chain}
@@ -138,6 +139,9 @@ t_{\mathrm{life}} = \frac{50}{\dot d} = 10.996\ \text{年}.
 \begin{table}[htbp]
 \centering
 \small
+\caption{中子侧的全部关键量。第四行的 $10.996$ 年是本附录最重要的工程数字之一：
+它把「材料问题」变成「维护问题」。}
+\label{tab:app-z-neutron}
 \begin{tabular}{p{3.4cm}p{3.0cm}p{3.4cm}p{3.3cm}}
 \toprule
 量 & 数值 & 由什么决定 & 含义 \\
@@ -150,9 +154,7 @@ t_{\mathrm{life}} = \frac{50}{\dot d} = 10.996\ \text{年}.
 年输运能量 & $1.4049\times10^{7}\ \mathrm{GJ}$ & $P_n\times1$ 年 & 必须被包层收下 \\
 \bottomrule
 \end{tabular}
-\caption{中子侧的全部关键量。第四行的 $10.996$ 年是本附录最重要的工程数字之一：
-它把「材料问题」变成「维护问题」。}
-\label{tab:app-z-neutron}
+
 \end{table}
 
 \begin{tip}{难受的不是热，是 dpa}{tip-app-z-neutron}
@@ -225,6 +227,9 @@ $12\ \mathrm{kg/day}$ 的氚处理系统。这是聚变堆里唯一「每天都�
 \begin{table}[htbp]
 \centering
 \small
+\caption{氚循环的全部关键量。第三行是最容易被忽略的一项：
+\textbf{库存本身就在衰变}，所以「自持」的门槛高于 $1.000$，是 $1.0036$。}
+\label{tab:app-z-tritium}
 \begin{tabular}{p{3.4cm}p{3.4cm}p{3.2cm}p{3.1cm}}
 \toprule
 量 & 数值 & 由什么决定 & 含义 \\
@@ -237,9 +242,7 @@ $12\ \mathrm{kg/day}$ 的氚处理系统。这是聚变堆里唯一「每天都�
 处理流量 & $12\ \mathrm{kg/day}$ & $m_{\mathrm{inv}}/\tau_{\mathrm{proc}}$ & $\tau = 4\ \mathrm{h}$ \\
 \bottomrule
 \end{tabular}
-\caption{氚循环的全部关键量。第三行是最容易被忽略的一项：
-\textbf{库存本身就在衰变}，所以「自持」的门槛高于 $1.000$，是 $1.0036$。}
-\label{tab:app-z-tritium}
+
 \end{table}
 
 \begin{tip}{自持只看两个数，余量留给不确定性}{tip-app-z-tbr}
@@ -285,6 +288,9 @@ P_{\mathrm{cryo}} = \mathrm{COP}\,\varepsilon P_n = 133.56\ \mathrm{kW},
 \begin{table}[htbp]
 \centering
 \small
+\caption{屏蔽与磁体热负荷。第四行是「先算上限、再谈设计」的一个教科书式例子：
+\textbf{先算出来才发现它不重要}，于是资源可以放到真正要紧的地方。}
+\label{tab:app-z-shield}
 \begin{tabular}{p{3.4cm}p{3.2cm}p{3.1cm}p{3.4cm}}
 \toprule
 量 & 数值 & 由什么决定 & 含义 \\
@@ -295,9 +301,7 @@ P_{\mathrm{cryo}} = \mathrm{COP}\,\varepsilon P_n = 133.56\ \mathrm{kW},
 制冷电功 & $133.56\ \mathrm{kW}$ & $\mathrm{COP}\,\varepsilon P_n$ & 占净电 $0.061381\%$ \\
 \bottomrule
 \end{tabular}
-\caption{屏蔽与磁体热负荷。第四行是「先算上限、再谈设计」的一个教科书式例子：
-\textbf{先算出来才发现它不重要}，于是资源可以放到真正要紧的地方。}
-\label{tab:app-z-shield}
+
 \end{table}
 
 {\footnotesize
@@ -329,6 +333,9 @@ P_{\mathrm{pump}} = 0.01\,P_{\mathrm{th}} = 6.3997\ \mathrm{MW},
 \begin{table}[htbp]
 \centering
 \small
+\caption{热工侧的三行账。第三行与 Z.1 的再循环份额是一回事——
+\textbf{同一笔电不能在两本账里各算一次}。}
+\label{tab:app-z-thermal}
 \begin{tabular}{p{3.4cm}p{3.2cm}p{3.2cm}p{3.3cm}}
 \toprule
 量 & 数值 & 由什么决定 & 含义 \\
@@ -338,9 +345,7 @@ P_{\mathrm{pump}} = 0.01\,P_{\mathrm{th}} = 6.3997\ \mathrm{MW},
 泵功率 & $6.3997\ \mathrm{MW}$ & $0.01P_{\mathrm{th}}$ & 占毛电 $2.5\%$ \\
 \bottomrule
 \end{tabular}
-\caption{热工侧的三行账。第三行与 Z.1 的再循环份额是一回事——
-\textbf{同一笔电不能在两本账里各算一次}。}
-\label{tab:app-z-thermal}
+
 \end{table}
 
 \begin{tip}{两本账要对得上：泵功率在哪一边}{tip-app-z-thermal}
@@ -393,6 +398,9 @@ E_{\mathrm{year}}^{(0.85)} = 1620.2\ \mathrm{GWh}.
 \begin{table}[htbp]
 \centering
 \small
+\caption{可用率与年发电量。第四行是本节的结论：
+\textbf{在工程侧提高可用率，往往比在等离子体侧提高增益更划算}。}
+\label{tab:app-z-availability}
 \begin{tabular}{p{3.4cm}p{3.2cm}p{3.2cm}p{3.3cm}}
 \toprule
 量 & 数值 & 由什么决定 & 含义 \\
@@ -404,9 +412,7 @@ E_{\mathrm{year}}^{(0.85)} = 1620.2\ \mathrm{GWh}.
 折合标煤 & $0.48606$ 百万吨 & $0.34\ \mathrm{kg/kWh}$ & 声明口径 \\
 \bottomrule
 \end{tabular}
-\caption{可用率与年发电量。第四行是本节的结论：
-\textbf{在工程侧提高可用率，往往比在等离子体侧提高增益更划算}。}
-\label{tab:app-z-availability}
+
 \end{table}
 
 \begin{tip}{可用率是「另一半增益」}{tip-app-z-availability}
@@ -479,6 +485,9 @@ Z.5 与 Z.6 是工程收尾。练习 1--6 只需要本附录的公式与表，�
 \begin{table}[htbp]
 \centering
 \small
+\caption{本附录的借鉴来源与对应位置。只借鉴物理结论、公式形式与题型；
+全部数值、表格与文字自拟并由仓库脚本复算。}
+\label{tab:app-z-source}
 \begin{tabular}{p{3.4cm}p{5.6cm}p{3.6cm}}
 \toprule
 本附录内容 & 借鉴来源 & 在本书里的位置 \\
@@ -503,9 +512,7 @@ Freidberg（2007）第 14 章 &
 本附录 Z.6 \\
 \bottomrule
 \end{tabular}
-\caption{本附录的借鉴来源与对应位置。只借鉴物理结论、公式形式与题型；
-全部数值、表格与文字自拟并由仓库脚本复算。}
-\label{tab:app-z-source}
+
 \end{table}
 
 版权与复现口径，四条：第一，\textbf{不复制}任何教材或论文的表格数值，

@@ -32,6 +32,8 @@
 \begin{table}[htbp]
 \centering
 \small
+\caption{空间等离子体的四个尺度。只算前两行与最后一行，电离层作边界条件。}
+\label{tab:app-ab-scales}
 \begin{tabular}{p{2.4cm}p{3.4cm}p{3.4cm}p{4.2cm}}
 \toprule
 区域 & 特征尺度 & 特征时间 & 主导物理 \\
@@ -42,8 +44,7 @@
 磁尾 & $100\ R_E$ 长 & 亚暴 $1\ \mathrm{h}$ 量级 & 重联驱动、储能释放 \\
 \bottomrule
 \end{tabular}
-\caption{空间等离子体的四个尺度。只算前两行与最后一行，电离层作边界条件。}
-\label{tab:app-ab-scales}
+
 \end{table}
 
 \begin{tip}{四个尺度不是四个数量级，是四种物理}{tip-app-ab-scales}
@@ -109,6 +110,8 @@ M_s=\frac{v}{c_s}=9.1388,\qquad M_A=\frac{v}{v_A}=8.2012 .
 \begin{table}[htbp]
 \centering
 \small
+\caption{太阳风工作点的七个导出量。所有数由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAB\_calc.py} 现算。}
+\label{tab:app-ab-solarwind}
 \begin{tabular}{p{3.4cm}p{3.0cm}p{3.0cm}p{4.0cm}}
 \toprule
 量 & 数值 & 单位 & 说明 \\
@@ -122,8 +125,7 @@ M_s=\frac{v}{c_s}=9.1388,\qquad M_A=\frac{v}{v_A}=8.2012 .
 等离子体 $\beta$ & $0.80534$ & --- & 磁压与热压同量级 \\
 \bottomrule
 \end{tabular}
-\caption{太阳风工作点的七个导出量。所有数由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAB\_calc.py} 现算。}
-\label{tab:app-ab-solarwind}
+
 \end{table}
 
 \begin{tip}{太阳风超声速，靠的不是加热，是边界条件}{tip-app-ab-sonic}
@@ -194,6 +196,8 @@ P_{sw}=\frac12\rho v^3\cdot\pi R_E^2
 \begin{table}[htbp]
 \centering
 \small
+\caption{弓激波前的力学平衡。注意动压是\textbf{压力}，乘速度才变成能流密度。}
+\label{tab:app-ab-bowshock}
 \begin{tabular}{p{3.6cm}p{3.2cm}p{3.2cm}p{3.8cm}}
 \toprule
 量 & 数值 & 单位 & 说明 \\
@@ -206,8 +210,7 @@ P_{sw}=\frac12\rho v^3\cdot\pi R_E^2
 太阳风输入功率 & $34.126$ & $\mathrm{GW}$ & $\frac12\rho v^3\pi R_E^2$ \\
 \bottomrule
 \end{tabular}
-\caption{弓激波前的力学平衡。注意动压是\textbf{压力}，乘速度才变成能流密度。}
-\label{tab:app-ab-bowshock}
+
 \end{table}
 
 \begin{tip}{无碰撞激波：耗散靠波和粒子，不靠碰撞}{tip-app-ab-collisionless}
@@ -266,6 +269,8 @@ P_{sw}=\frac12\rho v^3\cdot\pi R_E^2
 \begin{table}[htbp]
 \centering
 \small
+\caption{磁层对流链上的四个环节。本表把实验室里的「发电机」翻译成天体里的电流闭合问题。}
+\label{tab:app-ab-convection}
 \begin{tabular}{p{3.2cm}p{3.2cm}p{3.4cm}p{4.0cm}}
 \toprule
 环节 & 关键量 & 数值 & 物理 \\
@@ -276,8 +281,7 @@ P_{sw}=\frac12\rho v^3\cdot\pi R_E^2
 循环闭合 & 重联 & 见 AB.5 & 日侧断开、夜侧合上 \\
 \bottomrule
 \end{tabular}
-\caption{磁层对流链上的四个环节。本表把实验室里的「发电机」翻译成天体里的电流闭合问题。}
-\label{tab:app-ab-convection}
+
 \end{table}
 
 \begin{tip}{发电机不是机器，是欧姆定律的一个极限}{tip-app-ab-dynamo}
@@ -341,6 +345,8 @@ Petschek 把入流区压成一个小角，让出流几乎不受限：
 \begin{table}[htbp]
 \centering
 \small
+\caption{两种重联模型在同一工作点下的对比。差别不在几何细节，而在入流面积。}
+\label{tab:app-ab-reconnection}
 \begin{tabular}{p{3.2cm}p{3.0cm}p{3.2cm}p{3.8cm}}
 \toprule
 量 & 数值 & 单位 & 说明 \\
@@ -354,8 +360,7 @@ Sweet--Parker 时间 & $2.79897\times10^{7}$ & $\mathrm{s}$ & $323.95$ 天 \\
 Petschek 时间 & $12347$ & $\mathrm{s}$ & 约 $3.4$ 小时 \\
 \bottomrule
 \end{tabular}
-\caption{两种重联模型在同一工作点下的对比。差别不在几何细节，而在入流面积。}
-\label{tab:app-ab-reconnection}
+
 \end{table}
 
 \begin{tip}{电阻不够，重联靠的是「反常电阻」}{tip-app-ab-anomalous}
@@ -417,6 +422,8 @@ T_{ce}=\frac{2\pi m_e}{eB}=0.00714477\ \mathrm{s},
 \begin{table}[htbp]
 \centering
 \small
+\caption{辐射带与磁尾的分区。本表只给尺度关系，不给通量数值。}
+\label{tab:app-ab-radbelt}
 \begin{tabular}{p{2.6cm}p{3.2cm}p{3.2cm}p{4.2cm}}
 \toprule
 区域 & 主要粒子 & 关键尺度 & 主导物理 \\
@@ -427,8 +434,7 @@ T_{ce}=\frac{2\pi m_e}{eB}=0.00714477\ \mathrm{s},
 磁尾瓣 & 等离子体片 & $B=1.0\times10^{-7}\ \mathrm{T}$ & 重联储能与释放 \\
 \bottomrule
 \end{tabular}
-\caption{辐射带与磁尾的分区。本表只给尺度关系，不给通量数值。}
-\label{tab:app-ab-radbelt}
+
 \end{table}
 
 \begin{tip}{辐射带不是「带」，是磁矩守恒的必然结果}{tip-app-ab-radbelt}
@@ -503,6 +509,8 @@ $S\propto L$，长度缩一百倍使重联率涨十倍、时间降到原来的�
 \begin{table}[htbp]
 \centering
 \small
+\caption{本附录借鉴的经典来源与各自被用到的部分。}
+\label{tab:app-ab-source}
 \begin{tabular}{p{4.4cm}p{1.8cm}p{6.6cm}}
 \toprule
 来源 & 年份 & 本附录用到的部分 \\
@@ -514,8 +522,7 @@ Parks《Physics of Space Plasmas》 & 2004 & 激波耗散、三层运动与损�
 Sweet (1958) / Petschek (1964) 会议文集 & 1958/1964 & 两种重联的原始图像 \\
 \bottomrule
 \end{tabular}
-\caption{本附录借鉴的经典来源与各自被用到的部分。}
-\label{tab:app-ab-source}
+
 \end{table}
 
 \subsection*{数值分级}

@@ -43,6 +43,8 @@
 \centering
 \small
 \setlength{\tabcolsep}{4pt}
+\caption{同一块结构材料上的三种损伤：驱动量、量级与后果。}
+\label{tab:app-ay-three}
 \begin{tabular}{p{2.4cm}p{3.0cm}p{3.4cm}p{4.6cm}}
 \toprule
 损伤类型 & 驱动量 & 本附录工作点的量级 & 后果 \\
@@ -52,8 +54,7 @@
 热循环 & 薄壁温差与次数 & $342.857$ MPa（$\Delta T=100$ K） & 疲劳裂纹 \\
 \bottomrule
 \end{tabular}
-\caption{同一块结构材料上的三种损伤：驱动量、量级与后果。}
-\label{tab:app-ay-three}
+
 \end{table}
 
 \textbf{三件事不能分开算}，因为它们互相放大：位移损伤产生空位与间隙原子，
@@ -166,6 +167,8 @@ $N_\mathrm{NRT}$ 因此是几百到上千：\textbf{一个中子能撞飞一千�
 \centering
 \small
 \setlength{\tabcolsep}{4pt}
+\caption{位移损伤的完整换算链：从中子壁负载到寿命。}
+\label{tab:app-ay-dpa}
 \begin{tabular}{p{4.4cm}p{3.0cm}p{3.6cm}p{2.4cm}}
 \toprule
 量 & 符号 & 本工作点数值 & 单位 \\
@@ -181,8 +184,7 @@ dpa 率 & $\mathrm{d}D/\mathrm{d}t$ & $2.82426\times10^{-7}$ & dpa\,s$^{-1}$ \\
 每 1 dpa 对应通量 & $1/\sigma_d$ & $1.42857\times10^{24}$ & n\,m$^{-2}$ \\
 \bottomrule
 \end{tabular}
-\caption{位移损伤的完整换算链：从中子壁负载到寿命。}
-\label{tab:app-ay-dpa}
+
 \end{table}
 
 \begin{tip}{dpa 是计数，不是能量}{tip-app-ay-dpa}
@@ -257,6 +259,8 @@ p=\frac{2\gamma}{r}=\frac{2\times1.0\ \mathrm{J\,m^{-2}}}{1.0\times10^{-9}\ \mat
 \centering
 \small
 \setlength{\tabcolsep}{4pt}
+\caption{氦的账：从 appm 到「每立方米近两千升气体」再到气泡内压。}
+\label{tab:app-ay-he}
 \begin{tabular}{p{4.6cm}p{3.2cm}p{3.4cm}p{2.2cm}}
 \toprule
 量 & 符号 & 数值 & 单位 \\
@@ -270,8 +274,7 @@ p=\frac{2\gamma}{r}=\frac{2\times1.0\ \mathrm{J\,m^{-2}}}{1.0\times10^{-9}\ \mat
 1 nm 气泡内压 & $2\gamma/r$ & $2.0\times10^{9}$（$2$ GPa） & Pa \\
 \bottomrule
 \end{tabular}
-\caption{氦的账：从 appm 到「每立方米近两千升气体」再到气泡内压。}
-\label{tab:app-ay-he}
+
 \end{table}
 
 \begin{tip}{氦不溶，所以它只往气泡里跑}{tip-app-ay-helium}
@@ -335,6 +338,8 @@ $10$ dpa 的孵化期折合 $1.122$ fpy，也就是说，一块材料在前一�
 \centering
 \small
 \setlength{\tabcolsep}{4pt}
+\caption{肿胀的线性段模型：孵化期、五年运行、设计上限与报警线。}
+\label{tab:app-ay-swell}
 \begin{tabular}{p{4.4cm}p{2.6cm}p{2.8cm}p{3.4cm}}
 \toprule
 量 & 剂量 & 肿胀（体积） & 线性尺寸变化 \\
@@ -346,8 +351,7 @@ $10$ dpa 的孵化期折合 $1.122$ fpy，也就是说，一块材料在前一�
 $1\%$ 报警线 & $15$ dpa & $1.0\%$ & $0.332228\%$ \\
 \bottomrule
 \end{tabular}
-\caption{肿胀的线性段模型：孵化期、五年运行、设计上限与报警线。}
-\label{tab:app-ay-swell}
+
 \end{table}
 
 \begin{tip}{肿胀有孵化期，所以「前两年没事」不是好消息}{tip-app-ay-swelling}
@@ -416,6 +420,8 @@ T_\mathrm{DBTT}^\mathrm{irr}=-60+160=100\ ^\circ\mathrm{C},
 \centering
 \small
 \setlength{\tabcolsep}{4pt}
+\caption{辐照硬化与脆化：从缺陷钉扎到温度下限。}
+\label{tab:app-ay-hard}
 \begin{tabular}{p{4.6cm}p{2.8cm}p{3.0cm}p{2.6cm}}
 \toprule
 量 & 符号 & 数值 & 单位 \\
@@ -431,8 +437,7 @@ DBTT 位移 & $\Delta T_\mathrm{DBTT}$ & $160$ & K \\
 运行温度下限 & DBTT $+100$ K & $200$ & $^\circ$C \\
 \bottomrule
 \end{tabular}
-\caption{辐照硬化与脆化：从缺陷钉扎到温度下限。}
-\label{tab:app-ay-hard}
+
 \end{table}
 
 \begin{tip}{硬化不是好事：强度与韧性在辐照里是此消彼长的}{tip-app-ay-dbtt}
@@ -503,6 +508,8 @@ $t_W=10.0169$ fpy——	extbf{净侵蚀对再沉积份额极其敏感}，
 \centering
 \small
 \setlength{\tabcolsep}{4pt}
+\caption{溅射侵蚀的账：总侵蚀、再沉积与净侵蚀。}
+\label{tab:app-ay-erosion}
 \begin{tabular}{p{4.6cm}p{2.8cm}p{3.0cm}p{2.6cm}}
 \toprule
 量 & 符号 & 数值 & 单位 \\
@@ -517,8 +524,7 @@ $5$ mm 装甲寿命 & $t_W$ & $2.00338$ & fpy \\
 再沉积 $0.99$ 时寿命 & $t_W$ & $10.0169$ & fpy \\
 \bottomrule
 \end{tabular}
-\caption{溅射侵蚀的账：总侵蚀、再沉积与净侵蚀。}
-\label{tab:app-ay-erosion}
+
 \end{table}
 
 \begin{tip}{净侵蚀才是寿命，总侵蚀只是「吞吐量」}{tip-app-ay-erosion}
@@ -618,6 +624,8 @@ T\in[200,550]\ ^\circ\mathrm{C}.
 \centering
 \small
 \setlength{\tabcolsep}{4pt}
+\caption{四条寿命限制的汇总：谁先到、余量多少。}
+\label{tab:app-ay-life}
 \begin{tabular}{p{4.4cm}p{3.0cm}p{3.2cm}p{2.6cm}}
 \toprule
 限制 & 判据 & 本工作点数值 & 折合寿命 \\
@@ -630,8 +638,7 @@ T\in[200,550]\ ^\circ\mathrm{C}.
 温度窗口 & DBTT $+100$ K 到 $550$ 摄氏度 & $200$--$550$ 摄氏度 & 宽 $350$ K \\
 \bottomrule
 \end{tabular}
-\caption{四条寿命限制的汇总：谁先到、余量多少。}
-\label{tab:app-ay-life}
+
 \end{table}
 
 \begin{tip}{温度窗口是设计出来的，不是自然存在的}{tip-app-ay-window}
@@ -720,6 +727,8 @@ DBTT 系数、溅射产额、再沉积份额、蠕变寿命）都是\textbf{声�
 \centering
 \small
 \setlength{\tabcolsep}{4pt}
+\caption{本附录的借鉴来源、分级与用途（逐条注明，不复制原文）。}
+\label{tab:app-ay-source}
 \begin{tabular}{p{5.4cm}p{4.6cm}p{3.4cm}}
 \toprule
 主题 & 借鉴来源 & 本书用法 \\
@@ -733,8 +742,7 @@ dpa 与 NRT 模型 & Norgert--Robinson--Torrens (1975)；Was, \emph{Fundamentals
 偏滤器与第一壁工况 & ITER 公开技术文件（含结构设计准则） & 声明输入 \\
 \bottomrule
 \end{tabular}
-\caption{本附录的借鉴来源、分级与用途（逐条注明，不复制原文）。}
-\label{tab:app-ay-source}
+
 \end{table}
 
 \textbf{分级说明}：AY.1--AY.3 的换算链（通量 $\to$ dpa $\to$ 氦）是

@@ -60,6 +60,9 @@ $10\ \mathrm{keV}$ 附近给出 $1.1\times10^{-22}\ \mathrm{m^3/s}$，与 Bosch-
 \begin{table}[htbp]
 \centering
 \small
+\caption{三个工作点的增益 $Q$。$P_{\mathrm{aux}}$ 为外部加热功率，与附录 S 表 S.2 的
+$P$ 是同一个量（口径差别见 U.3）。}
+\label{tab:app-u-accounts}
 \begin{tabular}{@{}p{3.2cm}p{1.8cm}p{1.8cm}p{1.6cm}p{1.7cm}p{1.8cm}p{1.6cm}@{}}
 \toprule
 装置 & $P_{\mathrm{aux}}$ [MW] & $\tau_E$ [s] & $T$ [keV] & $W$ [MJ] & $P_{\mathrm{fus}}$ [MW] & $Q$ \\
@@ -69,9 +72,7 @@ D2 JET 量级     & 15.0  & 0.3827 & 2.336 & 5.7   & 0.9   & 0.058 \\
 D3 DIII-D 量级  & 10.0  & 0.1055 & 1.649 & 1.1   & 0.1   & 0.014 \\
 \bottomrule
 \end{tabular}
-\caption{三个工作点的增益 $Q$。$P_{\mathrm{aux}}$ 为外部加热功率，与附录 S 表 S.2 的
-$P$ 是同一个量（口径差别见 U.3）。}
-\label{tab:app-u-accounts}
+
 \end{table}
 
 D1 一行的细节值得拆开看：$P_{\mathrm{fus}}=556.5\ \mathrm{MW}$ 中，
@@ -115,6 +116,9 @@ $f_\alpha$ 只与 $Q$ 有关，不含 $n$、$T$、$\tau_E$、装置尺寸。知�
 \begin{table}[htbp]
 \centering
 \small
+\caption{自加热份额 $f_\alpha = Q/(Q+5)$。$Q$ 只有 $1$ 时，把外部加热关掉会立刻熄火——
+这正是「得失相当」与「点火」必须分开讲的原因。}
+\label{tab:app-u-falpha}
 \begin{tabular}{@{}p{1.6cm}p{1.8cm}p{9.0cm}@{}}
 \toprule
 $Q$ & $f_\alpha$ & 含义 \\
@@ -129,9 +133,7 @@ $Q$ & $f_\alpha$ & 含义 \\
 $\infty$ & 1.0000 & 点火：外部加热可以关掉 \\
 \bottomrule
 \end{tabular}
-\caption{自加热份额 $f_\alpha = Q/(Q+5)$。$Q$ 只有 $1$ 时，把外部加热关掉会立刻熄火——
-这正是「得失相当」与「点火」必须分开讲的原因。}
-\label{tab:app-u-falpha}
+
 \end{table}
 
 $Q=1$ 听起来像「够了」，但此时 $f_\alpha$ 只有 $1/6$。外部加热一停，$P_{\mathrm{loss}}$ 里
@@ -190,6 +192,9 @@ T^{(k)} = \frac{\tau_E\!\left(P_{\mathrm{tot}}^{(k)}\right)P_{\mathrm{tot}}^{(k)
 \begin{table}[htbp]
 \centering
 \small
+\caption{D1 的自加热闭环迭代。第 11、12 步之间 $P_{\mathrm{tot}}$ 只差 $0.003\ \mathrm{MW}$，
+已经收敛；收敛点 $Q=6.073$ 高于表 \ref{tab:app-u-accounts} 的 $3.710$，原因见正文。}
+\label{tab:app-u-iter}
 \begin{tabular}{@{}p{1.2cm}p{2.0cm}p{1.9cm}p{1.7cm}p{2.0cm}p{1.8cm}p{1.5cm}@{}}
 \toprule
 步 & $P_{\mathrm{tot}}$ [MW] & $\tau_E$ [s] & $T$ [keV] & $P_{\mathrm{fus}}$ [MW] & $P_\alpha$ [MW] & $Q$ \\
@@ -203,9 +208,7 @@ T^{(k)} = \frac{\tau_E\!\left(P_{\mathrm{tot}}^{(k)}\right)P_{\mathrm{tot}}^{(k)
 12 & 332.20 & 1.4306 & 11.764 & 911.00 & 182.20 & 6.073 \\
 \bottomrule
 \end{tabular}
-\caption{D1 的自加热闭环迭代。第 11、12 步之间 $P_{\mathrm{tot}}$ 只差 $0.003\ \mathrm{MW}$，
-已经收敛；收敛点 $Q=6.073$ 高于表 \ref{tab:app-u-accounts} 的 $3.710$，原因见正文。}
-\label{tab:app-u-iter}
+
 \end{table}
 
 表中的两个口径混起来就会算出矛盾的数字：
@@ -305,6 +308,9 @@ nT\tau_E > 3.0992\times10^{21}\ \mathrm{keV\,s\,m^{-3}}
 \begin{table}[htbp]
 \centering
 \small
+\caption{点火所需的 $n\tau_E$。乘积 $nT\tau_E$ 在本节的拟合下恒为
+$3.0992\times10^{21}\ \mathrm{keV\,s\,m^{-3}}$，所以 $n\tau_E$ 与 $T$ 成反比。}
+\label{tab:app-u-triple}
 \begin{tabular}{@{}p{2.0cm}p{5.0cm}p{5.2cm}@{}}
 \toprule
 $T$ [keV] & 点火所需 $n\tau_E$ [$\mathrm{m^{-3}\,s}$] & 说明 \\
@@ -316,9 +322,7 @@ $T$ [keV] & 点火所需 $n\tau_E$ [$\mathrm{m^{-3}\,s}$] & 说明 \\
 20.0 & $1.5496\times10^{20}$ & \\
 \bottomrule
 \end{tabular}
-\caption{点火所需的 $n\tau_E$。乘积 $nT\tau_E$ 在本节的拟合下恒为
-$3.0992\times10^{21}\ \mathrm{keV\,s\,m^{-3}}$，所以 $n\tau_E$ 与 $T$ 成反比。}
-\label{tab:app-u-triple}
+
 \end{table}
 
 现在把 D1 放进去。在 $T=9.194\ \mathrm{keV}$ 上，点火要求
@@ -370,6 +374,10 @@ $Q = P_{\mathrm{fus}}/P_{\mathrm{aux}} \propto P_{\mathrm{aux}}^{-0.38}$。
 \begin{table}[htbp]
 \centering
 \small
+\caption{固定 D1 的 $n$、$B$、$I_p$，只改外部加热功率。$Q$ 随 $P_{\mathrm{aux}}$ 上升而下降，
+而 $P_{\mathrm{fus}}$ 恰好相反。$T<5\ \mathrm{keV}$ 的行受 $\langle\sigma v\rangle\propto T^2$
+高估影响（约 2 倍），只看趋势。}
+\label{tab:app-u-qaux}
 \begin{tabular}{@{}p{2.0cm}p{1.8cm}p{1.7cm}p{1.7cm}p{2.0cm}p{1.6cm}@{}}
 \toprule
 $P_{\mathrm{aux}}$ [MW] & $\tau_E$ [s] & $T$ [keV] & $W$ [MJ] & $P_{\mathrm{fus}}$ [MW] & $Q$ \\
@@ -382,10 +390,7 @@ $P_{\mathrm{aux}}$ [MW] & $\tau_E$ [s] & $T$ [keV] & $W$ [MJ] & $P_{\mathrm{fus}
 5.0   & 25.8825 & 3.203 & 129.4 & 67.5  & 13.510 \\
 \bottomrule
 \end{tabular}
-\caption{固定 D1 的 $n$、$B$、$I_p$，只改外部加热功率。$Q$ 随 $P_{\mathrm{aux}}$ 上升而下降，
-而 $P_{\mathrm{fus}}$ 恰好相反。$T<5\ \mathrm{keV}$ 的行受 $\langle\sigma v\rangle\propto T^2$
-高估影响（约 2 倍），只看趋势。}
-\label{tab:app-u-qaux}
+
 \end{table}
 
 这张表藏着一个陷阱。若只盯 $Q$，会得到「$P_{\mathrm{aux}}$ 越小越好」的结论：要在 D1 上做出
@@ -421,6 +426,9 @@ Q = \frac{1}{\eta_{\mathrm{th}}\eta_{\mathrm{aux}}} - 1 = 5.250
 \begin{table}[htbp]
 \centering
 \small
+\caption{工程增益（教学简化：$\eta_{\mathrm{th}}=\eta_{\mathrm{aux}}=0.40$，只计加热功率）。
+第一行是本书基准点：$Q=3.710$ 时 $Q_{\mathrm{eng}}=0.754<1$，电厂净输出为负。}
+\label{tab:app-u-qeng}
 \begin{tabular}{@{}p{2.8cm}p{1.6cm}p{1.5cm}p{1.6cm}p{1.6cm}p{1.6cm}p{1.5cm}@{}}
 \toprule
 工作点 & $P_{\mathrm{fus}}$ [MW] & $P_{\mathrm{aux}}$ [MW] & $P_{\mathrm{th}}$ [MW] & $P_e$ [MW] & $P_{\mathrm{grid}}$ [MW] & $Q_{\mathrm{eng}}$ \\
@@ -430,9 +438,7 @@ D1 外部加热点    & 556.5 & 150.0 & 706.5  & 282.6 & 375.0 & 0.754 \\
 ITER 设计点      & 500.0 & 50.0  & 550.0  & 220.0 & 125.0 & 1.760 \\
 \bottomrule
 \end{tabular}
-\caption{工程增益（教学简化：$\eta_{\mathrm{th}}=\eta_{\mathrm{aux}}=0.40$，只计加热功率）。
-第一行是本书基准点：$Q=3.710$ 时 $Q_{\mathrm{eng}}=0.754<1$，电厂净输出为负。}
-\label{tab:app-u-qeng}
+
 \end{table}
 
 $Q=3.710$ 的 D1 外部加热点 $Q_{\mathrm{eng}}=0.754$：聚变是做出来了，电厂账还亏。
@@ -523,6 +529,8 @@ $Q = 1/0.16 - 1 = 5.250$。结论：要让聚变在电厂账上为正，$Q$ 要�
 \begin{table}[htbp]
 \centering
 \small
+\caption{本附录的来源分级。第四列说明本书对每一处借鉴做了什么加工，避免与原文混淆。}
+\label{tab:app-u-source}
 \begin{tabular}{@{}p{3.4cm}p{5.0cm}p{6.0cm}@{}}
 \toprule
 内容 & 借鉴对象 & 本书处理 \\
@@ -535,8 +543,7 @@ $\alpha$ 加热份额与自加热闭环 & Wesson 第 1 章；ITER Physics Basis�
 三装置工作点 & 本书附录 S 表 S.2 & 同一组输入与同一口径，保证两附录可直接对照 \\
 \bottomrule
 \end{tabular}
-\caption{本附录的来源分级。第四列说明本书对每一处借鉴做了什么加工，避免与原文混淆。}
-\label{tab:app-u-source}
+
 \end{table}
 
 \textbf{三条「不复制」约定}：

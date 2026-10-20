@@ -5,7 +5,7 @@
 
 ![托卡马克真空室内部：磁约束聚变要面对的容器](figures/tokamak_interior.jpg)
 
-教材共 **610 页**，四个 PDF 都由本仓库源码编译。写作目标：**一个人、一支笔、一台能算数的电脑就能读完**。
+教材共 **609 页**，四个 PDF 都由本仓库源码编译。写作目标：**一个人、一支笔、一台能算数的电脑就能读完**。
 
 ## 四个 PDF
 
@@ -13,12 +13,12 @@
 
 | 分册 | 页数 | Releases 里的文件名 | 什么时候下这个 |
 |---|---|---|---|
-| 完整本 | 610 | `plasma_physics_textbook_vX.Y.Z.pdf` | 第一次读，或只想存一份 |
+| 完整本 | 609 | `plasma_physics_textbook_vX.Y.Z.pdf` | 第一次读，或只想存一份 |
 | 卷一·正文 | 206 | `plasma_physics_textbook_vX.Y.Z_vol1_chapters.pdf` | 只想通读前言与第 1–12 章 |
-| 卷二·附录 | 404 | `plasma_physics_textbook_vX.Y.Z_vol2_appendices.pdf` | 正文读完，回头查 48 个附录 |
+| 卷二·附录 | 403 | `plasma_physics_textbook_vX.Y.Z_vol2_appendices.pdf` | 正文读完，回头查 48 个附录 |
 | 配套手册 | 48 | `plasma_physics_handbook_vX.Y.Z.pdf` | 边学边查学习策略、逐章对照与题库 |
 
-三册的印刷页码与完整本一致（卷一 1–206，卷二 207–610），书签全部保留，可以在分册与完整本之间按页码对照。
+三册的印刷页码与完整本一致（卷一 1–206，卷二 207–609），书签全部保留，可以在分册与完整本之间按页码对照。
 每个 release 都带这四个 PDF 与该版的改动说明。
 
 仓库内直达：[完整本](pdf/plasma_physics_textbook_v2.pdf) · [卷一](pdf/plasma_physics_textbook_v2_vol1_chapters.pdf) · [卷二](pdf/plasma_physics_textbook_v2_vol2_appendices.pdf) · [配套手册](pdf/plasma_physics_handbook.pdf)
@@ -116,7 +116,7 @@ python -X utf8 check/physics_regression.py        # 重新计算书中印出的�
 
 ## 版本与反馈
 
-当前 **v1.32.4**；版本演进与验收记录见 [`CHANGELOG.md`](CHANGELOG.md)，独立评审结论见 [`docs/review-log.md`](docs/review-log.md)。
+当前 **v1.32.5**；版本演进与验收记录见 [`CHANGELOG.md`](CHANGELOG.md)，独立评审结论见 [`docs/review-log.md`](docs/review-log.md)。
 
 发现数值、单位或推导错误，欢迎开 issue 并附上复算过程；补充内容优先补"能自己算一遍"的例子与练习。
 

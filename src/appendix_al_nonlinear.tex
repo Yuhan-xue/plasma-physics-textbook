@@ -61,6 +61,8 @@ $n_c = 9.10085\times10^{27}$ m$^{-3}$，冕区 $n_e/n_c = 0.010988$，\textbf{�
 \begin{table}[htbp]
 \centering
 \small
+\caption{两个驱动器的非线性判据：同一套公式，两个数量级不同的答案（数值由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAL\_calc.py} 复算）。}
+\label{tab:app-al-nonlinear}
 \begin{tabular}{p{3.0cm}p{3.4cm}p{3.4cm}p{3.6cm}}
 \toprule
 量 & 微波侧（140 GHz） & 激光侧（$10^{15}$ W cm$^{-2}$） & 说明 \\
@@ -75,8 +77,7 @@ $n_c = 9.10085\times10^{27}$ m$^{-3}$，冕区 $n_e/n_c = 0.010988$，\textbf{�
 工作密度/截止 & $0.411308$ & $0.010988$ & 冕区离截止更远 \\
 \bottomrule
 \end{tabular}
-\caption{两个驱动器的非线性判据：同一套公式，两个数量级不同的答案（数值由 \texttt{tools/\allowbreak{}calc/\allowbreak{}appAL\_calc.py} 复算）。}
-\label{tab:app-al-nonlinear}
+
 \end{table}
 
 \begin{tip}{非线性不是「更强的场」，是「不可叠加」}{tip-app-al-nonlinear}
@@ -134,6 +135,8 @@ $c_s = \sqrt{T_e/m_i} = 593524$ m s$^{-1}$ $= 593.524$ km s$^{-1}$，
 \begin{table}[htbp]
 \centering
 \small
+\caption{离子声孤子：振幅与宽度不是自由参数，由 $M$ 与 $\lambda_{De}$ 定死。}
+\label{tab:app-al-soliton}
 \begin{tabular}{p{3.6cm}p{3.4cm}p{4.4cm}}
 \toprule
 量 & 数值 & 说明 \\
@@ -146,8 +149,7 @@ $c_s = \sqrt{T_e/m_i} = 593524$ m s$^{-1}$ $= 593.524$ km s$^{-1}$，
 特征时间 $\Delta/c_s$ & $438.533$ ps & 走过自身宽度 \\
 \bottomrule
 \end{tabular}
-\caption{离子声孤子：振幅与宽度不是自由参数，由 $M$ 与 $\lambda_{De}$ 定死。}
-\label{tab:app-al-soliton}
+
 \end{table}
 
 另一种「非线性挖坑」来自有质动力力：高频场把电子从强场区推出去，留下一个密度凹陷
@@ -228,6 +230,8 @@ $\lambda_L = 192.758$ nm，$k_L\lambda_{De} = 0.766278$（冕区 $\lambda_{De} =
 \begin{table}[htbp]
 \centering
 \small
+\caption{同一套匹配条件与阈值不等式，在两个完全不同的驱动器上给出的答案。}
+\label{tab:app-al-parametric}
 \begin{tabular}{p{3.4cm}p{3.3cm}p{3.6cm}p{3.4cm}}
 \toprule
 量 & 微波侧（140 GHz） & 激光冕区（0.35 $\mu$m） & 说明 \\
@@ -240,8 +244,7 @@ $\lambda_L = 192.758$ nm，$k_L\lambda_{De} = 0.766278$（冕区 $\lambda_{De} =
 子波 2 & 电子波 & 散射光 $426.177$ nm & 斯托克斯位移 \\
 \bottomrule
 \end{tabular}
-\caption{同一套匹配条件与阈值不等式，在两个完全不同的驱动器上给出的答案。}
-\label{tab:app-al-parametric}
+
 \end{table}
 
 \begin{tip}{参量过程是「泵浦把能量交给子波」，不是碰撞}{tip-app-al-parametric}
@@ -307,6 +310,8 @@ $10^{24}$ m$^{-3}$ 的固体靶是 $96.1592$ GV m$^{-1}$）。这个上限把非
 \begin{table}[htbp]
 \centering
 \small
+\caption{自聚焦与崩塌的两个世界：同一套判据，一个差四个数量级、一个必然发生。}
+\label{tab:app-al-collapse}
 \begin{tabular}{p{3.4cm}p{3.6cm}p{3.6cm}p{3.2cm}}
 \toprule
 量 & 托卡马克（140 GHz） & ICF 冕区（0.35 $\mu$m） & 说明 \\
@@ -320,8 +325,7 @@ $1\%$ 密度坑所需场 & $3.64820\times10^{7}$ V m$^{-1}$ & $1.20317\times10^{
 波破裂场 $E_{WB}$ & $961.592$ MV m$^{-1}$ & —— & $\propto\sqrt{n_e}$ \\
 \bottomrule
 \end{tabular}
-\caption{自聚焦与崩塌的两个世界：同一套判据，一个差四个数量级、一个必然发生。}
-\label{tab:app-al-collapse}
+
 \end{table}
 
 \begin{tip}{崩塌是「非线性把波自己关起来」}{tip-app-al-collapse}
@@ -354,6 +358,8 @@ Boyd 与 Sanderson（2003，第 9 章）。
 \begin{table}[htbp]
 \centering
 \small
+\caption{粒子俘获与线性阻尼的竞赛（$k\lambda_{De} = 0.3$，$\gamma = 1.27283\times10^{10}$ s$^{-1}$，$1/\gamma = 78.5651$ ps）。}
+\label{tab:app-al-trapping}
 \begin{tabular}{p{2.6cm}p{3.2cm}p{3.2cm}p{4.0cm}}
 \toprule
 量 & $E = 10^{3}$ V m$^{-1}$ & $E = 10^{4}$ V m$^{-1}$ & 说明 \\
@@ -365,8 +371,7 @@ Boyd 与 Sanderson（2003，第 9 章）。
 $\omega_b/\gamma$ & $4.38521$ & $13.8672$ & $>1$ 即非线性主导 \\
 \bottomrule
 \end{tabular}
-\caption{粒子俘获与线性阻尼的竞赛（$k\lambda_{De} = 0.3$，$\gamma = 1.27283\times10^{10}$ s$^{-1}$，$1/\gamma = 78.5651$ ps）。}
-\label{tab:app-al-trapping}
+
 \end{table}
 
 表 \ref{tab:app-al-trapping} 的结论很硬：只要场强超过
@@ -455,6 +460,8 @@ f(x,v) = f\!\left(\tfrac{1}{2}m_ev^2 - e\phi(x)\right) .
 \begin{table}[htbp]
 \centering
 \small
+\caption{四种非线性结构的尺度对照：它们的共同点是「比波活得久，比流体元活得短」。}
+\label{tab:app-al-structures}
 \begin{tabular}{p{3.4cm}p{3.8cm}p{3.6cm}p{3.0cm}}
 \toprule
 结构 & 尺度 & 特征量 & 寿命 \\
@@ -465,8 +472,7 @@ caviton & $\sim10\,\lambda_{De} = 712.806$ $\mu$m & 崩到 $E_{WB}$ 为止 & 几
 孤子 & $3.65148\,\lambda_{De} = 260.280$ $\mu$m & $M = 1.1$ & $438.533$ ps（越过自身） \\
 \bottomrule
 \end{tabular}
-\caption{四种非线性结构的尺度对照：它们的共同点是「比波活得久，比流体元活得短」。}
-\label{tab:app-al-structures}
+
 \end{table}
 
 \begin{tip}{相干结构是「自组织」的，不是「外加」的}{tip-app-al-structures}
@@ -564,6 +570,8 @@ $k_L\lambda_{De} = 0.766278$，\textbf{短波、强阻尼区}），
 \begin{table}[htbp]
 \centering
 \small
+\caption{}
+\label{tab:app-al-source}
 \begin{tabular}{p{2.2cm}p{4.4cm}p{7.0cm}}
 \toprule
 级别 & 内容 & 说明 \\
@@ -573,8 +581,7 @@ $k_L\lambda_{De} = 0.766278$，\textbf{短波、强阻尼区}），
 文献级 & 孤子解（KdV）、三波耦合方程形式、O'Neil 阻尼振荡图景、BGK 平衡、扎哈罗夫方程 & 只引用方程形式与结论，不作数值比对 \\
 \bottomrule
 \end{tabular}
-\caption{}
-\label{tab:app-al-source}
+
 \end{table}
 
 \textbf{版权与借鉴口径。}本附录\textbf{不复制}任何原书的文字、编号体系、插图或数据表；
