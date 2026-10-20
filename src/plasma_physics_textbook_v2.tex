@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.32.1},
+  pdftitle={等离子体物理自学教材 v1.32.2},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -486,7 +486,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.32.1}}
+  {\small\textcolor{white!45}{v1.32.2}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -2442,7 +2442,7 @@ c_{s,\text{绝热}}=\sqrt{\frac{\gamma_sk_BT_e}{m_i}}
 从双流体方程可以导出一个极为重要的关系——将电流密度 $\vect{j}$ 与电场 $\vect{E}$ 联系起来的方程。
 
 \begin{theorem}{广义欧姆定律}{ohms-law}
-在准中性 ($n_e = n_i = n$)、非相对论条件下，电流密度的演化满足：
+在准中性 （$n_e = n_i = n$）、非相对论条件下，电流密度的演化满足：
 \[
 \vect{E} + \vect{u}\times\vect{B} = \eta\vect{j} + \frac{1}{en}\vect{j}\times\vect{B} - \frac{1}{en}\grad p_e + \frac{m_e}{n e^2}\frac{\partial\vect{j}}{\partial t}
 \]
@@ -2510,7 +2510,7 @@ c_{s,\text{绝热}}=\sqrt{\frac{\gamma_sk_BT_e}{m_i}}
 
 \begin{miniquiz}
 \begin{enumerate}
-\item 从连续性方程证明：若流动是定常的 ($\partial/\partial t = 0$) 且不可压缩的 ($\divg\vect{u}=0$)，则 $n$ 沿流线守恒。
+\item 从连续性方程证明：若流动是定常的 （$\partial/\partial t = 0$） 且不可压缩的 （$\divg\vect{u}=0$），则 $n$ 沿流线守恒。
 \item 解释为什么在广义欧姆定律中，霍尔项与电流 $\vect{j}$ 垂直，因此不做功。
 \item 若电子温度 $T_e$ 远高于离子温度 $T_i$，在广义欧姆定律中哪一项会变得重要？
 \end{enumerate}
@@ -2866,13 +2866,13 @@ v_p = \frac{\omega}{k} = \frac{\omega_{pe}}{k}
 \]
 其中 $c_s = \sqrt{k_B T_e/m_i}$ 是\textbf{离子声速}（$\lambda_{De}$ 的定义见第2章）。
 
-在长波极限 ($k\lambda_{De} \ll 1$)：
+在长波极限 （$k\lambda_{De} \ll 1$）：
 \[
 \omega \approx k c_s
 \]
 这是普通的声波，电子热压提供恢复力，离子质量提供惯性。
 
-在短波极限 ($k\lambda_{De} \gg 1$)：
+在短波极限 （$k\lambda_{De} \gg 1$）：
 \[
 \omega \approx \omega_{pi}
 \]
@@ -2920,7 +2920,7 @@ v_p = \frac{\omega}{k} = \frac{\omega_{pe}}{k}
 \section{磁化等离子体中的波}\difficulty{提高}
 \label{sec:ch6-magnetized}
 
-当存在背景磁场时，电磁波的行为变得更加丰富。考虑沿磁场传播的波 ($\vect{k}\parallel\vect{B}_0$)。
+当存在背景磁场时，电磁波的行为变得更加丰富。考虑沿磁场传播的波 （$\vect{k}\parallel\vect{B}_0$）。
 
 \begin{theorem}{沿磁场传播的电磁波}{waves-parallel}
 定义左旋和右旋圆极化基矢。色散关系分为两支：
@@ -3006,7 +3006,7 @@ c^2 k^2 \approx \frac{\omega_{pe}^2 \omega}{\omega_{ce}}
 \item \textbf{Langmuir 波}：电子相对于离子背景的振荡，$\omega^2 = \omega_{pe}^2 + 3k^2v_{te}^2$。
 \item \textbf{离子声波}：$\omega = kc_s/\sqrt{1+k^2\lambda_{De}^2}$，恢复力来自电子热压。
 \item 冷等离子体中电磁波有色散关系 $\omega^2 = \omega_{pe}^2 + c^2k^2$，$\omega_{pe}$ 是截止频率。
-\item 磁化等离子体中波的模式按极化分裂（R波和L波），出现\textbf{共振}($\omega_{ce}$)和\textbf{截止}。
+\item 磁化等离子体中波的模式按极化分裂（R波和L波），出现\textbf{共振}（$\omega_{ce}$）和\textbf{截止}。
 \item \textbf{哨声波}是低频R波，高频群速度大，产生特征“滑落”音调。
 \item \textbf{量纲自检}：色散关系两边都是 $\mathrm{s^{-2}}$——$\omega^2$、$\omega_{pe}^2$、$k^2v_{Te}^2$ 同量纲，所以能直接相加减；把 $\omega$ 与 $k$ 混着比大小是没有意义的。
 \end{itemize}
@@ -3134,7 +3134,7 @@ f = f_0(v) + f_1(x,v,t), \qquad E = E_1(x,t)
 \[
 \omega_i = -\sqrt{\frac{\pi}{8}}\frac{\omega_{pe}}{(k\lambda_D)^3}\exp\left(-\frac{1}{2k^2\lambda_D^2} - \frac{3}{2}\right)
 \]
-阻尼率强烈依赖于 $k\lambda_D$（$\lambda_D$ 的定义见第2章\cref{eq:debye-length}）：长波 ($k\lambda_D \ll 1$) 阻尼极弱，短波阻尼迅速增强。
+阻尼率强烈依赖于 $k\lambda_D$（$\lambda_D$ 的定义见第2章\cref{eq:debye-length}）：长波 （$k\lambda_D \ll 1$） 阻尼极弱，短波阻尼迅速增强。
 \end{theorem}
 
 \begin{insight}{Landau 阻尼的物理图像}{landau-intuition}
@@ -3144,7 +3144,7 @@ f = f_0(v) + f_1(x,v,t), \qquad E = E_1(x,t)
 \item 快粒子（$v > v_\phi$，$v' > 0$）：在波参考系中\textbf{向右}运动，推着波峰前进，被波\textbf{减速}，\textbf{把能量交给波}
 \end{itemize}
 
-由于麦克斯韦分布中慢粒子 ($v < v_\phi$) 比快粒子 ($v > v_\phi$) 多（$\partial f_0/\partial v < 0$），获得能量的粒子占多数，净效应是粒子从波中吸收能量，波因此被阻尼。
+由于麦克斯韦分布中慢粒子 （$v < v_\phi$） 比快粒子 （$v > v_\phi$） 多（$\partial f_0/\partial v < 0$），获得能量的粒子占多数，净效应是粒子从波中吸收能量，波因此被阻尼。
 
 注意：\textbf{没有任何碰撞发生}，也\textbf{没有捕获}（trapping 是非线性效应，见下文）。能量传递是通过波与共振粒子之间的相干相互作用完成的。这是纯粹的集体效应。
 \end{insight}
@@ -3201,7 +3201,7 @@ f = f_0(v) + f_1(x,v,t), \qquad E = E_1(x,t)
 \item \textbf{Vlasov 方程}描述无碰撞等离子体中分布函数的演化，自洽场通过麦克斯韦方程确定。
 \item 线性化后得到色散关系，其中 $v = \omega/k$ 处的极点对应\textbf{波--粒子共振}。
 \item \textbf{Landau 阻尼}是无碰撞等离子体中波衰减的机制，由相速度附近的共振粒子引起。
-\item 当 $\partial f_0/\partial v < 0$（麦克斯韦分布）时波被阻尼；若分布有凸起 ($\partial f_0/\partial v > 0$)，则可能出现\textbf{不稳定性}。
+\item 当 $\partial f_0/\partial v < 0$（麦克斯韦分布）时波被阻尼；若分布有凸起 （$\partial f_0/\partial v > 0$），则可能出现\textbf{不稳定性}。
 \item 动理学描述不可替代：流体方程完全无法预测 Landau 阻尼。
 \item \textbf{量纲自检}：Landau 阻尼率 $\gamma\propto\omega_{pe}(k\lambda_{De})^{-3}$ 的单位是 $\mathrm{s^{-1}}$（与 $\omega$ 相同）；指数 $\exp[-\omega^2/(2k^2v_{Te}^2)]$ 必须无量纲。
 \end{itemize}
