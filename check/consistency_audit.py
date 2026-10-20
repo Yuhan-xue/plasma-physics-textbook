@@ -561,7 +561,7 @@ def check_L_readme(main_text):
     letters = re.findall(r'\\appchapter\{附录([A-Z]{1,2})[：:]', t)
     n = len(letters)
 
-    for pat, name in ((r'12\s*章正文\s*\+\s*(\d+)\s*附录', '「12 章正文 + N 附录」'),
+    for pat, name in ((r'12\s*章正文\s*\+\s*(\d+)\s*个?\s*附录', '「12 章正文 + N 附录」'),
                       (r'附录（(\d+)\s*个）', '「附录（N 个）」')):
         m = re.search(pat, rd)
         if not m:

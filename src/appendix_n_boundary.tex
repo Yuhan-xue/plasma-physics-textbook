@@ -27,7 +27,7 @@ P_\alpha=\frac15P_{\mathrm{fus}}=60\ \mathrm{MW},
 \qquad
 P_{\mathrm{heat}}=P_\alpha+P_{\mathrm{ext}}=100\ \mathrm{MW},
 \end{equation}
-其中外部加热取 $P_{\mathrm{ext}}=40\ \mathrm{MW}$（附录 M 的五种手段之和）。芯部辐射与输运使一部分功率并不流向边界，取辐射份额 $f_{\mathrm{rad}}=30\%$，则真正越过最外闭合磁面（LCFS）进入刮削层的功率是
+其中外部加热取 $P_{\mathrm{ext}}=40\ \mathrm{MW}$（附录 M 的五种手段之和）。芯部辐射与输运使一部分功率并不流向边界。取辐射份额 $f_{\mathrm{rad}}=30\%$，则真正越过最外闭合磁面（LCFS）进入刮削层的功率是
 \begin{equation}
 P_{\mathrm{SOL}}=(1-f_{\mathrm{rad}})\,P_{\mathrm{heat}}=70\ \mathrm{MW}.
 \label{eq:app-n-psol}
@@ -39,9 +39,9 @@ A_{\mathrm{wall}}\simeq4\pi^2R_0a\kappa\approx979\ \mathrm{m^2},
 \qquad
 q_{\mathrm{wall}}\simeq\frac{70\ \mathrm{MW}}{979\ \mathrm{m^2}}\approx71.5\ \mathrm{kW/m^2}.
 \end{equation}
-这个数本身不算大，但它来自\textbf{均匀分布}的假设。磁力线把功率集中到极窄的一条带上，真实壁面承受的远不止 $71.5\ \mathrm{kW/m^2}$。
+这个数本身不算大。它来自\textbf{均匀分布}的假设。磁力线把功率集中到极窄的一条带上，真实壁面承受的远不止 $71.5\ \mathrm{kW/m^2}$。
 
-\textbf{第二步估算：功率落在多窄的带上？} 刮削层里功率沿磁力线流出，在靶板处沉积的宽度由\textbf{热流宽度} $\lambda_q$ 描述（托卡马克上 $\lambda_q\sim1$--$5\ \mathrm{mm}$，由湍流输运与磁通膨胀共同决定）。设 $\lambda_q=5\ \mathrm{mm}$、磁通膨胀因子 $f_x=5$（偏滤器把磁力线“摊开”的倍数）、内外靶各分一半功率，则单靶湿面积
+\textbf{第二步估算：功率落在多窄的带上？} 刮削层里功率沿磁力线流出，在靶板处沉积的宽度由\textbf{热流宽度} $\lambda_q$ 描述（托卡马克上 $\lambda_q\sim1$--$5\ \mathrm{mm}$，由湍流输运与磁通膨胀共同决定）。设 $\lambda_q=5\ \mathrm{mm}$、磁通膨胀因子 $f_x=5$（偏滤器把磁力线“摊开”的倍数）。内外靶各分一半功率，则单靶湿面积
 \begin{equation}
 A_{\mathrm{wet}}=2\pi R_0\,\lambda_q f_x
 =2\pi(6.2)(5\times10^{-3})(5)\approx0.974\ \mathrm{m^2},
@@ -69,7 +69,7 @@ $q_\perp\ (\mathrm{MW/m^2})$ & $35.9$ & $6.24$ & $3.13$ & $1.88$ & $0.627$ \\
 \bottomrule
 \end{tabular}
 \end{table}
-\textbf{结论二：}把靶板“放平”到与磁力线成 $3^\circ$，热流被压低到 $1.88\ \mathrm{MW/m^2}$，几何杠杆 $1/\sin3^\circ\approx19$ 倍，与磁通膨胀 $f_x=5$ 倍合起来约 $95$ 倍。现代偏滤器正是靠这两级几何杠杆把 $\mathrm{MW/m^2}$ 量级以上的平行热流降到钨靶板可以稳态承受的 $5$--$10\ \mathrm{MW/m^2}$ 以内。
+\textbf{结论二：}把靶板“放平”到与磁力线成 $3^\circ$，热流被压低到 $1.88\ \mathrm{MW/m^2}$，几何杠杆 $1/\sin3^\circ\approx19$ 倍。与磁通膨胀 $f_x=5$ 倍合起来约 $95$ 倍。现代偏滤器正是靠这两级几何杠杆把 $\mathrm{MW/m^2}$ 量级以上的平行热流降到钨靶板可以稳态承受的 $5$--$10\ \mathrm{MW/m^2}$ 以内。
 
 {\footnotesize
 \textbf{出处：}Stangeby《The Plasma Boundary of Magnetic Fusion Devices》第 1--5 章（功率账、$\lambda_q$、磁通膨胀与倾角）。
@@ -99,7 +99,7 @@ c_s=\sqrt{\frac{k_BT_t}{m_i}},
 \end{equation}
 其中 $\gamma$ 是鞘层热传输系数（离子与电子两个通道之和，含鞘层电势加速的贡献）。$n_t$、$T_t$ 是\textbf{靶板处}的密度与温度，$c_s$ 是离子声速（本书约定 $c_s=\sqrt{k_BT_e/m_i}$，与配套手册 L 第 4 章一致）。
 
-\textbf{关键问题：}$n_t$ 与 $T_t$ 不是自由参数，它们被“上游”（刮削层入口，温度 $T_u$、密度 $n_u$）通过\textbf{平行热传导}与\textbf{压力守恒}锁住。这套关系叫\textbf{两点模型}（two-point model）：能量以电子热传导为主沿磁力线流向靶板，
+\textbf{关键问题：}$n_t$ 与 $T_t$ 不是自由参数，它们被“上游”（刮削层入口，温度 $T_u$、密度 $n_u$）通过\textbf{平行热传导}与\textbf{压力守恒}锁住。这套关系叫\textbf{两点模型}（two-point model）。能量以电子热传导为主沿磁力线流向靶板，
 \begin{equation}
 T_u^{7/2}=T_t^{7/2}+\frac{7}{2}\frac{q_\parallel L}{K_{0e}},
 \qquad
@@ -157,7 +157,7 @@ f_{\mathrm{rad}}=1-\frac{q_\perp^{\max}}{q_\parallel}=1-\frac{5}{35.9}\approx0.8
 P_{\mathrm{rad}}^{\mathrm{div}}=f_{\mathrm{rad}}\times35\ \mathrm{MW}\approx30.1\ \mathrm{MW}.
 \label{eq:app-n-frad}
 \end{equation}
-也就是说，偏滤器必须把\textbf{单靶 $86\%$ 的入射功率变成光子}，只让剩下 $14\%$ 打到靶板上。这就是\textbf{脱靶}（detachment）运行点的定义：靶板前的等离子体温度降到几 $\mathrm{eV}$，杂质（氮、氖、氩）在这个低温区辐射极强，把能量以线辐射与轫致辐射的形式散布到整面壁上。
+也就是说，偏滤器必须把\textbf{单靶 $86\%$ 的入射功率变成光子}，只让剩下 $14\%$ 打到靶板上。这就是\textbf{脱靶}（detachment）运行点的定义。靶板前的等离子体温度降到几 $\mathrm{eV}$，杂质（氮、氖、氩）在这个低温区辐射极强，把能量以线辐射与轫致辐射的形式散布到整面壁上。
 
 \textbf{需要多少杂质？} 体辐射功率为
 \begin{equation}
@@ -182,7 +182,7 @@ $3\times10^{-33}$（弱辐射区） & $5.02\times10^{18}$ & $5.0\%$ \\
 \textbf{教学要点：}同样的辐射功率，$L_z$ 差一个量级，所需杂质比例就差一个量级（$0.5\%$ 对 $5\%$）。而杂质比例不能任意提高，杂质会稀释燃料、并在芯部造成辐射损失（第 10 章的 $P_{\mathrm{loss}}$）。所以脱靶运行是\textbf{在“辐射足够”与“别把芯部也冷却”之间走钢丝}，现代偏滤器研究因此大量依赖 $L_z$ 的精确数据。
 
 \begin{warning}{把“脱靶”当成“关掉热流”}{warn:appn-detach}
-脱靶并不是让功率消失，而是把它\textbf{提前变成辐射}：辐射是各向同性的，落到整面壁上（面积约 $979\ \mathrm{m^2}$）而不是 $1\ \mathrm{m^2}$ 的靶带上，所以壁面能承受。代价是：(1) 靶板前温度过低时，等离子体“脱离”靶板，打击点位置与粒子排出通道都会改变；(2) 辐射区若上移到 X 点以上（“MARFE”），会直接冷却芯部边缘并可能触发密度极限。脱靶是一个\textbf{运行窗口}，不是开关。
+脱靶并不是让功率消失，而是把它\textbf{提前变成辐射}：辐射是各向同性的，落到整面壁上（面积约 $979\ \mathrm{m^2}$）而不是 $1\ \mathrm{m^2}$ 的靶带上，所以壁面能承受。代价是：(1) 靶板前温度过低时，等离子体“脱离”靶板，打击点位置与粒子排出通道都会改变。(2) 辐射区若上移到 X 点以上（“MARFE”），会直接冷却芯部边缘并可能触发密度极限。脱靶是一个\textbf{运行窗口}，不是开关。
 \end{warning}
 
 {\footnotesize
@@ -229,7 +229,7 @@ $5\ \mathrm{mm}$ 厚的钨靶板在这种速率下寿命约 $5900$ 年——\tex
 \qquad
 Y_{\mathrm{ELM}}\approx10^{-3},
 \end{equation}
-单次 ELM 的侵蚀深度 $d_{\mathrm{ELM}}\approx0.33\ \mathrm{nm}$；每次放电 $1000$ 次 ELM $\Rightarrow0.33\ \mathrm{\mu m}$；每年 $10^{4}$ 次放电 $\Rightarrow$
+单次 ELM 的侵蚀深度 $d_{\mathrm{ELM}}\approx0.33\ \mathrm{nm}$。每次放电 $1000$ 次 ELM $\Rightarrow0.33\ \mathrm{\mu m}$。每年 $10^{4}$ 次放电 $\Rightarrow$
 \begin{equation}
 \dot{d}_{\mathrm{ELM}}\approx3.30\ \mathrm{mm/yr}\ (\text{无再沉积}),
 \qquad
@@ -237,7 +237,7 @@ Y_{\mathrm{ELM}}\approx10^{-3},
 \end{equation}
 $5\ \mathrm{mm}$ 靶板寿命只剩约 $15$ 年——\textbf{ELM 造成的侵蚀比稳态高约 $390$ 倍}。
 
-\textbf{结论：}决定钨靶板寿命的不是“稳态热流与稳态溅射”，而是\textbf{瞬态事件}。因此现代装置的壁寿命设计必须包含 ELM 缓解（弹丸注入提高 ELM 频率、共振磁扰动 RMP 抑制 ELM，或完全无 ELM 的运行模式），这条结论与下一节的热负荷结论完全同源。
+\textbf{结论：}决定钨靶板寿命的不是“稳态热流与稳态溅射”，而是\textbf{瞬态事件}。因此现代装置的壁寿命设计必须包含 ELM 缓解（弹丸注入提高 ELM 频率、共振磁扰动 RMP 抑制 ELM，或完全无 ELM 的运行模式）。这条结论与下一节的热负荷结论完全同源。
 
 {\footnotesize
 \textbf{出处：}Stangeby 第 3、6 章（溅射产额与再沉积）。
@@ -249,7 +249,7 @@ Wesson 偏滤器章。
 
 \section{边缘局域模（ELM）与瞬态热负荷}
 
-\textbf{什么是 ELM。} 高约束模式（H 模）边缘有一个输运垒（“台基”，pedestal），它把边缘压强梯度抬到\textbf{剥离-气球模}（peeling-ballooning）稳定性边界。一旦越界，边缘就会周期性失稳，把台基储存能量的一小部分在亚毫秒内抛到偏滤器上，这就是 I 型 ELM。
+\textbf{什么是 ELM。} 高约束模式（H 模）边缘有一个输运垒（“台基”，pedestal）。它把边缘压强梯度抬到\textbf{剥离-气球模}（peeling-ballooning）稳定性边界。一旦越界，边缘就会周期性失稳，把台基储存能量的一小部分在亚毫秒内抛到偏滤器上，这就是 I 型 ELM。
 
 \textbf{第一步：台基里存了多少能量？} 用零维能量内容
 \begin{equation}
@@ -272,7 +272,7 @@ q_{\mathrm{ELM}}\simeq\frac{20.2\ \mathrm{MJ}}{20\ \mathrm{m^2}\times0.3\ \mathr
 \frac{q_{\mathrm{ELM}}}{q_\perp}\approx1.8\times10^{3}.
 \end{equation}
 
-\textbf{第三步：这个数字对材料意味着什么？} $3.4\ \mathrm{GW/m^2}$ 已超过钨的熔融阈值量级（熔点 $3695\ \mathrm{K}$，瞬态熔融阈值与脉冲长度有关，约 $\mathrm{GW/m^2}$ 量级），所以 ELM 是\textbf{瞬态损伤}（熔融、开裂、溅射暴增）的主因。这就解释了为什么上面的侵蚀账里 ELM 比稳态高两个多量级，也解释了 ELM 缓解为何是 ITER 的关键工程课题：把单次 $\Delta W_{\mathrm{ELM}}$ 压到 $W_{\mathrm{th}}$ 的 $0.5\%$ 以下，或把 ELM 频率提高到每次抛出的能量足够小。
+\textbf{第三步：这个数字对材料意味着什么？} $3.4\ \mathrm{GW/m^2}$ 已超过钨的熔融阈值量级（熔点 $3695\ \mathrm{K}$，瞬态熔融阈值与脉冲长度有关，约 $\mathrm{GW/m^2}$ 量级）。ELM 是\textbf{瞬态损伤}（熔融、开裂、溅射暴增）的主因。这就解释了为什么上面的侵蚀账里 ELM 比稳态高两个多量级，也解释了 ELM 缓解为何是 ITER 的关键工程课题。把单次 $\Delta W_{\mathrm{ELM}}$ 压到 $W_{\mathrm{th}}$ 的 $0.5\%$ 以下，或把 ELM 频率提高到每次抛出的能量足够小。
 
 \textbf{与附录 M 的呼应：}附录 M 讲的是“怎么把功率加进芯部”，本附录讲的是“这些功率最终砸在哪里”。同一个 $70\ \mathrm{MW}$（式 \eqref{eq:app-n-psol}），芯部要的是“进得去”，边界要的是“出得来且别砸坏壁”——两者构成聚变装置的两端约束。
 
@@ -323,7 +323,7 @@ $P_{\mathrm{fus}}=300\ \mathrm{MW}$ 时放宽到约 $0.60\%$（对应约 $6.0$ �
 \end{equation}
 余量用于补偿吸收与泄漏损失，并需要铍或铅作为\textbf{中子倍增剂}。$\mathrm{TBR}<1$ 的装置无论芯部多好都不可能自持——这是与“点火条件”完全独立、同等硬的一条约束。
 
-\textbf{与全书其他部分的连线：}氚消耗率由第 10 章的 $P_{\mathrm{fus}}$ 决定；滞留与壁材料由本附录 \S N.4 的溅射/再沉积决定；而 TBR 属于包层与中子学，本书不展开，但给出量级与判据。
+\textbf{与全书其他部分的连线：}氚消耗率由第 10 章的 $P_{\mathrm{fus}}$ 决定；滞留与壁材料由本附录 \S N.4 的溅射/再沉积决定。TBR 属于包层与中子学，本书不展开，但给出量级与判据。
 
 {\footnotesize
 \textbf{出处：}Wesson 第 1 章与第 14 章（氚消耗与增殖）。
@@ -385,7 +385,7 @@ N.6 & Wesson 第 1、14 章；ITER 设计基准文档；Stangeby 第 1 章 & 氚
 \begin{itemize}
 \item 本附录\textbf{不复制}任何教材或文献的题目原文、解答、图表与数据表；表格中的参数区间与物理结论属于教科书公共知识，文字表述与全部数值由本书自拟。
 \item 表中列出的教材与文献是\textbf{取材来源}（说明该主题在哪本书里讲、按什么顺序讲），不是逐句引用；读者若要系统学习，请直接阅读原书。
-\item 本附录所用的一切“文献量级输入”（$\gamma\approx7$、$K_{0e}\simeq2000$、$Y\approx10^{-5}$ 与 $10^{-3}$、$L_z$ 的两个取值、$\Delta W_{\mathrm{ELM}}/W_{\mathrm{th}}$、辐射份额 $50\%$、再沉积 $90\%$）都在正文中\textbf{显式标出}，便于读者替换成自己装置的数据重算。结论中凡依赖这些输入的倍数关系（如“ELM 比稳态高约 $390$ 倍”）都会随输入变化，但量级结论稳定。
+\item 本附录所用的一切“文献量级输入”（$\gamma\approx7$、$K_{0e}\simeq2000$、$Y\approx10^{-5}$ 与 $10^{-3}$、$L_z$ 的两个取值、$\Delta W_{\mathrm{ELM}}/W_{\mathrm{th}}$、辐射份额 $50\%$、再沉积 $90\%$）都在正文中\textbf{显式标出}。便于读者替换成自己装置的数据重算。结论中凡依赖这些输入的倍数关系（如“ELM 比稳态高约 $390$ 倍”）都会随输入变化，但量级结论稳定。
 \item 本附录只给出可自行检索的期刊、卷号与书名，\textbf{不写无法核实的 DOI}。
 \end{itemize}
 

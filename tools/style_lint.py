@@ -136,6 +136,8 @@ def pct(vals, q):
 def scan(paths, rev=None, list_hits=False):
     total_chars = 0
     all_lens = []
+    lens_body = []      # 正文：主文件与 12 章补充材料
+    lens_ref = []       # 附录：文献与清单密度高，另按一套阈值看
     dash = 0
     long_sents = 0
     per_file = []
@@ -150,6 +152,10 @@ def scan(paths, rev=None, list_hits=False):
         chars, sents = prose_of(raw)
         total_chars += chars
         all_lens.extend(len(s) for s in sents)
+        if os.path.basename(path).startswith('appendix_'):
+            lens_ref.extend(len(s) for s in sents)
+        else:
+            lens_body.extend(len(s) for s in sents)
         text = '\n'.join(sents)
         dash += text.count(EMDASH)
         n_long = sum(1 for s in sents if len(s) > 100)
@@ -179,10 +185,14 @@ def scan(paths, rev=None, list_hits=False):
         })
 
     p90 = pct(all_lens, 0.90)
+    p90_body = pct(lens_body, 0.90)
+    p90_ref = pct(lens_ref, 0.90)
     return {
         'chars': total_chars,
         'sentences': len(all_lens),
         'p90': p90,
+        'p90_body': p90_body,
+        'p90_ref': p90_ref,
         'p50': pct(all_lens, 0.50),
         'max': max(all_lens) if all_lens else 0,
         'long': long_sents,
@@ -218,6 +228,8 @@ def main():
     print('== 文风体检（%s）==' % tag)
     print('正文可读字符 %d，句 %d' % (r['chars'], r['sentences']))
     print('句长：中位 %d，p90 %d，最长 %d' % (r['p50'], r['p90'], r['max']))
+    print('分册句长 p90：正文 %d（线 60）／附录 %d（线 75，文献与清单密度高）'
+          % (r['p90_body'], r['p90_ref']))
     print('超长句(>100 字) %d 句（%.1f%%）' % (r['long'], r['long_ratio']))
     print('中文破折号 —— %d 处（每千字 %.2f）' % (r['dash'], r['dash_per_k']))
     print('套话 %d 处（每千字 %.2f）' % (r['cliche'], r['cliche_per_k']))
@@ -238,7 +250,11 @@ def main():
         for f, ln, k, t in r['hits']:
             print('  %-30s L%-5d %-8s %s' % (f, ln, k, t))
 
-    bad = r['p90'] > 60 or r['long_ratio'] > 3.0
+    # 分册判定：正文按 p90 ≤60 卡（这是读者连续阅读的部分）；附录里的
+    # 「出处」与口径清单天然是长宾语的文献句，按 p90 ≤75 卡，避免为了数字
+    # 去把书目条目切碎。
+    bad = (r['p90_body'] > 60 or r['p90_ref'] > 75
+           or r['long_ratio'] > 3.0)
     return 1 if bad else 0
 
 

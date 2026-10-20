@@ -108,6 +108,7 @@ $\Delta x$ 比德拜长度粗、$\Delta t$ 比回旋周期粗、每格粒子数�
 \textbf{出处：}本节的分辨率判据与有限网格不稳定性的结论，参照 Birdsall \& Langdon
 \emph{Plasma Physics via Computer Simulation}（1985/1991，第 1--2 章）与
 Hockney \& Eastwood \emph{Computer Simulation Using Particles}（1988，第 2、5 章）。
+
 Spitzer 碰撞时间只借公式形式，库仑对数作为声明输入写在脚本里。
 }
 
@@ -196,6 +197,7 @@ Boris 步里速度模逐位不变，靠的是「旋转不改变长度」，与�
 {\footnotesize
 \textbf{出处：}蛙跳与 Boris 推进器的构造参照 Boris（1970，第 4 届数值模拟等离子体会议论文集）
 与 Birdsall \& Langdon（1985/1991，第 4 章）。
+
 相对论版本的形式参照 Vay（2008，\emph{Physics of Plasmas} \textbf{15}, 056701）。
 }
 
@@ -430,6 +432,7 @@ $10^{4}$ & $1\%$ & $0.1\%$ & 单步就要 $1\%$ 精度时 \\
 {\footnotesize
 \textbf{出处：}FFT 泊松求解与直接求和的成本对照，参照 Press, Teukolsky, Vetterling \& Flannery
 \emph{Numerical Recipes}（第 3 版，2007，第 12--13、19 章）。
+
 PIC 中的场求解与截断误差，参照 Birdsall \& Langdon（1985/1991，第 5 章）与
 Hockney \& Eastwood \emph{Computer Simulation Using Particles}（1988，第 6 章）。
 }
@@ -502,8 +505,10 @@ Hockney \& Eastwood \emph{Computer Simulation Using Particles}（1988，第 6 �
 {\footnotesize
 \textbf{出处：}通量形式与黎曼求解器参照 Godunov（1959，\emph{Matematicheskii Sbornik}
 \textbf{47}, 271）与 Van Leer（1979，\emph{Journal of Computational Physics} \textbf{32}, 101）。
+
 约束输运参照 Gardiner \& Stone（2005，\emph{Journal of Computational Physics} \textbf{205}, 509，2008，\textbf{227}, 4123）与 Stone 等（2008，\emph{Astrophysical Journal Supplement}
 \textbf{178}, 137）。
+
 隐式格式可放大步长的量级作为声明写在脚本里。
 \section{估算练习}
 \label{sec:app-ac-problems}
@@ -536,10 +541,11 @@ Hockney \& Eastwood \emph{Computer Simulation Using Particles}（1988，第 6 �
 $\omega_{pe}=1.78399\times10^{11}\ \mathrm{rad\,s^{-1}}$、
 $N_D=4.10826\times10^{6}$。
 密度降十倍、温度降到九分之一，德拜长度反而变长（$\lambda_{De}\propto\sqrt{T/n}$），
-所以网格可以粗一点；但德拜球内粒子数掉到四百万，只有工作点的九分之一，
+所以网格可以粗一点。
+但德拜球内粒子数掉到四百万，只有工作点的九分之一，
 \textbf{噪声会明显变大}：分辨率与信噪比是两个独立的判据。
 
-\textbf{解答 2}：分辨不了。判据要求 $\Delta x\le\lambda_{De}$，即 $\Delta x/\lambda_{De}\le1$；
+\textbf{解答 2}：分辨不了。判据要求 $\Delta x\le\lambda_{De}$，即 $\Delta x/\lambda_{De}\le1$。
 取 $2$ 意味着网格比屏蔽长度还粗，被屏蔽掉的静电场会以数值噪声的形式留在网格上，
 表现为\textbf{有限网格不稳定性}：粒子被虚假的电场不断加速，动能单调上涨，
 而且把 $\Delta t$ 减半也压不住。
@@ -580,7 +586,8 @@ MHD 部分取 $\Delta x=0.01\ \mathrm{m}$、$256^3$ 网格、$\mathrm{CFL}=0.5$�
 
 \textbf{声明级}：库仑对数 $\ln\Lambda=17$、单核每秒 $10^{8}$ 粒子步、
 GPU 每秒 $10^{9}$ 粒子步、每个格点 $8$ 个变量 $\times8\ \mathrm{B}$、
-隐式格式允许把步长放大 $100$ 倍量级，这些是\textbf{量级假设}，
+隐式格式允许把步长放大 $100$ 倍量级。
+这些是\textbf{量级假设}，
 写在脚本开头的 \texttt{[DECLARED]} 段里，正文引用时会说明是声明值。
 
 \textbf{文献级}：推进器、CFL 条件、限制器、约束输运这些\textbf{方法}的出处，

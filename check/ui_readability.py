@@ -152,6 +152,11 @@ def prose(t, drop_preamble=False, drop_structured=False):
         j = t.find(r'\begin{document}')
         if j >= 0:
             t = t[j:]
+        # 封面是排版文字（\fontsize/\hspace 与色块），不是供逐句阅读的散文：
+        # 从目录起算，避免把封面拆成“超长句”。
+        k = t.find(r'\tableofcontents')
+        if k >= 0:
+            t = t[k:]
     if drop_structured:
         for env in STRUCTURED_ENVS:
             for _ in range(3):
@@ -173,8 +178,12 @@ def prose(t, drop_preamble=False, drop_structured=False):
                r'includegraphics|difficulty|difficultyhere|epigraph|'
                r'tcblower|centering|toprule|midrule|bottomrule|hline)'
                r'(\[[^\]]*\])?(\{[^{}]*\})*', ' ', t)
-    t = re.sub(r'\\(section|subsection|subsubsection|chapter|item|caption)\*?'
-               r'(\[[^\]]*\])?', '\n', t)
+    # \appchapter 是本书的自定义章标题宏（附录用）；不在此处断行，48 个附录
+    # 标题会被粘成一段上千字的“超长段”，那是解析产物，不是排版事实。
+    t = re.sub(r'\\(section|subsection|subsubsection|chapter|appchapter'
+               r'|item|caption)\*?(\[[^\]]*\])?', '\n', t)
+    # \setcounter{chapter}{12} 同理：命令删掉后残留的 "chapter 12" 是解析产物。
+    t = re.sub(r'\\setcounter\{[^{}]*\}\{[^{}]*\}', ' ', t)
     t = re.sub(r'\\[a-zA-Z@]+\*?(\[[^\]]*\])?', ' ', t)
     # 组内设置（如 {\emergencystretch=3em ...}）：命令名已被上一步删掉，
     # 残留的 "=3em" 是解析产物而非正文，必须一并清掉。

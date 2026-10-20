@@ -91,13 +91,22 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.30.0},
+  pdftitle={等离子体物理自学教材 v1.31.0},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
   pdfcreationdate={D:20260913000000Z}]{hyperref}
 \hypersetup{colorlinks=true,linkcolor=coverMid,citecolor=coverMid,urlcolor=coverMid}
 \usepackage{cleveref}
+% 交叉引用一律说中文：\cref{figure} 印成「图 1.2」，不印「fig. 1.2」
+\crefname{figure}{图}{图}
+\crefname{equation}{式}{式}
+\crefname{table}{表}{表}
+\crefname{section}{节}{节}
+\crefname{chapter}{章}{章}
+\crefname{theorem}{定理}{定理}
+\crefname{definition}{定义}{定义}
+\crefname{example}{例}{例}
 \usepackage{braket}
 \usepackage{float}
 \usepackage{placeins}   % \FloatBarrier：只在需要处吐出浮动体
@@ -474,7 +483,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.30.0}}
+  {\small\textcolor{white!45}{v1.31.0}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -1188,6 +1197,7 @@ Alfv\'{e}n 1942、Rosenbluth--Rostoker 1962），提供背景与要点摘要。 
 \item 对简单函数进行傅里叶变换并理解色散关系 $\omega(k)$ 的物理含义
 \item 用 $\delta$函数表示点电荷/点粒子的密度分布
 \end{itemize}
+\textbf{本章概念图：}各节的依赖关系与推导顺序见\cref{fig:cm-ch1}，可先扫一眼再读正文。
 \end{insight}
 
 等离子体是由大量带电粒子组成的系统，粒子之间通过长程的电磁力相互作用。描述这样一个系统，我们需要三样工具：\textbf{矢量分析与场论}（描述电磁场）、\textbf{统计力学}（描述大量粒子的分布与平均）、以及\textbf{傅里叶分析}（处理波与振荡）。
@@ -1538,6 +1548,7 @@ v_p = \frac{\omega}{k} = \frac{\sqrt{\omega_p^2 + c^2k^2}}{k} = c\sqrt{1 + \frac
 \end{itemize}
 
 \textbf{本章新符号：}$\lambda_D$（德拜长度，屏蔽特征尺度）；$\omega_p$（等离子体频率，集体振荡特征频率）；$N_D$（德拜球内粒子数，集体性判据）；$\Gamma$（耦合参数，势能/动能之比）。全书通用符号见前言速查表。
+\textbf{本章概念图：}各节的依赖关系与推导顺序见\cref{fig:cm-ch2}，可先扫一眼再读正文。
 \end{insight}
 
 很多人初次接触等离子体时会想：“这不就是电离的气体吗？”这个说法在直觉上没错，但\textbf{并非所有电离气体都是等离子体}。关键在于：等离子体中的粒子必须表现出\textbf{集体行为}：大量粒子通过长程电磁力耦合在一起，形成有自身特征尺度和频率的自治系统。
@@ -1927,6 +1938,7 @@ N_D = \frac{4}{3}\pi n\lambda_D^3 \approx 4.4\times10^{13} \gg 1 .
 \item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：\S3.3 磁镜与磁瓶约束；章末补充中的绝热不变量（磁矩 $\mu$）
 \item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：导向中心运动的系统推导（高阶漂移）——本书未展开，见附录 E 书单
 \end{itemize}
+\textbf{本章概念图：}各节的依赖关系与推导顺序见\cref{fig:cm-ch3}，可先扫一眼再读正文。
 \end{insight}
 
 等离子体是大量带电粒子的集合。最朴素的出发点是先不管相互作用，只看\textbf{单个粒子在外加电磁场中的运动}。这看似过度简化，理由有三：
@@ -2256,6 +2268,7 @@ m\dot{\vect{v}'} = q(\vect{E} + (\vect{v}' + \vect{v}_E)\times\vect{B}) = q\vect
 \item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：\S4.4 状态方程与闭合问题。
 \item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：碰撞项的简化模型——见章末「习题精选」中的矩方程推导（用到时回看）。
 \end{itemize}
+\textbf{本章概念图：}各节的依赖关系与推导顺序见\cref{fig:cm-ch4}，可先扫一眼再读正文。
 \end{insight}
 
 单粒子图像虽然提供了清晰的物理图像，但面对 $10^{18}$ 量级的粒子数，逐一枚举轨道显然不具可操作性。
@@ -2515,6 +2528,7 @@ c_{s,\text{绝热}}=\sqrt{\frac{\gamma_sk_BT_e}{m_i}}
 \item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：MHD 平衡与 Grad--Shafranov 方程简介——见附录 C.4。
 \item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：电阻 MHD 与磁重联——见章末「习题精选」的磁雷诺数讨论。
 \end{itemize}
+\textbf{本章概念图：}各节的依赖关系与推导顺序见\cref{fig:cm-ch5}，可先扫一眼再读正文。
 \end{insight}
 
 当关注的时空尺度满足：
@@ -2789,6 +2803,7 @@ v_A = \frac{B}{\sqrt{\mu_0\rho_m}} = \frac{10^{-3}}{\sqrt{(4\pi\times 10^{-7})(1
 \end{itemize}
 
 \textbf{本章新符号：}$v_{te}$（电子热速度）；$c_s$（离子声速，由 $T_e$ 决定）；$\omega_{ce}$（电子回旋频率，第3章）；$\omega_{pe}$（朗缪尔频率）；下标 $\parallel,\perp$（平行/垂直磁场分量）。全书通用符号见前言速查表。
+\textbf{本章概念图：}各节的依赖关系与推导顺序见\cref{fig:cm-ch6}，可先扫一眼再读正文。
 \end{insight}
 
 波是等离子体中信息、能量和动量传递的主要载体。与普通介质中的声波或光波不同，等离子体支持极其丰富的波模式。根本原因在于它存在多种恢复力：热压、静电恢复力（通过泊松方程）、磁压和磁张力。
@@ -3025,6 +3040,7 @@ c^2 k^2 \approx \frac{\omega_{pe}^2 \omega}{\omega_{ce}}
 \item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：Landau 阻尼的数学推导（围道积分），见附录 C.2。
 \item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：bump-on-tail 不稳定性，见章末「习题精选」的例题。
 \end{itemize}
+\textbf{本章概念图：}各节的依赖关系与推导顺序见\cref{fig:cm-ch7}，可先扫一眼再读正文。
 \end{insight}
 
 流体描述虽然简洁有力（参见第4章），但它“抹平”了速度空间的细节。当涉及到波与粒子在特定速度上的共振相互作用时，流体方程完全无能为力。\textbf{Landau 阻尼}是一种无碰撞的波衰减机制，也是动理学理论最辉煌的胜利。
@@ -3212,6 +3228,7 @@ f = f_0(v) + f_1(x,v,t), \qquad E = E_1(x,t)
 \item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：\S8.4 Spitzer 电阻率
 \item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：新经典输运简介——本书未展开，见附录 E 书单。
 \end{itemize}
+\textbf{本章概念图：}各节的依赖关系与推导顺序见\cref{fig:cm-ch8}，可先扫一眼再读正文。
 \end{insight}
 
 等离子体被称为“物质的第四态”，一个重要原因是：在典型的弱耦合等离子体中，粒子之间的\textbf{长程库仑相互作用}远远多于直接碰撞。然而，碰撞并非可以忽略。正是通过碰撞，等离子体才能从非热平衡态弛豫到热平衡（对比第7章Vlasov 无碰撞图像），才能产生电阻、扩散等输运现象。
@@ -3437,6 +3454,7 @@ Spitzer 动力学修正因子（$\gamma_E\approx0.58$ 一类，$1/1.4\approx0.71
 \item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：MHD 不稳定性（扭曲模、交换模），见章末「习题精选」的 sausage/kink 模例题。
 \item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：微观不稳定性（漂移波），见章末「习题精选」的漂移波例题。
 \end{itemize}
+\textbf{本章概念图：}各节的依赖关系与推导顺序见\cref{fig:cm-ch9}，可先扫一眼再读正文。
 \end{insight}
 
 不稳定系统的特征是：理论上存在平衡态（参见第5章MHD平衡），但任何微小扰动都会使其偏离并持续放大。等离子体中充满了这样的不稳定平衡——磁场和压强的各种配置都可能驱动不稳定性增长。
@@ -3623,6 +3641,7 @@ x^3\simeq-\frac{\mu}{2}
 \item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：\S10.4 惯性约束基础；\S10.5 当前进展与展望
 \item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：\S10.6 聚变反应堆工程挑战
 \end{itemize}
+\textbf{本章概念图：}各节的依赖关系与推导顺序见\cref{fig:cm-ch10}，可先扫一眼再读正文。
 \end{insight}
 
 人类对等离子体物理最宏伟的应用，莫过于\textbf{受控核聚变}：在地球上复制太阳的能量来源。这不仅是等离子体物理的终极考场，也可能是人类文明能源格局的转折点。
@@ -3789,6 +3808,7 @@ $n\tau$ & $\sim 10^{20}\,\mathrm{m}^{-3}\cdot\mathrm{s}$ & $\sim 10^{21}\,\mathr
 \figsource{Lawrence Livermore National Security，CC BY-SA 3.0（Wikimedia Commons）}
 \end{figure}
 
+\FloatBarrier
 \section{聚变能源的展望}\difficulty{提高}
 
 \begin{insight}{从实验室到电网：剩余挑战}{fusion-challenges}
@@ -3891,6 +3911,7 @@ $n\tau$ & $\sim 10^{20}\,\mathrm{m}^{-3}\cdot\mathrm{s}$ & $\sim 10^{21}\,\mathr
 
 \begin{insight}{本章核心目标}{ch11-goal}
 掌握低温等离子体的产生机理（汤森放电、帕邢定律）与鞘层结构（玻姆判据、Child--Langmuir 定律）。理解刻蚀、沉积、表面处理三类工艺各自的物理判据。最终目标是能把等离子体参数（$n_e$、$T_e$、鞘层厚度）与设备工艺参数（气压、功率、偏压）互相对应，并对常见工艺故障作出物理诊断。
+\textbf{本章概念图：}各节的依赖关系与推导顺序见\cref{fig:cm-ch11}，可先扫一眼再读正文。
 \end{insight}
 
 \begin{tip}{前置依赖：低温工业等离子体}{ch11-preq}
@@ -4790,6 +4811,7 @@ P_{\text{abs}} \propto n_e \cdot E_{\text{loss}} \propto \frac{1}{3.75} \times \
 
 \begin{insight}{本章核心目标}{ch12-goal}
 理解等离子体诊断的共性逻辑：把不可直接观测的内部参数转化为可测量的外部信号。掌握四种基础手段的原理与适用范围。朗缪尔探针给出\emph{局部} $n_e$ 与 $T_e$。微波干涉给出\emph{线平均}密度。汤姆孙散射是 $T_e$ 的“黄金标准”。光谱与磁探针分别给出成分/温度与磁场/电流。学完后应能判断在给定参数范围内，哪种诊断手段可行、精度如何。
+\textbf{本章概念图：}各节的依赖关系与推导顺序见\cref{fig:cm-ch12}，可先扫一眼再读正文。
 \end{insight}
 
 \begin{tip}{前置依赖：等离子体诊断}{ch12-preq}
@@ -5776,7 +5798,7 @@ OES发射光谱 & $10^{12}$--$10^{19}$ & $0.1$--$10$ & cm & ms & 工业/空间 \
 %======================================================================
 \appchapter{附录A：矢量与张量公式汇总}
 
-本章汇总等离子体物理中频繁使用的矢量分析与张量运算公式，方便查阅。所有公式在 SI 单位制下给出。
+本章汇总等离子体物理中频繁使用的矢量分析与张量运算公式，方便查阅。所有公式在 SI 单位制下给出。48 个附录的主题归属见附录开篇的导航图。
 
 \section{直角坐标系 $(x,y,z)$}
 

@@ -97,7 +97,7 @@ Wesson《Tokamaks》等离子体电阻相关章节。
 
 \section{中性束注入：把能量“直接投进”芯部}
 
-带电粒子出不了磁场（第 3 章），所以要把能量送进芯部，办法是先把离子中和成\textbf{中性原子}，让它径直穿过磁场；进入等离子体后再被电离或发生电荷交换，变成快离子被磁场俘获——这一步叫\textbf{俘获（trapping）}。
+带电粒子出不了磁场（第 3 章），要把能量送进芯部，办法是先把离子中和成\textbf{中性原子}，让它径直穿过磁场。进入等离子体后再被电离或发生电荷交换，变成快离子被磁场俘获，这一步叫\textbf{俘获（trapping）}。
 
 \textbf{穿透深度。}中性束强度按指数衰减
 \begin{equation}
@@ -207,7 +207,7 @@ k_\parallel=\frac{2\pi f}{v_\varphi}
 
 \begin{warning}{把“共振”当成“任意位置都能加热”}{warn:m-res}
 \textbf{误区：}“射频加热想加热哪里就加热哪里。”
-\textbf{纠正：}共振层的位置由\textbf{磁场剖面}决定（$\omega=\omega_c(B)$ 只在某半径满足），因此波把能量沉积在哪里，取决于你选的频率与装置的磁场分布；而低杂波还要额外满足 $k_\parallel$ 的朗道条件与边缘耦合窗口。\textbf{“可及性（accessibility）”与“耦合”是射频加热的两个真正的难点}，不是工程细节。
+\textbf{纠正：}共振层的位置由\textbf{磁场剖面}决定（$\omega=\omega_c(B)$ 只在某半径满足），因此波把能量沉积在哪里，取决于你选的频率与装置的磁场分布。低杂波还要额外满足 $k_\parallel$ 的朗道条件与边缘耦合窗口。\textbf{“可及性（accessibility）”与“耦合”是射频加热的两个真正的难点}，不是工程细节。
 \end{warning}
 
 {\footnotesize
@@ -245,7 +245,7 @@ $S$ 为等离子体表面积（$\mathrm{m^2}$）。取 $n_{20}=1$、$B=5.3\ \mat
 \[
 f_{\mathrm{bs}}+f_{\mathrm{CD}}\approx1,
 \]
-即自举电流加上外部驱动的电流要能维持全部等离子体电流。这正是低杂波与中性束如此重要的原因（见 \S M.3 的效率账），也是仿星器（不需要等离子体电流就能约束）在“稳态”上的天然优势（第 10 章）。
+即自举电流加上外部驱动的电流要能维持全部等离子体电流。这正是低杂波与中性束如此重要的原因（见 \S M.3 的效率账）。仿星器不需要等离子体电流就能约束，在“稳态”上有天然优势（第 10 章）。
 
 \begin{warning}{把经验定标当成物理定律}{warn:m-scale}
 \textbf{误区：}“$n_G$、$\beta_N$、$P_{\mathrm{LH}}$ 是物理公式，代进去就能算出装置极限。”
@@ -277,7 +277,7 @@ $P_\Omega=8.84\times10^{-10}\times10^{12}=884\ \mathrm{W/m^3}$。
 
 \textbf{答案：}$v_b=\sqrt{2E_b/m_D}=\sqrt{2\times1.60\times10^{-13}/3.34\times10^{-27}}\approx9.79\times10^{6}\ \mathrm{m/s}$（约 $3\%$ 光速），是 $100\ \mathrm{keV}$ 束（$3.10\times10^{6}\ \mathrm{m/s}$）的 $\sqrt{10}\approx3.2$ 倍。
 \textbf{但射程不变}：$\lambda=1/(n_e\sigma_{\mathrm{eff}})$（$\sigma_{\mathrm{eff}}$ 保持不变时），仍是 $1\ \mathrm{m}$。
-真正的依赖在于 $\sigma_{\mathrm{eff}}$ 随能量\textbf{缓慢下降}（电离截面大致按 $v^{-1}$ 到 $v^{-0.5}$ 衰减），所以射程随能量只是缓慢增长——\textbf{想靠提高束能线性地提高穿透深度是行不通的}；提高束能的主要好处是慢化时间变长、快离子能“活”得更久。
+真正的依赖在于 $\sigma_{\mathrm{eff}}$ 随能量\textbf{缓慢下降}（电离截面大致按 $v^{-1}$ 到 $v^{-0.5}$ 衰减），所以射程随能量只是缓慢增长。\textbf{想靠提高束能线性地提高穿透深度是行不通的}。提高束能的主要好处是慢化时间变长、快离子能“活”得更久。
 
 \item \textbf{（ECRH 的共振磁场）}电子回旋加热常用的 $170\ \mathrm{GHz}$ 对应多大的磁场？若装置磁场是 $5.3\ \mathrm{T}$，基频共振在什么频率？
 
@@ -288,7 +288,7 @@ $5.3\ \mathrm{T}$ 时 $f_{ce}=28.0\ \mathrm{GHz/T}\times5.3\ \mathrm{T}\approx14
 
 \textbf{答案：}$v_\varphi=1.78\times10^{8}\ \mathrm{m/s}$，
 $\lambda_\parallel=2\pi v_\varphi/\omega=v_\varphi/f=1.78\times10^{8}/2.45\times10^{9}\approx7.3\ \mathrm{cm}$。
-必须做到厘米级（$k_\parallel$ 为几十到几百 $\mathrm{m^{-1}}$），是因为朗道共振要求 $v_\varphi=\omega/k_\parallel$ 落在电子热速度的 $2$--$3$ 倍这个窄窗口内：频率固定时，\textbf{只有 $k_\parallel$ 足够大}才能把相速度压到电子热速度量级。这也是低杂波天线必须用波导阵列精确控制相位的原因。
+必须做到厘米级（$k_\parallel$ 为几十到几百 $\mathrm{m^{-1}}$），是因为朗道共振要求 $v_\varphi=\omega/k_\parallel$ 落在电子热速度的 $2$--$3$ 倍这个窄窗口内。频率固定时，\textbf{只有 $k_\parallel$ 足够大}才能把相速度压到电子热速度量级。这也是低杂波天线必须用波导阵列精确控制相位的原因。
 
 \item \textbf{（密度极限与诊断）}取 $I_p=15\ \mathrm{MA}$、$a=2\ \mathrm{m}$，求 Greenwald 密度与对应的等离子体频率；$2.45\ \mathrm{GHz}$ 的干涉仪能测这个密度吗？
 
@@ -306,7 +306,7 @@ $P_{\mathrm{ext}}=P_{\mathrm{loss}}-P_\alpha=0.2P_\alpha\approx1.24\times10^{5}\
 \end{enumerate}
 
 \begin{tip}{与配套手册 L 串联}{tip-appm-chain}
-把这六题与配套手册 L 第 10 章的六道题连起来做，就是一条完整的“聚变工程量级链”：先算 $P_{\mathrm{fus}}$，再算 $\tau_E$ 门槛，再算加热与电流驱动的功率，最后用 $n_G$、$\beta_N$、$P_{\mathrm{LH}}$ 检查装置能不能跑到那个工作点。
+把这六题与配套手册 L 第 10 章的六道题连起来做，就是一条完整的“聚变工程量级链”。先算 $P_{\mathrm{fus}}$，再算 $\tau_E$ 门槛，再算加热与电流驱动的功率，最后用 $n_G$、$\beta_N$、$P_{\mathrm{LH}}$ 检查装置能不能跑到那个工作点。
 \end{tip}
 
 
