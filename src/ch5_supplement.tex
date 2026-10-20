@@ -125,14 +125,14 @@ $R_m \sim 1$（略大于 1），磁扩散时间 $\tau_\eta = \mu_0 L^2/\eta \app
 
 \textbf{判据总结：}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
-\item $R_m \gg 1$：磁对流主导，磁通冻结（理想MHD，如天体等离子体、托卡马克；三道门槛中的第三道）
+\item $R_m \gg 1$：磁对流主导，磁通冻结（理想 MHD，如天体等离子体、托卡马克；三道门槛中的第三道）
 。\item $R_m \ll 1$：磁扩散主导，磁力线可滑过流体（如实验室低参数等离子体、固态导体）
 。\item $R_m \sim 1$：两者竞争，出现磁重联等有趣现象（如太阳耀斑电流片）。
 \end{itemize}
 \end{example}
 
 \begin{example}{理想MHD中的磁能与动能转换}{mhd-energy-conversion}
-从理想MHD方程组出发，证明。
+从理想 MHD 方程组出发，证明。
 \begin{enumerate}[label=(\arabic*)]
 \item 磁能演化满足 $\displaystyle\frac{\partial}{\partial t}\left(\frac{B^2}{2\mu_0}\right) = -\divg\vect{S} - \vect{u}\cdot(\vect{j}\times\vect{B})$，其中 $\vect{S} = \vect{E}\times\vect{B}/\mu_0$ 为坡印廷矢量。
 \item 动能演化满足 $\displaystyle\frac{\partial}{\partial t}\left(\frac{1}{2}\rho_m u^2\right) + \divg\left(\frac{1}{2}\rho_m u^2\vect{u}\right) = -\vect{u}\cdot\grad p + \vect{u}\cdot(\vect{j}\times\vect{B})$。
@@ -142,7 +142,7 @@ $R_m \sim 1$（略大于 1），磁扩散时间 $\tau_\eta = \mu_0 L^2/\eta \app
 \textbf{解答：}
 
 \textbf{(1) 磁能方程：}
-从理想MHD磁场演化方程 $\partial\vect{B}/\partial t = \curl(\vect{u}\times\vect{B})$ 出发：
+从理想 MHD 磁场演化方程 $\partial\vect{B}/\partial t = \curl(\vect{u}\times\vect{B})$ 出发：
 \[
 \frac{\partial}{\partial t}\left(\frac{B^2}{2\mu_0}\right) = \frac{1}{\mu_0}\vect{B}\cdot\frac{\partial\vect{B}}{\partial t} = \frac{1}{\mu_0}\vect{B}\cdot\curl(\vect{u}\times\vect{B})
 \]
@@ -161,7 +161,7 @@ $R_m \sim 1$（略大于 1），磁扩散时间 $\tau_\eta = \mu_0 L^2/\eta \app
 = -B^2\vect{u} + (\vect{u}\cdot\vect{B})\vect{B}
 \]
 
-\textbf{关键：} 理想MHD中 $\vect{E} = -\vect{u}\times\vect{B}$，取与 $\vect{B}$ 的叉乘：
+\textbf{关键：} 理想 MHD 中 $\vect{E} = -\vect{u}\times\vect{B}$，取与 $\vect{B}$ 的叉乘：
 \[
 \vect{E}\times\vect{B} = -(\vect{u}\times\vect{B})\times\vect{B}
 = B^2\vect{u} - (\vect{u}\cdot\vect{B})\vect{B}
@@ -182,7 +182,7 @@ $R_m \sim 1$（略大于 1），磁扩散时间 $\tau_\eta = \mu_0 L^2/\eta \app
 \]
 
 \textbf{(2) 动能方程：}
-从理想MHD动量方程 $\rho_m\left(\partial\vect{u}/\partial t + \vect{u}\cdot\grad\vect{u}\right) = -\grad p + \vect{j}\times\vect{B}$，点乘 $\vect{u}$：
+从理想 MHD 动量方程 $\rho_m\left(\partial\vect{u}/\partial t + \vect{u}\cdot\grad\vect{u}\right) = -\grad p + \vect{j}\times\vect{B}$，点乘 $\vect{u}$：
 \[
 \vect{u}\cdot\left(\rho_m\frac{\partial\vect{u}}{\partial t}\right) + \rho_m\vect{u}\cdot(\vect{u}\cdot\grad\vect{u}) = -\vect{u}\cdot\grad p + \vect{u}\cdot(\vect{j}\times\vect{B})
 \]
@@ -209,7 +209,7 @@ $\vect{u}\cdot(\vect{j}\times\vect{B})$ 是磁能与动能之间的\textbf{转�
 
 \textbf{但这还不是完整的能量守恒}——上式右端仍留着 $-\vect{u}\cdot\grad p$，它把能量交给了\textbf{内能}，而内能没有出现在守恒式里。磁能与动能之和并不单独守恒：压强功会把能量泵入内能，或反过来。\textbf{加上内能才闭合}。
 
-\textbf{提高题（完整能量守恒）：} 对绝热理想MHD，内能密度为 $U = p/(\gamma-1)$，其演化方程为
+\textbf{提高题（完整能量守恒）：} 对绝热理想 MHD，内能密度为 $U = p/(\gamma-1)$，其演化方程为
 \[
 \frac{\partial U}{\partial t} + \divg(U\vect{u}) = -p\divg\vect{u}
 \]
@@ -322,8 +322,8 @@ T_e + T_i = \frac{5.0\times10^{-17}}{1.381\times10^{-23}}\,\mathrm{K} = 3.6\time
 
 \begin{formulabox}{第 5 章}{ch5-formulas}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
-\item 理想MHD质量守恒：$\displaystyle\frac{\partial\rho_m}{\partial t} + \divg(\rho_m\vect{u}) = 0$
-\item 理想MHD动量方程：$\displaystyle\rho_m\left(\frac{\partial\vect{u}}{\partial t} + \vect{u}\cdot\grad\vect{u}\right) = -\grad p + \vect{j}\times\vect{B}$
+\item 理想 MHD 质量守恒：$\displaystyle\frac{\partial\rho_m}{\partial t} + \divg(\rho_m\vect{u}) = 0$
+\item 理想 MHD 动量方程：$\displaystyle\rho_m\left(\frac{\partial\vect{u}}{\partial t} + \vect{u}\cdot\grad\vect{u}\right) = -\grad p + \vect{j}\times\vect{B}$
 \item 理想欧姆定律：$\displaystyle\vect{E} + \vect{u}\times\vect{B} = 0$
 。\item 磁场演化：$\displaystyle\frac{\partial\vect{B}}{\partial t} = \curl(\vect{u}\times\vect{B})$
 \item 磁压：$\displaystyle p_B = \frac{B^2}{2\mu_0}$，磁张力：$\displaystyle\frac{1}{\mu_0}(\vect{B}\cdot\grad)\vect{B}$
@@ -331,19 +331,19 @@ T_e + T_i = \frac{5.0\times10^{-17}}{1.381\times10^{-23}}\,\mathrm{K} = 3.6\time
 。\item 阿尔芬速度：$\displaystyle v_A = \frac{B}{\sqrt{\mu_0\rho_m}}$
 \item 阿尔芬波色散关系：$\displaystyle\omega = k_\parallel v_A$（无色散；群速度 $\vect{v}_g=\pm v_A\unitvec{B}$ 恒沿磁场，相速度 $v_p=v_A\cos\theta$ 仅在 $\vect{k}\parallel\vect{B}$ 时等于 $v_A$）
 \item 磁雷诺数：$\displaystyle R_m = \frac{\mu_0 v L}{\eta} = \frac{\tau_\eta}{\tau_{\text{流}}}$
-。\item 静态平衡：$\displaystyle\grad p = \vect{j}\times\vect{B}$（Grad-Shafranov方程的基础）。
+。\item 静态平衡：$\displaystyle\grad p = \vect{j}\times\vect{B}$（Grad-Shafranov 方程的基础）。
 \end{itemize}
 \textbf{符号说明：}$\rho_m$ 为质量密度；$\vect{u}$ 为流速；$p$ 为热压强，$p_B=B^2/2\mu_0$ 为磁压，$\beta$ 为比压；$\omega$、$k$ 为波角频率与波数（$k_\parallel$ 为其平行分量）。$\vect{v}_g$ 为群速度、$v_p$ 为相速度、$v_A$ 为阿尔芬速度。$\theta$ 为波矢与磁场的夹角。$R_m=\mu_0vL/\eta$ 为磁雷诺数，$L$ 为特征长度，$\eta$ 为电阻率；$\tau_\eta$ 为磁扩散时间、$\tau_{\text{流}}$ 为流动时间。
 \end{formulabox}
 
 \begin{checklistbox}{第5章自学检查清单}{ch5-checklist}
 \begin{itemize}[leftmargin=*,label=$\square$]
-\item 我能从双流体方程出发，说明MHD近似的适用条件（$\tau\gg 1/\omega_{ci}$，$L\gg\rho_{Li}$）。
+\item 我能从双流体方程出发，说明 MHD 近似的适用条件（$\tau\gg 1/\omega_{ci}$，$L\gg\rho_{Li}$）。
 \item 我能计算比压 $\beta$、阿尔芬速度 $v_A$ 和磁雷诺数 $R_m$，并判断其物理意义。
 \item 我理解了磁压与磁张力的分解：洛伦兹力 = 磁压梯度 + 磁张力。
 \item 我能从$R_m$的大小判断磁力线冻结是否成立，并知道电阻会破坏冻结。
 \item 我掌握了阿尔芬波的物理图像：磁张力作为恢复力的横波，能量沿磁力线以 $v_A$ 输运（而非沿波矢）。
-\item 我能推导理想MHD中磁能与动能转换的方程，并解释$\vect{u}\cdot(\vect{j}\times\vect{B})$的符号含义。
+\item 我能推导理想 MHD 中磁能与动能转换的方程，并解释$\vect{u}\cdot(\vect{j}\times\vect{B})$的符号含义。
 \item 我知道静态平衡$\grad p = \vect{j}\times\vect{B}$是托卡马克和仿星器设计的出发点。
 \end{itemize}
 \end{checklistbox}

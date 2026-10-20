@@ -12,11 +12,11 @@
 \[
 f_0(v) = n\sqrt{\frac{m}{2\pi k_{\!B}T}}\,\exp\!\left(-\frac{mv^2}{2k_{\!B}T}\right)
 \]
-其中 $n$、$T$ 为常数，电场 $\vect{E}=\vect{0}$，磁场 $\vect{B}=\vect{0}$。验证 $f_0(v)$ 是Vlasov 方程的解，即分布函数不随时间演化。
+其中 $n$、$T$ 为常数，电场 $\vect{E}=\vect{0}$，磁场 $\vect{B}=\vect{0}$。验证 $f_0(v)$ 是 Vlasov 方程的解，即分布函数不随时间演化。
 \tcblower
 \textbf{解答：}
 
-一维Vlasov 方程（无电磁场）为。
+一维 Vlasov 方程（无电磁场）为。
 \[
 \frac{\partial f}{\partial t} + v\frac{\partial f}{\partial x} + \frac{qE}{m}\frac{\partial f}{\partial v} = 0
 \]
@@ -40,7 +40,7 @@ f_0(v) = n\sqrt{\frac{m}{2\pi k_{\!B}T}}\,\exp\!\left(-\frac{mv^2}{2k_{\!B}T}\ri
 0 + 0 + 0 = 0
 \]
 
-因此 $f_0(v)$ 满足Vlasov 方程。\textbf{物理意义}：在没有电磁场和梯度的情况下，任何只依赖 $v$ 的分布都是Vlasov 方程的稳态解：麦克斯韦分布只是其中一员。
+因此 $f_0(v)$ 满足 Vlasov 方程。\textbf{物理意义}：在没有电磁场和梯度的情况下，任何只依赖 $v$ 的分布都是 Vlasov 方程的稳态解：麦克斯韦分布只是其中一员。
 
 \end{example}
 
@@ -56,7 +56,7 @@ f_0(v) = n\sqrt{\frac{m}{2\pi k_{\!B}T}}\,\exp\!\left(-\frac{mv^2}{2k_{\!B}T}\ri
 \end{warning}
 
 \begin{example}{Landau 阻尼率的数值估算}{landau-damping-calc}
-实验室氩等离子体中，测得电子密度 $n_e = 10^{18}\,\mathrm{m}^{-3}$，电子温度 $T_e = 4\,\mathrm{eV}$。一列电子Langmuir 波的波数为 $k = 10^{4}\,\mathrm{m}^{-1}$。请估算该波的Landau 阻尼率 $|\omega_i|$ 和对应的衰减时间 $\tau = 1/|\omega_i|$。
+实验室氩等离子体中，测得电子密度 $n_e = 10^{18}\,\mathrm{m}^{-3}$，电子温度 $T_e = 4\,\mathrm{eV}$。一列电子 Langmuir 波的波数为 $k = 10^{4}\,\mathrm{m}^{-1}$。请估算该波的 Landau 阻尼率 $|\omega_i|$ 和对应的衰减时间 $\tau = 1/|\omega_i|$。
 
 \textbf{公式的适用条件：} 本题所用的阻尼率公式
 \[
@@ -80,7 +80,7 @@ k\lambda_D = 10^{4}\times 1.49\times 10^{-5} \approx 0.149 \ll 1 \quad\checkmark
 \]
 落在长波渐近式适用区。
 
-\textbf{步骤3：代入Landau 阻尼率公式。}
+\textbf{步骤3：代入 Landau 阻尼率公式。}
 由教材公式。
 \[
 \omega_i = -\sqrt{\frac{\pi}{8}}\,\frac{\omega_{pe}}{(k\lambda_D)^3}\,
@@ -287,13 +287,13 @@ bump-on-tail不稳定性的核心是：在相速度 $v_\phi = \omega/k$ 处，�
 \node[text=figGreen,font=\footnotesize,align=center] at (4.85,2.20) {$\partial f/\partial v>0$};
 \draw[figGreen,line width=0.8pt,->,>=Stealth] (4.85,1.98) -- (5.05,0.48);
 \end{tikzpicture}
-\caption{bump-on-tail速度分布函数示意图。蓝色宽峰为背景热电子，红色窄峰为漂移电子束流。在两峰之间的“尾部”区域形成凸起（bump），对应 $\partial f/\partial v > 0$，驱动Langmuir 波不稳定性增长。}
+\caption{bump-on-tail速度分布函数示意图。蓝色宽峰为背景热电子，红色窄峰为漂移电子束流。在两峰之间的“尾部”区域形成凸起（bump），对应 $\partial f/\partial v > 0$，驱动 Langmuir 波不稳定性增长。}
     \label{fig:bump-on-tail}
 \end{figure}
 
 % ch7 新例题：电子等离子体波的Landau 阻尼数值练习
 \begin{example}{Landau 阻尼随波长的变化}{landau-wavelength-dependence}
-氩等离子体（$n_e=10^{18}\,\mathrm{m^{-3}}$，$T_e=4\,\mathrm{eV}$）中，比较波数 $k = 10^4\,\mathrm{m^{-1}}$ 和 $k = 10^5\,\mathrm{m^{-1}}$ 的两列朗缪尔波的Landau 阻尼率。讨论波长变短时阻尼如何变化。
+氩等离子体（$n_e=10^{18}\,\mathrm{m^{-3}}$，$T_e=4\,\mathrm{eV}$）中，比较波数 $k = 10^4\,\mathrm{m^{-1}}$ 和 $k = 10^5\,\mathrm{m^{-1}}$ 的两列朗缪尔波的 Landau 阻尼率。讨论波长变短时阻尼如何变化。
 \tcblower
 \textbf{解答：}
 
@@ -334,13 +334,13 @@ bump-on-tail不稳定性的核心是：在相速度 $v_\phi = \omega/k$ 处，�
 
 \begin{checklistbox}{第7章自学检查清单}{ch7-checklist}
 \begin{itemize}[leftmargin=*,label=$\square$]
-\item 我能写出Vlasov 方程，并解释其物理意义（相空间不可压缩流、刘维尔定理）。
-\item 我能对Vlasov 方程进行线性化，得到色散关系中的极点项。
-\item 我理解Landau 围道的必要性：为什么必须从极点下方绕过（因果律）。
-\item 我能从速度分布的斜率判断Landau 阻尼（$\partial f_0/\partial v < 0$）或不稳定性（$\partial f_0/\partial v > 0$）。
-\item 我能估算给定 $k\lambda_D$ 下的Landau 阻尼率。
+\item 我能写出 Vlasov 方程，并解释其物理意义（相空间不可压缩流、刘维尔定理）。
+\item 我能对 Vlasov 方程进行线性化，得到色散关系中的极点项。
+\item 我理解 Landau 围道的必要性：为什么必须从极点下方绕过（因果律）。
+\item 我能从速度分布的斜率判断 Landau 阻尼（$\partial f_0/\partial v < 0$）或不稳定性（$\partial f_0/\partial v > 0$）。
+\item 我能估算给定 $k\lambda_D$ 下的 Landau 阻尼率。
 \item 我理解bump-on-tail不稳定性的物理机制：束流在速度空间形成凸起，共振粒子向波传递能量。
-\item 我知道Landau 阻尼是线性效应，而粒子 trapping 是非线性效应。
+\item 我知道 Landau 阻尼是线性效应，而粒子 trapping 是非线性效应。
 \end{itemize}
 \end{checklistbox}
 

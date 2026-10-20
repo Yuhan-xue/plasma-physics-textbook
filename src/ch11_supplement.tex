@@ -82,14 +82,14 @@
 % ------------------------------------------------------------------------
 
 \begin{example}{鞘层厚度计算}{ex:sheath}
-某RF感应耦合等离子体（ICP）源中，氩等离子体参数为：
+某 RF 感应耦合等离子体（ICP）源中，氩等离子体参数为：
 \begin{itemize}
     \item 电子密度 $n_e = 5\times10^{16}\,\mathrm{m^{-3}}$
     \item 电子温度 $T_e = 3\,\mathrm{eV}$
     \item 离子质量 $m_i = 40\,\mathrm{amu}$（氩离子）
     \item 鞘层电压降 $V_s = 20\,\mathrm{V}$（相对于等离子体电位）
 \end{itemize}
-分别用玻姆判据和Child--Langmuir 定律估算鞘层厚度 $s$。
+分别用玻姆判据和 Child--Langmuir 定律估算鞘层厚度 $s$。
 \end{example}
 
 \textbf{解答：}
@@ -120,7 +120,7 @@ Child--Langmuir 定律给出了平面鞘层中电流与鞘层电压的关系。�
 \label{eq:ch11-child-langmuir}
 \end{equation}
 
-离子电流密度也可由Bohm 通量表示。
+离子电流密度也可由 Bohm 通量表示。
 \[
     J_i = e n_s v_B = 0.6 e n_e v_B
 \]
@@ -138,7 +138,7 @@ Child--Langmuir 定律给出了平面鞘层中电流与鞘层电压的关系。�
     s^2 = \frac{4\eps_0}{9 \times 0.6 e n_e v_B} \sqrt{\frac{2e}{m_i}} V_s^{3/2}
 \]
 
-将数值代入（使用SI单位）。
+将数值代入（使用 SI 单位）。
 \begin{align*}
     \eps_0 &= 8.854\times10^{-12}\,\mathrm{F\cdot m^{-1}} \\
     e &= 1.602\times10^{-19}\,\mathrm{C} \\
@@ -418,7 +418,7 @@ s \approx \frac{\sqrt2}{3}\times0.13\,\mathrm{mm}\times39
 低气压 CCP 通常满足，工业高气压刻蚀机则需修正。
 \end{example}
 
-\section{DC辉光放电空间结构图}
+\section{DC 辉光放电空间结构图}
 
 \begin{figure}[htbp]
     \centering
@@ -477,7 +477,7 @@ s \approx \frac{\sqrt2}{3}\times0.13\,\mathrm{mm}\times39
         \draw[figVerm,line width=1.2pt] (10.75,0.90) -- (11.03,0.90);
         \node[text=figVerm,font=\footnotesize,anchor=west] at (11.10,0.90) {电位};
     \end{tikzpicture}
-    \caption{DC辉光放电空间结构示意图。从阴极到阳极依次可见：阴极暗区、
+    \caption{DC 辉光放电空间结构示意图。从阴极到阳极依次可见：阴极暗区、
 负辉光区（最亮）、法拉第暗区、正柱区（均匀等离子体）、阳极暗区、阳极辉光。
 上图红线为空间电位分布，下方柱状图示意发光强度。}
     \label{fig:glow}
@@ -548,7 +548,7 @@ $\vect{E}\times\vect{B}$ 漂移速度。
     \mu_e = \frac{e}{m_e \nu}
 \]
 
-ambipolar扩散系数。
+ambipolar 扩散系数。
 \[
     D_a = \frac{\mu_i D_e + \mu_e D_i}{\mu_i + \mu_e} \approx D_i\left(1+\frac{T_e}{T_i}\right)
 \]
@@ -587,12 +587,12 @@ ambipolar扩散系数。
 \item[$\square$] 我能根据帕邢定律计算给定 $pd$ 条件下的击穿电压。
 \item[$\square$] 我知道辉光放电正柱区、负辉光区、阴极暗区的物理成因。
 \item[$\square$] 我能用玻姆判据估算离子进入鞘层的速度。
-\item[$\square$] 我能计算Debye 长度，并理解鞘层厚度与 $\lambda_D$ 的关系。
-\item[$\square$] 我能应用Child--Langmuir 定律估算鞘层厚度。
+\item[$\square$] 我能计算 Debye 长度，并理解鞘层厚度与 $\lambda_D$ 的关系。
+\item[$\square$] 我能应用 Child--Langmuir 定律估算鞘层厚度。
 \item[$\square$] 我了解$\vect{E}\times\vect{B}$漂移在磁控溅射中的作用。
 \item[$\square$] 我能解释为什么磁控溅射中电子被束缚在靶面附近（跑道效应）。
 \item[$\square$] 我能从放电功率和电流估算辉光放电的电子密度。
-\item[$\square$] 我了解ambipolar扩散的物理意义，以及为什么 $D_a \approx D_i(T_e/T_i)$。
+\item[$\square$] 我了解 ambipolar 扩散的物理意义，以及为什么 $D_a \approx D_i(T_e/T_i)$。
 \item[$\square$] 我能区分电容耦合（CCP）与电感耦合（ICP）等离子体源的基本原理。
 \end{itemize}
 \end{checklistbox}

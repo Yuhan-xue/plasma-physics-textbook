@@ -60,7 +60,7 @@
 \[
 \vect{E} + \vect{u}\times\vect{B} = \eta\vect{j} + \frac{1}{en}\vect{j}\times\vect{B} - \frac{1}{en}\grad p_e + \frac{m_e}{ne^2}\frac{\partial\vect{j}}{\partial t}
 \]
-右端各项的量级，并判断哪些项在理想MHD近似下可以忽略。
+右端各项的量级，并判断哪些项在理想 MHD 近似下可以忽略。
 \tcblower
 \textbf{解答：}
 
@@ -119,7 +119,7 @@ Spitzer 电阻率（近似公式 $\eta \approx 5\times 10^{-5} Z\ln\Lambda / T_e
 \begin{itemize}[leftmargin=*,itemsep=0pt]
 \item \textbf{电阻项与惯性项}：$\epsilon_\eta,\epsilon_I\sim10^{-9}$，比参考尺度小 9 个数量级。要在 $10^{-6}$ 相对精度内描述电场，它们确实可以删；但这来自“精度要求”，不是“必然可忽略”。
 \item \textbf{霍尔项与压强项}：$\epsilon_H\approx0.62$、$\epsilon_p\approx0.2$。\textbf{两者都不满足“小修正”的渐近条件（$\epsilon\ll1$）}——霍尔项甚至与参考尺度同量级。把它们当作修正项删掉，会丢掉 $O(1)$ 的物理。
-\item \textbf{理想MHD}：$\vect{E}+\vect{u}\times\vect{B}=0$ 要求右端四项全部远小于左端。本题只有电阻项与惯性项满足；保留霍尔项即为\textbf{Hall MHD}，保留压强项即需要\textbf{电子压强闭合}。删项之前先定相对精度。
+\item \textbf{理想 MHD}：$\vect{E}+\vect{u}\times\vect{B}=0$ 要求右端四项全部远小于左端。本题只有电阻项与惯性项满足；保留霍尔项即为\textbf{Hall MHD}，保留压强项即需要\textbf{电子压强闭合}。删项之前先定相对精度。
 \end{itemize}
 \end{example}
 
@@ -208,7 +208,7 @@ v_{ti} = \sqrt{\frac{2\times 0.1\times 1.602\times 10^{-19}}{1.673\times 10^{-27
 \]
 条件满足。
 
-\textbf{物理原因：} 离子声波的恢复力来自电子热压（通过准中性电场传递）。如果 $T_i\sim T_e$，离子的热运动同样剧烈，会破坏波的相干性——离子会迅速扩散抹平密度扰动，导致强烈的Landau 阻尼（见第7章）。只有当 $T_e\gg T_i$ 时，电子才能迅速响应建立静电恢复力，而离子的热扩散相对较慢，波才能稳定传播。
+\textbf{物理原因：} 离子声波的恢复力来自电子热压（通过准中性电场传递）。如果 $T_i\sim T_e$，离子的热运动同样剧烈，会破坏波的相干性——离子会迅速扩散抹平密度扰动，导致强烈的 Landau 阻尼（见第7章）。只有当 $T_e\gg T_i$ 时，电子才能迅速响应建立静电恢复力，而离子的热扩散相对较慢，波才能稳定传播。
 \end{example}
 
 \begin{figure}[htbp]

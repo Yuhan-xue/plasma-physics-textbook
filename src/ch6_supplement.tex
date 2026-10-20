@@ -11,7 +11,7 @@
 一实验室氢等离子体，电子密度 $n_e=10^{18}\,\mathrm{m}^{-3}$，电子温度 $T_e=4\,\mathrm{eV}$。求：
 \begin{enumerate}[label=(\arabic*)]
 \item 电子等离子体频率 $\omega_{pe}$ 和对应的波长 $\lambda_{pe}$（将 $c$ 作为相速度时的真空波长）；
-\item 对波长 $\lambda=10^{-2}\,\mathrm{m}$ 的扰动，用Bohm--Gross 修正求实际频率 $\omega$，并计算热修正的相对大小；
+\item 对波长 $\lambda=10^{-2}\,\mathrm{m}$ 的扰动，用 Bohm--Gross 修正求实际频率 $\omega$，并计算热修正的相对大小；
 \item 验证条件 $k\lambda_{De}\ll 1$ 是否成立。
 \end{enumerate}
 \tcblower
@@ -80,7 +80,7 @@ v_{te} = \sqrt{\frac{k_{\!B}T_e}{m_e}} = \sqrt{\frac{6.408\times 10^{-19}}{9.109
 k\lambda_{De} = 628.3\times 1.49\times 10^{-5} \approx 9.35\times 10^{-3} \ll 1
 \]
 
-\textbf{结论：} $k\lambda_{De}\ll 1$ 条件满足，Bohm--Gross 修正很小。这说明Langmuir 波在长波极限下几乎不受热运动影响，表现为以 $\omega_{pe}$ 为频率的局域集体振荡。
+\textbf{结论：} $k\lambda_{De}\ll 1$ 条件满足，Bohm--Gross 修正很小。这说明 Langmuir 波在长波极限下几乎不受热运动影响，表现为以 $\omega_{pe}$ 为频率的局域集体振荡。
 \end{example}
 
 \begin{example}{截止频率与电磁波传播判断}{cutoff-calculation}
@@ -414,7 +414,7 @@ t = \frac{10}{v_g} = \frac{10}{2.85\times10^8} \approx 3.5\times10^{-8}\,\mathrm
 \item L波（沿磁场，仅电子、$\omega\gg\omega_{ci}$）：$\displaystyle n_L^2 = 1 - \frac{\omega_{pe}^2}{\omega(\omega+\omega_{ce})}$
 \item 传播判据：\textbf{逐点算 $n^2>0$}。$n_L^2>0\iff\omega(\omega+\omega_{ce})>\omega_{pe}^2$，与 $\omega$ 是否小于 $\omega_{ce}$ 无关
 \item 哨声波（$\omega\ll\omega_{ce}$ \emph{且} $n^2\gg1$）：$\displaystyle\omega \approx \frac{c^2k^2\omega_{ce}}{\omega_{pe}^2}$，$v_g = 2v_p$
-\item 相速度：$\displaystyle v_p = \frac{\omega}{k}$，群速度：$\displaystyle v_g = \frac{\partial\omega}{\partial k}$（冷Langmuir 波 $v_g=0$ 但 $v_p=\omega_{pe}/k\neq0$）
+\item 相速度：$\displaystyle v_p = \frac{\omega}{k}$，群速度：$\displaystyle v_g = \frac{\partial\omega}{\partial k}$（冷 Langmuir 波 $v_g=0$ 但 $v_p=\omega_{pe}/k\neq0$）
 \item 等离子体中EM波：$\displaystyle v_p v_g = c^2$
 \end{itemize}
 \textbf{符号说明：}$\omega$、$k$ 为波角频率与波数；$\omega_{pe}$ 为电子等离子体频率，$\omega_{ce}$、$\omega_{ci}$ 为电子、离子回旋频率；$\lambda_{De}$ 为电子德拜长度；$c_s$ 为离子声速，$v_{te}$ 为电子热速度。$n_R$、$n_L$ 为右旋、左旋波的折射率；$v_p$、$v_g$ 为相速度与群速度。
@@ -423,14 +423,14 @@ t = \frac{10}{v_g} = \frac{10}{2.85\times10^8} \approx 3.5\times10^{-8}\,\mathrm
 \enlargethispage{\baselineskip}
 \begin{checklistbox}{第6章自学检查清单}{ch6-checklist}
 \begin{itemize}[leftmargin=*,label=$\square$]
-\item 我能计算Langmuir 波的等离子体频率和Bohm--Gross 热修正
+\item 我能计算 Langmuir 波的等离子体频率和 Bohm--Gross 热修正
 \item 我理解了截止频率的物理意义：$\omega < \omega_{pe}$ 时电磁波不能传播
 \item 我能计算R波和L波的截止频率与共振频率，并解释其物理来源
 \item 我掌握了哨声波的色散关系 $v_g = 2v_p$，并理解其“滑落”音调的成因
 \item 我能计算等离子体中电磁波的相速度和群速度，并知道 $v_p v_g = c^2$
 \item 我理解了等离子体波分类的物理依据：静电/电磁、纵向/横向、有无磁场
 \item 我知道为什么电离层能反射低频无线电：\textbf{判据是载频与当地 $f_{pe}$ 的关系，与调制方式（AM/FM）无关}；真实传播还需密度剖面与斜入射
-\item 我能区分相速度与群速度：冷Langmuir 波 $v_g=0$ 但 $v_p=\omega_{pe}/k\neq0$，能量不传播不等于相位不移动
+\item 我能区分相速度与群速度：冷 Langmuir 波 $v_g=0$ 但 $v_p=\omega_{pe}/k\neq0$，能量不传播不等于相位不移动
 \end{itemize}
 \end{checklistbox}
 
