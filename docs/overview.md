@@ -11,7 +11,7 @@
 | 规模 | **609 页**：12 章正文 175 页（p30–204）+ 结语 2 页（p205–206）+ 48 个附录 403 页（p207–609），前面是封面与目录 22 页、符号说明与前言 7 页；「边查边用」的附录 I／J／K／L 收在 48 页的配套手册里。检索靠 565 条 PDF 书签加附录 H 的符号与术语总表 |
 | 配图 | **118 张实拍照片或公开示意图** + **38 张自画图**（按「深蓝 + 金」重绘）；实拍图逐张登记作者、许可与来源页（[`figures/CREDITS.md`](../figures/CREDITS.md)），自画图规范见 [`palette.md`](palette.md) |
 | 交付 | 四个 PDF：[完整本 609 页](../pdf/plasma_physics_textbook_v2.pdf)、[卷一 206 页](../pdf/plasma_physics_textbook_v2_vol1_chapters.pdf)、[卷二 404 页](../pdf/plasma_physics_textbook_v2_vol2_appendices.pdf)、[配套手册 48 页](../pdf/plasma_physics_handbook.pdf) |
-| 版本 | v1.32.7；每版都发到 [Gitea releases](http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases) |
+| 版本 | v1.32.8；每版都发到 [Gitea releases](http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases) |
 | 动手 | 正文不印程序，需要动手的地方只给路径：[`code/`](../code/)、[`tools/calc/`](../tools/calc/) |
 
 ## 版面是怎么变的
