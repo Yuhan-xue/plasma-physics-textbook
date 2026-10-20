@@ -9,14 +9,19 @@
 
 ## 四个 PDF
 
-| 文件 | 页数 | 内容 |
-|---|---|---|
-| [`pdf/plasma_physics_textbook_v2.pdf`](pdf/plasma_physics_textbook_v2.pdf) | 609 页 | 完整本：正文 + 全部附录，推荐先读这本 |
-| [`pdf/plasma_physics_textbook_v2_vol1_chapters.pdf`](pdf/plasma_physics_textbook_v2_vol1_chapters.pdf) | 205 页 | 前言 + 第 1–12 章正文 |
-| [`pdf/plasma_physics_textbook_v2_vol2_appendices.pdf`](pdf/plasma_physics_textbook_v2_vol2_appendices.pdf) | 404 页 | 48 个附录 |
-| [`pdf/plasma_physics_handbook.pdf`](pdf/plasma_physics_handbook.pdf) | 48 页 | 配套手册：附录 I／J／K／L（学习策略、逐章对照、跨教材例题、分章题库） |
+同一份源码出四个 PDF。仓库 [`pdf/`](pdf/) 里是固定文件名的四个文件（随版本更新）；[Releases](http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases) 里是历史存档，文件名带版本号，如 `plasma_physics_textbook_v1.31.0.pdf`。
 
-历史版本见 [Releases](http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases)。
+| 分册 | 页数 | Releases 里的文件名 | 什么时候下这个 |
+|---|---|---|---|
+| 完整本 | 609 | `plasma_physics_textbook_vX.Y.Z.pdf` | 第一次读，或只想存一份 |
+| 卷一·正文 | 205 | `plasma_physics_textbook_vX.Y.Z_vol1_chapters.pdf` | 只想通读前言与第 1–12 章 |
+| 卷二·附录 | 404 | `plasma_physics_textbook_vX.Y.Z_vol2_appendices.pdf` | 正文读完，回头查 48 个附录 |
+| 配套手册 | 48 | `plasma_physics_handbook_vX.Y.Z.pdf` | 边学边查学习策略、逐章对照与题库 |
+
+三册的印刷页码与完整本一致（卷一 1–205，卷二 206–609），书签全部保留，可以在分册与完整本之间按页码对照。
+每个 release 都带这四个 PDF 与该版的改动说明。
+
+仓库内直达：[完整本](pdf/plasma_physics_textbook_v2.pdf) · [卷一](pdf/plasma_physics_textbook_v2_vol1_chapters.pdf) · [卷二](pdf/plasma_physics_textbook_v2_vol2_appendices.pdf) · [配套手册](pdf/plasma_physics_handbook.pdf)
 
 ## 先看几张图
 
