@@ -510,7 +510,7 @@ def check_M07_eedf():
     main = strip_comments(read(os.path.join(SRC, MAIN)))
     has(main, r'F(\eps) = \frac{2\sqrt{2 m_e \eps}}{A e^3}', 'src/%s（Druyvesteyn 公式）' % MAIN)
     has(main, r'\int_0^\infty F\diff\eps=n_e', 'src/%s（EEDF 归一化）' % MAIN)
-    has(main, '没有“固定偏差”这回事', 'src/%s（EEDF 警告框）' % MAIN)
+    has(main, '没有「固定偏差」这回事', 'src/%s（EEDF 警告框）' % MAIN)
     has(main, r'\diff v/\diff\eps=1/\sqrt{2m_e\eps}', 'src/%s（EEDF 雅可比）' % MAIN)
     has(main, r'EEDF $F(\eps)$ & $\int_0^\infty F\diff\eps=n_e$ & $\mathrm{m^{-3}(eV)^{-1}}$',
         'src/%s（三种记法表：EEDF）' % MAIN)
@@ -3709,7 +3709,7 @@ def check_P24_appendix_u_gain():
              '表 U.3 的收敛步（第 12 步）整行'),
             ('5.0  & $6.1983\\times10^{20}$ & 低温端 $\\langle\\sigma v\\rangle\\propto T^2$ 使要求偏高 \\\\',
              '表 U.4 的 5 keV 整行（低温端要求偏高）'),
-            ('10.0 & $3.0992\\times10^{20}$ & 本书 $\\langle\\sigma v\\rangle$ 拟合的“甜点”附近 \\\\',
+            ('10.0 & $3.0992\\times10^{20}$ & 本书 $\\langle\\sigma v\\rangle$ 拟合的「甜点」附近 \\\\',
              '表 U.4 的 10 keV 整行（甜点）'),
             ('150.0 & 2.4762  & 9.194 & 371.4 & 556.5 & 3.710 \\\\',
              '表 U.5 的 P_aux=150 MW 整行'),
@@ -4015,13 +4015,13 @@ def check_P25_appendix_i_expanding():
              '小节的 label（供交叉引用）'),
             ('\\textbf{扩张式}（expanding）指间隔越拉越长，如 $1,2,4,8,12$ 天；\\textbf{均匀式}（uniform）指每次都隔同样长，如 $6,6,6,6,6$ 天。',
              '扩张式与均匀式的定义与示例间隔（两个具体数列）'),
-            ('\\textbf{（1）扩张式的理由成立，但推不出“必须递增”。}',
+            ('\\textbf{（1）扩张式的理由成立，但推不出「必须递增」。}',
              '第 1 条结论的标题句'),
             ('\\textbf{（2）形状是第二位的，比例是第一位的。}',
              '第 2 条结论的标题句'),
-            ('\\textbf{（3）稳得住的那条规律是“分散优于集中”。}',
+            ('\\textbf{（3）稳得住的那条规律是「分散优于集中」。}',
              '第 3 条结论的标题句'),
-            ('\\textbf{（4）那本书为什么仍用“先翻倍、后等间隔”？}',
+            ('\\textbf{（4）那本书为什么仍用「先翻倍、后等间隔」？}',
              '第 4 条结论的标题句'),
             ('\\textbf{（5）用软件也建议自己算一遍。}',
              '第 5 条结论的标题句'),
@@ -11035,7 +11035,7 @@ def check_P47_appendix_ao_vacuum():
         '真空是什么单位：密度、吞吐量与流导',
         '抽气：有效抽速由导管决定',
         '放气与漏率：本底压强是一次除法',
-        '烘烤与壁处理：为什么要把壁“洗”干净',
+        '烘烤与壁处理：为什么要把壁「洗」干净',
         '壁条件与再循环：净加料只是零头',
         '燃料滞留与氚库存：账在壁上，不在罐里',
         '估算练习',
@@ -11266,7 +11266,7 @@ def check_P47_appendix_ao_vacuum():
         ("真空量与流导公式 & O'Hanlon《A User's Guide to Vacuum Technology》3rd ed.（2003）第 1--4、8 章 & 重写推导，只保留结论与可复算系数 \\\\", '表格数据行'),
         ('放气率与烘烤数据 & 同上，第 8 章 & 取量级作声明输入，数值全部由 \\texttt{appAO\\_calc.py} 复算 \\\\', '表格数据行'),
         ('托卡马克工作压强与吞吐量 & ITER Physics Basis（\\textit{Nuclear Fusion} \\textbf{39}, 1999）第 4 章 & 只取口径（5 Pa / $10^{-6}$ Pa / 100 m$^3$/s） \\\\', '表格数据行'),
-        ('壁处理与再循环 & Wesson《Tokamaks》4th ed.（2011）第 4 章；Stangeby（2000）第 4 章 & 改写为“净流量 = (1-R)”的账 \\\\', '表格数据行'),
+        ('壁处理与再循环 & Wesson《Tokamaks》4th ed.（2011）第 4 章；Stangeby（2000）第 4 章 & 改写为「净流量 = (1-R)」的账 \\\\', '表格数据行'),
         ('硼化与放电清洗 & Winter（\\textit{PPCF} \\textbf{38}, 1996） & 只引用原理结论，不复制工艺配方 \\\\', '表格数据行'),
         ('溅射与侵蚀寿命 & Roth 等（\\textit{PPCF} \\textbf{50}, 2008） & 只取产额量级，题型自拟 \\\\', '表格数据行'),
         ('共沉积与氚滞留 & Federici 等（\\textit{Nuclear Fusion} \\textbf{41}, 2001） & 只取 D/C 比与层厚量级 \\\\', '表格数据行'),

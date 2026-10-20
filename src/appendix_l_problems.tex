@@ -10,12 +10,12 @@
 
 本附录给出一份\textbf{可执行的分章自测题库}：第 1--12 章每章 6 题，固定为 \textbf{2 道概念题 + 2 道推导题 + 2 道估算题}，每题附「答案要点」（给思路与关键数字，而不是只给一个数）。
 
-它与另外两个附录的分工是：附录 K 是\textbf{范例}，给八道跨教材经典题与完整解答，用来学“怎么写”。附录 L 是\textbf{自测}，先合书独立做再看要点，用来查“会不会”。附录 I 是\textbf{策略}，管怎么安排复习、怎么处理错题。
+它与另外两个附录的分工是：附录 K 是\textbf{范例}，给八道跨教材经典题与完整解答，用来学「怎么写」。附录 L 是\textbf{自测}，先合书独立做再看要点，用来查「会不会」。附录 I 是\textbf{策略}，管怎么安排复习、怎么处理错题。
 
 \tksrc{每节的题型与难度分级参照 Chen 与 Fitzpatrick 教材对应章的习题类型（逐章对照见附录 J 的表 \ref{tab:app-j-map} 与本节末的来源表）；\textbf{所有题目与数值均由本书自拟，并已用脚本独立复算}，不复制任何原书题目。}
 
 \begin{tip}{题库用法}{tip-appl-howto}
-用法建议：先按附录 I 的“合书复述”独立做完一章的 6 题，再对答案要点。若一题的结果与文中\textbf{差一个量级}，先别怀疑公式，按附录 F 的顺序排查：温度用错（电子 / 离子、eV / K）、漏掉平方根、SI 与 CGS 混用、把 $kT$ 与 $T$ 等同。数值题一律给到两位有效数字即可，重点是量级与结论方向。
+用法建议：先按附录 I 的「合书复述」独立做完一章的 6 题，再对答案要点。若一题的结果与文中\textbf{差一个量级}，先别怀疑公式，按附录 F 的顺序排查：温度用错（电子 / 离子、eV / K）、漏掉平方根、SI 与 CGS 混用、把 $kT$ 与 $T$ 等同。数值题一律给到两位有效数字即可，重点是量级与结论方向。
 \end{tip}
 
 
@@ -32,14 +32,14 @@
 \item （推导）由麦克斯韦分布导出 $v_{th}=\sqrt{2k_BT/m}$ 与 $v_{avg}=\sqrt{8k_BT/\pi m}$，并计算 $T_e=10\ \mathrm{eV}$ 时电子的两个数值。
 \tkans{$v_{th}$ 由 $f(v)$ 的极大值给出，$v_{avg}$ 由分布的一阶矩给出，二者不相等。电子：$v_{th}=\sqrt{2T_e/m_e}=1.9\times10^{6}\ \mathrm{m/s}$，$v_{avg}=(2/\sqrt{\pi})\,v_{th}=2.1\times10^{6}\ \mathrm{m/s}$。注意两者相差 13\%，口算时不要混用。}
 
-\item （推导）证明理想气体 $\langle\frac12mv^2\rangle=\frac32k_BT$，并说明“$1\ \mathrm{eV}$ 对应多少开尔文”。
-\tkans{三个平动自由度各贡献 $\frac12k_BT$（能量均分）。由 $k_BT=e\cdot1\ \mathrm{V}$ 得 $1\ \mathrm{eV}=e/k_B=1.602\times10^{-19}/1.381\times10^{-23}=11605\ \mathrm{K}$。聚变等离子体“$10\ \mathrm{keV}$”即 $1.16\times10^{8}\ \mathrm{K}$，温度极高但粒子数密度低，压强仍在工程可及范围。}
+\item （推导）证明理想气体 $\langle\frac12mv^2\rangle=\frac32k_BT$，并说明「$1\ \mathrm{eV}$ 对应多少开尔文」。
+\tkans{三个平动自由度各贡献 $\frac12k_BT$（能量均分）。由 $k_BT=e\cdot1\ \mathrm{V}$ 得 $1\ \mathrm{eV}=e/k_B=1.602\times10^{-19}/1.381\times10^{-23}=11605\ \mathrm{K}$。聚变等离子体「$10\ \mathrm{keV}$」即 $1.16\times10^{8}\ \mathrm{K}$，温度极高但粒子数密度低，压强仍在工程可及范围。}
 
-\item （估算）$1\ \mathrm{Pa}$、$300\ \mathrm{K}$ 的中性气体数密度是多少？与 $n=10^{18}\ \mathrm{m^{-3}}$ 的“等离子体”相比，真空度谁更高？
+\item （估算）$1\ \mathrm{Pa}$、$300\ \mathrm{K}$ 的中性气体数密度是多少？与 $n=10^{18}\ \mathrm{m^{-3}}$ 的「等离子体」相比，真空度谁更高？
 \tkans{$n=p/k_BT=1/(1.381\times10^{-23}\times300)=2.4\times10^{20}\ \mathrm{m^{-3}}$，比 $10^{18}$ 高 240 倍。也就是说 $10^{18}\ \mathrm{m^{-3}}$ 的等离子体所处的本底真空必须优于 $10^{-2}\ \mathrm{Pa}$ 量级，否则中性粒子碰撞会主导，这正是实验室装置要抽高真空的原因。}
 
 \item （估算）若 $n=10^{15}\ \mathrm{m^{-3}}$、$T=1\ \mathrm{eV}$，求 $\lambda_D$ 与德拜球内粒子数 $N_D$，并判断统计描述是否成立。
-\tkans{$\lambda_D=7430\sqrt{T[\mathrm{eV}]/n[\mathrm{m^{-3}}]}=7430\sqrt{10^{-15}}=2.4\times10^{-4}\ \mathrm{m}$（0.24 mm）；$N_D=\frac{4\pi}{3}n\lambda_D^3\approx5.4\times10^{4}\gg1$。统计描述成立，但 $\lambda_D$ 已到毫米量级，装置尺度必须远大于 0.24 mm 才能谈“等离子体”（判据 $\lambda_D\ll L$ 与 $N_D\gg1$ 缺一不可）。}
+\tkans{$\lambda_D=7430\sqrt{T[\mathrm{eV}]/n[\mathrm{m^{-3}}]}=7430\sqrt{10^{-15}}=2.4\times10^{-4}\ \mathrm{m}$（0.24 mm）；$N_D=\frac{4\pi}{3}n\lambda_D^3\approx5.4\times10^{4}\gg1$。统计描述成立，但 $\lambda_D$ 已到毫米量级，装置尺度必须远大于 0.24 mm 才能谈「等离子体」（判据 $\lambda_D\ll L$ 与 $N_D\gg1$ 缺一不可）。}
 \end{enumerate}
 
 
@@ -48,7 +48,7 @@
 
 \begin{enumerate}
 \item （概念）等离子体的三条判据各解决什么问题？
-\tkans{$\lambda_D\ll L$：保证准中性、外场能被屏蔽（“集体”的前提）；$N_D\gg1$：保证德拜球内有足够多粒子，统计（连续介质）描述成立；$\omega_{pe}\tau>1$（$\tau$ 为碰撞时间）：保证集体振荡在两次碰撞之间能完成，等离子体行为不被碰撞抹平。三者分别对应空间尺度、统计性、时间尺度。}
+\tkans{$\lambda_D\ll L$：保证准中性、外场能被屏蔽（「集体」的前提）；$N_D\gg1$：保证德拜球内有足够多粒子，统计（连续介质）描述成立；$\omega_{pe}\tau>1$（$\tau$ 为碰撞时间）：保证集体振荡在两次碰撞之间能完成，等离子体行为不被碰撞抹平。三者分别对应空间尺度、统计性、时间尺度。}
 
 \item （概念）为什么弱电离的辉光放电和完全电离的日冕都算等离子体，而火焰和电离层 D 层边缘要谨慎？
 \tkans{判据看的是\textbf{集体性}而不是电离度：辉光放电 $n$ 大、$T_e$ 高，$\lambda_D$ 小、$N_D$ 大，仍满足三条判据；日冕虽稀薄，但尺度 $L$ 极大，$\lambda_D\ll L$ 成立。火焰电离度极低、且以化学反应与对流为主，集体行为被淹没；D 层边缘 $n$ 很低而碰撞频繁（$\omega_{pe}\tau<1$），也不满足判据。}
@@ -57,10 +57,10 @@
 \tkans{$\nabla^2\phi=-e(n_i-n_e)/\eps_0$；对 $|e\phi|\ll k_BT_e$ 展开 $n_e\approx n_0(1+e\phi/k_BT_e)$，代入得 $\nabla^2\phi=\phi/\lambda_D^2$，故 $\lambda_D=\sqrt{\eps_0k_BT_e/(n_0e^2)}$。工程式：$\lambda_D=7430\sqrt{T_e[\mathrm{eV}]/n[\mathrm{m^{-3}}]}\ \mathrm{m}$。}
 
 \item （推导）证明德拜势在 $r=\lambda_D$ 处衰减到裸库仑势的 $1/e$，并求 $r=5\lambda_D$ 处剩余的百分比。
-\tkans{$\phi\propto e^{-r/\lambda_D}/r$，故 $r=\lambda_D$ 时因子为 $e^{-1}=36.8\%$；$r=5\lambda_D$ 时为 $e^{-5}=0.67\%$，五个德拜长度之外屏蔽已经非常彻底，这就是“等离子体把电场关在自己家里”的定量含义。}
+\tkans{$\phi\propto e^{-r/\lambda_D}/r$，故 $r=\lambda_D$ 时因子为 $e^{-1}=36.8\%$；$r=5\lambda_D$ 时为 $e^{-5}=0.67\%$，五个德拜长度之外屏蔽已经非常彻底，这就是「等离子体把电场关在自己家里」的定量含义。}
 
 \item （估算）荧光灯正柱 $n=10^{16}\ \mathrm{m^{-3}}$、$kT_e=1\ \mathrm{eV}$：求 $\lambda_D$ 与 $N_D$，并判断它是否满足等离子体判据。
-\tkans{$\lambda_D=7430\sqrt{1/10^{16}}=7.4\times10^{-5}\ \mathrm{m}$（74 $\mathrm{\mu m}$）；$N_D=\frac{4\pi}{3}\times10^{16}\times(7.43\times10^{-5})^3\approx1.7\times10^{4}\gg1$。管径量级为厘米，$\lambda_D\ll L$；电子温度 $1\ \mathrm{eV}$ 而气体接近室温，正是低温等离子体“电子热、离子冷”的典型参数。}
+\tkans{$\lambda_D=7430\sqrt{1/10^{16}}=7.4\times10^{-5}\ \mathrm{m}$（74 $\mathrm{\mu m}$）；$N_D=\frac{4\pi}{3}\times10^{16}\times(7.43\times10^{-5})^3\approx1.7\times10^{4}\gg1$。管径量级为厘米，$\lambda_D\ll L$；电子温度 $1\ \mathrm{eV}$ 而气体接近室温，正是低温等离子体「电子热、离子冷」的典型参数。}
 
 \item （估算）托卡马克边界（$n=10^{19}\ \mathrm{m^{-3}}$、$T_e=100\ \mathrm{eV}$）与日冕（$n=10^{15}\ \mathrm{m^{-3}}$、$T=100\ \mathrm{eV}$）的 $\lambda_D$ 之比是多少？
 \tkans{$\lambda_D\propto\sqrt{T/n}$。边界：$\lambda_D=2.4\times10^{-5}\ \mathrm{m}$；日冕：$2.4\times10^{-3}\ \mathrm{m}$。比值 $\sqrt{10^{4}}=100$，即日冕的德拜长度比托卡马克边界大两个量级，密度低四个量级、温度相同。这解释了为什么日冕能容纳上百公里尺度的电流片。}
@@ -72,7 +72,7 @@
 
 \begin{enumerate}
 \item （概念）$\vect{E}\times\vect{B}$ 漂移为什么与电荷符号和质量都无关？这会带来什么后果？
-\tkans{运动方程 $m\diff\vect{v}/\diff t=q(\vect{E}+\vect{v}\times\vect{B})$ 的漂移解为 $\vect{v}_E=\vect{E}\times\vect{B}/B^2$，$q$ 与 $m$ 在求解过程中被消掉。后果：电子与离子\textbf{同向同速}漂移，不产生电荷分离，但整个等离子体一起平移，这是等离子体输运与“$E\times B$ 搅拌”的根源。}
+\tkans{运动方程 $m\diff\vect{v}/\diff t=q(\vect{E}+\vect{v}\times\vect{B})$ 的漂移解为 $\vect{v}_E=\vect{E}\times\vect{B}/B^2$，$q$ 与 $m$ 在求解过程中被消掉。后果：电子与离子\textbf{同向同速}漂移，不产生电荷分离，但整个等离子体一起平移，这是等离子体输运与「$E\times B$ 搅拌」的根源。}
 
 \item （概念）磁镜为什么能反射粒子？损失锥的临界角由什么决定？
 \tkans{磁矩 $\mu=mv_\perp^2/2B$ 是绝热不变量：$B$ 增大时 $v_\perp$ 增大，由能量守恒 $v_\parallel$ 减小，最终 $v_\parallel=0$ 而被反射。临界投掷角满足 $\sin^2\theta_c=B_{\min}/B_{\max}=1/R_m$（$R_m$ 为镜比），投掷角小于 $\theta_c$ 的粒子落入损失锥并逃逸。}
@@ -83,8 +83,8 @@
 \item （推导）托卡马克 $B=5\ \mathrm{T}$、氘离子 $T_i=10\ \mathrm{keV}$：求 $\omega_{ci}$、$v_i$ 与 $\rho_{Li}$。
 \tkans{$\omega_{ci}=eB/m_i=1.602\times10^{-19}\times5/3.344\times10^{-27}=2.4\times10^{8}\ \mathrm{rad/s}$（$f_{ci}=38\ \mathrm{MHz}$）；$v_i=\sqrt{2k_BT_i/m_i}=9.8\times10^{5}\ \mathrm{m/s}$；$\rho_{Li}=v_i/\omega_{ci}=4.1\times10^{-3}\ \mathrm{m}$（4.1 mm）。离子回旋半径远小于装置半径（约 1--2 m），是磁约束可行的基本前提。}
 
-\item （估算）地球磁层 $B=0.5\ \mathrm{G}$、$1\ \mathrm{keV}$ 质子：回旋半径是多少？为什么磁层能“困住”太阳风粒子？
-\tkans{$\omega_{cp}=eB/m_p=1.602\times10^{-19}\times5\times10^{-5}/1.673\times10^{-27}=4.8\times10^{3}\ \mathrm{rad/s}$；$v=\sqrt{2k_BT/m_p}=4.4\times10^{5}\ \mathrm{m/s}$；$\rho_L=4.4\times10^{5}/4.8\times10^{3}=91\ \mathrm{m}$。它比磁层尺度（$10^{7}\ \mathrm{m}$）小五个量级，粒子只能沿磁力线螺旋前进，被磁场“串”在磁力线上，这就是辐射带与极光沉降的几何基础。}
+\item （估算）地球磁层 $B=0.5\ \mathrm{G}$、$1\ \mathrm{keV}$ 质子：回旋半径是多少？为什么磁层能「困住」太阳风粒子？
+\tkans{$\omega_{cp}=eB/m_p=1.602\times10^{-19}\times5\times10^{-5}/1.673\times10^{-27}=4.8\times10^{3}\ \mathrm{rad/s}$；$v=\sqrt{2k_BT/m_p}=4.4\times10^{5}\ \mathrm{m/s}$；$\rho_L=4.4\times10^{5}/4.8\times10^{3}=91\ \mathrm{m}$。它比磁层尺度（$10^{7}\ \mathrm{m}$）小五个量级，粒子只能沿磁力线螺旋前进，被磁场「串」在磁力线上，这就是辐射带与极光沉降的几何基础。}
 
 \item （估算）$B=1\ \mathrm{T}$、$T_e=100\ \mathrm{eV}$ 的电子：回旋频率 $f_{ce}$ 与回旋半径 $\rho_{Le}$ 各是多少？与 $1\ \mathrm{cm}$ 探针尺度相比说明了什么？
 \tkans{$\omega_{ce}=eB/m_e=1.76\times10^{11}\ \mathrm{rad/s}$，$f_{ce}=28\ \mathrm{GHz}$（毫米波段，可用于电子回旋加热与发射诊断）；$v_{te}=5.9\times10^{6}\ \mathrm{m/s}$，$\rho_{Le}=3.4\times10^{-5}\ \mathrm{m}$（34 $\mathrm{\mu m}$）。$\rho_{Le}\ll1\ \mathrm{cm}$：电子被强烈磁化，其横越磁力线的运动被冻结，只有沿磁力线才自由，这是磁化等离子体各向异性输运的起点。}
@@ -98,7 +98,7 @@
 \tkans{连续性方程 $\partial_tn+\nabla\cdot(n\vect{u})=0$ 是粒子数（质量）守恒；动量方程是动量守恒，含压强梯度、洛伦兹力 $\vect{j}\times\vect{B}$ 与碰撞摩擦。未知量多于方程，必须补\textbf{状态方程或能量方程}（等温 / 绝热假设）并加上麦克斯韦方程组，才能闭合。}
 
 \item （概念）抗磁漂移的物理来源是什么？为什么它与电荷符号有关，而 $\vect{E}\times\vect{B}$ 漂移无关？
-\tkans{压强梯度使回旋轨道两侧的受力不平衡，产生 $\vect{v}_D=-(\nabla p\times\vect{B})/(qnB^2)$：式中含 $q$，因此电子与离子\textbf{反向}漂移，形成抗磁电流（这正是等离子体电流与磁场的“自带”来源）。$\vect{E}\times\vect{B}$ 漂移不含 $q$，故与电荷符号无关。}
+\tkans{压强梯度使回旋轨道两侧的受力不平衡，产生 $\vect{v}_D=-(\nabla p\times\vect{B})/(qnB^2)$：式中含 $q$，因此电子与离子\textbf{反向}漂移，形成抗磁电流（这正是等离子体电流与磁场的「自带」来源）。$\vect{E}\times\vect{B}$ 漂移不含 $q$，故与电荷符号无关。}
 
 \item （推导）由流体动量方程导出抗磁漂移的标量形式 $v_{dia}=k_BT/(qBL_n)$（$L_n=|\nabla n/n|^{-1}$）。
 \tkans{对稳态、无碰撞、各向同性压强，动量方程 $0=-\nabla p+qn(\vect{v}\times\vect{B})$ 给出 $\vect{v}_\perp=(\nabla p\times\vect{B})/(qnB^2)$。取 $\nabla p=k_BT\nabla n$、$|\nabla n|/n=1/L_n$，得 $v_{dia}=k_BT/(qBL_n)$；方向垂直于 $\nabla n$ 与 $\vect{B}$，电子与离子相反。}
@@ -118,20 +118,20 @@
 \tksrc{Chen 第 3、6 章、Fitzpatrick 第 8 章（磁压、磁冻结、MHD 波），进阶参照 Freidberg \textit{Ideal MHD}。}
 
 \begin{enumerate}
-\item （概念）理想 MHD 的三条基本假设与两个“冻结”结论是什么？
-\tkans{假设：准中性（$L\gg\lambda_D$）、单流体（离子与电子一起运动，$L\gg\rho_i$、$\omega\ll\omega_{ci}$）、理想欧姆定律 $\vect{E}+\vect{v}\times\vect{B}=0$（等价于 $R_m\gg1$）。结论：磁通量冻结（穿过任一流体回路的磁通守恒）、磁场与流体“焊”在一起；等价说法是磁力线像被流体拖着的橡皮筋。}
+\item （概念）理想 MHD 的三条基本假设与两个「冻结」结论是什么？
+\tkans{假设：准中性（$L\gg\lambda_D$）、单流体（离子与电子一起运动，$L\gg\rho_i$、$\omega\ll\omega_{ci}$）、理想欧姆定律 $\vect{E}+\vect{v}\times\vect{B}=0$（等价于 $R_m\gg1$）。结论：磁通量冻结（穿过任一流体回路的磁通守恒）、磁场与流体「焊」在一起；等价说法是磁力线像被流体拖着的橡皮筋。}
 
-\item （概念）为什么说 $\vect{j}\times\vect{B}$ 可以写成“磁张力 + 磁压”？
+\item （概念）为什么说 $\vect{j}\times\vect{B}$ 可以写成「磁张力 + 磁压」？
 \tkans{用矢量恒等式 $\vect{j}\times\vect{B}=(\vect{B}\cdot\nabla)\vect{B}/\mu_0-\nabla(B^2/2\mu_0)$。第一项沿磁力线方向，是\textbf{磁张力}（把弯曲的磁力线拉直）；第二项是各向同性的\textbf{磁压}（$B^2/2\mu_0$，把磁力线彼此推开）。于是 MHD 动量方程获得直观图像：磁力线是绷紧的弦，磁场是能推的气体。}
 
 \item （推导）由感应方程 $\partial_t\vect{B}=\nabla\times(\vect{v}\times\vect{B})+(\eta/\mu_0)\nabla^2\vect{B}$ 导出磁扩散时间 $\tau_\eta=\mu_0L^2/\eta$ 与磁雷诺数 $R_m=\mu_0Lv/\eta$。
 \tkans{忽略对流项，方程化为扩散方程，特征时间 $\tau_\eta=\mu_0L^2/\eta$；两项之比即 $R_m=\tau_\eta/\tau_{flow}=\mu_0Lv/\eta$。$R_m\gg1$ 时对流项主导，冻结成立；$R_m\ll1$ 时磁场自由扩散。}
 
 \item （推导）$n=10^{20}\ \mathrm{m^{-3}}$、$B=5\ \mathrm{T}$ 的氘等离子体：求 Alfvén 速度，并用 $v_A/c$ 说明非相对论性。
-\tkans{$v_A=B/\sqrt{\mu_0nm_i}=5/\sqrt{1.2566\times10^{-6}\times10^{20}\times3.344\times10^{-27}}=5/6.48\times10^{-7}=7.7\times10^{6}\ \mathrm{m/s}$；$v_A/c=2.6\%$。$v_A/c\ll1$ 只说明\textbf{非相对论 Alfv\'en 公式适用}（位移电流可以忽略），\textbf{不能据此断定磁冻结成立}：磁冻结要求理想欧姆定律成立，至少要 $R_m=\mu_0Lv/\eta\gg1$，还要检查霍尔项与电子压强项（正文第 5 章“MHD 适用条件：三道独立的门槛，别只看一道”）。本题未给温度、电阻率与流动尺度，无法判断（对聚变参数，$v_A$ 通常为 $10^{6}$--$10^{7}\ \mathrm{m/s}$）。}
+\tkans{$v_A=B/\sqrt{\mu_0nm_i}=5/\sqrt{1.2566\times10^{-6}\times10^{20}\times3.344\times10^{-27}}=5/6.48\times10^{-7}=7.7\times10^{6}\ \mathrm{m/s}$；$v_A/c=2.6\%$。$v_A/c\ll1$ 只说明\textbf{非相对论 Alfv\'en 公式适用}（位移电流可以忽略），\textbf{不能据此断定磁冻结成立}：磁冻结要求理想欧姆定律成立，至少要 $R_m=\mu_0Lv/\eta\gg1$，还要检查霍尔项与电子压强项（正文第 5 章「MHD 适用条件：三道独立的门槛，别只看一道」）。本题未给温度、电阻率与流动尺度，无法判断（对聚变参数，$v_A$ 通常为 $10^{6}$--$10^{7}\ \mathrm{m/s}$）。}
 
 \item （估算）$T_e=10\ \mathrm{eV}$、$\ln\Lambda=10$ 的氘等离子体：$\eta_\parallel\approx5.2\times10^{-5}\ln\Lambda\,T_e[\mathrm{eV}]^{-3/2}$，求 $\eta_\parallel$、$L=1\ \mathrm{m}$ 的 $\tau_\eta$，以及 $v=10^{4}\ \mathrm{m/s}$ 时的 $R_m$。磁冻结在这里成立吗？
-\tkans{$\eta=5.2\times10^{-5}\times10/10^{1.5}=1.6\times10^{-5}\ \Omega\cdot\mathrm{m}$；$\tau_\eta=\mu_0L^2/\eta=1.2566\times10^{-6}/1.64\times10^{-5}=0.076\ \mathrm{s}$；$R_m=\mu_0Lv/\eta=1.2566\times10^{-6}\times1\times10^{4}/1.64\times10^{-5}=7.6\times10^{2}$。$R_m\gg1$ 成立，但只有两个多量级，若把 $L$ 缩到 1 cm 或把速度降到 $10^{3}\ \mathrm{m/s}$，$R_m$ 就跌到 10 以下，“理想”随即失效。结论：磁冻结是\textbf{需要检验}的近似，不是自动成立的定理。}
+\tkans{$\eta=5.2\times10^{-5}\times10/10^{1.5}=1.6\times10^{-5}\ \Omega\cdot\mathrm{m}$；$\tau_\eta=\mu_0L^2/\eta=1.2566\times10^{-6}/1.64\times10^{-5}=0.076\ \mathrm{s}$；$R_m=\mu_0Lv/\eta=1.2566\times10^{-6}\times1\times10^{4}/1.64\times10^{-5}=7.6\times10^{2}$。$R_m\gg1$ 成立，但只有两个多量级，若把 $L$ 缩到 1 cm 或把速度降到 $10^{3}\ \mathrm{m/s}$，$R_m$ 就跌到 10 以下，「理想」随即失效。结论：磁冻结是\textbf{需要检验}的近似，不是自动成立的定理。}
 
 \item （估算）$\beta=2\mu_0nk_BT/B^2$：$n=10^{20}\ \mathrm{m^{-3}}$、$T=10\ \mathrm{keV}$、$B=5.3\ \mathrm{T}$ 时 $\beta$ 是多少？若要把 $\beta$ 压到 3\%（托卡马克运行区），需要多大磁场？
 \tkans{$p=nk_BT=10^{20}\times10^{4}\times1.602\times10^{-19}=1.6\times10^{5}\ \mathrm{Pa}$；$\beta=2\times1.2566\times10^{-6}\times1.602\times10^{5}/5.3^2=1.4\%$。要 $\beta=3\%$：$B=\sqrt{2\mu_0p/0.03}=\sqrt{0.4026/0.03}=3.7\ \mathrm{T}$。可见同温度下提高磁场是压低 $\beta$（换取 MHD 稳定裕度）的直接手段。}
@@ -149,27 +149,27 @@
 \tkans{截止：$n$ 降到使 $k^2=0$（$\omega=\omega_{pe}$），波不能传播而被反射；共振：$k\to\infty$（如 $\omega=\omega_{ce}$ 附近的共振层），波被强烈吸收。反射计向等离子体发射扫频波，测到反射时的频率即给出截止层密度 $n_c(\omega)$；由不同频率的反射时间（或相位）反演出密度剖面。}
 
 \item （推导）由 $\omega^2=\omega_{pe}^2+k^2c^2$ 导出截止密度 $n_c=\eps_0m_e\omega^2/e^2$，并求 $f=2.45\ \mathrm{GHz}$ 时的 $n_c$。
-\tkans{令 $k=0$ 得 $\omega^2=\omega_{pe}^2=n_ce^2/(\eps_0m_e)$，故 $n_c=\eps_0m_e\omega^2/e^2$。$f=2.45\ \mathrm{GHz}$：$\omega=1.539\times10^{10}\ \mathrm{rad/s}$，$n_c=8.854\times10^{-12}\times9.109\times10^{-31}\times2.369\times10^{20}/2.566\times10^{-38}=7.4\times10^{16}\ \mathrm{m^{-3}}$。微波炉频率对应的正是这个量级的密度，等离子体工艺中“过密”与“欠密”的分界。}
+\tkans{令 $k=0$ 得 $\omega^2=\omega_{pe}^2=n_ce^2/(\eps_0m_e)$，故 $n_c=\eps_0m_e\omega^2/e^2$。$f=2.45\ \mathrm{GHz}$：$\omega=1.539\times10^{10}\ \mathrm{rad/s}$，$n_c=8.854\times10^{-12}\times9.109\times10^{-31}\times2.369\times10^{20}/2.566\times10^{-38}=7.4\times10^{16}\ \mathrm{m^{-3}}$。微波炉频率对应的正是这个量级的密度，等离子体工艺中「过密」与「欠密」的分界。}
 
 \item （推导）离子声波 $\omega=kc_s$、$c_s=\sqrt{k_BT_e/m_i}$ 在什么条件下成立？求 $T_e=10\ \mathrm{eV}$ 时氘等离子体的 $c_s$。
 \tkans{条件：$T_e\gg T_i$（离子被电子压强推着走）、$k\lambda_D\ll1$（准中性）。$c_s=\sqrt{T_e/m_i}=2.2\times10^{4}\ \mathrm{m/s}$，与第 4 章估算题一致；这个速度同时是玻姆速度与预鞘加速的标定速度。}
 
 \item （估算）$n=10^{18}\ \mathrm{m^{-3}}$ 的等离子体频率 $f_{pe}$ 是多少？$2.45\ \mathrm{GHz}$ 的微波能穿透吗？
-\tkans{$\omega_{pe}=\sqrt{ne^2/(\eps_0m_e)}=5.6\times10^{10}\ \mathrm{rad/s}$，$f_{pe}=9.0\ \mathrm{GHz}$。$f_{pe}>2.45\ \mathrm{GHz}$，即 $\omega<\omega_{pe}$，波是渐逝的，微波被反射（该等离子体对微波“过密”）。这正是“微波不能穿透高密度等离子体”的定量判据，也是 2.45 GHz 源难以维持高密度放电的原因。}
+\tkans{$\omega_{pe}=\sqrt{ne^2/(\eps_0m_e)}=5.6\times10^{10}\ \mathrm{rad/s}$，$f_{pe}=9.0\ \mathrm{GHz}$。$f_{pe}>2.45\ \mathrm{GHz}$，即 $\omega<\omega_{pe}$，波是渐逝的，微波被反射（该等离子体对微波「过密」）。这正是「微波不能穿透高密度等离子体」的定量判据，也是 2.45 GHz 源难以维持高密度放电的原因。}
 
 \item （估算）$n=10^{20}\ \mathrm{m^{-3}}$、$B=5\ \mathrm{T}$ 的氘等离子体中，Alfvén 波沿 $1\ \mathrm{m}$ 传播需要多久？
-\tkans{$v_A=7.7\times10^{6}\ \mathrm{m/s}$（第 5 章已算），$t=L/v_A=1.3\times10^{-7}\ \mathrm{s}=0.13\ \mathrm{\mu s}$。微秒量级，比 MHD 不稳定性的增长时间快得多，说明理想 MHD 波可以在扰动增长期间多次往返，磁力线的“弹性”响应是瞬时的。}
+\tkans{$v_A=7.7\times10^{6}\ \mathrm{m/s}$（第 5 章已算），$t=L/v_A=1.3\times10^{-7}\ \mathrm{s}=0.13\ \mathrm{\mu s}$。微秒量级，比 MHD 不稳定性的增长时间快得多，说明理想 MHD 波可以在扰动增长期间多次往返，磁力线的「弹性」响应是瞬时的。}
 \end{enumerate}
 
 \section{第 7 章：动理学理论}
 \tksrc{Chen 第 7 章、Fitzpatrick 第 3、7 章（Landau 阻尼、速度空间不稳定性），进阶参照 Krall \& Trivelpiece。}
 
 \begin{enumerate}
-\item （概念）弗拉索夫方程与玻尔兹曼方程差在哪里？为什么“无碰撞”也能有阻尼？
+\item （概念）弗拉索夫方程与玻尔兹曼方程差在哪里？为什么「无碰撞」也能有阻尼？
 \tkans{弗拉索夫方程 $\partial_tf+\vect{v}\cdot\nabla f+(q/m)(\vect{E}+\vect{v}\times\vect{B})\cdot\nabla_vf=0$ 只保留自洽平均场，丢掉碰撞积分；玻尔兹曼方程多一项 $(\delta f/\delta t)_c$。Landau 阻尼不是碰撞阻尼，而是\textbf{波与共振粒子的可逆能量交换}：相速度附近的粒子被波加速或被减速，净效果是把相干波能转移为粒子的无规动能，因此熵增、波衰减，而无需任何碰撞。}
 
 \item （概念）共振条件 $\omega-kv_\parallel=0$ 意味着什么？什么样的粒子主导 Landau 阻尼？
-\tkans{平行速度等于波相速度 $v_\phi=\omega/k$ 的粒子与波“同相”共振，能持续交换能量。主导者是分布函数在 $v_\phi$ 处的斜率 $\partial f_0/\partial v$：斜率越平缓（或越靠尾部）贡献越小。$v_\phi\sim v_{te}$ 时阻尼最强；$v_\phi$ 远在分布尾部之外时阻尼指数小，这解释了为什么快波（$v_\phi\gg v_{te}$）几乎无阻尼。}
+\tkans{平行速度等于波相速度 $v_\phi=\omega/k$ 的粒子与波「同相」共振，能持续交换能量。主导者是分布函数在 $v_\phi$ 处的斜率 $\partial f_0/\partial v$：斜率越平缓（或越靠尾部）贡献越小。$v_\phi\sim v_{te}$ 时阻尼最强；$v_\phi$ 远在分布尾部之外时阻尼指数小，这解释了为什么快波（$v_\phi\gg v_{te}$）几乎无阻尼。}
 
 \item （推导）从弗拉索夫方程线性化（$f=f_0+\delta f$，$\delta f\propto e^{i(kx-\omega t)}$）导出 $\delta f=\dfrac{qE}{m}\dfrac{\partial f_0/\partial v}{i(kv-\omega)}$，并说明分母的极点如何处理。
 \tkans{代入并保留一阶项得 $(-i\omega+ikv)\delta f+(qE/m)\partial_vf_0=0$，即上式。极点 $v=\omega/k$ 落在积分围道上，物理上对应共振粒子：绕开极点的方式（朗道围道，$\omega\to\omega+i0^+$）决定了积分取主值加半留数，其虚部给出阻尼/增长，极点的处理方式就是阻尼率的来源。}
@@ -178,10 +178,10 @@
 \tkans{$\dfrac{\gamma}{\omega}=-\sqrt{\dfrac{\pi}{8}}\dfrac{1}{(k\lambda_D)^3}\exp\!\left[-\dfrac{1}{2k^2\lambda_D^2}-\dfrac{3}{2}\right]$。$k\lambda_D=0.3$：$(k\lambda_D)^{-3}=37.04$，指数 $\exp[-5.556-1.5]=e^{-7.056}=8.64\times10^{-4}$，故 $\gamma/\omega=-0.6266\times37.04\times8.64\times10^{-4}=-2.0\times10^{-2}$，即每周期衰减约 12\%。}
 
 \item （估算）$k\lambda_D=0.25$ 与 $k\lambda_D=0.2$ 的 $\gamma/\omega$ 各是多少？为什么两者差近两个量级？
-\tkans{$k\lambda_D=0.25$：$\gamma/\omega=-3.0\times10^{-3}$（每周期约 1.9\%）；$k\lambda_D=0.2$：$-6.5\times10^{-5}$（0.04\%）。差别几乎全部来自指数因子 $e^{-1/2k^2\lambda_D^2}$：从 $e^{-8}$ 降到 $e^{-12.5}$，倍率 $e^{-4.5}=0.011$。这就是“长波几乎无阻尼、$k\lambda_D\sim0.3$ 才明显”的定量含义，也是为什么必须把波长与 $\lambda_D$ 一起报告。}
+\tkans{$k\lambda_D=0.25$：$\gamma/\omega=-3.0\times10^{-3}$（每周期约 1.9\%）；$k\lambda_D=0.2$：$-6.5\times10^{-5}$（0.04\%）。差别几乎全部来自指数因子 $e^{-1/2k^2\lambda_D^2}$：从 $e^{-8}$ 降到 $e^{-12.5}$，倍率 $e^{-4.5}=0.011$。这就是「长波几乎无阻尼、$k\lambda_D\sim0.3$ 才明显」的定量含义，也是为什么必须把波长与 $\lambda_D$ 一起报告。}
 
 \item （估算）双流不稳定性：$n=10^{18}\ \mathrm{m^{-3}}$、$\gamma_{\max}=\omega_{pe}/\sqrt{8}$，求 $\omega_{pe}$、$\gamma_{\max}$ 与特征增长时间。
-\tkans{$\omega_{pe}=5.6\times10^{10}\ \mathrm{rad/s}$；$\gamma_{\max}=5.64\times10^{10}/2.828=2.0\times10^{10}\ \mathrm{s^{-1}}$；增长时间 $1/\gamma_{\max}=5.0\times10^{-11}\ \mathrm{s}=50\ \mathrm{ps}$。比任何碰撞或输运时间都快几个量级，这解释了为什么束-等离子体系统一旦满足条件就迅速进入强湍流（第 8 章“反常电阻”的动理学根源）。}
+\tkans{$\omega_{pe}=5.6\times10^{10}\ \mathrm{rad/s}$；$\gamma_{\max}=5.64\times10^{10}/2.828=2.0\times10^{10}\ \mathrm{s^{-1}}$；增长时间 $1/\gamma_{\max}=5.0\times10^{-11}\ \mathrm{s}=50\ \mathrm{ps}$。比任何碰撞或输运时间都快几个量级，这解释了为什么束-等离子体系统一旦满足条件就迅速进入强湍流（第 8 章「反常电阻」的动理学根源）。}
 \end{enumerate}
 
 
@@ -196,16 +196,16 @@
 \tkans{经典（碰撞）扩散 $D_\perp\propto n/T^{1/2}B^2$（对 $B$ 是 $1/B^2$），来自回旋运动被碰撞打断的随机行走；玻姆扩散 $D_B\propto k_BT_e/(eB)$（$1/B$），来自湍流涡的尺度 $\sim\rho_s$ 与寿命 $\sim1/\omega_*$。差异在 $B$ 的幂次：装置加大磁场时经典扩散迅速变小，而玻姆扩散只线性下降，因此在强磁场约束装置中湍流（玻姆类）输运常常主导。}
 
 \item （推导）由 Spitzer 电阻率 $\eta_\parallel=5.2\times10^{-5}Z\ln\Lambda\,T_e[\mathrm{eV}]^{-3/2}\ \Omega\cdot\mathrm{m}$ 说明 $\eta\propto T^{-3/2}$，并计算温度从 $10\ \mathrm{eV}$ 升到 $1\ \mathrm{keV}$ 时 $\eta$ 下降多少倍。
-\tkans{$\eta\propto T^{-3/2}$ 直接来自 $\eta\propto\nu_{ei}\propto nT^{-3/2}$（除以 $n$ 后仍留 $T^{-3/2}$）。倍率 $(1000/10)^{3/2}=100^{1.5}=1000$。温度升高 100 倍，电阻率降低 1000 倍，这是欧姆加热在高温下“自我熄火”的根源，也是为什么聚变装置必须靠中性束、射频等辅助加热。}
+\tkans{$\eta\propto T^{-3/2}$ 直接来自 $\eta\propto\nu_{ei}\propto nT^{-3/2}$（除以 $n$ 后仍留 $T^{-3/2}$）。倍率 $(1000/10)^{3/2}=100^{1.5}=1000$。温度升高 100 倍，电阻率降低 1000 倍，这是欧姆加热在高温下「自我熄火」的根源，也是为什么聚变装置必须靠中性束、射频等辅助加热。}
 
 \item （推导）$n=10^{19}\ \mathrm{m^{-3}}$、$T_e=1\ \mathrm{keV}$、$\ln\Lambda=10$：求 $\eta_\parallel$ 与电子-离子碰撞时间 $\tau_{ei}$（$\nu_{ei}\approx2.9\times10^{-6}n\ln\Lambda\,T_e[\mathrm{eV}]^{-3/2}\ \mathrm{s^{-1}}$）。
-\tkans{$\eta=5.2\times10^{-5}\times10/1000^{1.5}=1.6\times10^{-8}\ \Omega\cdot\mathrm{m}$；$\nu_{ei}=2.9\times10^{-6}\times10^{19}\times10/3.162\times10^{4}=9.2\times10^{9}\ \mathrm{s^{-1}}$，$\tau_{ei}=1/\nu_{ei}=1.1\times10^{-10}\ \mathrm{s}$。比较：$\omega_{pe}=5.6\times10^{9}\ \mathrm{rad/s}$，$\omega_{pe}\tau_{ei}=0.6$，量级为 1，说明该参数下集体效应与碰撞效应同等重要，“无碰撞”与“碰撞主导”都不是好的近似。}
+\tkans{$\eta=5.2\times10^{-5}\times10/1000^{1.5}=1.6\times10^{-8}\ \Omega\cdot\mathrm{m}$；$\nu_{ei}=2.9\times10^{-6}\times10^{19}\times10/3.162\times10^{4}=9.2\times10^{9}\ \mathrm{s^{-1}}$，$\tau_{ei}=1/\nu_{ei}=1.1\times10^{-10}\ \mathrm{s}$。比较：$\omega_{pe}=5.6\times10^{9}\ \mathrm{rad/s}$，$\omega_{pe}\tau_{ei}=0.6$，量级为 1，说明该参数下集体效应与碰撞效应同等重要，「无碰撞」与「碰撞主导」都不是好的近似。}
 
 \item （估算）上题电子的热速度 $v_{te}=1.9\times10^{7}\ \mathrm{m/s}$，平均自由程 $\lambda_{mfp}=v_{te}\tau_{ei}$ 是多少？与 $1\ \mathrm{m}$ 的装置尺度相比说明了什么？
-\tkans{$\lambda_{mfp}=1.9\times10^{7}\times1.1\times10^{-10}=2.1\times10^{-3}\ \mathrm{m}$（2 mm），$\lambda_{mfp}/L=2\times10^{-3}\ll1$。虽然是“高温稀薄”等离子体，芯部的碰撞仍然足够频繁，局域输运系数（Spitzer、Braginskii）可用；但要注意这是\textbf{沿磁力线}的自由程，垂直方向的步长被回旋半径限制，两者相差 $\sim10^{4}$ 倍。}
+\tkans{$\lambda_{mfp}=1.9\times10^{7}\times1.1\times10^{-10}=2.1\times10^{-3}\ \mathrm{m}$（2 mm），$\lambda_{mfp}/L=2\times10^{-3}\ll1$。虽然是「高温稀薄」等离子体，芯部的碰撞仍然足够频繁，局域输运系数（Spitzer、Braginskii）可用；但要注意这是\textbf{沿磁力线}的自由程，垂直方向的步长被回旋半径限制，两者相差 $\sim10^{4}$ 倍。}
 
 \item （估算）中性粒子的电离/电荷交换截面取 $\sigma\approx10^{-19}\ \mathrm{m^2}$：边界 $n=10^{20}\ \mathrm{m^{-3}}$ 时穿透深度 $1/(n\sigma)$ 是多少？若边界密度升到 $10^{21}\ \mathrm{m^{-3}}$ 呢？
-\tkans{$n=10^{20}$：$\lambda=1/(10^{20}\times10^{-19})=0.1\ \mathrm{m}$（10 cm）；$n=10^{21}$：$\lambda=1\ \mathrm{cm}$。穿透深度 $\propto1/n$，所以中性粒子（加料、再循环）只作用于边界薄层，芯部几乎完全电离，这也是偏滤器要把中性粒子“关”在靶板附近、以及中性束注入必须高能（才能边电离边穿入）的原因。}
+\tkans{$n=10^{20}$：$\lambda=1/(10^{20}\times10^{-19})=0.1\ \mathrm{m}$（10 cm）；$n=10^{21}$：$\lambda=1\ \mathrm{cm}$。穿透深度 $\propto1/n$，所以中性粒子（加料、再循环）只作用于边界薄层，芯部几乎完全电离，这也是偏滤器要把中性粒子「关」在靶板附近、以及中性束注入必须高能（才能边电离边穿入）的原因。}
 \end{enumerate}
 
 
@@ -213,46 +213,46 @@
 \tksrc{Chen 第 6、8 章、Fitzpatrick 第 7、9 章（撕裂模、重联），进阶参照 Freidberg 与 Wesson \textit{Tokamaks}。}
 
 \begin{enumerate}
-\item （概念）不稳定性的自由能来自哪里？“$\gamma>0$”的判据从哪里得到？
+\item （概念）不稳定性的自由能来自哪里？「$\gamma>0$」的判据从哪里得到？
 \tkans{自由能来源：密度/温度梯度（漂移波、交换模）、电流梯度（撕裂模、扭结模）、速度空间各向异性或束流（双流、损失锥不稳定性）、坏曲率与重力（交换模、瑞利--泰勒）。判据有两条路径：解色散关系看 $\omega$ 是否有正虚部（线性增长率），或用能量原理 $\delta W<0$（MHD 变分判据，不需要显式色散关系）。}
 
-\item （概念）为什么“坏曲率”会驱动交换模？它与瑞利--泰勒不稳定性有什么类比？
-\tkans{在曲率中心位于等离子体一侧（坏曲率）的区域，磁力线凹面朝向等离子体，磁压随半径下降得比等离子体压强快，等价于“重流体压在轻流体上”：把两根相邻磁通管交换位置会降低总能量，因此不稳定。类比关系是 $g_{eff}=c_s^2/R_c$ 扮演重力加速度，判据由 $\omega^2=-Akg_{eff}<0$ 给出，与流体瑞利--泰勒同形，差别只在“重力”来自磁力线弯曲而非真实引力。}
+\item （概念）为什么「坏曲率」会驱动交换模？它与瑞利--泰勒不稳定性有什么类比？
+\tkans{在曲率中心位于等离子体一侧（坏曲率）的区域，磁力线凹面朝向等离子体，磁压随半径下降得比等离子体压强快，等价于「重流体压在轻流体上」：把两根相邻磁通管交换位置会降低总能量，因此不稳定。类比关系是 $g_{eff}=c_s^2/R_c$ 扮演重力加速度，判据由 $\omega^2=-Akg_{eff}<0$ 给出，与流体瑞利--泰勒同形，差别只在「重力」来自磁力线弯曲而非真实引力。}
 
 \item （推导）由 $\omega^2=-Akg$ 导出瑞利--泰勒增长率 $\gamma=\sqrt{Akg}$；再用 $g_{eff}=c_s^2/R_c$ 写出坏曲率交换模的增长率并说明稳定条件。
-\tkans{$\omega^2<0$ 时 $\omega=\pm i\sqrt{Akg}$，故 $\gamma=\sqrt{Akg}$（$A$ 为 Atwood 数，$k$ 为波数）。交换模：$\gamma=\sqrt{kc_s^2/R_c}$。稳定条件：$k$ 与 $R_c$ 的组合使 $\gamma$ 被磁剪切或有限 $\beta$ 抑制，工程上表现为“坏曲率区足够小、磁剪切足够强”（把 $g_{eff}$ 变成沿磁力线的振荡平均，见磁井与平均最小 $B$）。}
+\tkans{$\omega^2<0$ 时 $\omega=\pm i\sqrt{Akg}$，故 $\gamma=\sqrt{Akg}$（$A$ 为 Atwood 数，$k$ 为波数）。交换模：$\gamma=\sqrt{kc_s^2/R_c}$。稳定条件：$k$ 与 $R_c$ 的组合使 $\gamma$ 被磁剪切或有限 $\beta$ 抑制，工程上表现为「坏曲率区足够小、磁剪切足够强」（把 $g_{eff}$ 变成沿磁力线的振荡平均，见磁井与平均最小 $B$）。}
 
 \item （推导）漂移波色散 $\omega=\omega_*/(1+k_\perp^2\rho_s^2)$（$\omega_*=k_\perp\rho_sc_s/L_n$）：说明长波极限、增长率最大处的 $k_\perp$，以及湍流涡的尺度。
-\tkans{$k_\perp\rho_s\ll1$ 时 $\omega\approx\omega_*$，频率正比于 $k_\perp$（沿抗磁方向传播）；$k_\perp\rho_s\gtrsim1$ 时离子有限回旋半径把涨落平均掉，$\omega$ 随 $k_\perp$ 下降，增长最强的尺度为 $k_\perp\rho_s\sim1$，即涡尺度 $\sim\rho_s$（离子声回旋半径，毫米量级）。这把“湍流输运”从定性图像落到一个可计算的尺度上。}
+\tkans{$k_\perp\rho_s\ll1$ 时 $\omega\approx\omega_*$，频率正比于 $k_\perp$（沿抗磁方向传播）；$k_\perp\rho_s\gtrsim1$ 时离子有限回旋半径把涨落平均掉，$\omega$ 随 $k_\perp$ 下降，增长最强的尺度为 $k_\perp\rho_s\sim1$，即涡尺度 $\sim\rho_s$（离子声回旋半径，毫米量级）。这把「湍流输运」从定性图像落到一个可计算的尺度上。}
 
 \item （估算）瑞利--泰勒：$A=1$、扰动波长 $6.3\ \mathrm{cm}$（$k=100\ \mathrm{m^{-1}}$）、$g=9.8\ \mathrm{m/s^2}$，求 $\gamma$ 与 e 折时间。
-\tkans{$\gamma=\sqrt{Akg}=\sqrt{100\times9.8}=31\ \mathrm{s^{-1}}$，e 折时间 $1/\gamma=32\ \mathrm{ms}$。注意 $\gamma\propto\sqrt{k}$：波长越短的扰动长得越快（但受黏性/有限拉莫尔半径截断），这就是“界面扰动很快破碎成小尺度结构”的原因。}
+\tkans{$\gamma=\sqrt{Akg}=\sqrt{100\times9.8}=31\ \mathrm{s^{-1}}$，e 折时间 $1/\gamma=32\ \mathrm{ms}$。注意 $\gamma\propto\sqrt{k}$：波长越短的扰动长得越快（但受黏性/有限拉莫尔半径截断），这就是「界面扰动很快破碎成小尺度结构」的原因。}
 
 \item （估算）托卡马克坏曲率区：$c_s=10^{5}\ \mathrm{m/s}$、$R_c=1\ \mathrm{m}$、$k=1\ \mathrm{m^{-1}}$，用 $\gamma=\sqrt{kc_s^2/R_c}$ 估算交换模增长率与增长时间。
-\tkans{$g_{eff}=c_s^2/R_c=10^{10}\ \mathrm{m/s^2}$，$\gamma=\sqrt{kg_{eff}}=\sqrt{1.0\times10^{10}}=1.0\times10^{5}\ \mathrm{s^{-1}}$，增长时间 $10\ \mathrm{\mu s}$。比能量约束时间（$10^{-1}$--$10^{0}\ \mathrm{s}$）快四个量级：一旦坏曲率区与共振面重合，扰动会在远小于约束时间内长到非线性，所以托卡马克必须靠磁剪切与等离子体截面整形把“平均好曲率”做出来。}
+\tkans{$g_{eff}=c_s^2/R_c=10^{10}\ \mathrm{m/s^2}$，$\gamma=\sqrt{kg_{eff}}=\sqrt{1.0\times10^{10}}=1.0\times10^{5}\ \mathrm{s^{-1}}$，增长时间 $10\ \mathrm{\mu s}$。比能量约束时间（$10^{-1}$--$10^{0}\ \mathrm{s}$）快四个量级：一旦坏曲率区与共振面重合，扰动会在远小于约束时间内长到非线性，所以托卡马克必须靠磁剪切与等离子体截面整形把「平均好曲率」做出来。}
 \end{enumerate}
 
 \section{第 10 章：约束与受控核聚变}
 \tksrc{Chen 第 9、10 章、Fitzpatrick 第 8 章（太阳风、激波）；装置与工程量级参照 Goldston \& Rutherford 与 Wesson \textit{Tokamaks}。}
 
 \begin{enumerate}
-\item （概念）劳森判据的三个要素是什么？为什么写成“三乘积”而不是单一指标？
+\item （概念）劳森判据的三个要素是什么？为什么写成「三乘积」而不是单一指标？
 \tkans{密度 $n$、温度 $T$、能量约束时间 $\tau_E$。聚变功率密度 $\propto n^2\langle\sigma v\rangle$（两体过程），而单位体积热能 $\propto nT$、损失功率 $\propto nT/\tau_E$；两者之比要求 $nT\tau_E$ 足够大。三者的乘积形式说明\textbf{单靠提高密度或温度都不够}：还要把能量留住（$\tau_E$），这正是约束（磁场、惯性）而不是加热成为核心难点的原因。}
 
-\item （概念）托卡马克与仿星器实现“旋转变换”的方式有何不同？各自的代价是什么？
+\item （概念）托卡马克与仿星器实现「旋转变换」的方式有何不同？各自的代价是什么？
 \tkans{托卡马克靠\textbf{等离子体自身电流}产生极向场，从而让磁力线绕环螺旋（旋转变换）；仿星器完全用\textbf{外部三维线圈}的几何形状产生旋转变换。代价对比：托卡马克装置简单但需要驱动电流（射频/中性束），且电流剖面会驱动撕裂模、破裂等不稳定性；仿星器无净电流、无破裂风险，但线圈工程复杂、磁场误差敏感、输运优化困难。}
 
 \item （推导）由零维功率平衡 $P_\alpha+P_{ext}=P_{loss}$ 与 $P_{fus}\propto n^2\langle\sigma v\rangle$ 说明点火条件如何化为 $nT\tau_E$ 的门槛，并给出 $Q$ 的定义。
 \tkans{取 $P_\alpha=P_{fus}/5$（$\alpha$ 粒子带走 3.5 MeV/17.6 MeV），$P_{loss}=3nk_BT/\tau_E$。令 $P_{ext}=0$（点火）即得 $n^2\langle\sigma v\rangle E_\alpha/5=3nk_BT/\tau_E$，整理成 $nT\tau_E\ge\dfrac{15k_BT^2}{\langle\sigma v\rangle E_\alpha}$，右边只依赖 $T$，故门槛是三乘积。$Q=P_{fus}/P_{ext}$：$Q=1$ 得失相当，$Q=5$（ITER 目标）时 $\alpha$ 加热已占主导，$Q\to\infty$ 即点火。}
 
 \item （推导）D--T 等离子体 $n_D=n_T=10^{20}\ \mathrm{m^{-3}}$、$\langle\sigma v\rangle=1.1\times10^{-22}\ \mathrm{m^3/s}$，每次反应释放 $17.6\ \mathrm{MeV}$：求聚变功率密度。
-\tkans{$P_{fus}=n_Dn_T\langle\sigma v\rangle E_{fus}=10^{40}\times1.1\times10^{-22}\times(17.6\times10^{6}\times1.602\times10^{-19})=1.1\times10^{18}\times2.82\times10^{-12}=3.1\times10^{6}\ \mathrm{W/m^3}$，即约 $3\ \mathrm{MW/m^3}$。这是“堆芯量级”的功率密度，与裂变堆芯相当，这也是为什么聚变堆必须解决第一壁热流问题。}
+\tkans{$P_{fus}=n_Dn_T\langle\sigma v\rangle E_{fus}=10^{40}\times1.1\times10^{-22}\times(17.6\times10^{6}\times1.602\times10^{-19})=1.1\times10^{18}\times2.82\times10^{-12}=3.1\times10^{6}\ \mathrm{W/m^3}$，即约 $3\ \mathrm{MW/m^3}$。这是「堆芯量级」的功率密度，与裂变堆芯相当，这也是为什么聚变堆必须解决第一壁热流问题。}
 
 \item （估算）接上题：$T=10\ \mathrm{keV}$ 时热能密度 $3nk_BT$ 是多少？$\alpha$ 加热功率密度 $P_\alpha$ 与点火门槛 $\tau_E$ 各是多少？
 \tkans{$3nk_BT=3\times10^{20}\times10^{4}\times1.602\times10^{-19}=4.8\times10^{5}\ \mathrm{J/m^3}$；$P_\alpha=P_{fus}/5=6.2\times10^{5}\ \mathrm{W/m^3}$；自持要求 $\tau_E>3nk_BT/P_\alpha=0.77\ \mathrm{s}$。这是零维、忽略轫致辐射与杂质辐射的乐观估算；真实装置还要加上辐射损失与加热效率，门槛会更高（ITER 设计 $\tau_E\sim3\ \mathrm{s}$ 量级）。}
 
 \item （估算）一个 $V=100\ \mathrm{m^3}$ 的 D--T 堆芯（参数同上）总聚变功率是多少？要达到 $1\ \mathrm{GW}$ 需要多大体积？
-\tkans{$P=P_{fus}V=3.1\times10^{6}\times100=3.1\times10^{8}\ \mathrm{W}=310\ \mathrm{MW}$；要到 $1\ \mathrm{GW}$ 需 $V\approx320\ \mathrm{m^3}$（或把 $n$ 提高约 1.8 倍）。把“功率密度 × 体积”与工程尺度对上，是理解为什么聚变堆体积以千立方米计的最短路径。}
+\tkans{$P=P_{fus}V=3.1\times10^{6}\times100=3.1\times10^{8}\ \mathrm{W}=310\ \mathrm{MW}$；要到 $1\ \mathrm{GW}$ 需 $V\approx320\ \mathrm{m^3}$（或把 $n$ 提高约 1.8 倍）。把「功率密度 × 体积」与工程尺度对上，是理解为什么聚变堆体积以千立方米计的最短路径。}
 \end{enumerate}
 
 
@@ -260,7 +260,7 @@
 \tksrc{Chen 第 10 章、Fitzpatrick 第 4 章末（Langmuir 鞘层与探针），进阶参照 Lieberman \& Lichtenberg。}
 
 \begin{enumerate}
-\item （概念）低温等离子体为什么“电子热、离子冷”？这种非平衡状态带来了什么好处？
+\item （概念）低温等离子体为什么「电子热、离子冷」？这种非平衡状态带来了什么好处？
 \tkans{电子质量小，在电场中被加速后与离子/中性粒子的弹性碰撞能量传递率正比于 $m_e/m_i$（$\sim10^{-4}$），因此电子从电场获得的能量难以传给重粒子：电子温度可达数个 eV，而气体温度接近室温。好处是\textbf{用低温衬底获得高能电子}，由它驱动电离、离解、激发与自由基生成，从而在材料表面实现刻蚀、沉积、改性（半导体工艺的基础）。}
 
 \item （概念）鞘层为什么必然存在？浮动电位为什么是负的？
@@ -340,13 +340,13 @@
 
 \textbf{版权与独立性声明：}
 \begin{itemize}
-\item 上表所列“借鉴”仅指\textbf{题型分类与难度定位}（例如“求德拜长度的量级估算”“由玻姆判据讨论鞘层”这类公认的练习形式），属于学科共同的教学传统；
+\item 上表所列「借鉴」仅指\textbf{题型分类与难度定位}（例如「求德拜长度的量级估算」「由玻姆判据讨论鞘层」这类公认的练习形式），属于学科共同的教学传统；
 \item 本附录全部题目的\textbf{文字表述、参数选取与数值答案均由本书自拟}，并用仓库里的校核脚本逐条复算（两位有效数字）；
 \item 本附录\textbf{不复制}任何教材的题目原文、解答、图表或数据表；引用教材仅给出书名与章节，便于读者回原书查找（完整书目见附录 E 与附录 J）；
 \item 若读者发现某题与某教材的题目高度雷同，属独立命制的巧合，欢迎指出，我们会在下一版改写或补注出处。
 \end{itemize}
 
 \begin{tip}{做完 72 题之后}{tip-appl-next}
-如果你把 12 章的 72 道题都做完了，可以回到附录 I 的第 5 节，把这 12 周的计划换成“每周一章：6 题自测 + 1 道附录 K 的范例精读”，题库与范例一一对应，正好覆盖全书主线。
+如果你把 12 章的 72 道题都做完了，可以回到附录 I 的第 5 节，把这 12 周的计划换成「每周一章：6 题自测 + 1 道附录 K 的范例精读」，题库与范例一一对应，正好覆盖全书主线。
 \end{tip}
 \endgroup

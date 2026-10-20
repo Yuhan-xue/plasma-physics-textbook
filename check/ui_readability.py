@@ -153,7 +153,7 @@ def prose(t, drop_preamble=False, drop_structured=False):
         if j >= 0:
             t = t[j:]
         # 封面是排版文字（\fontsize/\hspace 与色块），不是供逐句阅读的散文：
-        # 从目录起算，避免把封面拆成“超长句”。
+        # 从目录起算，避免把封面拆成「超长句」。
         k = t.find(r'\tableofcontents')
         if k >= 0:
             t = t[k:]
@@ -179,7 +179,7 @@ def prose(t, drop_preamble=False, drop_structured=False):
                r'tcblower|centering|toprule|midrule|bottomrule|hline)'
                r'(\[[^\]]*\])?(\{[^{}]*\})*', ' ', t)
     # \appchapter 是本书的自定义章标题宏（附录用）；不在此处断行，48 个附录
-    # 标题会被粘成一段上千字的“超长段”，那是解析产物，不是排版事实。
+    # 标题会被粘成一段上千字的「超长段」，那是解析产物，不是排版事实。
     t = re.sub(r'\\(section|subsection|subsubsection|chapter|appchapter'
                r'|item|caption)\*?(\[[^\]]*\])?', '\n', t)
     # \setcounter{chapter}{12} 同理：命令删掉后残留的 "chapter 12" 是解析产物。

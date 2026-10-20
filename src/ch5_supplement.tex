@@ -43,7 +43,7 @@ p = 2\times 10^{18}\times 1.602\times 10^{-19}\times 4 = 1.28\,\mathrm{Pa}
 \textbf{物理意义：}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
 \item $\beta\ll 1$：磁压远大于热压，磁场主导等离子体动力学。托卡马克中 $\beta\sim 3\%$ 已属较高，磁约束装置的工程极限通常在 $\beta<10\%$。
-\item $\beta\sim 1$：热压与磁压相当，等离子体对磁场有显著的“反作用”，磁场被等离子体逆磁电流排挤出中心区域。
+\item $\beta\sim 1$：热压与磁压相当，等离子体对磁场有显著的「反作用」，磁场被等离子体逆磁电流排挤出中心区域。
 \item $\beta\gg 1$：热压主导，磁场几乎不影响等离子体行为（如某些天体等离子体喷流）。
 \end{itemize}
 \end{example}
@@ -101,7 +101,7 @@ v_A = \frac{10^{-3}}{\sqrt{4\pi\times 10^{-7}\times 1.673\times 10^{-13}}} = \fr
 \end{enumerate}
 Spitzer 电阻率近似公式：$\eta \approx 5\times 10^{-5} Z\ln\Lambda / T_e^{3/2}\,[\Omega\mathrm{m}]$，$T_e$ 单位为 $\mathrm{eV}$，取 $\ln\Lambda=10$。
 
-\textbf{模型的适用性提示：} Spitzer 公式\emph{只计入电子--离子库仑碰撞}。下面第 (2) 问的“氩气放电”题面没有给电离度与中性气体密度，因此\textbf{这里只研究一个假设库仑碰撞主导的假想氩等离子体}。真实低温放电中电子--中性碰撞常使 $\eta$ 高出若干个数量级，绝不能把下面的 $R_m$ 直接当成实际装置的数值。用量级结论前，先对照正文\S5.1 的三道门槛。
+\textbf{模型的适用性提示：} Spitzer 公式\emph{只计入电子--离子库仑碰撞}。下面第 (2) 问的「氩气放电」题面没有给电离度与中性气体密度，因此\textbf{这里只研究一个假设库仑碰撞主导的假想氩等离子体}。真实低温放电中电子--中性碰撞常使 $\eta$ 高出若干个数量级，绝不能把下面的 $R_m$ 直接当成实际装置的数值。用量级结论前，先对照正文\S5.1 的三道门槛。
 \tcblower
 \textbf{解答：}
 
@@ -112,7 +112,7 @@ Spitzer 电阻率近似公式：$\eta \approx 5\times 10^{-5} Z\ln\Lambda / T_e^
 \[
 R_m = \frac{\mu_0 v L}{\eta} = \frac{4\pi\times 10^{-7}\times 10^4\times 1}{5\times 10^{-10}} = \frac{1.257\times 10^{-2}}{5\times 10^{-10}} \approx 2.5\times 10^7
 \]
-$R_m \gg 1$，磁扩散时间 $\tau_\eta = \mu_0 L^2/\eta = R_m L/v \approx 2500\,\mathrm{s}$，远大于对流时间 $\tau_{\text{流}} = L/v = 10^{-4}\,\mathrm{s}$。这\emph{只}说明\textbf{电阻项可以丢掉}（理想 MHD 的第三道门槛）。要谈磁冻结还要过另外两道门槛——流体近似与单流体近似（正文第 5 章“MHD 适用条件：三道独立的门槛，别只看一道”）。本题没有给密度与频率，$d_i$ 与 $\omega/\omega_{ci}$ 无法核对，因此只能说：\textbf{在理想 MHD 模型内}磁力线冻结成立。
+$R_m \gg 1$，磁扩散时间 $\tau_\eta = \mu_0 L^2/\eta = R_m L/v \approx 2500\,\mathrm{s}$，远大于对流时间 $\tau_{\text{流}} = L/v = 10^{-4}\,\mathrm{s}$。这\emph{只}说明\textbf{电阻项可以丢掉}（理想 MHD 的第三道门槛）。要谈磁冻结还要过另外两道门槛——流体近似与单流体近似（正文第 5 章「MHD 适用条件：三道独立的门槛，别只看一道」）。本题没有给密度与频率，$d_i$ 与 $\omega/\omega_{ci}$ 无法核对，因此只能说：\textbf{在理想 MHD 模型内}磁力线冻结成立。
 
 \textbf{(2) 实验室放电：}
 \[
@@ -223,9 +223,9 @@ $\vect{u}\cdot(\vect{j}\times\vect{B})$ 是磁能与动能之间的\textbf{转�
 \begin{itemize}[leftmargin=*,itemsep=0pt]
 \item \textbf{局域交换}：$\vect{u}\cdot(\vect{j}\times\vect{B})$ 与 $-\vect{u}\cdot\grad p$ 是同一空间点上不同能量库之间的转移，不进出系统。
 \item \textbf{边界能流}：散度项 $\divg\{\cdots\}$ 描述能量跨越控制面的输运。
-\item \textbf{封闭系统总量}：对全空间积分，散度项化为边界通量。取边界上无能量流出，则 $\frac{\diff}{\diff t}\int(K+U+U_B)\diff V=0$——\textbf{这才是“能量守恒”四个字所指的结论}。
+\item \textbf{封闭系统总量}：对全空间积分，散度项化为边界通量。取边界上无能量流出，则 $\frac{\diff}{\diff t}\int(K+U+U_B)\diff V=0$——\textbf{这才是「能量守恒」四个字所指的结论}。
 \end{itemize}
-只把 $K$ 与 $U_B$ 相加就宣称“总能量守恒”，遗漏了内能与之相伴的压强功，是初学者最常见的误读。这一条也直接连到第10章的加热与第11章的输运损失：能量进了内能，究竟是被带走还是被辐射掉，正是那里要回答的问题。
+只把 $K$ 与 $U_B$ 相加就宣称「总能量守恒」，遗漏了内能与之相伴的压强功，是初学者最常见的误读。这一条也直接连到第10章的加热与第11章的输运损失：能量进了内能，究竟是被带走还是被辐射掉，正是那里要回答的问题。
 \end{example}
 
 \begin{figure}[htbp]
@@ -251,7 +251,7 @@ $\vect{u}\cdot(\vect{j}\times\vect{B})$ 是磁能与动能之间的\textbf{转�
 \draw[figGray,line width=0.6pt,<->,>=Stealth] (-1.8,0.10) -- (1.8,0.10);
 \node[text=figGray,font=\footnotesize,anchor=north] at (0,0.02) {$\vect{u}\,\Delta t$};
 \end{tikzpicture}
-\caption{磁力线冻结示意图。在理想导电流体（$R_m\gg 1$）中，磁通量随流体元守恒，磁力线仿佛被“冻结”在流体中。}
+\caption{磁力线冻结示意图。在理想导电流体（$R_m\gg 1$）中，磁通量随流体元守恒，磁力线仿佛被「冻结」在流体中。}
     \label{fig:flux-freezing}
 \end{figure}
 

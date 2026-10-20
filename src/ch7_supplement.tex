@@ -44,15 +44,15 @@ f_0(v) = n\sqrt{\frac{m}{2\pi k_{\!B}T}}\,\exp\!\left(-\frac{mv^2}{2k_{\!B}T}\ri
 
 \end{example}
 
-\begin{warning}{“稳态解”不等于“热平衡”，也不等于“稳定”}{vlasov-steady-caution}
+\begin{warning}{「稳态解」不等于「热平衡」，也不等于「稳定」}{vlasov-steady-caution}
 这是本节最容易滑过去的一步。上面的验证只说明 $f_0(v)$ 满足 $\partial_tf=0$，它\emph{没有}说明系统通过无碰撞过程达到了热平衡。请把三件事分清：
 \begin{itemize}
 \item \textbf{稳态}：$\partial f_0/\partial t=0$，分布不随时间变。这只需要 $f_0$ 不含 $t$、$x$，\emph{任何} $f_0(v)$ 都满足。
-\item \textbf{热平衡}：需要由\emph{碰撞}（或某种耗散）驱动到麦克斯韦分布。纯 Vlasov 方程（碰撞项为零）里根本没有把分布“拉向”麦克斯韦的机制，所以“代入麦克斯韦分布能验证稳态”\emph{不能}证明无碰撞热化。
+\item \textbf{热平衡}：需要由\emph{碰撞}（或某种耗散）驱动到麦克斯韦分布。纯 Vlasov 方程（碰撞项为零）里根本没有把分布「拉向」麦克斯韦的机制，所以「代入麦克斯韦分布能验证稳态」\emph{不能}证明无碰撞热化。
 \item \textbf{稳定}：还需要分布满足无自由能的判据。一个稳态分布完全可以是\emph{不稳定}的，见下面的反问题。
 \end{itemize}
 
-\textbf{反问题（请自行验证）：} 取双峰分布 $f_0(v)=n[A_1\ee^{-(v-u)^2/2v_{t1}^2}+A_2\ee^{-(v+u)^2/2v_{t2}^2}]$（两束相向运动的电子），它同样只依赖 $v$，因此\emph{同样}是 Vlasov 方程的稳态解——但它是\textbf{双流不稳定性}的经典不稳定平衡（第9章）。可见“满足 Vlasov 稳态”与“能稳定存在”是两回事。真正决定稳定性的是 $\partial f_0/\partial v$ 的符号结构（第9章、本章末的 bump-on-tail），而不是“是否满足 $\partial_tf=0$”。
+\textbf{反问题（请自行验证）：} 取双峰分布 $f_0(v)=n[A_1\ee^{-(v-u)^2/2v_{t1}^2}+A_2\ee^{-(v+u)^2/2v_{t2}^2}]$（两束相向运动的电子），它同样只依赖 $v$，因此\emph{同样}是 Vlasov 方程的稳态解——但它是\textbf{双流不稳定性}的经典不稳定平衡（第9章）。可见「满足 Vlasov 稳态」与「能稳定存在」是两回事。真正决定稳定性的是 $\partial f_0/\partial v$ 的符号结构（第9章、本章末的 bump-on-tail），而不是「是否满足 $\partial_tf=0$」。
 \end{warning}
 
 \begin{example}{Landau 阻尼率的数值估算}{landau-damping-calc}
@@ -131,7 +131,7 @@ k\lambda_D = 10^{4}\times 1.49\times 10^{-5} \approx 0.149 \ll 1 \quad\checkmark
 \begin{example}{共振粒子的能量交换——Landau 阻尼的微观机制}{resonant-energy}
 设一维电子麦克斯韦分布的热速度\emph{统一}定义为 $v_{te} = \sqrt{k_{\!B}T_e/m_e}$（与本书 $\lambda_{De}=v_{te}/\omega_{pe}$ 的定义一致），Langmuir 波的相速度为 $v_\phi = 1.5\,v_{te}$。取共振区间宽度为 $\Delta v = 0.1\,v_{te}$，估算在 $v_\phi - \Delta v < v < v_\phi + \Delta v$ 范围内，慢粒子（$v < v_\phi$）与快粒子（$v > v_\phi$）的数量差异，并解释为什么这导致净能量从波流向粒子。
 
-\textbf{约定提示：} 全题只用 $v_{te}=\sqrt{k_{\!B}T_e/m_e}$ 一种定义，$v_\phi=1.5\,v_{te}$ 与 $\Delta v=0.1\,v_{te}$ 都相对它取。请勿中途换成 $v_t=\sqrt{2k_{\!B}T_e/m_e}$——那会使“1.5”和“0.1”实际变成一个不同的物理速度。若要换定义，两个无量纲比值必须同时按 $\sqrt2$ 重标。
+\textbf{约定提示：} 全题只用 $v_{te}=\sqrt{k_{\!B}T_e/m_e}$ 一种定义，$v_\phi=1.5\,v_{te}$ 与 $\Delta v=0.1\,v_{te}$ 都相对它取。请勿中途换成 $v_t=\sqrt{2k_{\!B}T_e/m_e}$——那会使「1.5」和「0.1」实际变成一个不同的物理速度。若要换定义，两个无量纲比值必须同时按 $\sqrt2$ 重标。
 \tcblower
 \textbf{解答：}
 
@@ -201,7 +201,7 @@ v_{ts} = \sqrt{\frac{k_{\!B}T_s}{m_e}}
 
 bump-on-tail不稳定性的核心是：在相速度 $v_\phi = \omega/k$ 处，分布函数有正斜率（$\partial f/\partial v > 0$）。这要求束流的漂移速度 $u$ 足够大，使得束流峰与背景麦克斯韦分布的尾部之间形成凸起。
 
-定性判据：束流速度 $u$ 应远大于背景热速度，但束流自身热速度 $v_{ts}$ 应足够小，使束流峰不“摊平”分布。
+定性判据：束流速度 $u$ 应远大于背景热速度，但束流自身热速度 $v_{ts}$ 应足够小，使束流峰不「摊平」分布。
 
 定量上，常用条件是。
 \[
@@ -218,7 +218,7 @@ bump-on-tail不稳定性的核心是：在相速度 $v_\phi = \omega/k$ 处，�
 = 0.01\times (59.5)^2 \approx 0.01\times 3540 \approx 35.4 \gg 1 \quad\checkmark
 \]
 
-\textbf{结论}：两个条件均强烈满足。该体系必然存在 bump-on-tail 不稳定性。束流电子在速度空间中形成明显的“凸起”，在 $v \approx u$ 附近 $\partial f/\partial v > 0$，Langmuir 波将从束流获得能量而增长。
+\textbf{结论}：两个条件均强烈满足。该体系必然存在 bump-on-tail 不稳定性。束流电子在速度空间中形成明显的「凸起」，在 $v \approx u$ 附近 $\partial f/\partial v > 0$，Langmuir 波将从束流获得能量而增长。
 
 \textbf{补充}：不稳定性的最大增长率约为
 \[
@@ -287,7 +287,7 @@ bump-on-tail不稳定性的核心是：在相速度 $v_\phi = \omega/k$ 处，�
 \node[text=figGreen,font=\footnotesize,align=center] at (4.85,2.20) {$\partial f/\partial v>0$};
 \draw[figGreen,line width=0.8pt,->,>=Stealth] (4.85,1.98) -- (5.05,0.48);
 \end{tikzpicture}
-\caption{bump-on-tail速度分布函数示意图。蓝色宽峰为背景热电子，红色窄峰为漂移电子束流。在两峰之间的“尾部”区域形成凸起（bump），对应 $\partial f/\partial v > 0$，驱动 Langmuir 波不稳定性增长。}
+\caption{bump-on-tail速度分布函数示意图。蓝色宽峰为背景热电子，红色窄峰为漂移电子束流。在两峰之间的「尾部」区域形成凸起（bump），对应 $\partial f/\partial v > 0$，驱动 Langmuir 波不稳定性增长。}
     \label{fig:bump-on-tail}
 \end{figure}
 
