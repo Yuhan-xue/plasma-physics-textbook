@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.32.12},
+  pdftitle={等离子体物理自学教材 v1.32.13},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -488,7 +488,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.32.12}}
+  {\small\textcolor{white!45}{v1.32.13}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -6905,6 +6905,8 @@ $\vect{v}_E$ & $E\times B$ 漂移速度 & m/s & \S 3.2，$\vect{v}_E = \vect{E}\
 $\vect{v}_{\nabla B}$ & 梯度漂移速度 & m/s & \S 3.2 \\
 $\vect{v}_R$ & 曲率漂移速度 & m/s & \S 3.2，$R_c$ 为磁力线曲率半径 \\
 $R_c$ & 磁力线曲率半径 & m & \S 3.2（曲率漂移），也用于曲率驱动不稳定性（\S 9.2） \\
+$\rho_i$ & 离子拉莫尔半径（热速度定义） & m & $\rho_i = v_{ti}/\omega_{ci}$, $v_{ti}=\sqrt{2k_{B}T_i/m_i}$；与 $\rho_L$ 的区别是 $v_\perp$ 取热速度 \\
+$\rho_s$ & 离子声拉莫尔半径 & m & $\rho_s = c_s/\omega_{ci}$, $c_s=\sqrt{k_{B}T_e/m_i}$；湍流与漂移波问题中常用 \\
 \multicolumn{4}{l}{\textit{三、动理学与波}} \\
 \midrule
 $f$ & 分布函数 & $\mathrm{s^3/m^6}$ & \S 4.1，$f(\vect{r},\vect{v},t)$；归一化 $\int f\diff^3v = n$ \\
@@ -6948,6 +6950,9 @@ $\nu$ & 碰撞频率 & $\mathrm{s^{-1}}$ & \S 8.2 起，无下标时泛指所讨
 $\Gamma$ & 粒子通量 & $\mathrm{m^{-2}s^{-1}}$ & \S 8.3、\S 11.2，$\Gamma = -D\grad n$；与耦合参数 $\Gamma$ 同名 \\
 $L$ & 特征长度（梯度尺度） & m & \S 5.1 起；$L_n$ 专指密度梯度尺度（\S 9.3） \\
 $L_n$ & 密度梯度尺度 & m & \S 9.3，$L_n^{-1} = |\diff\ln n/\diff x|$ \\
+$\tau_{ei}$ & 电子--离子碰撞时间 & s & $\tau_{ei} = 1/\nu_{ei}$；完整系数见 \S 8.2 的 NRL 公式 \\
+$\chi_B$ & 玻姆扩散系数 & $\mathrm{m^2/s}$ & $\chi_B = k_{B}T_e/(16eB)$；实验中标度反常输运的量级下限 \\
+$\Gamma_i$ & 离子粒子通量 & $\mathrm{m^{-2}\,s^{-1}}$ & $\Gamma_i = n v_i$；偏滤器与 SOL 的输运量 \\
 \multicolumn{4}{l}{\textit{五、平衡、约束与聚变}} \\
 \midrule
 $q$ & 安全因子 & 无量纲 & \S 10.3，$q = rB_\phi/(RB_\theta)$；与电荷量 $q$ 同名 \\
@@ -6974,6 +6979,8 @@ $E_\alpha$ & $\alpha$ 粒子能量 & J（常用 MeV） & \S 10.1、\S 10.8，D--
 $P_{rad}$ & 轫致辐射功率密度 & $\mathrm{W/m^3}$ & \S 10.6、\S 10.8，$P_{rad} \propto n_e^2\sqrt{T_e}$ \\
 $\bar g$ & 冈特因子（Gaunt factor） & 无量纲 & \S 10.8，量级 1，书中取 $2.5$ \\
 $C_B$ & 轫致辐射系数 & $\mathrm{W\cdot m^3/\sqrt{eV}}$ & \S 10.6、\S 10.8，$C_B \approx 1.69\times10^{-38}$（$T_e$ 以 eV 计） \\
+$\beta_N$ & 归一化比压（Troyon 参数） & 无量纲 & $\beta_N[\%] = \beta[\%]\,a[\mathrm{m}]\,B_0[\mathrm{T}]/I_p[\mathrm{MA}]$；托卡马克运行极限约 3 \\
+$\beta_p$ & 极向比压 & 无量纲 & $\beta_p = 2\mu_0\langle p\rangle/B_p^2$；与 $\beta_N$ 一起描述位形 \\
 \multicolumn{4}{l}{\textit{六、鞘层、放电与工业等离子体}} \\
 \midrule
 $\alpha$ & Townsend 第一电离系数 & $\mathrm{m^{-1}}$ & \S 11.1、\S 11.8，$\alpha = Ap\exp(-Bp/E)$ \\
@@ -6994,6 +7001,8 @@ $s$ & 鞘层厚度 & m & \S 11.2，$s \approx \lambda_D(2V_s/T_e)^{3/4}$ \\
 $V_s$ & 鞘层电压降 & V & \S 11.2，$V_s = V_p - V_{\text{wall}}$ \\
 $J_i$ & 离子电流密度（Child--Langmuir） & $\mathrm{A/m^2}$ & \S 11.6、\S 11.8，$J_i = \tfrac49\eps_0\sqrt{2e/m_i}\,V_s^{3/2}/s^2$ \\
 $u_B$ & 玻姆速度（诊断章节写法） & m/s & \S 11.2、\S 12.2；部分补充材料写作 $v_B$ \\
+$\lambda_q$ & SOL 热流衰减长度 & m & 热流沿刮削层衰减的尺度，量级毫米；偏滤器设计的关键参数 \\
+$\lambda_{De}$ & 电子德拜长度（鞘层与 SOL 写法） & m & 与 $\lambda_D$ 同式，只含 $T_e$；鞘层判据用 $\lambda_{De}$ 与 $\lambda_i$ 比较 \\
 \multicolumn{4}{l}{\textit{七、诊断}} \\
 \midrule
 $I$ & 探针总电流 & A & \S 12.2，$I = I_e - I_{\mathrm{i,sat}}$ \\
