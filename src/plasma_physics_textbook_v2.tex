@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.31.0},
+  pdftitle={等离子体物理自学教材 v1.32.0},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -149,6 +149,9 @@
 % 中文页眉不用 \itshape：SimSun 无真斜体，会触发合成倾斜，与正文正体断裂。
 \fancyhead[L]{\nouppercase{\small\heiti\leftmark}}
 \fancyhead[R]{\small\bfseries\thepage}
+% 页眉的章标记：book 类默认发 \chaptername（英文 "Chapter"），中文书里会印成
+% 「Chapter 2. 什么是等离子体？」。改成与附录一致的「第 N 章　标题」。
+\renewcommand{\chaptermark}[1]{\markboth{第~\thechapter~章\quad #1}{}}
 \renewcommand{\headrulewidth}{0.3pt}
 % 章首页（\chapter 下发 \thispagestyle{plain}）原先无页眉也无页码，此处补上页码。
 \fancypagestyle{plain}{%
@@ -483,7 +486,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.31.0}}
+  {\small\textcolor{white!45}{v1.32.0}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -953,6 +956,8 @@ $\star\star\star$ & 挑战 & 涉及较深的数学技巧或前沿问题。供科
 \end{tabular}
 \end{table}
 
+把三条路线摊到章节依赖上，就是图~\ref{fig:roadmap}：箭头给出「读这一章之前得先读哪一章」。
+
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[
@@ -1030,7 +1035,7 @@ $\star\star\star$ & 挑战 & 涉及较深的数学技巧或前沿问题。供科
 解题策略盒 & 12 & 每章章末 & 一类题的四步动作顺序（先定什么、再算什么） \\
 概念图 & 12 & 每章章末 & 合书回忆这一章的骨架，再对照补漏 \\
 量纲自检 & 12 & 每章要点回顾 & 把这一章的结论逐条过一遍单位 \\
-随堂自测＋参考要点 & 16 & 章内 & 读完一节立刻自测，要点就在盒子里 \\
+随堂自测＋参考要点 & 18 & 章内 & 读完一节立刻自测，要点就在盒子里 \\
 易错点提示 & 48 & 章内 & 先看别人怎么错，再自己动手（汇总见附录 F） \\
 物理洞见 & 91 & 章内 & 把公式背后的物理图像讲清楚 \\
 习题精选 & 24 & 各章末与配套手册 I & 独立练习，配参考答案 \\
@@ -1581,10 +1586,12 @@ v_p = \frac{\omega}{k} = \frac{\sqrt{\omega_p^2 + c^2k^2}}{k} = c\sqrt{1 + \frac
 考虑在等离子体中引入一个正的点电荷 $+Q$。电子会被吸引过来，离子会被排斥开。在点电荷附近，电子密度略高于离子密度，形成一个带负电的“云”。这团电子云产生的电场恰好抵消了外部电荷 $Q$ 的大部分电场。在足够远的距离上，等离子体内部几乎感受不到 $Q$ 的存在。
 
 电荷涨落被屏蔽的特征尺度是德拜长度 $\lambda_D$；大于此尺度的粒子感受不到裸库仑势。
+图~\ref{fig:debye-shielding}(a) 是这团电子云的几何图像，(b) 把屏蔽势与裸库仑势画在一起。
 
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[x=1cm,y=1cm,every node/.style={text=figInk}]
+\resizebox{0.84\textwidth}{!}{%
+\begin{tikzpicture}[x=1cm,y=1cm,scale=0.9,every node/.style={text=figInk}]
 % 双面板：(a) 屏蔽云的几何图像，(b) 同一件事的定量图像（屏蔽势 vs 裸势）。
 % ---- (a) 试探电荷与屏蔽云 ----
 \begin{scope}
@@ -1619,6 +1626,7 @@ v_p = \frac{\omega}{k} = \frac{\sqrt{\omega_p^2 + c^2k^2}}{k} = c\sqrt{1 + \frac
   \node[figInk,font=\footnotesize,anchor=west] at (0.8,-1.55) {屏蔽势 $\mathrm{e}^{-r/\lambda_D}/r$};
 \end{scope}
 \end{tikzpicture}
+}
 \caption{德拜屏蔽的几何与定量图像：(a) 电子云把 $+Q$ 的电场屏蔽在 $\lambda_D$ 之内；(b) 屏蔽势比裸库仑势衰减得快，二者之比正是屏蔽因子 $\mathrm{e}^{-r/\lambda_D}$。}
 \label{fig:debye-shielding}
 \end{figure}
@@ -1986,9 +1994,11 @@ v_y &= -\frac{q}{|q|} v_\perp \sin(\omega_c t + \phi_0)
 旋转方向由电荷符号决定：正电荷逆时针，负电荷顺时针（从磁场方向看）。电子的回旋频率比离子高 $10^3$--$10^5$ 倍（$\omega_{ce}/\omega_{ci} = m_i/m_e$），回旋半径却小得多（$\rho_{Le}/\rho_{Li} = \sqrt{m_e T_e/m_i T_i} \ll 1$）。
 \end{insight}
 
+图~\ref{fig:gyro-side-view} 是同一件事的侧视：离子半径大、圈数少，电子半径小、圈数多，两者都沿磁力线滑行。
+
 \begin{figure}[htbp]
 \centering
-\begin{tikzpicture}[x=1cm,y=1.9cm,every node/.style={text=figInk}]
+\begin{tikzpicture}[scale=0.95,x=1cm,y=1.9cm,every node/.style={text=figInk}]
 % 侧视：引导中心沿 B 滑行，回旋在侧视下就是绕轴的正弦线圈。
 % 横轴用真实圈数（离子 5 圈、电子 15 圈），不再用 200/900 这种高频相位造成走样。
 \draw[fighelp] (0,0) -- (9.6,0);
@@ -5322,7 +5332,7 @@ $A_{ji}$、$A_{lk}$ 为爱因斯坦自发辐射系数。
 式\eqref{eq:line-ratio}的本质是\textbf{能量杠杆}。两条谱线来自不同的激发能级，能级差 $\Delta E$ 就是这把“尺子”。温度低时，粒子大多集中在基态和低激发态，高能级谱线很弱；温度升高时，高能级被更多布居，高能谱线相对于低能谱线增强。测量强度比，等于在问：“等离子体中的热涨落，有没有足够能量把粒子抬升到那个高度？” 如果 $T_{\mathrm{exc}} \ll \Delta E$，那条谱线几乎熄灭；如果 $T_{\mathrm{exc}} \sim \Delta E$，两条谱线势均力敌。玻尔兹曼因子 $\exp(-\Delta E/T)$ 将温度信息编码在光强中。
 \end{insight}
 
-此外，不同元素和电离态有其独特的指纹谱线。通过辨认谱线波长，可以诊断等离子体的\textbf{化学成分}和\textbf{电离度}。这对杂质控制（聚变装置）和工艺监控（等离子体刻蚀）至关重要。
+此外，不同元素和电离态有其独特的指纹谱线。通过辨认谱线波长，可以诊断等离子体的\textbf{化学成分}和\textbf{电离度}。杂质控制（聚变装置）与工艺监控（等离子体刻蚀）都靠这一步。
 
 \subsection{连续光谱：轫致辐射与电子温度}
 
@@ -5940,7 +5950,7 @@ A_x & A_y & A_z
 \end{align}
 \end{theorem}
 
-式 \eqref{eq:curlcurl} 在推导 MHD 中的涡量方程和阿尔芬波色散关系时至关重要。
+式 \eqref{eq:curlcurl} 是推导 MHD 涡量方程与阿尔芬波色散关系的起点。
 
 
 \section{极简二阶张量入门}
@@ -6606,7 +6616,7 @@ v_{te} [\text{m/s}] \approx 4.19\times 10^5\sqrt{T_e [\text{eV}]}
 \begin{enumerate}
 \setcounter{enumi}{21}
 \item \textbf{错误：}「托卡马克中所有等离子体电流都是外部驱动的」\\
-\textbf{正确：} 托卡马克中存在显著的 \textbf{自举电流}（bootstrap current）——由碰撞导致的新经典输运驱动的内部电流，可占总电流的 $50\%$ 以上，对维持稳态运行至关重要。（对应正文 \S\ref{sec:ch10-tokamak}、\S\ref{sec:ch10-confinement}）
+\textbf{正确：} 托卡马克中存在显著的 \textbf{自举电流}（bootstrap current）——由碰撞导致的新经典输运驱动的内部电流，可占总电流的 $50\%$ 以上，稳态运行因此能省下一部分外部电流驱动。（对应正文 \S\ref{sec:ch10-tokamak}、\S\ref{sec:ch10-confinement}）
 
 \item \textbf{错误：}「空间等离子体总是无碰撞的」\\
 \textbf{正确：} 太阳大气、电离层、行星磁层中，碰撞效应（如库仑碰撞、电荷交换）在特定区域（如磁层等离子体片、日冕底部）仍然重要，不能一概而论。（对应正文 \S\ref{sec:ch8-collision-freq}、\S\ref{sec:ch2-criteria}）
