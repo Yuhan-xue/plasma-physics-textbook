@@ -81,6 +81,17 @@ cd src && latexmk -xelatex -interaction=nonstopmode -f plasma_physics_textbook_v
 
 产物落在 `src/`（不入 git）；交付 PDF 只放 `pdf/`。已知限制见 [`CHANGELOG.md`](CHANGELOG.md)。
 
+**交付前要跑两个后处理**（源码编译不出来的部分）：
+
+```bash
+python -X utf8 tools/fix_outline_pages.py pdf/plasma_physics_textbook_v2.pdf   # 书架式书签与目录链接的页码归位
+python -X utf8 tools/fix_section_links.py pdf/plasma_physics_textbook_v2.pdf   # 正文「见 §X.Y」链接的落点归位
+```
+
+两步都是因为 hyperref 在 `\section` 排版那一刻记页码：标题被挤到下一页时，书签、目录链接与正文交叉引用
+会一起早一页。两个脚本各按 `.aux` 或书签的实测页码校正，跑完 `check/pdf_outline.py` 应为 FAIL 0 / WARN 0。
+再按附录 A 的起始页切成卷一（1–206）与卷二（207–609），三册页码与完整本一致。
+
 ## 质量检查
 
 ```bash
