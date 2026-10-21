@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.32.23},
+  pdftitle={等离子体物理自学教材 v1.32.24},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -488,7 +488,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.32.23}}
+  {\small\textcolor{white!45}{v1.32.24}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -1945,7 +1945,7 @@ N_D = \frac{4}{3}\pi n\lambda_D^3 \approx 4.4\times10^{13} \gg 1 .
 \textbf{学习路径建议：}
 
 \begin{itemize}[leftmargin=*]
-\item[\textcolor{red}{$\blacksquare$}] \textbf{必学}：\S 3.1 均匀磁场中的回旋运动；\S 3.2 $\vect{E}\times\vect{B}$ 漂移；\S 3.3 非均匀磁场中的梯度漂移与曲率漂移
+\item[\textcolor{red}{$\blacksquare$}] \textbf{必学}：\S 3.1 均匀磁场中的回旋运动；\S 3.2 $\vect{E}\times\vect{B}$ 漂移、梯度漂移与曲率漂移
 \item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：\S 3.3 磁镜与磁瓶约束；章末补充中的绝热不变量（磁矩 $\mu$）
 \item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：导向中心运动的系统推导（高阶漂移）——本书未展开，见附录 E 书单
 \end{itemize}
@@ -2277,8 +2277,8 @@ m\dot{\vect{v}'} = q(\vect{E} + (\vect{v}' + \vect{v}_E)\times\vect{B}) = q\vect
 \textbf{学习路径建议：}
 
 \begin{itemize}[leftmargin=*]
-\item[\textcolor{red}{$\blacksquare$}] \textbf{必学}：\S 4.1 玻尔兹曼方程与矩方程；\S 4.2 双流体方程组；\S 4.3 广义欧姆定律。
-\item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：\S 4.4 状态方程与闭合问题。
+\item[\textcolor{red}{$\blacksquare$}] \textbf{必学}：\S 4.1 玻尔兹曼方程；\S 4.2 矩方程的推导；\S 4.3 双流体方程组。
+\item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：\S 4.4 广义欧姆定律（含状态方程与闭合问题）。
 \item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：碰撞项的简化模型——见章末「习题精选」中的矩方程推导（用到时回看）。
 \end{itemize}
 \textbf{本章概念图：}各节的依赖关系与推导顺序见章末的\cref{fig:cm-ch4}；读完全章再回来看，可当复习提纲。
@@ -2810,7 +2810,7 @@ v_A = \frac{B}{\sqrt{\mu_0\rho_m}} = \frac{10^{-3}}{\sqrt{(4\pi\times 10^{-7})(1
 \textbf{学习路径建议：}
 
 \begin{itemize}[leftmargin=*]
-\item[\textcolor{red}{$\blacksquare$}] \textbf{必学}：\S 6.1 静电波（Langmuir 波、离子声波）；\S 6.2 冷等离子体中的电磁波；\S 6.3 截止与共振
+\item[\textcolor{red}{$\blacksquare$}] \textbf{必学}：\S 6.1 静电波（Langmuir 波、离子声波）；\S 6.2 冷等离子体中的电磁波（截止与共振）
 \item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：\S 6.3 磁化等离子体中的波（哨声波、低混杂波）
 \item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：波--粒子相互作用简介，见第 7 章章末的 bump-on-tail 例题。
 \end{itemize}
@@ -3651,8 +3651,8 @@ x^3\simeq-\frac{\mu}{2}
 
 \begin{itemize}[leftmargin=*]
 \item[\textcolor{red}{$\blacksquare$}] \textbf{必学}：\S 10.1 聚变反应与 Lawson 判据；\S 10.2 磁约束原理；\S 10.3 托卡马克与仿星器
-\item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：\S 10.4 惯性约束基础；\S 10.5 当前进展与展望
-\item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：\S 10.6 聚变反应堆工程挑战
+\item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：\S 10.4 惯性约束聚变；\S 10.5 聚变能源的展望
+\item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：工程挑战（氚自持、材料与维护）的展开，见附录 Z 与附录 AV
 \end{itemize}
 \textbf{本章概念图：}各节的依赖关系与推导顺序见章末的\cref{fig:cm-ch10}；读完全章再回来看，可当复习提纲。
 \end{insight}
