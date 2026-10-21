@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.32.26},
+  pdftitle={等离子体物理自学教材 v1.32.27},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -488,7 +488,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.32.26}}
+  {\small\textcolor{white!45}{v1.32.27}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -798,6 +798,8 @@ $\star\star\star$ & 挑战 & 涉及较深的数学技巧或前沿问题。供科
 等离子体是物质的第四态：由自由电子和离子组成、具有集体行为的准中性导电流体。极光、太阳风、霓虹灯、受控聚变，都是它的研究对象。
 
 本书为自学者铺一条从零到能读文献的路径：先建立物理图像，再补必要推导，推导够用即止。准备进聚变领域的研究生、想弄懂半导体工艺低温放电的工程师，都可以从第 1 章起步，按目标选路线。
+
+每章开头的题词为中文意译或概括，不是逐字引文；要引用请回到原始文献。
 
 
 % =============================================================================
@@ -1517,7 +1519,7 @@ v_p = \frac{\omega}{k} = \frac{\sqrt{\omega_p^2 + c^2k^2}}{k} = c\sqrt{1 + \frac
 \item 等离子体物理大量使用\textbf{柱坐标}，务必熟记柱坐标下的 $\grad$、$\divg$、$\curl$、$\lap$ 表达式。
 \item \textbf{分布函数} $f(\vect{r},\vect{v},t)$ 是相空间中的粒子数密度，其矩给出宏观量：$n$（密度）、$\vect{u}$（流速）、$P_{ij}$（压强张量）。
 \item \textbf{麦克斯韦分布}是热平衡等离子体的速度分布，$p=nk_BT$。
-\item \textbf{热速度约定}：本书统一 $v_{t\alpha}=\sqrt{k_BT_\alpha/m_\alpha}$（最概然速率量级）；$\bar{v}_\alpha=\sqrt{8k_BT_\alpha/(\pi m_\alpha)}$ 为平均热速度；$v_{\mathrm{rms},\alpha}=\sqrt{3k_BT_\alpha/m_\alpha}$ 为三维方均根速率。三者只差数值系数，遇到带系数的形式（如 $\sqrt{2k_BT/m}$）注意核对当章定义。
+\item \textbf{热速度约定}：本书统一 $v_{t\alpha}=\sqrt{2k_BT_\alpha/m_\alpha}$，即麦克斯韦分布的最概然速率，也是沿一条视线的热展宽；平均热速度 $\bar{v}_\alpha=\sqrt{8k_BT_\alpha/(\pi m_\alpha)}$，三维方均根速率 $v_{\mathrm{rms},\alpha}=\sqrt{3k_BT_\alpha/m_\alpha}$。三者只差数值系数，遇到别的系数先核对当处定义。
 \item \textbf{傅里叶变换}将线性微分方程变为代数方程，是研究波的利器。色散关系 $D(\omega,k)=0$ 决定波的传播特性。
 \item $\delta$函数是描述点粒子和微观分布的数学工具。
 \item \textbf{量纲自检}：分布函数归一化 $\int f\,\mathrm{d}^3v=n$ 要求 $[f]=\mathrm{m^{-6}\,s^{3}}$；$\delta$ 函数的量纲由 $\int\delta(x)\,\mathrm{d}x=1$ 反推，不能凭记忆。
@@ -2037,11 +2039,11 @@ v_y &= -\frac{q}{|q|} v_\perp \sin(\omega_c t + \phi_0)
 
 电子热速度：
 \[
-v_{te} = \sqrt{\frac{k_B T_e}{m_e}} = \sqrt{\frac{(10^4)(1.602\times 10^{-19})}{9.109\times 10^{-31}}} \approx 4.2\times 10^{7}\,\mathrm{m/s}
+v_{te} = \sqrt{\frac{2k_B T_e}{m_e}} = \sqrt{\frac{2\times(10^4)(1.602\times 10^{-19})}{9.109\times 10^{-31}}} \approx 5.9\times 10^{7}\,\mathrm{m/s}
 \]
 电子回旋半径：
 \[
-\rho_{Le} = \frac{v_{te}}{\omega_{ce}} \approx \frac{4.2\times 10^7}{8.8\times 10^{11}} \approx 4.8\times 10^{-5}\,\mathrm{m} \approx 0.05\,\mathrm{mm}
+\rho_{Le} = \frac{v_{te}}{\omega_{ce}} \approx \frac{5.9\times 10^7}{8.8\times 10^{11}} \approx 6.7\times 10^{-5}\,\mathrm{m} \approx 0.07\,\mathrm{mm}
 \]
 
 对于氘离子（$m_i \approx 2\times 1.673\times 10^{-27}\,\mathrm{kg} = 3.346\times 10^{-27}\,\mathrm{kg}$）：
@@ -2049,7 +2051,7 @@ v_{te} = \sqrt{\frac{k_B T_e}{m_e}} = \sqrt{\frac{(10^4)(1.602\times 10^{-19})}{
 \omega_{ci} = \frac{eB}{m_i} \approx 2.4\times 10^{8}\,\mathrm{rad/s}, \qquad f_{ci} \approx 38\,\mathrm{MHz}
 \]
 \[
-v_{ti} = \sqrt{\frac{k_B T_i}{m_i}} \approx 6.9\times 10^{5}\,\mathrm{m/s}, \qquad \rho_{Li} = \frac{v_{ti}}{\omega_{ci}} \approx 2.9\,\mathrm{mm}
+v_{ti} = \sqrt{\frac{2k_B T_i}{m_i}} \approx 9.8\times 10^{5}\,\mathrm{m/s}, \qquad \rho_{Li} = \frac{v_{ti}}{\omega_{ci}} \approx 4.1\,\mathrm{mm}
 \]
 可见离子回旋半径约为电子的60倍，但仍远小于装置尺度（托卡马克大半径约 $1$--$2\,\mathrm{m}$）。
 \end{example}
@@ -2112,7 +2114,7 @@ m\dot{\vect{v}'} = q(\vect{E} + (\vect{v}' + \vect{v}_E)\times\vect{B}) = q\vect
 \begin{enumerate}
 \item 误以为 $\vect{v}_E$ 与 $q$ 有关。它是\textbf{电磁场的几何属性}，任何粒子都以相同速度漂移。
 \item 当 $\vect{E}$ 有平行于 $\vect{B}$ 的分量时，粒子会沿磁场加速（$F_\parallel = qE_\parallel$），同时垂直方向仍有 $\vect{E}\times\vect{B}$ 漂移。两部分运动独立叠加。
-\item 漂移速度的大小 $v_E = E/B$。若 $E > cB$（自然单位制），$v_E > c$，看似超光速。这是假象：此时参考系变换要用相对论，$\vect{E}\times\vect{B}$ 漂移公式只在非相对论条件下成立。
+\item 漂移速度的大小 $v_E = E/B$。若 $E > cB$，$v_E > c$，看似超光速。这是假象：此时参考系变换要用相对论，$\vect{E}\times\vect{B}$ 漂移公式只在非相对论条件下成立。
 \end{enumerate}
 \end{warning}
 
@@ -2167,7 +2169,7 @@ m\dot{\vect{v}'} = q(\vect{E} + (\vect{v}' + \vect{v}_E)\times\vect{B}) = q\vect
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.72\textwidth]{../figures/nonplanar_coil.jpg}
-\caption{三维磁场几何：非平面线圈。仿星器的非平面线圈：粒子的 $\nabla B$ 漂移与曲率漂移由这种三维位形决定，而「磁瓶」正是把漂移补偿写进几何里的一种做法，线圈的形状就是位形。}
+\caption{三维磁场几何：仿星器的非平面线圈。粒子的 $\nabla B$ 漂移与曲率漂移由这种三维位形决定，而「磁瓶」正是把漂移补偿写进几何里的一种做法，线圈的形状就是位形。}
 \label{fig:photo-coil}
 \figsource{Siarhei Besarab，CC BY-SA 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
 \end{figure}

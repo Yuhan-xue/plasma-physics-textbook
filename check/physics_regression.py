@@ -4685,7 +4685,7 @@ def check_P28_signed_quantities():
         ('ch12_supplement.tex', '$-20$ & $-0.51$', -0.51, 0.001, 'Langmuir 探针 I-V 表：离子电流为负'),
         ('appendix_q_diagnostics.tex', '$-1.0$ & 7.1653 & 6.1653', -1, 0.001, '探针曲线表：偏压列带负号'),
         ('appendix_l_problems.tex', '$-6.5\\times10^{-5}$', -6.5e-05, 0.001, '附录 L 的屏蔽修正项：负号是结论本身'),
-        ('ch3_supplement.tex', '$-10\\%$', -10, 0.001, '单边近似与两端总数的偏差：带负号'),):
+        ('ch3_supplement.tex', '$-5.3$', -5.3, 0.001, '单端损失率与两端总数的差：带负号'),):
         p = os.path.join(SRC, fname)
         if not os.path.exists(p):
             bad.append('%s：文件缺失' % fname)
