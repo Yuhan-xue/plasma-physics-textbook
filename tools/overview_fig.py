@@ -7,6 +7,7 @@
 - 六套检查的项数：check/ 各脚本的实际项数（改动检查后同步这里）
 用法：python -X utf8 tools/overview_fig.py
 """
+import datetime
 import os
 import re
 import sys
@@ -57,11 +58,27 @@ rows = load_rows(os.path.join(ROOT, 'figures', 'CREDITS.md'))
 NF = len(rows)
 src = source_counts(rows)
 
-CH_PAGES = 176
-APX_PAGES = P2
-FRONT = PAGES - CH_PAGES - APX_PAGES - 9      # 封面目录 + 前言；结语与索引按 9 页
-TAIL = 9
-NCHK = [7195, 49, 14, 44, 16, 11]
+# 页数构成从书签实测，避免脚本里留着手填的常数
+_toc = doc.get_toc()
+
+
+def _start(prefix):
+    for lv, title, page in _toc:
+        if lv == 1 and title.strip().startswith(prefix):
+            return page
+    raise SystemExit('书签里找不到：%s' % prefix)
+
+
+_lv1 = [(tt.strip(), pp) for lv, tt, pp in _toc if lv == 1]
+_pref = [i for i, (tt, _) in enumerate(_lv1) if tt == '前言'][0]
+_CH_START = _lv1[_pref + 1][1]      # 前言之后的第一条一级书签就是第 1 章
+_TAIL_START = _start('结语')
+_APX_START = _start('附录 A')
+FRONT = _CH_START - 1                          # 封面、目录、符号与前言
+CH_PAGES = _TAIL_START - _CH_START             # 第 1 章起，到结语前
+TAIL = _APX_START - _TAIL_START                # 结语
+APX_PAGES = PAGES - _APX_START + 1             # 48 个附录
+NCHK = [7195, 45, 14, 43, 16, 11]              # 各类检查的项数（随门禁更新）
 
 fig = plt.figure(figsize=(13.6, 8.6), dpi=140)
 fig.patch.set_facecolor(BG)
@@ -74,7 +91,7 @@ fig.text(0.035, 0.915,
 ax1 = fig.add_axes([0.05, 0.65, 0.42, 0.145])
 ax1.set_facecolor(BG)
 parts = [('48 个附录', APX_PAGES, ACCENT), ('正文', CH_PAGES, LIGHT),
-         ('前言等', FRONT, PALE), ('索引', TAIL, FAINT)]
+         ('前言等', FRONT, PALE), ('结语', TAIL, FAINT)]
 left = 0
 for label, val, color in parts:
     ax1.barh([0], [val], left=left, color=color, height=0.5)
@@ -87,7 +104,7 @@ ax1.set_ylim(-0.55, 0.62)
 ax1.axis('off')
 ax1.set_title('%d 页怎么分：三分之二在附录，正文 %d 页' % (PAGES, CH_PAGES), fontsize=13,
               color=INK, loc='left', pad=8)
-ax1.text(0, -0.50, '48 个附录 %d 页｜正文 %d 页｜前言等 %d 页｜结语索引 %d 页'
+ax1.text(0, -0.50, '48 个附录 %d 页｜正文 %d 页｜前言等 %d 页｜结语 %d 页'
          % (APX_PAGES, CH_PAGES, FRONT, TAIL),
          fontsize=9.6, color=MUTED)
 
@@ -188,7 +205,7 @@ fig.text(0.035, 0.064,
          fontsize=10.1, color=MUTED)
 fig.text(0.035, 0.026,
          '数据来源：pdf/ 四个 PDF 实测页数与元数据、figures/CREDITS.md、check/ 六套检查输出'
-         '（2026-10-19，%s）。' % VERSION,
+         '（%s，%s）。' % (datetime.date.today().isoformat(), VERSION),
          fontsize=9.4, color='#8b8577')
 
 out = os.path.join(ROOT, 'docs', 'overview.png')
