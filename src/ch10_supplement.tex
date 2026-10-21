@@ -424,7 +424,6 @@ E_{\text{laser}} = \frac{0.35\,\mathrm{MJ}}{0.1} \approx 3.5\,\mathrm{MJ}
         \node[text=figGray,font=\footnotesize,anchor=west] at (4.35,4.50) {D-D 点火线};
         \draw[figVerm,figcurve,domain=2.2:9,samples=60] plot (\x,{1+4/(\x^0.5)});
         \node[text=figVerm,font=\footnotesize,anchor=west] at (6.55,2.00) {D-T 点火线};
-        \node[text=figVerm,font=\footnotesize,anchor=west] at (6.55,1.63) {$n\tau\sim T^{1/2}$};
 
         % 判据三点：①在阈值线下，②恰在线上，③在线上方
         \filldraw[figVerm] (2.2,2.30) circle (2.4pt);
@@ -450,7 +449,7 @@ E_{\text{laser}} = \frac{0.35\,\mathrm{MJ}}{0.1} \approx 3.5\,\mathrm{MJ}
         \filldraw[figGold] (8.4,4.60) circle (3.2pt);
         \node[text=figAmber,font=\footnotesize,anchor=south] at (8.4,4.76) {ITER（设计目标）};
     \end{tikzpicture}
-    \caption{Lawson 参数空间图：$n\tau$ 对温度 $T$ 的依赖关系。图中标注了若干代表性装置（TFTR、JET、DIII-D、NIF）以及 ITER 的设计目标。\textbf{判据方向：固定温度时，必须 $n\tau$ 高于点火线才满足点火条件，所以能量自持区在点火线\emph{上方}；线下方为不满足区。}三点示意：\cnum{1}在阈值线下（不满足）、\cnum{2}恰在线上（临界）、\cnum{3}在线上方（满足）。}
+    \caption{Lawson 参数空间图：$n\tau$ 对温度 $T$ 的依赖关系。点火线由 $n\tau\propto T/\langle\sigma v\rangle$ 定形：低温端门槛陡降，$T\approx25\ \mathrm{keV}$ 附近最低，再往高温重新上翘（本图只画到 $9\ \mathrm{keV}$）。图中标注了若干代表性装置（TFTR、JET、DIII-D、NIF）以及 ITER 的设计目标。\textbf{判据方向：固定温度时，必须 $n\tau$ 高于点火线才满足点火条件，所以能量自持区在点火线\emph{上方}；线下方为不满足区。}三点示意：\cnum{1}在阈值线下（不满足）、\cnum{2}恰在线上（临界）、\cnum{3}在线上方（满足）。}
     \label{fig:lawson}
 \end{figure}
 
