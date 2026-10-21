@@ -27,7 +27,7 @@ plasma-physics-textbook/
 | `src/` | `plasma_physics_textbook_v2.tex`（主文件：导言区 + 12 章正文）、`ch*_supplement.tex`、`appendix_*.tex`、`companion_handbook.tex` | 编译产物、图片、临时脚本 |
 | `figures/` | 实拍照片与公开机构示意图（jpg/png），一张图一个文件，小写下划线命名 | 自画图（那些在 `src/` 的 TikZ 里）、生成物 |
 | `pdf/` | 只放**发布版** PDF：完整教材、分册卷一/卷二、配套手册 | 中间构建产物、草稿 PDF |
-| `docs/` | 读者文档：`README` `overview` `figures` `appendix-audit` `self-study-audit` `palette` `style` `layout` `figure-audit` `figures-sourcing` `review-log`；`figures-thumbs/` 是图册缩略图（生成物） | 源码、PDF |
+| `docs/` | 读者文档：`README` `overview` `figures` `appendix-audit` `self-study-audit` `palette` `style` `layout` `figures-sourcing` `review-log`；`figures-thumbs/` 是图册缩略图（生成物） | 源码、PDF |
 | `check/` | 自动检查脚本与 `fixtures/` 自测数据 | 一次性分析脚本 |
 | `code/` | 书里让读者复制运行的脚本（附录 G） | 内部工具 |
 | `tools/` | 生成/采集/校验脚本；`calc/` 是附录数值的唯一来源（`*.py` 算、`*.txt` 存输出） | 读者的示例代码 |

@@ -9,7 +9,7 @@
 
 ## 四个 PDF
 
-同一份源码出四个 PDF。仓库 [`pdf/`](pdf/) 里是固定文件名的四个文件（随版本更新）；[Releases](http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases) 里是历史存档，文件名带版本号，如 `plasma_physics_textbook_v1.32.0.pdf`。
+同一份源码出四个 PDF。仓库 [`pdf/`](pdf/) 里是固定文件名的四个文件（随版本更新）；[Releases](http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases) 里是历史存档，文件名带版本号，如 `plasma_physics_textbook_v1.32.39.pdf`。
 
 | 分册 | 页数 | Releases 里的文件名 | 什么时候下这个 |
 |---|---|---|---|
