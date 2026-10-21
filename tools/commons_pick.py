@@ -100,6 +100,10 @@ def info(titles):
 
 
 def main():
+    if len(sys.argv) > 1 and sys.argv[1] in ('-h', '--help'):
+        print('用法：python -X utf8 tools/commons_pick.py [概念键 …]')
+        print('候选概念：' + '、'.join(CONCEPTS))
+        return
     keys = sys.argv[1:] or list(CONCEPTS)
     for k in keys:
         term = CONCEPTS[k]

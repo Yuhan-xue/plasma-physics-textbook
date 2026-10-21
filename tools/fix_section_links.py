@@ -25,6 +25,10 @@ def norm(s):
 
 
 def main():
+    if len(sys.argv) > 1 and sys.argv[1] in ('-h', '--help'):
+        print('用法：python -X utf8 tools/fix_section_links.py [PDF] [输出 PDF]')
+        print('把正文「见 §X.Y」链接的落点按 .aux 实测页码校正；默认处理 pdf/ 下的完整本，原地写回。')
+        return
     src_pdf = sys.argv[1] if len(sys.argv) > 1 else 'pdf/plasma_physics_textbook_v2.pdf'
     out_pdf = sys.argv[2] if len(sys.argv) > 2 else src_pdf
 
