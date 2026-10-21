@@ -58,11 +58,11 @@ v_{the}\Delta t=8.62771\times10^{-6}\ \mathrm{m}=0.12104\ \lambda_{De},
 第四个量不是判据，而是\textbf{信噪比}：德拜球里有多少个粒子。
 
 \begin{equation}
-N_D=n_e\lambda_{De}^3=3.62171\times10^{7}.
+N_D=\frac{4\pi}{3}n_e\lambda_{De}^3=1.51706\times10^{8}.
 \label{eq:app-ac-nd}
 \end{equation}
 
-三千六百万个粒子在一个德拜球里，说明这个工作点的等离子体是\textbf{极其连续}的。
+一亿五千万个粒子在一个德拜球里，说明这个工作点的等离子体是\textbf{极其连续}的。
 这条数字到 AC.4 会变成一句很贵的结论。
 
 最后一条判据常被忽略：模拟窗口内要不要算碰撞？用 Spitzer 公式（库仑对数取 $17$，
@@ -545,10 +545,10 @@ Hockney \& Eastwood \emph{Computer Simulation Using Particles}（1988，第 6 �
 
 \textbf{解答 1}：$\lambda_{De}=7.43394\times10^{-5}\ \mathrm{m}=74.339\ \mathrm{\mu m}$、
 $\omega_{pe}=1.78399\times10^{11}\ \mathrm{rad\,s^{-1}}$、
-$N_D=4.10826\times10^{6}$。
+$N_D=1.72086\times10^{7}$。
 密度降十倍、温度降到九分之一，德拜长度反而变长（$\lambda_{De}\propto\sqrt{T/n}$），
 所以网格可以粗一点。
-但德拜球内粒子数掉到四百万，只有工作点的九分之一，
+但德拜球内粒子数掉到一千七百万，只有工作点的九分之一，
 \textbf{噪声会明显变大}：分辨率与信噪比是两个独立的判据。
 
 \textbf{解答 2}：分辨不了。判据要求 $\Delta x\le\lambda_{De}$，即 $\Delta x/\lambda_{De}\le1$。
