@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.32.22},
+  pdftitle={等离子体物理自学教材 v1.32.23},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -488,7 +488,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.32.22}}
+  {\small\textcolor{white!45}{v1.32.23}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -6771,7 +6771,13 @@ bad: success=False status=1 message=The maximum number of mesh nodes is exceeded
 \begin{tip}{推荐学习路线}{tip-g-route}
 \textbf{推荐学习路线：}
 \begin{enumerate}
-\item \textbf{阶段一（Python 练习）：} 先完成本书附录 G.1--G.3 的三个独立脚本（复制即可运行，依赖仅 \texttt{numpy}/\texttt{scipy}/\texttt{matplotlib}），并\textbf{核对期望输出}：G.1 应打印 $\vect{E}\times\vect{B}$ 漂移速度 $\approx1000\,\mathrm{m/s}$、磁镜往返 $z$ 区间与 $10^{-6}$ 量级的能量漂移；G.2 应打印 $\lambda_D\approx2.35\times10^{-5}\,\mathrm{m}$、\texttt{success=True}（\texttt{status=0}）与 $x=1$ 处 $\sim10^{-6}$ 的相对偏差，并把节点上限负例的 \texttt{success=False}、\texttt{status=1} 一并打出来；G.3 应打印 $\omega_{pe}\approx5.6\times10^{10}\,\mathrm{rad/s}$ 与 $k\lambda_D$ 取 $0.1/0.3/1.0$ 时的热修正量。这些数字对不上时先查参数单位，再进入下一阶段。
+\item \textbf{阶段一（Python 练习）：} 先完成本书附录 G.1--G.3 的三个独立脚本（复制即可运行，依赖仅 \texttt{numpy}/\texttt{scipy}/\texttt{matplotlib}），再\textbf{核对期望输出}：
+  \begin{itemize}
+  \item G.1：$\vect{E}\times\vect{B}$ 漂移速度 $\approx1000\,\mathrm{m/s}$；磁镜往返的 $z$ 区间；$10^{-6}$ 量级的能量漂移。
+  \item G.2：$\lambda_D\approx2.35\times10^{-5}\,\mathrm{m}$、\texttt{success=True}（\texttt{status=0}）、$x=1$ 处 $\sim10^{-6}$ 的相对偏差；节点上限负例应打印 \texttt{success=False}、\texttt{status=1}。
+  \item G.3：$\omega_{pe}\approx5.6\times10^{10}\,\mathrm{rad/s}$；$k\lambda_D$ 取 $0.1$、$0.3$、$1.0$ 时的热修正量。
+  \end{itemize}
+  这些数字对不上时先查参数单位，再进入下一阶段。
 \item \textbf{阶段二（1D PIC）：} 使用 EPOCH 的 1D 教程，运行朗缪尔波、双流不稳定性（two-stream instability）的基准算例。
 \item \textbf{阶段三（2D/3D）：} 在集群上运行自己的 2D 问题（如磁重联、Landau 阻尼），学习并行 I/O、后处理（VisIt / ParaView）。
 \item \textbf{阶段四（深入研究）：} 根据方向选择：聚变输运 $\to$ GYRO/GENE；空间物理 $\to$ P3D/SMILEI；工业低温 $\to$ BOLSIG+ / COMSOL Plasma Module。
