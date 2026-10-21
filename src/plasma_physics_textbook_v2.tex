@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.32.15},
+  pdftitle={等离子体物理自学教材 v1.32.16},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -488,7 +488,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.32.15}}
+  {\small\textcolor{white!45}{v1.32.16}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -5071,7 +5071,7 @@ F_{\mathrm{Maxwell}}(\eps) \propto \sqrt{\eps}\,\exp\!\left(-\frac{\eps}{k_BT_e}
 某直流辉光放电氩等离子体中，朗缪尔探针（圆柱形，半径 $r = 0.25\,\mathrm{mm}$，长度 $L = 5\,\mathrm{mm}$）测得离子饱和电流 $I_{\mathrm{i,sat}} = 0.15\,\mathrm{mA}$，$\ln I$-$V$ 曲线过渡区斜率为 $3.5\,\mathrm{V}^{-1}$。估算 $T_e$ 和 $n_e$。
 
 \predict{$T_e\approx0.3\,\mathrm{eV}$ 的直流辉光等离子体，德拜长度是几 $\mu$m 还是几十 $\mu$m？离子饱和电流更接近 $\mu$A 还是 mA？}
-\textbf{解：}
+\textbf{解答：}
 \begin{enumerate}
     \item 电子温度：由式\eqref{eq:te-slope}，$T_e = 1/3.5 \approx 0.29\,\mathrm{V} = 0.29\,\mathrm{eV}$（约 $3300\,\mathrm{K}$）。
     \item 探针面积：$A = 2\pi r L + 2\pi r^2 \approx 2\pi \times 0.25\times 10^{-3}\times 5\times 10^{-3} \approx 7.85\times 10^{-6}\,\mathrm{m}^2$（忽略端面）。
@@ -5203,7 +5203,7 @@ n_r \approx 1 - \frac{1}{2}\frac{\omega_{pe}^2}{\omega^2}
 某托卡马克装置使用波长 $\lambda_0 = 2\,\mathrm{mm}$（$f = 150\,\mathrm{GHz}$）的微波进行干涉测量，等离子体柱直径（微波穿越路径）约 $L = 1.0\,\mathrm{m}$。若测得相位移动 $\Delta\phi = 10\pi\,\mathrm{rad}$（5个条纹移动），估算平均电子密度。
 
 \predict{$2\,\mathrm{mm}$ 微波穿过约 $1\,\mathrm{m}$ 等离子体、相移约一条条纹时，$n_e$ 更接近 $10^{18}$ 还是 $10^{19}\,\mathrm{m^{-3}}$？}
-\textbf{解：}由式\eqref{eq:phase-shift-uniform}，
+\textbf{解答：}由式\eqref{eq:phase-shift-uniform}，
 \begin{equation}
 n_e = \frac{2\eps_0 m_e c \omega \Delta\phi}{e^2 L}
 = \frac{2\eps_0 m_e c^2 \Delta\phi}{e^2 L} \cdot \frac{2\pi}{\lambda_0}.
@@ -5398,7 +5398,7 @@ $A_{ji}$、$A_{lk}$ 为爱因斯坦自发辐射系数。
 某氢电弧等离子体中，光谱仪测得 $H_\alpha$ 线（$656.3\,\mathrm{nm}$）的半高全宽为 $\Delta\lambda_{1/2} = 2.5\,\mathrm{nm}$。假设温度在 $1\sim 10\,\mathrm{eV}$ 范围内，粗略估算电子密度。
 
 \predict{$H_\alpha$ 半高全宽 $2.5\,\mathrm{nm}$ 对应 $n_e$ 是 $10^{21}$、$10^{22}$ 还是 $10^{23}\,\mathrm{m^{-3}}$？展宽是线性还是 $2/3$ 次方依赖？}
-\textbf{解：}先用可追溯标定反演。由 $\Delta\lambda_{1/2} = 0.549\,(n_e/10^{23})^{2/3}\,\mathrm{nm}$ 反解：
+\textbf{解答：}先用可追溯标定反演。由 $\Delta\lambda_{1/2} = 0.549\,(n_e/10^{23})^{2/3}\,\mathrm{nm}$ 反解：
 \begin{equation}
 n_e = 10^{23}\times\left(\frac{\Delta\lambda_{1/2}}{0.549\,\mathrm{nm}}\right)^{3/2}
 = 10^{23}\times\left(\frac{2.5}{0.549}\right)^{3/2}
