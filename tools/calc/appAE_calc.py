@@ -94,11 +94,11 @@ print('')
 
 # ---------------------------------------------------------------- AE.2
 nu_ei = 1.0 / tau_ei
-lam_mfp = v_the * tau_ei
+lam_mfp = v_te * tau_ei
 L_conn = 2.0 * math.pi * R0
 eps = a0 / R0
 eps15 = eps ** 1.5
-nu_star = nu_ei * q95 * R0 / (eps15 * v_the)
+nu_star = nu_ei * q95 * R0 / (eps15 * v_te)
 f_trap = math.sqrt(2.0 * eps / (1.0 + eps))
 delta_b = rho_i * q95 / math.sqrt(eps)
 w_b = v_Ti * math.sqrt(eps) / (q95 * R0)
@@ -110,11 +110,11 @@ print('[AE.2] 无碰撞判据、捕获粒子与香蕉轨道')
 print('  nu_ei = 1/tau_ei = %.6g Hz' % nu_ei)
 print('  omega_pe tau_ei = %.6g，omega_ce tau_ei = %.6g，omega_ci tau_ei = %.6g'
       % (w_pe * tau_ei, w_ce * tau_ei, w_ci * tau_ei))
-print('  lambda_mfp = v_the tau_ei = %.6g m = %.6g km' % (lam_mfp, lam_mfp / 1e3))
+print('  lambda_mfp = v_te tau_ei = %.6g m = %.6g km' % (lam_mfp, lam_mfp / 1e3))
 print('  连接长度 L = 2 pi R = %.6g m' % L_conn)
 print('  lambda_mfp/L = %.6g（热电子绕环 %0.1f 圈才碰一次）' % (lam_mfp / L_conn, lam_mfp / L_conn))
 print('  epsilon = a/R = %.6g，epsilon^1.5 = %.6g，q95 R = %.6g m' % (eps, eps15, q95 * R0))
-print('  碰撞率 nu* = nu_ei q R/(epsilon^1.5 v_the) = %.6g（< 1 即香蕉区）' % nu_star)
+print('  碰撞率 nu* = nu_ei q R/(epsilon^1.5 v_te) = %.6g（< 1 即香蕉区）' % nu_star)
 print('  捕获粒子比例 f_t = sqrt(2eps/(1+eps)) = %.6g%%' % (f_trap * 100))
 print('  1/sqrt(epsilon) = %.6g（新经典对经典的抬高因子）' % (1.0 / math.sqrt(eps)))
 print('  香蕉宽度 Delta_b = rho_i q95/sqrt(eps) = %.6g m = %.6g cm' % (delta_b, delta_b * 100))
@@ -277,7 +277,7 @@ print('  练习 3  v > 3 v_the：比例 = %.6g（%.6g%%），1 m^3 里 %.6g 个�
       % (t3, t3 * 100, n_e * t3))
 # 练习 4
 tau4 = tau_ei * 10.0
-lam4 = v_the * tau4
+lam4 = v_te * tau4
 print('  练习 4  n=1e19 m^-3（tau ∝ 1/n）：tau_ei = %.6g s，lambda_mfp = %.6g m = %.6g km，'
       % (tau4, lam4, lam4 / 1e3))
 print('          lambda_mfp/L = %.6g' % (lam4 / L_conn))

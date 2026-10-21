@@ -121,20 +121,20 @@ $f(\mathbf{x},\mathbf{v},t)$ 不是把 $n(\mathbf{x},t)$ 加一个速度维度�
 三个数都远大于 $1$：在一个回旋周期里，粒子几乎不可能被撞一次。等价的说法是平均自由程：
 
 \begin{equation}
-\lambda_{\mathrm{mfp}}=\sigma_{ve}\tau_{ei}=3.58755\ \mathrm{km},\qquad
-\frac{\lambda_{\mathrm{mfp}}}{2\pi R}=92.0929 .
+\lambda_{\mathrm{mfp}}=v_{te}\tau_{ei}=5.07356\ \mathrm{km},\qquad
+\frac{\lambda_{\mathrm{mfp}}}{2\pi R}=130.239 .
 \label{eq:app-ae-mfp}
 \end{equation}
 
-一个热电子要沿着环绕 $92$ 圈才碰一次。用梯度尺度 $a$ 无量纲化，得到努森数
+一个热电子要沿着环绕 $130$ 圈才碰一次。用梯度尺度 $a$ 无量纲化，得到努森数
 
 \begin{equation}
-\mathrm{Kn}=\frac{\lambda_{\mathrm{mfp}}}{a}=1793.77,\qquad
+\mathrm{Kn}=\frac{\lambda_{\mathrm{mfp}}}{a}=2536.78,\qquad
 \mathrm{Kn}_i=\frac{v_{Ti}\tau_{ii}}{a}=2536.78 ,
 \label{eq:app-ae-kn}
 \end{equation}
 
-其中 $\tau_{ii}\simeq\tau_{ei}\sqrt{m_i/m_e}=6.04449\times10^{-3}\ \mathrm{s}$ 只作量级估计（声明值）。
+其中 $\tau_{ii}\simeq\tau_{ei}\sqrt{m_i/m_e}=6.04449\times10^{-3}\ \mathrm{s}$ 只作量级估计（声明值）。两个努森数相等不是巧合：$v_t\propto m^{-1/2}$、$\tau\propto m^{1/2}$，在 $T_e=T_i$ 时乘积正好抵消。
 $\mathrm{Kn}\gg1$ 意味着流体闭合在这里必须显式引入，不能当成「精度差一点」。
 
 \begin{table}[htbp]
@@ -150,8 +150,8 @@ $\mathrm{Kn}\gg1$ 意味着流体闭合在这里必须显式引入，不能当�
 $\omega_{pe}\tau_{ei}$ & $5.03299\times10^{7}$ & $\gg1$ & 等离子体不屏蔽、像中性气体 \\
 $\omega_{ce}\tau_{ei}$ & $8.31634\times10^{7}$ & $\gg1$ & 电子被磁化、回旋是快运动 \\
 $\omega_{ci}\tau_{ei}$ & $18116.9$ & $\gg1$ & 离子未被电子碰撞钉住 \\
-$\lambda_{\mathrm{mfp}}/(2\pi R)$ & $92.0929$ & $\gg1$ & 环向输运由轨道而非碰撞决定 \\
-$\mathrm{Kn}=\lambda_{\mathrm{mfp}}/a$ & $1793.77$ & $\gg1$ & 流体闭合必须声明，不能默认 \\
+$\lambda_{\mathrm{mfp}}/(2\pi R)$ & $130.239$ & $\gg1$ & 环向输运由轨道而非碰撞决定 \\
+$\mathrm{Kn}=\lambda_{\mathrm{mfp}}/a$ & $2536.78$ & $\gg1$ & 流体闭合必须声明，不能默认 \\
 \bottomrule
 \end{tabular}
 
@@ -295,7 +295,7 @@ BGK 模式与非线性效应见 Bernstein, Greene \& Kruskal（1957，\emph{Phys
 以及连接长度的一个尺度 $q_{95}R=21.7\ \mathrm{m}$。碰撞率与弹跳频率之比是判别输运区的关键：
 
 \begin{equation}
-\nu_*=\frac{\nu_{ei}\,qR}{\epsilon^{1.5}\sigma_{ve}}=0.0330145 .
+\nu_*=\frac{\nu_{ei}\,qR}{\epsilon^{1.5}v_{te}}=0.0233448 .
 \label{eq:app-ae-nustar}
 \end{equation}
 
@@ -338,7 +338,7 @@ $f_t$ 决定「有多少粒子在弹跳」，$\Delta_b$ 决定「跳一步有多
 量 & 本工作点 & 表达式 & 它在哪件事里说话 \\
 \midrule
 反径比 $\epsilon$ & $0.322581$ & $a/R$ & 磁镜深度 \\
-碰撞率 $\nu_*$ & $0.0330145$ & $\nu_{ei}qR/(\epsilon^{1.5}\sigma_{ve})$ & 输运区判别（$<1$ 香蕉区） \\
+碰撞率 $\nu_*$ & $0.0233448$ & $\nu_{ei}qR/(\epsilon^{1.5}v_{te})$ & 输运区判别（$<1$ 香蕉区） \\
 捕获比例 $f_t$ & $69.843\%$ & $\sqrt{2\epsilon/(1+\epsilon)}$ & 有多少粒子在弹跳 \\
 香蕉宽度 $\Delta_b$ & $2.54715\ \mathrm{cm}$ & $\rho_iq_{95}/\sqrt{\epsilon}$ & 新经典输运的步长 \\
 弹跳频率 $f_b$ & $3496.5\ \mathrm{Hz}$ & $v_{Ti}\sqrt{\epsilon}/(2\pi q_{95}R)$ & 弹跳周期 $286\ \mathrm{\mu s}$ \\
@@ -532,7 +532,7 @@ alpha 等效 $u$ & $15.4249$（$v_{Ti}$） & $v_\alpha/v_{Ti}$ & 热尾权重 $4
 最后一个问题是：什么时候可以扔掉 $f$，只用流体量？判据是努森数与碰撞率：
 
 \begin{equation}
-\mathrm{Kn}=1793.77,\qquad
+\mathrm{Kn}=2536.78,\qquad
 \lambda_{\mathrm{mfp},i}=5.07356\ \mathrm{km},\qquad
 \mathrm{Kn}_i=2536.78 ,
 \label{eq:app-ae-closure}
@@ -614,8 +614,8 @@ $n_e\times4.3985\times10^{-4}=4.3985\times10^{16}\ \mathrm{m^{-3}}$。
 尾部只有万分之四，但它决定了束-等离子体不稳定性与射频共振的位置。
 
 \textbf{解答 4} $\tau_{ei}=8.92144\times10^{-4}\ \mathrm{s}$（密度降十倍，碰撞时间涨十倍），
-$\lambda_{\mathrm{mfp}}=\sigma_{ve}\tau_{ei}=35875.5\ \mathrm{m}=35.8755\ \mathrm{km}$，
-$\lambda_{\mathrm{mfp}}/(2\pi R)=920.929$，比工作点的 $92$ 倍又稀了十倍。
+$\lambda_{\mathrm{mfp}}=v_{te}\tau_{ei}=50735.6\ \mathrm{m}=50.7356\ \mathrm{km}$，
+$\lambda_{\mathrm{mfp}}/(2\pi R)=1302.39$，比工作点的 $130$ 倍又稀了十倍。
 
 \textbf{解答 5} $\Delta_b=\rho_iq/\sqrt{\epsilon}=0.0123719\ \mathrm{m}=1.23719\ \mathrm{cm}$，
 是 $q_{95}=3.5$ 时 $2.54715\ \mathrm{cm}$ 的 $1/2.05882$。
