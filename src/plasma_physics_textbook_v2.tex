@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.32.37},
+  pdftitle={等离子体物理自学教材 v1.32.38},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -128,6 +128,8 @@
 % 把新增实拍图占掉的页数压回来（段落靠首行缩进区分，不靠空行）。
 \setlength{\parskip}{1.0pt plus 0.4pt minus 0.2pt}
 \setlength{\jot}{1.0pt}
+% v1.32.38：只在实在断不开时启用，用于消掉几处 2--5 pt 的行溢出。
+\setlength{\emergencystretch}{1.5em}
 \AtBeginDocument{%
   \setlength{\abovedisplayskip}{2.2pt plus 0.8pt minus 0.8pt}%
   \setlength{\belowdisplayskip}{2.2pt plus 0.8pt minus 0.8pt}%
@@ -488,7 +490,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.32.37}}
+  {\small\textcolor{white!45}{v1.32.38}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -1018,6 +1020,7 @@ $\star\star\star$ & 挑战 & 涉及较深的数学技巧或前沿问题。供科
 
 % =============================================================================
 % =============================================================================
+\needspace{6\baselineskip}
 \section*{全书学习装置索引}
 \phantomsection
 \addcontentsline{toc}{section}{全书学习装置索引}
@@ -1136,6 +1139,7 @@ Rosenbluth、Taylor、Kadomtsev 讲解时总从物理图像出发，再补数学
 
 
 % =============================================================================
+\needspace{6\baselineskip}
 \section*{电子配套资源说明}
 \phantomsection
 \addcontentsline{toc}{section}{电子配套资源说明}
@@ -3305,6 +3309,7 @@ b_0 = \frac{|q_1 q_2|}{4\pi\eps_0 m_r v^2}
 如果没有德拜屏蔽（$\lambda_D \to \infty$），积分将发散，总散射截面无穷大——这是库仑长程力的直接后果。德拜屏蔽「拯救」了等离子体，使碰撞频率保持有限。
 \end{insight}
 
+\needspace{6\baselineskip}
 \section{扩散与双极扩散}\difficulty{基础}
 \label{sec:ch8-diffusion}
 
@@ -5314,6 +5319,7 @@ q = |\vect{k}_s-\vect{k}_i| = \frac{4\pi}{\lambda_0}\sin\frac{\theta}{2},
 \figsource{Hélène Roche / CEA IRFM，CC BY 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
 \end{figure}
 
+\needspace{6\baselineskip}
 \section{光谱诊断基础}
 \label{sec:12.5}
 

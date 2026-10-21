@@ -100,6 +100,7 @@ GAP_MAX = 40.0
 # 「明显过大」的提醒线（不算硬错，只进 WARN）
 W_BIG = 0.86        # 宽占版心 86% 以上 → 偏大
 W_HUGE = 0.95       # 宽占版心 95% 以上 → 明显过大
+HANG_PT = 4.0       # 实测外框越出版心但 ≤4 pt：多为 xeCJK 标点悬挂，记 WARN 不记 FAIL
 H_HUGE = 12.0       # 高 12 cm 以上 → 明显过高
 
 # 待守护的图形：题注中的特征词（PDF 文本层，必须足够独特）→ 说明
@@ -784,11 +785,16 @@ def analyze_figure(page, fig, ent, method, words=None):
     boxes = node_boxes(page, ytop - 1.0, ybot + 1.0)
 
     # 通用项：图的实测外框越出版心
+    # 3 pt 以内的右侧越界多半是 xeCJK 的标点悬挂（行末「，」「）」压在页边距里，
+    # 属本书认可的排版；真正的图形越界不会只超这么一点，所以这一档记 WARN。
     over_l = TEXT_L - box[0]
     over_r = box[2] - TEXT_R
-    if max(over_l, over_r) > 2.0:
-        row['issues'].append(('FAIL', 'P', '实测外框越出版心 %.1f pt（左 %.1f / 右 %.1f）'
-                              % (max(over_l, over_r), max(over_l, 0.0), max(over_r, 0.0))))
+    worst = max(over_l, over_r)
+    if worst > 2.0:
+        lvl = 'WARN' if worst <= HANG_PT else 'FAIL'
+        row['issues'].append((lvl, 'P', '实测外框越出版心 %.1f pt（左 %.1f / 右 %.1f%s）'
+                              % (worst, max(over_l, 0.0), max(over_r, 0.0),
+                                 '，疑为标点悬挂' if lvl == 'WARN' else '')))
 
     if len(boxes) >= 3:
         bad = overlap_pairs(boxes)
