@@ -5,9 +5,11 @@
 import io
 import os
 import re
+import subprocess
 import sys
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(
+    os.path.abspath(__file__))))
 TEX = os.path.join(ROOT, 'src', 'appendix_aj_fuelling.tex')
 CANON = os.path.join(ROOT, 'tmp', 'appAJ_calc.txt')
 
@@ -32,6 +34,16 @@ DECLARED = {
 }
 
 
+def ensure_canon():
+    if os.path.exists(CANON):
+        return
+    calc = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'appAJ_calc.py')
+    r = subprocess.run([sys.executable, '-X', 'utf8', calc], capture_output=True,
+                       text=True, encoding='utf-8')
+    io.open(CANON, 'w', encoding='utf-8').write(r.stdout)
+    print('已生成 ' + CANON)
+
+
 def nums_canon():
     t = io.open(CANON, encoding='utf-8', errors='replace').read()
     out = set()
@@ -44,9 +56,10 @@ def nums_canon():
 
 
 def main():
-    raw = io.open(TEX, encoding='utf-8', newline='').read()
+    ensure_canon()
+    raw = io.open(TEX, encoding='utf-8', newline='').read().replace('\r\n', '\n')
     if '\r' in raw:
-        print('[ABORT] 不是 LF')
+        print('[ABORT] 文件里混有落单的 CR')
         return 1
     txt = '\n'.join(l for l in raw.split('\n') if not l.lstrip().startswith('%'))
     cut = txt.index('\\section{来源、分级与版权说明}')

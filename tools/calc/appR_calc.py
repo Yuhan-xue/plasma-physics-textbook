@@ -269,7 +269,8 @@ say('')
 say('以上数字是正文与门禁的唯一来源。')
 
 text = '\n'.join(OUT) + '\n'
-root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+root = os.path.dirname(os.path.dirname(os.path.dirname(
+    os.path.abspath(__file__))))
 path = os.path.join(root, 'tmp', 'appR_calc.txt')
 io.open(path, 'w', encoding='utf-8', newline='\n').write(text)
 sys.stdout.write(text)

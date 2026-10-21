@@ -3,8 +3,11 @@
 import io
 import os
 import re
+import subprocess
+import sys
 
-ROOT = r'C:\Users\53150\Documents\git\plasma-physics-textbook'
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(
+    os.path.abspath(__file__))))
 TEX = os.path.join(ROOT, 'src', 'appendix_ag_equilibrium.tex')
 CANON = os.path.join(ROOT, 'tmp', 'appAG_calc.txt')
 
@@ -23,7 +26,20 @@ DECLARED = {
 }
 
 
+def ensure_canon():
+    if os.path.exists(CANON):
+        return
+    calc = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'appAG_calc.py')
+    r = subprocess.run([sys.executable, '-X', 'utf8', calc], capture_output=True,
+                       text=True, encoding='utf-8')
+    io.open(CANON, 'w', encoding='utf-8').write(r.stdout)
+    print('已生成 ' + CANON)
+
+
 def canon_numbers():
+    if not os.path.exists(CANON):
+        print('缺少 %s：先跑 python -X utf8 tools/calc/appAG_calc.py > tmp/appAG_calc.txt' % CANON)
+        sys.exit(2)
     t = io.open(CANON, encoding='utf-8').read()
     vals = set()
     for m in re.finditer(r'-?\d+\.?\d*(?:[eE][-+]?\d+)?', t):
@@ -39,6 +55,7 @@ def strip_tex(text):
     text = re.sub(r'p\{[^}]*\}', '', text)
     text = re.sub(r'\\label\{[^}]*\}', '', text)
     text = re.sub(r'\\(?:eqref|ref|cite)\{[^}]*\}', '', text)
+    text = re.sub(r'\\includegraphics(?:\[[^\]]*\])?\{[^}]*\}', '', text)
     return text
 
 
@@ -54,6 +71,7 @@ def prose_values(text):
 
 
 def main():
+    ensure_canon()
     raw = io.open(TEX, 'rb').read()
     t = strip_tex(raw.decode('utf-8'))
     blocks = re.split(r'\\section\{', t)
