@@ -16,7 +16,7 @@
 | 完整本 | 609 | `plasma_physics_textbook_vX.Y.Z.pdf` | 第一次读，或只想存一份 |
 | 卷一·正文 | 206 | `plasma_physics_textbook_vX.Y.Z_vol1_chapters.pdf` | 只想通读前言与第 1–12 章 |
 | 卷二·附录 | 403 | `plasma_physics_textbook_vX.Y.Z_vol2_appendices.pdf` | 正文读完，回头查 48 个附录 |
-| 配套手册 | 48 | `plasma_physics_handbook_vX.Y.Z.pdf` | 边学边查学习策略、逐章对照与题库 |
+| 配套手册 | 47 | `plasma_physics_handbook_vX.Y.Z.pdf` | 边学边查学习策略、逐章对照与题库 |
 
 三册的印刷页码与完整本一致（卷一 1–206，卷二 207–609），书签全部保留，可以在分册与完整本之间按页码对照。
 每个 release 都带这四个 PDF 与该版的改动说明。
@@ -57,7 +57,7 @@
 ### 附录（48 个）
 
 - **工具型 A–H（8 个）**：矢量公式、特征参数速查、中间数学步骤、常数、书单、易错点、仿真导读、符号术语。
-- **配套手册 I–L（4 个）**：学习策略、经典教材逐章对照、跨教材例题、分章自测题库——单独成册（48 页）。
+- **配套手册 I–L（4 个）**：学习策略、经典教材逐章对照、跨教材例题、分章自测题库——单独成册（47 页）。
 - **专题 M–AZ（40 个）**：从加热、边界、诊断、尘埃等离子体，到强场激光、聚变材料与堆系统集成；
   每篇 7–12 页，自带数值例子与估算练习。
 
@@ -127,7 +127,7 @@ python -X utf8 check/physics_regression.py        # 重新计算书中印出的�
 
 ## 版本与反馈
 
-当前 **v1.32.38**；版本演进与验收记录见 [`CHANGELOG.md`](CHANGELOG.md)，独立评审结论见 [`docs/review-log.md`](docs/review-log.md)。
+当前 **v1.32.39**；版本演进与验收记录见 [`CHANGELOG.md`](CHANGELOG.md)，独立评审结论见 [`docs/review-log.md`](docs/review-log.md)。
 
 发现数值、单位或推导错误，欢迎开 issue 并附上复算过程；补充内容优先补"能自己算一遍"的例子与练习。
 
