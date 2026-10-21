@@ -123,7 +123,7 @@ k\lambda_D = 10^{4}\times 1.49\times 10^{-5} \approx 0.149 \ll 1 \quad\checkmark
 \tau = \frac{1}{|\omega_i|} \approx \frac{1}{4.0\times 10^{2}} \approx 2.5\times 10^{-3}\,\mathrm{s} = 2.5\,\mathrm{ms}
 \]
 
-\textbf{分析}：$|\omega_i|/\omega_{pe}\approx7\times10^{-9}$，远小于 $\omega_r$，弱阻尼假设自洽。波在毫秒尺度衰减，说明\textbf{长波} Langmuir 波在热等离子体中几乎无阻尼。这一结果对波诊断有直接意义：想用探针或散射测量 Langmuir 波，必须选 $k\lambda_D\ll1$ 的长波，否则波自身还没传播开就被阻尼掉了。
+\textbf{分析}：$|\omega_i|/\omega_{pe}\approx7\times10^{-9}$，远小于 $\omega_r$，弱阻尼假设自洽。波在毫秒尺度衰减，说明\textbf{长波} \mbox{Langmuir} 波在热等离子体中几乎无阻尼。这一结果对波诊断有直接意义：想用探针或散射测量 \mbox{Langmuir} 波，必须选 $k\lambda_D\ll1$ 的长波，否则波自身还没传播开就被阻尼掉了。
 
 \textbf{越界会怎样（提高题）：} 把 $k$ 换成 $5\times10^{4}\,\mathrm{m^{-1}}$（$k\lambda_D=0.745$），代入同一公式会得到 $|\omega_i|\approx7.7\times10^{9}\,\mathrm{rad/s}$、$\tau\approx0.13\,\mathrm{ns}$。\textbf{但这个数不可信}：$k\lambda_D=0.745$ 已不在渐近区（要求 $\ll1$），$\exp[-1/(2k^2\lambda_D^2)]$ 的展开前提（相速度落在分布尾部）已被破坏，正确做法是数值求解复色散函数 $Z(\zeta)$ 的根。数值上，$k\lambda_D\to1$ 时渐近式与 $Z$ 函数给出的阻尼率分歧迅速增大；只有 $k\lambda_D\lesssim0.3$ 时两者才吻合。
 \end{example}
