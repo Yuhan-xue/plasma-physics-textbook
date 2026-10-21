@@ -212,16 +212,16 @@ PIC 之外的一半世界用流体与 MHD 描述，那里的步长判据长得�
 \begin{equation}
 \Delta t\le \mathrm{CFL}\cdot\frac{\Delta x}{v_{\max}},
 \qquad
-v_{ms}=\sqrt{v_A^2+c_s^2}=7.35945\times10^{6}\ \mathrm{m\,s^{-1}}
+v_{ms}=\sqrt{v_A^2+c_s^2}=7.33548\times10^{6}\ \mathrm{m\,s^{-1}}
 \label{eq:app-ac-cfl}
 \end{equation}
 
 工作点的密度 $\rho=n_em_i=4.18155\times10^{-7}\ \mathrm{kg\,m^{-3}}$，
 阿尔芬速度 $v_A=7.31143\times10^{6}\ \mathrm{m\,s^{-1}}$（$7311.4\ \mathrm{km\,s^{-1}}$）、
-声速 $c_s=839370\ \mathrm{m\,s^{-1}}$，两者合成快磁声速 $v_{ms}=7359.4\ \mathrm{km\,s^{-1}}$。
+声速 $c_s=\sqrt{T_e/m_i}=593524\ \mathrm{m\,s^{-1}}$（冷离子近似，与附录 AE 同口径），两者合成快磁声速 $v_{ms}=7335.5\ \mathrm{km\,s^{-1}}$。
 取 $\Delta x=0.01\ \mathrm{m}$、$\mathrm{CFL}=0.5$，得
-$\Delta t=6.79399\times10^{-10}\ \mathrm{s}$；阿尔芬时间
-$\tau_A=R/v_A=0.848\ \mathrm{\mu s}$，模拟 $10\tau_A$ 需要 $12481.4$ 步。
+$\Delta t=6.81619\times10^{-10}\ \mathrm{s}$；阿尔芬时间
+$\tau_A=R/v_A=0.848\ \mathrm{\mu s}$，模拟 $10\tau_A$ 需要 $12440.8$ 步。
 同样的 $\Delta t$，MHD 比 PIC 大方了三个数量级，因为它不需要分辨电子。
 
 粒子这边也有一条 CFL，只是写成「粒子不能一步跨过整个网格」：

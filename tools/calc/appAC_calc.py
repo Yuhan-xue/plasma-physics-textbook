@@ -162,7 +162,7 @@ for r in (2.0, 1.0, 0.5):
 # ---------------- AC.6 流体与 MHD ----------------
 rho = n_e * m_i
 vA = B0 / math.sqrt(mu0 * rho)
-c_s = math.sqrt(2 * T_e / m_i)
+c_s = math.sqrt(T_e / m_i)   # 离子声速（冷离子近似，与附录 AE 的 c_s 同口径）
 v_ms = math.sqrt(vA ** 2 + c_s ** 2)
 tau_A = R0 / vA
 dt_mhd = CFL * dx_mhd / v_ms
