@@ -42,8 +42,9 @@ print('omega = %.10g rad/s（%.6g GHz）, k0 = omega/c = %.10g m^-1, lambda0 = %
 print('e^2/(eps0 m_e) = %.10g, Z e^2/(eps0 m_i) = %.10g' % (e_per_m, e_per_mi))
 print('密度剖面 n_e(r) = n_e0 (1 - (r/a)^2)；磁场 B(r) = B0 R0/(R0 + r)')
 
-v_te = math.sqrt(T_e / m_e)
-rho_e = v_te / omega_ce0
+v_te = math.sqrt(T_e / m_e)          # 单分量宽度 sigma_ve，用于 3k^2 v_te^2 色散项
+v_te_mp = math.sqrt(2.0 * T_e / m_e)  # 热速度，回旋半径用它
+rho_e = v_te_mp / omega_ce0
 v_ti = math.sqrt(T_e / m_i)
 omega_ci0 = Z * e * B0 / m_i
 rho_i = v_ti / omega_ci0
@@ -92,8 +93,9 @@ print('omega_pe = %.10g rad/s  f_pe = %.10g GHz' % (omega_pe, omega_pe / 2 / mat
 print('omega_ce = %.10g rad/s  f_ce = %.10g GHz' % (omega_ce, omega_ce / 2 / math.pi / 1e9))
 print('omega_pi = %.10g rad/s  f_pi = %.10g GHz' % (omega_pi, omega_pi / 2 / math.pi / 1e9))
 print('omega_ci = %.10g rad/s  f_ci = %.10g MHz' % (omega_ci, omega_ci / 2 / math.pi / 1e6))
-print('v_te = sqrt(T_e/m_e) = %.10g m/s, rho_e = v_te/omega_ce = %.10g m = %.6g um'
-      % (v_te, rho_e, rho_e * 1e6))
+print('sigma_ve = sqrt(T_e/m_e) = %.10g m/s, v_te = sqrt(2T_e/m_e) = %.10g m/s'
+      % (v_te, v_te_mp))
+print('rho_e = v_te/omega_ce = %.10g m = %.6g um' % (rho_e, rho_e * 1e6))
 print('v_ti = %.10g m/s, rho_i = %.10g m = %.6g mm' % (v_ti, rho_i, rho_i * 1e3))
 print('rho_i/rho_e = %.10g' % (rho_i / rho_e))
 

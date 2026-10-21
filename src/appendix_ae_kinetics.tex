@@ -52,7 +52,7 @@ $v_{Ti}=\sqrt{2T_i/m_i}$ 取最概然速率口径（与附录 AD 的 $\rho_i$ �
 离子声速 & $593.524\ \mathrm{km\,s^{-1}}$ & $\sqrt{T_e/m_i}$ & 离子声波、台基宽度 \\
 德拜长度 & $71.2806\ \mathrm{\mu m}$ & $\sqrt{\epsilon_0T_e/(n_ee^2)}$ & 集体性判据、屏蔽 \\
 德拜立方内粒子数 & $3.62171\times10^{7}$ & $n_e\lambda_{De}^3$ & 统计描述是否成立 \\
-电子回旋半径 & $43.1386\ \mathrm{\mu m}$ & $\sigma_{ve}/\omega_{ce}$ & 电子尺度湍流 \\
+电子回旋半径 & $61.0071\ \mathrm{\mu m}$ & $v_{te}/\omega_{ce}$ & 电子尺度湍流 \\
 离子回旋半径 & $4.13338\ \mathrm{mm}$ & $v_{Ti}/\omega_{ci}$ & 回旋动理学的展开参数 \\
 \bottomrule
 \end{tabular}
@@ -71,12 +71,12 @@ $3.62171\times10^{7}$ 这个数（与附录 AC 的 $N_D$ 同口径）说明两�
 第一，一个德拜球里粒子足够多，$f$ 的统计解释成立。
 第二，它远小于宏观尺度，所以「多少算多」是尺度相对的：本工作点 $a/\lambda_{De}=2.80581\times10^{4}$。
 
-两个回旋半径把电子和离子彻底分开。
+两个回旋半径把电子和离子彻底分开（都按全书约定，用热速度 $v_\alpha=\sqrt{2k_BT_\alpha/m_\alpha}$ 除以回旋频率）。
 
 \begin{equation}
-\rho_e=\frac{\sigma_{ve}}{\omega_{ce}}=43.1386\ \mathrm{\mu m},\qquad
+\rho_e=\frac{v_{te}}{\omega_{ce}}=61.0071\ \mathrm{\mu m},\qquad
 \rho_i=\frac{v_{Ti}}{\omega_{ci}}=4.13338\ \mathrm{mm},\qquad
-\frac{\rho_i}{\rho_e}=95.8163 .
+\frac{\rho_i}{\rho_e}=67.7524 .
 \label{eq:app-ae-rho}
 \end{equation}
 
@@ -394,11 +394,11 @@ $\sim1/\sqrt{\epsilon}$ 倍，而这个因子在本工作点是 $1.76068$。
 \begin{equation}
 k_\perp=72.5799\ \mathrm{m^{-1}},\qquad
 \lambda_\perp=8.65693\ \mathrm{cm},\qquad
-k_\perp\rho_e=0.00313099 .
+k_\perp\rho_e=0.00442789 .
 \label{eq:app-ae-gyro2}
 \end{equation}
 
-同一个波长下，电子几乎感觉不到这个尺度（$k_\perp\rho_e\approx0.003$）；
+同一个波长下，电子几乎感觉不到这个尺度（$k_\perp\rho_e\approx0.004$）；
 离子尺度湍流选择性地作用在离子通道上。
 
 \begin{table}[htbp]
@@ -606,7 +606,7 @@ $\Gamma_0(1)$ 以及被抑制掉的比例。再回答：为什么电子对同一
 \textbf{解答 2} $k_\perp=1/\rho_i=241.933\ \mathrm{m^{-1}}$，
 $\lambda_\perp=2\pi/k_\perp=0.0259708\ \mathrm{m}=2.59708\ \mathrm{cm}$，
 $\Gamma_0(1)=0.46576$，抑制掉 $53.424\%$。电子几乎不受影响是因为
-$k_\perp\rho_e=k_\perp\rho_i\cdot(\rho_e/\rho_i)=1/95.8163=0.0104366$，
+$k_\perp\rho_e=k_\perp\rho_i\cdot(\rho_e/\rho_i)=1/67.7524=0.0147596$，
 $\Gamma_0$ 在这个小量下接近 $1$。
 
 \textbf{解答 3} $v>3\sigma_{ve}$ 的比例是 $0.043985\%$，即

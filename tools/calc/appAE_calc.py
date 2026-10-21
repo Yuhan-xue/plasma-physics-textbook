@@ -9,7 +9,8 @@
     m_i = 2.5 m_p, Z_eff = 2, q95 = 3.5, tau_E = 3.7 s, lnLambda = 17
 
 速度约定（与既有附录一致，务必写进正文通知读者）：
-    v_the = sqrt(T_e/m_e)          —— 与附录 AC 的 v_the 同口径（1/e 速度）
+    v_the = sqrt(T_e/m_e)          —— 单分量宽度 sigma_ve（1/e 速度那一族公式用它）
+    v_te  = sqrt(2 T_e/m_e)        —— 电子热速度，回旋半径 rho_e = v_te/omega_ce
     v_Ti  = sqrt(2 T_i/m_i)        —— 与附录 AD 的 rho_i 同口径（最概然速度）
     c_s   = sqrt(T_e/m_i)          —— 附录 AD 的离子声速；T_i = T_e 时 v_Ti = sqrt(2) c_s
 """
@@ -54,11 +55,12 @@ print('  q95 = %.6g，tau_E = %.6g s，lnLambda = %.6g' % (q95, tau_E, lnL))
 print('  tau_ei = %.6g s（与附录 AC 同口径），tau_ii = tau_ei sqrt(m_i/m_e) = %.6g s'
       % (tau_ei, tau_ii))
 print('  alpha 出生能 = %.6g MeV，m_alpha = %.6g m_p' % (E_alpha / MeV, m_alpha / mp))
-print('  速度约定：v_the = sqrt(T_e/m_e)、v_Ti = sqrt(2T_i/m_i)、c_s = sqrt(T_e/m_i)')
+print('  速度约定：sigma_ve = sqrt(T_e/m_e)、v_te = sqrt(2T_e/m_e)、v_Ti = sqrt(2T_i/m_i)、c_s = sqrt(T_e/m_i)')
 print('')
 
 # ---------------------------------------------------------------- AE.1
 v_the = math.sqrt(T_e / me)
+v_te = math.sqrt(2.0 * T_e / me)
 v_Ti = math.sqrt(2.0 * T_i / m_i)
 c_s = math.sqrt(T_e / m_i)
 lam_De = math.sqrt(eps0 * T_e / (n_e * e * e))
@@ -66,7 +68,7 @@ N_D = n_e * (4.0 / 3.0) * math.pi * lam_De ** 3
 w_pe = math.sqrt(n_e * e * e / (eps0 * me))
 w_ce = e * B0 / me
 w_ci = e * B0 / m_i
-rho_e = v_the / w_ce
+rho_e = v_te / w_ce
 rho_i = v_Ti / w_ci
 
 print('-' * 78)
@@ -81,9 +83,9 @@ print('  德拜立方 n lambda_De^3 = %.6g（与附录 AC 的 N_D 同口径）' 
 print('  omega_pe = %.6g rad/s = %.6g Hz' % (w_pe, w_pe / (2 * math.pi)))
 print('  omega_ce = %.6g rad/s = %.6g Hz' % (w_ce, w_ce / (2 * math.pi)))
 print('  omega_ci = %.6g rad/s = %.6g Hz' % (w_ci, w_ci / (2 * math.pi)))
-print('  rho_e = v_the/omega_ce = %.6g m = %.6g um' % (rho_e, rho_e * 1e6))
+print('  rho_e = v_te/omega_ce = %.6g m = %.6g um' % (rho_e, rho_e * 1e6))
 print('  rho_i = v_Ti/omega_ci  = %.6g m = %.6g mm' % (rho_i, rho_i * 1e3))
-print('  rho_i/rho_e = %.6g（= sqrt(2 m_i/m_e)）' % (rho_i / rho_e))
+print('  rho_i/rho_e = %.6g（= sqrt(m_i/m_e)）' % (rho_i / rho_e))
 print('  a/rho_i = %.6g，R/rho_i = %.6g' % (a0 / rho_i, R0 / rho_i))
 print('  (rho_i/a)^2 = %.6g' % ((rho_i / a0) ** 2))
 print('  rho_i/a = %.6g' % (rho_i / a0))

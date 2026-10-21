@@ -30,9 +30,9 @@ $B_0=5.3$ T、小半径 $a=2.0$ m，密度剖面 $n_\mathrm{e}(r)=n_\mathrm{e0}[
 \end{equation}
 
 即 $f_\mathrm{pe}=89.7866$ GHz、$f_\mathrm{ce}=148.360$ GHz；离子侧是 $f_\mathrm{pi}=1.33003$ GHz、
-$f_\mathrm{ci}=32.5550$ MHz。速度刻度与拉莫尔半径（沿用附录 AE 的口径：电子用单分量宽度、离子用最概然速率，$T_\mathrm{i}=T_\mathrm{e}$）：
-$\sigma_\mathrm{ve}=4.02127\times10^{7}$ m s$^{-1}$、$\rho_\mathrm{e}=\sigma_\mathrm{ve}/\omega_\mathrm{ce}=43.1386$ $\mu$m；
-$v_\mathrm{ti}=5.95680\times10^{5}$ m s$^{-1}$、$\rho_\mathrm{i}=v_\mathrm{ti}/\omega_\mathrm{ci}=2.91216$ mm，两者相差 $67.5072$ 倍。
+$f_\mathrm{ci}=32.5550$ MHz。速度刻度与拉莫尔半径（$T_\mathrm{i}=T_\mathrm{e}$；回旋半径按全书约定用热速度，单分量宽度只供色散项用）：
+$\sigma_\mathrm{ve}=4.02127\times10^{7}$ m s$^{-1}$（$1/e$ 速度）、$v_\mathrm{te}=5.68693\times10^{7}$ m s$^{-1}$、$\rho_\mathrm{e}=v_\mathrm{te}/\omega_\mathrm{ce}=61.0071$ $\mu$m；
+离子侧用声速 $c_\mathrm{s}=5.95680\times10^{5}$ m s$^{-1}$、$\rho_\mathrm{s}=c_\mathrm{s}/\omega_\mathrm{ci}=2.91216$ mm，声速只有 $\sigma_\mathrm{ve}$ 的 $1/67.5072$。
 
 冷等离子体的介电张量只有一个「记忆」：它记得磁场方向。把波频写成 $\omega$、磁场与波矢夹角写成
 $\theta$，惯用的 Stix 参数是
@@ -82,12 +82,12 @@ $\theta=60^\circ$ 给 $1.67921$ 与 $0.649909$；$\theta=90^\circ$ 给 $1.45317$
 \hline
 $f_\mathrm{pe}$ & $89.7866$ GHz & $f_\mathrm{ce}$ & $148.360$ GHz \\
 $f_\mathrm{pi}$ & $1.33003$ GHz & $f_\mathrm{ci}$ & $32.5550$ MHz \\
-$\sigma_\mathrm{ve}$ & $4.02127\times10^{7}$ m s$^{-1}$ & $\rho_\mathrm{e}$ & $43.1386$ $\mu$m \\
-$v_\mathrm{ti}$ & $5.95680\times10^{5}$ m s$^{-1}$ & $\rho_\mathrm{i}$ & $2.91216$ mm \\
+$\sigma_\mathrm{ve}$ & $4.02127\times10^{7}$ m s$^{-1}$ & $\rho_\mathrm{e}$ & $61.0071$ $\mu$m \\
+$c_\mathrm{s}$ & $5.95680\times10^{5}$ m s$^{-1}$ & $\rho_\mathrm{s}$ & $2.91216$ mm \\
 $X$ & $0.411308$ & $Y$ & $1.05972$ \\
 $R$ & $0.800308$ & $L$ & $7.88777$ \\
 $S$ & $4.34404$ & $D$ & $-3.54373$ \\
-$P$ & $0.588692$ & $\rho_\mathrm{i}/\rho_\mathrm{e}$ & $67.5072$ \\
+$P$ & $0.588692$ & $\rho_\mathrm{s}/\rho_\mathrm{e}$ & $47.7348$ \\
 $n_\mathrm{O}^2$ & $0.588692$ & $n_\mathrm{X}^2$ & $1.45317$ \\
 \hline
 \end{tabular}
@@ -302,23 +302,23 @@ v_\mathrm{g}=\frac{\partial\omega}{\partial k_\perp}=\frac{3k_\perp \sigma_\math
 \end{equation}
 
 其中 $\omega_\mathrm{UH}=2\pi f_\mathrm{UH}$、$\sigma_\mathrm{ve}=4.02127\times10^{7}$ m s$^{-1}$。
-$k_\perp\rho_\mathrm{e}=0.1$ 时 $k_\perp=2318.11$ m$^{-1}$，频率被抬到 $175.307$ GHz
-（比上混杂高 $1.89355$ GHz），垂直波长 $2.71048$ mm、群速度 $1.02094\times10^{7}$ m s$^{-1}$；
-$k_\perp\rho_\mathrm{e}=0.3$ 时抬到 $189.777$ GHz（$+16.363$ GHz）、波长 $0.903492$ mm；
-$0.5$ 时抬到 $215.825$ GHz（$+42.4111$ GHz）、波长 $0.542095$ mm。
-反过来说：只要 $k_\perp=1682.44$ m$^{-1}$（即 $k_\perp\rho_\mathrm{e}=0.0725779$、
+$k_\perp\rho_\mathrm{e}=0.1$ 时 $k_\perp=1639.15$ m$^{-1}$，频率被抬到 $174.363$ GHz
+（比上混杂高 $0.949347$ GHz），垂直波长 $3.83319$ mm、群速度 $7.25824\times10^{6}$ m s$^{-1}$；
+$k_\perp\rho_\mathrm{e}=0.3$ 时抬到 $181.780$ GHz（$+8.36572$ GHz）、波长 $1.27773$ mm；
+$0.5$ 时抬到 $195.771$ GHz（$+22.3574$ GHz）、波长 $0.766638$ mm。
+反过来说：只要 $k_\perp=1682.44$ m$^{-1}$（即 $k_\perp\rho_\mathrm{e}=0.102641$、
 $\lambda_\perp=3.73458$ mm），频率就比上混杂高 $1$ GHz：伯恩斯坦波的频率几乎完全由
 「垂直波长有多短」决定。
 
 离子侧同理，模式叫离子伯恩斯坦波（IBW），把上混杂换成下混杂、把电子热速度换成离子热速度：
 
 \begin{equation}
-\omega^2=\omega_\mathrm{LH}^2+3k_\perp^2v_\mathrm{ti}^2 ,
+\omega^2=\omega_\mathrm{LH}^2+3k_\perp^2c_\mathrm{s}^2 ,
 \label{eq:app-at-ibw}
 \end{equation}
 
-由于 $v_\mathrm{ti}$ 只有 $5.95680\times10^{5}$ m s$^{-1}$（比电子小 $67.5072$ 倍），
-同样的 $k_\perp\rho_\mathrm{i}$ 只能把频率抬高一点点：$k_\perp\rho_\mathrm{i}=0.1$ 时
+由于 $c_\mathrm{s}$ 只有 $5.95680\times10^{5}$ m s$^{-1}$（是 $\sigma_\mathrm{ve}$ 的 $1/67.5072$），
+同样的 $k_\perp\rho_\mathrm{s}$ 只能把频率抬高一点点：$k_\perp\rho_\mathrm{s}=0.1$ 时
 $f=1.13836$ GHz、$0.3$ 时 $1.13847$ GHz、$0.5$ 时 $1.13869$ GHz，始终贴着下混杂频率。
 这也解释了为什么离子伯恩斯坦波在下混杂频率附近才重要。
 
@@ -331,9 +331,9 @@ $f=1.13836$ GHz、$0.3$ 时 $1.13847$ GHz、$0.5$ 时 $1.13869$ GHz，始终贴�
 \hline
 模式 & $k_\perp\rho$ & $k_\perp$ (m$^{-1}$) & 频率 & 波长 / 群速度 \\
 \hline
-EBW & $0.1$ & $2318.11$ & $175.307$ GHz & $2.71048$ mm / $1.02094\times10^{7}$ m s$^{-1}$ \\
-EBW & $0.3$ & $6954.33$ & $189.777$ GHz & $0.903492$ mm / $2.8293\times10^{7}$ m s$^{-1}$ \\
-EBW & $0.5$ & $11590.6$ & $215.825$ GHz & $0.542095$ mm / $4.14639\times10^{7}$ m s$^{-1}$ \\
+EBW & $0.1$ & $1639.15$ & $174.363$ GHz & $3.83319$ mm / $7.25824\times10^{6}$ m s$^{-1}$ \\
+EBW & $0.3$ & $4917.46$ & $181.780$ GHz & $1.27773$ mm / $2.08864\times10^{7}$ m s$^{-1}$ \\
+EBW & $0.5$ & $8195.76$ & $195.771$ GHz & $0.766638$ mm / $3.23227\times10^{7}$ m s$^{-1}$ \\
 IBW & $0.1$ & $34.3387$ & $1.13836$ GHz & --- \\
 IBW & $0.3$ & $103.016$ & $1.13847$ GHz & --- \\
 IBW & $0.5$ & $171.694$ & $1.13869$ GHz & --- \\
@@ -491,7 +491,7 @@ CMA 图回答「这个频率上介质属于哪一类、有哪些模能存在」�
 \textbf{练习 3}（伯恩斯坦波）电子伯恩斯坦波取 $k_\perp\rho_\mathrm{e}=0.3$。求它的频率、垂直波长与
 群速度；再求「频率比上混杂高 $1$ GHz」对应的 $k_\perp$ 与垂直波长。
 
-\textbf{练习 4}（离子伯恩斯坦波）同样的 $k_\perp\rho_\mathrm{i}=0.1$、$0.3$、$0.5$ 三档，
+\textbf{练习 4}（离子伯恩斯坦波）同样的 $k_\perp\rho_\mathrm{s}=0.1$、$0.3$、$0.5$ 三档，
 离子伯恩斯坦波的频率各是多少？垂直波长各是多少？
 
 \textbf{练习 5}（少数离子加热）在 $B_0=5.3$ T 下求 H 与 D 的回旋频率，验证
@@ -510,10 +510,10 @@ $1/0.806164=1.24044$ 倍的余量：把中心密度提高两成四才会碰到�
 即 $L=\dfrac{4.60517}{2k_0|n|}$。$|n|=0.3$ 时 $L=2.61582$ mm；$0.5$ 时 $1.56949$ mm；
 $1$ 时 $0.784745$ mm。本装置的消逝带厚 $0.267$ m，比最宽松的上限还厚一百多倍。
 
-\textbf{解答 3} $k_\perp\rho_\mathrm{e}=0.3$ 给 $k_\perp=6954.33$ m$^{-1}$，
-$f=189.777$ GHz（比上混杂高 $16.363$ GHz）、$\lambda_\perp=0.903492$ mm，
-群速度 $v_\mathrm{g}=2.8293\times10^{7}$ m s$^{-1}$。频率高 $1$ GHz 只需要
-$k_\perp=1682.44$ m$^{-1}$（$k_\perp\rho_\mathrm{e}=0.0725779$），对应
+\textbf{解答 3} $k_\perp\rho_\mathrm{e}=0.3$ 给 $k_\perp=4917.46$ m$^{-1}$，
+$f=181.780$ GHz（比上混杂高 $8.36572$ GHz）、$\lambda_\perp=1.27773$ mm，
+群速度 $v_\mathrm{g}=2.08864\times10^{7}$ m s$^{-1}$。频率高 $1$ GHz 只需要
+$k_\perp=1682.44$ m$^{-1}$（$k_\perp\rho_\mathrm{e}=0.102641$），对应
 $\lambda_\perp=3.73458$ mm。
 
 \textbf{解答 4} $k_\perp=34.3387$ m$^{-1}$ 时 $f=1.13836$ GHz；$103.016$ m$^{-1}$ 时
