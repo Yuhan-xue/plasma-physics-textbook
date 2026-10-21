@@ -24,7 +24,7 @@ entries = []          # (字母, 标题, 源文件名或 None)
 inline_spans = []     # 内联附录的字节区间
 marks = [(m.start(), m.group(1), m.group(2), m.group(4))
          for m in re.finditer(
-             r'\\appchapter\{附录([A-Z]{1,2})[：:]([^}]*)\}(\s*\\input\{([^}]+)\})?', main)]
+             r'\\appchapter\{附录\s*([A-Z]{1,2})[：:]([^}]*)\}(\s*\\input\{([^}]+)\})?', main)]
 for i, (pos, letter, title, fname) in enumerate(marks):
     end = marks[i + 1][0] if i + 1 < len(marks) else len(main)
     entries.append((letter, title, (fname or '').strip() or None))
@@ -68,6 +68,8 @@ for i, (letter, title, fname) in enumerate(entries):
         'exercises': len(re.findall(r'\\begin\{example\}', t)),
     })
 
+if len(rows) < 40 or not any(r['pages'] for r in rows):
+    raise SystemExit('解析失败：只认出 %d 个附录（检查 \\appchapter 的写法是否变了）' % len(rows))
 rows_by_pages = sorted([r for r in rows if r['pages']], key=lambda r: -r['pages'])
 print('附录总数 %d；有书签页码的 %d 个' % (len(rows), len(rows_by_pages)))
 print('%-4s %-30s %5s %8s %4s %4s %4s %4s' %

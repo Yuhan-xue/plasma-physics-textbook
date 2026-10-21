@@ -32,6 +32,8 @@ for i, (lvl, title, page) in enumerate(toc):
                 break
         chapters.append((title, page, (nxt or total + 1) - page))
 
+if len(chapters) != 12:
+    raise SystemExit('解析失败：只认出 %d 章（检查章书签标题是否变了）' % len(chapters))
 LAYOUT = {'I': '研究', 'J': '研究', 'K': '研究', 'L': '研究'}
 GROUPS = [('工具型附录 A–H', [r['letter'] for r in rows if len(r['letter']) == 1
                             and r['letter'] <= 'H']),
@@ -53,13 +55,18 @@ lines.append('![项目一览](overview.png)')
 lines.append('')
 lines.append('## 一、体检结论')
 lines.append('')
-front_pages = toc[1][2] - 1                     # 封面到前言结束
+bm = {t.strip(): p for lvl, t, p in toc}
+ch_start = chapters[0][1]
+pref = bm.get('前言', ch_start)
+sym = bm.get('符号说明', pref)
+end_page = bm.get('结语', ch_start)
+apx_a = next((p for t, p in bm.items() if re.match(r'附录\s*A[：:]', t)), total + 1)
 ch_pages = sum(c[2] for c in chapters)
-tail_pages = total - front_pages - ch_pages - appendix_pages
-lines.append('- 全 **%d 页**：封面与目录 %d 页，前言 %d 页，正文 12 章 %d 页，'
-             '附录 %d 个 **%d 页（%.0f%%）**，结语与索引 %d 页。'
-             % (total, toc[0][2] - 1, front_pages - (toc[0][2] - 1), ch_pages,
-                len(rows), appendix_pages, 100.0 * appendix_pages / total, tail_pages))
+lines.append('- 全 **%d 页**：封面与目录 %d 页，符号说明 %d 页，前言 %d 页，'
+             '正文 12 章 %d 页（p%d–%d），结语 %d 页，附录 %d 个 **%d 页（%.0f%%）**。'
+             % (total, sym - 1, pref - sym, ch_start - pref, ch_pages,
+                ch_start, ch_start + ch_pages - 1, apx_a - end_page,
+                len(rows), appendix_pages, 100.0 * appendix_pages / total))
 lines.append('- 专题附录（M–AZ）体量非常均匀：**多数 7–12 页**，每篇 7–8 张表、1–3 张图、6–7 个语义盒——'
              '这是模板化的结果，也意味着单篇里没有明显的水分。')
 lines.append('- 体量最大的五个：%s。'
@@ -73,6 +80,8 @@ lines.append('| 章 | 起始页 | 页数 |')
 lines.append('|---|---:|---:|')
 for title, page, n in chapters:
     lines.append('| %s | %d | %d |' % (title, page, n))
+lines.append('')
+lines.append('（上表与下面的附录页数都按当前 PDF 的书签自动生成：相邻两个一级书签的页码差就是页数。）')
 lines.append('')
 lines.append('## 三、%d 个附录逐个体检（附录 I／J／K／L 已移入配套手册）' % len(rows))
 lines.append('')

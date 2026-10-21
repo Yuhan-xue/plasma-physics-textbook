@@ -92,6 +92,15 @@ python -X utf8 tools/fix_section_links.py pdf/plasma_physics_textbook_v2.pdf   #
 会一起早一页。两个脚本各按 `.aux` 或书签的实测页码校正，跑完 `check/pdf_outline.py` 应为 FAIL 0 / WARN 0。
 再按附录 A 的起始页切成卷一（1–206）与卷二（207–609），三册页码与完整本一致。
 
+**文档里的数字也是脚本算出来的**，页数或附录体量变化后重跑这三条即可：
+
+```bash
+python -X utf8 tools/overview_fig.py                        # docs/overview.png
+python -X utf8 tools/appendix_audit.py --json               # 附录体量数据
+python -X utf8 tools/make_appendix_audit_doc.py --write     # docs/appendix-audit.md
+python -X utf8 tools/make_figures_gallery.py --write        # docs/figures.md（图册）
+```
+
 ## 质量检查
 
 ```bash

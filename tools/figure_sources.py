@@ -8,7 +8,7 @@
 用法：
     from figure_sources import load_rows, counts
     rows = load_rows('figures/CREDITS.md')
-    counts(rows)   # {'inst': 38, 'person': 57, 'total': 95}
+    counts(rows)   # 例：{'inst': 45, 'person': 73, 'total': 118}（随 CREDITS.md 变）
 """
 import io
 import os

@@ -88,10 +88,10 @@ def main():
         groups.setdefault(group_title(r['where']), []).append(r)
 
     lines = []
-    lines.append('# 图册：全书 95 张插图一览')
+    lines.append('# 图册：全书 %d 张插图一览' % len(rows))
     lines.append('')
-    lines.append('> 这本书用图讲物理：全书 95 张插图，全部是实拍照片或公开示意图，'
-                 '逐张登记了作者、许可与来源页。')
+    lines.append('> 这本书用图讲物理：全书 %d 张插图，全部是实拍照片或公开示意图，'
+                 '逐张登记了作者、许可与来源页。' % len(rows))
     lines.append('> 下面按「章 / 附录」把它们排开，点击任意一张可看原图；'
                  '完整清单与来源链接见 [`figures/CREDITS.md`](../figures/CREDITS.md)。')
     lines.append('')
