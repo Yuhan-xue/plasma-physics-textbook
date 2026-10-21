@@ -49,11 +49,11 @@ $0.2/\omega_{ce}=2.14552\times10^{-13}\ \mathrm{s}$，后者更紧。
 \begin{equation}
 \Delta t=0.2/\omega_{ce}=2.14552\times10^{-13}\ \mathrm{s},
 \qquad
-v_{the}\Delta t=8.62771\times10^{-6}\ \mathrm{m}=0.12104\ \lambda_{De},
+\sigma_{ve}\Delta t=8.62771\times10^{-6}\ \mathrm{m}=0.12104\ \lambda_{De},
 \label{eq:app-ac-step}
 \end{equation}
 
-也就是每个时间步里电子只走约九分之一的德拜长度，网格与步长是配套选的，不能各管各。
+也就是每个时间步里电子只走约九分之一的德拜长度，网格与步长是配套选的，不能各管各。这里 $\sigma_{ve}=\sqrt{T_e/m_e}$ 是速度分布的单分量宽度，全书的热速度 $v_{te}=\sqrt{2T_e/m_e}$ 是它的 $\sqrt2$ 倍（口径见附录 AE）。
 
 第四个量不是判据，而是\textbf{信噪比}：德拜球里有多少个粒子。
 
@@ -69,7 +69,7 @@ N_D=\frac{4\pi}{3}n_e\lambda_{De}^3=1.51706\times10^{8}.
 写在脚本里作为声明输入）估算电子—离子碰撞时间：
 
 \begin{equation}
-\tau_{ei}=\frac{3(2\pi)^{3/2}\epsilon_0^2 m_e^2 v_{the}^3}{n_e e^4 Z_{\mathrm{eff}}\ln\Lambda}
+\tau_{ei}=\frac{3(2\pi)^{3/2}\epsilon_0^2 m_e^2 \sigma_{ve}^3}{n_e e^4 Z_{\mathrm{eff}}\ln\Lambda}
 =8.92144\times10^{-5}\ \mathrm{s},
 \qquad
 \frac{t_{\mathrm{sim}}}{\tau_{ei}}=1.9869\times10^{-5}.
@@ -227,7 +227,7 @@ $\tau_A=R/v_A=0.848\ \mathrm{\mu s}$，模拟 $10\tau_A$ 需要 $12481.4$ 步。
 粒子这边也有一条 CFL，只是写成「粒子不能一步跨过整个网格」：
 
 \begin{equation}
-v_{the}\Delta t=0.12104\ \lambda_{De}\;<\;\lambda_{De},
+\sigma_{ve}\Delta t=0.12104\ \lambda_{De}\;<\;\lambda_{De},
 \label{eq:app-ac-pcfl}
 \end{equation}
 

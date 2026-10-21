@@ -72,7 +72,7 @@ print('  光斑面积 A = %.6g m^2 = %.6g cm^2' % (A_spot, A_spot * 1e4))
 print('  功率密度 S = %.6g W/m^2 = %.6g MW/cm^2' % (S_RF, S_RF / 1e10))
 print('  微波电场 E_RF = %.6g V/m = %.6g kV/cm' % (E_RF, E_RF / 1e5))
 print('  电子抖动速度 v_osc = eE/(m omega) = %.6g m/s = %.6g c' % (v_osc, v_osc / c))
-print('  热速度 v_the = sqrt(T_e/m_e) = %.6g m/s' % v_the)
+print('  速度分布宽度 sigma_ve = sqrt(T_e/m_e) = %.6g m/s' % v_the)
 print('  判据一：v_osc/v_the = %.6g（平方 %.6g）' % (v_osc / v_the, (v_osc / v_the) ** 2))
 U_p_RF = me * v_osc ** 2 / 4
 print('  有质动力势 U_p = m v_osc^2/4 = %.6g J = %.6g eV' % (U_p_RF, U_p_RF / e))

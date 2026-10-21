@@ -24,16 +24,16 @@ $T_e = 1$ keV 的等离子体上。
 v_{\mathrm{osc}} = \frac{eE}{m_e\omega}
 \label{eq:app-al-vosc}
 \end{equation}
-与热速度 $v_{the} = \sqrt{T_e/m_e}$ 相比。微波侧先算功率密度：
+与速度分布的单分量宽度 $\sigma_{ve}=\sqrt{T_e/m_e}$ 相比。微波侧先算功率密度：
 $S = P/(\pi r^2) = 7.95775\times10^{8}$ W m$^{-2}$ $= 0.0795775$ MW cm$^{-2}$，
 由 $S = \epsilon_0 c E^2/2$ 得 $E = 774329$ V m$^{-1}$ $= 7.74329$ kV cm$^{-1}$，
 于是 $v_{\mathrm{osc}} = 154824$ m s$^{-1}$ $= 5.16438\times10^{-4}c$。
 
-工作点的热速度是 $v_{the} = 4.02127\times10^{7}$ m s$^{-1}$，因此
+工作点的 $\sigma_{ve}=4.02127\times10^{7}$ m s$^{-1}$，因此
 \begin{equation}
-\frac{v_{\mathrm{osc}}}{v_{the}} = 3.85013\times10^{-3},
+\frac{v_{\mathrm{osc}}}{\sigma_{ve}} = 3.85013\times10^{-3},
 \qquad
-\left(\frac{v_{\mathrm{osc}}}{v_{the}}\right)^{2} = 1.48235\times10^{-5}.
+\left(\frac{v_{\mathrm{osc}}}{\sigma_{ve}}\right)^{2} = 1.48235\times10^{-5}.
 \label{eq:app-al-ratio}
 \end{equation}
 \textbf{兆瓦级电子回旋加热是弱非线性}：抖动速度只有热速度的千分之四。换到激光侧，
@@ -56,7 +56,7 @@ n_c = \frac{\epsilon_0m_e\omega^2}{e^2}
 给出一把尺：$140$ GHz 对应 $n_c = 2.43127\times10^{20}$ m$^{-3}$，工作点
 $n_e/n_c = 0.411308$（波能进去，但只走到截止层）；$0.35$ $\mu$m 对应
 $n_c = 9.10085\times10^{27}$ m$^{-3}$，冕区 $n_e/n_c = 0.010988$，\textbf{低两个数量级}。
-于是同样的强度在冕区能推起大得多的 $v_{\mathrm{osc}}/v_{the}$。
+于是同样的强度在冕区能推起大得多的 $v_{\mathrm{osc}}/\sigma_{ve}$。
 
 \begin{table}[htbp]
 \centering
@@ -70,7 +70,7 @@ $n_c = 9.10085\times10^{27}$ m$^{-3}$，冕区 $n_e/n_c = 0.010988$，\textbf{�
 功率密度 & $7.95775\times10^{8}$ W m$^{-2}$ & $10^{19}$ W m$^{-2}$ & 相差 $1.25664\times10^{10}$ 倍 \\
 电场 & $774329$ V m$^{-1}$ & $8.68021\times10^{10}$ V m$^{-1}$ & $E = \sqrt{2S/\epsilon_0c}$ \\
 抖动速度 & $154824$ m s$^{-1}$ & $2.83674\times10^{6}$ m s$^{-1}$ & $eE/m_e\omega$ \\
-归一化振幅 & $v_{\mathrm{osc}}/v_{the} = 3.85013\times10^{-3}$ & $a_0 = 9.45601\times10^{-3}$ & 都是「小量」 \\
+归一化振幅 & $v_{\mathrm{osc}}/\sigma_{ve} = 3.85013\times10^{-3}$ & $a_0 = 9.45601\times10^{-3}$ & 都是「小量」 \\
 有质动力势 & $0.0340719$ eV & $11.4292$ eV & 与 $T_e$ 比 \\
 与温度之比 & $3.70588\times10^{-6}$ & $0.0114292$ & 差 $3354.44$ 倍 \\
 截止密度 & $2.43127\times10^{20}$ m$^{-3}$ & $9.10085\times10^{27}$ m$^{-3}$ & $n_c \propto \omega^2$ \\
@@ -81,7 +81,7 @@ $n_c = 9.10085\times10^{27}$ m$^{-3}$，冕区 $n_e/n_c = 0.010988$，\textbf{�
 \end{table}
 
 \begin{tip}{非线性不是「更强的场」，是「不可叠加」}{tip-app-al-nonlinear}
-线性与非线性之间没有一条「场强红线」。判据永远是比值：$v_{\mathrm{osc}}/v_{the}$、
+线性与非线性之间没有一条「场强红线」。判据永远是比值：$v_{\mathrm{osc}}/\sigma_{ve}$、
 $U_p/T_e$、$a_0$。同一个 $1$ MW 微波在 $10^{20}$ m$^{-3}$ 的芯部是弱非线性，
 搬到 $10^{16}$ m$^{-3}$ 的边界就会变成强非线性；变的不是功率，是分母。
 所以看到「非线性」三个字，第一件事是问：\textbf{与什么比}。
@@ -194,17 +194,17 @@ Matter}（2005，第 4 章）。
 
 阈值来自阻尼：子波在长大之前先要克服自己的阻尼，
 \begin{equation}
-\left(\frac{v_{\mathrm{osc}}}{v_{the}}\right)^{2}
+\left(\frac{v_{\mathrm{osc}}}{\sigma_{ve}}\right)^{2}
 > 4\,\frac{\Gamma_1}{\omega_1}\frac{\Gamma_2}{\omega_2}.
 \label{eq:app-al-threshold}
 \end{equation}
 取 $\Gamma_1/\omega_1 = 10^{-3}$、$\Gamma_2/\omega_2 = 10^{-2}$（电磁波弱阻尼、离子声波强阻尼），
-阈值 $v_{\mathrm{osc}}/v_{the} = 6.32456\times10^{-3}$。工作点的
+阈值 $v_{\mathrm{osc}}/\sigma_{ve} = 6.32456\times10^{-3}$。工作点的
 $3.85013\times10^{-3}$ \textbf{低于阈值 $1.64268$ 倍}，对应阈值功率 $P_{th} = 2.69841$ MW：
 $1$ MW 的 $140$ GHz 加热在阈值以下，翻到 $2.7$ MW 就会跨过去。这是实验上「功率一高就出现
 反常」的定量解释。
 
-同一个判据搬到激光冕区（$T_e = 1$ keV，$v_{the} = 1.32621\times10^{7}$ m s$^{-1}$）。
+同一个判据搬到激光冕区（$T_e = 1$ keV，$\sigma_{ve} = 1.32621\times10^{7}$ m s$^{-1}$）。
 阈值抖动速度 $83876.6$ m s$^{-1}$，折合强度阈值
 $8.74265\times10^{15}$ W m$^{-2}$ $= 8.74265\times10^{11}$ W cm$^{-2}$。
 而 ICF 的驱动强度是 $10^{15}$ W cm$^{-2}$ 量级，\textbf{高出三个数量级}，
@@ -217,7 +217,7 @@ k_L = k_0 + k_s,
 \qquad
 k_s = \frac{\omega_0 - \omega_L(k_L)}{c}\sqrt{1 - \frac{n_e}{n_c}},
 \qquad
-\omega_L^2 = \omega_{pe}^2 + 3k_L^2v_{the}^2,
+\omega_L^2 = \omega_{pe}^2 + 3k_L^2\sigma_{ve}^2,
 \label{eq:app-al-srs}
 \end{equation}
 在冕区（$k_0 = 1.78531\times10^{7}$ m$^{-1}$、$\omega_0 = 5.38186\times10^{15}$ rad s$^{-1}$）
@@ -367,7 +367,7 @@ Boyd 与 Sanderson（2003，第 9 章）。
 俘获频率 $\omega_b$ & $5.58162\times10^{10}$ s$^{-1}$ & $1.76506\times10^{11}$ s$^{-1}$ & $k\sqrt{eE/m_e}$ \\
 俘获时间 & $112.569$ ps & $35.5975$ ps & $2\pi/\omega_b$ \\
 俘获速度宽度 & $2.65241\times10^{7}$ m s$^{-1}$ & $8.38766\times10^{7}$ m s$^{-1}$ & $2\omega_b/k$ \\
-相对热速度 & $0.659596\,v_{the}$ & $2.08582\,v_{the}$ & 势井有多宽 \\
+相对速度宽度 & $0.659596\,\sigma_{ve}$ & $2.08582\,\sigma_{ve}$ & 势井有多宽 \\
 $\omega_b/\gamma$ & $4.38521$ & $13.8672$ & $>1$ 即非线性主导 \\
 \bottomrule
 \end{tabular}
@@ -405,7 +405,7 @@ Landau 阻尼之所以显得神秘，是因为它把一个可逆的微观过程�
 Davidson（1972，第 3 章）与 Hasegawa（1975，第 2 章）。
 BGK 型平衡态参照
 Bernstein、Greene 与 Kruskal（\emph{Physical Review} 108, 546, 1957）。
-动理学背景（$\lambda_{De}$、$v_{the}$、Landau 阻尼率）与附录 AE 同口径。
+动理学背景（$\lambda_{De}$、$\sigma_{ve}$、Landau 阻尼率）与附录 AE 同口径。
 }
 
 \section{相干结构：双电层与相空间空洞}
@@ -428,7 +428,7 @@ E_{\mathrm{dl}} \sim \frac{T_e/e}{100\,\lambda_{De}}
 被挖出一个洞，洞本身就是结构，可以比波活得久。洞的宽度就是俘获宽度
 \begin{equation}
 \Delta v = \frac{2\omega_b}{k} = 8.38766\times10^{7}\ \mathrm{m\,s^{-1}}
-= 2.08582\,v_{the}
+= 2.08582\,\sigma_{ve}
 \qquad (E = 10^{4}\ \mathrm{V\,m^{-1}}),
 \label{eq:app-al-hole}
 \end{equation}
@@ -467,7 +467,7 @@ f(x,v) = f\!\left(\tfrac{1}{2}m_ev^2 - e\phi(x)\right) .
 结构 & 尺度 & 特征量 & 寿命 \\
 \midrule
 双电层 & $100\,\lambda_{De} = 7.12806$ mm & $E = 1.28983$ MV m$^{-1}$ & 稳态（由电流维持） \\
-相空间空洞 & $2.08582\,v_{the}$（速度宽度） & $\omega_b = 1.76506\times10^{11}$ s$^{-1}$ & $35.5975$ ps \\
+相空间空洞 & $2.08582\,\sigma_{ve}$（速度宽度） & $\omega_b = 1.76506\times10^{11}$ s$^{-1}$ & $35.5975$ ps \\
 caviton & $\sim10\,\lambda_{De} = 712.806$ $\mu$m & 崩到 $E_{WB}$ 为止 & 几个等离子体周期 \\
 孤子 & $3.65148\,\lambda_{De} = 260.280$ $\mu$m & $M = 1.1$ & $438.533$ ps（越过自身） \\
 \bottomrule
@@ -516,12 +516,12 @@ Bernstein、Greene 与 Kruskal（1957）。
 \label{eq:app-al-ex-srs}
 \end{equation}
 结合电磁波色散 $\omega^2 = \omega_{pe}^2 + k^2c^2$ 与朗缪尔波色散
-$\omega_L^2 = \omega_{pe}^2 + 3k_L^2v_{the}^2$，求散射光波长与朗缪尔波波长。
+$\omega_L^2 = \omega_{pe}^2 + 3k_L^2\sigma_{ve}^2$，求散射光波长与朗缪尔波波长。
 
 \textbf{解答 1} $S = 2\times7.95775\times10^{8} = 1.59155\times10^{9}$ W m$^{-2}$，
 $E = \sqrt{2S/\epsilon_0c} = 1.09507\times10^{6}$ V m$^{-1}$，
 $v_{\mathrm{osc}} = eE/(m_e\omega_0) = 218954$ m s$^{-1}$，
-于是 $v_{\mathrm{osc}}/v_{the} = 5.44491\times10^{-3}$。它\textbf{仍然低于}阈值
+于是 $v_{\mathrm{osc}}/\sigma_{ve} = 5.44491\times10^{-3}$。它\textbf{仍然低于}阈值
 $6.32456\times10^{-3}$。所以把功率翻倍还不够，阈值功率是 $P_{th} = 2.69841$ MW，
 即实际功率的 $2.69841$ 倍。
 

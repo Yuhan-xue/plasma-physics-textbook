@@ -22,7 +22,7 @@
 三种速度刻度必须先分清：
 
 \begin{equation}
-v_{the}=\sqrt{\frac{T_e}{m_e}}=4.02127\times10^{7}\ \mathrm{m\,s^{-1}}=0.134135c ,
+\sigma_{ve}=\sqrt{\frac{T_e}{m_e}}=4.02127\times10^{7}\ \mathrm{m\,s^{-1}}=0.134135c ,
 \label{eq:app-ae-vthe}
 \end{equation}
 
@@ -32,9 +32,10 @@ c_s=\sqrt{\frac{T_e}{m_i}}=593.524\ \mathrm{km\,s^{-1}} .
 \label{eq:app-ae-vthe2}
 \end{equation}
 
-$v_{the}$ 取的是 $\sqrt{T_e/m_e}$ 口径（与附录 AC 的 $v_{the}$、$\Delta t$ 判据一致），
-$v_{Ti}$ 取最概然速度口径（与附录 AD 的 $\rho_i$ 一致）；在 $T_i=T_e$ 时
-$v_{Ti}=\sqrt{2}\,c_s$，两者不是同一个数。
+$\sigma_{ve}=\sqrt{T_e/m_e}$ 是速度分布的单分量宽度：一维麦克斯韦分布写成
+$e^{-v^2/2\sigma_{ve}^2}$ 时用的就是它，附录 AC 的 $\Delta t$ 判据、附录 AL 的归一化都用这一个数。
+全书的热速度是 $v_{te}=\sqrt{2T_e/m_e}=5.68693\times10^{7}$ m/s，等于 $\sqrt2\,\sigma_{ve}$（\S 3.1）；
+$v_{Ti}=\sqrt{2T_i/m_i}$ 取最概然速率口径（与附录 AD 的 $\rho_i$ 一致），在 $T_i=T_e$ 时 $v_{Ti}=\sqrt2\,c_s$。
 
 \begin{table}[htbp]
 \centering
@@ -46,12 +47,12 @@ $v_{Ti}=\sqrt{2}\,c_s$，两者不是同一个数。
 \toprule
 量 & 本工作点的值 & 表达式 & 它在哪件事里说话 \\
 \midrule
-电子热速度 & $4.02127\times10^{7}\ \mathrm{m\,s^{-1}}$ & $\sqrt{T_e/m_e}$ & 德拜判据、网格与时间步 \\
-离子热速度 & $839.370\ \mathrm{km\,s^{-1}}$ & $\sqrt{2T_i/m_i}$ & 离子轨道、香蕉宽度 \\
+电子速度分布宽度 $\sigma_{ve}$ & $4.02127\times10^{7}\ \mathrm{m\,s^{-1}}$ & $\sqrt{T_e/m_e}$ & 德拜判据、网格与时间步 \\
+离子最概然速率 $v_{Ti}$ & $839.370\ \mathrm{km\,s^{-1}}$ & $\sqrt{2T_i/m_i}$ & 离子轨道、香蕉宽度 \\
 离子声速 & $593.524\ \mathrm{km\,s^{-1}}$ & $\sqrt{T_e/m_i}$ & 离子声波、台基宽度 \\
 德拜长度 & $71.2806\ \mathrm{\mu m}$ & $\sqrt{\epsilon_0T_e/(n_ee^2)}$ & 集体性判据、屏蔽 \\
 德拜立方内粒子数 & $3.62171\times10^{7}$ & $n_e\lambda_{De}^3$ & 统计描述是否成立 \\
-电子回旋半径 & $43.1386\ \mathrm{\mu m}$ & $v_{the}/\omega_{ce}$ & 电子尺度湍流 \\
+电子回旋半径 & $43.1386\ \mathrm{\mu m}$ & $\sigma_{ve}/\omega_{ce}$ & 电子尺度湍流 \\
 离子回旋半径 & $4.13338\ \mathrm{mm}$ & $v_{Ti}/\omega_{ci}$ & 回旋动理学的展开参数 \\
 \bottomrule
 \end{tabular}
@@ -73,7 +74,7 @@ $3.62171\times10^{7}$ 这个数（与附录 AC 的 $N_D$ 同口径）说明两�
 两个回旋半径把电子和离子彻底分开。
 
 \begin{equation}
-\rho_e=\frac{v_{the}}{\omega_{ce}}=43.1386\ \mathrm{\mu m},\qquad
+\rho_e=\frac{\sigma_{ve}}{\omega_{ce}}=43.1386\ \mathrm{\mu m},\qquad
 \rho_i=\frac{v_{Ti}}{\omega_{ci}}=4.13338\ \mathrm{mm},\qquad
 \frac{\rho_i}{\rho_e}=95.8163 .
 \label{eq:app-ae-rho}
@@ -120,7 +121,7 @@ $f(\mathbf{x},\mathbf{v},t)$ 不是把 $n(\mathbf{x},t)$ 加一个速度维度�
 三个数都远大于 $1$：在一个回旋周期里，粒子几乎不可能被撞一次。等价的说法是平均自由程：
 
 \begin{equation}
-\lambda_{\mathrm{mfp}}=v_{the}\tau_{ei}=3.58755\ \mathrm{km},\qquad
+\lambda_{\mathrm{mfp}}=\sigma_{ve}\tau_{ei}=3.58755\ \mathrm{km},\qquad
 \frac{\lambda_{\mathrm{mfp}}}{2\pi R}=92.0929 .
 \label{eq:app-ae-mfp}
 \end{equation}
@@ -236,8 +237,8 @@ k=4208.72\ \mathrm{m^{-1}},\qquad
 
 \begin{equation}
 v_{ph}=\frac{\omega}{k}=1.51058\times10^{8}\ \mathrm{m\,s^{-1}}
-=3.75648\,v_{the},\qquad
-\exp\!\left(-\frac{v_{ph}^2}{2v_{the}^2}\right)=8.62603\times10^{-4} .
+=3.75648\,\sigma_{ve},\qquad
+\exp\!\left(-\frac{v_{ph}^2}{2\sigma_{ve}^2}\right)=8.62603\times10^{-4} .
 \label{eq:app-ae-resonance2}
 \end{equation}
 
@@ -294,7 +295,7 @@ BGK 模式与非线性效应见 Bernstein, Greene \& Kruskal（1957，\emph{Phys
 以及连接长度的一个尺度 $q_{95}R=21.7\ \mathrm{m}$。碰撞率与弹跳频率之比是判别输运区的关键：
 
 \begin{equation}
-\nu_*=\frac{\nu_{ei}\,qR}{\epsilon^{1.5}v_{the}}=0.0330145 .
+\nu_*=\frac{\nu_{ei}\,qR}{\epsilon^{1.5}\sigma_{ve}}=0.0330145 .
 \label{eq:app-ae-nustar}
 \end{equation}
 
@@ -337,7 +338,7 @@ $f_t$ 决定「有多少粒子在弹跳」，$\Delta_b$ 决定「跳一步有多
 量 & 本工作点 & 表达式 & 它在哪件事里说话 \\
 \midrule
 反径比 $\epsilon$ & $0.322581$ & $a/R$ & 磁镜深度 \\
-碰撞率 $\nu_*$ & $0.0330145$ & $\nu_{ei}qR/(\epsilon^{1.5}v_{the})$ & 输运区判别（$<1$ 香蕉区） \\
+碰撞率 $\nu_*$ & $0.0330145$ & $\nu_{ei}qR/(\epsilon^{1.5}\sigma_{ve})$ & 输运区判别（$<1$ 香蕉区） \\
 捕获比例 $f_t$ & $69.843\%$ & $\sqrt{2\epsilon/(1+\epsilon)}$ & 有多少粒子在弹跳 \\
 香蕉宽度 $\Delta_b$ & $2.54715\ \mathrm{cm}$ & $\rho_iq_{95}/\sqrt{\epsilon}$ & 新经典输运的步长 \\
 弹跳频率 $f_b$ & $3496.5\ \mathrm{Hz}$ & $v_{Ti}\sqrt{\epsilon}/(2\pi q_{95}R)$ & 弹跳周期 $286\ \mathrm{\mu s}$ \\
@@ -469,7 +470,7 @@ $\Gamma_0$ 因子的写法与
 动理学的全部信息都在 $f$ 的形状里：尾巴有多厚、损失锥吃掉多少、
 什么时候可以丢掉 $f$ 只用流体量。
 
-麦克斯韦分布的尾部按 $\exp(-u^2)$ 衰减，$u=v/v_{the}$：
+麦克斯韦分布的尾部按 $\exp(-u^2)$ 衰减，$u=v/\sigma_{ve}$：
 
 \begin{equation}
 u>1:\ 57.2407\%,\qquad
@@ -518,8 +519,8 @@ $3.5\ \mathrm{MeV}$ alpha 的回旋半径是 $5.10055\ \mathrm{cm}=12.3399\,\rho
 \toprule
 分布特征 & 本工作点 & 表达式 & 后果 \\
 \midrule
-$v>v_{the}$ & $57.2407\%$ & 高斯尾 & 一半以上粒子「比热速度快」 \\
-$v>3v_{the}$ & $0.043985\%$ & 高斯尾 & 电流、射频共振的作用区间 \\
+$v>\sigma_{ve}$ & $57.2407\%$ & 高斯尾 & 一半以上粒子「比热速度快」 \\
+$v>3\sigma_{ve}$ & $0.043985\%$ & 高斯尾 & 电流、射频共振的作用区间 \\
 $E>64\ \mathrm{keV}$ & $0.30131\%$ & 能量尾 & 与 $T_e$ 的比决定反应率 \\
 alpha 等效 $u$ & $15.4249$（$v_{Ti}$） & $v_\alpha/v_{Ti}$ & 热尾权重 $4.67\times10^{-104}$ \\
 损失锥（$R_m=2$） & $29.2893\%$ & $1-\sqrt{1-1/R_m}$ & 磁镜泄漏份额 \\
@@ -584,7 +585,7 @@ $T_e=T_i=1\ \mathrm{keV}$、$B=5.3\ \mathrm{T}$：求德拜长度、德拜立方
 \textbf{练习 2}（FLR 因子）取 $k_\perp\rho_i=1$：求 $k_\perp$、垂直波长、
 $\Gamma_0(1)$ 以及被抑制掉的比例。再回答：为什么电子对同一波长的响应几乎不受影响？
 
-\textbf{练习 3}（尾部）本工作点 $T_e=9.194\ \mathrm{keV}$，求 $v>3v_{the}$ 的电子比例，
+\textbf{练习 3}（尾部）本工作点 $T_e=9.194\ \mathrm{keV}$，求 $v>3\sigma_{ve}$ 的电子比例，
 以及 $1\ \mathrm{m^3}$ 里有多少个这样的电子。
 
 \textbf{练习 4}（无碰撞判据）把密度降到 $n_e=1\times10^{19}\ \mathrm{m^{-3}}$
@@ -608,12 +609,12 @@ $\Gamma_0(1)=0.46576$，抑制掉 $53.424\%$。电子几乎不受影响是因为
 $k_\perp\rho_e=k_\perp\rho_i\cdot(\rho_e/\rho_i)=1/95.8163=0.0104366$，
 $\Gamma_0$ 在这个小量下接近 $1$。
 
-\textbf{解答 3} $v>3v_{the}$ 的比例是 $0.043985\%$，即
+\textbf{解答 3} $v>3\sigma_{ve}$ 的比例是 $0.043985\%$，即
 $n_e\times4.3985\times10^{-4}=4.3985\times10^{16}\ \mathrm{m^{-3}}$。
 尾部只有万分之四，但它决定了束-等离子体不稳定性与射频共振的位置。
 
 \textbf{解答 4} $\tau_{ei}=8.92144\times10^{-4}\ \mathrm{s}$（密度降十倍，碰撞时间涨十倍），
-$\lambda_{\mathrm{mfp}}=v_{the}\tau_{ei}=35875.5\ \mathrm{m}=35.8755\ \mathrm{km}$，
+$\lambda_{\mathrm{mfp}}=\sigma_{ve}\tau_{ei}=35875.5\ \mathrm{m}=35.8755\ \mathrm{km}$，
 $\lambda_{\mathrm{mfp}}/(2\pi R)=920.929$，比工作点的 $92$ 倍又稀了十倍。
 
 \textbf{解答 5} $\Delta_b=\rho_iq/\sqrt{\epsilon}=0.0123719\ \mathrm{m}=1.23719\ \mathrm{cm}$，

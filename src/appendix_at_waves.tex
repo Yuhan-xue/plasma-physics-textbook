@@ -30,9 +30,9 @@ $B_0=5.3$ T、小半径 $a=2.0$ m，密度剖面 $n_\mathrm{e}(r)=n_\mathrm{e0}[
 \end{equation}
 
 即 $f_\mathrm{pe}=89.7866$ GHz、$f_\mathrm{ce}=148.360$ GHz；离子侧是 $f_\mathrm{pi}=1.33003$ GHz、
-$f_\mathrm{ci}=32.5550$ MHz。热速度与拉莫尔半径（沿用附录 AE 的口径，$T_\mathrm{i}=T_\mathrm{e}$）：
-$v_\mathrm{te}=4.02127\times10^{7}$ m s$^{-1}$、$\rho_\mathrm{e}=43.1386$ $\mu$m；
-$v_\mathrm{ti}=5.95680\times10^{5}$ m s$^{-1}$、$\rho_\mathrm{i}=2.91216$ mm，两者相差 $67.5072$ 倍。
+$f_\mathrm{ci}=32.5550$ MHz。速度刻度与拉莫尔半径（沿用附录 AE 的口径：电子用单分量宽度、离子用最概然速率，$T_\mathrm{i}=T_\mathrm{e}$）：
+$\sigma_\mathrm{ve}=4.02127\times10^{7}$ m s$^{-1}$、$\rho_\mathrm{e}=\sigma_\mathrm{ve}/\omega_\mathrm{ce}=43.1386$ $\mu$m；
+$v_\mathrm{ti}=5.95680\times10^{5}$ m s$^{-1}$、$\rho_\mathrm{i}=v_\mathrm{ti}/\omega_\mathrm{ci}=2.91216$ mm，两者相差 $67.5072$ 倍。
 
 冷等离子体的介电张量只有一个「记忆」：它记得磁场方向。把波频写成 $\omega$、磁场与波矢夹角写成
 $\theta$，惯用的 Stix 参数是
@@ -82,7 +82,7 @@ $\theta=60^\circ$ 给 $1.67921$ 与 $0.649909$；$\theta=90^\circ$ 给 $1.45317$
 \hline
 $f_\mathrm{pe}$ & $89.7866$ GHz & $f_\mathrm{ce}$ & $148.360$ GHz \\
 $f_\mathrm{pi}$ & $1.33003$ GHz & $f_\mathrm{ci}$ & $32.5550$ MHz \\
-$v_\mathrm{te}$ & $4.02127\times10^{7}$ m s$^{-1}$ & $\rho_\mathrm{e}$ & $43.1386$ $\mu$m \\
+$\sigma_\mathrm{ve}$ & $4.02127\times10^{7}$ m s$^{-1}$ & $\rho_\mathrm{e}$ & $43.1386$ $\mu$m \\
 $v_\mathrm{ti}$ & $5.95680\times10^{5}$ m s$^{-1}$ & $\rho_\mathrm{i}$ & $2.91216$ mm \\
 $X$ & $0.411308$ & $Y$ & $1.05972$ \\
 $R$ & $0.800308$ & $L$ & $7.88777$ \\
@@ -295,13 +295,13 @@ Kopecky（1973）与 Laqua 等（1997）。
 在长波极限下，电子伯恩斯坦波（EBW）的色散关系可以写成上混杂共振的热修正形式
 
 \begin{equation}
-\omega^2=\omega_\mathrm{UH}^2+3k_\perp^2v_\mathrm{te}^2 ,
+\omega^2=\omega_\mathrm{UH}^2+3k_\perp^2\sigma_\mathrm{ve}^2 ,
 \qquad
-v_\mathrm{g}=\frac{\partial\omega}{\partial k_\perp}=\frac{3k_\perp v_\mathrm{te}^2}{\omega} ,
+v_\mathrm{g}=\frac{\partial\omega}{\partial k_\perp}=\frac{3k_\perp \sigma_\mathrm{ve}^2}{\omega} ,
 \label{eq:app-at-ebw}
 \end{equation}
 
-其中 $\omega_\mathrm{UH}=2\pi f_\mathrm{UH}$、$v_\mathrm{te}=4.02127\times10^{7}$ m s$^{-1}$。
+其中 $\omega_\mathrm{UH}=2\pi f_\mathrm{UH}$、$\sigma_\mathrm{ve}=4.02127\times10^{7}$ m s$^{-1}$。
 $k_\perp\rho_\mathrm{e}=0.1$ 时 $k_\perp=2318.11$ m$^{-1}$，频率被抬到 $175.307$ GHz
 （比上混杂高 $1.89355$ GHz），垂直波长 $2.71048$ mm、群速度 $1.02094\times10^{7}$ m s$^{-1}$；
 $k_\perp\rho_\mathrm{e}=0.3$ 时抬到 $189.777$ GHz（$+16.363$ GHz）、波长 $0.903492$ mm；

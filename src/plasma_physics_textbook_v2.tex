@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.32.28},
+  pdftitle={等离子体物理自学教材 v1.32.29},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -488,7 +488,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.32.28}}
+  {\small\textcolor{white!45}{v1.32.29}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -594,8 +594,10 @@ $\rho_\ee$ & $\displaystyle\frac{v_{\mathrm{t}\ee}}{\omega_{\mathrm{c}\ee}}$ & �
 $\rho_\ii$ & $\displaystyle\frac{v_{\mathrm{t}\ii}}{\omega_{\mathrm{c}\ii}}$ & 离子回旋半径 \\
 $T_\ee$ & — & 电子温度（能量单位，常取 eV） \\
 $T_\ii$ & — & 离子温度（能量单位，常取 eV） \\
-$v_{\mathrm{t}\ee}$ & $\displaystyle\sqrt{\frac{k_\mathrm{B} T_\ee}{m_\ee}}$ & 电子热速度 \\
-$v_{\mathrm{t}\ii}$ & $\displaystyle\sqrt{\frac{k_\mathrm{B} T_\ii}{m_\ii}}$ & 离子热速度 \\
+$v_{\mathrm{t}\ee}$ & $\displaystyle\sqrt{\frac{2k_\mathrm{B} T_\ee}{m_\ee}}$ & 电子热速度（最概然速率） \\
+$\sigma_{v\ee}$ & $\displaystyle\sqrt{\frac{k_\mathrm{B} T_\ee}{m_\ee}}$ & 电子速度分布的单分量宽度（$=v_{\mathrm{t}\ee}/\sqrt2$） \\
+$v_{\mathrm{t}\ii}$ & $\displaystyle\sqrt{\frac{2k_\mathrm{B} T_\ii}{m_\ii}}$ & 离子热速度（最概然速率） \\
+$\sigma_{v\ii}$ & $\displaystyle\sqrt{\frac{k_\mathrm{B} T_\ii}{m_\ii}}$ & 离子速度分布的单分量宽度（$=v_{\mathrm{t}\ii}/\sqrt2$） \\
 $\beta$ & $\displaystyle\frac{2\mu_0 n k_\mathrm{B} T}{B^2}$ & 等离子体比压（热压/磁压） \\
 $\eta$ & — & 电阻率（$\vect{E}=\eta\vect{j}$） \\
 \bottomrule
@@ -1519,7 +1521,7 @@ v_p = \frac{\omega}{k} = \frac{\sqrt{\omega_p^2 + c^2k^2}}{k} = c\sqrt{1 + \frac
 \item 等离子体物理大量使用\textbf{柱坐标}，务必熟记柱坐标下的 $\grad$、$\divg$、$\curl$、$\lap$ 表达式。
 \item \textbf{分布函数} $f(\vect{r},\vect{v},t)$ 是相空间中的粒子数密度，其矩给出宏观量：$n$（密度）、$\vect{u}$（流速）、$P_{ij}$（压强张量）。
 \item \textbf{麦克斯韦分布}是热平衡等离子体的速度分布，$p=nk_BT$。
-\item \textbf{热速度约定}：本书统一 $v_{t\alpha}=\sqrt{2k_BT_\alpha/m_\alpha}$，即麦克斯韦分布的最概然速率，也是沿一条视线的热展宽；平均热速度 $\bar{v}_\alpha=\sqrt{8k_BT_\alpha/(\pi m_\alpha)}$，三维方均根速率 $v_{\mathrm{rms},\alpha}=\sqrt{3k_BT_\alpha/m_\alpha}$。三者只差数值系数，遇到别的系数先核对当处定义。
+\item \textbf{热速度约定}：本书统一 $v_{t\alpha}=\sqrt{2k_BT_\alpha/m_\alpha}$，即麦克斯韦分布的最概然速率，也是沿一条视线的热展宽；平均热速度 $\bar{v}_\alpha=\sqrt{8k_BT_\alpha/(\pi m_\alpha)}$，三维方均根速率 $v_{\mathrm{rms},\alpha}=\sqrt{3k_BT_\alpha/m_\alpha}$。三者只差数值系数，遇到别的系数先核对当处定义。速度分布的单分量宽度另记 $\sigma_{v\alpha}=\sqrt{k_BT_\alpha/m_\alpha}=v_{t\alpha}/\sqrt2$，指数 $e^{-v^2/2\sigma_{v\alpha}^2}$ 与附录 AC/AE/AL 的归一化用它。
 \item \textbf{傅里叶变换}将线性微分方程变为代数方程，是研究波的利器。色散关系 $D(\omega,k)=0$ 决定波的传播特性。
 \item $\delta$函数是描述点粒子和微观分布的数学工具。
 \item \textbf{量纲自检}：分布函数归一化 $\int f\,\mathrm{d}^3v=n$ 要求 $[f]=\mathrm{m^{-6}\,s^{3}}$；$\delta$ 函数的量纲由 $\int\delta(x)\,\mathrm{d}x=1$ 反推，不能凭记忆。
@@ -2842,9 +2844,9 @@ v_A = \frac{B}{\sqrt{\mu_0\rho_m}} = \frac{10^{-3}}{\sqrt{(4\pi\times 10^{-7})(1
 
 当考虑电子热运动时（Bohm--Gross 修正）：
 \[
-\omega^2 = \omega_{pe}^2 + 3k^2 v_{te}^2
+\omega^2 = \omega_{pe}^2 + 3k^2 \sigma_{ve}^2
 \]
-其中 $v_{te} = \sqrt{k_B T_e/m_e}$ 是电子热速度。
+其中 $\sigma_{ve} = \sqrt{k_B T_e/m_e}$ 是速度分布的单分量宽度（热速度 $v_{te}=\sqrt2\,\sigma_{ve}$）。
 \end{theorem}
 
 \begin{insight}{Langmuir 波的物理图像}{langmuir-insight}
@@ -3131,7 +3133,7 @@ f = f_0(v) + f_1(x,v,t), \qquad E = E_1(x,t)
 \label{sec:ch7-landau}
 
 \begin{theorem}{Landau 阻尼}{landau-damping}
-对麦克斯韦分布 $f_0(v) \propto \ee^{-v^2/2v_t^2}$（$v_t=\sqrt{k_BT_e/m_e}$ 为热速度），电子 Langmuir 波的复频率为：
+对麦克斯韦分布 $f_0(v) \propto \ee^{-v^2/2\sigma_{ve}^2}$（$\sigma_{ve}=\sqrt{k_BT_e/m_e}$ 为单分量宽度，热速度 $v_{te}=\sqrt2\,\sigma_{ve}$），电子 Langmuir 波的复频率为：
 \[
 \omega = \omega_{pe}\left(1 + \frac{3}{2}k^2\lambda_D^2\right) + \ii\omega_i
 \]
@@ -6037,8 +6039,8 @@ A_zB_x & A_zB_y & A_zB_z
 \midrule
 \multicolumn{5}{l}{\textit{二、静电相关}} \\
 \midrule
-热速度（电子） & $v_{te}$ & $\displaystyle v_{te} = \sqrt{\frac{k_\mathrm{B}T_e}{m_e}}$ & $10^{6}\sim10^{7}$ m/s & \S 1.2 \\
-热速度（离子） & $v_{ti}$ & $\displaystyle v_{ti} = \sqrt{\frac{k_\mathrm{B}T_i}{m_i}}$ & $10^{4}\sim10^{5}$ m/s & \S 1.2 \\
+热速度（电子） & $v_{te}$ & $\displaystyle v_{te} = \sqrt{\frac{2k_\mathrm{B}T_e}{m_e}}$ & $10^{6}\sim10^{7}$ m/s & \S 1.2 \\
+热速度（离子） & $v_{ti}$ & $\displaystyle v_{ti} = \sqrt{\frac{2k_\mathrm{B}T_i}{m_i}}$ & $10^{4}\sim10^{5}$ m/s & \S 1.2 \\
 德拜球粒子数 & $N_D$ & $\displaystyle N_D = \tfrac{4}{3}\pi n\lambda_D^3$ & $\gg 1$（理想等离子体）& \S 2.3 \\
 耦合参数 & $\Gamma$ & $\displaystyle\Gamma = \frac{e^2}{4\pi\eps_0 a k_\mathrm{B}T}$，$a=(3/4\pi n)^{1/3}$ & $\ll 1$（弱耦合）& \S 2.3 \\
 \midrule
@@ -6420,9 +6422,9 @@ SI 中 $\vect{B}$ 称为磁感应强度（特斯拉），$\vect{H}$ 为磁场强
 \begin{tip}{温度换算经验公式}{tip-ev-k-conversion}
 在等离子体物理中，一个极其有用的经验公式是：当 $T_e$ 以 eV 为单位时，
 \begin{equation}
-v_{te} [\text{m/s}] \approx 4.19\times 10^5\sqrt{T_e [\text{eV}]}
+v_{te} [\text{m/s}] \approx 5.93\times 10^5\sqrt{T_e [\text{eV}]}
 \end{equation}
-此式来自 $v_{te}=\sqrt{k_\mathrm{B}T_e/m_e}$，将 eV 换算为焦耳后代入常数即得。
+此式来自 $v_{te}=\sqrt{2k_\mathrm{B}T_e/m_e}$，将 eV 换算为焦耳后代入常数即得。
 \end{tip}
 
 
@@ -6927,7 +6929,7 @@ $k$ & 波数 & $\mathrm{m^{-1}}$ & \S 6.1，$k = 2\pi/\lambda$ \\
 $k_\parallel$ & 波数的平行分量 & $\mathrm{m^{-1}}$ & \S 5.4，沿 $\vect{B}$ 方向的分量 \\
 $\theta$ & 波矢与磁场的夹角 & rad & \S 5.4；在散射问题中又表示散射角（\S 12.5） \\
 $v_\phi$ & 相速度 & m/s & \S 7.2，$v_\phi = \omega/k$ \\
-$v_{th}$ & 热速度 & m/s & \S 3.3 起，$v_{th} = \sqrt{k_{B}T/m}$（第 7 章写作 $v_t$） \\
+$v_{th}$ & 热速度 & m/s & \S 3.3 起，$v_{th} = \sqrt{2k_{B}T/m}$（最概然速率；单分量宽度 $\sigma_{v}=\sqrt{k_BT/m}=v_{th}/\sqrt2$） \\
 $v_{\text{res}}$ & 共振速度 & m/s & \S 7.3，满足 $v = \omega/k$ 的共振粒子 \\
 $\omega_i$ & 增长率（频率虚部） & $\mathrm{s^{-1}}$ & \S 7.3，$\omega = \omega_r + \mathrm{i}\omega_i$ \\
 $\gamma$ & 增长率（波动问题） & $\mathrm{s^{-1}}$ & \S 9.2、\S 9.3（增长率）；与绝热指数 $\gamma$ 同名，按上下文区分 \\

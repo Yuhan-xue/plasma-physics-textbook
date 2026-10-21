@@ -71,7 +71,7 @@ rho_i = v_Ti / w_ci
 
 print('-' * 78)
 print('[AE.1] 速度空间与长度刻度')
-print('  v_the = sqrt(T_e/m_e) = %.6g m/s = %.6g c' % (v_the, v_the / c))
+print('  sigma_ve = sqrt(T_e/m_e) = %.6g m/s = %.6g c' % (v_the, v_the / c))
 print('  v_Ti  = sqrt(2T_i/m_i) = %.6g m/s = %.6g km/s' % (v_Ti, v_Ti / 1e3))
 print('  c_s   = sqrt(T_e/m_i)  = %.6g m/s = %.6g km/s（= v_Ti/sqrt(2)）' % (c_s, c_s / 1e3))
 print('  v_Ti/v_the = %.6g' % (v_Ti / v_the))
