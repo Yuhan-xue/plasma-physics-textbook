@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.32.34},
+  pdftitle={等离子体物理自学教材 v1.32.35},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -488,7 +488,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.32.34}}
+  {\small\textcolor{white!45}{v1.32.35}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -1452,7 +1452,7 @@ v_p = \frac{\omega}{k} = \frac{\sqrt{\omega_p^2 + c^2k^2}}{k} = c\sqrt{1 + \frac
 注意 $v_p v_g = c^2$。在等离子体中（第 6 章），这个色散关系正是电磁波在冷等离子体中的传播规律，$\omega_p$ 就是等离子体频率。
 \end{example}
 
-\section{$\delta$函数与点粒子描述}\difficulty{基础}
+\section{\texorpdfstring{$\delta$}{δ}函数与点粒子描述}\difficulty{基础}
 
 \begin{definition}{狄拉克$\delta$函数}{delta-def}
 狄拉克 $\delta$ 函数\textbf{不是普通函数}，而是一个广义函数（分布）。它的严格定义方式是说它作用在任意连续函数 $g$ 上给出什么结果：
@@ -4972,7 +4972,7 @@ $A$ 为探针收集面积，$u_B = \sqrt{k_BT_e/m_i}$ 为玻姆速度（见第 1
 工程上常取 $r_p\sim(1\sim10)\,\lambda_D$ 作为\textbf{信号强度与鞘层可分析性之间的折中}。但务必先算出实际的 $s/r_p$，再决定用哪套模型，不要用 $r_p/\lambda_D$ 的数值去「验证」薄鞘假设。
 \end{warning}
 
-\subsection{电子温度 $T_e$ 的求法：过渡区斜率法}
+\subsection{电子温度 \texorpdfstring{$T_e$}{Te} 的求法：过渡区斜率法}
 
 在过渡区，离子电流可忽略（$|I_{\mathrm{i,sat}}| \ll I$），$I \approx I_{\mathrm{e,sat}}\exp[(V - V_p)/T_e]$。取对数后：
 \begin{equation}
@@ -4995,7 +4995,7 @@ T_e = \left[\frac{\diff (\ln I)}{\diff V}\right]^{-1}.
 式\eqref{eq:te-slope}的物理图像清晰。电子温度越高，热运动越剧烈，能够克服探针负电位「势垒」到达探针的电子就越多。这意味着温度越高，收集电流对电位变化越不敏感：需要改变更大的电位，才能显著改变到达探针的电子数。因此，$T_e$ 越大，$\ln I$-$V$ 曲线越平缓，斜率越小，其倒数（温度）就越大。反之，低温等离子体中曲线非常陡峭。
 \end{insight}
 
-\subsection{电子密度 $n_e$ 的求法}
+\subsection{电子密度 \texorpdfstring{$n_e$}{ne} 的求法}
 
 一旦从斜率法求得 $T_e$，就可以利用饱和区电流反推密度。
 
@@ -5819,7 +5819,7 @@ OES发射光谱 & $10^{12}$--$10^{19}$ & $0.1$--$10$ & cm & ms & 工业/空间 \
 
 本附录汇总等离子体物理中频繁使用的矢量分析与张量运算公式，方便查阅。所有公式在 SI 单位制下给出。48 个附录的主题归属见附录开篇的导航图。
 
-\section{直角坐标系 $(x,y,z)$}
+\section{直角坐标系 \texorpdfstring{$(x,y,z)$}{(x,y,z)}}
 
 设标量场为 $\phi(x,y,z)$，矢量场为 $\vect{A}=A_x\unitvec{x}+A_y\unitvec{y}+A_z\unitvec{z}$。
 
@@ -5861,7 +5861,7 @@ A_x & A_y & A_z
 \end{definition}
 
 
-\section{柱坐标系 $(r,\theta,z)$}
+\section{柱坐标系 \texorpdfstring{$(r,\theta,z)$}{(r,θ,z)}}
 
 设标量场为 $\phi(r,\theta,z)$，矢量场为 $\vect{A}=A_r\unitvec{r}+A_\theta\unitvec{\theta}+A_z\unitvec{z}$。
 
@@ -5898,7 +5898,7 @@ A_x & A_y & A_z
 \end{insight}
 
 
-\section{球坐标系 $(r,\theta,\varphi)$}
+\section{球坐标系 \texorpdfstring{$(r,\theta,\varphi)$}{(r,θ,φ)}}
 
 设标量场为 $\phi(r,\theta,\varphi)$，矢量场为 $\vect{A}=A_r\unitvec{r}+A_\theta\unitvec{\theta}+A_\varphi\unitvec{\varphi}$。以下公式在恒星大气、日球层物理中频繁使用。
 
