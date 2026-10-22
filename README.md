@@ -9,7 +9,7 @@
 
 ## 四个 PDF
 
-同一份源码出四个 PDF。仓库 [`pdf/`](pdf/) 里是固定文件名的四个文件（随版本更新）；[Releases](http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases) 里是历史存档，文件名带版本号，如 `plasma_physics_textbook_v1.32.45.pdf`。
+同一份源码出四个 PDF。仓库 [`pdf/`](pdf/) 里是固定文件名的四个文件（随版本更新）；[Releases](http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases) 里是历史存档，文件名带版本号，如 `plasma_physics_textbook_v1.32.46.pdf`。
 
 | 分册 | 页数 | Releases 里的文件名 | 什么时候下这个 |
 |---|---|---|---|
@@ -136,7 +136,7 @@ python -X utf8 check/physics_regression.py        # 重新计算书中印出的�
 
 ## 版本与反馈
 
-当前 **v1.32.45**；版本演进与验收记录见 [`CHANGELOG.md`](CHANGELOG.md)，独立评审结论见 [`docs/review-log.md`](docs/review-log.md)。
+当前 **v1.32.46**；版本演进与验收记录见 [`CHANGELOG.md`](CHANGELOG.md)，独立评审结论见 [`docs/review-log.md`](docs/review-log.md)。
 
 发现数值、单位或推导错误，欢迎开 issue 并附上复算过程；补充内容优先补"能自己算一遍"的例子与练习。
 
