@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.32.46},
+  pdftitle={等离子体物理自学教材 v1.32.47},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -490,7 +490,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.32.46}}
+  {\small\textcolor{white!45}{v1.32.47}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -1763,8 +1763,8 @@ m_e \ddot{\Delta x} = -\frac{n_e e^2}{\eps_0}\Delta x
 \toprule
 \textbf{环境} & $n_e\,(\mathrm{m}^{-3})$ & $T_e\,(\mathrm{eV})$ & $\lambda_D\,(\mathrm{m})$ & $\omega_{pe}\,(\mathrm{rad/s})$ \\
 \midrule
-星际介质 & $10^6$ & $10^{-2}$ & $10$ & $10^4$ \\
-电离层 & $10^{12}$ & $10^{-1}$ & $10^{-3}$ & $10^7$ \\
+星际介质 & $10^6$ & $1$ & $7$ & $6\times10^{4}$ \\
+电离层 & $10^{12}$ & $10^{-1}$ & $10^{-3}$ & $6\times10^{7}$ \\
 实验室等离子体 & $10^{18}$ & $10$ & $10^{-5}$ & $10^{11}$ \\
 惯性约束聚变 & $10^{32}$ & $10^4$ & $10^{-10}$ & $10^{18}$ \\
 \bottomrule
@@ -4022,8 +4022,8 @@ V_{\text{bd}} = \frac{B\,pd}{\ln(Apd) - \ln\!\bigl[\ln(1+1/\gamma)\bigr]}
 \difficulty{基础}
 霓虹灯管内充入约 $p = 1\sim 10\,\mathrm{Torr}$ 的氖气，管径 $d \approx 10\,\mathrm{mm}$。计算 $pd = 10\sim 100\,\mathrm{Torr\cdot mm}$，恰好位于帕邢曲线最低点右侧附近。这是霓虹灯只需数百伏即可点亮的根本原因。
 
-\predict{$pd\approx10$--$100\,\mathrm{Pa\,m}$ 落在帕邢曲线极小值的左边还是右边？随着 $pd$ 增大，放电电压是升高还是降低？}
-\textbf{数值估算}：取氖气 $A = 4\,\mathrm{m^{-1}Pa^{-1}}$，$B = 150\,\mathrm{V\,m^{-1}Pa^{-1}}$，$\gamma \approx 0.05$，$p = 5\,\mathrm{Torr} = 667\,\mathrm{Pa}$，$d = 0.02\,\mathrm{m}$，则 $pd = 13.3\,\mathrm{Pa\,m}$。代入 \cref{eq:paschen-law} 估算得 $V_{\text{bd}} \approx 400\sim 500\,\mathrm{V}$，与商用霓虹灯启辉电压一致。
+\predict{$pd\approx1.3$--$13\,\mathrm{Pa\,m}$ 落在帕邢曲线极小值的左边还是右边？随着 $pd$ 增大，放电电压是升高还是降低？}
+\textbf{数值估算}：取氖气 $A = 4\,\mathrm{m^{-1}Pa^{-1}}$，$B = 150\,\mathrm{V\,m^{-1}Pa^{-1}}$，$\gamma \approx 0.05$，$p = 5\,\mathrm{Torr} = 667\,\mathrm{Pa}$，按上面的管径 $d = 0.01\,\mathrm{m}$ 计，则 $pd = 6.67\,\mathrm{Pa\,m}$。代入 \cref{eq:paschen-law} 估算得 $V_{\text{bd}} \approx 460\,\mathrm{V}$，与商用霓虹灯启辉电压一致。
 \end{example}
 
 \subsection{直流（DC）辉光放电：从阴极到阳极的「分区宇宙」}
@@ -5219,8 +5219,8 @@ n_e = \frac{2\eps_0 m_e c \omega \Delta\phi}{e^2 L}
 \end{equation}
 代入数值：$\eps_0 = 8.85\times 10^{-12}\,\mathrm{F/m}$，$m_e = 9.11\times 10^{-31}\,\mathrm{kg}$，$c = 3\times 10^8\,\mathrm{m/s}$，$e = 1.6\times 10^{-19}\,\mathrm{C}$，$\Delta\phi = 10\pi$，$\lambda_0 = 2\times 10^{-3}\,\mathrm{m}$，$L = 1.0\,\mathrm{m}$：
 \begin{equation}
-n_e = r_e\lambda_0\,\frac{\Delta\phi}{L}
-= 2.82\times 10^{-15}\times 2\times 10^{-3}\times\frac{10\pi}{1.0}
+n_e = \frac{\Delta\phi}{r_e\lambda_0 L}
+= \frac{10\pi}{2.82\times 10^{-15}\times 2\times 10^{-3}\times 1.0}
 \approx 5.6\times 10^{18}\,\mathrm{m}^{-3}.
 \end{equation}
 这一密度处于微波干涉诊断的典型范围内（$10^{18}\sim 10^{20}\,\mathrm{m}^{-3}$）。\textbf{每次估算后都应做截止检查}。该频率 $f=150\,\mathrm{GHz}$ 对应 $n_{\mathrm{cut}} = 1.24\times 10^{16}\times 150^2 \approx 2.8\times 10^{20}\,\mathrm{m}^{-3}$，远大于 $5.6\times 10^{18}\,\mathrm{m}^{-3}$，故 $\omega\gg\omega_{pe}$ 成立，高频近似自洽。对于更高密度（如聚变堆级 $10^{20}\,\mathrm{m}^{-3}$），需要使用亚毫米波或远红外激光干涉仪。
@@ -5531,7 +5531,7 @@ Rogowski 线圈的一个重要优点是：它只测量\emph{穿过环中心的�
 &\qquad \longrightarrow \text{离子轰击能量变化} \longrightarrow \text{刻蚀速率变化}
 \end{aligned}
 \]
-具体而言，ICP 功率升高使电子加热增强，$T_\ee$ 上升；根据玻姆鞘层判据，鞘层电位降 $V_\mathrm{sh} \sim T_\ee/2$（以 $\mathrm{eV}$ 为单位），离子到达基底的能量随之增加。在铝刻蚀中，离子轰击能量每增加 $1\,\mathrm{eV}$，刻蚀速率约变化 $2\%\text{--}3\%$。因此 $T_\ee$ 从 $4.5\,\mathrm{eV}$ 升至 $5.2\,\mathrm{eV}$，可导致刻蚀速率变化约 $5\%$，足以影响工艺窗口。
+具体而言，ICP 功率升高使电子加热增强，$T_\ee$ 上升；根据玻姆鞘层判据，鞘层电位降 $V_\mathrm{sh} \sim T_\ee/2$（以 $\mathrm{eV}$ 为单位），离子到达基底的能量随之增加。在铝刻蚀中，离子轰击能量每增加 $1\,\mathrm{eV}$，刻蚀速率约变化 $2\%\text{--}3\%$。因此 $T_\ee$ 从 $4.5\,\mathrm{eV}$ 升至 $5.2\,\mathrm{eV}$，鞘层电位降只变 $0.35\,\mathrm{eV}$，刻蚀速率变化约 $1\%$（$0.35\times2\%\text{--}3\%$），已在工艺窗口的容差之内。
 
 \textbf{结论：}朗缪尔探针数据与工艺良率存在直接关联。当 $T_\ee$ 偏离设定值超过 $\pm 0.3\,\mathrm{eV}$ 时，刻蚀侧壁粗糙度显著增加，良率下降。探针监测为工艺控制提供了基础数据。
 \end{example}
