@@ -90,6 +90,12 @@
 - `docs/overview.png` 由 `tools/overview_fig.py` 生成，配色直接取本表；
 - 图册缩略图统一 230 px 宽、白底、1 px `#E5E0D2` 描边；
 - 网页/编辑器预览不必上色，颜色规范只约束"会印出来的东西"。
+- v1.33.0 起版式本身也执行这一支色（此前只有图和封面守规则）。落地七处：页眉横线 `figAmber!70`（只改色不改线宽）；
+  章首页章号上方 3.4cm `figAmber!80` 细线 + 章号灰度 `coverMid!26`；图表编号 `figAmber`、图注上距 4pt；
+  `igsource` 前 1.6pt `figAmber!85` 竖条；节标题前 0.30em×0.62em `figAmber!85` 方块；
+  语义盒 `boxrule=0pt,leftrule=2.6pt`（左侧色条，色取各盒 `colframe`）；目录章条目同款方块 + 加粗。
+- 判据：金色在页面上只作"结构标记"（线、条、方块、编号），不作大面积填充，也不作正文颜色——
+  正文与图内文字一律 `figInk`/`coverMid`，金色文字只在白底对比度足够时用 `figAmber`。
 
 ## 8. LaTeX 落地位置
 

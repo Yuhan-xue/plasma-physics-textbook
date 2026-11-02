@@ -83,15 +83,15 @@
 \tikzfading[name=xFade, inner color=transparent!75, outer color=transparent!0,
             middle color=transparent!25]
 % ---- 图表标题：表格与图注分区处理 ----
-\captionsetup{font=small,labelfont={bf,color=coverMid},labelsep=quad,
-              justification=centering,skip=3pt,belowskip=1pt}
+\captionsetup{font=small,labelfont={bf,color=figAmber},labelsep=quad,
+              justification=centering,skip=4pt,belowskip=1pt}
 \captionsetup[table]{position=top,skip=2pt}
 \captionsetup[figure]{position=bottom}
 % ---- 表格字号与列距统一（不改 arraystretch，避免覆盖 4312 行的显式设置）----
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.32.48},
+  pdftitle={等离子体物理自学教材 v1.33.0},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -157,6 +157,9 @@
 % 「Chapter 2. 什么是等离子体？」。改成与附录一致的「第 N 章　标题」。
 \renewcommand{\chaptermark}[1]{\markboth{第~\thechapter~章\quad #1}{}}
 \renewcommand{\headrulewidth}{0.3pt}
+% v1.33.0：页眉横线由黑转金（暗金 70%，与全书「深蓝 + 金」同一支），只改颜色不改线宽。
+\renewcommand{\headrule}{%
+  \hbox to\headwidth{\color{figAmber!70}\leaders\hrule height \headrulewidth\hfill}}
 % 章首页（\chapter 下发 \thispagestyle{plain}）原先无页眉也无页码，此处补上页码。
 \fancypagestyle{plain}{%
   \fancyhf{}%
@@ -192,8 +195,9 @@
 }
 \titleformat{\chapter}[display]
   {\normalfont\huge\heiti\color{coverMid}}
-  {\filleft\fontsize{52}{52}\selectfont\color{coverMid!30}\thechapter}
-  {-2.4ex}
+  {\filleft{\color{figAmber!80}\rule{3.4cm}{0.9pt}}\\[0.7ex]
+   \fontsize{52}{52}\selectfont\color{coverMid!26}\thechapter}
+  {-2.2ex}
   {\Huge\heiti\filright}
   [\vspace{0.35ex}{\color{coverMid!45}\titlerule[1.2pt]}]
 \titlespacing*{\chapter}{0pt}{-30pt}{15pt}
@@ -213,7 +217,8 @@
 % 兼容旧用法别名（tcolorbox 标题内等场合），行为与 \difficulty 一致
 \newcommand{\difficultyhere}[1]{\marginnote{\raggedright\diffmarktext{#1}}}
 \titleformat{\section}
-  {\normalfont\Large\heiti\color{coverMid}}{\thesection}{0.9em}{}
+  {\normalfont\Large\heiti\color{coverMid}}%
+  {{\color{figAmber!85}\rule[0.13em]{3.2pt}{0.70em}}\hspace{0.5em}\thesection}{0.85em}{}
 \titlespacing*{\section}{0pt}{7pt plus 1.6pt minus 1.6pt}{3.4pt plus 1.2pt minus 0.8pt}
 \titleformat{\subsection}
   {\normalfont\large\heiti\color{coverMid!85}}{\thesubsection}{0.8em}{}
@@ -271,7 +276,9 @@
 % 在 \caption 之后用 \figsource{作者｜许可｜来源} 写一行灰色小字（作者与许可以 CREDITS.md 为准）。
 % 排版宽度：单栏整幅不超过 0.86\textwidth，双图并排各 0.42\textwidth；
 % 正文里的图一律 figure[htbp] + \centering，图注首句点题（这一条从 v1.27.0 起用于新增配图）。
-\newcommand{\figsource}[1]{\par\vspace{1pt}{\footnotesize\color{figGray}图片来源：#1}}
+\newcommand{\figsource}[1]{\par\vspace{1.5pt}{\footnotesize\color{figGray}%
+  \makebox[0pt][l]{\color{figAmber!85}\rule[-0.06em]{1.6pt}{0.95em}}\hspace{4.4pt}%
+  图片来源：#1}}
 \newcommand{\predict}[1]{\par\smallskip{\footnotesize\color{figGray}\textbf{先猜再看}：#1}\par\smallskip}
 \newtcbtheorem[number within=chapter]{theorem}{定理}{
   colback=thmblue!5,colframe=thmblue,fonttitle=\bfseries,breakable,
@@ -355,6 +362,7 @@
 % v1.9.0：内边距 5/3pt -> 4.5/2.5pt，块前后间距 5pt -> 3.5pt，标题上下 2pt -> 1.5pt。
 \tcbset{
   boxsep=0pt,
+  boxrule=0pt,leftrule=2.6pt,
   left=4.5pt,right=4.5pt,top=2.5pt,bottom=2.5pt,
   before skip=3.5pt plus 1.5pt minus 1pt,
   after skip=3.5pt plus 1.5pt minus 1pt,
@@ -384,6 +392,22 @@
 % 每个附录小节目录行会溢出约 1.1 pt；把数字列加宽到 2.5em（缩进与正文不变）。
 \makeatletter
 \renewcommand*\l@section{\@dottedtocline{1}{1.5em}{2.5em}}
+% 目录章条目：加金色小方块，与节标题的方块呼应；章名加粗以便快速定位。
+\renewcommand*\l@chapter[2]{%
+  \ifnum \c@tocdepth >\m@ne
+    \addpenalty{-\@highpenalty}%
+    \vskip 1.0em \@plus\p@
+    \setlength\@tempdima{2.2em}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode \bfseries \color{coverMid}%
+      \advance\leftskip\@tempdima \hskip -\leftskip
+      {\color{figAmber!85}\rule[0.28em]{0.30em}{0.62em}}\hspace{0.5em}%
+      #1\nobreak\hfil \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+      \penalty\@highpenalty
+    \endgroup
+  \fi}
 \makeatother
 \begin{document}
 \thispagestyle{empty}
@@ -490,7 +514,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.32.48}}
+  {\small\textcolor{white!45}{v1.33.0}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -1490,7 +1514,7 @@ v_p = \frac{\omega}{k} = \frac{\sqrt{\omega_p^2 + c^2k^2}}{k} = c\sqrt{1 + \frac
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[
-  cn/.style={draw,rounded corners=2pt,line width=0.7pt,align=center,minimum width=2.4cm,inner sep=3pt,
+  cn/.style={draw=figNavy!75,fill=figPaper!55,rounded corners=2pt,line width=0.7pt,align=center,minimum width=2.4cm,inner sep=3pt,
     minimum height=0.8cm,font=\footnotesize,text=figInk},
   cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
   cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
@@ -1876,7 +1900,7 @@ N_D = \frac{4}{3}\pi n\lambda_D^3 \approx 4.4\times10^{13} \gg 1 .
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[
-  cn/.style={draw,rounded corners=2pt,line width=0.7pt,align=center,minimum width=2.4cm,inner sep=3pt,
+  cn/.style={draw=figNavy!75,fill=figPaper!55,rounded corners=2pt,line width=0.7pt,align=center,minimum width=2.4cm,inner sep=3pt,
     minimum height=0.8cm,font=\footnotesize,text=figInk},
   cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
   cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
@@ -2207,7 +2231,7 @@ m\dot{\vect{v}'} = q(\vect{E} + (\vect{v}' + \vect{v}_E)\times\vect{B}) = q\vect
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[
-  cn/.style={draw,rounded corners=2pt,line width=0.7pt,align=center,minimum width=2.4cm,inner sep=3pt,
+  cn/.style={draw=figNavy!75,fill=figPaper!55,rounded corners=2pt,line width=0.7pt,align=center,minimum width=2.4cm,inner sep=3pt,
     minimum height=0.8cm,font=\footnotesize,text=figInk},
   cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
   cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
@@ -2476,7 +2500,7 @@ c_{s,\text{绝热}}=\sqrt{\frac{\gamma_sk_BT_e}{m_i}}
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[
-  cn/.style={draw,rounded corners=2pt,line width=0.7pt,align=center,minimum width=2.4cm,inner sep=3pt,
+  cn/.style={draw=figNavy!75,fill=figPaper!55,rounded corners=2pt,line width=0.7pt,align=center,minimum width=2.4cm,inner sep=3pt,
     minimum height=0.8cm,font=\footnotesize,text=figInk},
   cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
   cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
@@ -2750,7 +2774,7 @@ v_A = \frac{B}{\sqrt{\mu_0\rho_m}} = \frac{10^{-3}}{\sqrt{(4\pi\times 10^{-7})(1
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[
-  cn/.style={draw,rounded corners=2pt,line width=0.7pt,align=center,minimum width=2.4cm,inner sep=3pt,
+  cn/.style={draw=figNavy!75,fill=figPaper!55,rounded corners=2pt,line width=0.7pt,align=center,minimum width=2.4cm,inner sep=3pt,
     minimum height=0.8cm,font=\footnotesize,text=figInk},
   cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
   cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
@@ -2982,7 +3006,7 @@ c^2 k^2 \approx \frac{\omega_{pe}^2 \omega}{\omega_{ce}}
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[
-  cn/.style={draw,rounded corners=2pt,line width=0.7pt,align=center,minimum width=2.4cm,inner sep=3pt,
+  cn/.style={draw=figNavy!75,fill=figPaper!55,rounded corners=2pt,line width=0.7pt,align=center,minimum width=2.4cm,inner sep=3pt,
     minimum height=0.8cm,font=\footnotesize,text=figInk},
   cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
   cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
@@ -3177,7 +3201,7 @@ f = f_0(v) + f_1(x,v,t), \qquad E = E_1(x,t)
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[
-  cn/.style={draw,rounded corners=2pt,line width=0.7pt,align=center,minimum width=2.4cm,inner sep=3pt,
+  cn/.style={draw=figNavy!75,fill=figPaper!55,rounded corners=2pt,line width=0.7pt,align=center,minimum width=2.4cm,inner sep=3pt,
     minimum height=0.8cm,font=\footnotesize,text=figInk},
   cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
   cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
@@ -3404,7 +3428,7 @@ Spitzer 动力学修正因子（$\gamma_E\approx0.58$ 一类，$1/1.4\approx0.71
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[
-  cn/.style={draw,rounded corners=2pt,line width=0.7pt,align=center,minimum width=2.4cm,inner sep=3pt,
+  cn/.style={draw=figNavy!75,fill=figPaper!55,rounded corners=2pt,line width=0.7pt,align=center,minimum width=2.4cm,inner sep=3pt,
     minimum height=0.8cm,font=\footnotesize,text=figInk},
   cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
   cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
@@ -3580,7 +3604,7 @@ x^3\simeq-\frac{\mu}{2}
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[
-  cn/.style={draw,rounded corners=2pt,line width=0.7pt,align=center,minimum width=2.4cm,inner sep=3pt,
+  cn/.style={draw=figNavy!75,fill=figPaper!55,rounded corners=2pt,line width=0.7pt,align=center,minimum width=2.4cm,inner sep=3pt,
     minimum height=0.8cm,font=\footnotesize,text=figInk},
   cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
   cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
@@ -3849,7 +3873,7 @@ $n\tau$ & $\sim 10^{20}\,\mathrm{m}^{-3}\cdot\mathrm{s}$ & $\sim 10^{21}\,\mathr
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[
-  cn/.style={draw,rounded corners=2pt,line width=0.7pt,align=center,minimum width=2.4cm,inner sep=3pt,
+  cn/.style={draw=figNavy!75,fill=figPaper!55,rounded corners=2pt,line width=0.7pt,align=center,minimum width=2.4cm,inner sep=3pt,
     minimum height=0.8cm,font=\footnotesize,text=figInk},
   cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
   cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
@@ -4780,7 +4804,7 @@ P_{\text{abs}} \propto n_e \cdot E_{\text{loss}} \propto \frac{1}{3.75} \times \
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[
-  cn/.style={draw,rounded corners=2pt,line width=0.7pt,align=center,minimum width=2.4cm,inner sep=3pt,
+  cn/.style={draw=figNavy!75,fill=figPaper!55,rounded corners=2pt,line width=0.7pt,align=center,minimum width=2.4cm,inner sep=3pt,
     minimum height=0.8cm,font=\footnotesize,text=figInk},
   cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
   cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
@@ -5640,7 +5664,7 @@ OES发射光谱 & $10^{12}$--$10^{19}$ & $0.1$--$10$ & cm & ms & 工业/空间 \
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[
-  cn/.style={draw,rounded corners=2pt,line width=0.7pt,align=center,minimum width=2.4cm,inner sep=3pt,
+  cn/.style={draw=figNavy!75,fill=figPaper!55,rounded corners=2pt,line width=0.7pt,align=center,minimum width=2.4cm,inner sep=3pt,
     minimum height=0.8cm,font=\footnotesize,text=figInk},
   cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
   cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
