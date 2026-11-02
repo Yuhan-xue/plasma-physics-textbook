@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.33.1},
+  pdftitle={等离子体物理自学教材 v1.33.2},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -519,7 +519,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.33.1}}
+  {\small\textcolor{white!45}{v1.33.2}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -1524,7 +1524,7 @@ v_p = \frac{\omega}{k} = \frac{\sqrt{\omega_p^2 + c^2k^2}}{k} = c\sqrt{1 + \frac
   cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
   cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
   ct/.style={cn,draw=figAmber,fill=figGold!16,line width=0.8pt},
-  ce/.style={-{Latex[length=1.5mm]},draw=figGray,line width=0.7pt}]
+  ce/.style={-{Latex[length=1.5mm]},draw=figNavy!70,line width=0.8pt}]
   \node[cr]  (n00) at (0.00,0.00)  {矢量场论};
   \node[cmn] (n10) at (3.40,0.60)  {分布函数};
   \node[cmn] (n11) at (3.40,-0.60) {傅里叶分析};
@@ -1910,7 +1910,7 @@ N_D = \frac{4}{3}\pi n\lambda_D^3 \approx 4.4\times10^{13} \gg 1 .
   cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
   cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
   ct/.style={cn,draw=figAmber,fill=figGold!16,line width=0.8pt},
-  ce/.style={-{Latex[length=1.5mm]},draw=figGray,line width=0.7pt}]
+  ce/.style={-{Latex[length=1.5mm]},draw=figNavy!70,line width=0.8pt}]
   \node[cr]  (n00) at (0.00,0.00)  {电离气体};
   \node[cmn] (n10) at (3.40,0.00)  {准中性};
   \node[cmn] (n20) at (6.80,0.60)  {德拜屏蔽};
@@ -2241,7 +2241,7 @@ m\dot{\vect{v}'} = q(\vect{E} + (\vect{v}' + \vect{v}_E)\times\vect{B}) = q\vect
   cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
   cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
   ct/.style={cn,draw=figAmber,fill=figGold!16,line width=0.8pt},
-  ce/.style={-{Latex[length=1.5mm]},draw=figGray,line width=0.7pt}]
+  ce/.style={-{Latex[length=1.5mm]},draw=figNavy!70,line width=0.8pt}]
   \node[cr]  (n00) at (0.00,0.00)  {洛伦兹力};
   \node[cmn] (n10) at (3.40,0.60)  {回旋运动};
   \node[cmn] (n11) at (3.40,-0.60) {平行加速};
@@ -2510,7 +2510,7 @@ c_{s,\text{绝热}}=\sqrt{\frac{\gamma_sk_BT_e}{m_i}}
   cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
   cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
   ct/.style={cn,draw=figAmber,fill=figGold!16,line width=0.8pt},
-  ce/.style={-{Latex[length=1.5mm]},draw=figGray,line width=0.7pt}]
+  ce/.style={-{Latex[length=1.5mm]},draw=figNavy!70,line width=0.8pt}]
   \node[cr]  (n00) at (0.00,0.00)  {玻尔兹曼方程};
   \node[cmn] (n10) at (3.40,0.00)  {取矩};
   \node[cmn] (n20) at (6.80,1.20)  {连续性方程};
@@ -2784,7 +2784,7 @@ v_A = \frac{B}{\sqrt{\mu_0\rho_m}} = \frac{10^{-3}}{\sqrt{(4\pi\times 10^{-7})(1
   cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
   cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
   ct/.style={cn,draw=figAmber,fill=figGold!16,line width=0.8pt},
-  ce/.style={-{Latex[length=1.5mm]},draw=figGray,line width=0.7pt}]
+  ce/.style={-{Latex[length=1.5mm]},draw=figNavy!70,line width=0.8pt}]
   \node[cr]  (n00) at (0.00,0.00)  {理想 MHD 方程组};
   \node[cmn] (n10) at (3.40,0.60)  {磁冻结};
   \node[cmn] (n11) at (3.40,-0.60) {磁压与张力};
@@ -3016,7 +3016,7 @@ c^2 k^2 \approx \frac{\omega_{pe}^2 \omega}{\omega_{ce}}
   cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
   cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
   ct/.style={cn,draw=figAmber,fill=figGold!16,line width=0.8pt},
-  ce/.style={-{Latex[length=1.5mm]},draw=figGray,line width=0.7pt}]
+  ce/.style={-{Latex[length=1.5mm]},draw=figNavy!70,line width=0.8pt}]
   \node[cr]  (n00) at (0.00,0.00)  {冷等离子体色散};
   \node[cmn] (n10) at (3.40,0.60)  {截止};
   \node[cmn] (n11) at (3.40,-0.60) {共振};
@@ -3211,7 +3211,7 @@ f = f_0(v) + f_1(x,v,t), \qquad E = E_1(x,t)
   cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
   cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
   ct/.style={cn,draw=figAmber,fill=figGold!16,line width=0.8pt},
-  ce/.style={-{Latex[length=1.5mm]},draw=figGray,line width=0.7pt}]
+  ce/.style={-{Latex[length=1.5mm]},draw=figNavy!70,line width=0.8pt}]
   \node[cr]  (n00) at (0.00,0.00)  {Vlasov 方程};
   \node[cmn] (n10) at (3.40,0.60)  {Landau 阻尼};
   \node[cmn] (n11) at (3.40,-0.60) {逆 Landau 阻尼};
@@ -3438,7 +3438,7 @@ Spitzer 动力学修正因子（$\gamma_E\approx0.58$ 一类，$1/1.4\approx0.71
   cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
   cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
   ct/.style={cn,draw=figAmber,fill=figGold!16,line width=0.8pt},
-  ce/.style={-{Latex[length=1.5mm]},draw=figGray,line width=0.7pt}]
+  ce/.style={-{Latex[length=1.5mm]},draw=figNavy!70,line width=0.8pt}]
   \node[cr]  (n00) at (0.00,0.00)  {库仑碰撞};
   \node[cmn] (n10) at (3.40,0.00)  {碰撞频率 $\nu$};
   \node[cmn] (n20) at (6.80,0.60)  {电阻率 $\eta$};
@@ -3614,7 +3614,7 @@ x^3\simeq-\frac{\mu}{2}
   cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
   cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
   ct/.style={cn,draw=figAmber,fill=figGold!16,line width=0.8pt},
-  ce/.style={-{Latex[length=1.5mm]},draw=figGray,line width=0.7pt}]
+  ce/.style={-{Latex[length=1.5mm]},draw=figNavy!70,line width=0.8pt}]
   \node[cr]  (n00) at (0.00,0.00)  {自由能来源};
   \node[cmn] (n10) at (3.40,1.20)  {理想不稳定性};
   \node[cmn] (n11) at (3.40,0.00)  {电阻不稳定性};
@@ -3883,7 +3883,7 @@ $n\tau$ & $\sim 10^{20}\,\mathrm{m}^{-3}\cdot\mathrm{s}$ & $\sim 10^{21}\,\mathr
   cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
   cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
   ct/.style={cn,draw=figAmber,fill=figGold!16,line width=0.8pt},
-  ce/.style={-{Latex[length=1.5mm]},draw=figGray,line width=0.7pt}]
+  ce/.style={-{Latex[length=1.5mm]},draw=figNavy!70,line width=0.8pt}]
   \node[cr]  (n00) at (0.00,0.00)  {聚变反应率};
   \node[cmn] (n10) at (3.40,0.60)  {磁约束};
   \node[cmn] (n11) at (3.40,-0.60) {惯性约束};
@@ -4814,7 +4814,7 @@ P_{\text{abs}} \propto n_e \cdot E_{\text{loss}} \propto \frac{1}{3.75} \times \
   cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
   cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
   ct/.style={cn,draw=figAmber,fill=figGold!16,line width=0.8pt},
-  ce/.style={-{Latex[length=1.5mm]},draw=figGray,line width=0.7pt}]
+  ce/.style={-{Latex[length=1.5mm]},draw=figNavy!70,line width=0.8pt}]
   \node[cr]  (n00) at (0.00,0.00)  {汤森放电};
   \node[cmn] (n10) at (3.40,0.00)  {帕邢定律};
   \node[cmn] (n20) at (6.80,0.00)  {鞘层与玻姆\\判据};
@@ -5674,7 +5674,7 @@ OES发射光谱 & $10^{12}$--$10^{19}$ & $0.1$--$10$ & cm & ms & 工业/空间 \
   cr/.style={cn,draw=figBlue,fill=figBlue!16,line width=0.8pt},
   cmn/.style={cn,draw=figBlue!65,fill=figBlue!6},
   ct/.style={cn,draw=figAmber,fill=figGold!16,line width=0.8pt},
-  ce/.style={-{Latex[length=1.5mm]},draw=figGray,line width=0.7pt}]
+  ce/.style={-{Latex[length=1.5mm]},draw=figNavy!70,line width=0.8pt}]
   \node[cr]  (n00) at (0.00,0.00)  {内部参数\\$n$、$T$、$B$};
   \node[cmn] (n10) at (2.90,1.55)  {探针};
   \node[cmn] (n11) at (2.90,0.52)  {光谱};

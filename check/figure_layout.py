@@ -661,7 +661,10 @@ def _is_box_frame(it):
     if it['kind'] != 'draw':
         return False
     w = it['bb'][2] - it['bb'][0]
-    return w >= 0.90 * TEXT_W and (it['bb'][3] - it['bb'][1]) >= 60.0
+    # 40 pt 起算：语义盒（tcolorbox）整栏边框常见 50–80 pt 高，
+    # 而图里不会有宽过 0.90 倍版心、又有这许多高度的框（2026-11：
+    # fig:coulomb-small-angle 上方的 56.6 pt 边框曾让图区一路撑到页顶）。
+    return w >= 0.90 * TEXT_W and (it['bb'][3] - it['bb'][1]) >= 40.0
 
 
 def figure_region(page, cap_top, cap_excl=(), gap_max=None):
@@ -696,9 +699,10 @@ def figure_region(page, cap_top, cap_excl=(), gap_max=None):
                 return True
         return False
 
+    seen = set()                        # 被判定为页内分隔线而排掉的项：不进 bbox
     while not blocked:
         cand = [(i, it) for i, it in enumerate(items)
-                if i not in used and it['bb'][3] <= ytop + 2.5]
+                if i not in used and i not in seen and it['bb'][3] <= ytop + 2.5]
         if not cand:
             break
         i, it = max(cand, key=lambda t: t[1]['bb'][3])
@@ -709,7 +713,7 @@ def figure_region(page, cap_top, cap_excl=(), gap_max=None):
             break
         if (it['kind'] == 'draw' and (it['bb'][2] - it['bb'][0]) >= 0.90 * TEXT_W
                 and (it['bb'][3] - it['bb'][1]) <= 4.0):
-            used.add(i)
+            seen.add(i)
             continue                        # 通栏细线（页内分隔线）不算图
         used.add(i)
         ytop = min(ytop, it['bb'][1])
