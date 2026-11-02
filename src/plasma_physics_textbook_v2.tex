@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.33.0},
+  pdftitle={等离子体物理自学教材 v1.33.1},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -227,6 +227,11 @@
 \setlength{\epigraphwidth}{0.62\textwidth}
 \renewcommand{\epigraphsize}{\small\kaishu}
 \setlength{\epigraphrule}{0pt}
+% 章前引语：楷体 + 右对齐；上方一道暗金细线，与页眉、节标题同一支色。
+\let\plainepigraph\epigraph
+\renewcommand{\epigraph}[2]{%
+  \par\addvspace{1.5pt}\noindent\hfill{\color{figAmber!75}\rule{2.8cm}{0.6pt}}\par
+  \vspace{0.6pt}\plainepigraph{#1}{#2}}
 % ---- 语义盒配色：九种盒子按「蓝为主、金为辅」分配（docs/palette.md §6）----
 % 每种都压到低明度，白字标题对比度 ≥ 4.5:1（check/ui_readability.py 的 G 类强制）。
 \definecolor{thmblue}{RGB}{27, 46, 82}
@@ -514,7 +519,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.33.0}}
+  {\small\textcolor{white!45}{v1.33.1}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]

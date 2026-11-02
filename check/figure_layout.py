@@ -631,6 +631,31 @@ def _is_body_line(it):
     return w >= 0.88 * TEXT_W or (it['size'] >= 11.6 and w >= 0.45 * TEXT_W)
 
 
+def _is_hairline(it):
+    """通栏细线（页内分隔线 / 表线）：宽满版心、高 ≤ 4 pt，属于版面而不是图。"""
+    if it['kind'] != 'draw':
+        return False
+    w = it['bb'][2] - it['bb'][0]
+    return w >= 0.90 * TEXT_W and (it['bb'][3] - it['bb'][1]) <= 4.0
+
+
+def _is_prose_line(it):
+    """整行散文：近满栏宽、含足够多汉字。
+
+    图区上沿的外扩会被「段首缩进」的正文行骗过——那一行只是起点比版心右移 6.6 pt，
+    `_is_body_line` 就认不出它，于是被收进图区，把图的实测宽度撑到行末标点悬挂处
+    （v1.33.0 的 fig:coulomb-small-angle 就这样多出 4.7 pt，报成越出版心）。
+    图里不会有满栏宽、8 个以上汉字的整句，用它排掉这一类。
+    """
+    if it['kind'] != 'text':
+        return False
+    w = it['bb'][2] - it['bb'][0]
+    if w < 0.85 * TEXT_W:
+        return False
+    cjk = sum(1 for ch in it.get('text') or '' if '一' <= ch <= '鿿')
+    return cjk >= 8
+
+
 def _is_box_frame(it):
     """tcolorbox 一类整栏大边框：宽到几乎通栏、又够高。"""
     if it['kind'] != 'draw':
@@ -679,7 +704,8 @@ def figure_region(page, cap_top, cap_excl=(), gap_max=None):
         i, it = max(cand, key=lambda t: t[1]['bb'][3])
         if ytop - it['bb'][3] > gap_max:
             break
-        if _is_caption_line(it) or _is_body_line(it) or _is_box_frame(it) or in_excl(it):
+        if (_is_caption_line(it) or _is_body_line(it) or _is_prose_line(it)
+                or _is_box_frame(it) or in_excl(it)):
             break
         if (it['kind'] == 'draw' and (it['bb'][2] - it['bb'][0]) >= 0.90 * TEXT_W
                 and (it['bb'][3] - it['bb'][1]) <= 4.0):
@@ -698,7 +724,8 @@ def figure_region(page, cap_top, cap_excl=(), gap_max=None):
                 ytop = max(ytop, bb[3] + 1.0)
                 blocked = True
                 continue
-            if _is_body_line(jt) or _is_box_frame(jt):
+            if (_is_body_line(jt) or _is_prose_line(jt) or _is_hairline(jt)
+                    or _is_box_frame(jt)):
                 continue
             used.add(j)
     if not used:

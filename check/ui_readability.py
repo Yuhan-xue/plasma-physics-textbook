@@ -54,7 +54,10 @@ def pdf_text(pdf):
     """取 PDF 全文：优先 poppler 的 pdftotext，没装时用 PyMuPDF 兜底。"""
     import subprocess
     try:
-        r = subprocess.run(['pdftotext', '-layout', pdf, '-'], capture_output=True)
+        # -enc UTF-8 必须显式给：某些 poppler 构建的默认编码不是 UTF-8，
+        # 会把全部汉字打成占位符（2026-11 实测：不加时全书“附录”出现 0 次）。
+        r = subprocess.run(['pdftotext', '-enc', 'UTF-8', '-layout', pdf, '-'],
+                           capture_output=True)
         return r.stdout.decode('utf-8', errors='replace')
     except FileNotFoundError:
         try:
