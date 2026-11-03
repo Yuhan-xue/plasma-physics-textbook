@@ -667,6 +667,30 @@ def _is_box_frame(it):
     return w >= 0.90 * TEXT_W and (it['bb'][3] - it['bb'][1]) >= 40.0
 
 
+def _table_rules(items):
+    """表格横线组的行号集合。
+
+    表格上、中、下三条线往往共用同一 x 范围（差 < 1 pt），而图里的水平线（能级、
+    带隙、坐标轴）几乎不会三条等长。表格紧挨在图上时，这些线会被当成图内容，
+    把图区向上撑到表格顶端——v1.33.5 的 fig:cm-ch11 / fig:cm-ch12 就这样量宽
+    一截，报成 86% / 93% 的假 WARN。
+    """
+    spans = {}
+    for i, it in enumerate(items):
+        if it['kind'] != 'draw':
+            continue
+        bb = it['bb']
+        w = bb[2] - bb[0]
+        if (bb[3] - bb[1]) <= 2.5 and w >= 0.30 * TEXT_W:
+            key = (round(bb[0], 1), round(bb[2], 1))
+            spans.setdefault(key, []).append(i)
+    out = set()
+    for idxs in spans.values():
+        if len(idxs) >= 3:              # 三条等长横线 → 表格
+            out.update(idxs)
+    return out
+
+
 def figure_region(page, cap_top, cap_excl=(), gap_max=None):
     """题注上方那块「连续内容」的包围盒 → ((x0,y0,x1,y1) 或 None, 块数)。
 
@@ -687,6 +711,7 @@ def figure_region(page, cap_top, cap_excl=(), gap_max=None):
     if gap_max is None:
         gap_max = GAP_MAX
     items = _page_items(page)
+    tbl = _table_rules(items)          # 表格线组：不算图，也当边界
     ytop = cap_top
     ybot = cap_top
     used = set()
@@ -709,7 +734,7 @@ def figure_region(page, cap_top, cap_excl=(), gap_max=None):
         if ytop - it['bb'][3] > gap_max:
             break
         if (_is_caption_line(it) or _is_body_line(it) or _is_prose_line(it)
-                or _is_box_frame(it) or in_excl(it)):
+                or _is_box_frame(it) or i in tbl or in_excl(it)):
             break
         if (it['kind'] == 'draw' and (it['bb'][2] - it['bb'][0]) >= 0.90 * TEXT_W
                 and (it['bb'][3] - it['bb'][1]) <= 4.0):
@@ -729,7 +754,7 @@ def figure_region(page, cap_top, cap_excl=(), gap_max=None):
                 blocked = True
                 continue
             if (_is_body_line(jt) or _is_prose_line(jt) or _is_hairline(jt)
-                    or _is_box_frame(jt)):
+                    or _is_box_frame(jt) or j in tbl):
                 continue
             used.add(j)
     if not used:
