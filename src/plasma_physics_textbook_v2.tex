@@ -96,7 +96,7 @@
 \setlength{\cmidrulewidth}{0.35pt}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.33.5},
+  pdftitle={等离子体物理自学教材 v1.33.6},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -419,6 +419,11 @@
     \endgroup
   \fi}
 \makeatother
+% 实拍图统一描一道 0.4 pt 藏青细边：四边有界，与页眉金线、表线同一套「界面」语言。
+\let\plainincludegraphics\includegraphics
+\renewcommand{\includegraphics}[2][]{%
+  \setlength{\fboxrule}{0.4pt}\setlength{\fboxsep}{0pt}%
+  \fcolorbox{figNavy!50}{white}{\plainincludegraphics[#1]{#2}}}
 \begin{document}
 \thispagestyle{empty}
 \begin{tikzpicture}[remember picture, overlay]
@@ -524,7 +529,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.33.5}}
+  {\small\textcolor{white!45}{v1.33.6}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -4821,10 +4826,10 @@ P_{\text{abs}} \propto n_e \cdot E_{\text{loss}} \propto \frac{1}{3.75} \times \
   ct/.style={cn,draw=figAmber,fill=figGold!16,line width=0.8pt},
   ce/.style={-{Latex[length=1.5mm]},draw=figNavy!70,line width=0.8pt}]
   \node[cr]  (n00) at (0.00,0.00)  {汤森放电};
-  \node[cmn] (n10) at (3.40,0.00)  {帕邢定律};
-  \node[cmn] (n20) at (6.80,0.00)  {鞘层与玻姆\\判据};
-  \node[ct]  (n30) at (10.20,0.60) {CCP／ICP};
-  \node[ct]  (n31) at (10.20,-0.60){刻蚀与沉积};
+  \node[cmn] (n10) at (3.25,0.00)  {帕邢定律};
+  \node[cmn] (n20) at (6.50,0.00)  {鞘层与玻姆\\判据};
+  \node[ct]  (n30) at (9.75,0.60) {CCP／ICP};
+  \node[ct]  (n31) at (9.75,-0.60){刻蚀与沉积};
   \draw[ce] (n00) -- (n10);
   \draw[ce] (n10) -- (n20);
   \draw[ce] (n20) -- (n30);
