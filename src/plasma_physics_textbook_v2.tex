@@ -96,7 +96,7 @@
 \setlength{\cmidrulewidth}{0.35pt}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.33.7},
+  pdftitle={等离子体物理自学教材 v1.33.8},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -184,6 +184,7 @@
   \cleardoublepage
   \refstepcounter{chapter}%
   \xdef\thechapter{\appendixAlph{\arabic{chapter}}}%
+  \phantomsection\label{app:\thechapter}%
   \chapter*{#1}%
   \addcontentsline{toc}{chapter}{#1}%
   \markboth{#1}{#1}%
@@ -424,6 +425,13 @@
 \newcommand{\photo}[2][width=\linewidth]{%
   \setlength{\fboxrule}{0.4pt}\setlength{\fboxsep}{0pt}%
   \fcolorbox{figNavy!50}{white}{\includegraphics[#1]{#2}}}
+% 章末「延伸阅读」：把四百页附录挂回正文——读者在章末就知道下一步该往哪儿翻。
+% 前面的金色小方块与节标题、图注竖条同一支色，一行之内收尾，不另起小节。
+\newcommand{\moreapps}[1]{%
+  \par\vspace{5pt plus 1pt minus 1pt}\nopagebreak[3]\noindent
+  {\color{figAmber!85}\rule[0.13em]{3.2pt}{0.70em}}\hspace{0.5em}%
+  {\small\bfseries\color{coverMid}延伸阅读}\hspace{0.6em}%
+  {\footnotesize\color{figInk}#1}\par}
 \begin{document}
 \thispagestyle{empty}
 \begin{tikzpicture}[remember picture, overlay]
@@ -529,7 +537,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.33.7}}
+  {\small\textcolor{white!45}{v1.33.8}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
