@@ -31,7 +31,7 @@
 \pgfdeclarelayer{bg}
 \pgfdeclarelayer{fg}
 \pgfsetlayers{bg,main,fg}
-\usepackage{xcolor}
+\usepackage[table]{xcolor}
 \usepackage{graphicx}
 \usepackage{enumitem}
 % ---- 列表全局规范：替代全书零散的逐实例配置 ----
@@ -88,10 +88,15 @@
 \captionsetup[table]{position=top,skip=2pt}
 \captionsetup[figure]{position=bottom}
 % ---- 表格字号与列距统一（不改 arraystretch，避免覆盖 4312 行的显式设置）----
-\AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
+\AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small
+  \arrayrulecolor{figNavy!72}}
+% 三线表线宽收口：表头上下 0.9pt，表内分隔 0.45pt
+\setlength{\heavyrulewidth}{0.9pt}
+\setlength{\lightrulewidth}{0.45pt}
+\setlength{\cmidrulewidth}{0.35pt}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.33.4},
+  pdftitle={等离子体物理自学教材 v1.33.5},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -519,7 +524,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.33.4}}
+  {\small\textcolor{white!45}{v1.33.5}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
