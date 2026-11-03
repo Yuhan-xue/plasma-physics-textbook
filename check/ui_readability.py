@@ -210,6 +210,47 @@ def paragraphs(body):
     return [p for p in out if len(p) >= 24]
 
 
+BIBLIO_HEADS = ('出处：', '出处:', '不复制声明', '推荐阅读', '延伸阅读',
+                '参考文献', '书目', '本附录的出处', '版权与复现口径')
+
+
+def is_biblio(par):
+    """文献著录与版权声明段落：不是顺读散文，句长统计里要排除。
+
+    这类段落一句话里塞三五个书名、卷期与页码（常年 150–240 字），
+    按句长判它们「超长」只会把统计数字抬高，对读者没有意义。
+    判据是「著录标记 ≥ 2 个」：书名号、年份括号、期刊/出版社名、卷号。
+    """
+    head = par.lstrip()
+    if head.startswith(BIBLIO_HEADS):
+        return True
+    if any(k in par[:40] for k in ('版权与复现口径', '不复制', '出处：', '出处:')):
+        return True
+    marks = 0
+    marks += len(re.findall(r'《[^》]{2,60}》', par))
+    marks += len(re.findall(r'\((?:19|20)\d{2}', par))
+    marks += len(re.findall(r'(?:Phys\.|Journal|Rev\.|Press|Wiley|Springer|'
+                            r'Oxford|Cambridge|Academic|Verlag|Fluids|'
+                            r'Psychology|Science)', par))
+    marks += len(re.findall(r'第\s*\d+\s*卷|pp?\.\s*\d+', par))
+    return marks >= 2
+
+
+def is_biblio_sent(sent):
+    """单句层面的文献著录判断（段落级的补充）。
+
+    参考条目经常与上一段挤在同一个段落里，段落级判据会漏掉；
+    这里再按「拉丁字母占比」与「书名号 + 年份」两条兜底。
+    """
+    n = len(sent) or 1
+    latin = sum(1 for ch in sent if ch.isascii() and ch.isalpha())
+    if latin > 0.45 * n:
+        return True
+    if '《' in sent and re.search(r'\((?:19|20)\d{2}', sent):
+        return True
+    return False
+
+
 def sentences(par):
     return [s.strip() for s in re.split(r'[。！？]', par) if len(s.strip()) >= 10]
 
@@ -219,13 +260,16 @@ def sentences(par):
 def check_F_readability(files):
     all_s, all_p = [], []
     summ_s = []
+    n_biblio = 0
     for p in files:
         raw = strip_comments(read(p))
         body = prose(raw, drop_preamble=True, drop_structured=True)
-        ps = paragraphs(body)
+        ps_all = paragraphs(body)
+        ps = [x for x in ps_all if not is_biblio(x)]
+        n_biblio += len(ps_all) - len(ps)
         ss = []
         for x in ps:
-            ss += sentences(x)
+            ss += [t for t in sentences(x) if not is_biblio_sent(t)]
         all_p += ps
         all_s += ss
         # 结构化小结（本章要点回顾/自查清单）单独取，单独定标准
@@ -246,6 +290,8 @@ def check_F_readability(files):
                 'max': v[-1]}
 
     ss, ps = stats(all_s), stats(all_p)
+    rec('INFO', 'F', '文献著录与声明段 %d 段不计入句长统计（出处、不复制声明、推荐阅读）'
+        % n_biblio)
     rec('INFO', 'F', '正文句长(字)：中位 %d，p75 %d，p90 %d，p95 %d，p99 %d，最长 %d'
         % (ss['p50'], ss['p75'], ss['p90'], ss['p95'], ss['p99'], ss['max']))
     rec('INFO', 'F', '正文段长(字)：中位 %d，p75 %d，p90 %d，p95 %d，p99 %d，最长 %d'

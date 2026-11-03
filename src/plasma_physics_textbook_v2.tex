@@ -91,7 +91,7 @@
 \AtBeginEnvironment{tabular}{\setlength{\tabcolsep}{4pt}\small}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.33.2},
+  pdftitle={等离子体物理自学教材 v1.33.3},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -519,7 +519,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.33.2}}
+  {\small\textcolor{white!45}{v1.33.3}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -3565,7 +3565,7 @@ Spitzer 动力学修正因子（$\gamma_E\approx0.58$ 一类，$1/1.4\approx0.71
 「双流」是\textbf{一族}不稳定性，不同的组分假设给出不同的色散关系。请先写清组分、密度、漂移和保留哪些扰动响应，再选公式。
 
 \smallskip
-\textbf{模型 A：两束相向运动的冷电子（对称双流）。} 两组等密度冷电子束（每束密度 $n_0/2$，故每束的等离子体频率平方为 $\omega_{pe}^2/2$，这里 $\omega_{pe}$ 是\textbf{总}电子密度对应的频率），在净电荷中和的静止背景上以 $\pm u/2$ 漂移，因此\textbf{质心系就是实验室系}——两束已经对称，不必（也不能）再对单束做多普勒平移。令无量纲频率 $w=\omega/\omega_{pe}$、无量纲波数 $a=ku/(2\omega_{pe})$，色散关系化为
+\textbf{模型 A：两束相向运动的冷电子（对称双流）。} 两组等密度冷电子束（每束密度 $n_0/2$，故每束的等离子体频率平方为 $\omega_{pe}^2/2$，这里 $\omega_{pe}$ 是\textbf{总}电子密度对应的频率），在净电荷中和的静止背景上以 $\pm u/2$ 漂移。\textbf{质心系就是实验室系}——两束已经对称，不必（也不能）再对单束做多普勒平移。令无量纲频率 $w=\omega/\omega_{pe}$、无量纲波数 $a=ku/(2\omega_{pe})$，色散关系化为
 \[
 1=\frac{1/2}{(w-a)^2}+\frac{1/2}{(w+a)^2}
 \quad\Longrightarrow\quad
@@ -4378,7 +4378,7 @@ RIE 的协同效应是等离子体工艺中典型的离子增强化学反应：�
 \item 通过 「Bosch 工艺」 循环切换刻蚀与沉积步骤，实现高深宽比刻蚀。
 \end{enumerate}
 \predict{深宽比 $>50$ 的通孔刻蚀，靠的是纯化学刻蚀、纯物理溅射，还是两者叠加？离子轰击能量在 eV 量级还是 keV 量级？}
-\textbf{数值估算}：ICP 功率 $2\,\mathrm{kW}$，$n_e \sim 10^{17}\,\mathrm{m^{-3}}$，鞘层压降 $200\,\mathrm{V}$，离子能量 $E_i \sim 200\,\mathrm{eV}$，硅的溅射阈值约 $20\,\mathrm{eV}$，化学刻蚀速率约 $1\,\mu\mathrm{m}/\mathrm{min}$，物理溅射速率约 $0.1\,\mu\mathrm{m}/\mathrm{min}$，RIE 协同后速率可达 $5\sim 10\,\mu\mathrm{m}/\mathrm{min}$。
+\textbf{数值估算}：ICP 功率 $2\,\mathrm{kW}$，$n_e \sim 10^{17}\,\mathrm{m^{-3}}$，鞘层压降 $200\,\mathrm{V}$，离子能量 $E_i \sim 200\,\mathrm{eV}$，硅的溅射阈值约 $20\,\mathrm{eV}$。化学刻蚀速率约 $1\,\mu\mathrm{m}/\mathrm{min}$，物理溅射速率约 $0.1\,\mu\mathrm{m}/\mathrm{min}$，RIE 协同后速率可达 $5\sim 10\,\mu\mathrm{m}/\mathrm{min}$。
 \end{example}
 
 \begin{warning}{高深宽比刻蚀不只靠离子能量}{}
@@ -5336,7 +5336,7 @@ q = |\vect{k}_s-\vect{k}_i| = \frac{4\pi}{\lambda_0}\sin\frac{\theta}{2},
 \label{eq:salpeter-alpha}
 \end{equation}
 其中 $\lambda_0$ 为入射波长（注意与散射波矢 $|\vect{q}|=2k_i\sin(\theta/2)$ 一致）。$\alpha\ll1$ 为\textbf{非相干散射}：探测尺度 $1/q$ 远小于德拜长度，各电子独立散射，谱形直接给出电子速度分布。$\alpha\gtrsim1$ 为\textbf{集体（相干）散射}：探测尺度大于德拜长度，电子被集体地屏蔽与关联，光谱上出现与离子声波对应的窄\textbf{离子成分峰}和与电子等离子体波对应的宽\textbf{电子成分峰}。此时必须用含 $S(\vect{q},\omega)$ 的集体散射理论，谱形不再等于单电子速度分布。（「德拜球内电子数 $N_D=\tfrac43\pi n_e\lambda_D^3\gg1$」是\emph{理想等离子体}的条件，衡量连续介质近似是否成立，与相干与否是两回事：$\alpha\propto\sqrt{n_e}/\sin(\theta/2)$ 还强烈依赖散射角。）
-\textbf{数值感受}（$\lambda_0=1064\,\mathrm{nm}$）：$T_e=10\,\mathrm{eV}$、$n_e=10^{20}\,\mathrm{m}^{-3}$（$\lambda_D=2.35\,\mu\mathrm{m}$，$N_D\approx5.4\times10^3$）时，$90^\circ$ 散射给出 $q=8.35\times10^6\,\mathrm{m^{-1}}$、$\alpha\approx0.051$（非相干），而 $1^\circ$ 小角散射的 $\alpha\approx4.1$（\emph{集体}），同一等离子体仅因散射角不同就换了机制。固定 $T_e=10\,\mathrm{eV}$、$90^\circ$ 时 $\alpha=1$ 落在 $n_e\approx3.9\times10^{22}\,\mathrm{m}^{-3}$（因 $\alpha\propto\sqrt{n_e}$），所以「$n_e\ll10^{23}$ 就非相干」这种说法过松：该密度下 $\alpha\approx1.6$，已经是集体散射。聚变堆芯则相反：$n_e\sim10^{20}\,\mathrm{m}^{-3}$、$T_e\sim10\,\mathrm{keV}$ 时 $\lambda_D\approx74\,\mu\mathrm{m}$，$90^\circ$ 的 $\alpha\approx1.6\times10^{-3}\ll1$，非相干近似成立。
+\textbf{数值感受}（$\lambda_0=1064\,\mathrm{nm}$）：$T_e=10\,\mathrm{eV}$、$n_e=10^{20}\,\mathrm{m}^{-3}$（$\lambda_D=2.35\,\mu\mathrm{m}$，$N_D\approx5.4\times10^3$）时，$90^\circ$ 散射给出 $q=8.35\times10^6\,\mathrm{m^{-1}}$、$\alpha\approx0.051$（非相干），而 $1^\circ$ 小角散射的 $\alpha\approx4.1$（\emph{集体}）。同一等离子体，仅因散射角不同就换了机制。固定 $T_e=10\,\mathrm{eV}$、$90^\circ$ 时 $\alpha=1$ 落在 $n_e\approx3.9\times10^{22}\,\mathrm{m}^{-3}$（因 $\alpha\propto\sqrt{n_e}$），所以「$n_e\ll10^{23}$ 就非相干」这种说法过松：该密度下 $\alpha\approx1.6$，已经是集体散射。聚变堆芯则相反：$n_e\sim10^{20}\,\mathrm{m}^{-3}$、$T_e\sim10\,\mathrm{keV}$ 时 $\lambda_D\approx74\,\mu\mathrm{m}$，$90^\circ$ 的 $\alpha\approx1.6\times10^{-3}\ll1$，非相干近似成立。
 \end{warning}
 
 
@@ -6732,7 +6732,7 @@ y''+\frac{2}{x}y' = \ee^{\,y}-1 ,
 \end{itemize}
 \textbf{把 \texttt{status} 读反是常见事故：\texttt{status=1} 不是「已收敛」，而是失败。} 因此下面的代码在提取解、画曲线之前，先把 \texttt{success}、\texttt{status}、\texttt{message}、残差与边界残差全部打印出来核对。
 
-\noindent\textbf{完整脚本：}\texttt{code/\allowbreak{}appendix\_g/\allowbreak{}debye\_bvp.py}——无量纲化、网格初值、边界条件封装与探针点比较都在其中：函数 \texttt{poisson\_debye} 给出无量纲方程的右端项，\texttt{bc} 给出恰好两个边界条件，求解调用把两者交给 \texttt{solve\_bvp}，运行后打印 \texttt{success}、\texttt{status}、\texttt{message}、节点数、残差与探针偏差。
+\noindent\textbf{完整脚本：}\texttt{code/\allowbreak{}appendix\_g/\allowbreak{}debye\_bvp.py}——无量纲化、网格初值、边界条件封装与探针点比较都在其中。函数 \texttt{poisson\_debye} 给出无量纲方程的右端项，\texttt{bc} 给出恰好两个边界条件；求解调用把两者交给 \texttt{solve\_bvp}，运行后打印 \texttt{success}、\texttt{status}、\texttt{message}、节点数、残差与探针偏差。
 
 
 \textbf{正常例的实测输出}（NumPy 2.5.3 / SciPy 1.18.1）：
