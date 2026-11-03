@@ -14,7 +14,7 @@
 | 分册 | 页数 | Releases 里的文件名 | 什么时候下这个 |
 |---|---|---|---|
 | 完整本 | 610 | `plasma_physics_textbook_vX.Y.Z.pdf` | 第一次读，或只想存一份 |
-| 卷一·正文 | 206 | `plasma_physics_textbook_vX.Y.Z_vol1_chapters.pdf` | 只想通读前言与第 1–12 章 |
+| 卷一·正文 | 207 | `plasma_physics_textbook_vX.Y.Z_vol1_chapters.pdf` | 只想通读前言与第 1–12 章 |
 | 卷二·附录 | 403 | `plasma_physics_textbook_vX.Y.Z_vol2_appendices.pdf` | 正文读完，回头查 48 个附录 |
 | 配套手册 | 47 | `plasma_physics_handbook_vX.Y.Z.pdf` | 边学边查学习策略、逐章对照与题库 |
 
