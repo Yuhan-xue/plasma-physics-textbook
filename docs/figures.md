@@ -393,3 +393,51 @@
 ---
 
 生成：`python -X utf8 tools/make_figures_gallery.py --write`（数据取自 `figures/CREDITS.md`，缩略图在 `docs/figures-thumbs/`）。
+
+## 自画图体检表（36 张）
+
+> 这 36 张图由 TikZ 绘出，宽度与文字避让都是量编译后 PDF 得到的实数，不是目测。
+> 宽度取图形外框，占比按版心 17.3 cm 算；超过 8 成的多是并排面板或分类树，属正常。
+> 文字相压用字块包围盒两两求交（交叠超过小者 35% 即算压字），全书扫描结果为零。
+> 重跑方式：`python check/figure_layout.py --json > tmp/_fl.json`，再跑 `tmp/_figoverlap.py`。
+
+| 图 | 宽 | 占版心 | 形态 |
+|---|---|---|---|
+| `fig:roadmap` | 13.9 cm | 80% | 宽图（并排面板或分类树） |
+| `fig:cm-ch1` | 9.2 cm | 53% | 常规 |
+| `fig:debye-shielding` | 14.1 cm | 82% | 宽图（并排面板或分类树） |
+| `fig:cm-ch2` | 12.6 cm | 73% | 常规 |
+| `fig:nT-space` | 11.5 cm | 66% | 近方图 |
+| `fig:gyro-side-view` | 14.8 cm | 86% | 宽图（并排面板或分类树） |
+| `fig:cm-ch3` | 12.9 cm | 75% | 常规 |
+| `fig:exb-cycloid` | 9.8 cm | 57% | 常规 |
+| `fig:mirror-loss-cone` | 12.4 cm | 72% | 常规 |
+| `fig:cm-ch4` | 12.6 cm | 73% | 常规 |
+| `fig:two-fluid-model` | 12.1 cm | 70% | 常规 |
+| `fig:cm-ch5` | 9.5 cm | 55% | 常规 |
+| `fig:flux-freezing` | 9.6 cm | 56% | 常规 |
+| `fig:magnetic-pressure-tension` | 8.0 cm | 46% | 窄图 |
+| `fig:cm-ch6` | 9.8 cm | 57% | 常规 |
+| `fig:wave-branches` | 14.6 cm | 84% | 宽图（并排面板或分类树） |
+| `fig:whistler-path` | 7.2 cm | 42% | 窄图 |
+| `fig:cm-ch7` | 9.5 cm | 55% | 常规 |
+| `fig:bump-on-tail` | 10.1 cm | 58% | 常规 |
+| `fig:landau-resonance` | 9.3 cm | 54% | 常规 |
+| `fig:cm-ch8` | 12.6 cm | 73% | 常规 |
+| `fig:coulomb-angle-diffusion` | 11.6 cm | 67% | 常规 |
+| `fig:coulomb-small-angle` | 10.1 cm | 58% | 常规 |
+| `fig:cm-ch9` | 12.6 cm | 73% | 常规 |
+| `fig:drift-wave-feedback` | 11.3 cm | 65% | 常规 |
+| `fig:instability-tree` | 14.8 cm | 85% | 宽图（并排面板或分类树） |
+| `fig:rayleigh-taylor` | 9.4 cm | 55% | 常规 |
+| `fig:cm-ch10` | 12.9 cm | 74% | 常规 |
+| `fig:tokamak` | 13.9 cm | 80% | 宽图（并排面板或分类树） |
+| `fig:lawson` | 11.7 cm | 67% | 常规 |
+| `fig:glow` | 14.0 cm | 81% | 宽图（并排面板或分类树） |
+| `fig:cm-ch11` | 14.9 cm | 86% | 宽图（并排面板或分类树） |
+| `fig:langmuir-iv` | 9.4 cm | 55% | 常规 |
+| `fig:interferometer` | 14.2 cm | 82% | 宽图（并排面板或分类树） |
+| `fig:cm-ch12` | 16.1 cm | 93% | 宽图（并排面板或分类树） |
+| `fig:appendix-map` | 11.1 cm | 64% | 近方图 |
+
+**一处修正**：`fig:exb-cycloid` 的电场箭头标注原在箭头顶端，与顶上那行「磁场垂直纸面向外」的 `B` 相距不到 1 mm，字块交叠 39%。这一版把箭头缩短、标注移到箭头下端，两者分开。
