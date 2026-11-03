@@ -96,7 +96,7 @@
 \setlength{\cmidrulewidth}{0.35pt}
 \usepackage{subcaption}
 \usepackage[pdfusetitle,
-  pdftitle={等离子体物理自学教材 v1.33.6},
+  pdftitle={等离子体物理自学教材 v1.33.7},
   pdfauthor={Han \& Kimi},
   pdfsubject={经典弱耦合等离子体物理入门},
   pdfkeywords={等离子体, 聚变, 低温等离子体, 诊断, 自学教材},
@@ -419,11 +419,11 @@
     \endgroup
   \fi}
 \makeatother
-% 实拍图统一描一道 0.4 pt 藏青细边：四边有界，与页眉金线、表线同一套「界面」语言。
-\let\plainincludegraphics\includegraphics
-\renewcommand{\includegraphics}[2][]{%
+% 实拍图描一道 0.4 pt 藏青细边：四边有界，与页眉金线、表线同一套「界面」语言。
+% 曲线图（maxwell_boltzmann / landau_damping / fusion_plant）自带坐标框，不套，否则成双线。
+\newcommand{\photo}[2][width=\linewidth]{%
   \setlength{\fboxrule}{0.4pt}\setlength{\fboxsep}{0pt}%
-  \fcolorbox{figNavy!50}{white}{\plainincludegraphics[#1]{#2}}}
+  \fcolorbox{figNavy!50}{white}{\includegraphics[#1]{#2}}}
 \begin{document}
 \thispagestyle{empty}
 \begin{tikzpicture}[remember picture, overlay]
@@ -529,7 +529,7 @@
   {\fontsize{21}{27}\selectfont\bfseries\textcolor{white!75}{PLASMA PHYSICS}}\\[0.15cm]
   {\fontsize{10}{14}\selectfont\textcolor{white!55}{\textls[260]{A SELF-STUDY TEXT}}}\\[0.95cm]
   {\large\textcolor{white!68}{自学教材}}\\[0.25cm]
-  {\small\textcolor{white!45}{v1.33.6}}
+  {\small\textcolor{white!45}{v1.33.7}}
 };
 \node[anchor=south, align=center] at ([yshift=2.6cm]current page.south) {
   {\LARGE\bfseries\textcolor{white}{Han \& Kimi}}\\[0.45cm]
@@ -1612,12 +1612,12 @@ v_p = \frac{\omega}{k} = \frac{\sqrt{\omega_p^2 + c^2k^2}}{k} = c\sqrt{1 + \frac
 \centering
 \begin{subfigure}[b]{0.485\textwidth}
   \centering
-  \includegraphics[width=\textwidth]{../figures/aurora_iss.jpg}
+  \photo[width=\textwidth]{../figures/aurora_iss.jpg}
   \caption{天然等离子体：极光}\label{fig:photo-aurora}
 \end{subfigure}\hfill
 \begin{subfigure}[b]{0.485\textwidth}
   \centering
-  \includegraphics[width=\textwidth]{../figures/plasma_globe.jpg}
+  \photo[width=\textwidth]{../figures/plasma_globe.jpg}
   \caption{实验室等离子体：等离子体球}\label{fig:photo-globe}
 \end{subfigure}
 \caption{极光与等离子体球是同一种物质状态。左图里，太阳风粒子沿地磁场沉降、撞击高层大气原子并使其发光；右图里，低压惰性气体被高频电场击穿，形成随外界导体移动的放电丝。两张都不是示意图，而是真实等离子体被拍下来的样子——它们和本章后面算的德拜屏蔽、等离子体频率是同一套物理。}
@@ -1818,7 +1818,7 @@ m_e \ddot{\Delta x} = -\frac{n_e e^2}{\eps_0}\Delta x
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.72\textwidth]{../figures/lightning_strike.jpg}
+\photo[width=0.72\textwidth]{../figures/lightning_strike.jpg}
 \caption{身边的等离子体：闪电通道。云地闪电的通道温度可达约 $3\times10^{4}$ K，电子密度远高于德拜判据的要求——它是大气里最容易看见的等离子体，也是「电离气体」与「等离子体」差别最直观的例子。}
 \label{fig:photo-lightning}
 \figsource{The Modern Polymath，CC BY 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -1826,7 +1826,7 @@ m_e \ddot{\Delta x} = -\frac{n_e e^2}{\eps_0}\Delta x
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.72\textwidth]{../figures/red_sprites_iss.jpg}
+\photo[width=0.72\textwidth]{../figures/red_sprites_iss.jpg}
 \caption{红色精灵：大气里的向上放电。闪电并不是大气放电的全部：雷暴上方的强电场会把电子加速到几十电子伏，在平流层顶部激发出向上的丝状放电——红色精灵、蓝色喷流都属于瞬态发光现象。它们和本节讲的电离气体是同一套物理，只是尺度、密度与时间尺度都换了一档。}
 \label{fig:photo-sprites}
 \figsource{NASA，Public domain（Wikimedia Commons）}
@@ -1834,7 +1834,7 @@ m_e \ddot{\Delta x} = -\frac{n_e e^2}{\eps_0}\Delta x
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.72\textwidth]{../figures/ch2_st_elmo_fire.jpg}
+\photo[width=0.72\textwidth]{../figures/ch2_st_elmo_fire.jpg}
 \caption{等离子体并不只在实验室里：强电场把空气局部电离，机头与风挡周围就会出现这种流光放电。本节的三条判据，正好用来判断它算不算等离子体。}
 \label{fig:photo-ch2-elmo}
 \figsource{U.S. Air Force / Tech. Sgt. Diana Cossaboom，Public domain（Wikimedia Commons）}
@@ -1969,7 +1969,7 @@ N_D = \frac{4}{3}\pi n\lambda_D^3 \approx 4.4\times10^{13} \gg 1 .
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.86\textwidth]{../figures/heliosphere.jpg}
+\photo[width=0.86\textwidth]{../figures/heliosphere.jpg}
 \caption{太阳风把星际介质向外推开，形成一个以太阳为中心的空腔——日球层；太阳系就泡在这样一团稀薄等离子体里。它的数密度比实验室等离子体低十几个量级，却仍然满足本章的等离子体判据：判据看的是集体行为能不能建立，不是密度本身。}
 \label{fig:photo-heliosphere}
 \figsource{NASA's Scientific Visualization Studio，公有领域（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -2103,7 +2103,7 @@ v_{ti} = \sqrt{\frac{2k_B T_i}{m_i}} \approx 9.8\times 10^{5}\,\mathrm{m/s}, \qq
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.72\textwidth]{../figures/cyclotron_motion.jpg}
+\photo[width=0.72\textwidth]{../figures/cyclotron_motion.jpg}
 \caption{电子束在磁场里画出的圆。均匀磁场中的回旋运动不是抽象概念：把一束电子射进磁场，它真的会弯成一个圆。曲率半径 $r=mv/(qB)$ 与回旋频率 $\omega_c=qB/m$ 都可以直接从这样的轨迹量出来。}
 \label{fig:photo-cyclotron}
 \figsource{Marcin Białek，CC BY-SA 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -2213,7 +2213,7 @@ m\dot{\vect{v}'} = q(\vect{E} + (\vect{v}' + \vect{v}_E)\times\vect{B}) = q\vect
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.72\textwidth]{../figures/nonplanar_coil.jpg}
+\photo[width=0.72\textwidth]{../figures/nonplanar_coil.jpg}
 \caption{三维磁场几何：仿星器的非平面线圈。粒子的 $\nabla B$ 漂移与曲率漂移由这种三维位形决定，而「磁瓶」正是把漂移补偿写进几何里的一种做法，线圈的形状就是位形。}
 \label{fig:photo-coil}
 \figsource{Siarhei Besarab，CC BY-SA 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -2300,7 +2300,7 @@ m\dot{\vect{v}'} = q(\vect{E} + (\vect{v}' + \vect{v}_E)\times\vect{B}) = q\vect
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.86\textwidth]{../figures/magnetosphere.jpg}
+\photo[width=0.86\textwidth]{../figures/magnetosphere.jpg}
 \caption{地球磁层是自然界最大的磁瓶：带电粒子绕磁力线回旋、被两端更强的磁场反射，于是被约束在辐射带里，并在磁尾与弓激波处产生波与加速。图中标注的波与粒子过程，正是第 3 章单粒子运动与磁镜约束的放大版。}
 \label{fig:photo-magnetosphere}
 \figsource{NASA's Goddard Space Flight Center，公有领域（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -2413,7 +2413,7 @@ nm\left(\frac{\partial\vect{u}}{\partial t} + \vect{u}\cdot\grad\vect{u}\right) 
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.72\textwidth]{../figures/cme.jpg}
+\photo[width=0.72\textwidth]{../figures/cme.jpg}
 \caption{日冕物质抛射：磁流体的天然演示。日冕仪拍下的抛射云：等离子体带着磁场一起被抛出，尺度以太阳半径计。本章的双流体方程组与下一章的 MHD 方程，正是用来描述这类「导电流体」现象的工具。}
 \label{fig:photo-cme}
 \figsource{Burkhard Mücke，CC BY-SA 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -2421,7 +2421,7 @@ nm\left(\frac{\partial\vect{u}}{\partial t} + \vect{u}\cdot\grad\vect{u}\right) 
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.72\textwidth]{../figures/lepecvd_plasma.jpg}
+\photo[width=0.72\textwidth]{../figures/lepecvd_plasma.jpg}
 \caption{流体描述用在哪里：等离子体增强化学气相沉积。反应腔里那团放电是电子--离子--中性三套「流体」在同时运动：电子被射频场加热、离子被鞘层加速、中性气体被对流带走。本章的双流体方程组，就是给这种场景写的记账方式——每一套流体都有自己的连续性方程与动量方程。}
 \label{fig:photo-lepecvd}
 \figsource{Barzandr，CC BY-SA 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -2696,7 +2696,7 @@ MHD 做了以下关键近似：
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.72\textwidth]{../figures/mrx_reconnection.jpg}
+\photo[width=0.72\textwidth]{../figures/mrx_reconnection.jpg}
 \caption{磁重联：实验室里能重复的「磁力线断开再连上」。MRX 装置把磁重联做成了可控实验：环面等离子体里两束反向磁通靠近、断开并重新连接，同时释放磁能。这正说明「磁力线冻结」不是绝对禁令——在电流片足够薄的地方它可以失效。}
 \label{fig:photo-mrx}
 \figsource{U.S. Department of Energy，公有领域（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -2727,7 +2727,7 @@ MHD 做了以下关键近似：
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.72\textwidth]{../figures/solar_corona.jpg}
+\photo[width=0.72\textwidth]{../figures/solar_corona.jpg}
 \caption{日冕与日珥：等离子体被磁力线串成一个个环。因为磁力线冻结在等离子体里（第 5.3 节），物质不能随意穿过磁面，只能沿着它流动——所以太阳大气里看到的「结构」本质上就是磁场结构。}
 \label{fig:photo-corona}
 \figsource{NASA/Johnson Space Center，公有领域（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -2961,7 +2961,7 @@ v_p = \frac{\omega}{k} = \frac{\omega_{pe}}{k}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.72\textwidth]{../figures/sun_earth_interaction.jpg}
+\photo[width=0.72\textwidth]{../figures/sun_earth_interaction.jpg}
 \caption{磁化等离子体里的波：太阳风与磁层的耦合。太阳风把能量送进磁层，靠的不是「撞」，而是波与不稳定性：哨声波、阿尔芬波与磁声波在磁化等离子体里接力传递。本章讨论的色散关系与截止、共振，正是这段耦合的语法。}
 \label{fig:photo-sunearth}
 \figsource{Space Travel Blog / Rute Marta Jansone，CC BY 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -3073,7 +3073,7 @@ c^2 k^2 \approx \frac{\omega_{pe}^2 \omega}{\omega_{ce}}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.72\textwidth]{../figures/whistler_spectrogram.jpg}
+\photo[width=0.72\textwidth]{../figures/whistler_spectrogram.jpg}
 \caption{哨声波的真实频谱：频率随时间下降的「口哨」。雷电激发的哨声波沿磁力线传播，高频跑得快、低频跑得慢，于是在地面接收到的频谱上留下一条向下弯曲的色散曲线——这是第 6 章色散关系最直接的实验证据。}
 \label{fig:photo-whistler}
 \figsource{drdan14，CC BY-SA 3.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -3107,7 +3107,7 @@ c^2 k^2 \approx \frac{\omega_{pe}^2 \omega}{\omega_{ce}}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.72\textwidth]{../figures/vlasiator.jpg}
+\photo[width=0.72\textwidth]{../figures/vlasiator.jpg}
 \caption{全球动理学模拟：把速度空间算到磁层尺度。太阳风与地球磁层相互作用的 Vlasiator 模拟——它解的是 Vlasov 方程而不是流体方程。第 7 章要回答的「什么时候必须回到速度空间」，这张图给出了量级上的答案。}
 \label{fig:photo-vlasiator}
 \figsource{Space Travel Blog / Rute Marta Jansone，CC BY 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -3376,7 +3376,7 @@ D_a = \frac{\mu_i D_e + \mu_e D_i}{\mu_i + \mu_e} \approx D_i\left(1 + \frac{T_e
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.72\textwidth]{../figures/icp_torch.jpg}
+\photo[width=0.72\textwidth]{../figures/icp_torch.jpg}
 \caption{欧姆加热的可见结果：电感耦合等离子体炬。射频电流通过电子--中性碰撞把能量交给等离子体，宏观上就是本章的 Spitzer 电阻率与欧姆加热；炬管里那条明亮的通道，是碰撞把定向能量变成热运动的直接证据。}
 \label{fig:photo-icp}
 \figsource{Superchilum，CC BY-SA 3.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -3384,7 +3384,7 @@ D_a = \frac{\mu_i D_e + \mu_e D_i}{\mu_i + \mu_e} \approx D_i\left(1 + \frac{T_e
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.72\textwidth]{../figures/plasma_cutting.jpg}
+\photo[width=0.72\textwidth]{../figures/plasma_cutting.jpg}
 \caption{把电流压进等离子体：等离子弧切割。割炬里的电弧要在一个很小的截面上通过几十到几百安培的电流，靠的正是本章算的 Spitzer 电阻率：电阻随温度下降，电流才能集中——这条弧就是「电阻率决定能量往哪去」的现场。}
 \label{fig:photo-cutting}
 \figsource{Loffredo，CC BY-SA 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -3522,7 +3522,7 @@ Spitzer 动力学修正因子（$\gamma_E\approx0.58$ 一类，$1/1.4\approx0.71
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.72\textwidth]{../figures/magnetic_reconnection.jpg}
+\photo[width=0.72\textwidth]{../figures/magnetic_reconnection.jpg}
 \caption{磁重联：磁力线断开再连接。反向磁力线靠近、断开并重新连接（NASA 示意）。撕裂模与磁岛的形成，就是这张图在等离子体里的版本：磁场把自由能交给粒子，拓扑随之改变。}
 \label{fig:photo-reconnection}
 \figsource{NASA，公有领域（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -3675,7 +3675,7 @@ x^3\simeq-\frac{\mu}{2}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.72\textwidth]{../figures/twk_pinch.jpg}
+\photo[width=0.72\textwidth]{../figures/twk_pinch.jpg}
 \caption{箍缩等离子体：电流自己把等离子体捏成一束。环形箍缩装置里的氪等离子体（100 ns 曝光）。电流产生的环向磁场对等离子体施加向内的力，把柱体箍紧——不稳定性（本章的 m=0、m=1 模式）会在这里把柱体拧断。}
 \label{fig:photo-pinch}
 \figsource{Timkoeth，CC BY-SA 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -3803,12 +3803,12 @@ Lawson 判据的核心是\textbf{能量收支平衡}：
 \centering
 \begin{subfigure}[b]{0.485\textwidth}
   \centering
-  \includegraphics[width=\textwidth]{../figures/tokamak_interior.jpg}
+  \photo[width=\textwidth]{../figures/tokamak_interior.jpg}
   \caption{托卡马克：Alcator C-Mod 真空室内景}\label{fig:photo-tokamak}
 \end{subfigure}\hfill
 \begin{subfigure}[b]{0.485\textwidth}
   \centering
-  \includegraphics[width=\textwidth]{../figures/stellarator_w7x.jpg}
+  \photo[width=\textwidth]{../figures/stellarator_w7x.jpg}
   \caption{仿星器：Wendelstein 7-X 实验大厅}\label{fig:photo-stellarator}
 \end{subfigure}
 \caption{两条磁约束路线的真实装置。托卡马克（左）用等离子体自身电流提供极向场，内部是环向对称的「甜甜圈」；仿星器（右）把极向场全部做进三维扭曲的线圈里，换取稳态运行能力，代价是线圈形状极其复杂。左图是真空室内壁，等离子体并不接触它——靠的就是第 10.2 节的磁面。}
@@ -3856,7 +3856,7 @@ $n\tau$ & $\sim 10^{20}\,\mathrm{m}^{-3}\cdot\mathrm{s}$ & $\sim 10^{21}\,\mathr
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.72\textwidth]{../figures/nif_hohlraum.jpg}
+\photo[width=0.72\textwidth]{../figures/nif_hohlraum.jpg}
 \caption{黑腔：把激光能量变成 X 射线再均匀压靶。毫米级的金圆柱（黑腔）内壁吸收激光后辐射 X 射线，X 射线再烧蚀内壁的燃料靶丸——第 10.4 节讲的间接驱动，实物就是这么小，而它承受的辐射温度以百万开计。}
 \label{fig:photo-hohlraum}
 \figsource{Lawrence Livermore National Laboratory，公有领域（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -3864,7 +3864,7 @@ $n\tau$ & $\sim 10^{20}\,\mathrm{m}^{-3}\cdot\mathrm{s}$ & $\sim 10^{21}\,\mathr
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.72\textwidth]{../figures/nif_target_worker.jpg}
+\photo[width=0.72\textwidth]{../figures/nif_target_worker.jpg}
 \caption{NIF 靶室内部：十米级球室里的一个人。惯性约束的靶室有十米量级，而靶丸只有毫米级——中间这段尺度差正是「把能量精确送到靶上」的全部难度；本节讨论的黑腔与内爆，最终都要在这间球室里按十皮秒级的时序发生。}
 \label{fig:photo-nifworker}
 \figsource{Lawrence Livermore National Security，CC BY-SA 3.0（Wikimedia Commons）}
@@ -3946,12 +3946,12 @@ $n\tau$ & $\sim 10^{20}\,\mathrm{m}^{-3}\cdot\mathrm{s}$ & $\sim 10^{21}\,\mathr
 \centering
 \begin{subfigure}[b]{0.485\textwidth}
   \centering
-  \includegraphics[width=\textwidth]{../figures/iter_construction.jpg}
+  \photo[width=\textwidth]{../figures/iter_construction.jpg}
   \caption{ITER 建设现场（2018）}\label{fig:photo-iter}
 \end{subfigure}\hfill
 \begin{subfigure}[b]{0.485\textwidth}
   \centering
-  \includegraphics[width=\textwidth]{../figures/nif_target.jpg}
+  \photo[width=\textwidth]{../figures/nif_target.jpg}
   \caption{美国国家点火装置（NIF）靶室}\label{fig:photo-nif}
 \end{subfigure}
 \caption{两条路线在工程尺度上的样子：磁约束要造一个几十米量级的环（左），惯性约束要把几毫米的靶丸在十亿分之一秒内压到千倍固体密度，靶室直径 10 米、四周布满激光入口（右）。度量它们的其实是同一个 0-D 功率账：增益 $Q$ 与三重积。}
@@ -3982,7 +3982,7 @@ $n\tau$ & $\sim 10^{20}\,\mathrm{m}^{-3}\cdot\mathrm{s}$ & $\sim 10^{21}\,\mathr
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.72\textwidth]{../figures/rie_etcher.jpg}
+\photo[width=0.72\textwidth]{../figures/rie_etcher.jpg}
 \caption{工业等离子体：反应离子刻蚀设备。低温等离子体最典型的工业用法：离子轰击加自由基化学反应，把晶圆上的图形刻出来。第 11 章的汤森放电与鞘层理论，工作区间就在这类设备的参数里。}
 \label{fig:photo-rie}
 \figsource{AlabamaUSA，CC BY-SA 3.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -4146,7 +4146,7 @@ ECR可以产生极高密度（$n_e \sim 10^{18}\sim 10^{19}\,\mathrm{m^{-3}}$）
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.86\textwidth]{../figures/glow_discharge.jpg}
+\photo[width=0.86\textwidth]{../figures/glow_discharge.jpg}
 \caption{直流辉光放电管的空间结构（实拍）：阴极暗区、负辉光、法拉第暗区、正柱区依次排列。暗区不是「没有等离子体」，而是电子能量还不够电离；亮区则是激发与电离最剧烈的地方。这张照片可以直接和本章的放电伏安特性、鞘层与电子能量分布对照着看。}
 \label{fig:photo-glow}
 \figsource{Chetvorno，CC BY-SA 2.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -4422,7 +4422,7 @@ PECVD 与溅射沉积的物理机制完全不同：PECVD 是「化学反应在�
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.72\textwidth]{../figures/chemcam_mars.jpg}
+\photo[width=0.72\textwidth]{../figures/chemcam_mars.jpg}
 \caption{火星上的激光等离子体：ChemCam 的 LIBS。好奇号用激光在几米外打出一小团等离子体，再从它的发光谱里读出岩石成分——这是「等离子体作为分析工具」最远的一次应用：激光烧蚀、等离子体发光与光谱定量，每一步都对应本节讲的工艺等离子体物理。}
 \label{fig:photo-chemcam}
 \figsource{NASA/JPL-Caltech/LANL，Public domain（Wikimedia Commons）}
@@ -4593,7 +4593,7 @@ R_{\text{iz}} = \frac{P_{\text{iz}}}{e E_{\text{iz}}} = \frac{75}{1.6\times 10^{
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.72\textwidth]{../figures/hall_thruster.jpg}
+\photo[width=0.72\textwidth]{../figures/hall_thruster.jpg}
 \caption{同一类低温放电的另一种用途：霍尔推力器点火（氪工质）。放电室内电子被磁场束缚做霍尔漂移，离子被电场加速喷出产生推力。羽流里那团发光的，就是被电离后加速出去的气体。等离子体在这里不是「要控制住的东西」，而是要利用的工质。}
 \label{fig:photo-thruster}
 \figsource{MrAdamJohnson，CC BY-SA 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -5173,7 +5173,7 @@ V_f - V_p = T_e \ln\!\left(\sqrt{\frac{2\pi m_e}{m_i}}\right)
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.72\textwidth]{../figures/bpp_probe_head.jpg}
+\photo[width=0.72\textwidth]{../figures/bpp_probe_head.jpg}
 \caption{朗缪尔探针的探头长什么样。真实的探针头：收集极（钨丝）套在氮化硼陶瓷管里，只露出一小段面向等离子体。陶瓷决定收集面积、也决定探针能承受多少热流——这正是 12.2 节要求「探针半径远大于德拜长度」的工程原因。}
 \label{fig:photo-probe}
 \figsource{Jiri Adamek，CC BY-SA 3.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -5352,7 +5352,7 @@ q = |\vect{k}_s-\vect{k}_i| = \frac{4\pi}{\lambda_0}\sin\frac{\theta}{2},
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.72\textwidth]{../figures/west_divertor.jpg}
+\photo[width=0.72\textwidth]{../figures/west_divertor.jpg}
 \caption{在位检查：装置内部的面对等离子体部件。法国 WEST 托卡马克的偏滤器检查现场。红外热像与光谱诊断正是这样贴着面对等离子体部件工作的：不接触等离子体，却能读出温度、杂质与侵蚀率——本章三种诊断之外的第四条路。}
 \label{fig:photo-west}
 \figsource{Hélène Roche / CEA IRFM，CC BY 4.0（Wikimedia Commons），链接见 figures/CREDITS.md。}
@@ -5461,7 +5461,7 @@ $n_e\sim10^{24}\,\mathrm{m}^{-3}$ 对应高电流密度电弧芯部，与 $2.5\,
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.67\textwidth]{../figures/geissler_tube.jpg}
+\photo[width=0.67\textwidth]{../figures/geissler_tube.jpg}
 \caption{盖斯勒放电管：谱线是被放电点亮的。光谱诊断的起点是一支会发光的放电管：管内的原子被电子碰撞激发，退激时发出特征谱线。本节讲的谱线强度、展宽与绝对定标，量的就是这支管子发出的光——只不过在托卡马克上，光源换成了上亿度的等离子体。}
 \label{fig:photo-geissler}
 \figsource{Svk mary，CC BY-SA 4.0（Wikimedia Commons）}

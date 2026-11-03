@@ -1186,6 +1186,8 @@ def check_photo_sources(src_dir=DEFAULT_SRC):
         raw_nc = re.sub(r'(?<!\\)%.*', '', raw)
         for m in inc.finditer(raw_nc):
             rel = m.group(1).strip()
+            if '#' in rel:              # 宏体里的 #1 / #2，不是真文件
+                continue
             total += 1
             p = os.path.normpath(os.path.join(src_dir, rel))
             base = os.path.basename(rel)
@@ -1200,7 +1202,8 @@ def check_photo_sources(src_dir=DEFAULT_SRC):
                 unlisted.append(base)
         for fm in FIG_ENV.finditer(raw_nc):
             blk = fm.group(0)
-            if '\\includegraphics' in blk and '\\figsource{' not in blk:
+            if (('\\includegraphics' in blk or '\\photo' in blk)
+                    and '\\figsource{' not in blk):
                 line = raw_nc[:fm.start()].count('\n') + 1
                 no_src.append('%s:%d' % (os.path.basename(path), line))
     if total == 0:
