@@ -519,6 +519,33 @@ def check_K_structure(files, main_text, main_raw=''):
     else:
         rec('PASS', 'K', '补充材料挂载：ch1–ch12 各一次且顺序正确')
 
+    # 章末延伸阅读（v1.33.8 起）：每个补充材料一行 \moreapps，含 3 个附录链接，目标必须存在
+    bs = chr(92)
+    pat_more = re.compile(r'\\moreapps\{')
+    pat_href = re.compile(r'\\hyperref\[app:([A-Z]{1,2})\]')
+    bad_more = []
+    for i in range(1, 13):
+        f = os.path.join(ROOT, 'src', 'ch%d_supplement.tex' % i)
+        if not os.path.exists(f):
+            bad_more.append('ch%d_supplement.tex 缺失' % i)
+            continue
+        raw = strip_comments(read(f))
+        lines = [ln for ln in raw.split('\n') if pat_more.search(ln)]
+        if len(lines) != 1:
+            bad_more.append('ch%d 的 moreapps 行数为 %d' % (i, len(lines)))
+            continue
+        codes = pat_href.findall(lines[0])
+        if len(codes) != 3:
+            bad_more.append('ch%d 延伸阅读有 %d 个链接' % (i, len(codes)))
+        missing = [c for c in codes if c not in set(letters)]
+        if missing:
+            bad_more.append('ch%d 引用了不存在的附录 %s' % (i, ','.join(missing)))
+    if bad_more:
+        for b in bad_more:
+            rec('FAIL', 'K', b)
+    else:
+        rec('PASS', 'K', '章末延伸阅读：12 章各一行、每行 3 个附录链接，目标附录都存在')
+
     # 标签唯一性
     labels = {}
     for f in files:
