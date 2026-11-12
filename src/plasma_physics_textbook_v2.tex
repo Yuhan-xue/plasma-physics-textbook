@@ -2796,6 +2796,7 @@ v_A = \frac{B}{\sqrt{\mu_0\rho_m}} = \frac{10^{-3}}{\sqrt{(4\pi\times 10^{-7})(1
 
 \begin{figure}[htbp]
 \centering
+\resizebox{0.95\textwidth}{!}{%
 \begin{tikzpicture}[
   cn/.style={draw=figNavy!75,fill=figPaper!55,rounded corners=2pt,line width=0.7pt,align=center,minimum width=2.4cm,inner sep=3pt,
     minimum height=0.8cm,font=\footnotesize,text=figInk},
@@ -2813,6 +2814,7 @@ v_A = \frac{B}{\sqrt{\mu_0\rho_m}} = \frac{10^{-3}}{\sqrt{(4\pi\times 10^{-7})(1
   \draw[ce] (n10) -- (n20);
   \draw[ce] (n11) -- (n21);
 \end{tikzpicture}
+}
 \caption{第 5 章概念图：MHD 的三条结论。}
 \label{fig:cm-ch5}
 \end{figure}
@@ -3645,7 +3647,7 @@ x^3\simeq-\frac{\mu}{2}
 \begin{insight}{速度剪切如何卷起涡}{kh-insight}
 把两层流体想象成两列反向行驶的车队。界面上的一个小凸起会让一侧的流体多走一点、另一侧少走一点；伯努利效应把凸起两侧的压强差放大，凸起继续长大，最后卷成涡。磁场的作用像一根沿流动方向绷紧的弦：界面弯曲必须同时弯曲磁力线，磁张力把凸起拉回去。剪切足够强、磁张力不足以拉住时，涡就卷起来。
 
-磁层顶是这条判据的天然实验室：太阳风--磁鞘流以数百 $\mathrm{km/s}$ 掠过近于静止的磁层，磁鞘的 $v_A$ 在几十到几百 $\mathrm{km/s}$，$2v_A$ 与 $\Delta v$ 同量级。剪切不稳定时，边界起伏卷成尺度 $1$--$3\,R_E$ 的涡，涡旋之间的重联把太阳风等离子体送进磁层；MMS、Cluster、THEMIS 在磁层顶两侧都报告过这类涡与伴随的重联（同一判据在《SpacePhysics》第 6 章 §6.4 用于磁层顶边界）。同样的判据也用于托卡马克边缘的剪切层：流场剪切既能驱动 KHI，也能通过剪切去相关抑制湍流。
+磁层顶是这条判据的天然实验室：太阳风--磁鞘流以数百 $\mathrm{km/s}$ 掠过近于静止的磁层，磁鞘的 $v_A$ 在几十到几百 $\mathrm{km/s}$，$2v_A$ 与 $\Delta v$ 同量级。剪切不稳定时，边界起伏卷成尺度 $1$--$3\,R_E$ 的涡，涡旋之间的重联把太阳风等离子体送进磁层；MMS、Cluster、THEMIS 在磁层顶两侧都报告过这类涡与伴随的重联（同一判据在《SpacePhysics》第 6 章第 4 节用于磁层顶边界）。同样的判据也用于托卡马克边缘的剪切层：流场剪切既能驱动 KHI，也能通过剪切去相关抑制湍流。
 \end{insight}
 
 三条极限可用于自检。$B\to0$ 时 $\gamma=kv_0/2$，回到无磁场的经典 KHI；$v_0\to2v_A$ 时 $\gamma\to0$，磁张力刚好抵消剪切自由能；$v_0<2v_A$ 时 $\omega$ 为实数，界面只作频率 $kU_c\pm k\sqrt{v_A^2-v_0^2/4}$ 的稳定表面波，其中 $U_c=(\rho_1U_1+\rho_2U_2)/(\rho_1+\rho_2)$ 是质心速度。不可压缩假设要求 $v_0\ll c_s$；$v_0$ 接近声速时，压缩性会改变阈值。真实剪切层有厚度 $\delta$，$k\delta\gtrsim1$ 的短波被有限宽度抹平，增长谱在高 $k$ 端截断。起稳定作用的是沿流动方向的磁场分量；本节的不可压缩表面模只保留这一分量。

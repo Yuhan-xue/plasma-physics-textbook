@@ -1,7 +1,7 @@
 # 等离子体物理自学教材
 
 一本从德拜屏蔽讲到聚变堆工程的自学教材：12 章正文 + 48 个附录，另有一册 47 页的配套手册。
-教材共 **610 页**，四个 PDF 由同一份源码编译；`pdf/` 里目前是 2026-09-13 的 v1.33.9 旧构建，本轮源码已改、PDF 待重建。书里印出的数字都能用仓库脚本独立复算。
+教材共 **613 页**，四个 PDF 由同一份源码编译；`pdf/` 里是 2026-11-12 用 TeX Live 2026 重建的 v1.33.9 产物，源码与 PDF 同步。书里印出的数字都能用仓库脚本独立复算。
 
 ![托卡马克真空室内部：磁约束聚变要面对的容器](figures/tokamak_interior.jpg)
 
@@ -24,16 +24,16 @@
 
 同一份源码出四个 PDF。仓库 [`pdf/`](pdf/) 里是固定文件名的四个文件；[Releases](http://zsyq.hxlab.tech:3000/yuhanxue/plasma-physics-textbook/releases) 里是历史存档，文件名带版本号，如 `plasma_physics_textbook_v1.33.9.pdf`。
 
-> **PDF 状态：** `pdf/` 里是 **2026-09-13** 构建的 v1.33.9 旧产物（610 / 207 / 403 / 47 页）。本轮只改源码与文档，没有重出 PDF；PDF 与当前源码不同步，页数、书签与图表页码都要等下一次构建后复核。
+> **PDF 状态：** `pdf/` 里是 **2026-11-12** 用 TeX Live 2026 重建的 v1.33.9 产物（613 / 209 / 404 / 47 页），源码、页码与书签已同步。
 
-| 分册 | 页数（2026-09-13 旧构建） | Releases 里的文件名 | 什么时候下这个 |
+| 分册 | 页数（2026-11-12 构建） | Releases 里的文件名 | 什么时候下这个 |
 |---|---|---|---|
-| 完整本 | 610 | `plasma_physics_textbook_vX.Y.Z.pdf` | 第一次读，或只想存一份 |
-| 卷一·正文 | 207 | `plasma_physics_textbook_vX.Y.Z_vol1_chapters.pdf` | 只想通读前言与第 1–12 章 |
-| 卷二·附录 | 403 | `plasma_physics_textbook_vX.Y.Z_vol2_appendices.pdf` | 正文读完，回头查 48 个附录 |
+| 完整本 | 613 | `plasma_physics_textbook_vX.Y.Z.pdf` | 第一次读，或只想存一份 |
+| 卷一·正文 | 209 | `plasma_physics_textbook_vX.Y.Z_vol1_chapters.pdf` | 只想通读前言与第 1–12 章 |
+| 卷二·附录 | 404 | `plasma_physics_textbook_vX.Y.Z_vol2_appendices.pdf` | 正文读完，回头查 48 个附录 |
 | 配套手册 | 47 | `plasma_physics_handbook_vX.Y.Z.pdf` | 边学边查学习策略、逐章对照与题库 |
 
-三册的印刷页码与完整本一致（卷一 1–207，卷二 208–610），书签全部保留，可以在分册与完整本之间按页码对照。
+三册的印刷页码与完整本一致（卷一 1–209，卷二 210–613），书签全部保留，可以在分册与完整本之间按页码对照。
 每个 release 都带这四个 PDF 与该版的改动说明。
 
 仓库内直达：[完整本](pdf/plasma_physics_textbook_v2.pdf) · [卷一](pdf/plasma_physics_textbook_v2_vol1_chapters.pdf) · [卷二](pdf/plasma_physics_textbook_v2_vol2_appendices.pdf) · [配套手册](pdf/plasma_physics_handbook.pdf)
@@ -77,7 +77,7 @@
 
 ## 规模与质量
 
-- **610 页（2026-09-13 的 v1.33.9 旧构建；重建后复核）**：封面与目录 22 页、符号说明与前言 7 页、12 章正文 176 页、结语 2 页、48 个附录 403 页；配套手册 47 页。
+- **613 页（2026-11-12 构建）**：封面与目录 22 页、符号说明与前言 7 页、12 章正文 178 页、结语 2 页、48 个附录 404 页；配套手册 47 页。
 - **118 张实拍与机构图像 + 38 张自绘图**（36 张插图，主册与手册封面各 1 张）；逐张来源见 [`figures/CREDITS.md`](figures/CREDITS.md)。
 - **7195 项物理回归（发布构建口径）**：把书里印出的数字独立重算，并要求数字留在它自己那一节；本机缺 `.aux` 时为 7193 项。
 - **六套门禁**：发布构建（v1.33.9，有完整 PDF 与 `.aux`）为物理回归 7195、全量结构 45、一致性 14、可读性 45、插图版式 36、书签 11，全部 FAIL 0；本机静态（2026-11-12，无 TeX）为 7193 / 32 / 15 / 32 / 36 / 10。两栏前提不同，差额来源见下表和 [`docs/QA.md`](docs/QA.md)。
@@ -120,7 +120,7 @@ python3 tools/fix_section_links.py pdf/plasma_physics_textbook_v2.pdf   # 正文
 
 两步都是因为 hyperref 在 `\section` 排版那一刻记页码：标题被挤到下一页时，书签、目录链接与正文交叉引用会一起早一页。
 两个脚本各按 `.aux` 或书签的实测页码校正，跑完 `check/pdf_outline.py` 应为 FAIL 0 / WARN 0。
-再按附录 A 的起始页切成卷一（1–207）与卷二（208–610），三册页码与完整本一致。
+再按附录 A 的起始页（p210）切成卷一（1–209）与卷二（210–613），三册页码与完整本一致。
 
 **文档里的数字也是脚本算出来的**，页数或附录体量变化后重跑这几条即可：
 
@@ -175,7 +175,7 @@ Windows 下把 `python3` 换成 `python -X utf8`，避免中文输出编码错�
 
 - 118 张实拍与机构图像，逐张登记作者、许可与来源页：[`figures/CREDITS.md`](figures/CREDITS.md)。
 - 全部 118 张按章/附录排成一册：[`docs/figures.md`](docs/figures.md)；选图标准见 [`docs/figures-sourcing.md`](docs/figures-sourcing.md)。
-- 许可以公有领域与 CC BY / CC BY-SA 为主；教材内容采用 **CC BY-NC-SA 4.0**，`code/` 下脚本采用 MIT。
+- 许可以公有领域与 CC BY / CC BY-SA 为主；教材内容采用 **CC BY-NC-SA 4.0**（[LICENSE](LICENSE)），`code/` 下脚本采用 MIT（[code/LICENSE](code/LICENSE)）。
 
 ## 参与
 

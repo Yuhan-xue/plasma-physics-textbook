@@ -5,8 +5,9 @@
 ## 1. 当前版本
 
 - 版本号 **v1.33.9**，本轮未升版本。
-- **源码已改，PDF 待构建**：`pdf/` 下四册仍是 **2026-09-13** 构建的 v1.33.9 旧产物（610 / 207 / 403 / 47 页）；当前源码已改，PDF 与源码不同步。
-- 本机没有 XeLaTeX / latexmk，本轮没有构建 PDF，也没有提交或推送。
+- **源码与 PDF 已同步**：`pdf/` 下四册为 **2026-11-12** 用 TeX Live 2026 重建的 v1.33.9 产物（613 / 209 / 404 / 47 页）。
+- 已在 Linux + TeX Live 2026 重建四册（613 / 209 / 404 / 47 页），源码与 PDF 同步；尚未提交或推送。
+- 2026-11-12 验收：六套门禁 FAIL 0（full_check 49 项 FAIL 0／WARN 0、physics_regression 7193 项 FAIL 0、consistency 15/0、ui 32、figure 49、outline 10）。
 
 ## 2. 本轮改动
 
@@ -39,7 +40,7 @@
 | `check/physics_regression.py` | **FAIL 0 / WARN 1**，7193 项 | 7191 PASS + 1 WARN + 1 INFO；缺 `.aux` 时附录 F 章号归属 2 项未执行，完整构建后按 7195 项核对 |
 | `check/ui_readability.py` | **FAIL 0 / WARN 20**，32 项 | 正文句长 p90=58 字、段长 p90=125 字，均在硬线内 |
 | `check/figure_layout.py` | **FAIL 0 / WARN 2**（36 张图内 WARN 1） | 旧 PDF 产物；缺 `.aux` 时 `fig:lawson` 页码无法核对 |
-| `check/pdf_outline.py` | **FAIL 0 / WARN 1**，10 项 | 旧 PDF 产物；610 页 / 574 书签 / 574 条目录一致 |
+| `check/pdf_outline.py` | **FAIL 0 / WARN 2**，11 项 | 613 页 / 卷 160+415、全本 575 书签 |
 
 口径注：`consistency_audit` 的 15 项 = 14 PASS + 1 INFO（无索引条目），不是 FAIL/WARN；`physics_regression` 的 7193 项是缺 `.aux` 时少跑附录 F 的 2 项，完整构建后按 7195 项核对。
 

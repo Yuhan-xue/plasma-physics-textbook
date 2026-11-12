@@ -240,9 +240,9 @@ python check/consistency_audit.py   # 符号、单位、附录与正文的一致
 
 ---
 
-## 2026-11 统一编辑轮（源码，未发版）
+## 2026-11 统一编辑轮（源码 + 重建，未发版）
 
-本轮只改源码与文档，不升版本号、不重出 PDF；四册交付物仍是 v1.33.9。
+本轮改源码与文档，并在 Linux + TeX Live 2026 下重建四册；不升版本号，交付物仍为 v1.33.9。
 
 - 热修正统一为 `σ_ve` 口径：主文件 insight／章末回顾／附录 G 与 `src/ch6_supplement.tex`、`src/appendix_l_problems.tex` 的 `3k²v_te²` 全部改 `3k²σ_ve²`，数值 `8.32e17` 不变（ERRATA PL-01、PL-02）。
 - 第 12 章量纲自检的相移公式改为 `e²/(2ε_0m_ecω)∫n_e dl`，与定理 `eq:phase-shift` 对齐（ERRATA PL-03）。
@@ -255,4 +255,5 @@ python check/consistency_audit.py   # 符号、单位、附录与正文的一致
 - `README.md` 按模板重写为 178 行；`AGENTS.md` 补索引、状态、构建验收与发布清单；新建 `ERRATA.md`、`STATUS.md`、`docs/ARCHITECTURE.md`、`docs/STYLE.md`、`docs/QA.md`，并更新 `docs/README.md`。
 - 去防御性写作：README 第一屏、前言、第 11 章导语、第 12 章历史段，以及附录 J/X/Y/AL/AO 与 `ch5_supplement` 的自我削弱句改为直接陈述；保留适用范围与教学装置。
 - `docs/overview.md` 补发布构建与静态运行两种门禁项数口径；`docs/layout.md` 根目录图加入 ERRATA/STATUS 与 docs/ARCHITECTURE/STYLE/QA；README 附录分组补「正文 48 + 手册 4」说明。
-- 静态门禁：`consistency_audit` FAIL 0 / WARN 0（15 项）；`full_check --no-compile` FAIL 2（仅缺 `.log` 与 PDF）／WARN 2 / PASS 21；`physics_regression` FAIL 0 / WARN 1（7193 项，缺 `.aux` 少 2 项）；`ui_readability` FAIL 0 / WARN 20；`figure_layout` 与 `pdf_outline` 跑的是旧 PDF，FAIL 0。详见 `STATUS.md`。
+- 重建：`latexmk -xelatex` 出 613 页完整本；按附录 A 起始 p210 切卷一 1–209、卷二 210–613；手册 47 页。四册写入 `pdf/`。
+- 门禁（新 PDF）：`full_check --no-compile` FAIL 0／WARN 0（49 项）；`physics_regression` FAIL 0（7193 项，缺 `.aux` 少 2 项）；`consistency_audit` 15/0；`ui_readability` 32 项；`figure_layout` 49 项 FAIL 0／WARN 0；`pdf_outline` 10 项。详见 `STATUS.md`。
