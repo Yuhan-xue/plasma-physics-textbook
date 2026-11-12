@@ -6,8 +6,8 @@
 ## 0. 当前状态
 
 - 版本 **v1.33.9**；交付 PDF 在 [`pdf/`](pdf/)，源码在 [`src/`](src/)。
-- 本轮为源码编辑轮：源码已改、PDF 待构建。逐条改动见 [`ERRATA.md`](ERRATA.md)，进度见 [`STATUS.md`](STATUS.md)。
-- 本机无 XeLaTeX 时不要声称 PDF 验收通过；静态门禁与不可复现项以 `STATUS.md` 为准。
+- 2026-11-12 已在 Linux + TeX Live 2026 下重建四册（613/209/404/47 页）。逐条改动见 [`ERRATA.md`](ERRATA.md)，进度见 [`STATUS.md`](STATUS.md)。
+- 构建环境为 Linux + TeX Live 2026；无 XeLaTeX 的机器只能跑静态检查，不要用旧 PDF 冒充新构建。静态门禁与不可复现项以 `STATUS.md` 为准。
 
 ## 1. 硬约束
 
@@ -28,7 +28,7 @@
 | [`src/appendix_*.tex`](src/) | 44 个独立附录文件：专题 M–AZ 40 个 + 手册 I–L 4 个（A–H 在主文件内） | [`docs/appendix-audit.md`](docs/appendix-audit.md) |
 | [`src/companion_handbook.tex`](src/companion_handbook.tex) | 配套手册（47 页） | 手册目录 |
 | [`figures/`](figures/) | 插图与 [`CREDITS.md`](figures/CREDITS.md) | 图片许可 |
-| [`pdf/`](pdf/) | 四个交付 PDF：完整本 610、卷一 207、卷二 403、手册 47 | [`README.md`](README.md) |
+| [`pdf/`](pdf/) | 四个交付 PDF：完整本 613、卷一 209、卷二 404、手册 47 | [`README.md`](README.md) |
 | [`docs/`](docs/) | 读者文档、架构、文风、验收、图册 | [`docs/README.md`](docs/README.md) |
 | [`check/`](check/) | 六套门禁与夹具 | [`docs/QA.md`](docs/QA.md) |
 | [`code/`](code/) | 书里引用的可运行脚本 | 各脚本文件头 |

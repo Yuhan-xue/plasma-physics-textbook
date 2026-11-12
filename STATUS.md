@@ -1,12 +1,12 @@
 # STATUS.md —— 当前进度
 
-更新：2026-11-12 ｜ 分支：`editorial/unify-2026-11` ｜ 工作树：有未提交改动
+更新：2026-11-12 ｜ 分支：`editorial/unify-2026-11` ｜ 工作树：干净（已提交并推送）
 
 ## 1. 当前版本
 
 - 版本号 **v1.33.9**，本轮未升版本。
 - **源码与 PDF 已同步**：`pdf/` 下四册为 **2026-11-12** 用 TeX Live 2026 重建的 v1.33.9 产物（613 / 209 / 404 / 47 页）。
-- 已在 Linux + TeX Live 2026 重建四册（613 / 209 / 404 / 47 页），源码与 PDF 同步；尚未提交或推送。
+- 已在 Linux + TeX Live 2026 重建四册（613 / 209 / 404 / 47 页），源码与 PDF 同步；已提交并推送 `editorial/unify-2026-11`（未合并 main、未 tag）。
 - 2026-11-12 验收：六套门禁 FAIL 0（full_check 49 项 FAIL 0／WARN 0、physics_regression 7193 项 FAIL 0、consistency 15/0、ui 32、figure 49、outline 10）。
 
 ## 2. 本轮改动
