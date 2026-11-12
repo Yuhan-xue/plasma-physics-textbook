@@ -11,7 +11,7 @@
 \begin{enumerate}[nosep,leftmargin=1.6em]
   \item 密度与通量：$n_e$ 是 $\mathrm{m}^{-3}$ 还是 $\mathrm{cm}^{-3}$（差 $10^6$ 倍）？离子流密度常写成 $\mathrm{mA/cm^2}$，而 $1\ \mathrm{A/m^2}=0.1\ \mathrm{mA/cm^2}$；
   \item 温度：等离子体里的「温度」几乎都是能量单位 $\mathrm{eV}$，室温气体是 $0.0259\ \mathrm{eV}$，二者不能直接相加或相除，要先用 $1\ \mathrm{eV}=11600\ \mathrm{K}$ 换算；
-  \item 气压：$\mathrm{Pa}$、$\mathrm{mTorr}$ 与 $\mathrm{Torr}$ 混用最常出错。本附录统一用 $1\ \mathrm{Torr}=133.322\ \mathrm{Pa}$，$1\ \mathrm{atm}=760\ \mathrm{Torr}$。帕申定律的自变量是 $p$ 与间隙 $d$ 的\textbf{乘积} $pd$（$\mathrm{Torr\cdot cm}$）。
+  \item 气压：$\mathrm{Pa}$、$\mathrm{mTorr}$ 与 $\mathrm{Torr}$ 混用最常出错。本附录统一用 $1\ \mathrm{Torr}=133.322\ \mathrm{Pa}$，$1\ \mathrm{atm}=760\ \mathrm{Torr}$。帕邢定律的自变量是 $p$ 与间隙 $d$ 的\textbf{乘积} $pd$（$\mathrm{Torr\cdot cm}$）。
 \end{enumerate}
 另：公式里的时间单位一律写作 \texttt{yr}（年）与 \texttt{day}（天），避免中文字符落进数学字体造成缺字。
 \end{tip}
@@ -100,7 +100,7 @@
   \label{eq:app-p-paschen}
 \end{equation}
 
-这就是\textbf{帕申定律}：$V_b$ 只依赖 $pd$ 的乘积，不依赖 $p$ 与 $d$ 各自是多少。
+这就是\textbf{帕邢定律}：$V_b$ 只依赖 $pd$ 的乘积，不依赖 $p$ 与 $d$ 各自是多少。
 
 取空气的 $A=15\ \mathrm{/(cm\cdot Torr)}$、$B=365\ \mathrm{V/(cm\cdot Torr)}$、$\gamma=0.01$：
 
@@ -115,7 +115,7 @@
 \begin{table}[htbp]
   \centering
   \small
-  \caption{帕申曲线（$A=15$、$B=365$、$\gamma=0.01$）。最小值在 $pd=0.8363\ \mathrm{Torr\cdot cm}$ 处，$V_{b,\min}=305.27\ \mathrm{V}$；两侧都升高。}
+  \caption{帕邢曲线（$A=15$、$B=365$、$\gamma=0.01$）。最小值在 $pd=0.8363\ \mathrm{Torr\cdot cm}$ 处，$V_{b,\min}=305.27\ \mathrm{V}$；两侧都升高。}
   \label{tab:app-p-paschen}
   \begin{tabular}{@{}lrrrrrrr@{}}
     \toprule
@@ -126,7 +126,7 @@
   \end{tabular}
 \end{table}
 
-\textbf{最小值两侧的物理}：$pd$ 太小时，电子在到达阳极前来不及积累足够的电离碰撞次数，需要更高电压「补偿」。$pd$ 太大时，电子还没获得足够能量就先被弹性碰撞「冷却」，同样需要更高电压。帕申曲线因此呈 V 形（$1/pd$ 支与 $pd$ 支的竞争）。
+\textbf{最小值两侧的物理}：$pd$ 太小时，电子在到达阳极前来不及积累足够的电离碰撞次数，需要更高电压「补偿」。$pd$ 太大时，电子还没获得足够能量就先被弹性碰撞「冷却」，同样需要更高电压。帕邢曲线因此呈 V 形（$1/pd$ 支与 $pd$ 支的竞争）。
 
 \textbf{一个必须记住的陷阱}：大气压空气的间隙是 $1\ \mathrm{mm}$，则 $pd = 76\ \mathrm{Torr\cdot cm}$。把上面的公式照直外推，得到 $5035\ \mathrm{V}$。但大气压空气的经验击穿场强是
 
@@ -135,7 +135,7 @@
   \label{eq:app-p-empirical}
 \end{equation}
 
-$1\ \mathrm{mm}$ 间隙只需 $3000\ \mathrm{V}$。外推值 $5035\ \mathrm{V}$ 是经验值的 $1.68$ 倍：\textbf{不能把低压帕申公式外推到大气压}。原因：$A$、$B$ 是在低 $E/p$ 区间标定的，大气压下的放电机制（空间电荷畸变、流注、光电离）已经不在汤森雪崩的框架内。
+$1\ \mathrm{mm}$ 间隙只需 $3000\ \mathrm{V}$。外推值 $5035\ \mathrm{V}$ 是经验值的 $1.68$ 倍：\textbf{不能把低压帕邢公式外推到大气压}。原因：$A$、$B$ 是在低 $E/p$ 区间标定的，大气压下的放电机制（空间电荷畸变、流注、光电离）已经不在汤森雪崩的框架内。
 
 \textbf{大气压下的场强口径}：$1\ \mathrm{atm}$、$300\ \mathrm{K}$ 时
 
@@ -151,8 +151,8 @@ $1\ \mathrm{mm}$ 间隙只需 $3000\ \mathrm{V}$。外推值 $5035\ \mathrm{V}$ 
 \textbf{这里出现一个看似矛盾的结果}：$\alpha d\ll k$，按式 \eqref{eq:app-p-selfsustain} 不该击穿，可经验上 $1\ \mathrm{mm}$ 间隙在 $3000\ \mathrm{V}$ 就击穿了。\textbf{这正是汤森理论在大气压下失效的标志}：$\alpha d<1$ 意味着平均每个初始电子产生的电离少于一次，雪崩无法自持；实际发生的是\emph{流注}（streamer）：局部空间电荷把电场畸变到远高于平均值，并且光电离提供了额外的种子电子。所以在大气压下，正确做法是承认经验值 $E_{\mathrm{br}}=30\ \mathrm{kV/cm}$，而不要用汤森公式反推。
 
 {\footnotesize
-\textbf{出处：} Raizer《Gas Discharge Physics》汤森雪崩与帕申定律章。
-Lieberman \& Lichtenberg《Principles of Plasma Discharges and Materials Processing》第 2 版第 1 章与第 14 章（帕申曲线与最小击穿电压）。
+\textbf{出处：} Raizer《Gas Discharge Physics》汤森雪崩与帕邢定律章。
+Lieberman \& Lichtenberg《Principles of Plasma Discharges and Materials Processing》第 2 版第 1 章与第 14 章（帕邢曲线与最小击穿电压）。
 本书第 2 章碰撞与电离。
 }
 
@@ -475,9 +475,9 @@ Attri, Ishikawa, Okumura, Koga \& Shiratani, \emph{Processes} \textbf{8}, 1002 (
 \label{sec:app-p-problems}
 
 
-\textbf{练习 1（帕申与大气压）}。空气 $A=15\ \mathrm{/(cm\cdot Torr)}$、$B=365\ \mathrm{V/(cm\cdot Torr)}$、$\gamma=0.01$。(1) 求帕申最小值 $V_{b,\min}$ 与对应的 $pd$；(2) 若把公式外推到大气压 $1\ \mathrm{mm}$ 间隙（$pd=76\ \mathrm{Torr\cdot cm}$），得到多少伏？与实际经验值比较。
+\textbf{练习 1（帕邢与大气压）}。空气 $A=15\ \mathrm{/(cm\cdot Torr)}$、$B=365\ \mathrm{V/(cm\cdot Torr)}$、$\gamma=0.01$。(1) 求帕邢最小值 $V_{b,\min}$ 与对应的 $pd$；(2) 若把公式外推到大气压 $1\ \mathrm{mm}$ 间隙（$pd=76\ \mathrm{Torr\cdot cm}$），得到多少伏？与实际经验值比较。
 
-\textbf{解答}：$k=\ln(\ln(1+1/0.01))=1.5293$，$pd_{\min}=e^{k+1}/A = 0.8363\ \mathrm{Torr\cdot cm}$，$V_{b,\min}=B\,pd_{\min}=305.3\ \mathrm{V}$。外推 $pd=76$ 得 $5035\ \mathrm{V}$（脚本 \texttt{5034.99 V}），而大气压经验击穿场强 $30\ \mathrm{kV/cm}$ 给出 $1\ \mathrm{mm}$ 只需 $3000\ \mathrm{V}$：外推值是经验值的 $1.68$ 倍。结论：低压帕申公式不能外推，大气压必须用经验场强（式 \eqref{eq:app-p-empirical}）。
+\textbf{解答}：$k=\ln(\ln(1+1/0.01))=1.5293$，$pd_{\min}=e^{k+1}/A = 0.8363\ \mathrm{Torr\cdot cm}$，$V_{b,\min}=B\,pd_{\min}=305.3\ \mathrm{V}$。外推 $pd=76$ 得 $5035\ \mathrm{V}$（脚本 \texttt{5034.99 V}），而大气压经验击穿场强 $30\ \mathrm{kV/cm}$ 给出 $1\ \mathrm{mm}$ 只需 $3000\ \mathrm{V}$：外推值是经验值的 $1.68$ 倍。结论：低压帕邢公式不能外推，大气压必须用经验场强（式 \eqref{eq:app-p-empirical}）。
 
 \textbf{练习 2（刻蚀速率与选择比）}。刻蚀基准工况 $T_e=3\ \mathrm{eV}$、$n_e=1\times10^{17}\ \mathrm{m}^{-3}$，硅原子密度 $n_{\mathrm{Si}}=4.9939\times10^{28}\ \mathrm{m}^{-3}$。设反应离子刻蚀的产额 $Y=1.2$、纯物理溅射 $Y=0.1$，求两者速率与选择比。
 
@@ -539,7 +539,7 @@ $Y=0.1$ 时 $32.3\ \mathrm{nm/min}$，选择比 $=1.2/0.1 = 12$。
     节 & 主要来源 & 本书处理 \\
     \midrule
     §P.1 参数地图 & Lieberman \& Lichtenberg 第 1 章 & 五工况自设，公式与量级取自教材 \\
-    §P.2 帕申定律 & Raizer；Lieberman \& Lichtenberg 第 14 章 & 用 $A$、$B$、$\gamma$ 复算整条曲线与最小值 \\
+    §P.2 帕邢定律 & Raizer；Lieberman \& Lichtenberg 第 14 章 & 用 $A$、$B$、$\gamma$ 复算整条曲线与最小值 \\
     §P.3 DBD & Kogelschatz (2003)；Fridman 等 (2005) & 曼利公式与微放电丝账目自算 \\
     §P.4 鞘层刻蚀 & Lieberman \& Lichtenberg 第 6、15 章 & Child 律引用配套手册 K.7，速率用通量$\times$产额 \\
     §P.5 沉积 & Lieberman \& Lichtenberg 第 15 章；Wasa 等 & 前驱体流量法与靶侵蚀账目自算 \\

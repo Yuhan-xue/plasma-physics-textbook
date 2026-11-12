@@ -848,7 +848,7 @@ $\star\star\star$ & 挑战 & 涉及较深的数学技巧或前沿问题。供科
 
 等离子体是物质的第四态：由自由电子和离子组成、具有集体行为的准中性导电流体。极光、太阳风、霓虹灯、受控聚变，都是它的研究对象。
 
-本书为自学者铺一条从零到能读文献的路径：先建立物理图像，再补必要推导，推导够用即止。准备进聚变领域的研究生、想弄懂半导体工艺低温放电的工程师，都可以从第 1 章起步，按目标选路线。
+本书为自学者铺一条从零到能读文献的路径：先建立物理图像，再补必要推导；推导以能复算、能读文献为界。准备进聚变领域的研究生、想弄懂半导体工艺低温放电的工程师，都可以从第 1 章起步，按目标选路线。
 
 每章开头的题词为中文意译或概括，不是逐字引文；要引用请回到原始文献。
 
@@ -2909,7 +2909,7 @@ v_p = \frac{\omega}{k} = \frac{\omega_{pe}}{k}
 \]
 它\textbf{并不为零}，而是随 $k$ 变化：波前（等相位面）仍以 $\omega_{pe}/k$ 向前推进。零群速度只说明波包不携带能量往任何方向走：包络是静止的，但包络\emph{内部}的相位仍在以有限速度移动。$\omega$ 与 $k$ 无关还意味着没有特征长度尺度，任何初始扰动都不会以波的形式扩散出去。
 
-准确的物理图像是：冷等离子体中这是一个\textbf{驻立的集体振荡模式}。每个 $k$ 分量各自以 $\omega_{pe}$ 原地振荡，彼此不发散；只有热压能把扰动从一个位置传到另一个位置。考虑热运动后，$\omega^2=\omega_{pe}^2+3k^2v_{te}^2$，此时群速度 $v_g=3kv_{te}^2/\omega\neq0$，波包才开始以有限速度传播——这也正是热修正、共振速度和 Landau 阻尼能够起作用的前提。
+准确的物理图像是：冷等离子体中这是一个\textbf{驻立的集体振荡模式}。每个 $k$ 分量各自以 $\omega_{pe}$ 原地振荡，彼此不发散；只有热压能把扰动从一个位置传到另一个位置。考虑热运动后，$\omega^2=\omega_{pe}^2+3k^2\sigma_{ve}^2$，此时群速度 $v_g=3k\sigma_{ve}^2/\omega\neq0$，波包才开始以有限速度传播——这也正是热修正、共振速度和 Landau 阻尼能够起作用的前提。
 
 \smallskip
 \textbf{对照：无磁电磁波。} 冷等离子体中电磁波满足 $\omega^2=\omega_{pe}^2+c^2k^2$，此时 $v_pv_g=c^2$：$v_p=\omega/k>c$ 而 $v_g=c^2/v_p<c$。可见「相速度」与「群速度」在概念上必须分开：前者描述等相位面，后者描述能量与信息。Langmuir 冷模的 $v_g=0$ 而 $v_p\neq0$，正是这一区分更极端的例子。
@@ -3061,12 +3061,12 @@ c^2 k^2 \approx \frac{\omega_{pe}^2 \omega}{\omega_{ce}}
 
 \begin{chapterreview}
 \begin{itemize}
-\item \textbf{Langmuir 波}：电子相对于离子背景的振荡，$\omega^2 = \omega_{pe}^2 + 3k^2v_{te}^2$。
+\item \textbf{Langmuir 波}：电子相对于离子背景的振荡，$\omega^2 = \omega_{pe}^2 + 3k^2\sigma_{ve}^2$（$\sigma_{ve}=\sqrt{k_BT_e/m_e}$，$v_{te}=\sqrt2\,\sigma_{ve}$）。
 \item \textbf{离子声波}：$\omega = kc_s/\sqrt{1+k^2\lambda_{De}^2}$，恢复力来自电子热压。
 \item 冷等离子体中电磁波有色散关系 $\omega^2 = \omega_{pe}^2 + c^2k^2$，$\omega_{pe}$ 是截止频率。
 \item 磁化等离子体中波的模式按极化分裂（R波和L波），出现\textbf{共振}（$\omega_{ce}$）和\textbf{截止}。
 \item \textbf{哨声波}是低频R波，高频群速度大，产生特征「滑落」音调。
-\item \textbf{量纲自检}：色散关系两边都是 $\mathrm{s^{-2}}$——$\omega^2$、$\omega_{pe}^2$、$k^2v_{Te}^2$ 同量纲，所以能直接相加减；把 $\omega$ 与 $k$ 混着比大小是没有意义的。
+\item \textbf{量纲自检}：色散关系两边都是 $\mathrm{s^{-2}}$——$\omega^2$、$\omega_{pe}^2$、$k^2\sigma_{ve}^2$ 同量纲，所以能直接相加减；把 $\omega$ 与 $k$ 混着比大小是没有意义的。
 \end{itemize}
 \end{chapterreview}
 
@@ -3261,7 +3261,7 @@ f = f_0(v) + f_1(x,v,t), \qquad E = E_1(x,t)
 \item \textbf{Landau 阻尼}是无碰撞等离子体中波衰减的机制，由相速度附近的共振粒子引起。
 \item 当 $\partial f_0/\partial v < 0$（麦克斯韦分布）时波被阻尼；若分布有凸起 （$\partial f_0/\partial v > 0$），则可能出现\textbf{不稳定性}。
 \item 动理学描述不可替代：流体方程完全无法预测 Landau 阻尼。
-\item \textbf{量纲自检}：Landau 阻尼率 $\gamma\propto\omega_{pe}(k\lambda_{De})^{-3}$ 的单位是 $\mathrm{s^{-1}}$（与 $\omega$ 相同）；指数 $\exp[-\omega^2/(2k^2v_{Te}^2)]$ 必须无量纲。
+\item \textbf{量纲自检}：Landau 阻尼率 $\gamma\propto\omega_{pe}(k\lambda_{De})^{-3}$ 的单位是 $\mathrm{s^{-1}}$（与 $\omega$ 相同）；指数 $\exp[-\omega^2/(2k^2\sigma_{ve}^2)]$ 必须无量纲。
 \end{itemize}
 \end{chapterreview}
 
@@ -3347,7 +3347,7 @@ b_0 = \frac{|q_1 q_2|}{4\pi\eps_0 m_r v^2}
 \[
 \Lambda = \frac{\lambda_D}{b_0} = \lambda_D\cdot\frac{4\pi\eps_0 k_BT_e}{e^2} = 3\cdot\frac{4\pi}{3}n_e\lambda_D^3 = 3N_D
 \]
-（用了 $\lambda_D^2=\eps_0k_BT_e/(n_ee^2)$ 与德拜球粒子数 $N_D=\frac{4\pi}{3}n_e\lambda_D^3$。）注意这里\textbf{是 $3N_D$，不是 $12\pi N_D$}。凡是写成 $12\pi n_e\lambda_D^3$ 的，都对应另一种最大/最小碰撞参数的取法，与本书约定只差一个常数因子 $4\pi$。同一本书里必须统一，否则 $\ln\Lambda$ 会凭空差出一个可察觉的相加项。对大多数等离子体，$\ln\Lambda$ 在 $10$--$30$ 之间，缓慢依赖于等离子体参数。
+（用了 $\lambda_D^2=\eps_0k_BT_e/(n_ee^2)$ 与德拜球粒子数 $N_D=\frac{4\pi}{3}n_e\lambda_D^3$。）注意这里\textbf{是 $3N_D$，不是 $12\pi N_D$}。凡是写成 $12\pi n_e\lambda_D^3$ 的，都对应另一种最大/最小碰撞参数的取法：它与本书的 $3N_D$ 相差 $3$ 倍；若以 $N_D$ 计，则相差 $9$ 倍。同一本书里必须统一，否则 $\ln\Lambda$ 会凭空差出一个可察觉的相加项。对大多数等离子体，$\ln\Lambda$ 在 $10$--$30$ 之间，缓慢依赖于等离子体参数。
 \end{theorem}
 
 \begin{insight}{库仑对数的物理意义}{coulomb-log}
@@ -3519,7 +3519,7 @@ Spitzer 动力学修正因子（$\gamma_E\approx0.58$ 一类，$1/1.4\approx0.71
 \textbf{学习路径建议：}
 
 \begin{itemize}[leftmargin=*]
-\item[\textcolor{red}{$\blacksquare$}] \textbf{必学}：\S 9.1 不稳定性分类；\S 9.2 瑞利--泰勒不稳定性；\S 9.3 双流不稳定性。
+\item[\textcolor{red}{$\blacksquare$}] \textbf{必学}：\S 9.1 不稳定性分类；\S 9.2 瑞利--泰勒不稳定性；\S 9.3 双流不稳定性；\S 9.4 开尔文--亥姆霍兹不稳定性。
 \item[\textcolor{orange}{$\blacksquare$}] \textbf{重要}：MHD 不稳定性（扭曲模、交换模），见章末「习题精选」的 sausage/kink 模例题。
 \item[\textcolor{green}{$\blacksquare$}] \textbf{可延后}：微观不稳定性（漂移波），见章末「习题精选」的漂移波例题。
 \end{itemize}
@@ -3618,6 +3618,40 @@ x^3\simeq-\frac{\mu}{2}
 双流不稳定性是等离子体中\textbf{电流驱动}不稳定的典型代表。当等离子体中漂移速度超过电子热速度时，这种不稳定性会将定向漂移能量转化为等离子体振荡能（Langmuir 波），最终通过 Landau 阻尼（参见第 7 章）加热电子。这是等离子体中\textbf{反常电阻}（anomalous resistivity）的重要来源之一。
 \end{insight}
 
+\section{开尔文--亥姆霍兹不稳定性}\difficulty{提高}
+\label{sec:ch9-kh}
+
+两种流体沿界面反向流动时，速度剪切会把界面上的小波纹卷成涡。开尔文--亥姆霍兹不稳定性（Kelvin--Helmholtz instability，KHI）与瑞利--泰勒不稳定性同属界面不稳定性：RT 的自由能来自重力场中的密度倒置，KHI 的自由能来自剪切流动的动能。
+
+\begin{theorem}{开尔文--亥姆霍兹不稳定性}{kelvin-helmholtz}
+取两种不可压缩流体，密度 $\rho_1,\rho_2$，速度 $\vect{U}_i=U_i\hat y$，界面位于 $x=0$，两侧磁场平行于流动，$\vect{B}_i=B_i\hat y$。对界面位移 $\xi\propto\exp[\ii(ky-\omega t)]$ 做理想 MHD 线性化：在每个半空间取随 $|x|$ 指数衰减的表面波，用界面处总压连续与运动学条件消去压强扰动，得
+\[
+\rho_1(\omega-kU_1)^2+\rho_2(\omega-kU_2)^2=\frac{k^2(B_1^2+B_2^2)}{\mu_0}.
+\label{eq:kh-dispersion}
+\]
+等密度、等磁场、$U_1=+v_0/2$、$U_2=-v_0/2$ 时，上式化为
+\[
+\omega^2=k^2\left(v_A^2-\frac{v_0^2}{4}\right),\qquad
+\gamma=\operatorname{Im}\omega=k\sqrt{\frac{v_0^2}{4}-v_A^2}\quad(v_0>2v_A),
+\label{eq:kh-growth}
+\]
+其中 $v_A=B/\sqrt{\mu_0\rho}$ 是阿尔芬速度。一般密度下，不稳定性判据为
+\[
+\frac{\rho_1\rho_2}{\rho_1+\rho_2}(U_1-U_2)^2>\frac{B_1^2+B_2^2}{\mu_0}.
+\label{eq:kh-criterion}
+\]
+\end{theorem}
+
+\begin{insight}{速度剪切如何卷起涡}{kh-insight}
+把两层流体想象成两列反向行驶的车队。界面上的一个小凸起会让一侧的流体多走一点、另一侧少走一点；伯努利效应把凸起两侧的压强差放大，凸起继续长大，最后卷成涡。磁场的作用像一根沿流动方向绷紧的弦：界面弯曲必须同时弯曲磁力线，磁张力把凸起拉回去。剪切足够强、磁张力不足以拉住时，涡就卷起来。
+
+磁层顶是这条判据的天然实验室：太阳风--磁鞘流以数百 $\mathrm{km/s}$ 掠过近于静止的磁层，磁鞘的 $v_A$ 在几十到几百 $\mathrm{km/s}$，$2v_A$ 与 $\Delta v$ 同量级。剪切不稳定时，边界起伏卷成尺度 $1$--$3\,R_E$ 的涡，涡旋之间的重联把太阳风等离子体送进磁层；MMS、Cluster、THEMIS 在磁层顶两侧都报告过这类涡与伴随的重联（同一判据在《SpacePhysics》第 6 章 §6.4 用于磁层顶边界）。同样的判据也用于托卡马克边缘的剪切层：流场剪切既能驱动 KHI，也能通过剪切去相关抑制湍流。
+\end{insight}
+
+三条极限可用于自检。$B\to0$ 时 $\gamma=kv_0/2$，回到无磁场的经典 KHI；$v_0\to2v_A$ 时 $\gamma\to0$，磁张力刚好抵消剪切自由能；$v_0<2v_A$ 时 $\omega$ 为实数，界面只作频率 $kU_c\pm k\sqrt{v_A^2-v_0^2/4}$ 的稳定表面波，其中 $U_c=(\rho_1U_1+\rho_2U_2)/(\rho_1+\rho_2)$ 是质心速度。不可压缩假设要求 $v_0\ll c_s$；$v_0$ 接近声速时，压缩性会改变阈值。真实剪切层有厚度 $\delta$，$k\delta\gtrsim1$ 的短波被有限宽度抹平，增长谱在高 $k$ 端截断。起稳定作用的是沿流动方向的磁场分量；本节的不可压缩表面模只保留这一分量。
+
+\textbf{量纲检查：}$kv_A$ 与 $kv_0$ 的单位都是 $\mathrm{s^{-1}}$，故 \eqref{eq:kh-growth} 两端同为 $\mathrm{s^{-2}}$；\eqref{eq:kh-criterion} 两端都是 $\mathrm{kg\,m^{-1}\,s^{-2}}$（压强）。
+
 \begin{warning}{反常输运与经典输运}{anomalous-transport}
 基于 Spitzer 碰撞的输运理论（经典输运）常常\textbf{严重低估}实际实验中的粒子和能量损失。这是因为等离子体中普遍存在各种微观和宏观不稳定性，它们产生湍流电场和磁场，导致额外的随机散射——\textbf{反常输运}。
 
@@ -3666,6 +3700,7 @@ x^3\simeq-\frac{\mu}{2}
 \item 不稳定性按驱动机制分为\textbf{宏观（MHD）}和\textbf{微观（动理学）}两类。
 \item \textbf{瑞利--泰勒}：重流体在轻流体上方，有效重力驱动，$\gamma = \sqrt{Akg}$。
 \item \textbf{双流不稳定性}：两束相对运动的粒子流，将漂移能转化为波能。
+\item \textbf{开尔文--亥姆霍兹}：速度剪切驱动，等密度等磁场下 $v_0>2v_A$ 时增长，$\gamma=k\sqrt{v_0^2/4-v_A^2}$；沿流动方向的磁场起稳定作用。
 \item 实际等离子体中的\textbf{反常输运}远大于经典碰撞输运，是不稳定性导致湍流的结果。
 \item 抑制不稳定性是磁约束聚变和惯性约束聚变的关键技术挑战。
 \item \textbf{量纲自检}：增长率 $\gamma\sim v_A/L$ 的单位是 $\mathrm{s^{-1}}$，所以 $\gamma t$ 无量纲；判断「涨得快不快」要比的是 $\gamma$ 与 $\omega$、$\gamma$ 与 $\tau_E^{-1}$。
@@ -3976,7 +4011,7 @@ $n\tau$ & $\sim 10^{20}\,\mathrm{m}^{-3}\cdot\mathrm{s}$ & $\sim 10^{21}\,\mathr
 \chapter{低温工业等离子体物理}\label{ch:11}
 
 \begin{chapterintro}
-低温等离子体（$T_e \sim 1\sim 10\,\mathrm{eV}$，$T_i \sim$ 室温）虽然温度远低于核聚变等离子体，却是现代半导体工业、材料加工、表面处理的核心工具。本章面向自学者。前半从气体放电讲到鞘层这一被全书此前忽略的关键结构，后半延伸到化学反应、磁控溅射与工艺参数估算。我们的目标是：不仅知道公式，更能在脑中「看到」等离子体在反应腔中的运动图像。
+低温等离子体（$T_e \sim 1\sim 10\,\mathrm{eV}$，$T_i \sim$ 室温）的温度远低于核聚变等离子体，却是现代半导体工业、材料加工、表面处理的核心工具。本章从气体放电讲到鞘层这一前文未展开的关键结构，再延伸到化学反应、磁控溅射与工艺参数估算。读完应能在脑中还原反应腔里的运动图像，并把公式与气压、功率、偏压对应起来。
 \end{chapterintro}
 
 \begin{insight}{本章核心目标}{ch11-goal}
@@ -5175,7 +5210,7 @@ V_f - V_p = T_e \ln\!\left(\sqrt{\frac{2\pi m_e}{m_i}}\right)
 \end{insight}
 
 \begin{history}{朗缪尔与探针诊断的诞生}{}{}
-1924年，美国通用电气研究实验室的欧文·朗缪尔（Irving Langmuir，1881--1957）在研究汞蒸气放电。他首次系统地利用插入金属丝测量电流-电压特性，由此推导出电子温度和密度。朗缪尔当时并没有复杂的等离子体理论框架，他凭借对气体放电的深刻直觉，提出了鞘层（Sheath）的概念，并正确认识到探针周围必然存在一个非中性的空间电荷区。这项工作不仅为等离子体诊断奠定了实验基础，也直接催生了「等离子体」（Plasma）一词在物理学中的现代用法。朗缪尔本人于1928年正式提议用这个词描述电离气体。朗缪尔探针至今仍是等离子体实验室的「标配」，其简洁之美历经百年而不衰。
+1924年，美国通用电气研究实验室的欧文·朗缪尔（Irving Langmuir，1881--1957）在研究汞蒸气放电。他首次系统地利用插入金属丝测量电流-电压特性，由此推导出电子温度和密度。朗缪尔当时并没有复杂的等离子体理论框架，他凭借对气体放电的深刻直觉，提出了鞘层（Sheath）的概念，并正确认识到探针周围必然存在一个非中性的空间电荷区。这项工作为等离子体诊断建立了实验基础，也直接催生了「等离子体」（Plasma）一词在物理学中的现代用法。朗缪尔本人于1928年正式提议用这个词描述电离气体。朗缪尔探针至今仍是等离子体实验室的「标配」，其简洁之美历经百年而不衰。
 \end{history}
 
 
@@ -5338,7 +5373,7 @@ S(\omega_s) \propto \exp\!\left[-\frac{(\omega_s - \omega_i)^2}{2\sigma_\omega^2
 \frac{\sigma_i}{\sigma_e} = \left(\frac{m_e}{m_i}\right)^2.
 \label{eq:ion-electron-ratio}
 \end{equation}
-对于氢等离子体，$m_i/m_e \approx 1836$，因此\textbf{单个离子}的汤姆孙散射截面仅为电子的 $3\times 10^{-7}$。此外，离子热速度低，其无规多普勒展宽极小。不过\textbf{不能由此说「离子只是背景噪音」}。在集体散射（$\alpha\gtrsim1$，见下）中，光谱会出现由离子声波决定的\textbf{离子成分峰}，其位置与宽度是测量离子温度 $T_i$、离子成分（杂质浓度）与等离子体流动的常规手段。托卡马克上的集体汤姆孙散射就是这么用的。所以正确的说法是：在\textbf{非相干}极限（$\alpha\ll1$）下电子成分主导、谱形给出 $T_e$；一旦进入集体区，离子成分峰本身携带不可替代的离子信息。
+对于氢等离子体，$m_i/m_e \approx 1836$，因此\textbf{单个离子}的汤姆孙散射截面仅为电子的 $3\times 10^{-7}$。离子热速度低，其无规多普勒展宽极小。不过\textbf{不能由此说「离子只是背景噪音」}。在集体散射（$\alpha\gtrsim1$，见下）中，光谱会出现由离子声波决定的\textbf{离子成分峰}，其位置与宽度是测量离子温度 $T_i$、离子成分（杂质浓度）与等离子体流动的常规手段。托卡马克上的集体汤姆孙散射就是这么用的。所以正确的说法是：在\textbf{非相干}极限（$\alpha\ll1$）下电子成分主导、谱形给出 $T_e$；一旦进入集体区，离子成分峰本身携带不可替代的离子信息。
 \end{corollary}
 
 \begin{insight}{质量优势的极端性}{}
@@ -5394,7 +5429,7 @@ $A_{ji}$、$A_{lk}$ 为爱因斯坦自发辐射系数。
 式\eqref{eq:line-ratio}的本质是\textbf{能量杠杆}。两条谱线来自不同的激发能级，能级差 $\Delta E$ 就是这把「尺子」。温度低时，粒子大多集中在基态和低激发态，高能级谱线很弱；温度升高时，高能级被更多布居，高能谱线相对于低能谱线增强。测量强度比，等于在问：「等离子体中的热涨落，有没有足够能量把粒子抬升到那个高度？」 如果 $T_{\mathrm{exc}} \ll \Delta E$，那条谱线几乎熄灭；如果 $T_{\mathrm{exc}} \sim \Delta E$，两条谱线势均力敌。玻尔兹曼因子 $\exp(-\Delta E/T)$ 将温度信息编码在光强中。
 \end{insight}
 
-此外，不同元素和电离态有其独特的指纹谱线。通过辨认谱线波长，可以诊断等离子体的\textbf{化学成分}和\textbf{电离度}。杂质控制（聚变装置）与工艺监控（等离子体刻蚀）都靠这一步。
+不同元素和电离态有其独特的指纹谱线。通过辨认谱线波长，可以诊断等离子体的\textbf{化学成分}和\textbf{电离度}。杂质控制（聚变装置）与工艺监控（等离子体刻蚀）都靠这一步。
 
 \subsection{连续光谱：轫致辐射与电子温度}
 
@@ -5661,7 +5696,7 @@ Rogowski 线圈的一个重要优点是：它只测量\emph{穿过环中心的�
     \item 汤姆孙散射光谱宽度直接反映电子热速度分布，是测量 $T_e$ 的「黄金标准」；离子散射可忽略因为 $(m_e/m_i)^2$ 极小。
     \item 光谱诊断通过线光谱（激发温度、成分）、连续谱（轫致辐射温度）和斯塔克展宽（密度）提供丰富的参数信息。
     \item 磁探针和 Rogowski 线圈基于法拉第感应，测量磁场变化和等离子体电流，是 MHD 宏观参数的主要诊断手段。
-\item \textbf{量纲自检}：探针特性的指数 $\exp(eV/k_BT_e)$ 必须无量纲（$T_e$ 用 eV 时等价于 $V/T_e$）；干涉相移 $\phi=\frac{e^2}{2\varepsilon_0m_ec^2}\int n_eB\,\mathrm{d}l$ 的单位是 rad。
+\item \textbf{量纲自检}：探针特性的指数 $\exp(eV/k_BT_e)$ 必须无量纲（$T_e$ 用 eV 时等价于 $V/T_e$）；干涉相移 $\phi=\frac{e^2}{2\varepsilon_0m_ec\,\omega}\int n_e\,\mathrm{d}l$ 的单位是 rad（系数与 $r_e\lambda_0$ 同量纲，为 $\mathrm{m^2}$，乘 $n_e$ 与 $\mathrm{d}l$ 后无量纲）。
 \end{itemize}
 \end{review}
 
@@ -6789,9 +6824,9 @@ bad: success=False status=1 message=The maximum number of mesh nodes is exceeded
 
 \textbf{物理目标：} 绘制冷等离子体朗缪尔波 $\omega_{pe}$ 加上热修正（Bohm--Gross 色散关系）：
 \begin{equation}
-\omega^2 = \omega_{pe}^2 + \frac{3k_\mathrm{B}T_e}{m_e}k^2 = \omega_{pe}^2 + 3k^2v_{te}^2
+\omega^2 = \omega_{pe}^2 + \frac{3k_\mathrm{B}T_e}{m_e}k^2 = \omega_{pe}^2 + 3k^2\sigma_{ve}^2
 \end{equation}
-代码含\textbf{有效性回溯检查}：端口输出 $k\lambda_D$ 取 $0.1,0.3,1.0$ 时的热修正量 $3(k\lambda_D)^2$，据此判断 Bohm--Gross 近似的适用范围（约 $k\lambda_D\lesssim0.3$；$k\lambda_D\to1$ 时 Landau 阻尼已显著，须用动理学色散关系）。
+其中 $\sigma_{ve}=\sqrt{k_\mathrm{B}T_e/m_e}$ 是电子速度分布的单分量宽度（$v_{te}=\sqrt2\,\sigma_{ve}$）。代码含\textbf{有效性回溯检查}：脚本输出 $k\lambda_D$ 取 $0.1,0.3,1.0$ 时的热修正量 $3(k\lambda_D)^2$，据此判断 Bohm--Gross 近似的适用范围（约 $k\lambda_D\lesssim0.3$；$k\lambda_D\to1$ 时 Landau 阻尼已显著，须用动理学色散关系）。
 
 \noindent\textbf{完整脚本：}\texttt{code/\allowbreak{}appendix\_g/\allowbreak{}langmuir\_dispersion.py}——按 Bohm--Gross 关系绘制色散曲线，并打印 $k\lambda_D=0.1,0.3,1.0$ 处的热修正量 $3(k\lambda_D)^2$，供有效性回溯检查使用。
 

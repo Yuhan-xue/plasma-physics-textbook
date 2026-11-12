@@ -30,15 +30,15 @@ def main():
     # 面向读者的口径：A–H 内联在主文件、没有独立源文件；J–L 已移入配套手册，仍按源文件审计
     text = text.replace('tmp/selfstudy_audit.py', 'tools/selfstudy_audit.py')
     text = text.replace('tmp\\selfstudy_audit.py', 'tools\\selfstudy_audit.py')
-    text = text.replace('工具型附录（A–L）', '工具型附录（A–I）')
+    text = text.replace('工具型附录（A–L）', '工具型附录（A–H 在正文；I–L 在配套手册）')
     note = (u'\n\n口径说明：A–H 的正文内联在主文件里，没有独立源文件，本表只审有独立文件的附录；'
-            u'J／K／L（经典教材对照、跨教材例题、分章自测题库）已移出主册、编入配套手册，'
+            u'I–L（学习策略、经典教材对照、跨教材例题、分章自测题库）已移出主册、编入配套手册，'
             u'本表仍按源文件审计，方便改稿时核对。\n')
     marker = '判据同时接受，不强行统一。'
     if marker in text:
         text = text.replace(marker, marker + note, 1)
-    text = text.replace('## 二、工具型附录（A–I）',
-                        '## 二、工具型附录（A–I；J–L 已移入配套手册，仍按源文件列出）')
+    text = text.replace('## 二、工具型附录（A–H 在正文；I–L 在配套手册）',
+                        '## 二、工具型附录（I–L，配套手册；A–H 内联在正文）')
     text = text.replace(
         '**无缺口**：12 章、4 个工具型附录、40 个专题附录全部满足各自标准。',
         '**无缺口**：12 章、40 个专题附录，以及 4 个有独立源文件的工具型附录（I–L）全部满足各自标准'

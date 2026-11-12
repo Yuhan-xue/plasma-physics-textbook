@@ -108,7 +108,7 @@
 | v1.30.0 | 深蓝 + 金下的图与字再收一轮：36 张自画图逐张目检重画（回旋侧视图的 TikZ `sin` 用角度制导致曲线几乎成直线，改为 `sin(200*\x)` 系参数；德拜屏蔽与回旋侧视两张一直没题注的内嵌图改成正式 figure；第 11 章概念图修掉「鞘层与玻 / 姆判据」断词；附录导航图放大重排，不再孤零零占一页）；破折号从 1060 处压到 319 处（每千字 3.09 → 1.12），超长句 203 → 95，全书套话只剩 3 处；四处「只剩一行」的排版孤儿页收回；页数 613 → 608，卷一 205 页、卷二 403 页、配套手册 48 页 |
 | v1.29.0 | 图版与文字收口：主册 18 张自画图与 12 章的章末概念图按「深蓝 + 金」重绘（统一线宽、字号与配色，修掉节点交叠、线条穿字与文字被框边裁切）；33 篇附录做去 AI 味定稿（拆破折号插入语、删元叙述与结论复述）；附录导航图重排簇名与编号块；页数 612 → 613，卷一 207 页、卷二 406 页、配套手册 48 页 |
 | v1.28.1 | 全量 check 修复：物理回归套件报出的 3 处「必需表述」被上一轮去 AI 味误删——附录 O 的「不写无法核实的 DOI 与卷页」一句、附录 U 的 ITER 工程增益 {\mathrm{eng}}=1.760$ 与「三者工作点完全一致」一句，全部原样恢复（只补回载重句，不加冗词）。7195 项数值回归回到 FAIL 0。页数保持 612 |
-| v1.28.0 | 视觉与文风重做：全书色板从 Okabe–Ito 十二色重锚为「深蓝 + 金」（封面、章标题、9 种语义盒、36 张自画图一并换色，白字对比度全部 ≥4.5:1）；19 张章节自画图与学习路径图重绘并收敛尺寸；25 个源文件做定点去 AI 味（拆长句、删元叙述与结论复述）；仓库规范化（版本记录改 CHANGELOG、评审记录并入 docs/review-log.md、选图标准并入 docs/figures-sourcing.md、.gitignore 重写、工作区 350→139 MB）；README 从 260 行压到 86 行；新增 docs/palette.md、docs/style.md、docs/layout.md 三份规范与 tools/style_lint.py 文风体检。页数 615 → 612 |
+| v1.28.0 | 视觉与文风重做：全书色板从 Okabe–Ito 十二色重锚为「深蓝 + 金」（封面、章标题、9 种语义盒、36 张自画图一并换色，白字对比度全部 ≥4.5:1）；19 张章节自画图与学习路径图重绘并收敛尺寸；25 个源文件做定点去 AI 味（拆长句、删元叙述与结论复述）；仓库规范化（版本记录改 CHANGELOG、评审记录并入 docs/review-log.md、选图标准并入 docs/figures-sourcing.md、.gitignore 重写、工作区 350→139 MB）；README 从 260 行压到 86 行；新增 docs/palette.md、docs/style.md、docs/layout.md 三份规范与 tools/style_lint.py 文风体检。页数 615 → 612（`docs/style.md` 已于 2026-11 并入 `docs/STYLE.md`） |
 | v1.27.20 | 配图署名修正：附录 AG 的 KSTAR 装置图下署名与追溯不一致（原文误写 Eye Steel Film / CC BY 2.0），改为与 figures/CREDITS.md 一致（Michel Maccagnan / CC BY-SA 3.0）；正文、页数（615）与图数（118）均不变 |
 | v1.27.19 | 给附录 AJ 补上第二张图：W7-X 真空室扇段与接口法兰（加料口、抽气口、诊断窗口都在这些法兰上），画册 117 → 118 张；48 个附录全部达到「至少两张图」。页数保持 615 |
 | v1.27.18 | 配图来源与许可全量复核：把 118 张图的作者、许可与来源页与 Wikimedia Commons 元数据逐条比对（117/117 一致），修正两处作者字段——landau_damping.jpg 改为 Rwbest、az_iter_complex.jpg 改为 Oak Ridge National Laboratory；正文图下来源行同步，页数保持 615 |
@@ -237,3 +237,22 @@ python check/physics_regression.py  # 重新计算书中印出的数字
 python check/ui_readability.py      # 可读性与版式
 python check/consistency_audit.py   # 符号、单位、附录与正文的一致性
 ```
+
+---
+
+## 2026-11 统一编辑轮（源码，未发版）
+
+本轮只改源码与文档，不升版本号、不重出 PDF；四册交付物仍是 v1.33.9。
+
+- 热修正统一为 `σ_ve` 口径：主文件 insight／章末回顾／附录 G 与 `src/ch6_supplement.tex`、`src/appendix_l_problems.tex` 的 `3k²v_te²` 全部改 `3k²σ_ve²`，数值 `8.32e17` 不变（ERRATA PL-01、PL-02）。
+- 第 12 章量纲自检的相移公式改为 `e²/(2ε_0m_ecω)∫n_e dl`，与定理 `eq:phase-shift` 对齐（ERRATA PL-03）。
+- 第 9 章新增 `§9.4 开尔文--亥姆霍兹不稳定性`：不可压剪切流色散、`v_0>2v_A` 判据、磁层顶图像与 SpacePhysics 第 6 章对应；同步学习路径与章末回顾（ERRATA PL-04）。
+- 附录 P 正文「帕申」统一为「帕邢」；节标题因 `check/physics_regression.py` 固定期望键暂留，待作者拍板（ERRATA PL-05、PL-06）。
+- 第 2 章三大判据措辞统一为 `Γ≪1`，并补与 `N_D`、`ω_peτ_coll` 的等价关系（ERRATA PL-07）。
+- q95 的 3.00（AA，9 MA）与 3.5（AD/AE，15 MA）记为不同工作点，不改数值（ERRATA PL-08）。
+- 删除 5 个补充文件里 13 处行首孤立句号；修正附录 G 一处「端口输出」→「脚本输出」（ERRATA PL-09、PL-10）。
+- 修两处断引用 `ex:low-temp-params`→`ex:typical-params`；主文件两处大写 `v_{Te}` 改为 `σ_ve`；`lnΛ` 的「差一个 4π」改为「与 3N_D 差 3 倍」（ERRATA PL-14–PL-16）。
+- `README.md` 按模板重写为 178 行；`AGENTS.md` 补索引、状态、构建验收与发布清单；新建 `ERRATA.md`、`STATUS.md`、`docs/ARCHITECTURE.md`、`docs/STYLE.md`、`docs/QA.md`，并更新 `docs/README.md`。
+- 去防御性写作：README 第一屏、前言、第 11 章导语、第 12 章历史段，以及附录 J/X/Y/AL/AO 与 `ch5_supplement` 的自我削弱句改为直接陈述；保留适用范围与教学装置。
+- `docs/overview.md` 补发布构建与静态运行两种门禁项数口径；`docs/layout.md` 根目录图加入 ERRATA/STATUS 与 docs/ARCHITECTURE/STYLE/QA；README 附录分组补「正文 48 + 手册 4」说明。
+- 静态门禁：`consistency_audit` FAIL 0 / WARN 0（15 项）；`full_check --no-compile` FAIL 2（仅缺 `.log` 与 PDF）／WARN 2 / PASS 21；`physics_regression` FAIL 0 / WARN 1（7193 项，缺 `.aux` 少 2 项）；`ui_readability` FAIL 0 / WARN 20；`figure_layout` 与 `pdf_outline` 跑的是旧 PDF，FAIL 0。详见 `STATUS.md`。

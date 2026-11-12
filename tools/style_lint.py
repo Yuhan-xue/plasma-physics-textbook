@@ -5,8 +5,8 @@
 是客观的。写作前跑一次 `--rev HEAD` 存底，改完再跑一次，就知道这轮到底改掉了
 多少，而不是"感觉干净了"。
 
-口径（与 docs/style.md 一致）：
-  - 套话：docs/style.md §2 禁用词表里的空转连接词与自我表演句；
+口径（与 docs/STYLE.md 一致）：
+  - 套话：docs/STYLE.md §2 禁用词表里的空转连接词与自我表演句；
   - 破折号密度：每千个正文字符里出现几个「——」（中文破折号滥用是典型的生成痕迹）；
   - 超长句：去掉数学与命令后，单句 > 100 字；
   - 句长 p90：中文技术教材的经验良好线是 ≤ 60 字。
@@ -34,7 +34,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, 'src')
 MAIN = 'plasma_physics_textbook_v2.tex'
 
-# docs/style.md §2 的禁用词表（只收「删掉不影响意思」的那批）
+# docs/STYLE.md §2 的禁用词表（只收「删掉不影响意思」的那批）
 CLICHES = [
     '值得注意的是', '需要指出的是', '不难发现', '不难看出', '众所周知',
     '毫无疑问', '显而易见', '综上所述', '总而言之', '总的来说', '总之',

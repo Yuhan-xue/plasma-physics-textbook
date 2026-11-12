@@ -36,18 +36,18 @@ f_{pe} = \frac{\omega_{pe}}{2\pi} \approx 8.98\,\mathrm{GHz}
 \]
 
 \textbf{(2) Bohm--Gross 色散关系：}
-电子热速度：
+电子速度分布的单分量宽度：
 \[
-v_{te} = \sqrt{\frac{k_{\!B}T_e}{m_e}} = \sqrt{\frac{6.408\times 10^{-19}}{9.109\times 10^{-31}}} = \sqrt{7.04\times 10^{11}} \approx 8.39\times 10^5\,\mathrm{m/s}
+\sigma_{ve} = \sqrt{\frac{k_{\!B}T_e}{m_e}} = \sqrt{\frac{6.408\times 10^{-19}}{9.109\times 10^{-31}}} = \sqrt{7.04\times 10^{11}} \approx 8.39\times 10^5\,\mathrm{m/s}
 \]
 
 波数 $k=2\pi/\lambda = 2\pi/10^{-2} = 628.3\,\mathrm{rad/m}$。
 \[
-\omega^2 = \omega_{pe}^2 + 3k^2v_{te}^2 = 3.182\times 10^{21} + 3\times(628.3)^2\times(8.39\times 10^5)^2
+\omega^2 = \omega_{pe}^2 + 3k^2\sigma_{ve}^2 = 3.182\times 10^{21} + 3\times(628.3)^2\times(8.39\times 10^5)^2
 \]
 计算热修正项：
 \[
-3k^2v_{te}^2 = 3\times 3.944\times 10^5\times 7.035\times 10^{11} = 8.32\times 10^{17}
+3k^2\sigma_{ve}^2 = 3\times 3.944\times 10^5\times 7.035\times 10^{11} = 8.32\times 10^{17}
 \]
 \[
 \omega^2 = 3.182\times 10^{21} + 8.32\times 10^{17} = 3.182\times 10^{21}\left(1 + 2.62\times 10^{-4}\right)
@@ -55,7 +55,7 @@ v_{te} = \sqrt{\frac{k_{\!B}T_e}{m_e}} = \sqrt{\frac{6.408\times 10^{-19}}{9.109
 
 \textbf{注意有效数字：} 修正项只有 $\omega_{pe}^2$ 的万分之几，若先各自取三位有效数字再相减，会\emph{完全}丢掉这一修正。正确做法是\emph{只用无量纲比值}表达结果，而不是拿两个已取整的大数去相减。令
 \[
-\frac{\omega^2}{\omega_{pe}^2} = 1 + \varepsilon, \qquad \varepsilon = \frac{3k^2v_{te}^2}{\omega_{pe}^2} = 2.62\times 10^{-4}
+\frac{\omega^2}{\omega_{pe}^2} = 1 + \varepsilon, \qquad \varepsilon = \frac{3k^2\sigma_{ve}^2}{\omega_{pe}^2} = 2.62\times 10^{-4}
 \]
 \[
 \frac{\omega}{\omega_{pe}} = \sqrt{1+\varepsilon} \approx 1 + \frac{\varepsilon}{2} = 1 + 1.31\times 10^{-4} = 1.000131
@@ -74,7 +74,7 @@ v_{te} = \sqrt{\frac{k_{\!B}T_e}{m_e}} = \sqrt{\frac{6.408\times 10^{-19}}{9.109
 
 \textbf{(3) 德拜长度验证：}
 \[
-\lambda_{De} = \frac{v_{te}}{\omega_{pe}} = \frac{8.39\times 10^5}{5.64\times 10^{10}} \approx 1.49\times 10^{-5}\,\mathrm{m} = 14.9\,\mu\mathrm{m}
+\lambda_{De} = \frac{\sigma_{ve}}{\omega_{pe}} = \frac{8.39\times 10^5}{5.64\times 10^{10}} \approx 1.49\times 10^{-5}\,\mathrm{m} = 14.9\,\mu\mathrm{m}
 \]
 \[
 k\lambda_{De} = 628.3\times 1.49\times 10^{-5} \approx 9.35\times 10^{-3} \ll 1
@@ -409,7 +409,7 @@ t = \frac{10}{v_g} = \frac{10}{2.85\times10^8} \approx 3.5\times10^{-8}\,\mathrm
 \begin{formulabox}{第 6 章}{ch6-formulas}
 \begin{itemize}[leftmargin=*,itemsep=0pt]
 \item Langmuir 波（冷）：$\displaystyle\omega^2 = \omega_{pe}^2$
-\item Langmuir 波（热修正）：$\displaystyle\omega^2 = \omega_{pe}^2 + 3k^2v_{te}^2$
+\item Langmuir 波（热修正）：$\displaystyle\omega^2 = \omega_{pe}^2 + 3k^2\sigma_{ve}^2$
 \item 离子声波：$\displaystyle\omega^2 = \frac{k^2c_s^2}{1+k^2\lambda_{De}^2}$，$\displaystyle c_s = \sqrt{\frac{k_{\!B}T_e}{m_i}}$（$T_e\gg T_i$）
 \item 电磁波（无磁场）：$\displaystyle\omega^2 = \omega_{pe}^2 + c^2k^2$
 \item 截止频率：$\displaystyle\omega_{pe} = \sqrt{\frac{n_e e^2}{\eps_0 m_e}}$
@@ -420,7 +420,7 @@ t = \frac{10}{v_g} = \frac{10}{2.85\times10^8} \approx 3.5\times10^{-8}\,\mathrm
 \item 相速度：$\displaystyle v_p = \frac{\omega}{k}$，群速度：$\displaystyle v_g = \frac{\partial\omega}{\partial k}$（冷 Langmuir 波 $v_g=0$ 但 $v_p=\omega_{pe}/k\neq0$）
 \item 等离子体中EM波：$\displaystyle v_p v_g = c^2$
 \end{itemize}
-\textbf{符号说明：}$\omega$、$k$ 为波角频率与波数；$\omega_{pe}$ 为电子等离子体频率，$\omega_{ce}$、$\omega_{ci}$ 为电子、离子回旋频率；$\lambda_{De}$ 为电子德拜长度；$c_s$ 为离子声速，$v_{te}$ 为电子热速度。$n_R$、$n_L$ 为右旋、左旋波的折射率；$v_p$、$v_g$ 为相速度与群速度。
+\textbf{符号说明：}$\omega$、$k$ 为波角频率与波数；$\omega_{pe}$ 为电子等离子体频率，$\omega_{ce}$、$\omega_{ci}$ 为电子、离子回旋频率；$\lambda_{De}$ 为电子德拜长度；$c_s$ 为离子声速，$v_{te}=\sqrt2\,\sigma_{ve}$ 为电子热速度，$\sigma_{ve}$ 为电子速度分布的单分量宽度。$n_R$、$n_L$ 为右旋、左旋波的折射率；$v_p$、$v_g$ 为相速度与群速度。
 \end{formulabox}
 
 \enlargethispage{2\baselineskip}
